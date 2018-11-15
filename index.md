@@ -1,5 +1,8 @@
-
+<!-- should be in head 
+<link rel="prefetch" href=" http://lerina.github.io/hire_me ">
+-->
 <canvas id="cnv_all" width="578" height="150"></canvas>
+<script src="./js/cnv01.js"></script>
 
 <div class="container">
 
@@ -22,34 +25,43 @@
 </nav>
 
 <div>
+
+Hello, ... friend?
+If you believe programmers and designers ought to partner up to make 
+digital projects such as websites, web applications, and mobile apps that look and work great, you've reach the right place
+
+Tell me about your **P.A.I.N.** <span id="PAIN"></span>
+
+- **P**roject or **P**roblem (to solve) <a href="./#Pain"> more ...</a>
+- **A**genda/Ambition or **A**ngst/Anger (to fix) <a href="./#pAin"> more ...</a>
+- **I**nspiration or **I**rritation  (to heal) <a href="./#paIn"> more ...</a>
+- **N**iche and **N**eeds (to get started) <a href="./#paiN"> more ...</a>
+
 Don't butcher your way through your IT Project. everybody can write code. But not everybody can write good code.
 Like wise anybody can talk about design, but not everybody can actually deliver a good design. Talent is where creativity and practice meet repetitively. Very often in the IT world, design Talents and coding Talents need to meets repetitively 
 
 Tell me about your P.A.I.N.
 =============================
 
-All programmers and designers of the world Unite! 
-I help programmers and designers partner up to make 
-digital projects such as websites, web applications, and mobile apps that look and work great.
+<span id="Pain">**P**roject or **P**roblem (to solve)</span>
 
-Tell me about your **P**.A.I.N.
+<a href="./#PAIN">back ...</a> 
 
-- **P**roject or **P**roblem (to solve)
+<span id="pAin">**A**genda/Ambition or **A**ngst/Anger (to fix)</span>
 
-Tell me about your P.**A**.I.N.
+<a href="./#PAIN">back ...</a> 
 
-- **A**genda/Ambition or **A**ngst/Anger (to fix)
+<span id="PaIn">**I**nspiration or **I**rritation  (to heal)</span>
 
-Tell me about your P.A.**I**.N.
+<a href="./#PAIN">back ...</a> 
 
-- **I**nspiration or **I**rritation  (to heal)
+<span id="PaiN">**N**iche and **N**eeds (to get started)</span>
 
-Tell me about your P.A.I.**N**.
-
-- **N**iche and **N**eeds (to get started)
+<a href="./#PAIN">back ...</a> 
 
 
-If you are a  content writers, designer or entrepreneurs you've got `P.A.I.N.` and that is great. You want to get thing out in the world. Let me help you until the <img src="./logo_lerina_16x16.png" align="bottom" /> `l`ast `R`elease.
+If you are a content writer, designer or entrepreneur you've got `P.A.I.N.` and that is great. 
+You want to get thing out in the world. Perhaps we may work together, until that <img src="./logo_lerina_16x16.png" align="bottom" /> `l`ast `R`elease.
 
 
 
@@ -65,6 +77,11 @@ fn main() {
 }
 ```
 
+“Everybody in this country should learn how to program a computer … because it teaches you how to think.”   
+~ Steve Jobs
+
+“Everybody in this country should learn how to think … programming a computer is one option.”   
+~ lerina
 </div>
 
 <nav>
@@ -74,7 +91,7 @@ fn main() {
     - Python
     - Rust
     - JavaScript
-</div><div style="float:left;border-right:solid 1px #ddd; ">
+</div><div style="float:left;border-right:solid 1px #ddd; padding-right:3px;">
 - Web / Mobile
 
     - Django
@@ -82,13 +99,19 @@ fn main() {
     - React
 
 
-</div><div style="float:right; marging-right:1px;">
+</div><div style="float:left; padding-left:3px;">
 
 - &nbsp;<img src="./logo_lerina_32x32.png" align="top" /> Hire Me
 
     - Availability
     - Rates
     - Legal
+
+I enjoy working with others to produce a better outcome.
+I try to find the best fitting technology for a given problem. 
+While my professional background is mostly Python, thanks to Webassembly I have reconnected
+with JavaScript and fallen in love with Rust.
+
 </div>
 </nav>
 

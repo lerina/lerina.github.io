@@ -1,9 +1,10 @@
 body {
     margin: 60px auto;
     width: 70%;
+    font-family:'Helvetica', 'Arial', 'Sans-Serif';
 }
 nav ul, footer ul {
-    font-family:'Helvetica', 'Arial', 'Sans-Serif';
+    /*font-family:'Helvetica', 'Arial', 'Sans-Serif';*/
     padding: 0px;
     list-style: none;
     font-weight: bold;
@@ -22,14 +23,14 @@ a:hover {
 }
 h1 {
     color: #666699;  /* #330033; */
-    font-size: 3em;
-    font-family:'Helvetica', 'Arial', 'Sans-Serif';
+    font-size: 2em;
+    /*font-family:'Helvetica', 'Arial', 'Sans-Serif';*/
 }
 h2 {
     color: #333366;
 }
 p {
-    font-size: 1.5em;
+    font-size: 1em;
     line-height: 1.4em;
     color: #333;
 }
@@ -37,6 +38,8 @@ footer {
     border-top: 1px solid #d5d5d5;
     font-size: .8em;
 }
+
+ul {list-style:none;}
 
 ul.posts { 
     margin: 20px auto 40px; 
@@ -76,7 +79,7 @@ footer div#copy {
 footer div#copy a {
   color: #fff; /*d5559;  */
   font-size: 15px;
-  font-family:'Helvetica', 'Arial', 'Sans-Serif';
+  /*font-family:'Helvetica', 'Arial', 'Sans-Serif';*/
 }
 .le {color:rgba(244,40,165,0.9); } /*   #f428a5; */
 .ri {color:rgba(138,91,160,0.9); } /*  #8a5ba0; }*/
