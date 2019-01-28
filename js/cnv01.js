@@ -2,7 +2,7 @@
 var cnv = document.getElementById("cnv");
   //cnv.style.width = window.innerWidth - (window.innerWidth *30/100) + 'px';
   //cnv.style.height = window.innerHeight  - (window.innerHeight *15/100) + 'px';
-  OnResizeCalled(e);
+  OnResizeCalled();
   cnv.style.marginLeft = "auto";
   cnv.style.marginRight = "auto";
   cnv.style.display = "block";
@@ -11,6 +11,7 @@ var cnv = document.getElementById("cnv");
   // visibility:hidden means that the contents of the element will be invisible, but the element stays in its original position and size.
 
 var ctx = cnv.getContext("2d");
+
 
 var rect_x = 10;
 var rect_y = 10;
@@ -23,7 +24,7 @@ window.addEventListener("resize", OnResizeCalled, false);
 
 function OnResizeCalled() {
     let newWidth  = window.innerWidth - (window.innerWidth *30/100);
-    let newHeight = window.innerHeight - (window.innerHeight *15/100);
+    let newHeight = window.innerHeight - (window.innerHeight *85/100);
     cnv.style.width = newWidth + 'px';
     cnv.style.height = newHeight + 'px';
     
