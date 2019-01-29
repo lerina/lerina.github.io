@@ -6,115 +6,44 @@
 
 <div class="container">
 
-<!--
-<nav>
-<canvas id="cnv_left" width="192" height="150" style="border:solid 1 red"></canvas>
-<canvas id="cnv_center" width="192" height="150"></canvas>
-<canvas id="cnv_right" width="192" height="150"></canvas>
-</nav>
--->
-
 <nav> 
 
 -   [Home](/)
--   [Programming](/prog)
--   [Blog](/blog)
--   [About](/about)
--   [Faq](/faq)
+-   [Learn `Rust` with an RPG Adventure](/rrpg/)
+-   [About](/about.html)
 
 </nav>
 
 <div>
+Learn the Rust Programming Language through a teaching Role Playing Game.
 
-Hello, ... friend?
-If you believe programmers and designers ought to partner up to make 
-digital projects such as websites, web applications, and mobile apps that look and work great, you've reach the right place
-
-Tell me about your **P.A.I.N.** <span id="PAIN"></span>
-
-- **P**roject or **P**roblem (to solve) <a href="./#Pain"> more ...</a>
-- **A**genda/Ambition or **A**ngst/Anger (to fix) <a href="./#pAin"> more ...</a>
-- **I**nspiration or **I**rritation  (to heal) <a href="./#paIn"> more ...</a>
-- **N**iche and **N**eeds (to get started) <a href="./#paiN"> more ...</a>
-
-Don't butcher your way through your IT Project. everybody can write code. But not everybody can write good code.
-Like wise anybody can talk about design, but not everybody can actually deliver a good design. Talent is where creativity and practice meet repetitively. Very often in the IT world, design Talents and coding Talents need to meets repetitively 
-
-Tell me about your P.A.I.N.
-=============================
-
-<span id="Pain">**P**roject or **P**roblem (to solve)</span>
-
-<a href="./#PAIN">back ...</a> 
-
-<span id="pAin">**A**genda/Ambition or **A**ngst/Anger (to fix)</span>
-
-<a href="./#PAIN">back ...</a> 
-
-<span id="PaIn">**I**nspiration or **I**rritation  (to heal)</span>
-
-<a href="./#PAIN">back ...</a> 
-
-<span id="PaiN">**N**iche and **N**eeds (to get started)</span>
-
-<a href="./#PAIN">back ...</a> 
-
-
-If you are a content writer, designer or entrepreneur you've got `P.A.I.N.` and that is great. 
-You want to get thing out in the world. Perhaps we may work together, until that <img src="./logo_lerina_16x16.png" align="bottom" /> `l`ast `R`elease.
-
-
-
+a good foundation for understanding how to get the most out of the Rust language and development ecosystem.    
+<img src="./logo_lerina_16x16.png" align="bottom" /> `l`ast `R`elease.
 </div>
 
-## Some Code
+#[Learn `Rust` with an RPG Adventure](/rrpg/)
 
-```rust
-fn main() {
-    let mut days_left: u8 = 10;
-     
-    println!("{} days to startup!", days_left);
-}
-```
+[Learn `Rust` with an RPG Adventure](/rrpg/)
 
-“Everybody in this country should learn how to program a computer … because it teaches you how to think.”   
-~ Steve Jobs
-
-“Everybody in this country should learn how to think … programming a computer is one option.”   
-~ lerina
-</div>
+[JS Game programming tutorial](https://whispering-cove-41710.herokuapp.com/)
 
 <nav>
 <div style="float:left">
-- Programming
+-  Helpful Links
 
-    - Python
-    - Rust
-    - JavaScript
+        - Rust
+        - The [Rust] Book
+
 </div><div style="float:left;border-right:solid 1px #ddd; padding-right:3px;">
-- Web / Mobile
-
-    - Django
-    - Webassembly
-    - React
-
+- Getting Started with WebAssembly (WASM) with Rust
 
 </div><div style="float:left; padding-left:3px;">
 
-- &nbsp;<img src="./logo_lerina_32x32.png" align="top" /> Hire Me
-
-    - Availability
-    - Rates
-    - Legal
-
-I enjoy working with others to produce a better outcome.
-I try to find the best fitting technology for a given problem. 
-While my professional background is mostly Python, thanks to Webassembly I have reconnected
-with JavaScript and fallen in love with Rust.
-
+- &nbsp;<img src="./logo_lerina_32x32.png" align="top" /> Rustacean Order: Contributing to the Rust Community
 </div>
 </nav>
 
+</div>
 
 <footer style="clear:both">
 
@@ -122,8 +51,7 @@ with JavaScript and fallen in love with Rust.
 -   [email](mailto:lerina.razafy@gmail.com)
 -   [github.com/lerina](https://github.com/lerina)
 
-<div id="copy">
-<em>&#xa9;</em> 2018  &nbsp; <a href="http://razafy.com" target="_blank"> <span class="le">le</span><span class="ri">ri</span><span class="na">na</span>  ^_^ </a></div>
+<div id="copy"><em>&#xa9;</em> 2018  &nbsp; <a href="http://razafy.com" target="_blank"> <span class="le">le</span><span class="ri">ri</span><span class="na">na</span>  ^_^ </a></div>
 
 </footer>
 
