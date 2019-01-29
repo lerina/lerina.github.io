@@ -32,7 +32,7 @@ a good foundation for understanding how to get the most out of the Rust language
 -  Helpful Links
 
         - Rust
-        - The [Rust] Book
+        - The [Rust] Bookgit status
 
 </div><div style="float:left;border-right:solid 1px #ddd; padding-right:3px;">
 - Getting Started with WebAssembly (WASM) with Rust
