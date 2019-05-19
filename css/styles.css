@@ -1,8 +1,21 @@
+html {
+   background: rgba(183, 165, 114,0.1);
+  /*background: url(./bg-repeat.jpg) rgba(20,20,20,0.8)
+    top center repeat;
+  */
+  background-size: 100% 100%;
+  width: 100%;
+  height: 100%;
+}
+
 body {
     margin: 60px auto;
     width: 70%;
     font-family:'Helvetica', 'Arial', 'Sans-Serif';
+
 }
+
+
 nav ul, footer ul {
     /*font-family:'Helvetica', 'Arial', 'Sans-Serif';*/
     padding: 0px;
@@ -16,10 +29,14 @@ nav ul li, footer ul li {
 }
 a {
     text-decoration: none;
-    color: #999;
+    color: rgba(183, 65, 14,0.9); /*#999;*/
 }
-a:hover {
-    text-decoration: underline;
+a:hover {    
+    text-decoration: underline; 
+}
+a > img:hover {
+    margin-bottom: -4px;
+    border-bottom: 1px solid rgba(183, 65, 14,0.9); 
 }
 h1 {
     color: #666699;  /* #330033; */
@@ -32,7 +49,7 @@ h2 {
 p {
     font-size: 1em;
     line-height: 1.4em;
-    color: #333;
+    color: #555;
 }
 footer {
     border-top: 1px solid #d5d5d5;
@@ -40,20 +57,19 @@ footer {
 }
 
 ul {list-style:none;}
-
 ul.posts { 
     margin: 20px auto 40px; 
     font-size: 1.5em;
 }
-
 ul.posts li {
     list-style: none;
 }
+li {color: #777;}
 
 pre {
     background: #f4f4f4; /* #272822; */
     border: 1px solid #ddd; /* #cc6699; */
-border-left: 3px solid #9966cc; /* #001f3f ;  #f36d33;*/
+    border-left: 3px solid rgba(183, 65, 14,0.9); /* #9966cc; #001f3f ;  #f36d33;*/
     color: #666;
     page-break-inside: avoid;
     font-family: monospace;
@@ -84,4 +100,5 @@ footer div#copy a {
 .le {color:rgba(244,40,165,0.9); } /*   #f428a5; */
 .ri {color:rgba(138,91,160,0.9); } /*  #8a5ba0; }*/
 .na {color:rgba(91,123,235,0.9); } /*   #5b7beb; }*/
+
 
