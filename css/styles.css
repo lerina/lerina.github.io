@@ -1,3 +1,29 @@
+/***************************
+****************************
+Reset Styles
+****************************
+***************************/
+@import 'normalize.css';
+
+/* Change all elements to use border-box 
+ * If I say the width is 200px, gosh darn it, 
+ * it’s gonna be a 200px wide box even if 
+ * I have 20px of padding.
+ * [box sizing](https://www.paulirish.com/2012/box-sizing-border-box-ftw/)
+*/
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+
+/***************************
+****************************
+Base Styles
+****************************
+***************************/
 html {
    background: rgba(183, 165, 114,0.1);
   /*background: url(./bg-repeat.jpg) rgba(20,20,20,0.8)
