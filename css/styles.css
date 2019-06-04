@@ -152,7 +152,7 @@ object-fit: contain;
         display:flex;
         flex-flow: column;
         /*margin: 0 auto;*/
-        width:95%;
+        width:100%;
         /*background-color: yellow;*/
     }
 
@@ -197,7 +197,7 @@ object-fit: contain;
          flex-flow: row nowrap;
          justify-content: space-around;
          align-items: center;
-         width:95%;
+         width:100%;
         /* background-color: blue;*/
      }
 
