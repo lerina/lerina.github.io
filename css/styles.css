@@ -1,3 +1,29 @@
+/***************************
+****************************
+Reset Styles
+****************************
+***************************/
+@import 'normalize.css';
+
+/* Change all elements to use border-box 
+ * If I say the width is 200px, gosh darn it, 
+ * it’s gonna be a 200px wide box even if 
+ * I have 20px of padding.
+ * [box sizing](https://www.paulirish.com/2012/box-sizing-border-box-ftw/)
+*/
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+
+/***************************
+****************************
+Base Styles
+****************************
+***************************/
 html {
    background: rgba(183, 165, 114,0.1);
   /*background: url(./bg-repeat.jpg) rgba(20,20,20,0.8)
@@ -16,13 +42,108 @@ body {
 
 }
 
+
+.autofit{
+height: 100%;
+width: 100%;
+object-fit: contain;
+}
+
+/*********************************************/
+@media screen and (min-width: 580px) {
+    .flexit {
+         display: flex;
+         flex-flow: row nowrap;
+         justify-content: space-around;
+         align-items: center;
+         width:100%;
+        /* background-color: blue;*/
+     }
+
+
 .container {
 margin: 60px auto;
 width: 80%;
 }
 
+    #prog{
+        padding:3px; 
+        margin:auto; 
+        width:29%; 
+        border-radius: 5px; 
+        border: solid 1px #cc6699;
+        background-color:#fff;
+        align-self:flex-start; 
+    }
+    #writings{
+        padding:3px; 
+        margin:auto; 
+        width:29%; 
+        border-radius: 5px; 
+        border: solid 1px #666699;
+        background-color:#fff;
+        align-self:flex-end;
+    }
+    #agilepkg{
+        padding:3px; 
+        margin:auto; 
+        width:29%; 
+        border-radius: 5px; 
+        border: solid 1px #272822;
+        background-color:#fff;
+        align-self:flex-stretch;
+    }
+}
+
+@media screen and (max-width: 579px) and (min-width: 411px) {
+    /*.container {width:95%; margin: 0 auto;}
+*/
+    .flexit {
+        display:flex;
+        flex-flow: column;
+        margin: 0;
+        width:100%;
+        /*background-color: yellow;*/
+    }
+
+
+.container {
+/*margin: 60px auto;*/
+width: 100%;
+}
+
+    #prog{
+        padding:3px; 
+        margin:auto; 
+        width:100%; 
+        border-radius: 5px; 
+        border-bottom: solid 1px #cc6699;
+        background-color:#fff;
+        /*align-self:flex-start; */
+    }
+    #writings{
+        padding:3px; 
+        margin:auto; 
+        width:100%; 
+        border-radius: 5px; 
+        border-bottom: solid 1px #666699;
+        background-color:#fff;
+        /*align-self:flex-end;*/
+    }
+    #agilepkg{
+        padding:3px; 
+        margin: auto; 
+        width:100%; 
+        border-radius: 5px; 
+        border-bottom: solid 1px #272822;
+        background-color:#fff;
+    }
+        
+}
+
+
+/*****************************************/
 nav ul, footer ul {
-    /*font-family:'Helvetica', 'Arial', 'Sans-Serif';*/
     padding: 0px;
     list-style: none;
     font-weight: bold;
@@ -46,7 +167,6 @@ a > img:hover {
 h1 {
     color: #666699;  /* #330033; */
     font-size: 2em;
-    /*font-family:'Helvetica', 'Arial', 'Sans-Serif';*/
 }
 h2 {
     color: #333366;
@@ -111,103 +231,6 @@ footer ul>li{  margin:3em;}
 .le {color:rgba(244,40,165,0.9); } /*   #f428a5; */
 .ri {color:rgba(138,91,160,0.9); } /*  #8a5ba0; }*/
 .na {color:rgba(91,123,235,0.9); } /*   #5b7beb; }*/
-
-
-.autofit{
-height: 100%;
-width: 100%;
-object-fit: contain;
-}
-
-@media screen and (max-width: 579px) and (min-width: 411px) {
-    .container {width:95%; margin: 0 auto;}
-
-    .flexit {
-        display:flex;
-        flex-flow: column;
-        /*margin: 0 auto;*/
-        width:95%;
-        /*background-color: yellow;*/
-    }
-
-    #prog{
-        padding:3px; 
-        margin:auto; 
-        width:100%; 
-        border-radius: 5px; 
-        border: solid 1px #cc6699;
-        background-color:#fff;
-        /*align-self:flex-start; */
-    }
-    #writings{
-        padding:3px; 
-        margin:auto; 
-        width:100%; 
-        border-radius: 5px; 
-        border: solid 1px #666699;
-        background-color:#fff;
-        /*align-self:flex-end;*/
-    }
-    #agilepkg{
-        padding:3px; 
-        margin: auto; 
-        width:100%; 
-        border-radius: 5px; 
-        border: solid 1px #272822;
-        background-color:#fff;
-        /*align-self:flex-stretch;*/
-        /*
-        min-height: 24em;
-        background-size: contain;
-        background-image: url(../pix/agilepkg.png); 
-        */
-    }
-        
-}
-
-@media screen and (min-width: 580px) {
-    .flexit {
-         display: flex;
-         flex-flow: row nowrap;
-         justify-content: space-around;
-         align-items: center;
-         width:95%;
-        /* background-color: blue;*/
-     }
-
-
-    #prog{
-        padding:3px; 
-        margin:auto; 
-        width:29%; 
-        border-radius: 5px; 
-        border: solid 1px #cc6699;
-        background-color:#fff;
-        align-self:flex-start; 
-    }
-    #writings{
-        padding:3px; 
-        margin:auto; 
-        width:29%; 
-        border-radius: 5px; 
-        border: solid 1px #666699;
-        background-color:#fff;
-        align-self:flex-end;
-    }
-    #agilepkg{
-        padding:3px; 
-        margin:auto; 
-        width:29%; 
-        border-radius: 5px; 
-        border: solid 1px #272822;
-        background-color:#fff;
-        align-self:flex-stretch;
-        /*
-        background-size: contain;
-        background-image: url(../pix/agilepkg.png); 
-        */
-    }
-}
 
 #banne {
 position:relative;
