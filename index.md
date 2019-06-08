@@ -16,11 +16,26 @@
 
 </nav>
 
+<div class="container">
+The following pages present three complementary aspect that makes up a 
+modern developers realm. 
+
+- Clarity through conciseness and structure. 
+- Creativity through openness and adventure. 
+- Agency through swiftness and collaborative infrastructure. 
+
+
+</div>
+
 <div class="flexit">
-<div id="prog">
+<div id="prog" class="valign">
 <img class="autofit" src="./pix/prog.png" />
 
-### Prog pages
+### Clarity
+
+This section is about Writing Software. 
+You will find Writings about the Charge and Craft of Software production.
+And tips, tutorials, and code along lessons.
 
 - Prog as a story
 
@@ -29,24 +44,32 @@
 - current interests {rust, wasm, Js, Py, Dj} 
 
 </div>
-<div id="writings">
+<div id="writings" class="valign">
 <img class="autofit" src="./pix/writings.jpg" />
 
-### Writings pages
+### Creativity
+
+Notes, prose and poems accumulated through out the years
 
 - All notes in clean form
 
 - Feature {Pain-Gain, Deam_it, Fear_it}
 
 </div>
-<div id="agilepkg">
+<div id="agilepkg" class="valign">
 <img class="autofit" src="./pix/agilepkg.png" />
 
-### agilepkg pages 
+### Agency 
+
+Having a product successfully used in production, 
+the only true proof of a job well done. Agilepkg is
+an interface linking development and design.
+USE IMAGE of {Abstracting , Traits ,...}
+to convey hadhoc plug and play teams local and otherwise.
 
 - Build your website one component at a time
 
-- Near Sourcing (coming soon)
+- NSA: Near Sourcing Agency (coming soon)
 
 </div>
 </div>

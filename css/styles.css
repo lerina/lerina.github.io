@@ -57,9 +57,17 @@ object-fit: contain;
          justify-content: space-around;
          align-items: center;
          width:100%;
-        /* background-color: blue;*/
+        /*background-color: blue; */
      }
 
+
+.autofit{
+height: 100%;
+width: 100%;
+object-fit: contain;
+}
+
+.valign {min-height:600px; }
 
 .container {
 margin: 60px auto;
@@ -73,7 +81,7 @@ width: 80%;
         border-radius: 5px; 
         border: solid 1px #cc6699;
         background-color:#fff;
-        align-self:flex-start; 
+        align-self:flex-start;
     }
     #writings{
         padding:3px; 
