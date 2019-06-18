@@ -3,28 +3,22 @@
 -->
 <canvas id="cnv_all" width="578" height="150"></canvas>
 <script src="./js/cnv01.js"></script>
-
 <div class="container">
+<header class="main-header clearfix">
 
-<!--
-<nav>
-<canvas id="cnv_left" width="192" height="150" style="border:solid 1 red"></canvas>
-<canvas id="cnv_center" width="192" height="150"></canvas>
-<canvas id="cnv_right" width="192" height="150"></canvas>
-</nav>
--->
+<nav class="main-menu">
+<ul>
+<li class="main-menu__item">[Home](/)</li>
+<li class="main-menu__item">[Programming](/prog)</li>
+<li class="main-menu__item">[Blog](/blog)</li>
+<li class="main-menu__item">About</li>
+<li class="main-menu__item">[Faq](/faq)</li>
+</ul>
+</nav><!-- nav -->
+</header><!-- header -->
 
-<nav> 
-
--   [Home](/)
--   [Programming](/prog)
--   [Blog](/blog)
--   [About](/about)
--   [Faq](/faq)
-
-</nav>
-
-<div>
+<section class="sponsors-wrapper clearfix">
+<main class="content-area">
 
 Hello, ... friend?
 If you believe programmers and designers ought to partner up to make 
@@ -37,11 +31,14 @@ Tell me about your **P.A.I.N.** <span id="PAIN"></span>
 - **I**nspiration or **I**rritation  (to heal) <a href="./#paIn"> more ...</a>
 - **N**iche and **N**eeds (to get started) <a href="./#paiN"> more ...</a>
 
-Don't butcher your way through your IT Project. everybody can write code. But not everybody can write good code.
-Like wise anybody can talk about design, but not everybody can actually deliver a good design. Talent is where creativity and practice meet repetitively. Very often in the IT world, design Talents and coding Talents need to meets repetitively 
+Don't butcher your way through your IT Project. everybody can write code. 
+But not everybody can write good code.
+Like wise anybody can talk about design, but not everybody can actually 
+deliver a good design. Talent is where creativity and practice meet repetitively. 
+Very often in the IT world, design Talents and coding Talents need to meets 
+repetitively 
 
-Tell me about your P.A.I.N.
-=============================
+## Tell me about your P.A.I.N.
 
 <span id="Pain">**P**roject or **P**roblem (to solve)</span>
 
@@ -60,12 +57,11 @@ Tell me about your P.A.I.N.
 <a href="./#PAIN">back ...</a> 
 
 
-If you are a content writer, designer or entrepreneur you've got `P.A.I.N.` and that is great. 
-You want to get thing out in the world. Perhaps we may work together, until that <img src="./logo_lerina_16x16.png" align="bottom" /> `l`ast `R`elease.
+If you are a content writer, designer or entrepreneur you've got `P.A.I.N.` 
+and that is great. 
+You want to get thing out in the world. Perhaps we may work together, 
+until that <img src="./logo_lerina_16x16.png" align="bottom" /> `l`ast `R`elease.
 
-
-
-</div>
 
 ## Some Code
 
@@ -82,109 +78,51 @@ fn main() {
 
 “Everybody in this country should learn how to think … programming a computer is one option.”   
 ~ lerina
-</div>
 
-<nav>
-<div style="float:left">
+</main>
+
+<section class="sponsors">
+<div class="sponsor pink" id="prog">
 - Programming
 
     - Python
     - Rust
     - JavaScript
-</div><div style="float:left;border-right:solid 1px #ddd; padding-right:3px;">
+</div>
+<div class="sponsor purple" id="web">
 - Web / Mobile
 
     - Django
     - Webassembly
     - React
-
-
-</div><div style="float:left; padding-left:3px;">
-
+</div>
+<div class="sponsor blue" id="hireMe">
 - &nbsp;<img src="./logo_lerina_32x32.png" align="top" /> Hire Me
 
     - Availability
     - Rates
     - Legal
+</div>
 
 I enjoy working with others to produce a better outcome.
 I try to find the best fitting technology for a given problem. 
 While my professional background is mostly Python, thanks to Webassembly I have reconnected
 with JavaScript and fallen in love with Rust.
 
-</div>
-</nav>
 
+</section><!-- sponsors -->
+</section><!-- sponsors-wrapper -->
+</div><!-- container -->
 
-<footer style="clear:both">
+<footer class="footer">
 
 
 -   [zoom]()
--   [email](mailto:lerina.razafy@gmail.com)
+-   [email](mailto:learningrustrpg@gmail.com)
 -   [github.com/lerina](https://github.com/lerina)
 
-<div id="copy">
-<em>&#xa9;</em> 2018  &nbsp; <a href="http://razafy.com" target="_blank"> <span class="le">le</span><span class="ri">ri</span><span class="na">na</span>  ^_^ </a></div>
 
-</footer>
+<div id="copy"><em>&#xa9;</em> 2019  &nbsp; <a href="http://razafy.com" target="_blank"> <span class="le">le</span><span class="ri">ri</span><span class="na">na</span>  ^_^ </a></div>
 
-<script>
-/*
-  var cnv_left = document.getElementById('cnv_left');
-  var ctx_left = cnv_left.getContext('2d');
+</footer><!-- footer -->
 
-      ctx_left.fillStyle = 'black';
-      ctx_left.fillRect(0, 0, 200, 150);
-      ctx_left.fill();
- 
-  var cnv_center = document.getElementById('cnv_center');
-      var ctx_center = cnv_center.getContext('2d');
-
-      ctx_center.fillStyle = 'black';
-      ctx_center.fillRect(0, 0, 200, 150);
-      ctx_center.fill();
-
-      ctx_center.strokeStyle = 'white';
-      ctx_center.beginPath();
-      ctx_center.moveTo(0, 0);
-      ctx_center.lineTo(200, 150);
-      ctx_center.stroke();
- 
-  var cnv_right = document.getElementById('cnv_right');
-  var ctx_right = cnv_right.getContext('2d');
-
-      ctx_right.fillStyle = 'black';
-      ctx_right.fillRect(0, 0, 200, 150);
-      ctx_right.fill();
-*/
-
-  var cnv_all = document.getElementById('cnv_all');
-  var ctx_all = cnv_all.getContext('2d');
-
-      ctx_all.fillStyle = 'black';
-      ctx_all.fillRect(0, 0, 600, 150);
-      ctx_all.fill();
-
-cnv_all.style.width = window.innerWidth - (window.innerWidth *30/100) + 'px';
-
-// cnv_all.style.display="none"; // it hides the entire element
-// visibility:hidden means that the contents of the element will be invisible, but the element stays in its original position and size.
-
-window.addEventListener("resize", OnResizeCalled, false);
-
-function OnResizeCalled() {
-    var newsize = window.innerWidth - (window.innerWidth *30/100);
-    cnv_all.style.width = newsize + 'px';
-    cnv_all.style.height = '150px';
-
-    //cnv_all.style.height = window.innerHeight + 'px';
-
-cnv_all.style.display="block";
-
-/*
-cnv_left.style.display="none";
-cnv_center.style.display="none";
-cnv_right.style.display="none";
-*/
-} 
-</script>

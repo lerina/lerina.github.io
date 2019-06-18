@@ -1,49 +1,64 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
-  <meta charset="utf-8">
-  <meta name="generator" content="pandoc">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title></title>
-  <style type="text/css">code{white-space: pre;}</style>
-  <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>about</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
-  <link rel="stylesheet" href="css/styles.css">
+  <style>
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { font-weight: bold; } /* Alert */
+code span.an { font-style: italic; } /* Annotation */
+code span.cf { font-weight: bold; } /* ControlFlow */
+code span.co { font-style: italic; } /* Comment */
+code span.cv { font-style: italic; } /* CommentVar */
+code span.do { font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.er { font-weight: bold; } /* Error */
+code span.in { font-style: italic; } /* Information */
+code span.kw { font-weight: bold; } /* Keyword */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.wa { font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="css/styles.css" />
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -56,49 +71,55 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </canvas>
 <script src="./js/cnv01.js"></script>
 <div class="container">
-<!--
-<nav>
-<canvas id="cnv_left" width="192" height="150" style="border:solid 1 red"></canvas>
-<canvas id="cnv_center" width="192" height="150"></canvas>
-<canvas id="cnv_right" width="192" height="150"></canvas>
-</nav>
--->
-<p><nav></p>
+<header class="main-header clearfix">
+<nav class="main-menu">
 <ul>
-<li><a href="/">Home</a></li>
-<li><a href="/prog">Programming</a></li>
-<li><a href="/blog">Blog</a></li>
-<li><a href="/about">About</a></li>
-<li><a href="/faq">Faq</a></li>
+<li class="main-menu__item">
+<a href="/">Home</a>
+</li>
+<li class="main-menu__item">
+<a href="/prog">Programming</a>
+</li>
+<li class="main-menu__item">
+<a href="/blog">Blog</a>
+</li>
+<li class="main-menu__item">
+About
+</li>
+<li class="main-menu__item">
+<a href="/faq">Faq</a>
+</li>
 </ul>
-<p></nav></p>
-<div>
-<p>Hello, ... friend? If you believe programmers and designers ought to partner up to make digital projects such as websites, web applications, and mobile apps that look and work great, you've reach the right place</p>
+</nav><!-- nav -->
+</header>
+<!-- header -->
+<section class="sponsors-wrapper clearfix">
+<main class="content-area">
+<p>Hello, … friend? If you believe programmers and designers ought to partner up to make digital projects such as websites, web applications, and mobile apps that look and work great, you’ve reach the right place</p>
 <p>Tell me about your <strong>P.A.I.N.</strong> <span id="PAIN"></span></p>
 <ul>
-<li><strong>P</strong>roject or <strong>P</strong>roblem (to solve) <a href="./#Pain"> more ...</a></li>
-<li><strong>A</strong>genda/Ambition or <strong>A</strong>ngst/Anger (to fix) <a href="./#pAin"> more ...</a></li>
-<li><strong>I</strong>nspiration or <strong>I</strong>rritation (to heal) <a href="./#paIn"> more ...</a></li>
-<li><strong>N</strong>iche and <strong>N</strong>eeds (to get started) <a href="./#paiN"> more ...</a></li>
+<li><strong>P</strong>roject or <strong>P</strong>roblem (to solve) <a href="./#Pain"> more …</a></li>
+<li><strong>A</strong>genda/Ambition or <strong>A</strong>ngst/Anger (to fix) <a href="./#pAin"> more …</a></li>
+<li><strong>I</strong>nspiration or <strong>I</strong>rritation (to heal) <a href="./#paIn"> more …</a></li>
+<li><strong>N</strong>iche and <strong>N</strong>eeds (to get started) <a href="./#paiN"> more …</a></li>
 </ul>
-<p>Don't butcher your way through your IT Project. everybody can write code. But not everybody can write good code. Like wise anybody can talk about design, but not everybody can actually deliver a good design. Talent is where creativity and practice meet repetitively. Very often in the IT world, design Talents and coding Talents need to meets repetitively</p>
-<h1 id="tell-me-about-your-p.a.i.n.">Tell me about your P.A.I.N.</h1>
+<p>Don’t butcher your way through your IT Project. everybody can write code. But not everybody can write good code. Like wise anybody can talk about design, but not everybody can actually deliver a good design. Talent is where creativity and practice meet repetitively. Very often in the IT world, design Talents and coding Talents need to meets repetitively</p>
+<h2 id="tell-me-about-your-p.a.i.n.">Tell me about your P.A.I.N.</h2>
 <p><span id="Pain"><strong>P</strong>roject or <strong>P</strong>roblem (to solve)</span></p>
-<p><a href="./#PAIN">back ...</a></p>
+<p><a href="./#PAIN">back …</a></p>
 <p><span id="pAin"><strong>A</strong>genda/Ambition or <strong>A</strong>ngst/Anger (to fix)</span></p>
-<p><a href="./#PAIN">back ...</a></p>
+<p><a href="./#PAIN">back …</a></p>
 <p><span id="PaIn"><strong>I</strong>nspiration or <strong>I</strong>rritation (to heal)</span></p>
-<p><a href="./#PAIN">back ...</a></p>
+<p><a href="./#PAIN">back …</a></p>
 <p><span id="PaiN"><strong>N</strong>iche and <strong>N</strong>eeds (to get started)</span></p>
-<p><a href="./#PAIN">back ...</a></p>
-<p>If you are a content writer, designer or entrepreneur you've got <code>P.A.I.N.</code> and that is great. You want to get thing out in the world. Perhaps we may work together, until that <img src="./logo_lerina_16x16.png" align="bottom" /> <code>l</code>ast <code>R</code>elease.</p>
-</div>
+<p><a href="./#PAIN">back …</a></p>
+<p>If you are a content writer, designer or entrepreneur you’ve got <code>P.A.I.N.</code> and that is great. You want to get thing out in the world. Perhaps we may work together, until that <img src="./logo_lerina_16x16.png" align="bottom" /> <code>l</code>ast <code>R</code>elease.</p>
 <h2 id="some-code">Some Code</h2>
-<div class="sourceCode"><pre class="sourceCode rust"><code class="sourceCode rust"><span class="kw">fn</span> main() <span class="op">{</span>
-    <span class="kw">let</span> <span class="kw">mut</span> days_left: <span class="dt">u8</span> = <span class="dv">10</span>;
-     
-    <span class="pp">println!</span>(<span class="st">&quot;{} days to startup!&quot;</span>, days_left);
-<span class="op">}</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>    <span class="kw">let</span> <span class="kw">mut</span> days_left: <span class="dt">u8</span> = <span class="dv">10</span>;</span>
+<span id="cb1-3"><a href="#cb1-3"></a>     </span>
+<span id="cb1-4"><a href="#cb1-4"></a>    <span class="pp">println!</span>(<span class="st">&quot;{} days to startup!&quot;</span>, days_left);</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="op">}</span></span></code></pre></div>
 <dl>
 <dt>“Everybody in this country should learn how to program a computer … because it teaches you how to think.”</dt>
 <dd>Steve Jobs
@@ -107,9 +128,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <dd>lerina
 </dd>
 </dl>
-</div>
-<nav>
-<div style="float:left">
+</main>
+<section class="sponsors">
+<div id="prog" class="sponsor pink">
 <ul>
 <li><p>Programming</p>
 <ul>
@@ -119,7 +140,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 </ul>
 </div>
-<div style="float:left;border-right:solid 1px #ddd; padding-right:3px;">
+<div id="web" class="sponsor purple">
 <ul>
 <li><p>Web / Mobile</p>
 <ul>
@@ -129,7 +150,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 </ul>
 </div>
-<div style="float:left; padding-left:3px;">
+<div id="hireMe" class="sponsor blue">
 <ul>
 <li><p> <img src="./logo_lerina_32x32.png" align="top" /> Hire Me</p>
 <ul>
@@ -138,78 +159,24 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>Legal</li>
 </ul></li>
 </ul>
-<p>I enjoy working with others to produce a better outcome. I try to find the best fitting technology for a given problem. While my professional background is mostly Python, thanks to Webassembly I have reconnected with JavaScript and fallen in love with Rust.</p>
 </div>
-<p></nav></p>
-<footer style="clear:both">
+<p>I enjoy working with others to produce a better outcome. I try to find the best fitting technology for a given problem. While my professional background is mostly Python, thanks to Webassembly I have reconnected with JavaScript and fallen in love with Rust.</p>
+</section>
+<!-- sponsors -->
+</section>
+<!-- sponsors-wrapper -->
+</div>
+<!-- container -->
+<footer class="footer">
 <ul>
 <li><a href="">zoom</a></li>
-<li><a href="mailto:lerina.razafy@gmail.com">email</a></li>
+<li><a href="mailto:learningrustrpg@gmail.com">email</a></li>
 <li><a href="https://github.com/lerina">github.com/lerina</a></li>
 </ul>
 <div id="copy">
-<em>©</em> 2018   <a href="http://razafy.com" target="_blank"> <span class="le">le</span><span class="ri">ri</span><span class="na">na</span>  ^_^ </a>
+<em>©</em> 2019   <a href="http://razafy.com" target="_blank"> <span class="le">le</span><span class="ri">ri</span><span class="na">na</span>  ^_^ </a>
 </div>
 </footer>
-<script>
-/*
-  var cnv_left = document.getElementById('cnv_left');
-  var ctx_left = cnv_left.getContext('2d');
-
-      ctx_left.fillStyle = 'black';
-      ctx_left.fillRect(0, 0, 200, 150);
-      ctx_left.fill();
- 
-  var cnv_center = document.getElementById('cnv_center');
-      var ctx_center = cnv_center.getContext('2d');
-
-      ctx_center.fillStyle = 'black';
-      ctx_center.fillRect(0, 0, 200, 150);
-      ctx_center.fill();
-
-      ctx_center.strokeStyle = 'white';
-      ctx_center.beginPath();
-      ctx_center.moveTo(0, 0);
-      ctx_center.lineTo(200, 150);
-      ctx_center.stroke();
- 
-  var cnv_right = document.getElementById('cnv_right');
-  var ctx_right = cnv_right.getContext('2d');
-
-      ctx_right.fillStyle = 'black';
-      ctx_right.fillRect(0, 0, 200, 150);
-      ctx_right.fill();
-*/
-
-  var cnv_all = document.getElementById('cnv_all');
-  var ctx_all = cnv_all.getContext('2d');
-
-      ctx_all.fillStyle = 'black';
-      ctx_all.fillRect(0, 0, 600, 150);
-      ctx_all.fill();
-
-cnv_all.style.width = window.innerWidth - (window.innerWidth *30/100) + 'px';
-
-// cnv_all.style.display="none"; // it hides the entire element
-// visibility:hidden means that the contents of the element will be invisible, but the element stays in its original position and size.
-
-window.addEventListener("resize", OnResizeCalled, false);
-
-function OnResizeCalled() {
-    var newsize = window.innerWidth - (window.innerWidth *30/100);
-    cnv_all.style.width = newsize + 'px';
-    cnv_all.style.height = '150px';
-
-    //cnv_all.style.height = window.innerHeight + 'px';
-
-cnv_all.style.display="block";
-
-/*
-cnv_left.style.display="none";
-cnv_center.style.display="none";
-cnv_right.style.display="none";
-*/
-} 
-</script>
+<!-- footer -->
 </body>
 </html>

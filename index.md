@@ -1,3 +1,4 @@
+<link href="https://fonts.googleapis.com/css?family=Architects+Daughter|Inconsolata&display=swap" rel="stylesheet"> 
 <img id="topPix" src="./pix/lRustRPG.jpg" />
 
 <div class="container">
@@ -25,14 +26,20 @@ modern developers realm.
 - Agency and Delivery through swiftness and collaborative infrastructure. 
 
 ```rust
+use std::io::{self, BufRead};
+
 fn main() {
-    println!("Hello, world!");
+    let v = vec![0,1,2,3,4,5,6,7,8,9];
+    let mut line = String::new();
+    let stdin = io::stdin();
+    stdin.lock().read_line(&mut line).unwrap();
+    println!("{}", line)
 }
 ```
 </main>
 
 <section class="sponsors">
-<div class="sponsor" id="input">Understand
+<div class="sponsor pink" id="input">Understand
 <img class="autofit" src="./pix/writings.jpg" />
 
 ### Clarity
@@ -46,8 +53,10 @@ Notes, prose and poems accumulated through out the years
 
 - Feature {Pain-Gain, Deam_it, Fear_it}
 
+
+a function is declared with `fn` before the name.
 </div>
-<div class="sponsor" id="process">Transformation
+<div class="sponsor purple" id="process">Transformation
 <img class="autofit" src="./pix/prog.png" />
 
 ### Creativity
@@ -62,8 +71,12 @@ And tips, tutorials, and code along lessons.
 
 - current interests {rust, wasm, Js, Py, Dj} 
 
+
+
+> This is a blockquote
+
 </div>
-<div class="sponsor" id="output">Deliver
+<div class="sponsor blue" id="output">Deliver
 <img class="autofit" src="./pix/agilepkg.png" />
 
 ### Agency 
@@ -77,6 +90,11 @@ to convey hadhoc plug and play teams local and otherwise.
 - Build your website one component at a time
 
 - NSA: Near Sourcing Agency (coming soon)
+
+```C
+is this code 0123
+```
+
 <a href="./prog/">...More</a>
 </div>
 </section><!-- sponsors -->
@@ -89,6 +107,7 @@ to convey hadhoc plug and play teams local and otherwise.
 -   [zoom]()
 -   [email](mailto:learningrustrpg@gmail.com)
 -   [github.com/lerina](https://github.com/lerina)
+
 
 <div id="copy"><em>&#xa9;</em> 2019  &nbsp; <a href="http://razafy.com" target="_blank"> <span class="le">le</span><span class="ri">ri</span><span class="na">na</span>  ^_^ </a></div>
 
