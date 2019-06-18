@@ -6,40 +6,94 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title></title>
   <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
   <link rel="stylesheet" href="css/styles.css">
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
 </head>
 <body>
-<!-- should be in head 
-<link rel="prefetch" href=" http://lerina.github.io/hire_me ">
-
-<canvas id="cnv" width="578" height="150"></canvas>
-<script src="./js/cnv01.js"></script>
--->
-<img id="banne" src="./pix/lRustRPG.jpg" />
-<script src="./js/js.js"></script>
+<p><img id="topPix" src="./pix/lRustRPG.jpg" /></p>
 <div class="container">
-<p><nav></p>
+<header class="main-header clearfix">
+<h1 id="visual-thinking-sketchnotes">visual thinking sketchnotes</h1>
+<nav class="main-menu">
 <ul>
-<li>Home</li>
-<li><a href="/rrpg/">Play <img src="./pix/learning_rust_rpg_16x16.png" align="bottom" />RPG</a></li>
-<li><a href="/about.html">About</a></li>
+<li class="main-menu__item">
+Home
+</li>
+<li class="main-menu__item">
+<a href="/rrpg/">Play <img src="./pix/learning_rust_rpg_16x16.png" align="bottom" />RPG</a>
+</li>
+<li class="main-menu__item">
+<a href="/about.html">About</a>
+</li>
 </ul>
-<p></nav></p>
-<div class="container">
+</nav><!-- nav -->
+</header>
+<!-- header -->
+<section class="sponsors-wrapper clearfix">
+<p><main class="content-area"></p>
 <p>The following pages present three complementary aspect that makes up a modern developers realm.</p>
 <ul>
-<li>Clarity through conciseness and structure.</li>
-<li>Creativity through openness and adventure.</li>
-<li>Agency through swiftness and collaborative infrastructure.</li>
+<li>Clarity and Understanding through openness and adventure.</li>
+<li>Creativity and Coding through conciseness and structure.</li>
+<li>Agency and Delivery through swiftness and collaborative infrastructure.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode rust"><code class="sourceCode rust"><span class="kw">fn</span> main() <span class="op">{</span>
+    <span class="pp">println!</span>(<span class="st">&quot;Hello, world!&quot;</span>);
+<span class="op">}</span></code></pre></div>
+<p></main></p>
+<section class="sponsors">
+<div id="input" class="sponsor">
+<p>Understand <img class="autofit" src="./pix/writings.jpg" /></p>
+<h3 id="clarity">Clarity</h3>
+<p>Keeping your mind open and daring to venture outside of the beaten path</p>
+<p>adventure. Notes, prose and poems accumulated through out the years</p>
+<ul>
+<li><p>All notes in clean form</p></li>
+<li><p>Feature {Pain-Gain, Deam_it, Fear_it}</p></li>
 </ul>
 </div>
-<div class="flexit">
-<div id="prog" class="valign">
-<p><img class="autofit" src="./pix/prog.png" /></p>
-<h3 id="clarity">Clarity</h3>
+<div id="process" class="sponsor">
+<p>Transformation <img class="autofit" src="./pix/prog.png" /></p>
+<h3 id="creativity">Creativity</h3>
 <p>This section is about Writing Software. You will find Writings about the Charge and Craft of Software production. And tips, tutorials, and code along lessons.</p>
 <ul>
 <li><p>Prog as a story</p></li>
@@ -47,36 +101,31 @@
 <li><p>current interests {rust, wasm, Js, Py, Dj}</p></li>
 </ul>
 </div>
-<div id="writings" class="valign">
-<p><img class="autofit" src="./pix/writings.jpg" /></p>
-<h3 id="creativity">Creativity</h3>
-<p>Notes, prose and poems accumulated through out the years</p>
-<ul>
-<li><p>All notes in clean form</p></li>
-<li><p>Feature {Pain-Gain, Deam_it, Fear_it}</p></li>
-</ul>
-</div>
-<div id="agilepkg" class="valign">
-<p><img class="autofit" src="./pix/agilepkg.png" /></p>
+<div id="output" class="sponsor">
+<p>Deliver <img class="autofit" src="./pix/agilepkg.png" /></p>
 <h3 id="agency">Agency</h3>
 <p>Having a product successfully used in production, the only true proof of a job well done. Agilepkg is an interface linking development and design. USE IMAGE of {Abstracting , Traits ,...} to convey hadhoc plug and play teams local and otherwise.</p>
 <ul>
 <li><p>Build your website one component at a time</p></li>
-<li><p>NSA: Near Sourcing Agency (coming soon)</p></li>
+<li>NSA: Near Sourcing Agency (coming soon) <a href="./prog/">...More</a></li>
 </ul>
 </div>
+</section>
+<!-- sponsors -->
+</section>
+<!-- sponsors-wrapper -->
 </div>
-</div>
-<!-- ^--container -->
-<footer style="clear:both">
+<!-- container -->
+<footer class="footer">
 <ul>
 <li><a href="">zoom</a></li>
 <li><a href="mailto:learningrustrpg@gmail.com">email</a></li>
 <li><a href="https://github.com/lerina">github.com/lerina</a></li>
 </ul>
 <div id="copy">
-<em>©</em> 2018   <a href="http://razafy.com" target="_blank"> <span class="le">le</span><span class="ri">ri</span><span class="na">na</span>  ^_^ </a>
+<em>©</em> 2019   <a href="http://razafy.com" target="_blank"> <span class="le">le</span><span class="ri">ri</span><span class="na">na</span>  ^_^ </a>
 </div>
 </footer>
+<!-- footer -->
 </body>
 </html>

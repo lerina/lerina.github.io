@@ -1,37 +1,56 @@
-<!-- should be in head 
-<link rel="prefetch" href=" http://lerina.github.io/hire_me ">
-
-<canvas id="cnv" width="578" height="150"></canvas>
-<script src="./js/cnv01.js"></script>
--->
-<img id="banne" src="./pix/lRustRPG.jpg" />
-<script src="./js/js.js"></script>
+<img id="topPix" src="./pix/lRustRPG.jpg" />
 
 <div class="container">
-<nav> 
+<header class="main-header clearfix">
 
--   Home
--   [Play <img src="./pix/learning_rust_rpg_16x16.png" align="bottom" />RPG](/rrpg/)
--   [About](/about.html)
+# visual thinking sketchnotes
 
-</nav>
+<nav class="main-menu">
+<ul>
+<li class="main-menu__item">Home</li>
+<li class="main-menu__item">[Play <img src="./pix/learning_rust_rpg_16x16.png" align="bottom" />RPG](/rrpg/)</li>
+<li class="main-menu__item">[About](/about.html)</li>
+</ul>
+</nav><!-- nav -->
+</header><!-- header -->
 
-<div class="container">
+<section class="sponsors-wrapper clearfix">
+<main class="content-area">
+
 The following pages present three complementary aspect that makes up a 
 modern developers realm. 
 
-- Clarity through conciseness and structure. 
-- Creativity through openness and adventure. 
-- Agency through swiftness and collaborative infrastructure. 
+- Clarity and Understanding through openness and adventure.
+- Creativity and Coding through conciseness and structure. 
+- Agency and Delivery through swiftness and collaborative infrastructure. 
 
+```rust
+fn main() {
+    println!("Hello, world!");
+}
+```
+</main>
 
-</div>
-
-<div class="flexit">
-<div id="prog" class="valign">
-<img class="autofit" src="./pix/prog.png" />
+<section class="sponsors">
+<div class="sponsor" id="input">Understand
+<img class="autofit" src="./pix/writings.jpg" />
 
 ### Clarity
+
+Keeping your mind open and daring to venture outside of the beaten path
+
+adventure.
+Notes, prose and poems accumulated through out the years
+
+- All notes in clean form
+
+- Feature {Pain-Gain, Deam_it, Fear_it}
+
+</div>
+<div class="sponsor" id="process">Transformation
+<img class="autofit" src="./pix/prog.png" />
+
+### Creativity
 
 This section is about Writing Software. 
 You will find Writings about the Charge and Craft of Software production.
@@ -44,19 +63,7 @@ And tips, tutorials, and code along lessons.
 - current interests {rust, wasm, Js, Py, Dj} 
 
 </div>
-<div id="writings" class="valign">
-<img class="autofit" src="./pix/writings.jpg" />
-
-### Creativity
-
-Notes, prose and poems accumulated through out the years
-
-- All notes in clean form
-
-- Feature {Pain-Gain, Deam_it, Fear_it}
-
-</div>
-<div id="agilepkg" class="valign">
+<div class="sponsor" id="output">Deliver
 <img class="autofit" src="./pix/agilepkg.png" />
 
 ### Agency 
@@ -70,19 +77,20 @@ to convey hadhoc plug and play teams local and otherwise.
 - Build your website one component at a time
 
 - NSA: Near Sourcing Agency (coming soon)
-
+<a href="./prog/">...More</a>
 </div>
-</div>
+</section><!-- sponsors -->
+</section><!-- sponsors-wrapper -->
+</div><!-- container -->
 
-</div><!-- ^--container -->
+<footer class="footer">
 
-<footer style="clear:both">
 
 -   [zoom]()
 -   [email](mailto:learningrustrpg@gmail.com)
 -   [github.com/lerina](https://github.com/lerina)
 
-<div id="copy"><em>&#xa9;</em> 2018  &nbsp; <a href="http://razafy.com" target="_blank"> <span class="le">le</span><span class="ri">ri</span><span class="na">na</span>  ^_^ </a></div>
+<div id="copy"><em>&#xa9;</em> 2019  &nbsp; <a href="http://razafy.com" target="_blank"> <span class="le">le</span><span class="ri">ri</span><span class="na">na</span>  ^_^ </a></div>
 
-</footer>
+</footer><!-- footer -->
 
