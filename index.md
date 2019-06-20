@@ -1,5 +1,6 @@
 <link href="https://fonts.googleapis.com/css?family=Architects+Daughter|Inconsolata&display=swap" rel="stylesheet"> 
-<img id="topPix" src="./pix/lRustRPG.jpg" />
+<!-- img id="topPix" src="./pix/lRustRPG.jpg" / -->
+<img id="topPix" src="./pix/index_lerina.svg" />
 
 <div class="container">
 <header class="main-header clearfix">
@@ -55,8 +56,11 @@ Notes, prose and poems accumulated through out the years
 
 
 a function is declared with `fn` before the name.
+
+#### This is the INPUT Stage
+
 </div>
-<div class="sponsor purple" id="process">Transformation
+<div class="sponsor purple" id="process">Transform
 <img class="autofit" src="./pix/prog.png" />
 
 ### Creativity
@@ -74,6 +78,8 @@ And tips, tutorials, and code along lessons.
 
 
 > This is a blockquote
+
+#### This is the Processing Stage
 
 </div>
 <div class="sponsor blue" id="output">Deliver
@@ -94,6 +100,8 @@ to convey hadhoc plug and play teams local and otherwise.
 ```C
 is this code 0123
 ```
+
+#### This is the OUTPUT Stage
 
 <a href="./prog/">...More</a>
 </div>

@@ -49,7 +49,7 @@ body {
     background-color: c0c0c0;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
   margin-top: 0;
   font-family: 'Architects Daughter', cursive;
 }
@@ -240,6 +240,10 @@ h2 {
 h3 {
     color: #1e1e21;
 }
+h4 {
+    color: #1e1e21;
+}
+
 p {
     font-size: 1em;
     line-height: 1.4em;
