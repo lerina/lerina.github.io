@@ -45,6 +45,16 @@ txt
 
 <section class="sponsors">
 <div class="sponsor pink">
+### COP and the Charge and Craft of Software production.
+
+Notes, prose and poems accumulated through out the years
+
+- All notes in clean form
+
+- Feature {Pain-Gain, Deam_it, Fear_it}
+
+</div>
+<div class="sponsor purple">
 ### Narrative Driven Code authorship NDCA
 
 This section is about Writing Software. 
@@ -57,15 +67,6 @@ And tips, tutorials, and code along lessons.
 
 - current interests {rust, wasm, Js, Py, Dj} 
 
-</div>
-<div class="sponsor purple">
-### COP and the Charge and Craft of Software production.
-
-Notes, prose and poems accumulated through out the years
-
-- All notes in clean form
-
-- Feature {Pain-Gain, Deam_it, Fear_it}
 </div>
 <div class="sponsor blue" id="letscode_">
 ### Let's get coding

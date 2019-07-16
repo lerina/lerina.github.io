@@ -5,12 +5,13 @@
 <div class="container">
 <header class="main-header clearfix">
 
-# visual thinking sketchnotes
+# Solution Developer & Software Writer
 
 <nav class="main-menu">
 <ul>
 <li class="main-menu__item">Home</li>
-<li class="main-menu__item">[Play <img src="./pix/learning_rust_rpg_16x16.png" align="bottom" />RPG](/rrpg/)</li>
+<li class="main-menu__item">[Software is hard](/prog/)</li>
+<li class="main-menu__item">[Play the RPG](/rrpg/)</li> <!-- <img src="./pix/learning_rust_rpg_16x16.png" align="bottom" /> -->
 <li class="main-menu__item">[About](/about.html)</li>
 </ul>
 </nav><!-- nav -->
@@ -26,17 +27,6 @@ modern developers realm.
 - Creativity and Coding through conciseness and structure. 
 - Agency and Delivery through swiftness and collaborative infrastructure. 
 
-```rust
-use std::io::{self, BufRead};
-
-fn main() {
-    let v = vec![0,1,2,3,4,5,6,7,8,9];
-    let mut line = String::new();
-    let stdin = io::stdin();
-    stdin.lock().read_line(&mut line).unwrap();
-    println!("{}", line)
-}
-```
 </main>
 
 <section class="sponsors">
@@ -55,7 +45,7 @@ Notes, prose and poems accumulated through out the years
 - Feature {Pain-Gain, Deam_it, Fear_it}
 
 
-a function is declared with `fn` before the name.
+Acquring the tools and knowledge to figure out domain knowledge rapidly
 
 #### This is the INPUT Stage
 
@@ -76,8 +66,10 @@ And tips, tutorials, and code along lessons.
 - current interests {rust, wasm, Js, Py, Dj} 
 
 
+Methodology
 
-> This is a blockquote
+> Code Step through
+> Code Walk through
 
 #### This is the Processing Stage
 
@@ -85,17 +77,9 @@ And tips, tutorials, and code along lessons.
 <div class="sponsor blue" id="output">Deliver
 <img class="autofit" src="./pix/agilepkg.png" />
 
-### Agency 
+### The Rust Programming Game
 
-Having a product successfully used in production, 
-the only true proof of a job well done. Agilepkg is
-an interface linking development and design.
-USE IMAGE of {Abstracting , Traits ,...}
-to convey hadhoc plug and play teams local and otherwise.
-
-- Build your website one component at a time
-
-- NSA: Near Sourcing Agency (coming soon)
+A different way to learn.
 
 ```C
 is this code 0123
