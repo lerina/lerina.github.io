@@ -69,7 +69,10 @@ And tips, tutorials, and code along lessons.
 Methodology
 
 > Code Step through
+
 > Code Walk through
+
+> Speed Coding (Sorted Examples & Exercise Drills)
 
 #### This is the Processing Stage
 
@@ -77,13 +80,13 @@ Methodology
 <div class="sponsor blue" id="output">Deliver
 <img class="autofit" src="./pix/agilepkg.png" />
 
-### The Rust Programming Game
+### Agency
 
-A different way to learn.
-
-```C
-is this code 0123
-```
+P. Purpose          &    (Prey) Principles  
+O. Organization &    Opportunity  
+W. Willingness.  &    Wit  
+E. Efficiency.     &     Execution   
+R. Resolve.         &     Resources   
 
 #### This is the OUTPUT Stage
 
