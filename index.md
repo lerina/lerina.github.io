@@ -82,11 +82,13 @@ Methodology
 
 ### Agency
 
-P. Purpose          &    (Prey) Principles  
+Agency is about POWER
+
+P. Purpose      &    Principles  
 O. Organization &    Opportunity  
-W. Willingness.  &    Wit  
-E. Efficiency.     &     Execution   
-R. Resolve.         &     Resources   
+W. Willingness  &    Wit  
+E. Efficiency   &    Execution   
+R. Resolve      &    Resources   
 
 #### This is the OUTPUT Stage
 
