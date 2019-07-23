@@ -18,25 +18,8 @@
 <section class="sponsors-wrapper clearfix">
 <main class="content-area">
 
-Software Development happens way before any lines of code is hatched.  
-Whether one is a software engineer, a web developer or an old school hacker the process
-remains the same;  
-
-**Solution Development**
-
-Domain knownledge and Problem solving and solution modeling comes first.  
-
-**Software Design**
-
-In fact it comes way before Software Design and trial Spikes show up on the horizon.   
-
-**Software Writing - _Coding_**
-
-Once a technical solution emerges, the actual Code implementation is interlaced between alternating cycles 
-of Solution Development and Software Design.  
-
-There are many methodologies, frameworks and buzzword of the months in this field but some core principles remain indispensable.
-Among them, a particulary value the principles of:
+One can safely say that `Software Development` happens way before any line of code is hatched.
+Whether one is a software engineer, a web developer or an old school hacker the core principles remains the same;
 
 - Clarity and Understanding through openness and adventure.
 - Creativity in Coding      through concise explicitness and structure. 
@@ -46,9 +29,13 @@ Among them, a particulary value the principles of:
 
 <section class="sponsors">
 <div class="sponsor pink" id="input">
+### Solution Development
+
+Domain knownledge and Problem solving and solution modeling comes first.  
+
 <img class="autofit" src="./pix/writings.jpg" />
 
-### Clarity and Understanding
+**Clarity and Understanding**
 
 Keeping your mind open and daring to venture outside of the beaten path
 
@@ -66,9 +53,13 @@ Acquiring the tools and knowledge to figure out domain knowledge rapidly
 
 </div>
 <div class="sponsor purple" id="process">
+### Software Design
+
+In fact it comes way before Software Design and trial Spikes show up on the horizon.   
+
 <img class="autofit" src="./pix/prog.png" />
 
-### Creativity in Coding
+**Creativity in Coding**
 
 This section is about Writing Software. 
 You will find Writings about the Charge and Craft of Software production.
@@ -93,9 +84,14 @@ Methodology
 
 </div>
 <div class="sponsor blue" id="output">
+### Software Writing - _Coding_
+
+Code implementation is interlaced between alternating cycles 
+of Solution Development and Software Design.  
+
 <img class="autofit" src="./pix/agilepkg.png" />
 
-### Agency by Delivery
+**Agency by Delivery**
 
 Agency is about POWER
 
@@ -104,6 +100,8 @@ O. Organization &    Opportunity
 W. Willingness  &    Wit  
 E. Efficiency   &    Execution   
 R. Resolve      &    Resources   
+
+As a technical solution emerges, 
 
 #### This is the OUTPUT Stage
 
