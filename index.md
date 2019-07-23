@@ -10,8 +10,6 @@
 <nav class="main-menu">
 <ul>
 <li class="main-menu__item">Home</li>
-<li class="main-menu__item">[Software is hard](/prog/)</li>
-<li class="main-menu__item">[Play the RPG](/rrpg/)</li> <!-- <img src="./pix/learning_rust_rpg_16x16.png" align="bottom" /> -->
 <li class="main-menu__item">[About](/about.html)</li>
 </ul>
 </nav><!-- nav -->
@@ -20,20 +18,37 @@
 <section class="sponsors-wrapper clearfix">
 <main class="content-area">
 
-The following pages present three complementary aspect that makes up a 
-modern developers realm. 
+Software Development happens way before any lines of code is hatched.  
+Whether one is a software engineer, a web developer or an old school hacker the process
+remains the same;  
+
+**Solution Development**
+
+Domain knownledge and Problem solving and solution modeling comes first.  
+
+**Software Design**
+
+In fact it comes way before Software Design and trial Spikes show up on the horizon.   
+
+**Software Writing - _Coding_**
+
+Once a technical solution emerges, the actual Code implementation is interlaced between alternating cycles 
+of Solution Development and Software Design.  
+
+There are many methodologies, frameworks and buzzword of the months in this field but some core principles remain indispensable.
+Among them, a particulary value the principles of:
 
 - Clarity and Understanding through openness and adventure.
-- Creativity and Coding through conciseness and structure. 
-- Agency and Delivery through swiftness and collaborative infrastructure. 
+- Creativity in Coding      through concise explicitness and structure. 
+- Agency by Delivery        through swiftness and collaborative infrastructure. 
 
 </main>
 
 <section class="sponsors">
-<div class="sponsor pink" id="input">Understand
+<div class="sponsor pink" id="input">
 <img class="autofit" src="./pix/writings.jpg" />
 
-### Clarity
+### Clarity and Understanding
 
 Keeping your mind open and daring to venture outside of the beaten path
 
@@ -45,15 +60,15 @@ Notes, prose and poems accumulated through out the years
 - Feature {Pain-Gain, Deam_it, Fear_it}
 
 
-Acquring the tools and knowledge to figure out domain knowledge rapidly
+Acquiring the tools and knowledge to figure out domain knowledge rapidly
 
 #### This is the INPUT Stage
 
 </div>
-<div class="sponsor purple" id="process">Transform
+<div class="sponsor purple" id="process">
 <img class="autofit" src="./pix/prog.png" />
 
-### Creativity
+### Creativity in Coding
 
 This section is about Writing Software. 
 You will find Writings about the Charge and Craft of Software production.
@@ -77,10 +92,10 @@ Methodology
 #### This is the Processing Stage
 
 </div>
-<div class="sponsor blue" id="output">Deliver
+<div class="sponsor blue" id="output">
 <img class="autofit" src="./pix/agilepkg.png" />
 
-### Agency
+### Agency by Delivery
 
 Agency is about POWER
 
