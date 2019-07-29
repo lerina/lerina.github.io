@@ -2,15 +2,15 @@
 <!-- img id="topPix" src="./pix/lRustRPG.jpg" / -->
 <section class="sponsors">
 <div class="sponsor hero" id="cop">
-<img class="topPix" src="./pix/01.confused.svg" />
+<img class="topPix" src="./pix/01_confused.svg" />
 
 </div>
 <div class="sponsor hero" id="id_pat">
-<img class="topPix" id="id_patterns" src="./pix/02.id_and_patterns.svg" />
+<img class="topPix" id="id_patterns" src="./pix/02_id_and_patterns.svg" />
 
 </div>
 <div class="sponsor hero" id="spike_walk">
-<img class="topPix" id="spike" src="./pix/03.spike_and_walkthrough.svg" />
+<img class="topPix" id="spike" src="./pix/03_spike_and_walkthrough.svg" />
 
 </div>
 
