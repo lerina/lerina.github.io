@@ -1,6 +1,20 @@
 <link href="https://fonts.googleapis.com/css?family=Architects+Daughter|Inconsolata&display=swap" rel="stylesheet"> 
 <!-- img id="topPix" src="./pix/lRustRPG.jpg" / -->
-<img id="topPix" src="./pix/index_lerina.svg" />
+<section class="sponsors">
+<div class="sponsor hero" id="cop">
+<img class="topPix" src="./pix/01.confused.svg" />
+
+</div>
+<div class="sponsor hero" id="id_pat">
+<img class="topPix" id="id_patterns" src="./pix/02.id_and_patterns.svg" />
+
+</div>
+<div class="sponsor hero" id="spike_walk">
+<img class="topPix" id="spike" src="./pix/03.spike_and_walkthrough.svg" />
+
+</div>
+
+</section><!-- sponsors -->
 
 <div class="container">
 <header class="main-header clearfix">
@@ -18,7 +32,7 @@
 <section class="sponsors-wrapper clearfix">
 <main class="content-area">
 
-One can safely say that `Software Development` happens way before any line of code is hatched.
+`Software Development` happens way before any line of code is hatched.
 Whether one is a software engineer, a web developer or an old school hacker the core principles remains the same;
 
 - Clarity and Understanding through openness and adventure.

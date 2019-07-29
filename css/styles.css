@@ -30,8 +30,8 @@ Base Styles
 }
 
 html {
-   background: rgba(183, 165, 114,0.1);
-  /*background: url(./bg-repeat.jpg) rgba(20,20,20,0.8)
+  background: rgba(183, 165, 114,0.1);
+  /* background: url(./bg-repeat.jpg) rgba(20,20,20,0.8)
     top center repeat;
   */
   background-size: 100% 100%;
@@ -126,6 +126,7 @@ main p {
   margin-bottom: 2rem;
 }
 
+
 .sponsors {
   display: table;
   border-spacing: 1rem;
@@ -137,7 +138,10 @@ main p {
   width: 20%;
   display: table-cell;
   vertical-align: top;
-  background-color: #fff;
+  background-color: #fff; 
+  /*
+  background-color: rgba(183, 165, 114,0.1);
+  */
   border-radius: 0.625rem;
 }
 
@@ -314,17 +318,10 @@ footer ul>li{  margin:3em; }
 .ri {color:rgba(138,91,160,0.9); font-size:120%;} /*  #8a5ba0; }*/
 .na {color:rgba(91,123,235,0.9); font-size:120%;} /*   #5b7beb; }*/
 
-#topPix {
+.topPix {
     position:relative;
     top: -1rem;
-    width:100%;
-    
-    /* 
-    left: -2em;
-    right: 0;
-    height: 100%;
-    border-radius: 1px;
-    */ 
+    width:100%; 
 }
 
 .pink{
@@ -347,3 +344,8 @@ padding:3px;
     border: solid 1px rgba(91,123,235,0.9); /* #666699 */
     background-color:#fff;
 }
+
+.hero {background-color: rgba(247, 245, 240,0.1);}
+
+/*.hero {background-color: rgba(183, 165, 114,0.1);}
+*/
