@@ -2,15 +2,15 @@
 <!-- img id="topPix" src="./pix/lRustRPG.jpg" / -->
 <section class="sponsors">
 <div class="sponsor hero" id="cop">
-<img class="topPix" src="./pix/01_confused.svg" />
+<img class="topPix" src="./pix/Rust_programming_language_logo.svg" />
 
 </div>
 <div class="sponsor hero" id="id_pat">
-<img class="topPix" id="id_patterns" src="./pix/02_id_and_patterns.svg" />
+<img class="topPix" id="id_patterns" src="./pix/Python_JavaScript_logo.svg" />
 
 </div>
 <div class="sponsor hero" id="spike_walk">
-<img class="topPix" id="spike" src="./pix/03_spike_and_walkthrough.svg" />
+<img class="topPix" id="spike" src="./pix/Web_Assembly_Logo.svg" />
 
 </div>
 
@@ -31,102 +31,88 @@
 
 <section class="sponsors-wrapper clearfix">
 <main class="content-area">
-
-`Software Development` happens way before any line of code is hatched.
-Whether one is a software engineer, a web developer or an old school hacker the core principles remains the same;
-
-- Clarity and Understanding through openness and adventure.
-- Creativity in Coding      through concise explicitness and structure. 
-- Agency by Delivery        through swiftness and collaborative infrastructure. 
+<div class="center">
+# Coming Soon
+## Under Construction
+### ETA: September 2019
+</div>
 
 </main>
 
 <section class="sponsors">
 <div class="sponsor pink" id="input">
-### Solution Development
+### My Texts
 
-Domain knownledge and Problem solving and solution modeling comes first.  
+Solution Development is the answer to a good `C.O.P.` (Challenge, Opportunity or Problem)
+It is the essence of software in general yet has nothing to do with `code`
 
-<img class="autofit" src="./pix/writings.jpg" />
+<img class="autofit" src="./pix/01_confused.svg" />
 
-**Clarity and Understanding**
+Still confused?
 
-Keeping your mind open and daring to venture outside of the beaten path
-
-adventure.
-Notes, prose and poems accumulated through out the years
-
-- All notes in clean form
-
-- Feature {Pain-Gain, Deam_it, Fear_it}
+Tell me  about your P.A.I.N.
 
 
-Acquiring the tools and knowledge to figure out domain knowledge rapidly
 
-#### This is the INPUT Stage
+<img class="autofit" src="./pix/02_id_and_patterns.svg" />
+
+xxxx
+
+<img class="autofit" src="./pix/03_spike_and_walkthrough.svg" />
+
+
 
 </div>
 <div class="sponsor purple" id="process">
-### Software Design
+### Code walkthough and tutorials
 
-In fact it comes way before Software Design and trial Spikes show up on the horizon.   
+Software design is not problem solving or planning a software solution. 
+It is not low-level component and algorithm design 
+nor is it high-level architecture design. 
 
-<img class="autofit" src="./pix/prog.png" />
-
-**Creativity in Coding**
-
-This section is about Writing Software. 
-You will find Writings about the Charge and Craft of Software production.
-And tips, tutorials, and code along lessons.
-
-- Prog as a story
-
-- Narration as a teaching tool in programming
-
-- current interests {rust, wasm, Js, Py, Dj} 
+<img class="autofit" src="./pix/02_id_and_patterns.svg" />
 
 
-Methodology
+#### Design walkthrough
+- Let's study some application Design.
 
-> Code Step through
+- Making the Design fit Rust.
 
-> Code Walk through
+- Making Rust fit the Design.
 
+#### Design As a Narrative
+- Concept
+
+- Examples
+
+- Design log walkthrough
+
+#### Design Showcase
+- github repo
+
+- Design Docs 
+
+<a href="./prog/">...More</a>
 > Speed Coding (Sorted Examples & Exercise Drills)
-
-#### This is the Processing Stage
 
 </div>
 <div class="sponsor blue" id="output">
-### Software Writing - _Coding_
+### The Rust Programming Game
 
-Code implementation is interlaced between alternating cycles 
-of Solution Development and Software Design.  
+<img class="autofit" src="./pix/03_spike_and_walkthrough.svg" />
 
-<img class="autofit" src="./pix/agilepkg.png" />
 
-**Agency by Delivery**
-
-Agency is about POWER
-
-P. Purpose      &    Principles  
-O. Organization &    Opportunity  
-W. Willingness  &    Wit  
-E. Efficiency   &    Execution   
-R. Resolve      &    Resources   
-
-As a technical solution emerges, 
-
-#### This is the OUTPUT Stage
-
-<a href="./prog/">...More</a>
 </div>
 </section><!-- sponsors -->
 </section><!-- sponsors-wrapper -->
+
+<div> Looking to start a new project, or improve an existing one?
+[Get in Touch](mailto:learningrustrpg@gmail.com)
+</div>
+
 </div><!-- container -->
 
 <footer class="footer">
-
 
 -   [zoom]()
 -   [email](mailto:learningrustrpg@gmail.com)

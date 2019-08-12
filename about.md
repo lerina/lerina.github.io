@@ -20,9 +20,27 @@
 <section class="sponsors-wrapper clearfix">
 <main class="content-area">
 
-Hello, ... friend?
-If you believe programmers and designers ought to partner up to make 
-digital projects such as websites, web applications, and mobile apps that look and work great, you've reach the right place
+`Software Development` happens way before any line of code is hatched.
+Whether one is a software engineer, a web developer or an old school hacker the core principles remains the same;
+
+- Clarity and Understanding through openness and adventure.
+- Creativity in Coding      through concise explicitness and structure. 
+- Agency by Delivery        through swiftness and collaborative infrastructure. 
+
+
+
+
+**Agency by Delivery**
+
+Agency is about POWER
+
+P. Purpose      &    Principles  
+O. Organization &    Opportunity  
+W. Willingness  &    Wit  
+E. Efficiency   &    Execution   
+R. Resolve      &    Resources   
+
+As a technical solution emerges, 
 
 Tell me about your **P.A.I.N.** <span id="PAIN"></span>
 
@@ -31,7 +49,7 @@ Tell me about your **P.A.I.N.** <span id="PAIN"></span>
 - **I**nspiration or **I**rritation  (to heal) <a href="./#paIn"> more ...</a>
 - **N**iche and **N**eeds (to get started) <a href="./#paiN"> more ...</a>
 
-Don't butcher your way through your IT Project. everybody can write code. 
+Don't butcher your way through your IT Project. Everybody can write code. 
 But not everybody can write good code.
 Like wise anybody can talk about design, but not everybody can actually 
 deliver a good design. Talent is where creativity and practice meet repetitively. 
@@ -106,7 +124,8 @@ fn main() {
 
 I enjoy working with others to produce a better outcome.
 I try to find the best fitting technology for a given problem. 
-While my professional background is mostly Python, thanks to Webassembly I have reconnected
+While my professional background is mostly Python, 
+thanks to Webassembly I have reconnected
 with JavaScript and fallen in love with Rust.
 
 
