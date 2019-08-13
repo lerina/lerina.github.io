@@ -41,63 +41,95 @@
 
 <section class="sponsors">
 <div class="sponsor pink" id="input">
-### My Texts
+### Non-Tech Texts, Ideas and Concept
 
-Solution Development is the answer to a good `C.O.P.` (Challenge, Opportunity or Problem)
-It is the essence of software in general yet has nothing to do with `code`
+
+"I am the maker of my     `PEACE`  
+ I have dominion over my  `Passions`  
+ I am the tutor of my     `Emotions`  
+ I am the deflator of my  `Anger`  
+ I am the moderator of my `Cravings`  
+ I am the regulator of my `Energy` "  
+                                                    _ lerina  
+
+<quoteblock>
+hh
+        bbb
+        ccc
+
+</quoteblock>
+
+If you enjoy word play and constrained metaphors, there are more
+in this section
 
 <img class="autofit" src="./pix/01_confused.svg" />
 
-Still confused?
+---
 
-Tell me  about your P.A.I.N.
+Bearing in mind that:
 
-
-
-<img class="autofit" src="./pix/02_id_and_patterns.svg" />
-
-xxxx
-
-<img class="autofit" src="./pix/03_spike_and_walkthrough.svg" />
+"Ideas are like, not the work!"  
+    _ Cameron Howe : halt and catch fire, s4e9  
 
 
-
+you may wish to proceed to the next section.
 </div>
 <div class="sponsor purple" id="process">
-### Code walkthough and tutorials
+### Tech Contepts Lab
 
-Software design is not problem solving or planning a software solution. 
-It is not low-level component and algorithm design 
-nor is it high-level architecture design. 
+To really understand something, one first learn the rules and become good at it.
+To master something, one needs to experiment with the constraints, twist, bend 
+and sometimes break the rules. 
+
+The Tech Concept Lab is such a place.
 
 <img class="autofit" src="./pix/02_id_and_patterns.svg" />
 
+Going against the general concensus and status quo on select Computer Science,
+Software Enginering, Software Development habits, processes and cult like practices.
 
-#### Design walkthrough
-- Let's study some application Design.
+TDD, BDD, the noise has reached cult-like levels. 
+So here is my contribution, when you code, I urge you to let SECT prevail.
 
-- Making the Design fit Rust.
+- `S`tory Driven Requirements
+- `E`xample Driven Design
+- `C`ode Driven Development
+- `T`est Driven Delivery
 
-- Making Rust fit the Design.
+And by all mean, push for 100% test coverage, of that portion of code 
+that matters.
 
-#### Design As a Narrative
-- Concept
+---
 
-- Examples
+Not every progress is about rebelion. I don't seek controversy. 
+I just optimize for efficiency.
 
-- Design log walkthrough
 
-#### Design Showcase
-- github repo
+"From spaghetti code to ravioli code:   
+ self-contained modules with value inside"  
+                                 __ lerina  
 
-- Design Docs 
+Here is how I earn my `dough`. Its all about PASTA.
+
+- `P`ractice  
+- `A`dapt (for your constraints)  
+- `S`tudy (senior's code)  
+- `T`week (optimize)  
+- `A`buse (push it to the limit)  
+
+
+
+> Code as a Narrative
+
 
 <a href="./prog/">...More</a>
-> Speed Coding (Sorted Examples & Exercise Drills)
 
 </div>
 <div class="sponsor blue" id="output">
-### The Rust Programming Game
+### Code Walkthrough and Tutorials
+
+- Tutorials
+- Practice SPEED (Sorted Programming Examples and Exercise Drills)
 
 <img class="autofit" src="./pix/03_spike_and_walkthrough.svg" />
 
@@ -106,8 +138,22 @@ nor is it high-level architecture design.
 </section><!-- sponsors -->
 </section><!-- sponsors-wrapper -->
 
-<div> Looking to start a new project, or improve an existing one?
-[Get in Touch](mailto:learningrustrpg@gmail.com)
+<section class="sponsors-wrapper clearfix">
+<section class="sponsors">
+
+<div class="center hero"> 
+# the Rust Programming Game
+
+> ETA: Spring Break 2020
+
+
+<div class="sponsor pink"> Its a Story, a RPG Narrative</div>
+<div class="sponsor purple"> Its a Guide, a Rust programming Tutorial</div>
+<div class="sponsor blue"> Its a Fun, a Live Coding Role Playing Game</div>
+
+</section><!-- sponsors -->
+</section><!-- sponsors-wrapper -->
+
 </div>
 
 </div><!-- container -->
