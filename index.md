@@ -77,9 +77,9 @@ you may wish to proceed to the next section.
 <div class="sponsor purple" id="process">
 ### Tech Contepts Lab
 
-To really understand something, one first learn the rules and become good at it.
+To really understand something, one first learn the rules and become good at it.   
 To master something, one needs to experiment with the constraints, twist, bend 
-and sometimes break the rules. 
+and sometimes break the rules.   
 
 The Tech Concept Lab is such a place.
 
@@ -91,38 +91,54 @@ Software Enginering, Software Development habits, processes and cult like practi
 TDD, BDD, the noise has reached cult-like levels. 
 So here is my contribution, when you code, I urge you to let SECT prevail.
 
-- `S`tory Driven Requirements
-- `E`xample Driven Design
-- `C`ode Driven Development
-- `T`est Driven Delivery
+- `S` tory Driven Requirements
+- `E` xample Driven Design
+- `C` ode Driven Development
+- `T` est Driven Delivery
 
-And by all mean, push for 100% test coverage, of that portion of code 
-that matters.
+And by all mean, push for 100% test coverage, of those portions of code 
+that matter.
 
 ---
 
-Not every progress is about rebelion. I don't seek controversy. 
-I just optimize for efficiency.
+Not every progress is about rebelion. Its less about seeking controversy and
+more about optimizing for efficiency.
 
 
 "From spaghetti code to ravioli code:   
  self-contained modules with value inside"  
                                  __ lerina  
 
-Here is how I earn my `dough`. Its all about PASTA.
+Here is how I earn my `DOUGH`. Its all about `PASTA`.
 
-- `P`ractice  
-- `A`dapt (for your constraints)  
-- `S`tudy (senior's code)  
-- `T`week (optimize)  
-- `A`buse (push it to the limit)  
+- `P` ractice  
+- `A` dapt (for your constraints)  
+- `S` tudy (senior's code)  
+- `T` week (optimize)  
+- `A` buse (push it to the limit)  
 
+If you enjoy playful mnemonics and applicable bullet list in the context of Software Development, 
+there's more in this section
 
+---
 
-> Code as a Narrative
+## Code as a Narrative
 
+Code listings and Tracing code used to be the only way to learn programming back in the days.
+It left me with a longing for something similar in the durrent wonderful of git and other publically browsable code repositories.
+But short of painstakinly going from commit to comit until the Head, how can we get the same sense of code discovery?
 
-<a href="./prog/">...More</a>
+I've been playing with the concept of `code as a narrative` recently. The notion is not new.
+It has had various definition and partial implementation.  
+From [Literate programming](https://en.wikipedia.org/wiki/Literate_programming),  [literateprogramming.com](http://www.literateprogramming.com/), [Donald Knuth - Literate programming - youTube](https://www.youtube.com/watch?v=bTkXg2LZIMQ)  
+to [Pseudocode Programming Process](https://www.oreilly.com/library/view/code-complete-second/0735619670/ch09.html)  
+to [Code That Reads Like a Story](https://lightsonsoftware.com/writing-code-that-reads-like-a-story/)  
+
+The particular version emerging from this Tech Lab is `Code as a Narrative`. 
+I find it very useful as a teaching tool. But I'm not fixed yet as its value in 
+a professional project. Thats why is still in the Tech Lab Section
+
+If you are eager for tutorial, code-alongs, and code walkthrough head-on to the next section.
 
 </div>
 <div class="sponsor blue" id="output">
