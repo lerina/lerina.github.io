@@ -44,25 +44,19 @@
 ### Non-Tech Texts, Ideas and Concept
 
 
-"I am the maker of my     `PEACE`  
- I have dominion over my  `Passions`  
- I am the tutor of my     `Emotions`  
- I am the deflator of my  `Anger`  
- I am the moderator of my `Cravings`  
- I am the regulator of my `Energy` "  
-                                                    _ lerina  
-
-<quoteblock>
-hh
-        bbb
-        ccc
-
-</quoteblock>
+"I am the Maker of my     `PEACE`  
+ I am the Tamer of my     `Passions`  
+ I am the Tutor of my     `Emotions`  
+ I am the Deflator of my  `Anger`  
+ I am the Moderator of my `Cravings`  
+ I am the Regulator of my `Energy` "  
+                                                _ lerina  
 
 If you enjoy word play and constrained metaphors, there are more
+<a href="./writings/index.html">
 in this section
-
-<img class="autofit" src="./pix/01_confused.svg" />
+<img class="autofit" src="./pix/writings.jpg" />
+</a>
 
 ---
 
@@ -72,7 +66,7 @@ Bearing in mind that:
     _ Cameron Howe : halt and catch fire, s4e9  
 
 
-you may wish to proceed to the next section.
+Hence, you may wish to proceed to the next section.
 </div>
 <div class="sponsor purple" id="process">
 ### Tech Contepts Lab
