@@ -52,9 +52,10 @@
  I am the Regulator of my `Energy` "  
                                                 _ lerina  
 
-If you enjoy word play and constrained metaphors, there are more
-<a href="./writings/index.html">
-in this section
+
+If you enjoy word play and constrained metaphors 
+and prose posing as poems, there are more 
+<a href="./writings/index.html"> in this section
 <img class="autofit" src="./pix/writings.jpg" />
 </a>
 
@@ -62,11 +63,15 @@ in this section
 
 Bearing in mind that:
 
+
 "Ideas are like, not the work!"  
     _ Cameron Howe : halt and catch fire, s4e9  
 
 
-Hence, you may wish to proceed to the next section.
+When you are done with the art and fun of word play and concept twisting,
+or if you wish to view technical or IT oriented text, you may wish to proceed 
+to the <a href="#process">next section *Tech Contepts Lab* .</a>
+
 </div>
 <div class="sponsor purple" id="process">
 ### Tech Contepts Lab
