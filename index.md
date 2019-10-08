@@ -34,7 +34,7 @@
 <div class="center">
 # Coming Soon
 ## Under Construction
-### ETA: September 2019
+### ETA: November 2019
 </div>
 
 </main>
