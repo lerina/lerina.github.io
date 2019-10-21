@@ -1,17 +1,17 @@
 <link href="https://fonts.googleapis.com/css?family=Architects+Daughter|Inconsolata&display=swap" rel="stylesheet"> 
 <!-- img id="topPix" src="./pix/lRustRPG.jpg" / -->
 <section class="sponsors">
-<div class="sponsor hero" id="cop">
+<div class="sponsor hero" id="cop"><a href="#Rust_prog">
 <img class="topPix" src="./pix/Rust_programming_language_logo.svg" />
-
+</a>
 </div>
-<div class="sponsor hero" id="id_pat">
+<div class="sponsor hero" id="id_pat"><a href="#Js-Py_ffi">
 <img class="topPix" id="id_patterns" src="./pix/Python_JavaScript_logo.svg" />
-
+</a>
 </div>
-<div class="sponsor hero" id="spike_walk">
+<div class="sponsor hero" id="spike_walk"><a href="#wasm_prog">
 <img class="topPix" id="spike" src="./pix/Web_Assembly_Logo.svg" />
-
+</a>
 </div>
 
 </section><!-- sponsors -->
@@ -38,6 +38,12 @@
 </div>
 
 </main>
+
+<section class="sponsors">
+<h2 id="Rust_prog">Rust</h2>
+<h2 id="Js-Py_ffi">Boost Js and Python with Rust</h2>
+<h2 id="wasm_prog">Rust and Webassembly</h2>
+</section>
 
 <section class="sponsors">
 <div class="sponsor pink" id="input">
