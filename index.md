@@ -41,8 +41,15 @@
 
 <section class="sponsors">
 <h2 id="Rust_prog">Rust</h2>
+Rust makes programming fun again. The learning curve is a blessing.
+It make you pay attention not only to what you do but why you do it that way.
+
 <h2 id="Js-Py_ffi">Boost Js and Python with Rust</h2>
+Oxidation
+
 <h2 id="wasm_prog">Rust and Webassembly</h2>
+Code once, run anywhere, ... Again!
+
 </section>
 
 <section class="sponsors">
