@@ -49,39 +49,52 @@ self-pride without self-respect. A recipe for hardship.
 # Self-Refinement
 
 ```
-I. Self-Refinement is Simple
-1.1 Discipline is a Decision.
-1.2 Commitment is a Choice.
-1.3 Choice seeks what is Simple not what is Easy.
+I. Self-Refinement is Simple  
+1.1 Discipline is a Decision.  
+1.2 Commitment is a Choice.  
+1.3 Choice seeks what is Simple not what is Easy.  
 
-II. Self-Refinement is Harmonious
-2.1 Trust is a Resource that needs frequent care and feeding.
-2.2 It feeds on Constant and Uncompromising adherence to Personal-Integrity.
-2.3 Personal-Integrity is the Congruence of Thought, Speech and Deeds.
-2.4 To be Whole then, is when one's Mind, one's Feelings and one's Actions are in Unison.
+II. Self-Refinement is Harmonious  
+2.1 Trust is a Resource that needs frequent care and feeding.  
+2.2 It feeds on Constant and Uncompromising adherence to Personal-Integrity.  
+2.3 Personal-Integrity is the Congruence of Thought, Speech and Deeds.  
+2.4 To be Whole then, is when one's Mind, one's Feelings and one's Actions are in Unison.  
 
-III. Self-Refinement is a recurring Pledge 
-3.1 In Harmony within the Flow, Stable yet not Static.
-3.2 Each day, a new beginning.
-3.3 Each day the Pledge. Recall, ReFrame and ReCommit.
-3.4 Flexible, Adaptable without ever compromising Integrity.
+III. Self-Refinement is a recurring Pledge  
+3.1 In Harmony within the Flow, Stable yet not Static.  
+3.2 Each day, a new beginning.  
+3.3 Each day the Pledge. Recall, ReFrame and ReCommit.  
+3.4 Flexible, Adaptable without ever compromising Integrity.  
 
-IV. Self-Refinement is a Practice
-4.1 Hence forth, Seek what is Simple not what is Easy.
-4.2 Measure Outcome but most of all Celebrate Effort, Efficiency, Time wisely spent.
-4.3 Leverage the POWER. Administer the PEACE. Practice the WoA.
+IV. Self-Refinement is a Practice  
+4.1 Hence forth, Seek what is Simple not what is Easy.  
+4.2 Measure Outcome but most of all Celebrate Effort, Efficiency, Time wisely spent.  
+4.3 Leverage the POWER. Administer the PEACE. Practice the FOMBA (WoA).  
 
-V. Self-Refinement is a way of life
-5.1 Honour Discipline, Commitment and Choices.
-5.2 Grow Trust, Build Integrity, Cultivate Harmony as a lifestyle choice.
+V. Self-Refinement is a way of life  
+5.1 Honour Discipline, Commitment and Choices.  
+5.2 Don't wait to "feel like" honouring your Commitements. Decide and Do.  
+5.3 Grow Trust, Build Integrity, Cultivate Harmony as a lifestyle choice.  
+
+        Hence one cultivates
+        composure and temperance,
+        alertness and compassion,
+        sustained perseverance and consistency
+
                                        _ lerina
+
 ```
+
+## Action for the Day
+- Define success for the Day (what to acheive)
+- Specify 3 Actions with a 20h deadline
+- Recite Power before task, Peace after task, WoA between Actions
 
 ## Leverage the POWER
 
 ```
 P.    Purpose       &     (Prey) Principles
-O.    Organization  &     Opportunity 
+O.    Organization  &     Observation (old, external to you -> Opportunity) 
 W.    Willingness.  &     Wit
 E.    Efficiency.   &     Execution 
 R.    Resolve.      &     Resources 
@@ -110,6 +123,17 @@ with resources I fuel the power
  I am the moderator of my.  `C`ravings
  I am the regulator of my.  `E`nergy "
                                        _ lerina
+```
+
+```
+With
+`P`assion tamed,
+`E`motions tutored,
+`A`nger deflated,
+`C`ravings moderated,
+`E`nergy regulated,
+`PEACE` is spelled out
+                 _ lerina
 ```
 
 ## WoA: The Practice
@@ -172,4 +196,34 @@ thus is the way of the Ancestors
 
 ```
 
+## Equity Dignity Stability.
+
+At all time nurture :  composure, constancy, temperance 
+ : alertness, compassion, courage
+ : sustained perseverance, consistency, filial 
+
+1. this too shall pass. 
+Notice and get back on track
+
+2. emotions are the result of the meaning you conjure up. Reframe.
+Don't entertain the irrelevant. only the now is in the foreground. 
+
+3. Be the least likely that made the cut
+. be humble, be discrete yet be included.
+
+4. tea, milk
+Food is not a distraction. mindful eating even at resto.
+
+5. daily  labels are non negotiable.
+This is your sacred commitment to yourself.
+
+6. Simplify, decluter, reduce saying "yes" and increase  saying "no".
+
+
+## .... DIG
+
+- `D`elay.      `I`nstant.          `G`ratification 
+- `D`o.         `I`t.               `G`enuinely 
+- `D`one.       `I`s.               `G`ood
+- `D`on't.      `I`nterrupt.  a     `G`ig
 
