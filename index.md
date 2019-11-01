@@ -44,12 +44,18 @@
 Rust makes programming fun again. The learning curve is a blessing.
 It make you pay attention not only to what you do but why you do it that way.
 
+[Start here `Rust Download`](https://www.rust-lang.org/) and come back to learn by read and type code, old style.
+
 <h2 id="Js-Py_ffi">Boost Js and Python with Rust</h2>
-Oxidation
+[Boost Python](https://blog.sentry.io/2016/10/19/fixing-python-performance-with-rust)
+[Speed Javascript-NodeJs]()
 
 <h2 id="wasm_prog">Rust and Webassembly</h2>
 Code once, run anywhere, ... Again!
 
+[Rust Wasm](https://rustwasm.github.io/docs/book/)  
+[MDN Mozilla: WebAssembly](https://developer.mozilla.org/en-US/docs/WebAssembly)  
+[Webassembly](https://webassembly.org/)  
 </section>
 
 <section class="sponsors">
