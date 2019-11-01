@@ -136,6 +136,20 @@ With
                  _ lerina
 ```
 
+Hence Practice `PEACE` through
+`P` osture
+`E` quanimity
+`A` wareness
+`C` omposure
+`E` quilibrium
+
+and Maintain `PEACE` with
+`P` assion tamed
+`E` motions tutored
+`A` nger deflated
+`C` ravings moderated
+`E` nergy regulated
+
 ## WoA: The Practice
 
 ```
