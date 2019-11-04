@@ -2,15 +2,14 @@
 <!-- img id="topPix" src="./pix/lRustRPG.jpg" / -->
 <section class="sponsors">
 <div class="sponsor hero" id="cop"><a href="#Rust_prog">
-<img class="topPix" src="./pix/Rust_programming_language_logo.svg" />
+<img class="topPix" src="./pix/lets_code.svg" alt="Code with Me" /></a>
+</div>
+<div class="sponsor hero" id="id_pat"><a href="#writings">
+<img class="topPix" id="id_patterns" src="./pix/selected_writings.svg" />
 </a>
 </div>
-<div class="sponsor hero" id="id_pat"><a href="#Js-Py_ffi">
-<img class="topPix" id="id_patterns" src="./pix/Python_JavaScript_logo.svg" />
-</a>
-</div>
-<div class="sponsor hero" id="spike_walk"><a href="#wasm_prog">
-<img class="topPix" id="spike" src="./pix/Web_Assembly_Logo.svg" />
+<div class="sponsor hero" id="spike_walk"><a href="#tRPG">
+<img class="topPix" id="spike" src="./pix/tRPG.svg" />
 </a>
 </div>
 
@@ -40,43 +39,75 @@
 </main>
 
 <section class="sponsors">
+<div class="sponsor pink" id="RUST">
 <h2 id="Rust_prog">Rust</h2>
-Rust makes programming fun again. The learning curve is a blessing.
-It make you pay attention not only to what you do but why you do it that way.
+<img class="autofit" src="./pix/Rust_programming_language_logo.svg" />
+<a href="https://www.rust-lang.org/">Rust</a> makes programming fun again. The learning curve is a blessing.
+It make you pay attention not only to what you do but why you do it that way. 
+If computers are <quote>"Bicycles for the Mind (Steve Jobs)"</quote> then surely Rust must be the "Chain gear" that propels your realizations.
 
-[Start here `Rust Download`](https://www.rust-lang.org/) and come back to learn by read and type code, old style.
+There is alot of material out there to learn Rust. However until recently Rust 
+was a moving object that kept transforming itself for the better. 
+But that also means that alot of tutorials are obsolete.
 
+Hence its wise to <a href="https://www.rust-lang.org/learn"> have a look at the official information to get relevant up-to-date suggestions</a>
+
+Withe the 2018 edition, Rust vows to be stable, dependable, without braking changes. 
+So now we can safely invest time to learn and play with this wonderful modern computer language.
+
+If you have experience in other languages and want to learn without too much non essential information to start with, then: 
+
+[start here: `Install Rust`](https://www.rust-lang.org/tools/install) and come back to learn by doing, old style. 
+Our Learning Progression will follow the `read & type`, `type & correct`, `complete & run` pattern.
+This kind of practical learning will harmoniously complement the wonderful Official Rust documentation ("The Book") and contributions by the Rust community.
+
+If you want to learn Rust in a more leasurly and slower pace, you can embark on a learning journey 
+by playing <a href="#tRPG">`The Rust Programming Game` (tRPG)</a>
+</div>
+
+<div class="sponsor purple" id="BOOST">
 <h2 id="Js-Py_ffi">Boost Js and Python with Rust</h2>
-[Boost Python](https://blog.sentry.io/2016/10/19/fixing-python-performance-with-rust)
-[Speed Javascript-NodeJs]()
+<img class="autofit" src="./pix/Python_JavaScript_logo.svg" />
 
+If you've been coding in Python or Javascript for a while, chances are your have encountered situations
+where speed and efficiency became an issue. Speeding things with C or C++ may have seamed a good solution but it opened a whole other can of problems.
+Suddenly you may have found yourself spending time being a internal memory troubleshooter and a python or javascript developer.
+
+Rust is the secret weapon that will bring back sanity to your projects. 
+With Rust you can <b>safely</b> <a href="https://blog.sentry.io/2016/10/19/fixing-python-performance-with-rust" target="_bank">Boost Python</a> or [Speed-up Javascript-NodeJs]()
+
+Let's do that together!
+</div>
+
+<div class="sponsor blue" id="WASM">
 <h2 id="wasm_prog">Rust and Webassembly</h2>
-Code once, run anywhere, ... Again!
+<img class="autofit" src="./pix/Web_Assembly_Logo.svg" />
+
+Code once, run anywhere! ... Again! ... and for Real!
+
+Whether you want to build an entire application for the browser or even out of the borwser but in compiled to webassembly
+or you want to build a part of an application in webassembly, Rust code can be compile into WebAssembly (wasm) and the rust 
+eco-sysment makes it easy to do so.
 
 [Rust Wasm](https://rustwasm.github.io/docs/book/)  
 [MDN Mozilla: WebAssembly](https://developer.mozilla.org/en-US/docs/WebAssembly)  
 [Webassembly](https://webassembly.org/)  
+</div>
+
 </section>
 
+<h2>Selected Writings</h2>
 <section class="sponsors">
-<div class="sponsor pink" id="input">
+<div class="sponsor pink" id="writings">
 ### Non-Tech Texts, Ideas and Concept
 
-
-"I am the Maker of my     `PEACE`  
- I am the Tamer of my     `Passions`  
- I am the Tutor of my     `Emotions`  
- I am the Deflator of my  `Anger`  
- I am the Moderator of my `Cravings`  
- I am the Regulator of my `Energy` "  
-                                                _ lerina  
-
+<img class="autofit" src="./pix/peace.svg" />
 
 If you enjoy word play and constrained metaphors 
 and prose posing as poems, there are more 
-<a href="./writings/index.html"> in this section
-<img class="autofit" src="./pix/writings.jpg" />
-</a>
+<a href="./writings/index.html"> in this section</a>
+
+
 
 ---
 
@@ -95,13 +126,14 @@ to the <a href="#process">next section *Tech Contepts Lab* .</a>
 <div class="sponsor purple" id="process">
 ### Tech Contepts Lab
 
+
+<img class="autofit" src="./pix/flasks.svg" />
+
 To really understand something, one first learn the rules and become good at it.   
 To master something, one needs to experiment with the constraints, twist, bend 
 and sometimes break the rules.   
 
 The Tech Concept Lab is such a place.
-
-<img class="autofit" src="./pix/02_id_and_patterns.svg" />
 
 Going against the general concensus and status quo on select Computer Science,
 Software Enginering, Software Development habits, processes and cult like practices.
@@ -162,10 +194,11 @@ If you are eager for tutorial, code-alongs, and code walkthrough head-on to the 
 <div class="sponsor blue" id="output">
 ### Code Walkthrough and Tutorials
 
-- Tutorials
-- Practice SPEED (Sorted Programming Examples and Exercise Drills)
+<img class="autofit" src="./pix/speed-practice.svg" />
 
-<img class="autofit" src="./pix/03_spike_and_walkthrough.svg" />
+Practice your SPEED.  Its not what you think. You don't have to become a keyboard touchtyping wizard.
+SPEED are a set of `S`orted `P`rogramming `E`xamples and `E`xercise `D`rills.
+
 
 
 </div>
@@ -175,8 +208,8 @@ If you are eager for tutorial, code-alongs, and code walkthrough head-on to the 
 <section class="sponsors-wrapper clearfix">
 <section class="sponsors">
 
-<div class="center hero"> 
-# the Rust Programming Game
+<div class="center hero" id="tRPG"> 
+# the Rust Programming Game <a class="hover_show" href="#Rust_prog">⬆ </a>
 
 > ETA: Spring Break 2020
 
