@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>rust</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style>
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { font-weight: bold; } /* Alert */
+code span.an { font-style: italic; } /* Annotation */
+code span.cf { font-weight: bold; } /* ControlFlow */
+code span.co { font-style: italic; } /* Comment */
+code span.cv { font-style: italic; } /* CommentVar */
+code span.do { font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.er { font-weight: bold; } /* Error */
+code span.in { font-style: italic; } /* Information */
+code span.kw { font-weight: bold; } /* Keyword */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.wa { font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="css/styles.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>There is alot of material out there to learn Rust. However until recently Rust was a moving object that kept transforming itself for the better. But that also means that alot of tutorials are obsolete.</p>
+<p>Hence its wise to <a href="https://www.rust-lang.org/learn" target="_blank"> have a look at the official information to get relevant up-to-date suggestions</a></p>
+<p>With the 2018 edition, Rust vows to be stable, dependable, without braking changes. So now we can safely invest time to learn and play with this wonderful modern computer language.</p>
+<p><a href="https://www.rust-lang.org/tools/install" target="_blank">[First start here: <code>Install Rust</code>]</a> and come back to learn by doing, old style.</p>
+<ul>
+<li><p>If you want to learn Rust in a more leasurly and slower pace,<br />
+you can embark on a learning journey by playing <a href="http://razafy.com/index.html#tRPG"><code>The Rust Programming Game</code> (tRPG)</a></p></li>
+<li><p>If you have experience in other languages and want to learn<br />
+without too much non essential information to start with take the <code>Rapid Tour Of Rust</code>.<br />
+Our Learning Progression will follow the <code>read &amp; type</code>, <code>type &amp; correct</code>, <code>complete &amp; run</code> pattern.</p></li>
+</ul>
+<p>This both kind of practical learning will harmoniously complement the wonderful Official Rust documentation (“The Book”) and contributions by the Rust community.</p>
+<hr />
+<h2 id="a-rapid-tour-of-rust">A Rapid Tour Of Rust</h2>
+<p>Type this code listing and correct until you get the following output</p>
+<div class="line-block">3 + 1 = 4<br />
+14 + 1 = 15<br />
+15 + 1 = 16<br />
+19 + 1 = 20</div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">// filename: add_one_to_an_integer.rs</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="co">//</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="co">// USAGE </span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="co">//      Compile with:  </span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="co">//            rustc add_one_to_an_integer.rs</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="co">//      Run with:     </span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="co">//            ./add_one_to_an_integer</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="kw">fn</span> add_one_to_an_integer(val: <span class="dt">i32</span>) -&gt; <span class="dt">i32</span> <span class="op">{</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a>    val + <span class="dv">1</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="op">}</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a></span>
+<span id="cb1-13"><a href="#cb1-13"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a>    <span class="kw">let</span> input = <span class="pp">vec!</span><span class="op">[</span><span class="dv">3</span>,<span class="dv">14</span>,<span class="dv">15</span>,<span class="dv">19</span><span class="op">]</span>;</span>
+<span id="cb1-15"><a href="#cb1-15"></a>    </span>
+<span id="cb1-16"><a href="#cb1-16"></a>    <span class="kw">for</span> i <span class="kw">in</span> input.iter() <span class="op">{</span></span>
+<span id="cb1-17"><a href="#cb1-17"></a>        <span class="pp">println!</span>(<span class="st">&quot;{} + 1 = {}&quot;</span>, i, add_one_to_an_integer(*i) );</span>
+<span id="cb1-18"><a href="#cb1-18"></a>    <span class="op">}</span></span>
+<span id="cb1-19"><a href="#cb1-19"></a>    </span>
+<span id="cb1-20"><a href="#cb1-20"></a><span class="op">}</span></span>
+<span id="cb1-21"><a href="#cb1-21"></a></span>
+<span id="cb1-22"><a href="#cb1-22"></a><span class="co">/* --- OUTPUT</span></span>
+<span id="cb1-23"><a href="#cb1-23"></a><span class="co">3 + 1 = 4</span></span>
+<span id="cb1-24"><a href="#cb1-24"></a><span class="co">14 + 1 = 15</span></span>
+<span id="cb1-25"><a href="#cb1-25"></a><span class="co">15 + 1 = 16</span></span>
+<span id="cb1-26"><a href="#cb1-26"></a><span class="co">19 + 1 = 20</span></span>
+<span id="cb1-27"><a href="#cb1-27"></a><span class="co">*/</span></span></code></pre></div>
+</body>
+</html>

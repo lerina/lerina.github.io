@@ -91,6 +91,8 @@ Language wars, developer silos and coder tribes cannot hide the fact that progra
 
 Granted they are tools to think and express ideas and solutions. But they are disposable tools nontheless.
 
+
+[Rust Playground](https://play.rust-lang.org/)
 <a href="#top">↑ back</a>
 
 </div><!-- container -->

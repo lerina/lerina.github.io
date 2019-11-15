@@ -41,32 +41,16 @@
 <section class="sponsors">
 <div class="sponsor pink" id="RUST">
 <h2 id="Rust_prog">Rust</h2>
-<img class="autofit" src="./pix/Rust_programming_language_logo.svg" />
+<a href="./prog/rust.html"><img class="autofit" src="./pix/Rust_programming_language_logo.svg" /></a>
 <a href="https://www.rust-lang.org/">Rust</a> makes programming fun again. The learning curve is a blessing.
 It make you pay attention not only to what you do but why you do it that way. 
 If computers are <quote>"Bicycles for the Mind (Steve Jobs)"</quote> then surely Rust must be the "Chain gear" that propels your realizations.
 
-There is alot of material out there to learn Rust. However until recently Rust 
-was a moving object that kept transforming itself for the better. 
-But that also means that alot of tutorials are obsolete.
-
-Hence its wise to <a href="https://www.rust-lang.org/learn"> have a look at the official information to get relevant up-to-date suggestions</a>
-
-Withe the 2018 edition, Rust vows to be stable, dependable, without braking changes. 
-So now we can safely invest time to learn and play with this wonderful modern computer language.
-
-If you have experience in other languages and want to learn without too much non essential information to start with, then: 
-
-[start here: `Install Rust`](https://www.rust-lang.org/tools/install) and come back to learn by doing, old style. 
-Our Learning Progression will follow the `read & type`, `type & correct`, `complete & run` pattern.
-This kind of practical learning will harmoniously complement the wonderful Official Rust documentation ("The Book") and contributions by the Rust community.
-
-If you want to learn Rust in a more leasurly and slower pace, you can embark on a learning journey 
-by playing <a href="#tRPG">`The Rust Programming Game` (tRPG)</a>
+<a href="./prog/rust.html"> more ...</a>
 </div>
 
 <div class="sponsor purple" id="BOOST">
-<h2 id="Js-Py_ffi">Boost Js and Python with Rust</h2>
+<h2 id="Js-Py_ffi">Boost JavaScript &amp; Python</h2>
 <img class="autofit" src="./pix/Python_JavaScript_logo.svg" />
 
 If you've been coding in Python or Javascript for a while, chances are your have encountered situations
@@ -139,7 +123,7 @@ Going against the general concensus and status quo on select Computer Science,
 Software Enginering, Software Development habits, processes and cult like practices.
 
 TDD, BDD, the noise has reached cult-like levels. 
-So here is my contribution, when you code, I urge you to let SECT prevail.
+So here is my contribution, when you code, I urge you to stand by the SECT:
 
 - `S` tory Driven Requirements
 - `E` xample Driven Design
@@ -197,7 +181,7 @@ If you are eager for tutorial, code-alongs, and code walkthrough head-on to the 
 <img class="autofit" src="./pix/speed-practice.svg" />
 
 Practice your SPEED.  Its not what you think. You don't have to become a keyboard touchtyping wizard.
-SPEED are a set of `S`orted `P`rogramming `E`xamples and `E`xercise `D`rills.
+SPEED are a set of *`S`*orted *`P`*rogramming *`E`*xamples and *`E`*xercise *`D`*rills.
 
 
 
