@@ -122,16 +122,8 @@ The Tech Concept Lab is such a place.
 Going against the general concensus and status quo on select Computer Science,
 Software Enginering, Software Development habits, processes and cult like practices.
 
-TDD, BDD, the noise has reached cult-like levels. 
-So here is my contribution, when you code, I urge you to stand by the SECT:
+Let's start with the wise practice of <a href="writings/sect.html">TDD, BDD, ...</a>
 
-- `S` tory Driven Requirements
-- `E` xample Driven Design
-- `C` ode Driven Development
-- `T` est Driven Delivery
-
-And by all mean, push for 100% test coverage, of those portions of code 
-that matter.
 
 ---
 
