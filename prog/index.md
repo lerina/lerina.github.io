@@ -1,5 +1,5 @@
-cnv<canvas id="cnv_all" width="1366" height="760"></canvas>
-<script src="./js/cnv00.js"></script>
+<img class="topPix" src="../pix/whiteboard.svg" alt="whiteboard programming" />
+
 <div class="container">
 <header class="main-header clearfix">
 

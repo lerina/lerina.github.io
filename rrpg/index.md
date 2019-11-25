@@ -1,5 +1,5 @@
-<img id="banner" src="./lRustRPG.png" width="1024" height="500" />
-<script src="./js/js.js"></script>
+<img class="topPix" src="../pix/retro.svg" alt="the Learning Rust RPG" />
+
 <div class="container">
 <header class="main-header clearfix">
 

@@ -17,3 +17,13 @@ Here is how I earn my `DOUGH`. Its all about `PASTA`.
 - `A` buse (push it to the limit)  
 
 
+
+Here is how I earn my `DOUGH`. Its all about `PASTA`.
+
+- `P` ractice  
+- `A` dapt (for your constraints)  
+- `S` tudy (senior's code)  
+- `T` week (optimize)  
+- `A` buse (push it to the limit)  
+
+

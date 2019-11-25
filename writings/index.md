@@ -1,5 +1,5 @@
-cnv<canvas id="cnv_all" width="1366" height="760"></canvas>
-<script src="./js/cnv00.js"></script>
+<img class="topPix" src="../pix/writings.svg" alt="Writings" />
+
 <div class="container">
 <header class="main-header clearfix">
 
@@ -16,7 +16,6 @@ cnv<canvas id="cnv_all" width="1366" height="760"></canvas>
 <span id="top"></span>
 <section class="sponsors-wrapper clearfix">
 <main class="content-area">
-
 
 <div class="sponsor purple" id="toc">
 <h2>TOC</h2>
