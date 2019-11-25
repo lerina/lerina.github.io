@@ -1,4 +1,4 @@
-<canvas id="cnv_all" width="1366" height="760"></canvas>
+cnv<canvas id="cnv_all" width="1366" height="760"></canvas>
 <script src="./js/cnv00.js"></script>
 <div class="container">
 <header class="main-header clearfix">
@@ -6,9 +6,9 @@
 <nav class="main-menu">
 <ul>
 <li class="main-menu__item">[Home](/)</li>
+<li class="main-menu__item">[Selected writings](/writings/)</li>
 <li class="main-menu__item">Programming</li>
-<li class="main-menu__item">[Item B](#)</li>
-<li class="main-menu__item">[About](/about)</li>
+<li class="main-menu__item">[About](/about.html)</li>
 </ul>
 </nav><!-- nav -->
 </header><!-- header -->
@@ -17,83 +17,54 @@
 <section class="sponsors-wrapper clearfix">
 <main class="content-area">
 
-. clear output
-. defensive input
-. explicit nomenclature
-
-Mr Smith (Matrix) is right. We are software writers, code writers.
-Git blame returns the code author
-we are Digital Code Author
-
-But we are more akin to writers of the film industry than the book market. 
-We have technical constraints and people cooperation imperatives.
-
-- As code authors, we don't type commands into a computer to make it do things. That's the job of our programs.
-
-We write solutions to challenges, opportunities and problems we've modelled and solved. 
-We only code problem solving software, once we've decoded a satisfactory solution.
-To neophytes we appear to code algorithms and orchestrate their interactions to process input data and spit out a desired output.
-But in reality, We write code that reads as a story of the system it implements to better produce software that matters.
-
-- As software producers, we 
-
-## H2
-
-txt
-
-</main>
 
 <section class="sponsors">
-<div class="sponsor pink">
-### COP and the Charge and Craft of Software production.
+<div class="sponsor pink" id="rust">
+<h2 id="Rust_prog">Rust</h2>
 
-Notes, prose and poems accumulated through out the years
+-    The Challenge. This defines "where we are now" and is always either a problem or an opportunity.
+-    The Undesired Outcome. This defines "where we don't want to be"--what will happen if the problem or opportunity is not addressed.
+-    The Desired Outcome. This defines "where we do want to be," which should obviously be better than the undesired outcome.
+-    The Proposed Solution. This defines what must be done to avoid the undesired outcome and achieve the desired one.
+-    The Risk Remover. Why the proposed solution is likely to succeed and unlikely to fail.
+-    The Call to Action. The decision you want made that will put the solution into motion to achieve the desired outcome.
 
-- All notes in clean form
+<a href="./rust_000.html"> more ...</a>
 
-- Feature {Pain-Gain, Deam_it, Fear_it}
+</div></section>
 
-</div>
-<div class="sponsor purple">
-### Narrative Driven Code authorship NDCA
+<section class="sponsors">
+<div class="sponsor purple" id="ffi">
+<h2 id="Js-Py_ffi">Boost JavaScript &amp; Python</h2>
 
-This section is about Writing Software. 
-You will find Writi
-And tips, tutorials, and code along lessons.
+-    The Challenge. This defines "where we are now" and is always either a problem or an opportunity.
+-    The Undesired Outcome. This defines "where we don't want to be"--what will happen if the problem or opportunity is not addressed.
+-    The Desired Outcome. This defines "where we do want to be," which should obviously be better than the undesired outcome.
+-    The Proposed Solution. This defines what must be done to avoid the undesired outcome and achieve the desired one.
+-    The Risk Remover. Why the proposed solution is likely to succeed and unlikely to fail.
+-    The Call to Action. The decision you want made that will put the solution into motion to achieve the desired outcome.
 
-- Prog as a story
+<a href="./ffi.html"> more ...</a>
 
-- Narration as a teaching tool in programming
+</div></section>
 
-- current interests {rust, wasm, Js, Py, Dj} 
+<section class="sponsors">
+<div class="sponsor blue" id="wasm">
+<h2 id="wasm_prog">Rust and Webassembly</h2>
 
-</div>
-<div class="sponsor blue" id="letscode_">
-### Let's get coding
+-    The Challenge. This defines "where we are now" and is always either a problem or an opportunity.
+-    The Undesired Outcome. This defines "where we don't want to be"--what will happen if the problem or opportunity is not addressed.
+-    The Desired Outcome. This defines "where we do want to be," which should obviously be better than the undesired outcome.
+-    The Proposed Solution. This defines what must be done to avoid the undesired outcome and achieve the desired one.
+-    The Risk Remover. Why the proposed solution is likely to succeed and unlikely to fail.
+-    The Call to Action. The decision you want made that will put the solution into motion to achieve the desired outcome.
 
-Let's integrate Rust/Wasm with JavaScript/Node and Python. For the fun of it
-and also because it may be the perfect mix for the next decade to come.
+<a href="./wasm.html"> more ...</a>
 
-Currently this is 
 
-<a href="#letscode">more →</a>
-</div>
-
-</section><!-- sponsors -->
+</div></section>
+</main>
 </section><!-- sponsors-wrapper -->
-
-### Let's get coding
-
-<a id="letscode" href="#letscode_">↑ back</a>
-Programming languages and frameworks need not be considered in isolation.
-
-Language wars, developer silos and coder tribes cannot hide the fact that programming languages tools.
-
-Granted they are tools to think and express ideas and solutions. But they are disposable tools nontheless.
-
-
-[Rust Playground](https://play.rust-lang.org/)
-<a href="#top">↑ back</a>
 
 </div><!-- container -->
 

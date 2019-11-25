@@ -1,3 +1,5 @@
+&lt;-[TOC](./)  
+
 Not every progress is about rebelion. Its less about seeking controversy and
 more about optimizing for efficiency.
 

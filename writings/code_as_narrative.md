@@ -1,3 +1,19 @@
+&lt;-[TOC](./)  
+
+<div class="sponsor purple">
+### Narrative Driven Code authorship NDCA
+
+This section is about Writing Software. 
+You will find Writi
+And tips, tutorials, and code along lessons.
+
+- Prog as a story
+
+- Narration as a teaching tool in programming
+
+- current interests {rust, wasm, Js, Py, Dj} 
+
+</div>
 
 ## Code as a Narrative
 
