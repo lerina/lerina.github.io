@@ -202,6 +202,7 @@ and sharing with the programming community.
 <div class="sponsor blue"> Its a Fun, a Live Coding Role Playing Game</div>
 
 </section><!-- sponsors -->
+<a href="./rrpg/" target="_blank">Join the Adventure</a>
 </section><!-- sponsors-wrapper -->
 
 </div>

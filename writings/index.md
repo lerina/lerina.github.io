@@ -17,7 +17,7 @@
 <section class="sponsors-wrapper clearfix">
 <main class="content-area">
 
-<div class="sponsor purple" id="toc">
+<div class="sponsor purple" id="TOC">
 <h2>TOC</h2>
 &lt;-[home](../)  
 

@@ -1,4 +1,25 @@
-&lt;-[TOC](./)  
+<img class="topPix" src="../pix/computer-brain-interface.svg" alt="Writings" />
+
+<div class="container">
+<header class="main-header clearfix">
+
+<nav class="main-menu">
+<ul>
+<li class="main-menu__item">[Home](/)</li>
+<li class="main-menu__item">Selected writings
+<ul><li>Of Character</li></ul>
+</li>
+<li class="main-menu__item">[Programming](/prog/)</li>
+<li class="main-menu__item">[About](/about.html)</li>
+</ul>
+</nav><!-- nav -->
+</header><!-- header -->
+
+<span id="top"></span>
+<section class="sponsors-wrapper clearfix">
+<main class="content-area">
+&lt;-[TOC](./index.html#TOC)  
+
 
 ## Character
 Simple yet not Easy: Seek discomfort, keep showing them.
@@ -109,3 +130,19 @@ RESOURCES
 CONSTRAINTS
 
 
+</main>
+</section><!-- sponsors-wrapper -->
+
+</div><!-- container -->
+
+<footer class="footer">
+
+
+-   [zoom]()
+-   [email](mailto:learningrustrpg@gmail.com)
+-   [github.com/lerina](https://github.com/lerina)
+
+
+<div id="copy"><em>&#xa9;</em> 2019  &nbsp; <a href="http://razafy.com" target="_blank"> <span class="le">le</span><span class="ri">ri</span><span class="na">na</span>  ^_^ </a></div>
+
+</footer><!-- footer -->

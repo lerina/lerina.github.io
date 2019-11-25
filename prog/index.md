@@ -17,7 +17,6 @@
 <section class="sponsors-wrapper clearfix">
 <main class="content-area">
 
-
 <section class="sponsors">
 <div class="sponsor pink" id="rust">
 <h2 id="Rust_prog">Rust</h2>
@@ -29,7 +28,7 @@
 -    The Risk Remover. Why the proposed solution is likely to succeed and unlikely to fail.
 -    The Call to Action. The decision you want made that will put the solution into motion to achieve the desired outcome.
 
-<a href="./rust_000.html"> more ...</a>
+<a href="./rust_000.html"> A quick tour of Rust for programmers</a>
 
 </div></section>
 
@@ -63,6 +62,16 @@
 
 
 </div></section>
+
+## Other selected programming texts
+
+<h3 id="prog_txt">TOC</h3>
+
+- [Quick Rust Overview](./rust_000.html)
+- [Rust and FFI](./ffi.html)
+- [The SECT Trick](./sect.html)
+- [Webassembly](wasm.html)
+
 </main>
 </section><!-- sponsors-wrapper -->
 
