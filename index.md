@@ -43,7 +43,7 @@
 <section class="sponsors">
 <div class="sponsor pink" id="RUST">
 <h2 id="Rust_prog">Rust</h2>
-<a href="./prog/rust.html"><img class="autofit" src="./pix/Rust_programming_language_logo.svg" /></a>
+<a href="./prog/index.html"><img class="autofit" src="./pix/Rust_programming_language_logo.svg" /></a>
 
 *Rust: Speed and Power without compromising Safety.*
 

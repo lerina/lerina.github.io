@@ -94,26 +94,113 @@ Rust Introduction
 <section class="sponsors-wrapper clearfix">
 <main class="content-area">
 <p>&lt; <a href="./index.html#prog_txt">back to TOC</a></p>
-<p>There is alot of material out there to learn Rust. However until recently Rust was a moving object that kept transforming itself for the better. But that also means that alot of tutorials are obsolete.</p>
-<p>Hence its wise to <a href="https://www.rust-lang.org/learn" target="_blank"> have a look at the official information to get relevant up-to-date suggestions</a></p>
-<p>With the 2018 edition, Rust vows to be stable, dependable, without braking changes. So now we can safely invest time to learn and play with this wonderful modern computer language.</p>
-<p><a href="https://www.rust-lang.org/tools/install" target="_blank">[First start here: <code>Install Rust</code>]</a> and come back to learn by doing, old style.</p>
+<h1 id="one-language-two-learning-tracks">One Language, two learning tracks</h1>
+<p>There is alot of material out there to learn Rust. However until recently Rust was a moving target that kept transforming itself for the better. But that also means that alot of tutorials floating around on the web are obsolete.</p>
+<p>Hence its wise to <a href="https://www.rust-lang.org/learn" target="_blank"> have a look at the official information.</a> It should be your starting point if you have experience in any other programming language.</p>
+<p>With the 2018 edition, Rust vows to be stable, dependable, without braking changes. So now programmers and developers can safely invest time to learn and play with this wonderful modern computer language.</p>
+<p><a href="https://www.rust-lang.org/tools/install" target="_blank">[First start here: <code>Install Rust</code>]</a> and come back to learn by doing.</p>
 <ul>
-<li><p>If you want to learn Rust in a more leasurly and slower pace,<br />
+<li><p>If you are totally new to programming or you want to learn Rust in a more leasurly and slower pace,<br />
 you can embark on a learning journey by playing <a href="http://razafy.com/index.html#tRPG"><code>The Rust Programming Game</code> (tRPG)</a></p></li>
 <li><p>If you have experience in other languages and want to learn<br />
-without too much non essential information to start with take the <code>Rapid Tour Of Rust</code>.<br />
-Our Learning Progression will follow the <code>read &amp; type</code>, <code>type &amp; correct</code>, <code>complete &amp; run</code> pattern.</p></li>
+without too much non essential information to start with take the <code>Rapid Tour Of Rust</code>.</p></li>
 </ul>
-<p>This both kind of practical learning will harmoniously complement the wonderful Official Rust documentation (“The Book”) and contributions by the Rust community.</p>
+<p>This both kind of practical learning will harmoniously complement the wonderful <a href="https://doc.rust-lang.org/stable/book/" target="_blank">Official Rust documentation (“The Book”)</a> and contributions by the Rust community.</p>
 <hr />
-<h2 id="a-rapid-tour-of-rust">A Rapid Tour Of Rust</h2>
-<p>Type this code listing and correct until you get the following output</p>
+<h1 id="a-rapid-dive-into-rust">A Rapid Dive into Rust</h1>
+<p>Our Learning Progression will follow the <code>read &amp; type</code>, <code>type &amp; correct</code>, <code>complete &amp; run</code> pattern.</p>
+<h2 id="preparing-for-action">Preparing for action</h2>
+<p>Basic facts to get started</p>
+<ul>
+<li>basic data types
+<ul>
+<li>Integer Types</li>
+<li>Floats</li>
+<li>bool</li>
+<li>char</li>
+<li>&amp;str</li>
+<li>String</li>
+</ul></li>
+<li>scope</li>
+<li>mutability</li>
+<li>borrow checker</li>
+<li>rustc</li>
+</ul>
+<h3 id="basic-data-types">Basic data types</h3>
+<h4 id="integer-types-in-rust">Integer Types in Rust</h4>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Length</strong></th>
+<th style="text-align: left;"><strong>Signed</strong></th>
+<th style="text-align: left;"><strong>Unsigned</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><em>8-bit</em></td>
+<td style="text-align: left;">i8</td>
+<td style="text-align: left;">u8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><em>16-bit</em></td>
+<td style="text-align: left;">i16</td>
+<td style="text-align: left;">u16</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><em>32-bit</em></td>
+<td style="text-align: left;">i32</td>
+<td style="text-align: left;">u32</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><em>64-bit</em></td>
+<td style="text-align: left;">i64</td>
+<td style="text-align: left;">u64</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><em>128-bit</em></td>
+<td style="text-align: left;">i128</td>
+<td style="text-align: left;">u128</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><em>arch</em></td>
+<td style="text-align: left;">isize</td>
+<td style="text-align: left;">usize</td>
+</tr>
+</tbody>
+</table>
+<h4 id="floating-point-types">Floating-Point Types</h4>
+<p>The default type is f64</p>
+<table>
+<thead>
+<tr class="header">
+<th><strong>Size</strong></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><em>32-bit</em></td>
+<td>f32</td>
+</tr>
+<tr class="even">
+<td><em>64-bit</em></td>
+<td>f64</td>
+</tr>
+</tbody>
+</table>
+<h3 id="scope">Scope</h3>
+<h3 id="variables-are-immutable-by-default">Variables are Immutable by Default</h3>
+<p>Safety and easy concurrency being a primary reason for Rust, by default variables are immutable. An explicit notation to make them mutable is touse the keyword <code>mut</code>.</p>
+<h3 id="borrow-checker">Borrow Checker</h3>
+<h3 id="compiling-with-rustc">Compiling with rustc</h3>
+<h1 id="action-time">Action time</h1>
+<p>Type this code listing and correct it until you get the following output</p>
 <div class="line-block">3 + 1 = 4<br />
 14 + 1 = 15<br />
 15 + 1 = 16<br />
 19 + 1 = 20</div>
-<div class="sourceCode" id="cb1"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">// filename: add_one_to_an_integer.rs</span></span>
+<div class="sourceCode" id="cb1"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">// filename: add_one_to_an_integer.rs                                     ➊     ❶</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="co">//</span></span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="co">// USAGE </span></span>
 <span id="cb1-4"><a href="#cb1-4"></a><span class="co">//      Compile with:  </span></span>
@@ -121,25 +208,40 @@ Our Learning Progression will follow the <code>read &amp; type</code>, <code>typ
 <span id="cb1-6"><a href="#cb1-6"></a><span class="co">//      Run with:     </span></span>
 <span id="cb1-7"><a href="#cb1-7"></a><span class="co">//            ./add_one_to_an_integer</span></span>
 <span id="cb1-8"><a href="#cb1-8"></a></span>
-<span id="cb1-9"><a href="#cb1-9"></a><span class="kw">fn</span> add_one_to_an_integer(val: <span class="dt">i32</span>) -&gt; <span class="dt">i32</span> <span class="op">{</span></span>
-<span id="cb1-10"><a href="#cb1-10"></a>    val + <span class="dv">1</span></span>
-<span id="cb1-11"><a href="#cb1-11"></a><span class="op">}</span></span>
-<span id="cb1-12"><a href="#cb1-12"></a></span>
-<span id="cb1-13"><a href="#cb1-13"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
-<span id="cb1-14"><a href="#cb1-14"></a>    <span class="kw">let</span> input = <span class="pp">vec!</span><span class="op">[</span><span class="dv">3</span>,<span class="dv">14</span>,<span class="dv">15</span>,<span class="dv">19</span><span class="op">]</span>;</span>
-<span id="cb1-15"><a href="#cb1-15"></a>    </span>
-<span id="cb1-16"><a href="#cb1-16"></a>    <span class="kw">for</span> i <span class="kw">in</span> input.iter() <span class="op">{</span></span>
-<span id="cb1-17"><a href="#cb1-17"></a>        <span class="pp">println!</span>(<span class="st">&quot;{} + 1 = {}&quot;</span>, i, add_one_to_an_integer(*i) );</span>
-<span id="cb1-18"><a href="#cb1-18"></a>    <span class="op">}</span></span>
-<span id="cb1-19"><a href="#cb1-19"></a>    </span>
-<span id="cb1-20"><a href="#cb1-20"></a><span class="op">}</span></span>
-<span id="cb1-21"><a href="#cb1-21"></a></span>
-<span id="cb1-22"><a href="#cb1-22"></a><span class="co">/* --- OUTPUT</span></span>
-<span id="cb1-23"><a href="#cb1-23"></a><span class="co">3 + 1 = 4</span></span>
-<span id="cb1-24"><a href="#cb1-24"></a><span class="co">14 + 1 = 15</span></span>
-<span id="cb1-25"><a href="#cb1-25"></a><span class="co">15 + 1 = 16</span></span>
-<span id="cb1-26"><a href="#cb1-26"></a><span class="co">19 + 1 = 20</span></span>
-<span id="cb1-27"><a href="#cb1-27"></a><span class="co">*/</span></span></code></pre></div>
+<span id="cb1-9"><a href="#cb1-9"></a></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="co">/// Increment by one                                                           ❷</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="co">/// Expect an integer, returns an integer</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="co">///</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a><span class="co">/// asserteq!(4, add_one_to_an_integer(3)); </span></span>
+<span id="cb1-14"><a href="#cb1-14"></a><span class="co">///</span></span>
+<span id="cb1-15"><a href="#cb1-15"></a><span class="kw">fn</span> add_one_to_an_integer(val: <span class="dt">i32</span>) -&gt; <span class="dt">i32</span> <span class="op">{</span>                                    ❸</span>
+<span id="cb1-16"><a href="#cb1-16"></a>    val + <span class="dv">1</span>                                                                 ❹</span>
+<span id="cb1-17"><a href="#cb1-17"></a><span class="op">}</span></span>
+<span id="cb1-18"><a href="#cb1-18"></a></span>
+<span id="cb1-19"><a href="#cb1-19"></a></span>
+<span id="cb1-20"><a href="#cb1-20"></a><span class="kw">fn</span> main() <span class="op">{</span>                                                                    ❺</span>
+<span id="cb1-21"><a href="#cb1-21"></a>    <span class="kw">let</span> input = <span class="pp">vec!</span><span class="op">[</span><span class="dv">3</span>,<span class="dv">14</span>,<span class="dv">15</span>,<span class="dv">19</span><span class="op">]</span>;                                           ❻</span>
+<span id="cb1-22"><a href="#cb1-22"></a>    </span>
+<span id="cb1-23"><a href="#cb1-23"></a>    <span class="kw">for</span> i <span class="kw">in</span> input.iter() <span class="op">{</span>                                                 ❼</span>
+<span id="cb1-24"><a href="#cb1-24"></a>        <span class="pp">println!</span>(<span class="st">&quot;{} + 1 = {}&quot;</span>, i, add_one_to_an_integer(*i) );             ❽</span>
+<span id="cb1-25"><a href="#cb1-25"></a>    <span class="op">}</span></span>
+<span id="cb1-26"><a href="#cb1-26"></a>    </span>
+<span id="cb1-27"><a href="#cb1-27"></a><span class="op">}</span></span>
+<span id="cb1-28"><a href="#cb1-28"></a></span>
+<span id="cb1-29"><a href="#cb1-29"></a><span class="co">/* --- OUTPUT</span></span>
+<span id="cb1-30"><a href="#cb1-30"></a><span class="co">3 + 1 = 4</span></span>
+<span id="cb1-31"><a href="#cb1-31"></a><span class="co">14 + 1 = 15</span></span>
+<span id="cb1-32"><a href="#cb1-32"></a><span class="co">15 + 1 = 16</span></span>
+<span id="cb1-33"><a href="#cb1-33"></a><span class="co">19 + 1 = 20</span></span>
+<span id="cb1-34"><a href="#cb1-34"></a><span class="co">*/</span></span></code></pre></div>
+<p>❶<br />
+❷<br />
+❸<br />
+❹<br />
+❺<br />
+❻<br />
+❼<br />
+❽</p>
 </main>
 </section>
 <!-- sponsors-wrapper -->
