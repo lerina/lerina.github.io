@@ -67340,3 +67340,31 @@ video {
     transition-duration: 1000ms;
   }
 }
+
+
+/*==============================================*/
+
+footer div#copy{
+    text-align:right;
+    background-color:#272822; /* rgba(20,2,20,1.0); */
+    color:rgba(155,177,155,0.9);
+    margin-bottom:-10%;
+}
+
+footer div#copy {
+  margin-top: 1em;
+  padding:0.7em;
+  border-radius: 1px;
+}
+footer div#copy a {
+  color: #fff; /*d5559;  */
+  font-size: 15px;
+  /*font-family:'Helvetica', 'Arial', 'Sans-Serif';*/
+}
+
+footer ul>li{  margin:3em; }
+
+.le {color:rgba(244,40,165,0.9); font-size:120%;} /*   #f428a5; */
+.ri {color:rgba(138,91,160,0.9); font-size:120%;} /*  #8a5ba0; }*/
+.na {color:rgba(91,123,235,0.9); font-size:120%;} /*   #5b7beb; }*/
+
