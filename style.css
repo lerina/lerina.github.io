@@ -67368,3 +67368,8 @@ footer ul>li{  margin:3em; }
 .ri {color:rgba(138,91,160,0.9); font-size:120%;} /*  #8a5ba0; }*/
 .na {color:rgba(91,123,235,0.9); font-size:120%;} /*   #5b7beb; }*/
 
+
+h1, h2, h3, h4 {
+  font-family: 'Architects Daughter', cursive;
+}
+
