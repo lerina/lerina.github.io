@@ -1,0 +1,164 @@
+## Coding Math
+
+### Episode 001
+
+<canvas id="canvas001" height="250" width="350"></canvas>
+
+<!-- Note the usage  of `type=module` here as this is an ES6 module -->
+<script type="module">
+  // Use ES module import syntax to import functionality from the module
+  // that we have compiled.
+  //
+  // Note that the `default` import is an initialization function which
+  // will "boot" the module and make it ready to use. Currently browsers
+  // don't support natively imported WebAssembly as an ES module, but
+  // eventually the manual initialization won't be required!
+  import init, {} from './ep001/canvas.js';
+
+  async function run() {
+    // First up we need to actually load the wasm file, so we use the
+    // default export to inform it where the wasm file is located on the
+    // server, and then we wait on the returned promise to wait for the
+    // wasm to be loaded.
+    //
+    // It may look like this: `await init('./pkg/canvas_bg.wasm');`,
+    // but there is also a handy default inside `init` function, which uses
+    // `import.meta` to locate the wasm file relatively to js file.
+    //
+    await init();
+  }
+
+  run();
+</script>
+
+```rust
+use std::f64;
+use wasm_bindgen::prelude::*;
+use wasm_bindgen::JsCast;
+use js_sys::Math;
+
+#[wasm_bindgen(start)]
+pub fn start() {
+    let document = web_sys::window().unwrap().document().unwrap();
+    let canvas = document.get_element_by_id("canvas").unwrap();
+    let canvas: web_sys::HtmlCanvasElement = canvas
+        .dyn_into::<web_sys::HtmlCanvasElement>()
+        .map_err(|_| ())
+        .unwrap();
+    let width = 900;
+    let height = 740;
+    canvas.set_width(width);
+    canvas.set_height(height);
+
+    let context = canvas
+        .get_context("2d")
+        .unwrap()
+        .unwrap()
+        .dyn_into::<web_sys::CanvasRenderingContext2d>()
+        .unwrap();
+
+    context.fill_rect(0.0,0.0,width as f64, height as f64);
+    
+    let color = JsValue::from_str("#ff0000");
+    context.set_stroke_style(&color);
+
+
+    for _ in 0..100 {
+        context.begin_path();
+        
+        // Draw line.
+        context
+            .move_to(Math::random() * width as f64, Math::random() * height as f64);
+        context
+            .line_to(Math::random() * width as f64, Math::random() * height as f64);
+            
+
+           context.stroke();
+    }
+}
+```
+
+---
+
+### Episode 002
+
+<canvas id="canvas002" height="250" width="350"></canvas>
+<script type="module">
+  import init, {} from './ep002/canvas.js';
+
+  async function run() {
+
+    await init();
+  }
+
+  run();
+</script>
+
+---
+
+<h2>Interlude: Smiley</h2>
+
+<canvas id="face" height="250" width="350"></canvas>
+<script type="module">
+  import init, {} from './face/canvas.js';
+
+  async function run() {
+
+    await init();
+  }
+
+  run();
+</script>
+
+```rust
+use std::f64; //for PI
+use wasm_bindgen::prelude::*;
+use wasm_bindgen::JsCast;
+
+#[wasm_bindgen(start)]
+pub fn start() {
+    let document = web_sys::window().unwrap().document().unwrap();
+    let canvas = document.get_element_by_id("face").unwrap();
+    let canvas: web_sys::HtmlCanvasElement = canvas
+        .dyn_into::<web_sys::HtmlCanvasElement>()
+        .map_err(|_| ())
+        .unwrap();
+
+    let context = canvas
+        .get_context("2d")
+        .unwrap()
+        .unwrap()
+        .dyn_into::<web_sys::CanvasRenderingContext2d>()
+        .unwrap();
+
+    context.begin_path();
+
+    // Draw the outer circle.
+    context
+        .arc(75.0, 75.0, 50.0, 0.0, f64::consts::PI * 2.0)
+        .unwrap();
+
+    // Draw the mouth.
+    context.move_to(110.0, 75.0);
+    context.arc(75.0, 75.0, 35.0, 0.0, f64::consts::PI).unwrap();
+
+    // Draw the left eye.
+    context.move_to(65.0, 65.0);
+    context
+        .arc(60.0, 65.0, 5.0, 0.0, f64::consts::PI * 2.0)
+        .unwrap();
+
+    // Draw the right eye.
+    context.move_to(95.0, 65.0);
+    context
+        .arc(90.0, 65.0, 5.0, 0.0, f64::consts::PI * 2.0)
+        .unwrap();
+
+    context.stroke();
+}
+```
+
+<footer>
+  <a href="https://github.com/lerina" target="_blank" title="github">![github](../../img/github32px.png){.link .glow}
+  </a>
+</footer>
