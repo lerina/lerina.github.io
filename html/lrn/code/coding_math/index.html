@@ -9,10 +9,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
     <!-- link rel="stylesheet" href="../../css/tachyons.min.css"-->
-    <link rel="stylesheet" href="../../css/minimal.min.css">
+    <link rel="stylesheet" href="./css/styling.css">
+    <link rel="icon" href="./favicon.ico">
   </head>
   <body>
-    <canvas id="canvas" height="250" width="350"></canvas>
+
+<h2>Episode 001</h2>
+
+    <canvas id="canvas001" height="250" width="350"></canvas>
 
  <!-- Note the usage  of `type=module` here as this is an ES6 module -->
     <script type="module">
@@ -40,7 +44,7 @@
 
       run();
     </script>
-<pre>
+<pre><code>
 use std::f64;
 use wasm_bindgen::prelude::*;
 use wasm_bindgen::JsCast;
@@ -85,6 +89,81 @@ pub fn start() {
            context.stroke();
     }
 }
-</pre>
+</code></pre>
+<hr />
+<h2>Episode 002</h2>
+
+ <canvas id="canvas002" height="250" width="350"></canvas>
+    <script type="module">
+      import init, {} from './ep002/canvas.js';
+
+      async function run() {
+
+        await init();
+      }
+
+      run();
+    </script>
+<hr />
+<h2>Interlude: Smiley</h2>
+
+ <canvas id="face" height="250" width="350"></canvas>
+    <script type="module">
+      import init, {} from './face/canvas.js';
+
+      async function run() {
+
+        await init();
+      }
+
+      run();
+    </script>
+<pre><code>
+use std::f64; //for PI
+use wasm_bindgen::prelude::*;
+use wasm_bindgen::JsCast;
+
+#[wasm_bindgen(start)]
+pub fn start() {
+    let document = web_sys::window().unwrap().document().unwrap();
+    let canvas = document.get_element_by_id("face").unwrap();
+    let canvas: web_sys::HtmlCanvasElement = canvas
+        .dyn_into::<web_sys::HtmlCanvasElement>()
+        .map_err(|_| ())
+        .unwrap();
+
+    let context = canvas
+        .get_context("2d")
+        .unwrap()
+        .unwrap()
+        .dyn_into::<web_sys::CanvasRenderingContext2d>()
+        .unwrap();
+
+    context.begin_path();
+
+    // Draw the outer circle.
+    context
+        .arc(75.0, 75.0, 50.0, 0.0, f64::consts::PI * 2.0)
+        .unwrap();
+
+    // Draw the mouth.
+    context.move_to(110.0, 75.0);
+    context.arc(75.0, 75.0, 35.0, 0.0, f64::consts::PI).unwrap();
+
+    // Draw the left eye.
+    context.move_to(65.0, 65.0);
+    context
+        .arc(60.0, 65.0, 5.0, 0.0, f64::consts::PI * 2.0)
+        .unwrap();
+
+    // Draw the right eye.
+    context.move_to(95.0, 65.0);
+    context
+        .arc(90.0, 65.0, 5.0, 0.0, f64::consts::PI * 2.0)
+        .unwrap();
+
+    context.stroke();
+}
+</code></pre>
   </body>
 </html>

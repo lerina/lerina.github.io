@@ -6,7 +6,7 @@ use js_sys::Math;
 #[wasm_bindgen(start)]
 pub fn start() {
     let document = web_sys::window().unwrap().document().unwrap();
-    let canvas = document.get_element_by_id("canvas").unwrap();
+    let canvas = document.get_element_by_id("canvas001").unwrap();
     let canvas: web_sys::HtmlCanvasElement = canvas
         .dyn_into::<web_sys::HtmlCanvasElement>()
         .map_err(|_| ())

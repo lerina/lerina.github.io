@@ -148,8 +148,10 @@ fn also turns others pain into seeds of profitable solutions to apply.
 **Need** 
 
 2. *The proposer*: The colonel sits on a park bench, erect like a post as if still on 
-active duty. It's been at least one score since he had retired. 20 years since he picked fn out of the gutter and the dangers of the street. 5 years since he had given his 
-protegé a new life and identity. 1 year since the great betreyal, or was it?
+active duty. It's been at least one score since he had retired. 
+10 years since he picked fn out of the gutter and the dangers of the street. 
+7 years since he had given his protegé a new life and identity. 
+3 year since the great betreyal, or was it?
 
 3. *The mission*: ... We're talking a risky mission here. Some kind of extraction under extreme duress.
 
@@ -215,6 +217,8 @@ By maping activities within the game to be in the same spirit as those performed
 by the player in the real life, we get to evolve both the character and the story
 as the p[layer actually accomplish real life objectives and targets.
 
+##### Map the story scene to a real life work session or activity
+
 Real life (OC)	| In the Game (IC)
 ----------------|---------------------------
 renew licence	| Get new gear
@@ -229,6 +233,16 @@ read the third chapter of <br/>The Rust Programming Language book| Gather your t
 do laundry      | Settled the shares and loot division
 practice rust <br/>code | Hack into DMV to get new IDs
 
+##### Map story baddees to real life things to avoid
+
+RPG  |  Real Life                   | In Game NPC       | Why 
+-----|------------------------------|-------------------|---------------------
+1   |  Shopping spree               | TheHeat           | Keep your money
+2   |  Youtube while "working"      | LeFrog            | Protect your time
+3   |  Incomplete task switching    | TheCow            | Stay on course
+3   |  Giving up when its hard      | ThePreacher       | Be tenacious, persistant
+5   |  Online "research" without bound | TheSnitch      | Don't waist working time
+6   |  Project without time constraint | TheSiren       | Don't just dream: Do!
 
 ### Progression
 We track three things:
