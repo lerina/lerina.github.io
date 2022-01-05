@@ -96,7 +96,7 @@ pub fn start() {
 
 ---
 
-<h2>Interlude: Smiley</h2>
+### Interlude: Smiley
 
 <canvas id="face" height="250" width="350"></canvas>
 <script type="module">
@@ -159,6 +159,6 @@ pub fn start() {
 ```
 
 <footer>
-  <a href="https://github.com/lerina" target="_blank" title="github">![github](../../img/github32px.png){.link .glow}
+  <a href="https://github.com/lerina" target="_blank" title="github">![github](https://razafy.com/img/github32px.png){.link .glow}
   </a>
 </footer>
