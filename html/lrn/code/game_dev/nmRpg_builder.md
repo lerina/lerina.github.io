@@ -1,4 +1,4 @@
-⇦ [razafy.com](../../../index.html)  - [lerina](../../index.html) - [code](../index.html) - [game dev](./index.html)  
+⇦ [razafy.com](../../../../index.html)  - [lerina](../../index.html) - [code](../index.html) - [game dev](./index.html)  
 
 ##  Purpose
 

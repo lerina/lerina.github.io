@@ -1,3 +1,5 @@
+⇦ [home](../../../index.html) - [lerina](../index.html) - [texts](./index.html)
+
 # acronym driven development
 :-)
 

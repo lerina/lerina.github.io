@@ -1,3 +1,5 @@
+⇦ [home](../../../index.html) - [lerina](../index.html) - [texts](./index.html)
+
 # Use a timer like the `equalizer`
 
 Forget motivation. Work against the clock. 

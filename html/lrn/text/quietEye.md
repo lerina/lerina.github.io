@@ -1,3 +1,5 @@
+⇦ [home](../../../index.html) - [lerina](../index.html) - [texts](./index.html)
+
 ## J'observe 🧐, j'analyse 🤔, je décide💡 et je me lance
 
 Psychologists and neuroscientists have now identified some of the common mental processes 

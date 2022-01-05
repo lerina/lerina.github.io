@@ -1,3 +1,5 @@
+⇦ [home](../../../index.html) - [lerina](../index.html) - [texts](./index.html)
+
 # FTD: A sacred Focused Time of Doing
 Protect your FTD with Action and delayed *potential* gratification.
 

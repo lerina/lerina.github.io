@@ -1,3 +1,7 @@
+⇦ [home](../../../index.html) - [lerina](../index.html) - [texts](./index.html)
+
+# Use a timer
+
 Using a timer to increase productivity works 
 because it supports focusing long enough to get difficult or unpleasant tasks done.
 The simple idea is to set the timer for a short amount of time that you need 

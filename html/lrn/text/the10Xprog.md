@@ -1,3 +1,5 @@
+⇦ [home](../../../index.html) - [lerina](../index.html) - [texts](./index.html)
+
 # 10X is an attitude
 > Try fail correct
 10X don't do things for Fun, Fame, and Fortune.  
