@@ -1,6 +1,6 @@
 ⇦ [home](../../index.html)
 
-### I'm a software writer.
+## I'm a software writer.
 
 That's right! writer.
 
@@ -17,10 +17,16 @@ been modelled and solved to yield three imperatives:
 -   defensive input
 -   explicit nomenclature
 
-Talking of writing, I also dabble in [poetry](poems/index.html){.link
+Talking of writing, I also dabble in [poetry](./text/poems.html){.link
 .black-50} and have occasional things to say about the [Software
-development journey](code/index.html){.link .black-50}.
+development journey](./code/index.html){.link .black-50}.
 
+---
+Also see:
+
+### [Selected texts](./text/index.html)
+### [Code](./code/index.html)
+### [Game dev](./game_dev/index.html)
 <footer>
   <a href="https://github.com/lerina" target="_blank" title="github">![github](../../img/github32px.png){.link .glow}
   </a>
