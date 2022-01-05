@@ -24,10 +24,15 @@ development journey](./code/index.html){.link .black-50}.
 ---
 Also see:
 
+
 ### [Selected texts](./text/index.html)
 ### [Code](./code/index.html)
-### [Game dev](./game_dev/index.html)
+#### [Secure Coding](./code/sec/index.html)
+#### [Game dev](./code/game_dev/index.html)
+#### [Coding Math](./code/coding_math/index.html)
+
+
 <footer>
-  <a href="https://github.com/lerina" target="_blank" title="github">![github](../../img/github32px.png){.link .glow}
+  <a href="https://github.com/lerina" target="_blank" title="github">![github](https://razafy.com/img/github32px.png){.link .glow}
   </a>
 </footer>
