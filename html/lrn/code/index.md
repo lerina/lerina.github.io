@@ -1,3 +1,0 @@
-⇦ [lerina](../index.html)
-
-## code
