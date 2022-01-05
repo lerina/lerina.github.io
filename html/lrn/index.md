@@ -27,7 +27,7 @@ Also see:
 
 ### [Selected texts](./text/index.html)
 ### [Code](./code/index.html)
-#### [Secure Coding](./code/sec/index.html)
+#### [Secure Coding](./code/secure_coding/index.html)
 #### [Game dev](./code/game_dev/index.html)
 #### [Coding Math](./code/coding_math/index.html)
 
