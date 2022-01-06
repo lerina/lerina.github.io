@@ -2,21 +2,21 @@
 
 ### Poems {#poem}
 
-#### 
+#### Title
 
 ```
 42. Wishing for what cannot be,
 we sacrifice what is.
 ```
 
-#### 
+#### Title
 
 ```
 43. The courage of the brave
 is to dare it's devils.
 ```
 
-#### 
+#### Title
 
 ```
 13. The meaning of life is to give it meaning. 
@@ -27,6 +27,7 @@ is to dare it's devils.
 ```
 The unskilled long for  *The Pursuit of happiness*,
 The wise enjoy  *The happiness of pursuit*.
+```
 
 #### 
 
@@ -63,7 +64,7 @@ The blissfull feeling;
 that of your being
 friend, accomplice, wife
 in our journey of life.
-``` 
+```
 
 #### Of Fools and Love
 
@@ -74,7 +75,7 @@ For love dwindles and rekindles
 akin to a fire that feed that passion.
 Loyalty to the partnership is the key agent
 overtime, that binds two as one.
-``` 
+```
 
 #### 
 
@@ -94,7 +95,7 @@ Unsure, still searching
 life's choices without number.
 (Alas! Time runs, runs ...)
 Alas! Tic, toc, tic ...
-``` 
+```
 
 #### Arrow
 
@@ -102,7 +103,7 @@ Alas! Tic, toc, tic ...
 Days expire victim of fleeting time.
 So easy the trek, escapade into the future,
 forbidding the way back to the beginings
-``` 
+```
 
 #### the map
 
@@ -110,7 +111,7 @@ forbidding the way back to the beginings
 What kind of map is it, that traces the path travelled
 but never the trail back?
 Life's road map.
-``` 
+```
 
 #### Time
 
@@ -119,7 +120,7 @@ Riding the wave of time,
 Destination nowhere.
 Feel the relentless tide,
 Pulling deeper into the sea.
-``` 
+```
 
 #### 127.0.0.1
 
@@ -129,18 +130,18 @@ we look elsewhere for status and respect.
 Forever captive of the past,
 without hope to match,
 the compfort of ... home.
-``` 
+```
 
 ------------------------------------------------------------------------
 
-#### 
+#### Title
 
 ```
 19. Cherish the past, cling not to it.
 Build the future, dwell not in it.
 ```
 
-#### 
+#### Title
 
 ```
 15. The fly looking back,
@@ -148,19 +149,19 @@ cannot see the lizard.
 Glop!
 ```
 
-#### 
+#### Title
 
 ```
 36. The most insidious poisons
 are coated with sugar
 ```
 
-#### 
+#### Title
 
 ```
 29. Blind conformity is no virtue.
 However great, `tradition` is not static.
-For culture is just a circumstential expression
+For culture is just a circumstantial expression
 of a given time and place.
 Hence `loyalty` is our only lasting anchor to Humanity.
 ```
