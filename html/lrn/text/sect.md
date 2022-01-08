@@ -22,17 +22,17 @@ It's safe to try and bonus it actually works!
 ## FOCUS when you code
 
 `F`eedback friendly  
-`O`rganised  
-`C`ommited  
-`U`ndistractable  
+`O`rganised  and prepared  
+`C`ommited  to the task  
+`U`nswayed by distraction   
 `S`ingle tasking  
 
 ## FEEDback Driven
 |↴  
-|  `F`abricate a solution  
-|  `E`xperiment                    
-|  `E`valuate                      
-|  `D`ecide                        
+|  `F`raction the Problem to 'f'etch a solution  
+|  `E`xperiment then 'e'liminate lesser solution(s)                  
+|  `E`ncode and 'e'valuate  the candidate solution(s)          
+|  `D`etect anomalies                         
 |←  back  
 
 ## SIMPLE TCR
