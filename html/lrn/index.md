@@ -1,6 +1,10 @@
 ⇦ [home](../../index.html)
 
-## I'm a software writer.
+| There are those who "think and create"
+| and  those who "blink and cry hate".
+|                             _ lerina
+
+## Hello. I'm a software writer.
 
 That's right! writer.
 

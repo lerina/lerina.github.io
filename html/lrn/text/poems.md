@@ -2,6 +2,47 @@
 
 ### Poems {#poem}
 
+#### Morning Mantra
+
+With power, come to life.  
+.  
+With **P**urpose, give it meaning.  
+With *p*rinciples, draw the line.  
+.  
+With **O**rganization, gain structure.  
+With *o*bservation, seize the initiative.  
+.  
+With **W**isdom, express Choice.  
+With *w*it, adapt to change.  
+.  
+With **E**fficient Effort,  Easy the Way.  
+With *e*xecution, mark the way.  
+.  
+With **R**esolve, Arc around Obstacles.  
+With *r*esources, fuel the power.  
+
+
+#### Establish  `PEACE`
+
+Establish  `PEACE` through  
+`P` osture  
+`E` mo-sameness (equanimity)  
+`A` ttention  
+`C` omposure  
+`E` venness (equilibrium)  
+
+#### Maintain `PEACE` 
+
+Maintain `PEACE` with  
+`P` assion tamed  
+`E` motions tutored  
+`A` nger deflated  
+`C` ravings moderated  
+`E` nergy regulated  
+
+
+-----
+
 #### Title
 
 ```
@@ -133,6 +174,7 @@ the compfort of ... home.
 ```
 
 ------------------------------------------------------------------------
+
 
 #### Title
 
