@@ -88,7 +88,30 @@ It is unwise to give in to instant self-gratification
 4. It is wise to seek feedback.  
 It is unwise to take it personally.
 
+### ODY: Remedy to 
 
+[] `O`bstacle cleared
+[] `D`istractions to avoid identified
+[] `Y`ield to the *process*
+
+### TMP: Create a temporary focus bubble
+
+Until the time is up, *shift*  into session mode and "observe the doing"
+
+#### Temporal
+- Protect your Time
+- Limit your Time
+- Use your Time
+
+#### Mental
+- Let go of Feelings
+- Let go of Desires
+- Let go of Doubt
+
+#### Physical
+- Slow down
+- Deliberate Actions
+- Posture and Decorium
 ## Tinker - Thinker - Hacker
 
 ### The deliberate practice of discovery
