@@ -62,13 +62,16 @@ In a nutshell SIMPLE dictates that you:
 - Test one non-trivial code at a time
 - commit after each passing test.
 
-| TOP-DOWN DESIGN
-| Think a little    ↱↴
-|    Write a little ↑↲
-|
-| BOTTOM-UP IMPLEMENTATION
-| Code a little     ↱↴
-|    Test a little  ↑↲
+###
+|↴  
+| TOP-DOWN DESIGN  
+|     ↱↴ Think a little    
+|     ↑↲      Write a little  
+|  
+| BOTTOM-UP IMPLEMENTATION  
+|     ↱↴ Code a little  
+|     ↑↲      Test a little  
+|←  
 
 ## Productivity
 To bridge the gap between intention and action, some people like to t hinking 
