@@ -56,6 +56,20 @@ In a nutshell SIMPLE dictates that you:
     * If the tests pass, the code is immediately committed.  
     * If the tests fails, immediately revert with `git reset --hard`.  
 
+---
+
+- Code must compile and run between each git commit
+- Test one non-trivial code at a time
+- commit after each passing test.
+
+| TOP-DOWN DESIGN
+| Think a little    ↱↴
+|    Write a little ↑↲
+|
+| BOTTOM-UP IMPLEMENTATION
+| Code a little     ↱↴
+|    Test a little  ↑↲
+
 ## Productivity
 To bridge the gap between intention and action, some people like to t hinking 
 of their work in terms of war. I prefer to see it as a live action, a performance.
