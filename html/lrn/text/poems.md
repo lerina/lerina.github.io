@@ -66,6 +66,7 @@ is to dare it's devils.
 #### The way of the Malagasy
 
 ```
+Happiness is not an outcome; its a process.
 The unskilled long for  *The Pursuit of happiness*,
 The wise enjoy  *The happiness of pursuit*.
 ```
