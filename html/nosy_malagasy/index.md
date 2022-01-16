@@ -2,5 +2,15 @@
 
 # nosy malagasy
 
-## [Way of the Ancestors](./woa.html)
+## Culture
+### [Way of the Ancestors](./woa.html)
+### Fanorona
+### Sakafo
+### Learn Malagasy with Nirina
+
+## Origin
+### Austronesian
+### Swahilli
+### Masombika
+
 
