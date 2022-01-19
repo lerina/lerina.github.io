@@ -48,8 +48,8 @@ Maintain `PEACE` with
 The Tide.   
 Sometimes low, sometimes high.  
 May be Strong, may be shy.  
-Never still. yet still   
-the tide.  
+Never still. yet still ...  
+The tide.  
 
 
 
