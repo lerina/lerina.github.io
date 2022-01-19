@@ -43,13 +43,23 @@ Maintain `PEACE` with
 
 -----
 
-#### Relentless
+#### Perseverance: relentless tenacity
 
 The Tide.   
+
 Sometimes low, sometimes high.  
 May be Strong, may be shy.  
-Never still. yet still ...  
-The tide.  
+
+May give-in, but not give-up.  
+Be retracted yet buildup.  
+
+Stand mighty yet foamless.  
+Be humble yet peerless.  
+
+Formless, still,  
+yet still ...  
+
+The Tide.  
 
 
 
