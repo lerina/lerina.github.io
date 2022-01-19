@@ -43,11 +43,13 @@ Maintain `PEACE` with
 
 -----
 
-#### relentless
-The Tide;  
-sometimes hight,   
-sometimes low.  
-Yet still the tide.  
+#### Relentless
+
+The Tide.   
+Sometimes low, sometimes high.  
+May be Strong, may be shy.  
+Never still. yet still   
+the tide.  
 
 
 
