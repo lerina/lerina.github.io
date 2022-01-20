@@ -3,104 +3,111 @@
 # Ny Antoka
 The pledge
 
-1.1 Needs are few, yet wants  are many .  
-Ny zavatra tena ilaina vitsy fa ireo tsiriritina sesilany 
+1.1 Ny zavatra tena ilaina vitsy fa ireo tsiriritina sesilany  
+Needs are few, yet wants  are many.  
 
-1.2 Cravings are raging ; They  too shall pass  
-Na Fanirina tsy laitra aza lefy hiany refa ela ny ela 
+1.2 Mirongatra ny faniriana nefa mandalo ko izy ireo  
+Cravings are raging ; They  too shall pass  
 
-Zzz==Mirongatra ny faniriana ; handalo ko izy ireo
-
-
-1.3 To act and not to be acted upon  
-Mandray andraikitra  fa tsy madray baiko 
+(Na Fanirina tsy laitra aza lefy hiany refa ela ny ela)
 
 
-1.4 Thus is the way of practitioner.  
-Toy izany ny fomban’ny mpanara-dia (mpihofana )
+1.3 Mandray andraikitra fa tsy madray baiko  
+To act and not to be acted upon  
 
 
-2.1 Accept, deflect the fruits of life   
-Ekeo na avelao ny vokatri-ny fianana
-
-ZZZ===ekeo , avelao ny voan’ny fiainana  
-Araho,  ahodino ho anao ny vokatri-ny fianana
-
-2.2 seize the real  through self-refinement  
-Tano izay marina ateraki’ny fanabeazana ( filofosana)
-
-ZZZ===Sambory izay marina aminy fanabeazana 
+1.4 Toy izany ny fomban’ny mpanara-dia (mpihofana )  
+Thus is the way of practitioner.  
 
 
-2.3 Tame the unreal through non-attachement  
+
+2.1 Ekeo na avelao ny vokatri-ny fianana  
+Accept, deflect the fruits of life   
+ 
+(Araho,  ahodino ho anao ny vokatri-ny fianana)
+
+2.2 Tano izay marina ateraki’ny fanabeazana ( filofosana)  
+Seize the real  through self-refinement  
+
+2.3 Fantaro  ary alaviro ireo  sarisarin’javatra nefa tsy tena izy  
+Tame the unreal through non-attachement  
+
 zzz=aza miraharaha ny tsy tena izy aminy fahaizana manavaka tsy miraika 
 
-Fantaro  ary alaviro ireo  sarisarin’javatra nefa tsy tena izy 
+
+2.4 toa izany ny fomban’ny mpanaradia   
+Thus is the way of  practitioner  
 
 
-2.4 Thus is the way of  practitioner  
-toa izany ny fomban’ny mpanaradia 
+
+3.1 Rohay, itsaho ny  fapanatenana poakaty  
+Repel, dispel rogue expectations.  
+ 
+(Mialà, esory  ny fanatenana tsy ampoizina)
 
 
-3.1 Repel, dispel rogue expectations.  
-Rohay, itsaho ny  fapanatenana poakaty 
+3.2 Taizao an’tsaina ny fifantohana, ny fifehezatena  ary ny fahendrena  
+Nurture focus, discipline and wisdom.  
 
-Mialà, esory  ny fanatenana tsy ampoizina 
+(Taizao an’tsaina ny fifantohana aminy zavatra atao ,ny fifehezatena  ary ny fahendrena)
 
-
-3.2 Nurture focus, discipline and wisdom.  
-Taizao an’tsaina ny fifantohana aminy zavatra atao ,ny fifehezatena  ary ny fahendrena  
-
-Mikolokolo  fifantohana  fifehezana  ary fahendrena 
+3.3 Raha misy mahasosotra  aza fahano izany  
+Where frustration arises feed it not  
 
 
-3.3 Where frustration arises feed it not  
-raha misy mahasosotra  aza fahano izany  
+3.4 toa izany ny fombann’ny mpanaradia   
+thus is the way if practitioner  
 
-Aza mananpitrotraka raha tonga ny fifandiso-fanatenana  
-
-3.4 thus is the way if practitioner  
-toa izany ny fombann’ny mpanaradia 
 
 
 4.1 Henceforth assert that in all matters:  
 Manomboka izao dia hamafiso  fa amin’ny lafiny  rehatra 
 
-4.2 The lens of perception do not alter understanding  
-lens= lentille
+4.2 Tsy izay  hita  ny maso  akory noho hanova ny fazahon’javatra   
+The lens of perception do not alter understanding  
 
-Ny maso fahitana dia tsy manova ny fahatakarana  
-Tsy izay  hita  ny maso  akory noho hanova ny fazahon’javatra 
-
-4.3 The filter of emotions do not impoverish thought  
-ny fanivanana  ny fihentsehampo dia tsy mapahantra ny eritreritra 
-
-4.4 Thus is forged the sword of wisdom.  
-Toy izany no sandoka(fanefy ) ny sabatra  ny fahendrena 
-
-5.1 Words do not turn into hateful speech  
-Ny teny tsy  mivadika  ho teny feno fakalahana  
-Ny teny aloka ny vava tsy tokony hivadika ho kabary fakahalana 
-
-5.2 Action do not lead to harmful deeds.  
- Ny hetsika  dia tsy mitarika amin’ny famaranana manimba  
-ny hatao rehetra tsy tokony hiteraka fitrangan’doza 
-
-5.3 Livelihood does not cause pain and destruction  
-Ny fivelomana dia tsy  miteraka  fijalioana (fijaliana)sy faharavana 
-
-5.4 Thus is scharpened  the art of discipline  
-Toa izany ny hamafisina ny fomba fifehezana 
+(lens= lentille
+Ny maso fahitana dia tsy manova ny fahatakarana)
 
 
-6.1 Effort is oblivious  to desire and ambition  
-Ny ezaka  dia tsy takatry ny faniriana  na ny hetahetam-po
+4.3 ny fanivanana  ny fihentsehampo dia tsy mapahantra ny eritreritra   
+The filter of emotions do not impoverish thought  
 
 
-6.2 Mindful, awarness does not stumble and falter   
-mailo (alert) ny fatsiarovantena  tsy ho tafinohina ary tsy ho etona 
+4.4 Toy izany no sandoka(fanefy ) ny sabatra  ny fahendrena  
+Thus is forged the sword of wisdom.  
 
-6.3 Centered the now concentrates in the present  
+
+5.1 Ny teny tsy  mivadika  ho teny feno fakalahana  
+Words do not turn into hateful speech  
+
+(Ny teny aloka ny vava tsy tokony hivadika ho kabary fakahalana )
+
+5.2 ny hatao rehetra tsy tokony hiteraka fitrangan’doza   
+Action do not lead to harmful deeds.  
+
+(Ny hetsika  dia tsy mitarika amin’ny famaranana manimba)
+
+
+5.3 Ny fivelomana dia tsy  miteraka  fijalioana (fijaliana)sy faharavana  
+Livelihood does not cause pain and destruction  
+
+
+5.4 Toa izany ny hamafisina ny fomba fifehezana  
+Thus is scharpened  the art of discipline  
+ 
+
+
+6.1 Ny ezaka  dia tsy takatry ny faniriana  na ny hetahetam-po  
+Effort is oblivious  to desire and ambition  
+
+
+
+6.2 mailo (alert) ny fatsiarovantena  tsy ho tafinohina ary tsy ho etona  
+Mindful, awarness does not stumble and falter   
+
+
+6.3 Centered, the now concentrates in the present  
 Miorina ( grounded ) ny izao dia  mifantoka amin’ny ankehitriny  
 Tombany aloha ny androany, diniho ny zava misy
 
@@ -108,73 +115,78 @@ Tombany aloha ny androany, diniho ny zava misy
 Toy izany  ny mampamirapiratra  ny herin’ ny fifantohana  
 Toy izany ny fomba  fandralavorarina ny fandalian’javatra 
 
-7.1 In harmony, within the flow  
-mirindra ao anaty mikoriana  
-mirindra aminy fiarahan-korina ankapobeny 
+7.1 mirindra aminy fiarahan-korina ankapobeny   
+In harmony, within the flow  
+
+(mirindra ao anaty mikoriana)  
 
 
-7.2 Like a raft in the eye of the storm,  
-Toy ny lakana eo amin’ny mason,Ny tafio-drivotra  
-Toa ny lakana anivon’ny tafio-drivotra 
+
+7.2 Toa ny lakana anivon’ny tafio-drivotra   
+Like a raft in the eye of the storm,  
+
+(Toy ny lakana eo amin’ny mason,Ny tafio-drivotra ) 
 
 
-7.3 We are stable yet not static  
-Milamina  isika  nefa tsy raikitra amin’ny toerana  
-Mitombina isika nefa tsy miraikitra an’toerana 
 
-7.4 Thus is the way of practitioner  
-Toy izany ny fomban,ny mpanara-dia 
+7.3 Mitombina isika nefa tsy miraikitra an’toerana  
+We are stable yet not static  
 
-8.1 Unfettered  by change or setbacks  
-Tsy voahodin’ny fandrosoana na ny fihemorana
-
-Tsy voafehin’ny fanovana na ny fihemorana  
+7.4 Toy izany ny fomban,ny mpanara-dia  
+Thus is the way of practitioner  
  
 
+8.1 Tsy voafehin’ny fandrosoana na ny fihemorana  
+Unfettered  by change or setbacks  
 
-8.2 Undettered by fear or ridicule 	                                            
-Tsy kivyn’ny tahotra sy ny henatra 
+(voahodin'ny)
+ 
 
+8.2 Tsy kivyn’ny tahotra sy ny henatra  
+Undettered by fear or ridicule 	 
+ 
 
-8.3 We blend-forth resilient resolute  
-Mandroso matanjaka  sy tapa-kevitra isika 
-
-8.4 Thus is the way of practitioner  
-Toy izany ny fomban’ny
-
-9.1 Be it a time of might or flight  
-na fotoanan’ny fahombiazana na ny fisitahana  
-
-na fotoanan’ny hery na fandosirana izao
-
-9.2 Sow the seeds of this legacy  
-Mamafaza ny voan’ity lova  ity 
-
-9.3 Apply it in all things great or trite   
-Ampiharo  amin’ny zavatra  rehetra  na lehibe na kely 
-
-9.4 Thus is the way of the  practitioner  
-Toy izany ny fomban’ny mpanaradia 
+8.3 Mandroso matanjaka  sy tapa-kevitra isika  
+We blend-forth resilient resolute  
 
 
-10.1 Witnessed  by our ancestors  
-Jeren’ny razana isika  
+8.4 Toy izany ny fomban,ny mpanara-dia  
+Thus is the way of practitioner  
 
-Mijoro miaraka amin’ireo razam-betsika 
+9.1 na fotoanan’ny fahombiazana na ny fisitahana  
+Be it a time of might or flight  
+
+(na fotoanan’ny hery na fandosirana izao)
+
+9.2 Mamafaza ny voan’ity lova  ity  
+Sow the seeds of this legacy  
+ 
+
+9.3 Ampiharo  amin’ny zavatra  rehetra  na lehibe na kely   
+Apply it in all things great or trite   
 
 
-10.2 Judged by our children  
-Ary tsarain’ny ankizy  
+9.4 Toy izany ny fomban’ny mpanaradia   
+Thus is the way of the  practitioner  
 
-Ary tsarain,i ireo zanatsika 
 
-10.3 We plegded to honour this heritage  
-Ka manome toky fa hanaja ity lova ity  
 
-Mampanaten  izahay fa hanaja ity lova ity 
+10.1 Jeren’ny razana isika  
+Witnessed  by our ancestors   
 
-10.4 Thus is the way of the Ancestors  
-Dia toy izany ny fomban’drazana
+10.2 Ary tsarain’ny ankizy  
+Judged by our children  
+
+
+10.3 Ka manome toky fa hanaja ity lova ity  
+We plegded to honour this heritage  
+
+
+(Mampanaten  izahay fa hanaja ity lova ity )
+
+10.4 Dia toy izany ny fomban’drazana  
+Thus is the way of the Ancestors  
+
 
 
 
