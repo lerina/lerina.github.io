@@ -120,10 +120,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>takeaway:</p>
 <p>function design and data design<br />
 incremental progress Between each incrementation the code can run and passes its tests</p>
-<p><a href="https://www.holdenrehg.com/blog/2018-09-22_write-better-code-outside-in">outside-in</a> Define the entry point for the code. Assume that any module, function, helper, library, etc. is available, even if the code does not exist. Write the ideal version of the entry point. Write the ideal version of any code that was assumed until you start reaching “low level” functions that perform the bulk of the logic. Repeat until you have all functions defined. Now actually implement the logic for the “low level” functions. Coding is a combination of creativity and common engineering practices. There are thousands of ways to approach a problem and still come up with the same answer. Outside in development is a way to think about software development from a high level so that we can work through problems efficiently on the fly while still producing good, readable, testable code.</p>
+<p><a href="https://www.holdenrehg.com/blog/2018-09-22_write-better-code-outside-in">outside-in</a> Define the entry point for the code.<br />
+Assume that any module, function, helper, library, etc. is available, even if the code does not exist.<br />
+Write the ideal version of the entry point.<br />
+Write the ideal version of any code that was assumed until you start reaching “low level” functions that perform the bulk of the logic.<br />
+Repeat until you have all functions defined.<br />
+Now actually implement the logic for the “low level” functions.<br />
+Coding is a combination of creativity and common engineering practices.<br />
+There are thousands of ways to approach a problem and still come up with the same answer. Outside in development is a way to think about software development<br />
+from a high level so that we can work through problems efficiently on the fly<br />
+while still producing good, readable, testable code.</p>
 <h2 id="running-example-the-simple-warehouse">2 Running Example: The Simple Warehouse</h2>
 <p><a href="#TOC"> <code>^--</code> </a></p>
-<p>The simple warehouse program is an information system for managing the contents of a storage facility for different kinds of wares. Every ware in the warehouse has a name, a description, a storage location, a pricetag, information about the number of items of the particular ware stored in the warehouse, and the cost of each item. A storage location is a “section” (a single letter a-z), plus a shelf (an integer).</p>
+<p>The simple warehouse program is an information system for managing the contents of a storage facility for different kinds of wares.<br />
+Every ware in the warehouse has a name, a description, a storage location, a pricetag, information about the number of items of the particular ware stored in the warehouse, and the cost of each item.<br />
+A storage location is a “section” (a single letter a-z), plus a shelf (an integer).</p>
 <p>The simple warehouse program manages a database of wares and supports the following operations:</p>
 <ul>
 <li><code>A</code>dding a ware</li>

@@ -33,14 +33,17 @@ Between each incrementation the code can run and passes its tests
 
 
 [outside-in](https://www.holdenrehg.com/blog/2018-09-22_write-better-code-outside-in)
-Define the entry point for the code.
-Assume that any module, function, helper, library, etc. is available, even if the code does not exist.
-Write the ideal version of the entry point.
-Write the ideal version of any code that was assumed until you start reaching “low level” functions that perform the bulk of the logic.
-Repeat until you have all functions defined.
-Now actually implement the logic for the “low level” functions.
-Coding is a combination of creativity and common engineering practices. There are thousands of ways to approach a problem and still come up with the same answer. Outside in development is a way to think about software development from a high level so that we can work through problems efficiently on the fly while still producing good, readable, testable code.
-
+Define the entry point for the code.  
+Assume that any module, function, helper, library, etc. is available, even if the code does not exist.  
+Write the ideal version of the entry point.  
+Write the ideal version of any code that was assumed until you start reaching “low level” functions that perform the bulk of the logic.  
+Repeat until you have all functions defined.  
+Now actually implement the logic for the “low level” functions.  
+Coding is a combination of creativity and common engineering practices.  
+There are thousands of ways to approach a problem and still come up with the same answer. 
+Outside in development is a way to think about software development  
+from a high level so that we can work through problems efficiently on the fly  
+while still producing good, readable, testable code.  
 
 
 
@@ -48,11 +51,11 @@ Coding is a combination of creativity and common engineering practices. There ar
 <a href="#TOC"> ` ^-- ` </a>
 
 The simple warehouse program is an information system for managing the
-contents of a storage facility for different kinds of wares. Every ware
-in the warehouse has a name, a description, a storage location, a
-pricetag, information about the number of items of the particular ware
-stored in the warehouse, and the cost of each item. A storage location
-is a “section” (a single letter a-z), plus a shelf (an integer).
+contents of a storage facility for different kinds of wares.  
+Every ware in the warehouse has a name, a description, a storage location, 
+a pricetag, information about the number of items of the particular ware
+stored in the warehouse, and the cost of each item.  
+A storage location is a “section” (a single letter a-z), plus a shelf (an integer).
 
 The simple warehouse program manages a database of wares and supports
 the following operations:
