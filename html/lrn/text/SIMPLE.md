@@ -32,19 +32,31 @@ incremental progress
 Between each incrementation the code can run and passes its tests
 
 
-[outside-in](https://www.holdenrehg.com/blog/2018-09-22_write-better-code-outside-in)
+### [outside-in](https://www.holdenrehg.com/blog/2018-09-22_write-better-code-outside-in)
 Define the entry point for the code.  
 Assume that any module, function, helper, library, etc. is available, even if the code does not exist.  
 Write the ideal version of the entry point.  
 Write the ideal version of any code that was assumed until you start reaching “low level” functions that perform the bulk of the logic.  
+In other words sketch with one line comments the minimal viable system, and breaks it down into smaller components
 Repeat until you have all functions defined.  
+
+This completes your initial minimal design.
+
+### Inside-out
 Now actually implement the logic for the “low level” functions.  
+Build up functionality one piece at a time. 
+Because your have already done a top-down design with the outside-in aproache, 
+it is now easier to get "really" started, following a methodical approach of identifying the data-structures 
+a function or method will manipulate inorder to perform a certain behaviour.  
+
 Coding is a combination of creativity and common engineering practices.  
 There are thousands of ways to approach a problem and still come up with the same answer. 
 Outside in development is a way to think about software development  
 from a high level so that we can work through problems efficiently on the fly  
 while still producing good, readable, testable code.  
 
+Outside-in and inside-out terminilogy are often associated with [TDD](http://xunitpatterns.com/Philosophy%20Of%20Test%20Automation.html)
+since the 90's but its as actually always been the implicit way coders develope software when you really remove all the hype "du jour".
 
 
 ##    2 Running Example: The Simple Warehouse

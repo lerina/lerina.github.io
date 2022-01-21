@@ -80,7 +80,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <nav id="TOC">
 <ul>
 <li><a href="#simple-a-minimalistic-programming-methodology">SIMPLE – A Minimalistic Programming Methodology</a><ul>
-<li><a href="#simple-a-flexible-structured-approach-to-code-implemention">1 SIMPLE: A flexible structured approach to code implemention</a></li>
+<li><a href="#simple-a-flexible-structured-approach-to-code-implemention">1 SIMPLE: A flexible structured approach to code implemention</a><ul>
+<li><a href="#outside-in"><span>outside-in</span></a></li>
+<li><a href="#inside-out">Inside-out</a></li>
+</ul></li>
 <li><a href="#running-example-the-simple-warehouse">2 Running Example: The Simple Warehouse</a></li>
 <li><a href="#the-simple-approach">3 The SIMPLE Approach</a><ul>
 <li><a href="#step-1.-think-a-little.">3.1 Step 1. Think a little.</a></li>
@@ -120,16 +123,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>takeaway:</p>
 <p>function design and data design<br />
 incremental progress Between each incrementation the code can run and passes its tests</p>
-<p><a href="https://www.holdenrehg.com/blog/2018-09-22_write-better-code-outside-in">outside-in</a> Define the entry point for the code.<br />
+<h3 id="outside-in"><a href="https://www.holdenrehg.com/blog/2018-09-22_write-better-code-outside-in">outside-in</a></h3>
+<p>Define the entry point for the code.<br />
 Assume that any module, function, helper, library, etc. is available, even if the code does not exist.<br />
 Write the ideal version of the entry point.<br />
 Write the ideal version of any code that was assumed until you start reaching “low level” functions that perform the bulk of the logic.<br />
-Repeat until you have all functions defined.<br />
-Now actually implement the logic for the “low level” functions.<br />
-Coding is a combination of creativity and common engineering practices.<br />
+In other words sketch with one line comments the minimal viable system, and breaks it down into smaller components Repeat until you have all functions defined.</p>
+<p>This completes your initial minimal design.</p>
+<h3 id="inside-out">Inside-out</h3>
+<p>Now actually implement the logic for the “low level” functions.<br />
+Build up functionality one piece at a time. Because your have already done a top-down design with the outside-in aproache, it is now easier to get “really” started, following a methodical approach of identifying the data-structures a function or method will manipulate inorder to perform a certain behaviour.</p>
+<p>Coding is a combination of creativity and common engineering practices.<br />
 There are thousands of ways to approach a problem and still come up with the same answer. Outside in development is a way to think about software development<br />
 from a high level so that we can work through problems efficiently on the fly<br />
 while still producing good, readable, testable code.</p>
+<p>Outside-in and inside-out terminilogy are often associated with <a href="http://xunitpatterns.com/Philosophy%20Of%20Test%20Automation.html">TDD</a> since the 90’s but its as actually always been the implicit way coders develope software when you really remove all the hype “du jour”.</p>
 <h2 id="running-example-the-simple-warehouse">2 Running Example: The Simple Warehouse</h2>
 <p><a href="#TOC"> <code>^--</code> </a></p>
 <p>The simple warehouse program is an information system for managing the contents of a storage facility for different kinds of wares.<br />
