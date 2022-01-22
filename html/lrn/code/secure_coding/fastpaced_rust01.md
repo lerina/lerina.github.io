@@ -1,3 +1,5 @@
+⇦ [razafy.com](../../../../index.html)  - [lerina](../../index.html) - [code](../index.html)  
+
 # The Rust programming language: A Fast-paced tutorial (Level 01)
 
 ## A half-hour to learn Rust
