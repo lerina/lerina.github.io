@@ -58,6 +58,44 @@ while still producing good, readable, testable code.
 Outside-in and inside-out terminilogy are often associated with [TDD](http://xunitpatterns.com/Philosophy%20Of%20Test%20Automation.html)
 since the 90's but its as actually always been the implicit way coders develope software when you really remove all the hype "du jour".
 
+## A Summary of SIMPLE in Ten Steps
+
+Start with a high-level work breakdown structure
+- Textual-Analysis   
+ Mine your specification for data (nouns) and actions (verbs – behaviour/functions). Make simple drawings, e.g., mind-maps, to record your insights. Making things look easy is almost always good.
+- Spikes
+Write code to test the validity of your thinking
+    …not to drive the thinking! Thinking should invariably come before coding, especially thinking about how you check that your thinking is valid.
+- The one rule
+Always have a working program.
+In combination with stubs and temping, this usually means inserting dummy functions.
+Compile after every change
+- Refactor early
+    Fix errors now, not later. Fix errors one by one. Fix errors in the order they were printed. Take time to actually read the compiler message so you know you are fixing the right thing.
+-The one Rule again
+Run the program “all the time” to spot errors
+    This requires always working code – preferably in combination with automated test that don’t involve ocular inspection, etc.
+- The main tool (Simplify)
+Recursively break your problems up into smaller sub problems
+    Only start solving problems when they start feeling easy. Make a task for each problem or sub-problem to put on the stack, take tasks from the stack in a reasonable order (preferably easiest first); when the stack is empty – you are done!
+Break each task up into increments and start with the easy ones
+    Generate new tasks to put on the stack as you go. If suitable, start with a straight-line version (without any if-statements). When the straight-line version works add conditionals, one by one. Start with the most basic or the most interesting cases. When you are writing a loop, do the above steps first and add the looping step last.
+Whenever you run the risk of getting stuck, Stub, Temp, mock  and fake
+    Don’t forget to push new tasks on the stack that undoes the subtitution, later. This records the subs, which is great.
+- Temping
+Use Temping to help breaking complex cases up into several less complex ones
+    Don’t forget to push new tasks on the stack that undoes the dodge, later. This records the dodge, which is great.
+Alternate between thinking, coding and refactoring
+
+        thinking – not so much that you get stuck, though,
+        coding – but never without first thinking about what to code, and occasionally
+        refactoring – especially to address your cheats and dodges (tempTypes)
+
+    Refactoring is good to do between larger tasks. Make it a habit to continuously go back and refactor your solutions so that recently gotten insights rub off on older code too. 
+    Think, code, verify.
+    CI runs the automated tests.
+
+
 
 ##    2 Running Example: The Simple Warehouse
 <a href="#TOC"> ` ^-- ` </a>

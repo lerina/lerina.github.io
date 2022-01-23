@@ -2,18 +2,18 @@
 
 # The Rust programming language: A Fast-paced tutorial (Level 01)
 
-## A half-hour to learn Rust
+Replace with 20min for each header. add worked examples and  exercise
 
+1. add headers
+2. link to official book
+3. reformulate with pix
+4. change examples
+5. add exercise
+6. worked problem/exercise
+7. problem and solution
+8. assignment 
 
-In order to increase fluency in a programming language, one has to read
-a lot of it. But how can you read a lot of it if you don\'t know what it
-means?
-
-In this article, instead of focusing on one or two concepts, I\'ll try
-to go through as many Rust snippets as I can, and explain what the
-keywords and symbols they contain mean.
-
-Ready? Go!
+## Variable binding
 
 `let` introduces a variable binding:
 
