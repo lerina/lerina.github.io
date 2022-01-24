@@ -80,10 +80,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <nav id="TOC">
 <ul>
 <li><a href="#simple-a-minimalistic-programming-methodology">SIMPLE – A Minimalistic Programming Methodology</a><ul>
-<li><a href="#simple-a-flexible-structured-approach-to-code-implemention">1 SIMPLE: A flexible structured approach to code implemention</a><ul>
-<li><a href="#outside-in"><span>outside-in</span></a></li>
-<li><a href="#inside-out">Inside-out</a></li>
-</ul></li>
+<li><a href="#simple-a-flexible-structured-approach-to-code-implemention">1 SIMPLE: A flexible structured approach to code implemention</a></li>
+<li><a href="#a-summary-of-simple-in-ten-steps">A Summary of SIMPLE in Ten Steps</a></li>
 <li><a href="#running-example-the-simple-warehouse">2 Running Example: The Simple Warehouse</a></li>
 <li><a href="#the-simple-approach">3 The SIMPLE Approach</a><ul>
 <li><a href="#step-1.-think-a-little.">3.1 Step 1. Think a little.</a></li>
@@ -98,13 +96,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="#step-9-and-beyond">3.10 Step 9, and beyond</a></li>
 <li><a href="#summary-and-conclusions">3.11 Summary and Conclusions</a></li>
 </ul></li>
-<li><a href="#a-summary-of-simple-in-ten-steps">4 A Summary of SIMPLE in Ten Steps</a></li>
+<li><a href="#a-summary-of-simple-in-ten-steps-1">4 A Summary of SIMPLE in Ten Steps</a></li>
 <li><a href="#tickets-tasks-and-post-it-stacks">5 Tickets, Tasks and Post-it Stacks</a></li>
 <li><a href="#the-three-rules-of-stubbing">6 The Three Rules of Stubbing</a></li>
 <li><a href="#dodging-not-quite-stubbing">7 Dodging: Not Quite Stubbing</a></li>
 </ul></li>
 </ul>
 </nav>
+<p>⇦ <a href="../../../../index.html">home</a> - <a href="../../index.html">lerina</a> - <a href="../index.html">texts</a></p>
 <h1 id="simple-a-minimalistic-programming-methodology">SIMPLE – A Minimalistic Programming Methodology</h1>
 <p>This text is an adaptation of this wonderful page <a href="http://wrigstad.com/ioopm18/simple.html">SIMPLE: A Programming Methodology</a> by Tobias Wrigstad, a Professor in Computing Science at <a href="http://www.uu.se/">Uppsala University</a>. I’ve been trying to express what <a href="https://www.youtube.com/watch?v=xPecMsFmEm4">software writers</a> do. We are both <a href="https://en.wikipedia.org/wiki/Logic">logician</a> and <a href="https://www.youtube.com/watch?v=-jRREn6ifEQ">poets</a>. We are also <a href="http://fineartdrawinglca.blogspot.com/2016/07/iterative-drawing_11.html">iterative artists</a></p>
 <p>I replaced the term cheating used in the original text and main source of inspiration for this text with the more widespread usage “stubbing” as described here <a href="https://courses.engr.illinois.edu/cs225/sp2019/guides/stub-out/">The purpose of ‘stubbing out’ a function</a></p>
@@ -123,21 +122,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>takeaway:</p>
 <p>function design and data design<br />
 incremental progress Between each incrementation the code can run and passes its tests</p>
-<h3 id="outside-in"><a href="https://www.holdenrehg.com/blog/2018-09-22_write-better-code-outside-in">outside-in</a></h3>
-<p>Define the entry point for the code.<br />
-Assume that any module, function, helper, library, etc. is available, even if the code does not exist.<br />
-Write the ideal version of the entry point.<br />
-Write the ideal version of any code that was assumed until you start reaching “low level” functions that perform the bulk of the logic.<br />
-In other words sketch with one line comments the minimal viable system, and breaks it down into smaller components Repeat until you have all functions defined.</p>
-<p>This completes your initial minimal design.</p>
-<h3 id="inside-out">Inside-out</h3>
-<p>Now actually implement the logic for the “low level” functions.<br />
-Build up functionality one piece at a time. Because your have already done a top-down design with the outside-in aproache, it is now easier to get “really” started, following a methodical approach of identifying the data-structures a function or method will manipulate inorder to perform a certain behaviour.</p>
-<p>Coding is a combination of creativity and common engineering practices.<br />
-There are thousands of ways to approach a problem and still come up with the same answer. Outside in development is a way to think about software development<br />
-from a high level so that we can work through problems efficiently on the fly<br />
-while still producing good, readable, testable code.</p>
-<p>Outside-in and inside-out terminilogy are often associated with <a href="http://xunitpatterns.com/Philosophy%20Of%20Test%20Automation.html">TDD</a> since the 90’s but its as actually always been the implicit way coders develope software when you really remove all the hype “du jour”.</p>
+<h2 id="a-summary-of-simple-in-ten-steps">A Summary of SIMPLE in Ten Steps</h2>
+<p>Start with a high-level work breakdown structure - Textual-Analysis<br />
+Mine your specification for data (nouns) and actions (verbs – behaviour/functions). Make simple drawings, e.g., mind-maps, to record your insights. Making things look easy is almost always good. - Spikes Write code to test the validity of your thinking …not to drive the thinking! Thinking should invariably come before coding, especially thinking about how you check that your thinking is valid. - The one rule Always have a working program. In combination with stubs and temping, this usually means inserting dummy functions. Compile after every change - Refactor early Fix errors now, not later. Fix errors one by one. Fix errors in the order they were printed. Take time to actually read the compiler message so you know you are fixing the right thing. -The one Rule again Run the program “all the time” to spot errors This requires always working code – preferably in combination with automated test that don’t involve ocular inspection, etc. - The main tool (Simplify) Recursively break your problems up into smaller sub problems Only start solving problems when they start feeling easy. Make a task for each problem or sub-problem to put on the stack, take tasks from the stack in a reasonable order (preferably easiest first); when the stack is empty – you are done! Break each task up into increments and start with the easy ones Generate new tasks to put on the stack as you go. If suitable, start with a straight-line version (without any if-statements). When the straight-line version works add conditionals, one by one. Start with the most basic or the most interesting cases. When you are writing a loop, do the above steps first and add the looping step last. Whenever you run the risk of getting stuck, Stub, Temp, mock and fake Don’t forget to push new tasks on the stack that undoes the subtitution, later. This records the subs, which is great. - Temping Use Temping to help breaking complex cases up into several less complex ones Don’t forget to push new tasks on the stack that undoes the dodge, later. This records the dodge, which is great. Alternate between thinking, coding and refactoring</p>
+<pre><code>    thinking – not so much that you get stuck, though,
+    coding – but never without first thinking about what to code, and occasionally
+    refactoring – especially to address your cheats and dodges (tempTypes)
+
+Refactoring is good to do between larger tasks. Make it a habit to continuously go back and refactor your solutions so that recently gotten insights rub off on older code too. 
+Think, code, verify.
+CI runs the automated tests.</code></pre>
 <h2 id="running-example-the-simple-warehouse">2 Running Example: The Simple Warehouse</h2>
 <p><a href="#TOC"> <code>^--</code> </a></p>
 <p>The simple warehouse program is an information system for managing the contents of a storage facility for different kinds of wares.<br />
@@ -212,41 +206,41 @@ A storage location is a “section” (a single letter a-z), plus a shelf (an in
 <h3 id="step-2-code-a-little.">3.2 Step 2: Code a little.</h3>
 <p><a href="#TOC"> <code>^--</code> </a></p>
 <p>Following the most fundamental principle of SIMPLE, we start with the minimal working program. If we are using C, we would probably write something like this:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb1-1" title="1"><span class="co">/* main.c */</span></a>
-<a class="sourceLine" id="cb1-2" title="2"></a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></a>
-<a class="sourceLine" id="cb1-4" title="4"></a>
-<a class="sourceLine" id="cb1-5" title="5"><span class="dt">int</span> main(<span class="dt">void</span>)</a>
-<a class="sourceLine" id="cb1-6" title="6">{</a>
-<a class="sourceLine" id="cb1-7" title="7">    puts(<span class="st">&quot;Welcome to my warehouse program!&quot;</span>);</a>
-<a class="sourceLine" id="cb1-8" title="8">    <span class="cf">return</span> <span class="dv">0</span>;</a>
-<a class="sourceLine" id="cb1-9" title="9">}</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb2-1" title="1"><span class="co">/* main.c */</span></a>
+<a class="sourceLine" id="cb2-2" title="2"></a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></a>
+<a class="sourceLine" id="cb2-4" title="4"></a>
+<a class="sourceLine" id="cb2-5" title="5"><span class="dt">int</span> main(<span class="dt">void</span>)</a>
+<a class="sourceLine" id="cb2-6" title="6">{</a>
+<a class="sourceLine" id="cb2-7" title="7">    puts(<span class="st">&quot;Welcome to my warehouse program!&quot;</span>);</a>
+<a class="sourceLine" id="cb2-8" title="8">    <span class="cf">return</span> <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb2-9" title="9">}</a></code></pre></div>
 <p>We’ll follow each C code snipet</p>
 <hr />
 <p>with a Rust version:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb2-1" title="1"><span class="co">// main.rs</span></a>
-<a class="sourceLine" id="cb2-2" title="2"></a>
-<a class="sourceLine" id="cb2-3" title="3"><span class="kw">fn</span> main() <span class="op">{</span></a>
-<a class="sourceLine" id="cb2-4" title="4">   <span class="pp">println!</span>(<span class="st">&quot;Welcome to my warehouse program!&quot;</span>);</a>
-<a class="sourceLine" id="cb2-5" title="5"><span class="op">}</span></a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb3-1" title="1"><span class="co">// main.rs</span></a>
+<a class="sourceLine" id="cb3-2" title="2"></a>
+<a class="sourceLine" id="cb3-3" title="3"><span class="kw">fn</span> main() <span class="op">{</span></a>
+<a class="sourceLine" id="cb3-4" title="4">   <span class="pp">println!</span>(<span class="st">&quot;Welcome to my warehouse program!&quot;</span>);</a>
+<a class="sourceLine" id="cb3-5" title="5"><span class="op">}</span></a></code></pre></div>
 <p>This program is pretty much hello world, but it compiles and runs.</p>
 <p>Now, we take the actions from the mind-map and turn them into functions. For example, for “add”, we do:</p>
 <p>C</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb3-1" title="1"><span class="co">/* main.c */</span></a>
-<a class="sourceLine" id="cb3-2" title="2"></a>
-<a class="sourceLine" id="cb3-3" title="3"><span class="co">// </span><span class="al">TODO</span><span class="co">: implement</span></a>
-<a class="sourceLine" id="cb3-4" title="4"><span class="dt">void</span> add_action(<span class="dt">void</span>)</a>
-<a class="sourceLine" id="cb3-5" title="5">{</a>
-<a class="sourceLine" id="cb3-6" title="6">    puts(<span class="st">&quot;Add action is not implemented yet&quot;</span>);</a>
-<a class="sourceLine" id="cb3-7" title="7">}</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb4-1" title="1"><span class="co">/* main.c */</span></a>
+<a class="sourceLine" id="cb4-2" title="2"></a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="co">// </span><span class="al">TODO</span><span class="co">: implement</span></a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="dt">void</span> add_action(<span class="dt">void</span>)</a>
+<a class="sourceLine" id="cb4-5" title="5">{</a>
+<a class="sourceLine" id="cb4-6" title="6">    puts(<span class="st">&quot;Add action is not implemented yet&quot;</span>);</a>
+<a class="sourceLine" id="cb4-7" title="7">}</a></code></pre></div>
 <hr />
 <p>Rust</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb4-1" title="1"><span class="co">// main.rs </span></a>
-<a class="sourceLine" id="cb4-2" title="2"></a>
-<a class="sourceLine" id="cb4-3" title="3"><span class="kw">fn</span> add_action() <span class="op">{</span></a>
-<a class="sourceLine" id="cb4-4" title="4">   <span class="pp">println!</span>(<span class="st">&quot;Add action is not implemented yet&quot;</span>);</a>
-<a class="sourceLine" id="cb4-5" title="5">   <span class="co">//unimplemented!(&quot;Stopping here!&quot;);</span></a>
-<a class="sourceLine" id="cb4-6" title="6"><span class="op">}</span></a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb5-1" title="1"><span class="co">// main.rs </span></a>
+<a class="sourceLine" id="cb5-2" title="2"></a>
+<a class="sourceLine" id="cb5-3" title="3"><span class="kw">fn</span> add_action() <span class="op">{</span></a>
+<a class="sourceLine" id="cb5-4" title="4">   <span class="pp">println!</span>(<span class="st">&quot;Add action is not implemented yet&quot;</span>);</a>
+<a class="sourceLine" id="cb5-5" title="5">   <span class="co">//unimplemented!(&quot;Stopping here!&quot;);</span></a>
+<a class="sourceLine" id="cb5-6" title="6"><span class="op">}</span></a></code></pre></div>
 <p>And similar functions for all the other actions. We do this in order to have placeholders for code that we are going to write. Again we want to compartmentalise as much as possible: by focusing on just one small thing at a time, each problem is going to not just seem simple, but be simple. And that is one of the secret sauces to success. (More ingredients are coming up later.)</p>
 <p>/Between each function you add, compile the program./</p>
 <p>Tip</p>
@@ -283,48 +277,48 @@ A storage location is a “section” (a single letter a-z), plus a shelf (an in
 <h3 id="step-4-code-a-little-more.">3.4 Step 4: Code a little more.</h3>
 <p><a href="#TOC"> <code>^--</code> </a></p>
 <p>To keep the program as simple as possible, we are not going to add functionality for choosing an action in the main menu just yet. That’s not needed, because the only thing we are going to implement is quit. So, although it is futile, let’s extend the program so that when we run it, it asks if we want to quit. To this end, we will add a |while| loop that loops forever and that in each turn of the loop asks us whether we want to quit. This will allow us to test both the yes and no answers.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb5-1" title="1"><span class="co">/* main.c */</span></a>
-<a class="sourceLine" id="cb5-2" title="2"></a>
-<a class="sourceLine" id="cb5-3" title="3"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></a>
-<a class="sourceLine" id="cb5-4" title="4"></a>
-<a class="sourceLine" id="cb5-5" title="5"><span class="dt">int</span> main(<span class="dt">void</span>)</a>
-<a class="sourceLine" id="cb5-6" title="6">{</a>
-<a class="sourceLine" id="cb5-7" title="7">    <span class="cf">while</span> (true)</a>
-<a class="sourceLine" id="cb5-8" title="8">    {</a>
-<a class="sourceLine" id="cb5-9" title="9">      puts(<span class="st">&quot;Welcome to my warehouse program!&quot;</span>);</a>
-<a class="sourceLine" id="cb5-10" title="10"></a>
-<a class="sourceLine" id="cb5-11" title="11">      <span class="cf">if</span> (quit_action()) <span class="cf">break</span>;</a>
-<a class="sourceLine" id="cb5-12" title="12">    }</a>
-<a class="sourceLine" id="cb5-13" title="13">    <span class="cf">return</span> <span class="dv">0</span>;</a>
-<a class="sourceLine" id="cb5-14" title="14">}</a></code></pre></div>
-<hr />
-<div class="sourceCode" id="cb6"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb6-1" title="1"><span class="co">// main.rs</span></a>
+<div class="sourceCode" id="cb6"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb6-1" title="1"><span class="co">/* main.c */</span></a>
 <a class="sourceLine" id="cb6-2" title="2"></a>
-<a class="sourceLine" id="cb6-3" title="3"><span class="kw">fn</span> main()<span class="op">{</span></a>
-<a class="sourceLine" id="cb6-4" title="4">   <span class="pp">println!</span>(<span class="st">&quot;Welcome to my warehouse program!&quot;</span>);</a>
-<a class="sourceLine" id="cb6-5" title="5"></a>
-<a class="sourceLine" id="cb6-6" title="6">   <span class="kw">loop</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb6-7" title="7">      <span class="kw">if</span> quit_action() <span class="op">{</span> <span class="kw">break</span>; <span class="op">}</span> <span class="co">// quit_action()-&gt; bool</span></a>
-<a class="sourceLine" id="cb6-8" title="8">   <span class="op">}</span></a>
-<a class="sourceLine" id="cb6-9" title="9"><span class="op">}</span></a></code></pre></div>
+<a class="sourceLine" id="cb6-3" title="3"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></a>
+<a class="sourceLine" id="cb6-4" title="4"></a>
+<a class="sourceLine" id="cb6-5" title="5"><span class="dt">int</span> main(<span class="dt">void</span>)</a>
+<a class="sourceLine" id="cb6-6" title="6">{</a>
+<a class="sourceLine" id="cb6-7" title="7">    <span class="cf">while</span> (true)</a>
+<a class="sourceLine" id="cb6-8" title="8">    {</a>
+<a class="sourceLine" id="cb6-9" title="9">      puts(<span class="st">&quot;Welcome to my warehouse program!&quot;</span>);</a>
+<a class="sourceLine" id="cb6-10" title="10"></a>
+<a class="sourceLine" id="cb6-11" title="11">      <span class="cf">if</span> (quit_action()) <span class="cf">break</span>;</a>
+<a class="sourceLine" id="cb6-12" title="12">    }</a>
+<a class="sourceLine" id="cb6-13" title="13">    <span class="cf">return</span> <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb6-14" title="14">}</a></code></pre></div>
+<hr />
+<div class="sourceCode" id="cb7"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb7-1" title="1"><span class="co">// main.rs</span></a>
+<a class="sourceLine" id="cb7-2" title="2"></a>
+<a class="sourceLine" id="cb7-3" title="3"><span class="kw">fn</span> main()<span class="op">{</span></a>
+<a class="sourceLine" id="cb7-4" title="4">   <span class="pp">println!</span>(<span class="st">&quot;Welcome to my warehouse program!&quot;</span>);</a>
+<a class="sourceLine" id="cb7-5" title="5"></a>
+<a class="sourceLine" id="cb7-6" title="6">   <span class="kw">loop</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb7-7" title="7">      <span class="kw">if</span> quit_action() <span class="op">{</span> <span class="kw">break</span>; <span class="op">}</span> <span class="co">// quit_action()-&gt; bool</span></a>
+<a class="sourceLine" id="cb7-8" title="8">   <span class="op">}</span></a>
+<a class="sourceLine" id="cb7-9" title="9"><span class="op">}</span></a></code></pre></div>
 <p>Once this edit is done, we compile and run the program. Just to be sure we did not break anything. But oh, it does! |quit_action()| must first be updated to return a |bool|. We fix this and add a return false; as the default return and also include |stdbool.h| at the top of the file.</p>
 <p>Moving on, we now have a function |quit_action()| that looks like this:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb7-1" title="1"><span class="co">/* main.c */</span></a>
-<a class="sourceLine" id="cb7-2" title="2"></a>
-<a class="sourceLine" id="cb7-3" title="3"><span class="co">// </span><span class="al">TODO</span><span class="co">: implement</span></a>
-<a class="sourceLine" id="cb7-4" title="4"><span class="dt">bool</span> quit_action(<span class="dt">void</span>)</a>
-<a class="sourceLine" id="cb7-5" title="5">{</a>
-<a class="sourceLine" id="cb7-6" title="6">    puts(<span class="st">&quot;Quit action is not implemented yet&quot;</span>);</a>
-<a class="sourceLine" id="cb7-7" title="7">    <span class="cf">return</span> false;</a>
-<a class="sourceLine" id="cb7-8" title="8">}</a></code></pre></div>
-<hr />
-<div class="sourceCode" id="cb8"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb8-1" title="1"><span class="co">//main.rs</span></a>
+<div class="sourceCode" id="cb8"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb8-1" title="1"><span class="co">/* main.c */</span></a>
 <a class="sourceLine" id="cb8-2" title="2"></a>
-<a class="sourceLine" id="cb8-3" title="3">   <span class="kw">fn</span> quit_action()-&gt; <span class="dt">bool</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb8-4" title="4">      <span class="pp">println!</span>(<span class="st">&quot;Quit action is not implemented yet&quot;</span>);</a>
-<a class="sourceLine" id="cb8-5" title="5"></a>
-<a class="sourceLine" id="cb8-6" title="6">      <span class="cn">false</span></a>
-<a class="sourceLine" id="cb8-7" title="7">   <span class="op">}</span></a></code></pre></div>
+<a class="sourceLine" id="cb8-3" title="3"><span class="co">// </span><span class="al">TODO</span><span class="co">: implement</span></a>
+<a class="sourceLine" id="cb8-4" title="4"><span class="dt">bool</span> quit_action(<span class="dt">void</span>)</a>
+<a class="sourceLine" id="cb8-5" title="5">{</a>
+<a class="sourceLine" id="cb8-6" title="6">    puts(<span class="st">&quot;Quit action is not implemented yet&quot;</span>);</a>
+<a class="sourceLine" id="cb8-7" title="7">    <span class="cf">return</span> false;</a>
+<a class="sourceLine" id="cb8-8" title="8">}</a></code></pre></div>
+<hr />
+<div class="sourceCode" id="cb9"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb9-1" title="1"><span class="co">//main.rs</span></a>
+<a class="sourceLine" id="cb9-2" title="2"></a>
+<a class="sourceLine" id="cb9-3" title="3">   <span class="kw">fn</span> quit_action()-&gt; <span class="dt">bool</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb9-4" title="4">      <span class="pp">println!</span>(<span class="st">&quot;Quit action is not implemented yet&quot;</span>);</a>
+<a class="sourceLine" id="cb9-5" title="5"></a>
+<a class="sourceLine" id="cb9-6" title="6">      <span class="cn">false</span></a>
+<a class="sourceLine" id="cb9-7" title="7">   <span class="op">}</span></a></code></pre></div>
 <p>Our goal now is to implement the behaviour of the specification which was just re-iterated above. We are going to do this in a few small increments. (I will return in a little bit to how to come up with good increments.)</p>
 <ul>
 <li>Print confirmation question</li>
@@ -334,41 +328,41 @@ A storage location is a “section” (a single letter a-z), plus a shelf (an in
 <li>Handle remaining cases</li>
 </ul>
 <p>Increment 1 is easy. Just change the existing |puts()|:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb9-1" title="1"><span class="co">/* main.c */</span></a>
-<a class="sourceLine" id="cb9-2" title="2"></a>
-<a class="sourceLine" id="cb9-3" title="3"><span class="co">// </span><span class="al">TODO</span><span class="co">: implement</span></a>
-<a class="sourceLine" id="cb9-4" title="4"><span class="dt">bool</span> quit_action(<span class="dt">void</span>)</a>
-<a class="sourceLine" id="cb9-5" title="5">{</a>
-<a class="sourceLine" id="cb9-6" title="6">    puts(<span class="st">&quot;Do you want to quit? [Y/N]&quot;</span>);</a>
-<a class="sourceLine" id="cb9-7" title="7">    <span class="cf">return</span> false;</a>
-<a class="sourceLine" id="cb9-8" title="8">}</a></code></pre></div>
-<hr />
-<div class="sourceCode" id="cb10"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb10-1" title="1"><span class="co">//main.rs</span></a>
+<div class="sourceCode" id="cb10"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb10-1" title="1"><span class="co">/* main.c */</span></a>
 <a class="sourceLine" id="cb10-2" title="2"></a>
-<a class="sourceLine" id="cb10-3" title="3">   <span class="kw">fn</span> quit_action()-&gt; <span class="dt">bool</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb10-4" title="4">      <span class="pp">println!</span>(<span class="st">&quot;Do you want to quit? [Y/N]&quot;</span>);</a>
-<a class="sourceLine" id="cb10-5" title="5"></a>
-<a class="sourceLine" id="cb10-6" title="6">      <span class="cn">false</span></a>
-<a class="sourceLine" id="cb10-7" title="7">   <span class="op">}</span></a></code></pre></div>
-<p>Increment 2 is much harder. It requires us to know how to read input from a user in C. This is actually pretty complicated and there are many opportunities for errors. Therefore, I am going to use one of the best programming tricks ever – I am going to “<em>cheat</em>”. By stubbing, I mean the following: <em>I am going to assume the existence of a function that solves the problem for me.</em> This makes increment 2 really simple:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb11-1" title="1"><span class="co">/* main.c */</span></a>
-<a class="sourceLine" id="cb11-2" title="2"></a>
-<a class="sourceLine" id="cb11-3" title="3"><span class="co">// </span><span class="al">TODO</span><span class="co">: implement</span></a>
-<a class="sourceLine" id="cb11-4" title="4"><span class="dt">bool</span> quit_action(<span class="dt">void</span>)</a>
-<a class="sourceLine" id="cb11-5" title="5">{</a>
-<a class="sourceLine" id="cb11-6" title="6">    puts(<span class="st">&quot;Do you want to quit? [Y/N]&quot;</span>);</a>
-<a class="sourceLine" id="cb11-7" title="7">    <span class="dt">char</span> input = get_char_input(); <span class="co">// &lt;---- This line was added</span></a>
-<a class="sourceLine" id="cb11-8" title="8">    <span class="cf">return</span> false;</a>
-<a class="sourceLine" id="cb11-9" title="9">}</a></code></pre></div>
+<a class="sourceLine" id="cb10-3" title="3"><span class="co">// </span><span class="al">TODO</span><span class="co">: implement</span></a>
+<a class="sourceLine" id="cb10-4" title="4"><span class="dt">bool</span> quit_action(<span class="dt">void</span>)</a>
+<a class="sourceLine" id="cb10-5" title="5">{</a>
+<a class="sourceLine" id="cb10-6" title="6">    puts(<span class="st">&quot;Do you want to quit? [Y/N]&quot;</span>);</a>
+<a class="sourceLine" id="cb10-7" title="7">    <span class="cf">return</span> false;</a>
+<a class="sourceLine" id="cb10-8" title="8">}</a></code></pre></div>
 <hr />
-<div class="sourceCode" id="cb12"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb12-1" title="1"><span class="co">// main.rs</span></a>
+<div class="sourceCode" id="cb11"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb11-1" title="1"><span class="co">//main.rs</span></a>
+<a class="sourceLine" id="cb11-2" title="2"></a>
+<a class="sourceLine" id="cb11-3" title="3">   <span class="kw">fn</span> quit_action()-&gt; <span class="dt">bool</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb11-4" title="4">      <span class="pp">println!</span>(<span class="st">&quot;Do you want to quit? [Y/N]&quot;</span>);</a>
+<a class="sourceLine" id="cb11-5" title="5"></a>
+<a class="sourceLine" id="cb11-6" title="6">      <span class="cn">false</span></a>
+<a class="sourceLine" id="cb11-7" title="7">   <span class="op">}</span></a></code></pre></div>
+<p>Increment 2 is much harder. It requires us to know how to read input from a user in C. This is actually pretty complicated and there are many opportunities for errors. Therefore, I am going to use one of the best programming tricks ever – I am going to “<em>cheat</em>”. By stubbing, I mean the following: <em>I am going to assume the existence of a function that solves the problem for me.</em> This makes increment 2 really simple:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb12-1" title="1"><span class="co">/* main.c */</span></a>
 <a class="sourceLine" id="cb12-2" title="2"></a>
-<a class="sourceLine" id="cb12-3" title="3">   <span class="kw">fn</span> quit_action()-&gt; <span class="dt">bool</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb12-4" title="4">      <span class="pp">println!</span>(<span class="st">&quot;Do you want to quit? [Y/N]&quot;</span>);</a>
-<a class="sourceLine" id="cb12-5" title="5">      <span class="kw">let</span> input = get_char_input(); <span class="co">// &lt;---- This line was added</span></a>
-<a class="sourceLine" id="cb12-6" title="6"></a>
-<a class="sourceLine" id="cb12-7" title="7">      <span class="cn">false</span></a>
-<a class="sourceLine" id="cb12-8" title="8">   <span class="op">}</span></a></code></pre></div>
+<a class="sourceLine" id="cb12-3" title="3"><span class="co">// </span><span class="al">TODO</span><span class="co">: implement</span></a>
+<a class="sourceLine" id="cb12-4" title="4"><span class="dt">bool</span> quit_action(<span class="dt">void</span>)</a>
+<a class="sourceLine" id="cb12-5" title="5">{</a>
+<a class="sourceLine" id="cb12-6" title="6">    puts(<span class="st">&quot;Do you want to quit? [Y/N]&quot;</span>);</a>
+<a class="sourceLine" id="cb12-7" title="7">    <span class="dt">char</span> input = get_char_input(); <span class="co">// &lt;---- This line was added</span></a>
+<a class="sourceLine" id="cb12-8" title="8">    <span class="cf">return</span> false;</a>
+<a class="sourceLine" id="cb12-9" title="9">}</a></code></pre></div>
+<hr />
+<div class="sourceCode" id="cb13"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb13-1" title="1"><span class="co">// main.rs</span></a>
+<a class="sourceLine" id="cb13-2" title="2"></a>
+<a class="sourceLine" id="cb13-3" title="3">   <span class="kw">fn</span> quit_action()-&gt; <span class="dt">bool</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb13-4" title="4">      <span class="pp">println!</span>(<span class="st">&quot;Do you want to quit? [Y/N]&quot;</span>);</a>
+<a class="sourceLine" id="cb13-5" title="5">      <span class="kw">let</span> input = get_char_input(); <span class="co">// &lt;---- This line was added</span></a>
+<a class="sourceLine" id="cb13-6" title="6"></a>
+<a class="sourceLine" id="cb13-7" title="7">      <span class="cn">false</span></a>
+<a class="sourceLine" id="cb13-8" title="8">   <span class="op">}</span></a></code></pre></div>
 <p><em>You really need to understand that</em> stubbing is one of the best tools in the programming toolbox. You should use it all the time. The first rule of stubbing is this:</p>
 <div class="line-block">If you don’t know immediately how to solve a problem,<br />
 assume the existence of a function that solves this problem for you,<br />
@@ -377,80 +371,80 @@ and call that function.</div>
 <p>Note</p>
 <p>Aside: This is actually not so different from tricks used by surrealist authors experimenting with automatic text. There a standard trick is to choose a word or a first letter of a word that you revert to whenever your brain gets stuck. Here our actions are slightly more sensible. (At least to some.)</p>
 <p>Like we did with the empty action functions from the start, we add a dummy function to the file called |get_char_input()| to stay true to the ideal of always having a working program:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb13-1" title="1"><span class="co">/* main.c */</span></a>
-<a class="sourceLine" id="cb13-2" title="2"></a>
-<a class="sourceLine" id="cb13-3" title="3"><span class="co">// </span><span class="al">TODO</span><span class="co">: implement</span></a>
-<a class="sourceLine" id="cb13-4" title="4"><span class="dt">char</span> get_char_input() <span class="co">// &lt;-- return type derived from the call-site</span></a>
-<a class="sourceLine" id="cb13-5" title="5">{</a>
-<a class="sourceLine" id="cb13-6" title="6">    <span class="cf">return</span> <span class="ch">&#39;Y&#39;</span>; <span class="co">// &lt;-- a good default because of how increment 3 is specified</span></a>
-<a class="sourceLine" id="cb13-7" title="7">}</a></code></pre></div>
-<hr />
-<div class="sourceCode" id="cb14"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb14-1" title="1"><span class="co">// main.rs</span></a>
+<div class="sourceCode" id="cb14"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb14-1" title="1"><span class="co">/* main.c */</span></a>
 <a class="sourceLine" id="cb14-2" title="2"></a>
-<a class="sourceLine" id="cb14-3" title="3"><span class="kw">fn</span> get_char_input() -&gt; <span class="dt">String</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb14-4" title="4"></a>
-<a class="sourceLine" id="cb14-5" title="5">    <span class="dt">String</span>::new(<span class="st">&quot;Y&quot;</span>)</a>
-<a class="sourceLine" id="cb14-6" title="6"><span class="op">}</span></a></code></pre></div>
+<a class="sourceLine" id="cb14-3" title="3"><span class="co">// </span><span class="al">TODO</span><span class="co">: implement</span></a>
+<a class="sourceLine" id="cb14-4" title="4"><span class="dt">char</span> get_char_input() <span class="co">// &lt;-- return type derived from the call-site</span></a>
+<a class="sourceLine" id="cb14-5" title="5">{</a>
+<a class="sourceLine" id="cb14-6" title="6">    <span class="cf">return</span> <span class="ch">&#39;Y&#39;</span>; <span class="co">// &lt;-- a good default because of how increment 3 is specified</span></a>
+<a class="sourceLine" id="cb14-7" title="7">}</a></code></pre></div>
+<hr />
+<div class="sourceCode" id="cb15"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb15-1" title="1"><span class="co">// main.rs</span></a>
+<a class="sourceLine" id="cb15-2" title="2"></a>
+<a class="sourceLine" id="cb15-3" title="3"><span class="kw">fn</span> get_char_input() -&gt; <span class="dt">String</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb15-4" title="4"></a>
+<a class="sourceLine" id="cb15-5" title="5">    <span class="dt">String</span>::new(<span class="st">&quot;Y&quot;</span>)</a>
+<a class="sourceLine" id="cb15-6" title="6"><span class="op">}</span></a></code></pre></div>
 <p>We can now compile and run our program as a kind of minimal testing.</p>
 <p>Back to our increment 3, which is dealing with the base case of the user inputting a |Y|:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb15-1" title="1"><span class="co">/* main.c */</span></a>
-<a class="sourceLine" id="cb15-2" title="2"></a>
-<a class="sourceLine" id="cb15-3" title="3"><span class="co">// </span><span class="al">TODO</span><span class="co">: implement</span></a>
-<a class="sourceLine" id="cb15-4" title="4"><span class="dt">bool</span> quit_action(<span class="dt">void</span>)</a>
-<a class="sourceLine" id="cb15-5" title="5">{</a>
-<a class="sourceLine" id="cb15-6" title="6">    puts(<span class="st">&quot;Do you want to quit? [Y/N]&quot;</span>);</a>
-<a class="sourceLine" id="cb15-7" title="7">    <span class="dt">char</span> input = get_char_input();</a>
-<a class="sourceLine" id="cb15-8" title="8">    <span class="cf">if</span> (input == <span class="ch">&#39;Y&#39;</span>) <span class="cf">return</span> true;</a>
-<a class="sourceLine" id="cb15-9" title="9">    <span class="cf">return</span> false;</a>
-<a class="sourceLine" id="cb15-10" title="10">}</a></code></pre></div>
-<hr />
-<div class="sourceCode" id="cb16"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb16-1" title="1"><span class="co">// main.rs</span></a>
+<div class="sourceCode" id="cb16"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb16-1" title="1"><span class="co">/* main.c */</span></a>
 <a class="sourceLine" id="cb16-2" title="2"></a>
-<a class="sourceLine" id="cb16-3" title="3">   <span class="kw">fn</span> quit_action()-&gt; <span class="dt">bool</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb16-4" title="4">      <span class="pp">println!</span>(<span class="st">&quot;Do you want to quit? [Y/N]&quot;</span>);</a>
-<a class="sourceLine" id="cb16-5" title="5">      <span class="kw">let</span> input = get_char_input();</a>
-<a class="sourceLine" id="cb16-6" title="6">      </a>
-<a class="sourceLine" id="cb16-7" title="7">      <span class="kw">if</span> input == <span class="st">&quot;Y&quot;</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb16-8" title="8">        <span class="kw">return</span> <span class="cn">true</span>;</a>
-<a class="sourceLine" id="cb16-9" title="9">      <span class="op">}</span></a>
-<a class="sourceLine" id="cb16-10" title="10"></a>
-<a class="sourceLine" id="cb16-11" title="11">      <span class="cn">false</span></a>
-<a class="sourceLine" id="cb16-12" title="12">   <span class="op">}</span></a></code></pre></div>
+<a class="sourceLine" id="cb16-3" title="3"><span class="co">// </span><span class="al">TODO</span><span class="co">: implement</span></a>
+<a class="sourceLine" id="cb16-4" title="4"><span class="dt">bool</span> quit_action(<span class="dt">void</span>)</a>
+<a class="sourceLine" id="cb16-5" title="5">{</a>
+<a class="sourceLine" id="cb16-6" title="6">    puts(<span class="st">&quot;Do you want to quit? [Y/N]&quot;</span>);</a>
+<a class="sourceLine" id="cb16-7" title="7">    <span class="dt">char</span> input = get_char_input();</a>
+<a class="sourceLine" id="cb16-8" title="8">    <span class="cf">if</span> (input == <span class="ch">&#39;Y&#39;</span>) <span class="cf">return</span> true;</a>
+<a class="sourceLine" id="cb16-9" title="9">    <span class="cf">return</span> false;</a>
+<a class="sourceLine" id="cb16-10" title="10">}</a></code></pre></div>
+<hr />
+<div class="sourceCode" id="cb17"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb17-1" title="1"><span class="co">// main.rs</span></a>
+<a class="sourceLine" id="cb17-2" title="2"></a>
+<a class="sourceLine" id="cb17-3" title="3">   <span class="kw">fn</span> quit_action()-&gt; <span class="dt">bool</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb17-4" title="4">      <span class="pp">println!</span>(<span class="st">&quot;Do you want to quit? [Y/N]&quot;</span>);</a>
+<a class="sourceLine" id="cb17-5" title="5">      <span class="kw">let</span> input = get_char_input();</a>
+<a class="sourceLine" id="cb17-6" title="6">      </a>
+<a class="sourceLine" id="cb17-7" title="7">      <span class="kw">if</span> input == <span class="st">&quot;Y&quot;</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb17-8" title="8">        <span class="kw">return</span> <span class="cn">true</span>;</a>
+<a class="sourceLine" id="cb17-9" title="9">      <span class="op">}</span></a>
+<a class="sourceLine" id="cb17-10" title="10"></a>
+<a class="sourceLine" id="cb17-11" title="11">      <span class="cn">false</span></a>
+<a class="sourceLine" id="cb17-12" title="12">   <span class="op">}</span></a></code></pre></div>
 <p>Increment 4 is dealing with the case of the user inputting a |N|. Turns out it is already handled, as the function returns |false| as a default. This leaves us with increment 5, which is the user replying with something other than |Y| or |N|.</p>
 <p>The reason why I left this case until now is because this is the case that removes some of the simplicity of the code we have been working on so far: we must now add a loop to this function to be able to repeat the question.</p>
 <p>We start by wrapping the entire function inside a |while|. The exit condition of the |while| is that input is either |Y| or |N|. Otherwise, the specification dictates`, an error message shall be printed and the question shall be asked again indefinitely. Here is a first attempt at doing this:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb17-1" title="1"><span class="co">/* main.c */</span></a>
-<a class="sourceLine" id="cb17-2" title="2"></a>
-<a class="sourceLine" id="cb17-3" title="3"><span class="dt">bool</span> quit_action(<span class="dt">void</span>)</a>
-<a class="sourceLine" id="cb17-4" title="4">{</a>
-<a class="sourceLine" id="cb17-5" title="5">    <span class="cf">while</span> (true)</a>
-<a class="sourceLine" id="cb17-6" title="6">    {</a>
-<a class="sourceLine" id="cb17-7" title="7">      puts(<span class="st">&quot;Do you want to quit? [Y/N]&quot;</span>);</a>
-<a class="sourceLine" id="cb17-8" title="8">      <span class="dt">char</span> input = get_char_input();</a>
-<a class="sourceLine" id="cb17-9" title="9"></a>
-<a class="sourceLine" id="cb17-10" title="10">      <span class="cf">if</span> (input == <span class="ch">&#39;Y&#39;</span>) <span class="cf">return</span> true;</a>
-<a class="sourceLine" id="cb17-11" title="11">      <span class="cf">if</span> (input == <span class="ch">&#39;N&#39;</span>) <span class="cf">return</span> false;</a>
-<a class="sourceLine" id="cb17-12" title="12"></a>
-<a class="sourceLine" id="cb17-13" title="13">      puts(<span class="st">&quot;Only Y or N are valid answers!&quot;</span>);</a>
-<a class="sourceLine" id="cb17-14" title="14">    }</a>
-<a class="sourceLine" id="cb17-15" title="15"></a>
-<a class="sourceLine" id="cb17-16" title="16"><span class="cf">return</span> false;</a>
-<a class="sourceLine" id="cb17-17" title="17">}</a></code></pre></div>
-<hr />
-<div class="sourceCode" id="cb18"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb18-1" title="1"><span class="co">// main.rs</span></a>
+<div class="sourceCode" id="cb18"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb18-1" title="1"><span class="co">/* main.c */</span></a>
 <a class="sourceLine" id="cb18-2" title="2"></a>
-<a class="sourceLine" id="cb18-3" title="3"><span class="kw">fn</span> quit_action()-&gt; <span class="dt">bool</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb18-4" title="4">    <span class="kw">loop</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb18-5" title="5">          <span class="pp">println!</span>(<span class="st">&quot;Do you want to quit? [Y/N]&quot;</span>);</a>
-<a class="sourceLine" id="cb18-6" title="6">          <span class="kw">let</span> input = get_char_input();</a>
-<a class="sourceLine" id="cb18-7" title="7">          </a>
-<a class="sourceLine" id="cb18-8" title="8">          <span class="kw">if</span> input == <span class="st">&quot;Y&quot;</span> <span class="op">{</span> <span class="kw">return</span> <span class="cn">true</span>; <span class="op">}</span></a>
-<a class="sourceLine" id="cb18-9" title="9">          <span class="kw">if</span> input == <span class="st">&quot;N&quot;</span> <span class="op">{</span> <span class="kw">return</span> <span class="cn">false</span>; <span class="op">}</span></a>
-<a class="sourceLine" id="cb18-10" title="10">    <span class="op">}</span></a>
-<a class="sourceLine" id="cb18-11" title="11">    <span class="pp">println!</span>(<span class="st">&quot;Only Y or N are valid answers!&quot;</span>);</a>
+<a class="sourceLine" id="cb18-3" title="3"><span class="dt">bool</span> quit_action(<span class="dt">void</span>)</a>
+<a class="sourceLine" id="cb18-4" title="4">{</a>
+<a class="sourceLine" id="cb18-5" title="5">    <span class="cf">while</span> (true)</a>
+<a class="sourceLine" id="cb18-6" title="6">    {</a>
+<a class="sourceLine" id="cb18-7" title="7">      puts(<span class="st">&quot;Do you want to quit? [Y/N]&quot;</span>);</a>
+<a class="sourceLine" id="cb18-8" title="8">      <span class="dt">char</span> input = get_char_input();</a>
+<a class="sourceLine" id="cb18-9" title="9"></a>
+<a class="sourceLine" id="cb18-10" title="10">      <span class="cf">if</span> (input == <span class="ch">&#39;Y&#39;</span>) <span class="cf">return</span> true;</a>
+<a class="sourceLine" id="cb18-11" title="11">      <span class="cf">if</span> (input == <span class="ch">&#39;N&#39;</span>) <span class="cf">return</span> false;</a>
 <a class="sourceLine" id="cb18-12" title="12"></a>
-<a class="sourceLine" id="cb18-13" title="13">    <span class="cn">false</span></a>
-<a class="sourceLine" id="cb18-14" title="14"><span class="op">}</span></a></code></pre></div>
+<a class="sourceLine" id="cb18-13" title="13">      puts(<span class="st">&quot;Only Y or N are valid answers!&quot;</span>);</a>
+<a class="sourceLine" id="cb18-14" title="14">    }</a>
+<a class="sourceLine" id="cb18-15" title="15"></a>
+<a class="sourceLine" id="cb18-16" title="16"><span class="cf">return</span> false;</a>
+<a class="sourceLine" id="cb18-17" title="17">}</a></code></pre></div>
+<hr />
+<div class="sourceCode" id="cb19"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb19-1" title="1"><span class="co">// main.rs</span></a>
+<a class="sourceLine" id="cb19-2" title="2"></a>
+<a class="sourceLine" id="cb19-3" title="3"><span class="kw">fn</span> quit_action()-&gt; <span class="dt">bool</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb19-4" title="4">    <span class="kw">loop</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb19-5" title="5">          <span class="pp">println!</span>(<span class="st">&quot;Do you want to quit? [Y/N]&quot;</span>);</a>
+<a class="sourceLine" id="cb19-6" title="6">          <span class="kw">let</span> input = get_char_input();</a>
+<a class="sourceLine" id="cb19-7" title="7">          </a>
+<a class="sourceLine" id="cb19-8" title="8">          <span class="kw">if</span> input == <span class="st">&quot;Y&quot;</span> <span class="op">{</span> <span class="kw">return</span> <span class="cn">true</span>; <span class="op">}</span></a>
+<a class="sourceLine" id="cb19-9" title="9">          <span class="kw">if</span> input == <span class="st">&quot;N&quot;</span> <span class="op">{</span> <span class="kw">return</span> <span class="cn">false</span>; <span class="op">}</span></a>
+<a class="sourceLine" id="cb19-10" title="10">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb19-11" title="11">    <span class="pp">println!</span>(<span class="st">&quot;Only Y or N are valid answers!&quot;</span>);</a>
+<a class="sourceLine" id="cb19-12" title="12"></a>
+<a class="sourceLine" id="cb19-13" title="13">    <span class="cn">false</span></a>
+<a class="sourceLine" id="cb19-14" title="14"><span class="op">}</span></a></code></pre></div>
 <p>Note how I insert “paragraph breaks” into the code to capture what belongs together, and to help the reader “breathe”. Asking the question and getting the reply feels like two related concepts. The two checks of the exit conditions are clearly also related. Thus, I group these together by separating them with a paragraph, and also put another paragraph before the error which is the logical conclusion of the function.</p>
 <p>Also note that I removed the |// TODO: implement| comment since the function is now properly implemented, modulo the cheat – the call to the (yet) non-existent function.</p>
 <h3 id="intermission-developing-in-increments">3.5 Intermission: Developing in Increments</h3>
@@ -481,30 +475,30 @@ and call that function.</div>
 <p>The reason for this is <em>compartmentalising</em>. It may be that the reason why you are stuck on something is because there is an error in your code somewhere that breaks some part. Pasting random code into the place where you believe that the error is, will probably not uncover anything. It will just cause you to go through all 20 versions and (erroneously) conclude that none of them works.</p>
 <p>Also, by isolating the code you are looking at in a single file, there is a lot less disturbance. You want to be working at all times with the smallest possible thing that can work. Remember: <em>good programmers like lazy.</em></p>
 <p>If the problem is getting user input, then writing a small test program for that is easy. To simplify copying the solution across to the “real program” you can even name the functions right from the start:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb19-1" title="1"><span class="co">/* main.c */</span></a>
-<a class="sourceLine" id="cb19-2" title="2"></a>
-<a class="sourceLine" id="cb19-3" title="3"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></a>
-<a class="sourceLine" id="cb19-4" title="4"></a>
-<a class="sourceLine" id="cb19-5" title="5"><span class="dt">char</span> get_char_input()</a>
-<a class="sourceLine" id="cb19-6" title="6">{</a>
-<a class="sourceLine" id="cb19-7" title="7">    <span class="co">// paste code here</span></a>
-<a class="sourceLine" id="cb19-8" title="8">}</a>
-<a class="sourceLine" id="cb19-9" title="9"></a>
-<a class="sourceLine" id="cb19-10" title="10"><span class="dt">int</span> main(<span class="dt">void</span>)</a>
-<a class="sourceLine" id="cb19-11" title="11">{</a>
-<a class="sourceLine" id="cb19-12" title="12">    printf(<span class="st">&quot;You pressed: &#39;%c&#39;</span><span class="sc">\n</span><span class="st">&quot;</span>, get_char_input());</a>
-<a class="sourceLine" id="cb19-13" title="13">    <span class="cf">return</span> <span class="dv">0</span>;</a>
-<a class="sourceLine" id="cb19-14" title="14">}</a></code></pre></div>
-<hr />
-<div class="sourceCode" id="cb20"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb20-1" title="1"><span class="co">// main.rs</span></a>
+<div class="sourceCode" id="cb20"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb20-1" title="1"><span class="co">/* main.c */</span></a>
 <a class="sourceLine" id="cb20-2" title="2"></a>
-<a class="sourceLine" id="cb20-3" title="3"><span class="kw">fn</span> get_char_input() -&gt; <span class="dt">String</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb20-4" title="4">  <span class="co">// paste code here</span></a>
-<a class="sourceLine" id="cb20-5" title="5"><span class="op">}</span></a>
-<a class="sourceLine" id="cb20-6" title="6"></a>
-<a class="sourceLine" id="cb20-7" title="7"><span class="kw">fn</span> main() <span class="op">{</span></a>
-<a class="sourceLine" id="cb20-8" title="8">  <span class="pp">println!</span>(<span class="st">&quot;You pressed: &#39;{}&#39;&quot;</span>, get_char_input());</a>
-<a class="sourceLine" id="cb20-9" title="9"><span class="op">}</span></a></code></pre></div>
+<a class="sourceLine" id="cb20-3" title="3"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></a>
+<a class="sourceLine" id="cb20-4" title="4"></a>
+<a class="sourceLine" id="cb20-5" title="5"><span class="dt">char</span> get_char_input()</a>
+<a class="sourceLine" id="cb20-6" title="6">{</a>
+<a class="sourceLine" id="cb20-7" title="7">    <span class="co">// paste code here</span></a>
+<a class="sourceLine" id="cb20-8" title="8">}</a>
+<a class="sourceLine" id="cb20-9" title="9"></a>
+<a class="sourceLine" id="cb20-10" title="10"><span class="dt">int</span> main(<span class="dt">void</span>)</a>
+<a class="sourceLine" id="cb20-11" title="11">{</a>
+<a class="sourceLine" id="cb20-12" title="12">    printf(<span class="st">&quot;You pressed: &#39;%c&#39;</span><span class="sc">\n</span><span class="st">&quot;</span>, get_char_input());</a>
+<a class="sourceLine" id="cb20-13" title="13">    <span class="cf">return</span> <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb20-14" title="14">}</a></code></pre></div>
+<hr />
+<div class="sourceCode" id="cb21"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb21-1" title="1"><span class="co">// main.rs</span></a>
+<a class="sourceLine" id="cb21-2" title="2"></a>
+<a class="sourceLine" id="cb21-3" title="3"><span class="kw">fn</span> get_char_input() -&gt; <span class="dt">String</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb21-4" title="4">  <span class="co">// paste code here</span></a>
+<a class="sourceLine" id="cb21-5" title="5"><span class="op">}</span></a>
+<a class="sourceLine" id="cb21-6" title="6"></a>
+<a class="sourceLine" id="cb21-7" title="7"><span class="kw">fn</span> main() <span class="op">{</span></a>
+<a class="sourceLine" id="cb21-8" title="8">  <span class="pp">println!</span>(<span class="st">&quot;You pressed: &#39;{}&#39;&quot;</span>, get_char_input());</a>
+<a class="sourceLine" id="cb21-9" title="9"><span class="op">}</span></a></code></pre></div>
 <p>This program will call |get_char_input()| and print out the character between single quotes to avoid confusion. We can now spend the next 15 minutes on getting the code that we are finding online to work in this file, and then simply copy |get_char_input()| across to our other C file.</p>
 <p>Tip</p>
 <blockquote>
@@ -517,102 +511,102 @@ and call that function.</div>
 <p>Now that we are done with quitting the program, it is time to move on to the next action. However, in order to get to the next action, we must first extend the main loop of the program so that the user can choose between whatever action we choose to implement next, and quitting.</p>
 <p>Looking at the specification, the user’s input is again by reading a character. Great that we have already implemented |get_char_input()| to do exactly that. (If we hadn’t, we could just rely on the existing cheat, but eventually we would have to implement it of course.)</p>
 <p>Following the instructions on how to develop in increments, etc. and looking at how we implemented the dialogue in |quit_action()|, we can relatively quickly write something like this:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb21-1" title="1"><span class="co">/* main.c */</span></a>
-<a class="sourceLine" id="cb21-2" title="2"></a>
-<a class="sourceLine" id="cb21-3" title="3"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></a>
-<a class="sourceLine" id="cb21-4" title="4"></a>
-<a class="sourceLine" id="cb21-5" title="5"><span class="dt">int</span> main(<span class="dt">void</span>)</a>
-<a class="sourceLine" id="cb21-6" title="6">{</a>
-<a class="sourceLine" id="cb21-7" title="7">    <span class="dt">bool</span> should_quit = false;</a>
-<a class="sourceLine" id="cb21-8" title="8"></a>
-<a class="sourceLine" id="cb21-9" title="9">    <span class="cf">while</span> (!should_quit)</a>
-<a class="sourceLine" id="cb21-10" title="10">    {</a>
-<a class="sourceLine" id="cb21-11" title="11">      puts(<span class="st">&quot;Main menu:&quot;</span>);</a>
-<a class="sourceLine" id="cb21-12" title="12">      puts(<span class="st">&quot;[A]dd ware&quot;</span>);</a>
-<a class="sourceLine" id="cb21-13" title="13">      <span class="co">// ... &lt;--- remaining actions, or just omit them for now</span></a>
-<a class="sourceLine" id="cb21-14" title="14">      puts(<span class="st">&quot;[Q]uit&quot;</span>);</a>
-<a class="sourceLine" id="cb21-15" title="15">      <span class="dt">char</span> input = get_char_input();</a>
-<a class="sourceLine" id="cb21-16" title="16"></a>
-<a class="sourceLine" id="cb21-17" title="17">      <span class="co">// Hmmm ... code formatting?</span></a>
-<a class="sourceLine" id="cb21-18" title="18">      <span class="cf">if</span> (input == <span class="ch">&#39;A&#39;</span>)      { add_action(); }</a>
-<a class="sourceLine" id="cb21-19" title="19">      <span class="cf">else</span> <span class="cf">if</span> (input == <span class="ch">&#39;Q&#39;</span>) { should_quit = quit_action(); }</a>
-<a class="sourceLine" id="cb21-20" title="20">      <span class="cf">else</span>                   { puts(<span class="st">&quot;Invalid choice!&quot;</span>); }</a>
-<a class="sourceLine" id="cb21-21" title="21">    }</a>
-<a class="sourceLine" id="cb21-22" title="22">    <span class="cf">return</span> <span class="dv">0</span>;</a>
-<a class="sourceLine" id="cb21-23" title="23">}</a></code></pre></div>
-<hr />
-<div class="sourceCode" id="cb22"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb22-1" title="1"><span class="co">// main.rs</span></a>
+<div class="sourceCode" id="cb22"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb22-1" title="1"><span class="co">/* main.c */</span></a>
 <a class="sourceLine" id="cb22-2" title="2"></a>
-<a class="sourceLine" id="cb22-3" title="3"><span class="kw">fn</span> main() <span class="op">{</span></a>
+<a class="sourceLine" id="cb22-3" title="3"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></a>
 <a class="sourceLine" id="cb22-4" title="4"></a>
-<a class="sourceLine" id="cb22-5" title="5">    <span class="kw">loop</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb22-6" title="6">      <span class="pp">println!</span>(<span class="st">&quot;Main menu:&quot;</span>);</a>
-<a class="sourceLine" id="cb22-7" title="7">      <span class="pp">println!</span>(<span class="st">&quot;[A]dd ware&quot;</span>);</a>
-<a class="sourceLine" id="cb22-8" title="8">      <span class="co">// ... &lt;--- remaining actions, or just omit them for now</span></a>
-<a class="sourceLine" id="cb22-9" title="9">      <span class="pp">println!</span>(<span class="st">&quot;[Q]uit&quot;</span>);</a>
-<a class="sourceLine" id="cb22-10" title="10">      <span class="kw">let</span> input: <span class="dt">String</span> = get_char_input();</a>
-<a class="sourceLine" id="cb22-11" title="11"></a>
-<a class="sourceLine" id="cb22-12" title="12">      <span class="co">// Hmmm ... code formatting?</span></a>
-<a class="sourceLine" id="cb22-13" title="13">      <span class="kw">if</span> input == <span class="st">&quot;A&quot;</span>      <span class="op">{</span> add_action(); <span class="op">}</span></a>
-<a class="sourceLine" id="cb22-14" title="14">      <span class="kw">else</span> <span class="kw">if</span> input == <span class="st">&quot;Q&quot;</span> <span class="op">{</span> <span class="kw">if</span> quit_action() == <span class="st">&quot;Y&quot;</span> <span class="op">{</span> <span class="kw">break</span>; <span class="op">}</span> <span class="op">}</span></a>
-<a class="sourceLine" id="cb22-15" title="15">      <span class="kw">else</span>                   <span class="op">{</span> <span class="pp">println!</span>(<span class="st">&quot;Invalid choice!&quot;</span>); <span class="op">}</span></a>
-<a class="sourceLine" id="cb22-16" title="16">    <span class="op">}</span></a>
-<a class="sourceLine" id="cb22-17" title="17"></a>
-<a class="sourceLine" id="cb22-18" title="18"><span class="op">}</span></a></code></pre></div>
+<a class="sourceLine" id="cb22-5" title="5"><span class="dt">int</span> main(<span class="dt">void</span>)</a>
+<a class="sourceLine" id="cb22-6" title="6">{</a>
+<a class="sourceLine" id="cb22-7" title="7">    <span class="dt">bool</span> should_quit = false;</a>
+<a class="sourceLine" id="cb22-8" title="8"></a>
+<a class="sourceLine" id="cb22-9" title="9">    <span class="cf">while</span> (!should_quit)</a>
+<a class="sourceLine" id="cb22-10" title="10">    {</a>
+<a class="sourceLine" id="cb22-11" title="11">      puts(<span class="st">&quot;Main menu:&quot;</span>);</a>
+<a class="sourceLine" id="cb22-12" title="12">      puts(<span class="st">&quot;[A]dd ware&quot;</span>);</a>
+<a class="sourceLine" id="cb22-13" title="13">      <span class="co">// ... &lt;--- remaining actions, or just omit them for now</span></a>
+<a class="sourceLine" id="cb22-14" title="14">      puts(<span class="st">&quot;[Q]uit&quot;</span>);</a>
+<a class="sourceLine" id="cb22-15" title="15">      <span class="dt">char</span> input = get_char_input();</a>
+<a class="sourceLine" id="cb22-16" title="16"></a>
+<a class="sourceLine" id="cb22-17" title="17">      <span class="co">// Hmmm ... code formatting?</span></a>
+<a class="sourceLine" id="cb22-18" title="18">      <span class="cf">if</span> (input == <span class="ch">&#39;A&#39;</span>)      { add_action(); }</a>
+<a class="sourceLine" id="cb22-19" title="19">      <span class="cf">else</span> <span class="cf">if</span> (input == <span class="ch">&#39;Q&#39;</span>) { should_quit = quit_action(); }</a>
+<a class="sourceLine" id="cb22-20" title="20">      <span class="cf">else</span>                   { puts(<span class="st">&quot;Invalid choice!&quot;</span>); }</a>
+<a class="sourceLine" id="cb22-21" title="21">    }</a>
+<a class="sourceLine" id="cb22-22" title="22">    <span class="cf">return</span> <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb22-23" title="23">}</a></code></pre></div>
+<hr />
+<div class="sourceCode" id="cb23"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb23-1" title="1"><span class="co">// main.rs</span></a>
+<a class="sourceLine" id="cb23-2" title="2"></a>
+<a class="sourceLine" id="cb23-3" title="3"><span class="kw">fn</span> main() <span class="op">{</span></a>
+<a class="sourceLine" id="cb23-4" title="4"></a>
+<a class="sourceLine" id="cb23-5" title="5">    <span class="kw">loop</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb23-6" title="6">      <span class="pp">println!</span>(<span class="st">&quot;Main menu:&quot;</span>);</a>
+<a class="sourceLine" id="cb23-7" title="7">      <span class="pp">println!</span>(<span class="st">&quot;[A]dd ware&quot;</span>);</a>
+<a class="sourceLine" id="cb23-8" title="8">      <span class="co">// ... &lt;--- remaining actions, or just omit them for now</span></a>
+<a class="sourceLine" id="cb23-9" title="9">      <span class="pp">println!</span>(<span class="st">&quot;[Q]uit&quot;</span>);</a>
+<a class="sourceLine" id="cb23-10" title="10">      <span class="kw">let</span> input: <span class="dt">String</span> = get_char_input();</a>
+<a class="sourceLine" id="cb23-11" title="11"></a>
+<a class="sourceLine" id="cb23-12" title="12">      <span class="co">// Hmmm ... code formatting?</span></a>
+<a class="sourceLine" id="cb23-13" title="13">      <span class="kw">if</span> input == <span class="st">&quot;A&quot;</span>      <span class="op">{</span> add_action(); <span class="op">}</span></a>
+<a class="sourceLine" id="cb23-14" title="14">      <span class="kw">else</span> <span class="kw">if</span> input == <span class="st">&quot;Q&quot;</span> <span class="op">{</span> <span class="kw">if</span> quit_action() == <span class="st">&quot;Y&quot;</span> <span class="op">{</span> <span class="kw">break</span>; <span class="op">}</span> <span class="op">}</span></a>
+<a class="sourceLine" id="cb23-15" title="15">      <span class="kw">else</span>                   <span class="op">{</span> <span class="pp">println!</span>(<span class="st">&quot;Invalid choice!&quot;</span>); <span class="op">}</span></a>
+<a class="sourceLine" id="cb23-16" title="16">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb23-17" title="17"></a>
+<a class="sourceLine" id="cb23-18" title="18"><span class="op">}</span></a></code></pre></div>
 <p>Here, I added printing of (part of) the main menu, a call to |get_char_input()|, and I also changed the code a little to make use of a |should_quit()| variable to control whether the main loop should continue or not. The reason for this is simply because code with fewer exit points is simpler to understand.</p>
 <p>However, looking at this code and the code for |quit_action()|, I notice that there is a small modicum of repetition. In both cases, I have to handle the failure mode, i.e., when the user presses something that isn’t part of the protocol.</p>
 <p>Now <em>refactoring</em> enters into the picture. What I want to do now is to improve the code for |get_char_input()| so that it can handle the failure for me. A simple way to do that is to pass both the question and the valid alternatives to the |get_char_input()| function:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb23-1" title="1"><span class="co">/* c version */</span></a>
-<a class="sourceLine" id="cb23-2" title="2"></a>
-<a class="sourceLine" id="cb23-3" title="3"><span class="dt">char</span> input = get_char_input(<span class="st">&quot;Do you want to quit?&quot;</span>, <span class="st">&quot;YN&quot;</span>);</a>
-<a class="sourceLine" id="cb23-4" title="4"><span class="dt">char</span> input = get_char_input(<span class="st">&quot;Choose menu item!&quot;</span>, <span class="st">&quot;AREPLUQ&quot;</span>);</a></code></pre></div>
-<hr />
-<div class="sourceCode" id="cb24"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb24-1" title="1"><span class="co">// rust version</span></a>
+<div class="sourceCode" id="cb24"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb24-1" title="1"><span class="co">/* c version */</span></a>
 <a class="sourceLine" id="cb24-2" title="2"></a>
-<a class="sourceLine" id="cb24-3" title="3"><span class="kw">let</span> input = get_char_input(<span class="st">&quot;Do you want to quit?&quot;</span>, <span class="st">&quot;YN&quot;</span>);</a>
-<a class="sourceLine" id="cb24-4" title="4"><span class="kw">let</span> input = get_char_input(<span class="st">&quot;Choose menu item!&quot;</span>, <span class="st">&quot;AREPLUQ&quot;</span>);</a></code></pre></div>
-<p>The code for this is almost given in the specification of this assignment, so won’t be repeated here. However, the resulting code for |main()| is nice. Here rewritten with a switch statement just for fun, and the main menu printed in its own function:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb25-1" title="1"><span class="co">/* main.c */</span></a>
+<a class="sourceLine" id="cb24-3" title="3"><span class="dt">char</span> input = get_char_input(<span class="st">&quot;Do you want to quit?&quot;</span>, <span class="st">&quot;YN&quot;</span>);</a>
+<a class="sourceLine" id="cb24-4" title="4"><span class="dt">char</span> input = get_char_input(<span class="st">&quot;Choose menu item!&quot;</span>, <span class="st">&quot;AREPLUQ&quot;</span>);</a></code></pre></div>
+<hr />
+<div class="sourceCode" id="cb25"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb25-1" title="1"><span class="co">// rust version</span></a>
 <a class="sourceLine" id="cb25-2" title="2"></a>
-<a class="sourceLine" id="cb25-3" title="3"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></a>
-<a class="sourceLine" id="cb25-4" title="4"><span class="dt">int</span> main(<span class="dt">void</span>)</a>
-<a class="sourceLine" id="cb25-5" title="5">{</a>
-<a class="sourceLine" id="cb25-6" title="6">    <span class="dt">bool</span> should_quit = false;</a>
-<a class="sourceLine" id="cb25-7" title="7">    <span class="cf">while</span> (!should_quit)</a>
-<a class="sourceLine" id="cb25-8" title="8">    {</a>
-<a class="sourceLine" id="cb25-9" title="9">      print_main_menu(); <span class="co">// &lt;--- menu now in a function</span></a>
-<a class="sourceLine" id="cb25-10" title="10">      <span class="cf">switch</span> (get_char_input(<span class="st">&quot;Choose menu item!&quot;</span>, <span class="st">&quot;AREPLUQ&quot;</span>))</a>
-<a class="sourceLine" id="cb25-11" title="11">        {</a>
-<a class="sourceLine" id="cb25-12" title="12">        <span class="cf">case</span> <span class="ch">&#39;A&#39;</span>: add_action();                <span class="cf">break</span>;</a>
-<a class="sourceLine" id="cb25-13" title="13">        <span class="cf">case</span> <span class="ch">&#39;R&#39;</span>: ...                          <span class="cf">break</span>;</a>
-<a class="sourceLine" id="cb25-14" title="14">        <span class="cf">case</span> <span class="ch">&#39;E&#39;</span>: ...                          <span class="cf">break</span>;</a>
-<a class="sourceLine" id="cb25-15" title="15">        <span class="cf">case</span> <span class="ch">&#39;P&#39;</span>: ...                          <span class="cf">break</span>;</a>
-<a class="sourceLine" id="cb25-16" title="16">        <span class="cf">case</span> <span class="ch">&#39;L&#39;</span>: ...                          <span class="cf">break</span>;</a>
-<a class="sourceLine" id="cb25-17" title="17">        <span class="cf">case</span> <span class="ch">&#39;U&#39;</span>: ...                          <span class="cf">break</span>;</a>
-<a class="sourceLine" id="cb25-18" title="18">        <span class="cf">case</span> <span class="ch">&#39;Q&#39;</span>: should_quit = quit_action(); <span class="cf">break</span>;</a>
-<a class="sourceLine" id="cb25-19" title="19">        }</a>
-<a class="sourceLine" id="cb25-20" title="20">    }</a>
-<a class="sourceLine" id="cb25-21" title="21">    <span class="cf">return</span> <span class="dv">0</span>;</a>
-<a class="sourceLine" id="cb25-22" title="22">}</a></code></pre></div>
-<div class="sourceCode" id="cb26"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb26-1" title="1"><span class="co">/* main.rs */</span></a>
+<a class="sourceLine" id="cb25-3" title="3"><span class="kw">let</span> input = get_char_input(<span class="st">&quot;Do you want to quit?&quot;</span>, <span class="st">&quot;YN&quot;</span>);</a>
+<a class="sourceLine" id="cb25-4" title="4"><span class="kw">let</span> input = get_char_input(<span class="st">&quot;Choose menu item!&quot;</span>, <span class="st">&quot;AREPLUQ&quot;</span>);</a></code></pre></div>
+<p>The code for this is almost given in the specification of this assignment, so won’t be repeated here. However, the resulting code for |main()| is nice. Here rewritten with a switch statement just for fun, and the main menu printed in its own function:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb26-1" title="1"><span class="co">/* main.c */</span></a>
 <a class="sourceLine" id="cb26-2" title="2"></a>
-<a class="sourceLine" id="cb26-3" title="3"><span class="kw">fn</span> main() <span class="op">{</span></a>
-<a class="sourceLine" id="cb26-4" title="4">    <span class="kw">loop</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb26-5" title="5">      print_main_menu(); <span class="co">// &lt;--- menu now in a function</span></a>
-<a class="sourceLine" id="cb26-6" title="6">      <span class="kw">let</span> choice = get_char_input(<span class="st">&quot;Choose menu item!&quot;</span>, <span class="st">&quot;AREPLUQ&quot;</span>);</a>
-<a class="sourceLine" id="cb26-7" title="7">      <span class="kw">match</span> choice <span class="op">{</span></a>
-<a class="sourceLine" id="cb26-8" title="8">        <span class="ch">&#39;A&#39;</span> =&gt; add_action(),</a>
-<a class="sourceLine" id="cb26-9" title="9">        <span class="ch">&#39;R&#39;</span> =&gt; ...         ,</a>
-<a class="sourceLine" id="cb26-10" title="10">        <span class="ch">&#39;E&#39;</span> =&gt; ...         ,</a>
-<a class="sourceLine" id="cb26-11" title="11">        <span class="ch">&#39;P&#39;</span> =&gt; ...         ,</a>
-<a class="sourceLine" id="cb26-12" title="12">        <span class="ch">&#39;L&#39;</span> =&gt; ...         ,</a>
-<a class="sourceLine" id="cb26-13" title="13">        <span class="ch">&#39;U&#39;</span> =&gt; ...         ,</a>
-<a class="sourceLine" id="cb26-14" title="14">        <span class="ch">&#39;Q&#39;</span> =&gt; <span class="op">{</span> quit_action() == <span class="st">&quot;Y&quot;</span>; <span class="kw">break</span>;<span class="op">}</span> ,</a>
-<a class="sourceLine" id="cb26-15" title="15">        _ =&gt; ()</a>
-<a class="sourceLine" id="cb26-16" title="16">        <span class="op">}</span></a>
-<a class="sourceLine" id="cb26-17" title="17">    <span class="op">}</span></a>
-<a class="sourceLine" id="cb26-18" title="18">    </a>
-<a class="sourceLine" id="cb26-19" title="19"><span class="op">}</span></a></code></pre></div>
+<a class="sourceLine" id="cb26-3" title="3"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></a>
+<a class="sourceLine" id="cb26-4" title="4"><span class="dt">int</span> main(<span class="dt">void</span>)</a>
+<a class="sourceLine" id="cb26-5" title="5">{</a>
+<a class="sourceLine" id="cb26-6" title="6">    <span class="dt">bool</span> should_quit = false;</a>
+<a class="sourceLine" id="cb26-7" title="7">    <span class="cf">while</span> (!should_quit)</a>
+<a class="sourceLine" id="cb26-8" title="8">    {</a>
+<a class="sourceLine" id="cb26-9" title="9">      print_main_menu(); <span class="co">// &lt;--- menu now in a function</span></a>
+<a class="sourceLine" id="cb26-10" title="10">      <span class="cf">switch</span> (get_char_input(<span class="st">&quot;Choose menu item!&quot;</span>, <span class="st">&quot;AREPLUQ&quot;</span>))</a>
+<a class="sourceLine" id="cb26-11" title="11">        {</a>
+<a class="sourceLine" id="cb26-12" title="12">        <span class="cf">case</span> <span class="ch">&#39;A&#39;</span>: add_action();                <span class="cf">break</span>;</a>
+<a class="sourceLine" id="cb26-13" title="13">        <span class="cf">case</span> <span class="ch">&#39;R&#39;</span>: ...                          <span class="cf">break</span>;</a>
+<a class="sourceLine" id="cb26-14" title="14">        <span class="cf">case</span> <span class="ch">&#39;E&#39;</span>: ...                          <span class="cf">break</span>;</a>
+<a class="sourceLine" id="cb26-15" title="15">        <span class="cf">case</span> <span class="ch">&#39;P&#39;</span>: ...                          <span class="cf">break</span>;</a>
+<a class="sourceLine" id="cb26-16" title="16">        <span class="cf">case</span> <span class="ch">&#39;L&#39;</span>: ...                          <span class="cf">break</span>;</a>
+<a class="sourceLine" id="cb26-17" title="17">        <span class="cf">case</span> <span class="ch">&#39;U&#39;</span>: ...                          <span class="cf">break</span>;</a>
+<a class="sourceLine" id="cb26-18" title="18">        <span class="cf">case</span> <span class="ch">&#39;Q&#39;</span>: should_quit = quit_action(); <span class="cf">break</span>;</a>
+<a class="sourceLine" id="cb26-19" title="19">        }</a>
+<a class="sourceLine" id="cb26-20" title="20">    }</a>
+<a class="sourceLine" id="cb26-21" title="21">    <span class="cf">return</span> <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb26-22" title="22">}</a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb27-1" title="1"><span class="co">/* main.rs */</span></a>
+<a class="sourceLine" id="cb27-2" title="2"></a>
+<a class="sourceLine" id="cb27-3" title="3"><span class="kw">fn</span> main() <span class="op">{</span></a>
+<a class="sourceLine" id="cb27-4" title="4">    <span class="kw">loop</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb27-5" title="5">      print_main_menu(); <span class="co">// &lt;--- menu now in a function</span></a>
+<a class="sourceLine" id="cb27-6" title="6">      <span class="kw">let</span> choice = get_char_input(<span class="st">&quot;Choose menu item!&quot;</span>, <span class="st">&quot;AREPLUQ&quot;</span>);</a>
+<a class="sourceLine" id="cb27-7" title="7">      <span class="kw">match</span> choice <span class="op">{</span></a>
+<a class="sourceLine" id="cb27-8" title="8">        <span class="ch">&#39;A&#39;</span> =&gt; add_action(),</a>
+<a class="sourceLine" id="cb27-9" title="9">        <span class="ch">&#39;R&#39;</span> =&gt; ...         ,</a>
+<a class="sourceLine" id="cb27-10" title="10">        <span class="ch">&#39;E&#39;</span> =&gt; ...         ,</a>
+<a class="sourceLine" id="cb27-11" title="11">        <span class="ch">&#39;P&#39;</span> =&gt; ...         ,</a>
+<a class="sourceLine" id="cb27-12" title="12">        <span class="ch">&#39;L&#39;</span> =&gt; ...         ,</a>
+<a class="sourceLine" id="cb27-13" title="13">        <span class="ch">&#39;U&#39;</span> =&gt; ...         ,</a>
+<a class="sourceLine" id="cb27-14" title="14">        <span class="ch">&#39;Q&#39;</span> =&gt; <span class="op">{</span> quit_action() == <span class="st">&quot;Y&quot;</span>; <span class="kw">break</span>;<span class="op">}</span> ,</a>
+<a class="sourceLine" id="cb27-15" title="15">        _ =&gt; ()</a>
+<a class="sourceLine" id="cb27-16" title="16">        <span class="op">}</span></a>
+<a class="sourceLine" id="cb27-17" title="17">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb27-18" title="18">    </a>
+<a class="sourceLine" id="cb27-19" title="19"><span class="op">}</span></a></code></pre></div>
 <p>Now, we can compile and run the program again, and test that it works to trigger |add_action()|, which will print “Add action is not implemented yet”. Time to implement it!</p>
 <h3 id="step-7-think-a-little-code-a-little-again">3.8 Step 7: Think a little – Code a little (again)</h3>
 <p><a href="#TOC"> <code>^--</code> </a></p>
@@ -638,30 +632,30 @@ and call that function.</div>
 </ol>
 <p>Looking at the highlighted information above, and reading the surrounding text, a pattern emerges. There is a <em>database</em>, which stores <em>wares</em>, that each store name, description, storage location, pricetag, and number of items. There is also a mentioning of <em>action</em>, which makes sense: in order to undo an action, we need to somehow record what the program did just before, and enough information to undo it. We don’t know exactly what this information is yet, but that’s fine. It probably does not make sense to implement undo until there are actions to be undone. (Read more in the aside below.)</p>
 <p>The specification gives us a (mostly) very good idea for a data type for <em>ware</em>. Name and description are clearly strings. Price and number of items (which I will be calling amount from now on) are clearly integers. The storage location is less clear, however. Rather that getting stuck on this detail, let’s cheat and assume that there is a type |storage_location_t| that solves the problem. Now, we can write the type for ware:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb27-1" title="1"><span class="co">/* main.c */</span></a>
-<a class="sourceLine" id="cb27-2" title="2"></a>
-<a class="sourceLine" id="cb27-3" title="3"><span class="kw">struct</span> ware</a>
-<a class="sourceLine" id="cb27-4" title="4">{</a>
-<a class="sourceLine" id="cb27-5" title="5">    <span class="dt">char</span> *name;</a>
-<a class="sourceLine" id="cb27-6" title="6">    <span class="dt">char</span> *description;</a>
-<a class="sourceLine" id="cb27-7" title="7">    storage_location_t storage_location;</a>
-<a class="sourceLine" id="cb27-8" title="8">    <span class="dt">int</span>   price;</a>
-<a class="sourceLine" id="cb27-9" title="9">    <span class="dt">int</span>   amount;</a>
-<a class="sourceLine" id="cb27-10" title="10">};</a></code></pre></div>
-<p>By stubbing a little, we now have a type |ware|. However, in the interest of making progress and working in an incremental fashion, we are also going to apply another great simplification trick: <em>dodging</em>.</p>
-<p>Getting information from the user at all is a great first step in an incremental development methodology. Once that is done and works, we can start caring about making sure that the information is correct. It is time to <em>dodge</em>.</p>
-<p>Dodging means <em>temporarily</em> simplifying the specification. In the current example, a good dodge is to say: for now, I am going to only store string data in wares, and worry about integers and storage locations later. This allows us to use a single function for reading input from the user to complete the entire specification for adding a ware, modulo saving it to the database.</p>
-<p>Temporarily, we change to type of |ware| to this:</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb28-1" title="1"><span class="co">/* main.c */</span></a>
 <a class="sourceLine" id="cb28-2" title="2"></a>
 <a class="sourceLine" id="cb28-3" title="3"><span class="kw">struct</span> ware</a>
 <a class="sourceLine" id="cb28-4" title="4">{</a>
 <a class="sourceLine" id="cb28-5" title="5">    <span class="dt">char</span> *name;</a>
 <a class="sourceLine" id="cb28-6" title="6">    <span class="dt">char</span> *description;</a>
-<a class="sourceLine" id="cb28-7" title="7">    <span class="dt">char</span> *storage_location; <span class="co">// </span><span class="al">TODO</span><span class="co">: storage_location_t</span></a>
-<a class="sourceLine" id="cb28-8" title="8">    <span class="dt">char</span> *price;            <span class="co">// </span><span class="al">TODO</span><span class="co">: int</span></a>
-<a class="sourceLine" id="cb28-9" title="9">    <span class="dt">char</span> *amount;           <span class="co">// </span><span class="al">TODO</span><span class="co">: int</span></a>
+<a class="sourceLine" id="cb28-7" title="7">    storage_location_t storage_location;</a>
+<a class="sourceLine" id="cb28-8" title="8">    <span class="dt">int</span>   price;</a>
+<a class="sourceLine" id="cb28-9" title="9">    <span class="dt">int</span>   amount;</a>
 <a class="sourceLine" id="cb28-10" title="10">};</a></code></pre></div>
+<p>By stubbing a little, we now have a type |ware|. However, in the interest of making progress and working in an incremental fashion, we are also going to apply another great simplification trick: <em>dodging</em>.</p>
+<p>Getting information from the user at all is a great first step in an incremental development methodology. Once that is done and works, we can start caring about making sure that the information is correct. It is time to <em>dodge</em>.</p>
+<p>Dodging means <em>temporarily</em> simplifying the specification. In the current example, a good dodge is to say: for now, I am going to only store string data in wares, and worry about integers and storage locations later. This allows us to use a single function for reading input from the user to complete the entire specification for adding a ware, modulo saving it to the database.</p>
+<p>Temporarily, we change to type of |ware| to this:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb29-1" title="1"><span class="co">/* main.c */</span></a>
+<a class="sourceLine" id="cb29-2" title="2"></a>
+<a class="sourceLine" id="cb29-3" title="3"><span class="kw">struct</span> ware</a>
+<a class="sourceLine" id="cb29-4" title="4">{</a>
+<a class="sourceLine" id="cb29-5" title="5">    <span class="dt">char</span> *name;</a>
+<a class="sourceLine" id="cb29-6" title="6">    <span class="dt">char</span> *description;</a>
+<a class="sourceLine" id="cb29-7" title="7">    <span class="dt">char</span> *storage_location; <span class="co">// </span><span class="al">TODO</span><span class="co">: storage_location_t</span></a>
+<a class="sourceLine" id="cb29-8" title="8">    <span class="dt">char</span> *price;            <span class="co">// </span><span class="al">TODO</span><span class="co">: int</span></a>
+<a class="sourceLine" id="cb29-9" title="9">    <span class="dt">char</span> *amount;           <span class="co">// </span><span class="al">TODO</span><span class="co">: int</span></a>
+<a class="sourceLine" id="cb29-10" title="10">};</a></code></pre></div>
 <p>And then we can make a version of |get_char_input()|, for example |get_string_input()|. We will probably also cheat and assume its existence on the first pass through the code. We will also cheat and assume the existence of a |add_to_db()| function, which does nothing except prints out the obligatory disclaimer of it not yet being implemented.</p>
 <p>Here is a list of suitable steps for almost implementing |add_action()|. Each step notably results in a program that can compile and run, but probably does not do anything useful.</p>
 <ol type="1">
@@ -695,14 +689,14 @@ and call that function.</div>
 </ol>
 <p>The first database design will allow implementing everything except adding and removing with multiple wares, and listing multiple wares. The second design will allow us to do all that. The third design will make the program less of a Mickey Mouse program <a href="http://www.catb.org/jargon/html/M/mickey-mouse-program.html" class="uri">http://www.catb.org/jargon/html/M/mickey-mouse-program.html</a>.</p>
 <p>Following the first database design, we can now define a struct for the database like so:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb29-1" title="1"><span class="co">/* main.c */</span></a>
-<a class="sourceLine" id="cb29-2" title="2"></a>
-<a class="sourceLine" id="cb29-3" title="3"><span class="kw">struct</span> db</a>
-<a class="sourceLine" id="cb29-4" title="4">{</a>
-<a class="sourceLine" id="cb29-5" title="5">    <span class="kw">struct</span> ware ware; <span class="co">// </span><span class="al">TODO</span><span class="co">: improve later</span></a>
-<a class="sourceLine" id="cb29-6" title="6">};</a>
-<a class="sourceLine" id="cb29-7" title="7"></a>
-<a class="sourceLine" id="cb29-8" title="8"><span class="kw">typedef</span> <span class="kw">struct</span> db db_t;</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb30-1" title="1"><span class="co">/* main.c */</span></a>
+<a class="sourceLine" id="cb30-2" title="2"></a>
+<a class="sourceLine" id="cb30-3" title="3"><span class="kw">struct</span> db</a>
+<a class="sourceLine" id="cb30-4" title="4">{</a>
+<a class="sourceLine" id="cb30-5" title="5">    <span class="kw">struct</span> ware ware; <span class="co">// </span><span class="al">TODO</span><span class="co">: improve later</span></a>
+<a class="sourceLine" id="cb30-6" title="6">};</a>
+<a class="sourceLine" id="cb30-7" title="7"></a>
+<a class="sourceLine" id="cb30-8" title="8"><span class="kw">typedef</span> <span class="kw">struct</span> db db_t;</a></code></pre></div>
 <p>Now, we can finally finish the implementation of |add_action()|. To do this, we will go through the program and make a few simple changes:</p>
 <ol type="1">
 <li>We want to create a |db_t| value in main.</li>
@@ -710,30 +704,30 @@ and call that function.</div>
 <li>We want to pass a pointer to the |db_t| value to |add_to_db()|.</li>
 </ol>
 <p>Now we can implement |add_to_db()| like so:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb30-1" title="1"><span class="co">/* main.c */</span></a>
-<a class="sourceLine" id="cb30-2" title="2"></a>
-<a class="sourceLine" id="cb30-3" title="3"><span class="dt">void</span> add_to_db(db_t *db, <span class="kw">struct</span> ware ware)</a>
-<a class="sourceLine" id="cb30-4" title="4">{</a>
-<a class="sourceLine" id="cb30-5" title="5">    db-&gt;ware = ware;</a>
-<a class="sourceLine" id="cb30-6" title="6">}</a></code></pre></div>
-<p>And now we are done with |add_action()|.</p>
-<p>As we finish more actions and move on to the second database design, we simply update struct db:</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb31-1" title="1"><span class="co">/* main.c */</span></a>
 <a class="sourceLine" id="cb31-2" title="2"></a>
-<a class="sourceLine" id="cb31-3" title="3"><span class="pp">#define Max_elements_in_db 128</span></a>
-<a class="sourceLine" id="cb31-4" title="4"><span class="kw">struct</span> db</a>
-<a class="sourceLine" id="cb31-5" title="5">{</a>
-<a class="sourceLine" id="cb31-6" title="6">    <span class="kw">struct</span> ware wares[Max_elements_in_db]; <span class="co">// </span><span class="al">TODO</span><span class="co">: improve later</span></a>
-<a class="sourceLine" id="cb31-7" title="7">    <span class="dt">int</span> size;</a>
-<a class="sourceLine" id="cb31-8" title="8">};</a></code></pre></div>
-<p>That was easy, and now we can finalise more complex parts of out program. Moreover, if we have isolated the how the database works from the rest of the program correctly, only functions like |add_to_db()| etc. will have to change as a result:</p>
+<a class="sourceLine" id="cb31-3" title="3"><span class="dt">void</span> add_to_db(db_t *db, <span class="kw">struct</span> ware ware)</a>
+<a class="sourceLine" id="cb31-4" title="4">{</a>
+<a class="sourceLine" id="cb31-5" title="5">    db-&gt;ware = ware;</a>
+<a class="sourceLine" id="cb31-6" title="6">}</a></code></pre></div>
+<p>And now we are done with |add_action()|.</p>
+<p>As we finish more actions and move on to the second database design, we simply update struct db:</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb32-1" title="1"><span class="co">/* main.c */</span></a>
 <a class="sourceLine" id="cb32-2" title="2"></a>
-<a class="sourceLine" id="cb32-3" title="3"><span class="dt">void</span> add_to_db(db_t *db, <span class="kw">struct</span> ware ware)</a>
-<a class="sourceLine" id="cb32-4" title="4">{</a>
-<a class="sourceLine" id="cb32-5" title="5">    <span class="co">// Saves ware on the next available index and increase size by 1</span></a>
-<a class="sourceLine" id="cb32-6" title="6">    db-&gt;wares[db-&gt;size++] = ware;</a>
-<a class="sourceLine" id="cb32-7" title="7">}</a></code></pre></div>
+<a class="sourceLine" id="cb32-3" title="3"><span class="pp">#define Max_elements_in_db 128</span></a>
+<a class="sourceLine" id="cb32-4" title="4"><span class="kw">struct</span> db</a>
+<a class="sourceLine" id="cb32-5" title="5">{</a>
+<a class="sourceLine" id="cb32-6" title="6">    <span class="kw">struct</span> ware wares[Max_elements_in_db]; <span class="co">// </span><span class="al">TODO</span><span class="co">: improve later</span></a>
+<a class="sourceLine" id="cb32-7" title="7">    <span class="dt">int</span> size;</a>
+<a class="sourceLine" id="cb32-8" title="8">};</a></code></pre></div>
+<p>That was easy, and now we can finalise more complex parts of out program. Moreover, if we have isolated the how the database works from the rest of the program correctly, only functions like |add_to_db()| etc. will have to change as a result:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb33-1" title="1"><span class="co">/* main.c */</span></a>
+<a class="sourceLine" id="cb33-2" title="2"></a>
+<a class="sourceLine" id="cb33-3" title="3"><span class="dt">void</span> add_to_db(db_t *db, <span class="kw">struct</span> ware ware)</a>
+<a class="sourceLine" id="cb33-4" title="4">{</a>
+<a class="sourceLine" id="cb33-5" title="5">    <span class="co">// Saves ware on the next available index and increase size by 1</span></a>
+<a class="sourceLine" id="cb33-6" title="6">    db-&gt;wares[db-&gt;size++] = ware;</a>
+<a class="sourceLine" id="cb33-7" title="7">}</a></code></pre></div>
 <h3 id="step-9-and-beyond">3.10 Step 9, and beyond</h3>
 <p><a href="#TOC"> <code>^--</code> </a></p>
 <p>Think/code/refactor/remove cheats. Repeat until done. Find a good balance.</p>
@@ -741,7 +735,7 @@ and call that function.</div>
 <p><a href="#TOC"> <code>^--</code> </a></p>
 <p>Almost all hard problems can be broken down into less-hard subproblems, which in turn can be broken down to even less-hard subsubproblems, etc. After a while of breaking work down into smaller and smaller tasks, the tasks finally become simple, and that is the right time to start solving them. That’s SIMPLE in a nutshell.</p>
 <p>As soon as we hit a bump in the road – a problem we don’t know immediately how to solve, or don’t know how to solve well, or just cannot be bothered with solving right now – we keep things simple by stubbing and dodging. We reserve ourselves that right by always making clear notes about our cheats and dodges and by promising ourselves that we will set things straight in the future. And by keeping our promises.</p>
-<h2 id="a-summary-of-simple-in-ten-steps">4 A Summary of SIMPLE in Ten Steps</h2>
+<h2 id="a-summary-of-simple-in-ten-steps-1">4 A Summary of SIMPLE in Ten Steps</h2>
 <p><a href="#TOC"> <code>^--</code> </a></p>
 <p><strong>Start with a high-level work breakdown structure</strong></p>
 <p>Mine your specification for data (nouns) and actions (verbs – behaviour/functions). Make simple drawings, e.g., mindmaps, to record your insights. Making things look easy is almost always good.</p>

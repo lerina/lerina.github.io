@@ -16,10 +16,10 @@
 - [ZONE_IN](ZONE_IN.html)
 
 ### Software development
-- [sect](sect.html)
+- [acronym driven development](sect.html)
 - [Problem-solving](./D.M.Etter.html)
 - [coding styles](./coding_styles.html)
-- [SIMPLE Framework](./SIMPLE.html)
+- [SIMPLE Framework](./the_process/SIMPLE.html)
 
 <footer>
   <a href="https://github.com/lerina" target="_blank" title="github">![github](https://razafy.com/img/github32px.png){.link .glow}
