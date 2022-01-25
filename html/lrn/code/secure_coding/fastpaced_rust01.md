@@ -18,6 +18,8 @@ See also [Storing Values with Variables](https://doc.rust-lang.org/stable/book/c
 
 Create variables with the `let` statement.
 
+### Define and assign with automatic type inferance
+
 ```rust
 let x; // declare "x"
 x = 42; // assign 42 to "x"
@@ -30,6 +32,8 @@ This can also be written as a single line:
 
           let x = 42;
 ```
+
+### Variable Binding with Explicit type 
 
 You can specify the variable\'s type explicitly with `:`, that\'s a type
 annotation:
@@ -69,6 +73,8 @@ However, doing this is completely fine:
           foobar(x); // the type of `x` will be inferred from here
 ```         
 
+### Discarding a value
+
 The underscore `_` is a special name - or rather, a \"lack of name\". It
 basically means to throw away something:
 
@@ -92,6 +98,8 @@ the compiler won\'t warn about them being unused:
           let _x = 42;
 ```         
 
+### Shadowing Variables
+
 Separate bindings with the same name can be introduced - you can
 *shadow* a variable binding:
 
@@ -102,6 +110,8 @@ Separate bindings with the same name can be introduced - you can
           // using `x` after that line only refers to the second `x`,
           // the first `x` no longer exists.
 ```         
+
+### Tuples
 
 Rust has tuples, which you can think of as \"fixed-length collections of
 values of different types\".
@@ -147,6 +157,8 @@ part of it:
           let (_, right) = slice.split_at(middle);
 ```         
 
+### Statements
+
 The semi-colon marks the end of a statement:
 
 ```rust
@@ -168,6 +180,8 @@ Which means statements can span multiple lines:
 ```         
 
 (We\'ll go over what those actually mean later).
+
+### Fuctions 
 
 `fn` declares a function.
 
