@@ -80,22 +80,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <nav id="TOC">
 <ul>
 <li><a href="#the-rust-programming-language-a-fast-paced-tutorial-level-01">The Rust programming language: A Fast-paced tutorial (Level 01)</a><ul>
-<li><a href="#a-half-hour-to-learn-rust">A half-hour to learn Rust</a></li>
+<li><a href="#variable-binding">Variable binding</a><ul>
+<li><a href="#define-and-assign-with-automatic-type-inferance">Define and assign with automatic type inferance</a></li>
+<li><a href="#variable-binding-with-explicit-type">Variable Binding with Explicit type</a></li>
+<li><a href="#discarding-a-value">Discarding a value</a></li>
+<li><a href="#shadowing-variables">Shadowing Variables</a></li>
+<li><a href="#tuples">Tuples</a></li>
+<li><a href="#statements">Statements</a></li>
+<li><a href="#fuctions">Fuctions</a></li>
+</ul></li>
 <li><a href="#references">References</a></li>
 </ul></li>
 </ul>
 </nav>
+<p>⇦ <a href="../../../../index.html">razafy.com</a> - <a href="../../index.html">lerina</a> - <a href="./index.html">code</a></p>
 <h1 id="the-rust-programming-language-a-fast-paced-tutorial-level-01">The Rust programming language: A Fast-paced tutorial (Level 01)</h1>
-<h2 id="a-half-hour-to-learn-rust">A half-hour to learn Rust</h2>
-<p>In order to increase fluency in a programming language, one has to read a lot of it. But how can you read a lot of it if you don't know what it means?</p>
-<p>In this article, instead of focusing on one or two concepts, I'll try to go through as many Rust snippets as I can, and explain what the keywords and symbols they contain mean.</p>
-<p>Ready? Go!</p>
-<p><code>let</code> introduces a variable binding:</p>
+<p>Replace with 20min for each header. add worked examples and exercise</p>
+<ol type="1">
+<li>add headers</li>
+<li>link to official book</li>
+<li>reformulate with pix</li>
+<li>change examples</li>
+<li>add exercise</li>
+<li>worked problem/exercise</li>
+<li>problem and solution</li>
+<li>assignment</li>
+</ol>
+<h2 id="variable-binding">Variable binding</h2>
+<p>See also <a href="https://doc.rust-lang.org/stable/book/ch02-00-guessing-game-tutorial.html#storing-values-with-variables">Storing Values with Variables</a></p>
+<p>Create variables with the <code>let</code> statement.</p>
+<h3 id="define-and-assign-with-automatic-type-inferance">Define and assign with automatic type inferance</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">let</span> x; <span class="co">// declare &quot;x&quot;</span></a>
 <a class="sourceLine" id="cb1-2" title="2">x = <span class="dv">42</span>; <span class="co">// assign 42 to &quot;x&quot;</span></a></code></pre></div>
 <p>This can also be written as a single line:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb2-1" title="1"></a>
 <a class="sourceLine" id="cb2-2" title="2">          <span class="kw">let</span> x = <span class="dv">42</span>;</a></code></pre></div>
+<h3 id="variable-binding-with-explicit-type">Variable Binding with Explicit type</h3>
 <p>You can specify the variable's type explicitly with <code>:</code>, that's a type annotation:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb3-1" title="1"></a>
 <a class="sourceLine" id="cb3-2" title="2">          <span class="kw">let</span> x: <span class="dt">i32</span>; <span class="co">// `i32` is a signed 32-bit integer</span></a>
@@ -115,6 +135,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb6-2" title="2">          <span class="kw">let</span> x;</a>
 <a class="sourceLine" id="cb6-3" title="3">          x = <span class="dv">42</span>;</a>
 <a class="sourceLine" id="cb6-4" title="4">          foobar(x); <span class="co">// the type of `x` will be inferred from here</span></a></code></pre></div>
+<h3 id="discarding-a-value">Discarding a value</h3>
 <p>The underscore <code>_</code> is a special name - or rather, a "lack of name". It basically means to throw away something:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb7-1" title="1"></a>
 <a class="sourceLine" id="cb7-2" title="2">          <span class="co">// this does *nothing* because 42 is a constant</span></a>
@@ -126,12 +147,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb8-2" title="2">          <span class="co">// we may use `_x` eventually, but our code is a work-in-progress</span></a>
 <a class="sourceLine" id="cb8-3" title="3">          <span class="co">// and we just wanted to get rid of a compiler warning for now.</span></a>
 <a class="sourceLine" id="cb8-4" title="4">          <span class="kw">let</span> _x = <span class="dv">42</span>;</a></code></pre></div>
+<h3 id="shadowing-variables">Shadowing Variables</h3>
 <p>Separate bindings with the same name can be introduced - you can <em>shadow</em> a variable binding:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb9-1" title="1"></a>
 <a class="sourceLine" id="cb9-2" title="2">          <span class="kw">let</span> x = <span class="dv">13</span>;</a>
 <a class="sourceLine" id="cb9-3" title="3">          <span class="kw">let</span> x = x + <span class="dv">3</span>;</a>
 <a class="sourceLine" id="cb9-4" title="4">          <span class="co">// using `x` after that line only refers to the second `x`,</span></a>
 <a class="sourceLine" id="cb9-5" title="5">          <span class="co">// the first `x` no longer exists.</span></a></code></pre></div>
+<h3 id="tuples">Tuples</h3>
 <p>Rust has tuples, which you can think of as "fixed-length collections of values of different types".</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb10-1" title="1"></a>
 <a class="sourceLine" id="cb10-2" title="2">          <span class="kw">let</span> pair = (<span class="ch">&#39;a&#39;</span>, <span class="dv">17</span>);</a>
@@ -150,6 +173,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Of course, when destructuring a tuple, <code>_</code> can be used to throw away part of it:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb14-1" title="1"></a>
 <a class="sourceLine" id="cb14-2" title="2">          <span class="kw">let</span> (_, right) = slice.split_at(middle);</a></code></pre></div>
+<h3 id="statements">Statements</h3>
 <p>The semi-colon marks the end of a statement:</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb15-1" title="1"></a>
 <a class="sourceLine" id="cb15-2" title="2">          <span class="kw">let</span> x = <span class="dv">3</span>;</a>
@@ -162,6 +186,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb16-4" title="4">              .map(|x| x + <span class="dv">3</span>)</a>
 <a class="sourceLine" id="cb16-5" title="5">              .fold(<span class="dv">0</span>, |x, y| x + y);</a></code></pre></div>
 <p>(We'll go over what those actually mean later).</p>
+<h3 id="fuctions">Fuctions</h3>
 <p><code>fn</code> declares a function.</p>
 <p>Here's a void function:</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb17-1" title="1"></a>
