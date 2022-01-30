@@ -40,6 +40,7 @@ Maintain `PEACE` with
 `C` ravings moderated  
 `E` nergy regulated  
 
+| "The happiness of pursuit far outweight the pursuit of happiness."
 
 -----
 
