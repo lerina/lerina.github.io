@@ -1,3 +1,5 @@
+⇦ [Razafy.com](../../index.html) - [Nosy Malagasy](./index.html)
+
 # Ny Fanorona
 
 Fanorona is played on a 5×9 board and it is played along the lines and on its intersections just as Go. 
