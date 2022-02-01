@@ -123,14 +123,37 @@ The game can  resume to a regular riatra for a total of best out of 3 or 5.
 ### Types of opening
 -  Vakiloha These are types of openings where the first player moves his pawn above the
 middle (if you look at his side) to the medium upon approach by removing two pins.
--  Havanana Types of openings where the first player moves his pawn at top right in the
+Vakiloha: consiste à déplacer son pion de
+face depuis le milieu de notre deuxième
+rangée vers le centre.
+
+-  Lehavanana Types of openings where the first player moves his pawn at top right in the
 middle (if you look at his side) to the medium upon approach by removing two pins.
--  Havy Types of openings where the first player moves his pawn to the top left of the center
+Lehavanana: consiste à attaquer en déplaçant 
+le pion de la deuxième rangée située
+immédiatement à droite du centre.
+C'est un déplacement en diagonale. 
+
+-  Lehavia Types of openings where the first player moves his pawn to the top left of the center
 (if you look at his side) to the medium upon approach by removing two pins.
--  Fosy These are types of openings where the first player moves his pawn to the left of
+Lehavia: consiste à attaquer en
+déplaçant le pion située à la deuxième
+rangée immédiatement à gauche du centre
+est aussi un déplacement en diagonale
+
+-  Kobaka Fohy: These are types of openings where the first player moves his pawn to the left of
 center (if you look at his side) to the medium upon approach by removing a pin.
--  Kobaka These are types of openings where the first player moves his pawn to the left of
+Kobaka Fohy: consiste à attaquer en
+déplaçant le pion situé en face du
+centre en éliminant ainsi le pion qui se
+trouve juste devant soi. 
+
+-  Kobaka Lava: These are types of openings where the first player moves his pawn to the left of
 center (if you look at his side) to the medium by removing a peg removal.
+Kobaka Lava: consiste à attaquer en déplaçant le
+pion situé en face du centre
+mais cette fois en éliminant le pion
+juste derrière lui.
 
 
 ## The Vela Game
