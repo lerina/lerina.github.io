@@ -30,8 +30,9 @@ pub fn start() {
     context.translate(0.0, height as f64 /2.0 );
     context.scale(1.0, -1.0); // direction: go up then down
 
-    let PI2 = 31415926 *2; // Mountain then Valley
 
+    let PI2 = 1024; 31415926 *2; // Mountain then Valley
+/*
     for angle in (0..PI2).step_by(100000){ // there is only so many pixels we can see. 
         // Rust does not allow iterating over a range of f32 or f64. 
         // Instead, it forces you to use integral steps
@@ -43,4 +44,13 @@ pub fn start() {
         
         context.fill_rect(x, y, 5.0, 5.0);
    }
+*/
+
+    for angle in (0..PI2).step_by(2).map(|x| x as f64 * 0.01) {      
+        let x = angle * 160.0;
+        let y = angle.sin() * 160.0; 
+        
+        context.fill_rect(x, y, 5.0, 5.0);
+   }
+
 }
