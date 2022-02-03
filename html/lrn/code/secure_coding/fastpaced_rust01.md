@@ -1,6 +1,6 @@
 ⇦ [razafy.com](../../../../index.html)  - [lerina](../../index.html) - [code](./index.html)  
 
-# The Rust programming language: A Fast-paced tutorial (Level 01)
+# The Rust programming language Level 01: Building a solid foundation
 
 Replace with 20min for each header. add worked examples and  exercise
 
@@ -13,46 +13,35 @@ Replace with 20min for each header. add worked examples and  exercise
 7. problem and solution
 8. assignment 
 
-## Variable binding
-See also [Storing Values with Variables](https://doc.rust-lang.org/stable/book/ch02-00-guessing-game-tutorial.html#storing-values-with-variables)
+## Rust types and Variable binding
+
+See also:  
+[Types](https://doc.rust-lang.org/reference/types.html)  
+[Storing Values with Variables](https://doc.rust-lang.org/stable/book/ch02-00-guessing-game-tutorial.html#storing-values-with-variables)  
+
+Primitive types:
+
+    Boolean — true or false
+    Numeric — integer and float
+    Textual — char and str
+    Never — ! — a type with no values
+
+[Numeric types](https://doc.rust-lang.org/reference/types/numeric.html)  
 
 Create variables with the `let` statement.
 
-### Define and assign with automatic type inferance
+### Variable binding: Define and assign
 
+```rust
+let x = 42;
+let x: i32 = 42;
+```
 ```rust
 let x; // declare "x"
 x = 42; // assign 42 to "x"
+let x: i32; // `i32` is a signed 32-bit integer
+
 ```
-
-
-This can also be written as a single line:
-
-```rust
-
-          let x = 42;
-```
-
-### Variable Binding with Explicit type 
-
-You can specify the variable\'s type explicitly with `:`, that\'s a type
-annotation:
-
-          
-```rust
-
-          let x: i32; // `i32` is a signed 32-bit integer
-          x = 42;
-          // there's i8, i16, i32, i64, i128
-          //    also u8, u16, u32, u64, u128 for unsigned
-```
-
-This can also be written as a single line:
-
-```rust
-
-          let x: i32 = 42;
-```         
 
 If you declare a name and initialize it later, the compiler will prevent
 you from using it before it\'s initialized.
