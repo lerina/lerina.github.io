@@ -20,7 +20,10 @@ B B B B B B B B B
 B B B B B B B B B
 
 ```
-##
+## Three phases of the game
+On the surface the game has an opening, a mid-game and an end game. However from the get go, you 
+must prepare for the end making room for control of the board by taking hold of key nodes.
+
 In the opening, many captures are possible and so a lot of pieces will be eliminated very quickly.
 
 The basic tactics are to squeeze your opponet's pieces so they are placed in situations of forcing moves to your advantage, 
