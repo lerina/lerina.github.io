@@ -2,8 +2,9 @@
 
 # Ny Fanorona
 
-Fanorona is played on a 5×9 board and it is played along the lines and on its intersections just as Go. 
-A line represents the way along which a stone can move during the game. 
+The standard version of Fanorona is played on a 5×9 board. 
+The stones are placed on its intersections and moved along the lines. 
+
 There are strong and weak points (intersections). 
 On a weak point it is only possible to move a stone horizontally and vertically, 
 while on a strong point it also is possible to move stones diagonally. 
