@@ -96,6 +96,7 @@ pub fn start() {
   run();
 </script>
 
+<!--  adapted from [source](https://github.com/RustAudio/rust-portaudio/blob/master/examples/sine.rs) -->
 ```rust
 use std::f64::consts::PI;
 
