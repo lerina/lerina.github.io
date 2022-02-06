@@ -96,6 +96,18 @@ pub fn start() {
   run();
 </script>
 
+```rust
+use std::f64::consts::PI;
+
+const TABLE_SIZE: usize = 360;
+
+// Initialise sinusoidal wavetable.
+let mut sine = [0.0; TABLE_SIZE];
+for i in 0..TABLE_SIZE {
+    sine[i] = (i as f64 / TABLE_SIZE as f64 * PI * 2.0).sin() as f32;
+}
+
+```
 ---
 
 ### Interlude: Smiley
