@@ -30,6 +30,31 @@ In the opening, many captures are possible and so a lot of pieces will be elimin
 The basic tactics are to squeeze your opponet's pieces so they are placed in situations of forcing moves to your advantage, 
 or to set up sacrifices where a mandatory capture is ultimately disadvantageous.
 
+
+## Board
+
+The Fanorona board consists of lines and intersections, creating a grid with 5 rows and 9 columns subdivided diagonally to form part of the tetrakis square tiling of the plane. A line represents the path along which a stone can move during the game. There are weak and strong intersections. At a weak intersection it is only possible to move a stone horizontally and vertically, while on a strong intersection it is also possible to move a stone diagonally. A stone can only move from one intersection to an adjacent intersection.
+
+## Rules
+
+### Riatra
+    Players alternate turns, starting with White.
+    There are two kinds of moves: non-capturing and capturing. A non-capturing move is called a paika move.
+    A paika move consists of moving one stone along a line to an adjacent intersection.
+    Capturing moves are obligatory and have to be played in preference to paika moves.
+    Capturing implies removing one or more pieces of the opponent, in one of two ways:
+        Approach - moving the capturing stone to a point adjacent to an opponent's stone, which must be on the continuation of the capturing stone's movement line.
+        Withdrawal - the capturing stone moves from a point adjacent to the opponent's stone, away from the stone along the continuation of the line between them.
+    When an opponent stone is captured, all opponent pieces in line beyond that stone (as long as there is no interruption by an empty point or an own stone) are captured as well.
+    An approach capture and a withdrawal capture cannot be made at the same time - the player must choose one or the other.
+    As in checkers, the capturing piece is allowed to continue making successive captures, with these restrictions:
+        The piece is not allowed to arrive at the same position twice.
+        It is not permitted to move twice consecutively in the same direction (first to make a withdrawal capture, and then to make an approach capture) as part of a capturing sequence.
+    However, unlike in checkers, continuing the capturing sequence is optional.
+    The game ends when one player captures all stones of the opponent. If neither player can achieve this - for instance if the game reaches a state where neither player can attack the other without overly weakening their own position - then the game is a draw.
+
+### Vela
+
 ## Rules
 Players are allowed to play a move alternatively. 
 Even if a move consists of multiple movements of one single stone we will still 
