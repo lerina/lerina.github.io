@@ -29,7 +29,7 @@ Establish  `PEACE` through
 `E` mo-sameness (equanimity)  
 `A` ttention  
 `C` omposure  
-`E` venness (equilibrium)  
+`E` legance  
 
 #### Maintain `PEACE` 
 
