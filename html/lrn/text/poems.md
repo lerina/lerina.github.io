@@ -15,7 +15,7 @@ With *o*bservation, seize the initiative.
 With **W**isdom, express Choice.  
 With *w*it, adapt to change.  
 .  
-With **E**fficient Effort,  Easy the Way.  
+With **E**fficient Effort,  Ease the Way.  
 With *e*xecution, mark the way.  
 .  
 With **R**esolve, Arc around Obstacles.  
