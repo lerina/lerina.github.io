@@ -103,7 +103,7 @@ is to dare it's devils.
 
 ```
 Happiness is not an outcome; its a process.
-The unskilled long for  *The Pursuit of happiness*,
+The unskilled longs for  *The Pursuit of happiness*,
 The wise enjoy  *The happiness of pursuit*.
 ```
 
