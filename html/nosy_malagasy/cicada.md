@@ -13,6 +13,13 @@ The Malagasy vaovao extends this with a consistent and deliberate effort to
 - update the Malagasy language to be better equipped for the science and economy of the times we live in.
 
 When you try and fail, ... you try, try, again
-This time around, we are preparing the teachers, and have the "books" ready before even starting to mentor the learners.
+This time around, we are preparing the teachers, 
+and have the "books" ready before even starting to mentor the learners.
 
+Let them confuse our patience for pacifism.
+
+We act in the open. Having no secret, we are without burden.
+The secret of no secret is the doubt of their own creation.
+Reigniting the core of the Malagasy is enough to burn away all
+defilement. 
 
