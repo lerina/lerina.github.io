@@ -1,5 +1,10 @@
 
-[source](http://dominicweb.eu/en/malagasy/grammar/#mg-changes)
+Composed words uses a `-`  
+Letter(s) supression uses `'`  
+
+
+
+<!-- [source](http://dominicweb.eu/en/malagasy/grammar/#mg-changes) -->
 
 f ⇒ p, ex: fo ⇒ am-po (heart - in heart)
 h ⇒ k, ex: honko ⇒ alan-konko (mangrove - mangrove forest)

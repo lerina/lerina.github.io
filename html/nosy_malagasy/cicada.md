@@ -18,8 +18,14 @@ and have the "books" ready before even starting to mentor the learners.
 
 Let them confuse our patience for pacifism.
 
+## The shift: A tidal wave starts unnoticed.
 We act in the open. Having no secret, we are without burden.
+Nothing to guard, nothing to hide. 
+Just use and expand the Malagasy language.
+ 
 The secret of no secret is the doubt of their own creation.
 Reigniting the core of the Malagasy is enough to burn away all
 defilement. 
+
+
 
