@@ -4,6 +4,7 @@
 # ./build.sh <target_name> <canvas_name_in_src_rust>
 # ex:
 # ./build.sh verify canvas002
+# NOTE: fanorona.js gets its name from Cargo.toml
 #
 TARGET=$1
 CANVAS=$2
@@ -19,7 +20,7 @@ fi
 # mkdir $TARGET
 mv pkg $TARGET
 
-echo "<h3>$TARGET:</h3> <canvas id="$CANVAS" height="250" width="350"> </canvas> <script type="module"> import init, {} from './$TARGET/canvas.js'; async function run() { await init(); } run(); </script>" > $TARGET.html
+echo "<h3>$TARGET:</h3> <canvas id="$CANVAS" height="250" width="350"> </canvas> <script type="module"> import init, {} from './$TARGET/fanorona.js'; async function run() { await init(); } run(); </script>" > $TARGET.html
 
 printf '%s\n' "serving page at: http://127.0.0.1:8080"
 #python3 -m http.server
