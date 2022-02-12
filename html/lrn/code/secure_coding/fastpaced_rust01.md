@@ -2,6 +2,43 @@
 
 # The Rust programming language Level 01: Building a solid foundation
 
+- Rust is a multi-paradigm system programming language. You can write it in a functional way. You can write in in an object-oriented way.
+It is neither functional nor OOP. its a bit of both worlds.
+
+- Systems programming is used for system software. System software provides a platform for other software. 
+Rust is a language used for systems programming. It provides high performance and easy access to the underlying hardware.
+
+- Rust is a modern language that focuses on safety. Regular usage of Rust is in Safe rust mode by default. In this mode you will *never* have to worry about type-safety or memory safety.
+You will never endure a dangling pointer, a use-after-free, or any other kind of *Undefined* Behavior. [source Rustonomicon](./)
+
+- Rust makes concurrency safe.
+
+REM: Links to the b ook and rustdoc book
+
+rustc is Rust's Compiler.
+
+Cargo is Rust's build system and package manager that handles metadata and invokes rustc for you.
+
+Modern projects depend on external packages and libraries. A package manager handles those packages and the dependencies they may rely upon.
+
+## First program
+
+1. Create a new project
+> cargo new hello_world
+
+2. edit code (hello world is generated for you :-) ) 
+> cd hello_world 
+> vim src/main.rs
+
+3. Compile
+> cargo build
+
+4. Run
+> cargo run
+
+
+
+
 Replace with 20min for each header. add worked examples and  exercise
 
 1. add headers
