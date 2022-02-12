@@ -36,8 +36,18 @@ Modern projects depend on external packages and libraries. A package manager han
 4. Run
 > cargo run
 
+5. more about cargo
+
+> cargo check
 
 
+> cargo test
+
+
+> cargo bench
+
+
+> cargo clean
 
 Replace with 20min for each header. add worked examples and  exercise
 
@@ -50,7 +60,32 @@ Replace with 20min for each header. add worked examples and  exercise
 7. problem and solution
 8. assignment 
 
+
+
+## Anatomy of a Rust program
+
+- create a binary
+> cargo new my_program
+
+this generates a main.rs file with a main function as starting point.
+
+```rust
+fn main() {
+    // your code here
+}
+```
+it is used to create stand alone projects.
+
+- create a Rust library
+> cargo new my_lib --lib
+
+This generates a lib.rs file 
+It is used to create a library to be consumed by some other project 
+
+
 ## Rust types and Variable binding
+
+
 
 See also:  
 [Types](https://doc.rust-lang.org/reference/types.html)  
