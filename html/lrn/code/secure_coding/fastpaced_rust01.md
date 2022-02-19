@@ -13,11 +13,13 @@ You will never endure a dangling pointer, a use-after-free, or any other kind of
 
 - Rust makes concurrency safe.
 
-REM: Links to the b ook and rustdoc book
+## Install Rust
+[linux/mac](https://doc.rust-lang.org/stable/book/ch01-01-installation.html#installing-rustup-on-linux-or-macos)  
+[win](https://doc.rust-lang.org/stable/book/ch01-01-installation.html#installing-rustup-on-windows)  
 
-rustc is Rust's Compiler.
+[rustc is Rust's Compiler](https://doc.rust-lang.org/stable/book/ch01-02-hello-world.html).
 
-Cargo is Rust's build system and package manager that handles metadata and invokes rustc for you.
+[Cargo](https://doc.rust-lang.org/stable/book/ch01-03-hello-cargo.html) is Rust's build system and package manager that handles metadata and invokes rustc for you.
 
 Modern projects depend on external packages and libraries. A package manager handles those packages and the dependencies they may rely upon.
 
