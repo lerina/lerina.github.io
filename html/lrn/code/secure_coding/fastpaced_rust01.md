@@ -14,12 +14,21 @@ You will never endure a dangling pointer, a use-after-free, or any other kind of
 - Rust makes concurrency safe.
 
 ## Install Rust
-[linux/mac](https://doc.rust-lang.org/stable/book/ch01-01-installation.html#installing-rustup-on-linux-or-macos)  
+On [linux/mac](https://doc.rust-lang.org/stable/book/ch01-01-installation.html#installing-rustup-on-linux-or-macos)  
 ```sh
 $ curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
 ```
 
-[win](https://doc.rust-lang.org/stable/book/ch01-01-installation.html#installing-rustup-on-windows)  
+NOTE:  
+Installing Rust on Windows is more involved. See: 
+[Installing rustup on Windows](https://doc.rust-lang.org/stable/book/ch01-01-installation.html#installing-rustup-on-windows)  
+
+Most people will go for the easiest way to acquire the build tools by installing [VS code](https://visualstudio.microsoft.com/visual-cpp-build-tools/)
+and the pluggins for Rust. 
+
+[Rust install page at rust-lang.org](https://www.rust-lang.org/tools/install)
+
+### rustc and cargo
 
 [rustc is Rust's Compiler](https://doc.rust-lang.org/stable/book/ch01-02-hello-world.html).
 
@@ -27,13 +36,15 @@ $ curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
 
 Modern projects depend on external packages and libraries. A package manager handles those packages and the dependencies they may rely upon.
 
-## Hello World
+## First program: Hello World
 
 ### Create an executable (bin) with `rustc`
 Create directory
+
 > mkdir hello_world
 
 Create program entry file
+
 > vim main.rs
 
 Edit file
@@ -54,10 +65,12 @@ fn main() {
     println!("Hello, world!);
 }
 ```
-Compile the program
+Compile the program 
+
 > rustc main.rs
 
-Run the program
+Run the program  
+
 > ./main
 
 ### Create an executable (bin) with `cargo`
@@ -116,6 +129,7 @@ _ rustbook
 | 128-bit | i128  | u128     |
 | arch	  | isize | usize    |
 
+integers default to [i32](https://doc.rust-lang.org/std/primitive.i32.html#implementations)
 
 > isize and usize types depend on the architecture of the computer your program is running on,  
 > which is denoted in the table as “arch”:  
@@ -137,8 +151,98 @@ _ rustbook
 | Binary            | 0b1111_0000   |
 | Byte (u8 only)    | b'A'          |
 
+#### Floats
+Rust’s floating-point types are f32 (32 bits) and f64 (64 bits).  
+All floating-point types are signed.
+
+Floats defaults to [f64](https://doc.rust-lang.org/std/primitive.f64.html#implementations)
+
+>  The default type is f64 because on modern CPUs it’s roughly the same speed as f32 but is capable of more precision. 
+_ rustbook
 
 
+
+```rust
+fn main() {
+    let x = 42.0; // f64
+    let y: f32 = 42.0; // f32
+}
+```
+
+#### Basic mathematical operations
+```rust
+fn main() {
+    // addition
+    let sum = 5 + 10;
+
+    // subtraction
+    let difference = 95.5 - 4.3;
+
+    // multiplication
+    let product = 4 * 30;
+
+    // division
+    let quotient = 56.7 / 32.2;
+    let floored = 2 / 3; // Results in 0
+
+    // remainder
+    let remainder = 43 % 5;
+}
+```
+
+NOTE:  
+The common power `^` or `**` is not used in rust.  
+Instead the numerical type has a method for it.  
+such as [powi](https://doc.rust-lang.org/std/primitive.f32.html#method.powi) and 
+[powf](https://doc.rust-lang.org/std/primitive.f32.html#method.powf) for the `f32` type.
+
+```rust
+let x: f32 = 2.0; 
+println!( x.powi(2) );
+println!( x.powf(2.0) );
+```
+
+#### bool
+Booleans are one byte in size.
+
+#### Tuple and Array Types
+> The Tuple Type
+A tuple is a general way of grouping together a number of values with a variety of types into one compound type. Tuples have a fixed length: once declared, they cannot grow or shrink in size.
+
+```rust
+let tup: (i32, f64, u8) = (500, 6.4, 1); // mixed datatype
+
+let middle = tup.1 // starts at index 0
+println!(middle); // 6.4
+
+let (x, y, z) = tup; // unpack
+println!("The value of y is: {}", y);
+```
+#### Array 
+> The Array Type 
+
+Every element of an array must have the same type. 
+```rust
+let my_array = [0.07, 1.2, 2.0, 3.1415, 4.2];
+```
+
+Arrays in Rust have a fixed length.
+```rust
+let a: [i32; 5]; // type and size of the array
+a = [1, 2, 3, 4, 5];
+```
+
+We can initialize an array to contain the same value for each element
+```rust
+let five_ones = [1; 5]; // [1, 1, 1, 1, 1]
+```
+
+You can access elements of an array using indexing
+```rust
+let a = [1, 2, 3, 4, 5];
+let first = a[0]; // 1
+let second = a[1]; // 2
+```
 ### Variables are immutable by default, mutable explicitly
 
 > When a variable is immutable, once a value is bound to a name, you can’t change that value.
@@ -168,6 +272,45 @@ However var01 is immutable whereas var02 can be reassigned a value ... **of the 
 var02 = var01 + 1; // Ok
 println!(var02); // 42
 ```
+
+We can declare and define our viriable at the same time
+
+```rust
+let var01 = 12;
+let mut var02 = 41;
+```
+
+We can also explicitly annotate the type
+
+```rust
+let ascii: u8 = 255;
+let mut var02: i64 = 41; // default would be i32 so we have to be explicit if we don't  want i32
+```
+
+### [Functions in Rust](https://doc.rust-lang.org/stable/book/ch03-03-how-functions-work.html)
+ The `fn` keyword is used to declare new functions.
+
+> Rust code uses snake case as the conventional style for function and variable names, in which all letters are lowercase and underscores separate words.
+_ rustbook
+
+```rust
+// program entry function is main
+fn main() {
+    println!("Hello, world!");
+
+    another_function(); //user defined function called (used) here
+}
+
+// user defined function declared and defined here
+fn another_function() {
+    println!("Another function.");
+}
+
+```
+
+#### Function parameters and call arguments
+> We can define functions to have parameters, which are special variables that are part of a function’s signature. When a function has parameters, you can provide it with concrete values for those parameters. Technically, the concrete values are called arguments, but in casual conversation, people tend to use the words parameter and argument interchangeably for either the variables in a function’s definition or the concrete values passed in when you call a function.
+_ rustbook
 
 
 
