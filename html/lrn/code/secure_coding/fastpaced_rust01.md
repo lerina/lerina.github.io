@@ -76,6 +76,7 @@ Run the program
 ### Create an executable (bin) with `cargo`
 
 1. Create a new project
+
 > cargo new hello_world
 
 This generates a main.rs file with a main function as starting point.
@@ -83,13 +84,16 @@ This generates a main.rs file with a main function as starting point.
 Tt is used to create stand alone projects.
 
 2. edit code (hello world is generated for you :-) ) 
+
 > cd hello_world 
 > vim src/main.rs
 
 3. Compile
+
 > cargo build
 
 4. Run
+
 > cargo run
 
 5. [more about cargo](https://doc.rust-lang.org/cargo/guide/index.html)
@@ -134,7 +138,7 @@ integers default to [i32](https://doc.rust-lang.org/std/primitive.i32.html#imple
 > isize and usize types depend on the architecture of the computer your program is running on,  
 > which is denoted in the table as “arch”:  
 > 64 bits if you’re on a 64-bit architecture and 
-> 32 bits if you’re on a 32-bit architecture.  
+> 32 bits if you’re on a 32-bit architecture.    
 _ rustbook
 
 
@@ -157,7 +161,7 @@ All floating-point types are signed.
 
 Floats defaults to [f64](https://doc.rust-lang.org/std/primitive.f64.html#implementations)
 
->  The default type is f64 because on modern CPUs it’s roughly the same speed as f32 but is capable of more precision. 
+>  The default type is f64 because on modern CPUs it’s roughly the same speed as f32 but is capable of more precision.  
 _ rustbook
 
 
@@ -207,7 +211,9 @@ Booleans are one byte in size.
 
 #### Tuple and Array Types
 > The Tuple Type
-A tuple is a general way of grouping together a number of values with a variety of types into one compound type. Tuples have a fixed length: once declared, they cannot grow or shrink in size.
+A tuple is a general way of grouping together a number of values with a variety of types into one compound type. Tuples have a fixed length: once declared, they cannot grow or shrink in size.  
+_ rustbook
+
 
 ```rust
 let tup: (i32, f64, u8) = (500, 6.4, 1); // mixed datatype
@@ -245,7 +251,7 @@ let second = a[1]; // 2
 ```
 ### Variables are immutable by default, mutable explicitly
 
-> When a variable is immutable, once a value is bound to a name, you can’t change that value.
+> When a variable is immutable, once a value is bound to a name, you can’t change that value.  
 _ rustbook
 
 #### `mut` keyword
@@ -290,7 +296,7 @@ let mut var02: i64 = 41; // default would be i32 so we have to be explicit if we
 ### [Functions in Rust](https://doc.rust-lang.org/stable/book/ch03-03-how-functions-work.html)
  The `fn` keyword is used to declare new functions.
 
-> Rust code uses snake case as the conventional style for function and variable names, in which all letters are lowercase and underscores separate words.
+> Rust code uses snake case as the conventional style for function and variable names, in which all letters are lowercase and underscores separate words.  
 _ rustbook
 
 ```rust
@@ -309,8 +315,8 @@ fn another_function() {
 ```
 
 #### Function parameters and call arguments
-> We can define functions to have parameters, which are special variables that are part of a function’s signature. When a function has parameters, you can provide it with concrete values for those parameters. Technically, the concrete values are called arguments, but in casual conversation, people tend to use the words parameter and argument interchangeably for either the variables in a function’s definition or the concrete values passed in when you call a function.
-_ rustbook
+> We can define functions to have parameters, which are special variables that are part of a function’s signature. When a function has parameters, you can provide it with concrete values for those parameters. Technically, the concrete values are called arguments, but in casual conversation, people tend to use the words parameter and argument interchangeably for either the variables in a function’s definition or the concrete values passed in when you call a function.  
+_ rustbook  
 
 
 

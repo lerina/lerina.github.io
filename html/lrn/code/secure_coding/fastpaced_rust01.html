@@ -107,9 +107,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 id="install-rust">Install Rust</h2>
 <p>On <a href="https://doc.rust-lang.org/stable/book/ch01-01-installation.html#installing-rustup-on-linux-or-macos">linux/mac</a></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1">$ <span class="ex">curl</span> --proto <span class="st">&#39;=https&#39;</span> --tlsv1.2 https://sh.rustup.rs -sSf <span class="kw">|</span> <span class="fu">sh</span></a></code></pre></div>
-<p>NOTE: Installing Rust on Windows is more involved. See: <a href="https://doc.rust-lang.org/stable/book/ch01-01-installation.html#installing-rustup-on-windows">Installing rustup on Windows</a></p>
-<p>Most people will go for the easiest way to acquire the build tools by installing <a href="https://visualstudio.microsoft.com/visual-cpp-build-tools/">VS code</a> and the pluggins for Rust</p>
-<p>Try this <a href="https://docs.microsoft.com/en-us/shows/vs-code-livestreams/getting-started-with-rust-in-vs-code">Getting started with Rust in VS Code</a></p>
+<p>NOTE:<br />
+Installing Rust on Windows is more involved. See: <a href="https://doc.rust-lang.org/stable/book/ch01-01-installation.html#installing-rustup-on-windows">Installing rustup on Windows</a></p>
+<p>Most people will go for the easiest way to acquire the build tools by installing <a href="https://visualstudio.microsoft.com/visual-cpp-build-tools/">VS code</a> and the pluggins for Rust.</p>
+<p><a href="https://www.rust-lang.org/tools/install">Rust install page at rust-lang.org</a></p>
 <h3 id="rustc-and-cargo">rustc and cargo</h3>
 <p><a href="https://doc.rust-lang.org/stable/book/ch01-02-hello-world.html">rustc is Rust’s Compiler</a>.</p>
 <p><a href="https://doc.rust-lang.org/stable/book/ch01-03-hello-cargo.html">Cargo</a> is Rust’s build system and package manager that handles metadata and invokes rustc for you.</p>
@@ -146,15 +147,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 <h3 id="create-an-executable-bin-with-cargo">Create an executable (bin) with <code>cargo</code></h3>
 <ol type="1">
-<li>Create a new project &gt; cargo new hello_world</li>
+<li>Create a new project</li>
 </ol>
+<blockquote>
+<p>cargo new hello_world</p>
+</blockquote>
 <p>This generates a main.rs file with a main function as starting point.</p>
 <p>Tt is used to create stand alone projects.</p>
 <ol start="2" type="1">
-<li><p>edit code (hello world is generated for you :-) ) &gt; cd hello_world &gt; vim src/main.rs</p></li>
-<li><p>Compile &gt; cargo build</p></li>
-<li><p>Run &gt; cargo run</p></li>
-<li><p><a href="https://doc.rust-lang.org/cargo/guide/index.html">more about cargo</a></p></li>
+<li>edit code (hello world is generated for you :-) )</li>
+</ol>
+<blockquote>
+<p>cd hello_world vim src/main.rs</p>
+</blockquote>
+<ol start="3" type="1">
+<li>Compile</li>
+</ol>
+<blockquote>
+<p>cargo build</p>
+</blockquote>
+<ol start="4" type="1">
+<li>Run</li>
+</ol>
+<blockquote>
+<p>cargo run</p>
+</blockquote>
+<ol start="5" type="1">
+<li><a href="https://doc.rust-lang.org/cargo/guide/index.html">more about cargo</a></li>
 </ol>
 <ul>
 <li><a href="https://doc.rust-lang.org/cargo/commands/cargo-check.html">cargo check</a></li>
@@ -263,7 +282,8 @@ _ rustbook</p>
 All floating-point types are signed.</p>
 <p>Floats defaults to <a href="https://doc.rust-lang.org/std/primitive.f64.html#implementations">f64</a></p>
 <blockquote>
-<p>The default type is f64 because on modern CPUs it’s roughly the same speed as f32 but is capable of more precision. _ rustbook</p>
+<p>The default type is f64 because on modern CPUs it’s roughly the same speed as f32 but is capable of more precision.<br />
+_ rustbook</p>
 </blockquote>
 <div class="sourceCode" id="cb4"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">fn</span> main() <span class="op">{</span></a>
 <a class="sourceLine" id="cb4-2" title="2">    <span class="kw">let</span> x = <span class="dv">42.0</span>; <span class="co">// f64</span></a>
@@ -298,7 +318,8 @@ such as <a href="https://doc.rust-lang.org/std/primitive.f32.html#method.powi">p
 <p>Booleans are one byte in size.</p>
 <h4 id="tuple-and-array-types">Tuple and Array Types</h4>
 <blockquote>
-<p>The Tuple Type A tuple is a general way of grouping together a number of values with a variety of types into one compound type. Tuples have a fixed length: once declared, they cannot grow or shrink in size.</p>
+<p>The Tuple Type A tuple is a general way of grouping together a number of values with a variety of types into one compound type. Tuples have a fixed length: once declared, they cannot grow or shrink in size.<br />
+_ rustbook</p>
 </blockquote>
 <div class="sourceCode" id="cb7"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb7-1" title="1"><span class="kw">let</span> tup: (<span class="dt">i32</span>, <span class="dt">f64</span>, <span class="dt">u8</span>) = (<span class="dv">500</span>, <span class="dv">6.4</span>, <span class="dv">1</span>); <span class="co">// mixed datatype</span></a>
 <a class="sourceLine" id="cb7-2" title="2"></a>
@@ -324,7 +345,8 @@ such as <a href="https://doc.rust-lang.org/std/primitive.f32.html#method.powi">p
 <a class="sourceLine" id="cb11-3" title="3"><span class="kw">let</span> second = a<span class="op">[</span><span class="dv">1</span><span class="op">]</span>; <span class="co">// 2</span></a></code></pre></div>
 <h3 id="variables-are-immutable-by-default-mutable-explicitly">Variables are immutable by default, mutable explicitly</h3>
 <blockquote>
-<p>When a variable is immutable, once a value is bound to a name, you can’t change that value. _ rustbook</p>
+<p>When a variable is immutable, once a value is bound to a name, you can’t change that value.<br />
+_ rustbook</p>
 </blockquote>
 <h4 id="mut-keyword"><code>mut</code> keyword</h4>
 <p>You can make them mutable by adding mut in front of the variable name. Adding mut also conveys intent to future readers of the code by indicating</p>
@@ -346,7 +368,8 @@ such as <a href="https://doc.rust-lang.org/std/primitive.f32.html#method.powi">p
 <h3 id="functions-in-rust"><a href="https://doc.rust-lang.org/stable/book/ch03-03-how-functions-work.html">Functions in Rust</a></h3>
 <p>The <code>fn</code> keyword is used to declare new functions.</p>
 <blockquote>
-<p>Rust code uses snake case as the conventional style for function and variable names, in which all letters are lowercase and underscores separate words. _ rustbook</p>
+<p>Rust code uses snake case as the conventional style for function and variable names, in which all letters are lowercase and underscores separate words.<br />
+_ rustbook</p>
 </blockquote>
 <div class="sourceCode" id="cb17"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb17-1" title="1"><span class="co">// program entry function is main</span></a>
 <a class="sourceLine" id="cb17-2" title="2"><span class="kw">fn</span> main() <span class="op">{</span></a>
@@ -361,7 +384,8 @@ such as <a href="https://doc.rust-lang.org/std/primitive.f32.html#method.powi">p
 <a class="sourceLine" id="cb17-11" title="11"><span class="op">}</span></a></code></pre></div>
 <h4 id="function-parameters-and-call-arguments">Function parameters and call arguments</h4>
 <blockquote>
-<p>We can define functions to have parameters, which are special variables that are part of a function’s signature. When a function has parameters, you can provide it with concrete values for those parameters. Technically, the concrete values are called arguments, but in casual conversation, people tend to use the words parameter and argument interchangeably for either the variables in a function’s definition or the concrete values passed in when you call a function. _ rustbook</p>
+<p>We can define functions to have parameters, which are special variables that are part of a function’s signature. When a function has parameters, you can provide it with concrete values for those parameters. Technically, the concrete values are called arguments, but in casual conversation, people tend to use the words parameter and argument interchangeably for either the variables in a function’s definition or the concrete values passed in when you call a function.<br />
+_ rustbook</p>
 </blockquote>
 </body>
 </html>
