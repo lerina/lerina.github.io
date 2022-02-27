@@ -318,5 +318,58 @@ fn another_function() {
 > We can define functions to have parameters, which are special variables that are part of a function’s signature. When a function has parameters, you can provide it with concrete values for those parameters. Technically, the concrete values are called arguments, but in casual conversation, people tend to use the words parameter and argument interchangeably for either the variables in a function’s definition or the concrete values passed in when you call a function.  
 _ rustbook  
 
+```rust
+fn main() {
+    let x = 20;
+    let y = 1;
+    let answer = double_me(x) + double_me(y);
+    
+    println("{} is the answer", answer);
+}
 
+fn double_me(a: i32) -> i32 {
+    let x = a;
 
+    x*2  // last line without `;` same as `return x*2;`
+}
+```
+
+let's make a better usage of this function and also remove unnecessary bindings 
+inside the fuction
+
+```rust
+fn main() {
+    let x = 20;
+    let y = 1;
+    let answer = double_me(x + y);
+    
+    println("{} is the answer", answer);
+}
+
+fn double_me(a: i32) -> i32 {
+
+    a*2
+}
+```
+
+Lets include an add function
+
+```rust
+fn main() {
+    let x = 20;
+    let y = 1;
+    let answer = add_me(double_me(x)),  double_me(y));
+    
+    println("{} is the answer", answer);
+}
+
+fn  add_me(x: i32, x: i32) -> i32 {
+
+    x+y
+}
+
+fn double_me(a: i32) -> i32 {
+
+    a*2
+}
+```
