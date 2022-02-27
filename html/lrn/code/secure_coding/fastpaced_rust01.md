@@ -324,7 +324,7 @@ fn main() {
     let y = 1;
     let answer = double_me(x) + double_me(y);
     
-    println("{} is the answer", answer);
+    println!("{} is the answer", answer);
 }
 
 fn double_me(a: i32) -> i32 {
@@ -343,7 +343,7 @@ fn main() {
     let y = 1;
     let answer = double_me(x + y);
     
-    println("{} is the answer", answer);
+    println!("{} is the answer", answer);
 }
 
 fn double_me(a: i32) -> i32 {
@@ -358,12 +358,12 @@ Lets include an add function
 fn main() {
     let x = 20;
     let y = 1;
-    let answer = add_me(double_me(x)),  double_me(y));
+    let answer = add_me(double_me(x),  double_me(y));
     
-    println("{} is the answer", answer);
+    println!("{} is the answer", answer);
 }
 
-fn  add_me(x: i32, x: i32) -> i32 {
+fn  add_me(x: i32, y: i32) -> i32 {
 
     x+y
 }
@@ -372,4 +372,38 @@ fn double_me(a: i32) -> i32 {
 
     a*2
 }
+```
+
+## Taking a peek at the binary
+Lets see what is under the hood
+
+> vim main.rs
+
+```rust
+// filename: main.rs
+
+fn main() {
+    let x = 20;
+    let y = 1;
+    let answer = add_me(double_me(x),  double_me(y));
+    
+    println!("{} is the answer", answer);
+}
+
+fn  add_me(x: i32, y: i32) -> i32 {
+
+    x+y
+}
+
+fn double_me(a: i32) -> i32 {
+
+    a*2
+}
+```
+
+> rustc main.rs
+> xxd -g1 main
+
+```
+
 ```
