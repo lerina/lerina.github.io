@@ -375,11 +375,11 @@ fn double_me(a: i32) -> i32 {
 ```
 
 
-
-
 ## A little about Computer memory, stack and heap
 
 [source](http://web.mit.edu/rust-lang_v1.25/arch/amd64_ubuntu1404/share/doc/rust/html/book/first-edition/the-stack-and-the-heap.html)
+
+## str and String and Slice
 
 
 ### Taking a peek at the binary
