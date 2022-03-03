@@ -381,7 +381,11 @@ fn double_me(a: i32) -> i32 {
 
 ## str and String and Slice
 
+### Str: allocation on the Stack
 
+### String: Allocation on the heap
+
+ 
 ### Taking a peek at the binary
 Lets see what is under the hood
 
