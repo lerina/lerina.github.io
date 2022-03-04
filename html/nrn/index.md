@@ -2,4 +2,5 @@
 
 - Learn Malagasy 
     * Course
-    * Malagasy Grammar
+    * [Malagasy Grammar](../nosy_malagasy/grammar.html)
+
