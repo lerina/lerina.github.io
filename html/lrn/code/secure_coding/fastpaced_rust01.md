@@ -208,6 +208,17 @@ println!( x.powf(2.0) );
 
 #### bool
 Booleans are one byte in size.
+Two possible values: `true` and `false`
+
+```rust
+fn main() {
+    let water_is_wet = true;
+    let fire_is_wet = false;
+
+    let f: bool = false; // with explicit type annotation
+}
+```
+
 
 #### Tuple and Array Types
 > The Tuple Type
@@ -249,6 +260,8 @@ let a = [1, 2, 3, 4, 5];
 let first = a[0]; // 1
 let second = a[1]; // 2
 ```
+
+
 ### Variables are immutable by default, mutable explicitly
 
 > When a variable is immutable, once a value is bound to a name, you can’t change that value.  
@@ -376,6 +389,10 @@ fn double_me(a: i32) -> i32 {
 
 
 ## A little about Computer memory, stack and heap
+
+### [The Stack](https://computersciencewiki.org/index.php/Stack)
+
+### [Stack and Heap Memory](https://courses.grainger.illinois.edu/cs225/fa2021/resources/stack-heap/)
 
 [source](http://web.mit.edu/rust-lang_v1.25/arch/amd64_ubuntu1404/share/doc/rust/html/book/first-edition/the-stack-and-the-heap.html)
 
