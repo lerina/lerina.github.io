@@ -79,14 +79,27 @@ Run the program
 
 > cargo new hello_world
 
+```
+hello_world/
+├── Cargo.toml
+└── src
+    └── main.rs
+```
+
 This generates a main.rs file with a main function as starting point.
 
-Tt is used to create stand alone projects.
+It is used to create stand alone projects aka binaries (bin)
 
-2. edit code (hello world is generated for you :-) ) 
+2. Edit code (hello world is generated for you :-) ) 
 
 > cd hello_world 
 > vim src/main.rs
+
+Change the message to be pronted out. For example
+
+```rust
+    println!("Hello,  Rust is fun!");
+```
 
 3. Compile
 
@@ -221,7 +234,8 @@ fn main() {
 
 
 #### Tuple and Array Types
-> The Tuple Type
+
+##### The Tuple Type
 A tuple is a general way of grouping together a number of values with a variety of types into one compound type. Tuples have a fixed length: once declared, they cannot grow or shrink in size.  
 _ rustbook
 
@@ -235,7 +249,7 @@ println!(middle); // 6.4
 let (x, y, z) = tup; // unpack
 println!("The value of y is: {}", y);
 ```
-#### Array 
+##### Array 
 > The Array Type 
 
 Every element of an array must have the same type. 
@@ -400,9 +414,21 @@ fn double_me(a: i32) -> i32 {
 
 ### Str: allocation on the Stack
 
+#### string literal: `&str`
+
+```rust
+let name = "Rust"; // bind the string literal to variable `name`
+```
+
+A string literal has type &str. it is a stack allocated UTF-8 string.
+The size of &str is fixed, meaning it cannot be resized.
+the representation of &str is done by &[u8] that points to the UTP 8 sequence
+
 ### String: Allocation on the heap
 
- 
+the String object is encoded in UTF 8 sequence, and a heap memory allocation is done for the String object,
+the data present in the string can be viewed using &str.
+
 ### Taking a peek at the binary
 Lets see what is under the hood
 
