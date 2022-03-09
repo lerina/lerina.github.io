@@ -251,6 +251,7 @@ println!("The value of y is: {}", y);
 ```
 ##### Array 
 > The Array Type 
+An array is a collection of elements of the same type allocated in a contiguous memory block.
 
 Every element of an array must have the same type. 
 ```rust
@@ -410,17 +411,31 @@ fn double_me(a: i32) -> i32 {
 
 [source](http://web.mit.edu/rust-lang_v1.25/arch/amd64_ubuntu1404/share/doc/rust/html/book/first-edition/the-stack-and-the-heap.html)
 
-## str and String and Slice
+## Slice, str and String
 
-### Str: allocation on the Stack
+### Slice 
+Slices act like temporary views into an array. 
+It works by storing a reference to the first element and a length.
+Hence all the elements must be of the same type.
 
-#### string literal: `&str`
+```rust
+let my_arr = [10, 20, 30, 40, 50];
+let my_slice = &my_arr[2..];
+
+println!("{}", my_slice[0]); // output: 30
+println!("{}", my_arr[0]); // output: 10
+
+```
+### string literal: `&str`
 
 ```rust
 let name = "Rust"; // bind the string literal to variable `name`
+let msg: &str = "Trust";
+
+println!("In {} we {}", name, msg); // output: In Rust we Trust
 ```
 
-A string literal has type &str. it is a stack allocated UTF-8 string.
+A string literal has type &str. It is a stack allocated UTF-8 string.
 The size of &str is fixed, meaning it cannot be resized.
 the representation of &str is done by &[u8] that points to the UTP 8 sequence
 
