@@ -12,5 +12,6 @@ l ⇒ d, ex: loha ⇒ an-doha (head - in head)
 r ⇒ dr, ex: rano ⇒ vakin-drano (water - permeable)
 s ⇒ ts, ex: saina ⇒ misara-tsaina (intellect - different opinions)
 v ⇒ b, ex: Volana ⇒ takonam-bolana (Moon - lunar eclipse)
+
 z ⇒ j, ex: zaza ⇒ afa-jaza (child - having abortion)
 
