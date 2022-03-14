@@ -236,9 +236,11 @@ fn main() {
 #### Tuple and Array Types
 
 ##### The Tuple Type
-A tuple is a general way of grouping together a number of values with a variety of types into one compound type. Tuples have a fixed length: once declared, they cannot grow or shrink in size.  
+A tuple is a general way of grouping together a number of values with a variety of types into one compound type. 
+Tuples have a fixed length: once declared, they cannot grow or shrink in size.  
 _ rustbook
 
+>  fixed-length collections of values of different types.
 
 ```rust
 let tup: (i32, f64, u8) = (500, 6.4, 1); // mixed datatype
@@ -319,6 +321,22 @@ We can also explicitly annotate the type
 ```rust
 let ascii: u8 = 255;
 let mut var02: i64 = 41; // default would be i32 so we have to be explicit if we don't  want i32
+```
+### Code block and scope
+
+Like alot of programming languages, a pair of brackets declares a block of code with its own scope.
+
+```rust
+// This prints "in", then "out"
+fn main() {
+    let x = "out";
+    {
+        // this is a different `x`
+        let x = "in";
+        println!("{}", x);
+    }
+    println!("{}", x);
+}
 ```
 
 ### [Functions in Rust](https://doc.rust-lang.org/stable/book/ch03-03-how-functions-work.html)
