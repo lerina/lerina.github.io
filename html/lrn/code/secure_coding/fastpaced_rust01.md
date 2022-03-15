@@ -338,6 +338,7 @@ fn main() {
     println!("{}", x);
 }
 ```
+Unlike most other languages brackets delimited blocks are also expressions. An expression evaluate to a value.
 
 ### [Functions in Rust](https://doc.rust-lang.org/stable/book/ch03-03-how-functions-work.html)
  The `fn` keyword is used to declare new functions.
