@@ -34,7 +34,7 @@ fn main() {
 ```
 
 But to mitigate the progress curve it is wise to adopt a language that *stops*  the possibility 
-of double free, Null deference, and dangling pointers. A language that makes it difficult to leak memory.
+of [double free](https://owasp.org/www-community/vulnerabilities/Doubly_freeing_memory), [Null deference](https://owasp.org/www-community/vulnerabilities/Null_Dereference), and [dangling pointers](https://owasp.org/www-pdf-archive/OWASP_IL_8_Dangling_Pointer.pdf). A language that makes it difficult to leak memory.
 
 There is such a language. _Rust performs the majority of its safety checks and memory management decisions at compile time, so that your program’s runtime performance isn’t impacted_. 
 

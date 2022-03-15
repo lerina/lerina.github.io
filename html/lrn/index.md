@@ -4,16 +4,17 @@
 | and  those who "blink and cry hate".
 |                             _ lerina
 
-## Crazy _goal_ > Smart _goal_s
-> `C` ontrained in time and space
-> `R` elevant, recoverable
-> `A` ccountable process actions
-> `Z` oom out, zoom in: Zap it!
-> `Y` ield early, reap frequently 
+## Crazy _goal_ > Smart _goal's_ 
 
-Progress is a process:
-Plan progress with goals
-Make progress with processes 
+> `C` ontrained in time and space  
+> `R` elevant, recoverable  
+> `A` ccountable process actions  
+> `Z` oom out, zoom in: Zap it!  
+> `Y` ield early, reap frequently  
+
+Progress is a process:  
+Plan progress with goals  
+Make progress with processes   
 
 ## Hello. I'm a software writer.
 
