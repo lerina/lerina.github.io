@@ -6,15 +6,38 @@
 
 ## Crazy _goal_ > Smart _goal's_ 
 
+We've all heard of SMART the an acronym used for creating Specific Measurable Attainable Relevant and Time-based goals. It doesn't say anything about execution.
+
+CRAZY goal is the next step. 
+
 > `C` ontrained in time and space  
 > `R` elevant, recoverable  
 > `A` ccountable process actions  
 > `Z` oom out, zoom in: Zap it!  
 > `Y` ield early, reap frequently  
 
+Notice its GOAL, not goals. Pick one goal and make sure its CRAZY.
+
+## `C` ontrained in time and space  
+Schedule the _lifeline_. Number of time-bubbles to work on it.
+
+## `R` elevant, resiliant  
+(non-frivoulus and impactful)
+
+## `A` ccountable process actions 
+top-down view, bottom-up execution
+
+## `Z` oom out, zoom in: Zap it!  
+see the context, the why, the big picture
+Dive into the task, one sub-task at a time
+
+## `Y` ield early, reap frequently  
+Measure progress by keeping count of the time-bubbles dedicated to the process of sub-task completion.
+
+Keep in mind that 
 Progress is a process:  
-Plan progress with goals  
-Make progress with processes   
+While one Plans progress with goals, one Makes progress with processes.
+
 
 ## Hello. I'm a software writer.
 
