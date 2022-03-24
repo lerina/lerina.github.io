@@ -64,21 +64,24 @@ The Tide.
 
 
 #### Title
-Have a purpose. Don't cling to it.
-Don't resist obstacles. Flow with it.
-Adapt, retarget or reboot. Grow with it.
-Untatered to results, through the process
-full growth is possible.
 
-Have a Purpose. Dont force it.
-Dont cling to it.
+Have a purpose. Don't cling to it.  
+Don't resist obstacles. Flow with it.  
+Adapt, retarget or reboot. Grow with it.  
+Untatered to results, through the process  
+full growth is possible.  
 
-Have Goals. Don't resist obstacles
+Have a Purpose. Dont force it.  
+Dont cling to it.  
+
+Have Goals. Don't resist obstacles  
 Flow with it.  
 
-Adapt, Retarget or Reboot
-Grow from the process
-non-attached to the result.
+Adapt, Retarget or Reboot  
+Grow from the process  
+non-attached to the result.  
+
+
 #### Title
 
 ```
