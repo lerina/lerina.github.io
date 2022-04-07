@@ -1,150 +1,55 @@
-⇦ [razafy.com](../../../../index.html)  - [lerina](../../index.html) - [code](./index.html)  
+⇦ [razafy.com](../../../../index.html)  - [lerina](../../index.html) - [code](./index.html) 
 
-# The Rust programming language Level 01: Building a solid foundation
-
-- Rust is a multi-paradigm system programming language. You can write it in a functional way. You can write in in an object-oriented way.
-It is neither functional nor OOP. its a bit of both worlds.
-
-- Systems programming is used for system software. System software provides a platform for other software. 
-Rust is a language used for systems programming. It provides high performance and easy access to the underlying hardware.
-
-- Rust is a modern language that focuses on safety. Regular usage of Rust is in Safe rust mode by default. In this mode you will *never* have to worry about type-safety or memory safety.
-You will never endure a dangling pointer, a use-after-free, or any other kind of *Undefined* Behavior. [source Rustonomicon](./)
-
-- Rust makes concurrency safe.
-
-## Install Rust
-On [linux/mac](https://doc.rust-lang.org/stable/book/ch01-01-installation.html#installing-rustup-on-linux-or-macos)  
-```sh
-$ curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
-```
-
-NOTE:  
-Installing Rust on Windows is more involved. See: 
-[Installing rustup on Windows](https://doc.rust-lang.org/stable/book/ch01-01-installation.html#installing-rustup-on-windows)  
-
-Most people will go for the easiest way to acquire the build tools by installing [VS code](https://visualstudio.microsoft.com/visual-cpp-build-tools/)
-and the pluggins for Rust. 
-
-[Rust install page at rust-lang.org](https://www.rust-lang.org/tools/install)
-
-### rustc and cargo
-
-[rustc is Rust's Compiler](https://doc.rust-lang.org/stable/book/ch01-02-hello-world.html).
-
-[Cargo](https://doc.rust-lang.org/stable/book/ch01-03-hello-cargo.html) is Rust's build system and package manager that handles metadata and invokes rustc for you.
-
-Modern projects depend on external packages and libraries. A package manager handles those packages and the dependencies they may rely upon.
-
-## First program: Hello World
-
-### Create an executable (bin) with `rustc`
-Create directory
-
-> mkdir hello_world
-
-Create program entry file
-
-> vim main.rs
-
-Edit file
-```rust
-// main.rs
-
-// program entry function
-fn main() {
-    // by convention use 4 space indentations
-}
-```
-
-`fn` is the keyword to declare a function in Rust
-
-Print hello world
-```rust
-fn main() {
-    println!("Hello, world!);
-}
-```
-Compile the program 
-
-> rustc main.rs
-
-Run the program  
-
-> ./main
-
-### Create an executable (bin) with `cargo`
-
-1. Create a new project
-
-> cargo new hello_world
-
-```
-hello_world/
-├── Cargo.toml
-└── src
-    └── main.rs
-```
-
-This generates a main.rs file with a main function as starting point.
-
-It is used to create stand alone projects aka binaries (bin)
-
-2. Edit code (hello world is generated for you :-) ) 
-
-> cd hello_world 
-> vim src/main.rs
-
-Change the message to be pronted out. For example
-
-```rust
-    println!("Hello,  Rust is fun!");
-```
-
-3. Compile
-
-> cargo build
-
-4. Run
-
-> cargo run
-
-5. [more about cargo](https://doc.rust-lang.org/cargo/guide/index.html)
-
-- [cargo check](https://doc.rust-lang.org/cargo/commands/cargo-check.html)
-- [cargo test](https://doc.rust-lang.org/cargo/commands/cargo-test.html)
-- [cargo clean](https://doc.rust-lang.org/cargo/commands/cargo-clean.html)
+> Installing Rust on Linux, macOS, and Windows
+>
+> See [Getting Started](https://doc.rust-lang.org/book/ch01-00-getting-started.html) from The Rust Programming Language book at doc.rust-lang.org
 
 
+# Level 01
 
-### create a Rust library
+## Data: take one
 
-> cargo new my_lib --lib
+When it comes to Software, everything is Data and the access to its storage.
 
-This generates a lib.rs file 
-It is used to create a library to be consumed by some other project 
-
-We ll see later why and how to use libraries
-
-## Programming is about Data and its manupulation
+Programming is about Data and its manupulation
 Besides it value, all Data has a **type** whether it is explicit or not.
-
-### [Rust built-in types](https://doc.rust-lang.org/stable/book/ch03-02-data-types.html)
 
 > Rust is a statically typed language, which means that it must know the types of all variables at compile time.  
 > The compiler can usually infer what type we want to use based on the value and how we use it.  
 _ rustbook
 
-#### Integer Types in Rust
+see also: [Rust built-in types](https://doc.rust-lang.org/stable/book/ch03-02-data-types.html)
+
+### Floats
+
+Rust’s floating-point types are [f32 (32 bits)](https://doc.rust-lang.org/std/primitive.f32.html) and [f64 (64 bits)](https://doc.rust-lang.org/std/primitive.f64.html).  
+
+All floating-point types are signed.
+
+Floats defaults to [f64](https://doc.rust-lang.org/std/primitive.f64.html#implementations)
+
+>  The default type is f64 because on modern CPUs it’s roughly the same speed as f32 but is capable of more precision.  
+_ rustbook
+
+```rust
+fn main() {
+    let x = 42.0; // f64
+    let y: f32 = 42.0; // f32
+}
+```
+
+Also have a look at the Basic mathematical constants at [std::f32::consts](https://doc.rust-lang.org/std/f32/consts/index.html) and [std::f64::consts](https://doc.rust-lang.org/std/f64/consts/index.html)
+
+### Integers
 
 |Length	  | Signed| Unsigned |
 |---------|-------|----------|
-| 8-bit   | i8    | u8       |
-| 16-bit  | i16   | u16      |
-| 32-bit  | i32   | u32      |
-| 64-bit  | i64   | u64      |
-| 128-bit | i128  | u128     |
-| arch	  | isize | usize    |
+| 8-bit   | [i8](https://doc.rust-lang.org/std/primitive.i8.html)    | [u8](https://doc.rust-lang.org/std/primitive.u8.html)       |
+| 16-bit  | [i16](https://doc.rust-lang.org/std/primitive.i16.html)   | [u16](https://doc.rust-lang.org/std/primitive.u16.html)      |
+| 32-bit  | [i32](https://doc.rust-lang.org/std/primitive.i32.html)   | [u32](https://doc.rust-lang.org/std/primitive.u32.html)      |
+| 64-bit  | [i64](https://doc.rust-lang.org/std/primitive.i64.html)   | [u64](https://doc.rust-lang.org/std/primitive.u64.html)      |
+| 128-bit | [i128](https://doc.rust-lang.org/std/primitive.i128.html)  | [u128](https://doc.rust-lang.org/std/primitive.u128.html)     |
+| arch	  | [isize](https://doc.rust-lang.org/std/primitive.isize.html) | [usize](https://doc.rust-lang.org/std/primitive.usize.html)    |
 
 integers default to [i32](https://doc.rust-lang.org/std/primitive.i32.html#implementations)
 
@@ -154,8 +59,7 @@ integers default to [i32](https://doc.rust-lang.org/std/primitive.i32.html#imple
 > 32 bits if you’re on a 32-bit architecture.    
 _ rustbook
 
-
-##### Integer Literals in Rust
+#### Integer Literals in Rust
 > You can write integer literals in any of the forms shown in Table 3-2. Note that number literals that can be multiple numeric types allow a type suffix, such as 57u8, to designate the type. Number literals can also use _ as a visual separator to make the number easier to read, such as 1_000, which will have the same value as if you had specified 1000.
 _ rustbook
 
@@ -168,25 +72,149 @@ _ rustbook
 | Binary            | 0b1111_0000   |
 | Byte (u8 only)    | b'A'          |
 
-#### Floats
-Rust’s floating-point types are f32 (32 bits) and f64 (64 bits).  
-All floating-point types are signed.
-
-Floats defaults to [f64](https://doc.rust-lang.org/std/primitive.f64.html#implementations)
-
->  The default type is f64 because on modern CPUs it’s roughly the same speed as f32 but is capable of more precision.  
-_ rustbook
-
-
+### bool
+Booleans are one byte in size.
+Two possible values: `true` and `false`
 
 ```rust
 fn main() {
-    let x = 42.0; // f64
-    let y: f32 = 42.0; // f32
+    let water_is_wet = true;
+    let fire_is_wet = false;
+
+    let f: bool = false; // with explicit type annotation
 }
 ```
 
-#### Basic mathematical operations
+
+### Array and Tuple Types
+
+
+#### Array 
+> The Array Type 
+An array is a collection of elements of the same type allocated in a contiguous memory block.
+
+Every element of an array must have the same type. 
+```rust
+let my_array = [0.07, 1.2, 2.0, 3.1415, 4.2];
+```
+
+Arrays in Rust have a fixed length.
+```rust
+let a: [i32; 5]; // type and size of the array
+a = [1, 2, 3, 4, 5];
+```
+
+We can initialize an array to contain the same value for each element
+```rust
+let five_ones = [1; 5]; // [1, 1, 1, 1, 1]
+```
+
+You can access elements of an array using indexing
+```rust
+let a = [1, 2, 3, 4, 5];
+let first = a[0]; // 1
+let second = a[1]; // 2
+```
+
+#### The Tuple Type
+A tuple is a general way of grouping together a number of values with a variety of types into one compound type. 
+Tuples have a fixed length: once declared, they cannot grow or shrink in size.  
+_ rustbook
+
+>  fixed-length collections of values of different types.
+
+```rust
+let tup: (i32, f64, u8) = (500, 6.4, 1); // mixed datatype
+
+let middle = tup.1 // starts at index 0
+println!(middle); // 6.4
+
+let (x, y, z) = tup; // unpack
+println!("The value of y is: {}", y);
+```
+## Input - Output: Terminal
+
+### Writing to the Terminal
+
+#### println!()
+
+```rust
+fn main() {
+    println!("Hello world");
+    
+    let message = "Use `println!` to display text to the console";
+    println!("The message is {}", message);
+
+
+    let new_message = "Additional simpler formatting strings starting with Rust 1.58" 
+    println!("The message is {new_message}");
+}
+```
+For more on string interpolation :     // [Announcing Rust 1.58.0
+](https://blog.rust-lang.org/2022/01/13/Rust-1.58.0.html#captured-identifiers-in-format-strings)
+
+see also:  
+[print!()](https://doc.rust-lang.org/std/macro.print.html). ItseEquivalent to println!() except that a newline is not printed at the end of the message.  
+[eprint!()](https://doc.rust-lang.org/std/macro.eprint.html) to print error and progress messages.
+
+### Reading User Input from the Terminal
+
+To receive keyboard input, Rust provides terminal input functions in std::io::stdin . 
+You can find read_line as std::io::stdin::read_line
+`read_line` takes whatever the user types into standard input
+and append that into a mutable string, so it takes that string as an argument.
+
+#### user input from the console 
+```rust
+use std::io::stdin;
+
+fn main() {
+    print!("Please enter some text: ");
+
+    let mut user_input = String::new();
+    stdin()
+        .read_line(&mut user_input)
+        .expect("Failed to read line");
+
+    println!("{}", user_input);
+}
+```
+
+#### user input from the console without the newline
+
+Note: When using `print!()` keep in mind that stdout is frequently line-buffered by default so it may be necessary 
+to use `io::stdout().flush()` to ensure the output is emitted immediately.
+
+```rust
+fn main() {
+    use std::io::{stdin,stdout,Write};
+
+    print!("Please enter some text: ");
+    stdout().flush().unwrap();
+
+    let mut s = String::new();
+    stdin()
+        .read_line(&mut s)
+        .expect("Did not enter a correct string");
+
+    if let Some('\n')=s.chars().next_back() {
+        s.pop();
+    }
+    // windows has \r too
+    if let Some('\r')=s.chars().next_back() {
+        s.pop();
+    }
+
+    println!("You typed: {}",s);
+}
+```
+see also:  
+[std::print](https://doc.rust-lang.org/std/macro.print.html)  
+[std::io::Write::flush](https://doc.rust-lang.org/std/io/trait.Write.html#tymethod.flush)  
+
+## Processing
+
+### Basic mathematical operations
 ```rust
 fn main() {
     // addition
@@ -219,129 +247,9 @@ println!( x.powi(2) );
 println!( x.powf(2.0) );
 ```
 
-#### bool
-Booleans are one byte in size.
-Two possible values: `true` and `false`
+### user defined [Functions in Rust](https://doc.rust-lang.org/stable/book/ch03-03-how-functions-work.html)
 
-```rust
-fn main() {
-    let water_is_wet = true;
-    let fire_is_wet = false;
-
-    let f: bool = false; // with explicit type annotation
-}
-```
-
-
-#### Tuple and Array Types
-
-##### The Tuple Type
-A tuple is a general way of grouping together a number of values with a variety of types into one compound type. 
-Tuples have a fixed length: once declared, they cannot grow or shrink in size.  
-_ rustbook
-
->  fixed-length collections of values of different types.
-
-```rust
-let tup: (i32, f64, u8) = (500, 6.4, 1); // mixed datatype
-
-let middle = tup.1 // starts at index 0
-println!(middle); // 6.4
-
-let (x, y, z) = tup; // unpack
-println!("The value of y is: {}", y);
-```
-##### Array 
-> The Array Type 
-An array is a collection of elements of the same type allocated in a contiguous memory block.
-
-Every element of an array must have the same type. 
-```rust
-let my_array = [0.07, 1.2, 2.0, 3.1415, 4.2];
-```
-
-Arrays in Rust have a fixed length.
-```rust
-let a: [i32; 5]; // type and size of the array
-a = [1, 2, 3, 4, 5];
-```
-
-We can initialize an array to contain the same value for each element
-```rust
-let five_ones = [1; 5]; // [1, 1, 1, 1, 1]
-```
-
-You can access elements of an array using indexing
-```rust
-let a = [1, 2, 3, 4, 5];
-let first = a[0]; // 1
-let second = a[1]; // 2
-```
-
-
-### Variables are immutable by default, mutable explicitly
-
-> When a variable is immutable, once a value is bound to a name, you can’t change that value.  
-_ rustbook
-
-#### `mut` keyword
-
-You can make them mutable by adding mut in front of the variable name. 
-Adding mut also conveys intent to future readers of the code by indicating
-
-```rust
-let var01;
-let mut var02;
-```
-
-Once we bind a value to var01 or var02 they will acquire a type and a value. 
-
-```rust
-var01 = 12;
-var02 = 41;
-```
-
-However var01 is immutable whereas var02 can be reassigned a value ... **of the same type**.
-
-```rust
-// var01 = 42;  ERROR var01 immutable
-var02 = var01 + 1; // Ok
-println!(var02); // 42
-```
-
-We can declare and define our viriable at the same time
-
-```rust
-let var01 = 12;
-let mut var02 = 41;
-```
-
-We can also explicitly annotate the type
-
-```rust
-let ascii: u8 = 255;
-let mut var02: i64 = 41; // default would be i32 so we have to be explicit if we don't  want i32
-```
-### Code block and scope
-
-Like alot of programming languages, a pair of brackets declares a block of code with its own scope.
-
-```rust
-// This prints "in", then "out"
-fn main() {
-    let x = "out";
-    {
-        // this is a different `x`
-        let x = "in";
-        println!("{}", x);
-    }
-    println!("{}", x);
-}
-```
-Unlike most other languages brackets delimited blocks are also expressions. An expression evaluate to a value.
-
-### [Functions in Rust](https://doc.rust-lang.org/stable/book/ch03-03-how-functions-work.html)
- The `fn` keyword is used to declare new functions.
+The `fn` keyword is used to declare new functions.
 
 > Rust code uses snake case as the conventional style for function and variable names, in which all letters are lowercase and underscores separate words.  
 _ rustbook
@@ -421,16 +329,76 @@ fn double_me(a: i32) -> i32 {
 }
 ```
 
+### Code block and scope
 
-## A little about Computer memory, stack and heap
+Like alot of programming languages, a pair of brackets declares a block of code with its own scope.
 
-### [The Stack](https://computersciencewiki.org/index.php/Stack)
+```rust
+// This prints "in", then "out"
+fn main() {
+    let x = "out";
+    {
+        // this is a different `x`
+        let x = "in";
+        println!("{}", x);
+    }
+    println!("{}", x);
+}
+```
+Unlike most other languages brackets delimited blocks are also expressions. An expression evaluate to a value.
 
-### [Stack and Heap Memory](https://courses.grainger.illinois.edu/cs225/fa2021/resources/stack-heap/)
+# Level 02
 
-[source](http://web.mit.edu/rust-lang_v1.25/arch/amd64_ubuntu1404/share/doc/rust/html/book/first-edition/the-stack-and-the-heap.html)
+## Data: Take two  
 
-## Slice, str and String
+### Mutability  
+Variables are immutable by default, mutable explicitly
+
+> When a variable is immutable, once a value is bound to a name, you can’t change that value.  
+_ rustbook
+
+#### `mut` keyword
+
+You can make them mutable by adding mut in front of the variable name. 
+Adding mut also conveys intent to future readers of the code by indicating
+
+```rust
+let var01;
+let mut var02;
+```
+
+Once we bind a value to var01 or var02 they will acquire a type and a value. 
+
+```rust
+var01 = 12;
+var02 = 41;
+```
+
+However var01 is immutable whereas var02 can be reassigned a value ... **of the same type**.
+
+```rust
+// var01 = 42;  ERROR var01 immutable
+var02 = var01 + 1; // Ok
+println!(var02); // 42
+```
+
+We can declare and define our viriable at the same time
+
+```rust
+let var01 = 12;
+let mut var02 = 41;
+```
+
+We can also explicitly annotate the type
+
+```rust
+let ascii: u8 = 255;
+let mut var02: i64 = 41; // default would be i32 so we have to be explicit if we don't  want i32
+```
+### Ownership and Borrowing
+  
+### Strings and &str  
+Slice, str and String
 
 ### Slice 
 Slices act like temporary views into an array. 
@@ -463,36 +431,37 @@ the representation of &str is done by &[u8] that points to the UTP 8 sequence
 the String object is encoded in UTF 8 sequence, and a heap memory allocation is done for the String object,
 the data present in the string can be viewed using &str.
 
-### Taking a peek at the binary
-Lets see what is under the hood
 
-> vim main.rs
+## Input-Output: Working with files and directories  
 
-```rust
-// filename: main.rs
+### Reading a file  
 
-fn main() {
-    let x = 20;
-    let y = 1;
-    let answer = add_me(double_me(x),  double_me(y));
-    
-    println!("{} is the answer", answer);
-}
+### Writing to a file  
 
-fn  add_me(x: i32, y: i32) -> i32 {
+### Navigating the directory path  
 
-    x+y
-}
+## Processing
 
-fn double_me(a: i32) -> i32 {
+### Conditionals
 
-    a*2
-}
-```
+### Loops
 
-> rustc main.rs
-> xxd -g1 main
+### Matching
 
-```
+# Level 03
 
-```
+## Data: Take three 
+
+### Traits and behaviour
+
+## Input-output: 
+
+### Getting data from the CLI arguments
+
+### Undestanding the Display trait
+
+## Processing
+
+### Implementing an Iterator
+
+### hangman using Chars()
