@@ -154,7 +154,7 @@ For more on string interpolation :     // [Announcing Rust 1.58.0
 ](https://blog.rust-lang.org/2022/01/13/Rust-1.58.0.html#captured-identifiers-in-format-strings)
 
 see also:  
-[print!()](https://doc.rust-lang.org/std/macro.print.html). ItseEquivalent to println!() except that a newline is not printed at the end of the message.  
+[print!()](https://doc.rust-lang.org/std/macro.print.html). It's equivalent to println!() except that a newline is not printed at the end of the message.  
 [eprint!()](https://doc.rust-lang.org/std/macro.eprint.html) to print error and progress messages.
 
 ### Reading User Input from the Terminal
