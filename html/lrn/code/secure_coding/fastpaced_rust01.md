@@ -132,6 +132,51 @@ println!(middle); // 6.4
 let (x, y, z) = tup; // unpack
 println!("The value of y is: {}", y);
 ```
+
+### Mutability  
+Variables are immutable by default, mutable explicitly
+
+> When a variable is immutable, once a value is bound to a name, you can’t change that value.  
+_ rustbook
+
+#### `mut` keyword
+
+You can make them mutable by adding mut in front of the variable name. 
+Adding mut also conveys intent to future readers of the code by indicating
+
+```rust
+let var01;
+let mut var02;
+```
+
+Once we bind a value to var01 or var02 they will acquire a type and a value. 
+
+```rust
+var01 = 12;
+var02 = 41;
+```
+
+However var01 is immutable whereas var02 can be reassigned a value ... **of the same type**.
+
+```rust
+// var01 = 42;  ERROR var01 immutable
+var02 = var01 + 1; // Ok
+println!(var02); // 42
+```
+
+We can declare and define our viriable at the same time
+
+```rust
+let var01 = 12;
+let mut var02 = 41;
+```
+
+We can also explicitly annotate the type
+
+```rust
+let ascii: u8 = 255;
+let mut var02: i64 = 41; // default would be i32 so we have to be explicit if we don't  want i32
+```
 ## Input - Output: Terminal
 
 ### Writing to the Terminal
@@ -351,50 +396,6 @@ Unlike most other languages brackets delimited blocks are also expressions. An e
 
 ## Data: Take two  
 
-### Mutability  
-Variables are immutable by default, mutable explicitly
-
-> When a variable is immutable, once a value is bound to a name, you can’t change that value.  
-_ rustbook
-
-#### `mut` keyword
-
-You can make them mutable by adding mut in front of the variable name. 
-Adding mut also conveys intent to future readers of the code by indicating
-
-```rust
-let var01;
-let mut var02;
-```
-
-Once we bind a value to var01 or var02 they will acquire a type and a value. 
-
-```rust
-var01 = 12;
-var02 = 41;
-```
-
-However var01 is immutable whereas var02 can be reassigned a value ... **of the same type**.
-
-```rust
-// var01 = 42;  ERROR var01 immutable
-var02 = var01 + 1; // Ok
-println!(var02); // 42
-```
-
-We can declare and define our viriable at the same time
-
-```rust
-let var01 = 12;
-let mut var02 = 41;
-```
-
-We can also explicitly annotate the type
-
-```rust
-let ascii: u8 = 255;
-let mut var02: i64 = 41; // default would be i32 so we have to be explicit if we don't  want i32
-```
 ### Ownership and Borrowing
   
 ### Strings and &str  
