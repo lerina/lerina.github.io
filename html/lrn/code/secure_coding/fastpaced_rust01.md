@@ -73,6 +73,7 @@ _ rustbook
 | Byte (u8 only)    | b'A'          |
 
 ### bool
+
 Booleans are one byte in size.
 Two possible values: `true` and `false`
 
@@ -85,6 +86,20 @@ fn main() {
 }
 ```
 
+### Character
+`char` type represents a single character, a ‘Unicode scalar value’.
+
+```rust
+let infinity: char = '\u{267E}';
+let the_one = '♾';
+
+```
+
+No char may be constructed, whether as a literal or at runtime, that is not a Unicode scalar value.
+
+also see:
+[char](https://doc.rust-lang.org/std/primitive.char.html)  
+[unicode table](https://unicode-table.com/en/)  
 
 ### Array and Tuple Types
 
@@ -397,7 +412,22 @@ Unlike most other languages brackets delimited blocks are also expressions. An e
 ## Data: Take two  
 
 ### Ownership and Borrowing
-  
+Ownership is how Rust make memory safety guarantees without needing a garbage collector.
+It is a set of rules that governs how a Rust program manages memory and verified at compile time.
+
+Rust is a systems programming language. Understanding what [The Stack and the Heap](https://doc.rust-lang.org/stable/book/ch04-01-what-is-ownership.html#the-stack-and-the-heap){target="_blank"} are is important.
+
+Ownership Rules::
+    
+    
+    Each value in Rust has a variable that’s called its owner.
+    There can only be one owner at a time.
+    When the owner goes out of scope, the value will be dropped.
+
+
+
+### Vector
+
 ### Strings and &str  
 Slice, str and String
 
@@ -429,9 +459,11 @@ the representation of &str is done by &[u8] that points to the UTP 8 sequence
 
 ### String: Allocation on the heap
 
-the String object is encoded in UTF 8 sequence, and a heap memory allocation is done for the String object,
+The String object is encoded in UTF 8 sequence, and a heap memory allocation is done for the String object,
 the data present in the string can be viewed using &str.
 
+also see:
+[Storing UTF-8 Encoded Text with Strings](https://doc.rust-lang.org/stable/book/ch08-02-strings.html#storing-utf-8-encoded-text-with-strings)
 
 ## Input-Output: Working with files and directories  
 
