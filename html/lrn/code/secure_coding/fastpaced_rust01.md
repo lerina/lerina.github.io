@@ -167,19 +167,20 @@ let mut var02;
 Once we bind a value to var01 or var02 they will acquire a type and a value. 
 
 ```rust
-var01 = 12;
-var02 = 41;
+var01 = 12;     // integers 
+var02 = 41;     // defaults to i32
 ```
 
 However var01 is immutable whereas var02 can be reassigned a value ... **of the same type**.
 
 ```rust
-// var01 = 42;  ERROR var01 immutable
+// var01 = 42;  //ERROR var01 immutable
+
 var02 = var01 + 1; // Ok
 println!(var02); // 42
 ```
 
-We can declare and define our viriable at the same time
+We can declare and define our variable at the same time
 
 ```rust
 let var01 = 12;
@@ -191,6 +192,7 @@ We can also explicitly annotate the type
 ```rust
 let ascii: u8 = 255;
 let mut var02: i64 = 41; // default would be i32 so we have to be explicit if we don't  want i32
+
 ```
 ## Input - Output: Terminal
 
@@ -219,17 +221,19 @@ see also:
 
 ### Reading User Input from the Terminal
 
-To receive keyboard input, Rust provides terminal input functions in std::io::stdin . 
-You can find read_line as std::io::stdin::read_line
-`read_line` takes whatever the user types into standard input
-and append that into a mutable string, so it takes that string as an argument.
+To receive keyboard input, we bring `std::io::stdin` into scope with the `use` keyword.
+This gives us access to [read_line](https://doc.rust-lang.org/std/io/struct.Stdin.html#method.read_line) method.
 
-#### user input from the console 
+`read_line` takes whatever the user types into standard input
+and append that into a mutable string, so it takes a mutable reference to that string as an argument.
+A mutable reference is noted `&mut`. This will be explained in the topic **Ownership and Borrowing** later.
+
+#### user input is read into a String
 ```rust
 use std::io::stdin;
 
 fn main() {
-    print!("Please enter some text: ");
+    println!("Please enter some text: ");
 
     let mut user_input = String::new();
     stdin()
@@ -239,38 +243,59 @@ fn main() {
     println!("{}", user_input);
 }
 ```
+#### Converting Strings into other types
 
-#### user input from the console without the newline
-
-Note: When using `print!()` keep in mind that stdout is frequently line-buffered by default so it may be necessary 
-to use `io::stdout().flush()` to ensure the output is emitted immediately.
+##### Convert to numbers
 
 ```rust
+use std::io::stdin;
+
 fn main() {
-    use std::io::{stdin,stdout,Write};
+    println!("Please enter a number: ");
 
-    print!("Please enter some text: ");
-    stdout().flush().unwrap();
-
-    let mut s = String::new();
+    let mut user_input = String::new();
     stdin()
-        .read_line(&mut s)
-        .expect("Did not enter a correct string");
+        .read_line(&mut user_input)
+        .expect("Failed to read line");
 
-    if let Some('\n')=s.chars().next_back() {
-        s.pop();
-    }
-    // windows has \r too
-    if let Some('\r')=s.chars().next_back() {
-        s.pop();
-    }
+    let my_int: u32 = user_input
+                        .trim()
+                        .parse()
+                        .expect("Please type a number!");
 
-    println!("You typed: {}",s);
+    println!("{0} + {0} = {1}", my_int, my_int+my_int);
 }
 ```
-see also:  
-[std::print](https://doc.rust-lang.org/std/macro.print.html)  
-[std::io::Write::flush](https://doc.rust-lang.org/std/io/trait.Write.html#tymethod.flush)  
+
+##### Convert to characters
+
+```rust
+    println!("Please enter a word: ");
+
+    let mut user_input = String::new();
+    stdin()
+        .read_line(&mut user_input)
+        .expect("Failed to read line");
+
+    let ch: Vec<_> = user_input.chars().collect();
+    println!("the first char is {}", ch[0]);
+
+    for ch in user_input.chars().collect::<Vec<char>>() {
+        println!("{}", ch);
+    }
+    for ch in user_input.chars() {
+        println!("{}", ch);
+    }
+    for (i,ch) in user_input.chars().enumerate() {
+        println!("{} {}", i, ch);
+    }
+```
+.chars() converts the string to a char iterator
+
+.collect() converts the iterator to a collection
+
+    
+
 
 ## Processing
 
@@ -390,8 +415,10 @@ fn double_me(a: i32) -> i32 {
 ```
 
 ### Code block and scope
+A scope is the range within a program for which an item is valid.
 
-Like alot of programming languages, a pair of brackets declares a block of code with its own scope.
+Like a lot of programming languages, a pair of brackets declares a block of code with its own scope.
+Variables remains valid from the point at which it is declared until it goes out of scope
 
 ```rust
 // This prints "in", then "out"
@@ -415,7 +442,27 @@ Unlike most other languages brackets delimited blocks are also expressions. An e
 Ownership is how Rust make memory safety guarantees without needing a garbage collector.
 It is a set of rules that governs how a Rust program manages memory and verified at compile time.
 
-Rust is a systems programming language. Understanding what [The Stack and the Heap](https://doc.rust-lang.org/stable/book/ch04-01-what-is-ownership.html#the-stack-and-the-heap){target="_blank"} are is important.
+Rust is a systems programming language. 
+Understanding what [The Stack and the Heap](https://doc.rust-lang.org/stable/book/ch04-01-what-is-ownership.html#the-stack-and-the-heap){target="\_blank"} are is important.
+
+#### The stack
+
+The stack and the heap are parts of memory available to your code to use at runtime.
+The stack stores values in a last in, first out. But more importantly,  
+data stored on the stack must have a known, fixed size. 
+
+#### The heap 
+
+Data with an unknown size at compile time or a size that might change must be stored on the heap instead.
+Putting data on the heap entails a request for a certain amount of space in memory. 
+The memory allocator finds an empty spot in the heap that is big enough, marks it as being in use, 
+and returns a pointer, which is the address of that location.
+The pointer to the heap is known, has fixed size and thus is stored on the stack.
+The actual data will be on the head as its sizer may not be know at compile time and or it may grow or shrink during run time. Thus access to the data is via the pointer.
+
+
+
+### Ownership 
 
 Ownership Rules::
     
@@ -498,3 +545,40 @@ also see:
 ### Implementing an Iterator
 
 ### hangman using Chars()
+
+# Level 04
+
+### Let's play with
+
+#### user input from the console without the newline
+
+Note: When using `print!()` keep in mind that stdout is frequently line-buffered by default so it may be necessary 
+to use `io::stdout().flush()` to ensure the output is emitted immediately.
+
+```rust
+fn main() {
+    use std::io::{stdin,stdout,Write};
+
+    print!("Please enter some text: ");
+    stdout().flush().unwrap();
+
+    let mut s = String::new();
+    stdin()
+        .read_line(&mut s)
+        .expect("Failed to read the line");
+
+    if let Some('\n')=s.chars().next_back() {
+        s.pop();
+    }
+    // windows has \r too
+    if let Some('\r')=s.chars().next_back() {
+        s.pop();
+    }
+
+    println!("You typed: {}",s);
+}
+```
+
+see also:  
+[std::print](https://doc.rust-lang.org/std/macro.print.html)  
+[std::io::Write::flush](https://doc.rust-lang.org/std/io/trait.Write.html#tymethod.flush)  
