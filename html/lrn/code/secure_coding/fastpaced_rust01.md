@@ -7,7 +7,7 @@
 
 # Level 01
 
-## Data: take one
+## Data: take one 
 
 When it comes to Software, everything is Data and the access to its storage.
 
@@ -20,7 +20,41 @@ _ rustbook
 
 see also: [Rust built-in types](https://doc.rust-lang.org/stable/book/ch03-02-data-types.html)
 
-### Floats
+### Scalar Types
+#### Integers
+
+|Length	  | Signed| Unsigned |
+|---------|-------|----------|
+| 8-bit   | [i8](https://doc.rust-lang.org/std/primitive.i8.html)    | [u8](https://doc.rust-lang.org/std/primitive.u8.html)       |
+| 16-bit  | [i16](https://doc.rust-lang.org/std/primitive.i16.html)   | [u16](https://doc.rust-lang.org/std/primitive.u16.html)      |
+| 32-bit  | [i32](https://doc.rust-lang.org/std/primitive.i32.html)   | [u32](https://doc.rust-lang.org/std/primitive.u32.html)      |
+| 64-bit  | [i64](https://doc.rust-lang.org/std/primitive.i64.html)   | [u64](https://doc.rust-lang.org/std/primitive.u64.html)      |
+| 128-bit | [i128](https://doc.rust-lang.org/std/primitive.i128.html)  | [u128](https://doc.rust-lang.org/std/primitive.u128.html)     |
+| arch	  | [isize](https://doc.rust-lang.org/std/primitive.isize.html) | [usize](https://doc.rust-lang.org/std/primitive.usize.html)    |
+
+integers default to [i32](https://doc.rust-lang.org/std/primitive.i32.html#implementations)
+
+> isize and usize types depend on the architecture of the computer your program is running on,  
+> which is denoted in the table as “arch”:  
+> 64 bits if you’re on a 64-bit architecture and 
+> 32 bits if you’re on a 32-bit architecture.    
+_ rustbook
+
+##### Integer Literals in Rust
+> You can write integer literals in any of the forms shown in Table 3-2. Note that number literals that can be multiple numeric types allow a type suffix, such as 57u8, to designate the type. Number literals can also use _ as a visual separator to make the number easier to read, such as 1_000, which will have the same value as if you had specified 1000.
+_ rustbook
+
+
+| Number literals   | Example       |
+|-------------------|---------------|
+| Decimal           | 98_222        |
+| Hex               | 0xff          |
+| Octal             | 0o77          |
+| Binary            | 0b1111_0000   |
+| Byte (u8 only)    | b'A'          |
+
+
+#### Floats
 
 Rust’s floating-point types are [f32 (32 bits)](https://doc.rust-lang.org/std/primitive.f32.html) and [f64 (64 bits)](https://doc.rust-lang.org/std/primitive.f64.html).  
 
@@ -40,39 +74,8 @@ fn main() {
 
 Also have a look at the Basic mathematical constants at [std::f32::consts](https://doc.rust-lang.org/std/f32/consts/index.html) and [std::f64::consts](https://doc.rust-lang.org/std/f64/consts/index.html)
 
-### Integers
 
-|Length	  | Signed| Unsigned |
-|---------|-------|----------|
-| 8-bit   | [i8](https://doc.rust-lang.org/std/primitive.i8.html)    | [u8](https://doc.rust-lang.org/std/primitive.u8.html)       |
-| 16-bit  | [i16](https://doc.rust-lang.org/std/primitive.i16.html)   | [u16](https://doc.rust-lang.org/std/primitive.u16.html)      |
-| 32-bit  | [i32](https://doc.rust-lang.org/std/primitive.i32.html)   | [u32](https://doc.rust-lang.org/std/primitive.u32.html)      |
-| 64-bit  | [i64](https://doc.rust-lang.org/std/primitive.i64.html)   | [u64](https://doc.rust-lang.org/std/primitive.u64.html)      |
-| 128-bit | [i128](https://doc.rust-lang.org/std/primitive.i128.html)  | [u128](https://doc.rust-lang.org/std/primitive.u128.html)     |
-| arch	  | [isize](https://doc.rust-lang.org/std/primitive.isize.html) | [usize](https://doc.rust-lang.org/std/primitive.usize.html)    |
-
-integers default to [i32](https://doc.rust-lang.org/std/primitive.i32.html#implementations)
-
-> isize and usize types depend on the architecture of the computer your program is running on,  
-> which is denoted in the table as “arch”:  
-> 64 bits if you’re on a 64-bit architecture and 
-> 32 bits if you’re on a 32-bit architecture.    
-_ rustbook
-
-#### Integer Literals in Rust
-> You can write integer literals in any of the forms shown in Table 3-2. Note that number literals that can be multiple numeric types allow a type suffix, such as 57u8, to designate the type. Number literals can also use _ as a visual separator to make the number easier to read, such as 1_000, which will have the same value as if you had specified 1000.
-_ rustbook
-
-
-| Number literals   | Example       |
-|-------------------|---------------|
-| Decimal           | 98_222        |
-| Hex               | 0xff          |
-| Octal             | 0o77          |
-| Binary            | 0b1111_0000   |
-| Byte (u8 only)    | b'A'          |
-
-### bool
+#### bool
 
 Booleans are one byte in size.
 Two possible values: `true` and `false`
@@ -86,7 +89,7 @@ fn main() {
 }
 ```
 
-### Character
+#### Character
 `char` type represents a single character, a ‘Unicode scalar value’.
 
 ```rust
@@ -100,53 +103,6 @@ No char may be constructed, whether as a literal or at runtime, that is not a Un
 also see:
 [char](https://doc.rust-lang.org/std/primitive.char.html)  
 [unicode table](https://unicode-table.com/en/)  
-
-### Array and Tuple Types
-
-
-#### Array 
-> The Array Type 
-An array is a collection of elements of the same type allocated in a contiguous memory block.
-
-Every element of an array must have the same type. 
-```rust
-let my_array = [0.07, 1.2, 2.0, 3.1415, 4.2];
-```
-
-Arrays in Rust have a fixed length.
-```rust
-let a: [i32; 5]; // type and size of the array
-a = [1, 2, 3, 4, 5];
-```
-
-We can initialize an array to contain the same value for each element
-```rust
-let five_ones = [1; 5]; // [1, 1, 1, 1, 1]
-```
-
-You can access elements of an array using indexing
-```rust
-let a = [1, 2, 3, 4, 5];
-let first = a[0]; // 1
-let second = a[1]; // 2
-```
-
-#### The Tuple Type
-A tuple is a general way of grouping together a number of values with a variety of types into one compound type. 
-Tuples have a fixed length: once declared, they cannot grow or shrink in size.  
-_ rustbook
-
->  fixed-length collections of values of different types.
-
-```rust
-let tup: (i32, f64, u8) = (500, 6.4, 1); // mixed datatype
-
-let middle = tup.1 // starts at index 0
-println!(middle); // 6.4
-
-let (x, y, z) = tup; // unpack
-println!("The value of y is: {}", y);
-```
 
 ### Mutability  
 Variables are immutable by default, mutable explicitly
@@ -194,6 +150,128 @@ let ascii: u8 = 255;
 let mut var02: i64 = 41; // default would be i32 so we have to be explicit if we don't  want i32
 
 ```
+
+### Collection Types
+
+
+#### Array 
+> The Array Type 
+An array is a collection of elements of the same type allocated in a contiguous memory block.
+
+Every element of an array must have the same type. 
+```rust
+let my_array = [0.07, 1.2, 2.0, 3.1415, 4.2];
+```
+
+Arrays in Rust have a fixed length.
+```rust
+let a: [i32; 5]; // type and size of the array
+a = [1, 2, 3, 4, 5];
+```
+
+We can initialize an array to contain the same value for each element
+```rust
+let five_ones = [1; 5]; // [1, 1, 1, 1, 1]
+```
+
+You can access elements of an array using indexing
+```rust
+let a = [1, 2, 3, 4, 5];
+let first = a[0]; // 1
+let second = a[1]; // 2
+```
+A mutable array means the elements are mutable. But the array size cannot.
+
+
+```rust
+fn main() {
+    let mut array: [u8; 3] = [0; 3];
+
+    println!(";T -1: {}, {}, {}";, array[0], array[1], array[2]); // T -1: 0, 0, 0
+
+    array[0] = 3;
+    array[1] = 2;
+    array[2] = 1;
+
+    println!(";{}, {}, {} Lift Off!";, array[0], array[1], array[2]); // 3, 2, 1 Lift Off!
+}
+```
+See vectors for a dynamic size array like type.
+
+#### The Tuple Type
+A tuple is a general way of grouping together a number of values with a variety of types into one compound type. 
+Tuples have a fixed length: once declared, they cannot grow or shrink in size.  
+_ rustbook
+
+>  fixed-length collections of values of different types.
+
+```rust
+let tup: (i32, f64, u8) = (500, 6.4, 1); // mixed datatype
+
+let middle = tup.1 // starts at index 0
+println!(middle); // 6.4
+
+let (x, y, z) = tup; // unpack
+println!("The value of y is: {}", y);
+```
+
+#### Vector
+
+A vector is a contiguous re-sizable array type.
+
+
+### Slice, &str and Strings
+
+#### Slice 
+Slices act like temporary views into an array. 
+It works by storing a reference to the first element and a length.
+Hence all the elements must be of the same type.
+
+```rust
+let my_arr = [10, 20, 30, 40, 50];
+let my_slice = &my_arr[2..];
+
+println!("{}", my_slice[0]); // output: 30
+println!("{}", my_arr[0]); // output: 10
+
+```
+
+#### string literal: `&str`
+
+```rust
+let name = "Rust"; // bind the string literal to variable `name`
+let msg: &str = "Trust";
+
+println!("In {} we {}", name, msg); // output: In Rust we Trust
+```
+
+A string literal &str is a slice `&[u8]`.
+It is allocated on the stack as UTF-8 sequence.
+The stack is parts of memory available to your code to use at runtime.
+The size of &str is fixed, meaning it cannot be resized.
+
+#### String: Allocation on the heap
+
+A String is stored on the Heap as a vector of bytes `Vec<u8>` and is  encoded in UTF 8 sequence.
+The heap is another parts of memory available to your code to use at runtime.
+Heap allocation akkows for growable strings.
+
+The data present in the string can be viewed using &str.
+
+Creates a new empty String
+```rust 
+let s = String::new();
+
+```
+
+String from a literal string with String::from
+```rust
+let hello = String::from("Hello, world!");
+```
+
+also see:
+[Storing UTF-8 Encoded Text with Strings](https://doc.rust-lang.org/stable/book/ch08-02-strings.html#storing-utf-8-encoded-text-with-strings)
+
 ## Input - Output: Terminal
 
 ### Writing to the Terminal
@@ -471,46 +549,6 @@ Ownership Rules::
     There can only be one owner at a time.
     When the owner goes out of scope, the value will be dropped.
 
-
-
-### Vector
-
-### Strings and &str  
-Slice, str and String
-
-### Slice 
-Slices act like temporary views into an array. 
-It works by storing a reference to the first element and a length.
-Hence all the elements must be of the same type.
-
-```rust
-let my_arr = [10, 20, 30, 40, 50];
-let my_slice = &my_arr[2..];
-
-println!("{}", my_slice[0]); // output: 30
-println!("{}", my_arr[0]); // output: 10
-
-```
-### string literal: `&str`
-
-```rust
-let name = "Rust"; // bind the string literal to variable `name`
-let msg: &str = "Trust";
-
-println!("In {} we {}", name, msg); // output: In Rust we Trust
-```
-
-A string literal has type &str. It is a stack allocated UTF-8 string.
-The size of &str is fixed, meaning it cannot be resized.
-the representation of &str is done by &[u8] that points to the UTP 8 sequence
-
-### String: Allocation on the heap
-
-The String object is encoded in UTF 8 sequence, and a heap memory allocation is done for the String object,
-the data present in the string can be viewed using &str.
-
-also see:
-[Storing UTF-8 Encoded Text with Strings](https://doc.rust-lang.org/stable/book/ch08-02-strings.html#storing-utf-8-encoded-text-with-strings)
 
 ## Input-Output: Working with files and directories  
 
