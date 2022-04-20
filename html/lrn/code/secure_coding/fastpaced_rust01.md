@@ -56,7 +56,7 @@ _ rustbook
 
 #### Floats
 
-Rust’s floating-point types are [f32 (32 bits)](https://doc.rust-lang.org/std/primitive.f32.html) and [f64 (64 bits)](https://doc.rust-lang.org/std/primitive.f64.html).  
+Rust’s floating-point types are [f32 (32 bits)](https://doc.rust-lang.org/std/primitive.f32.html) and [f64 (64 bits)](https://doc.rust-lang.org/std/primitive.f64.html){target="_blank"} .  
 
 All floating-point types are signed.
 
