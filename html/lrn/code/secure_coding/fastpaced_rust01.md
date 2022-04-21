@@ -98,8 +98,6 @@ let the_one = '♾';
 
 ```
 
-No char may be constructed, whether as a literal or at runtime, that is not a Unicode scalar value.
-
 also see:
 [char](https://doc.rust-lang.org/std/primitive.char.html)  
 [unicode table](https://unicode-table.com/en/)  
@@ -152,7 +150,6 @@ let mut var02: i64 = 41; // default would be i32 so we have to be explicit if we
 ```
 
 ### Collection Types
-
 
 #### Array 
 > The Array Type 
