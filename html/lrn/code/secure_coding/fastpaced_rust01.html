@@ -92,14 +92,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li><a href="#processing">Processing</a><ul>
 <li><a href="#basic-mathematical-operations">Basic mathematical operations</a></li>
-<li><a href="#user-defined-functions-in-rust">user defined <span>Functions in Rust</span></a></li>
-<li><a href="#code-block-and-scope">Code block and scope</a></li>
+<li><a href="#working-with-strings-take-two">Working with strings: Take two</a></li>
+<li><a href="#code-block-scope-and-functions">Code block, scope and functions</a></li>
 </ul></li>
 </ul></li>
 <li><a href="#level-02">Level 02</a><ul>
 <li><a href="#data-take-two">Data: Take two</a><ul>
+<li><a href="#stack-and-heap-memory">Stack and Heap memory</a></li>
 <li><a href="#ownership-and-borrowing">Ownership and Borrowing</a></li>
-<li><a href="#ownership">Ownership</a></li>
 </ul></li>
 <li><a href="#input-output-working-with-files-and-directories">Input-Output: Working with files and directories</a><ul>
 <li><a href="#reading-a-file">Reading a file</a></li>
@@ -115,6 +115,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="#level-03">Level 03</a><ul>
 <li><a href="#data-take-three">Data: Take three</a><ul>
 <li><a href="#traits-and-behaviour">Traits and behaviour</a></li>
+<li><a href="#generics">Generics</a></li>
 </ul></li>
 <li><a href="#input-output">Input-output:</a><ul>
 <li><a href="#getting-data-from-the-cli-arguments">Getting data from the CLI arguments</a></li>
@@ -127,6 +128,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li><a href="#level-04">Level 04</a><ul>
 <li><a href="#lets-play-with">Let’s play with</a></li>
+<li><a href="#benchmarking">Benchmarking</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -230,7 +232,7 @@ _ rustbook</p>
 </tbody>
 </table>
 <h4 id="floats">Floats</h4>
-<p>Rust’s floating-point types are <a href="https://doc.rust-lang.org/std/primitive.f32.html">f32 (32 bits)</a> and <a href="https://doc.rust-lang.org/std/primitive.f64.html" target="_blank" rel="noopener">f64 (64 bits)</a> .</p>
+<p>Rust’s floating-point types are <a href="https://doc.rust-lang.org/std/primitive.f32.html">f32 (32 bits)</a> and <a href="https://doc.rust-lang.org/std/primitive.f64.html" target="_blank">f64 (64 bits)</a> .</p>
 <p>All floating-point types are signed.</p>
 <p>Floats defaults to <a href="https://doc.rust-lang.org/std/primitive.f64.html#implementations">f64</a></p>
 <blockquote>
@@ -254,7 +256,6 @@ _ rustbook</p>
 <p><code>char</code> type represents a single character, a ‘Unicode scalar value’.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">let</span> infinity: <span class="dt">char</span> = <span class="ch">&#39;</span><span class="sc">\u{267E}</span><span class="ch">&#39;</span>;</a>
 <a class="sourceLine" id="cb3-2" title="2"><span class="kw">let</span> the_one = <span class="ch">&#39;♾&#39;</span>;</a></code></pre></div>
-<p>No char may be constructed, whether as a literal or at runtime, that is not a Unicode scalar value.</p>
 <p>also see: <a href="https://doc.rust-lang.org/std/primitive.char.html">char</a><br />
 <a href="https://unicode-table.com/en/">unicode table</a></p>
 <h3 id="mutability">Mutability</h3>
@@ -331,21 +332,32 @@ _ rustbook</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb15-1" title="1"><span class="kw">let</span> my_arr = <span class="op">[</span><span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span><span class="op">]</span>;</a>
 <a class="sourceLine" id="cb15-2" title="2"><span class="kw">let</span> my_slice = &amp;my_arr<span class="op">[</span><span class="dv">2</span>..<span class="op">]</span>;</a>
 <a class="sourceLine" id="cb15-3" title="3"></a>
-<a class="sourceLine" id="cb15-4" title="4"><span class="pp">println!</span>(<span class="st">&quot;{}&quot;</span>, my_slice<span class="op">[</span><span class="dv">0</span><span class="op">]</span>); <span class="co">// output: 30</span></a>
-<a class="sourceLine" id="cb15-5" title="5"><span class="pp">println!</span>(<span class="st">&quot;{}&quot;</span>, my_arr<span class="op">[</span><span class="dv">0</span><span class="op">]</span>); <span class="co">// output: 10</span></a></code></pre></div>
+<a class="sourceLine" id="cb15-4" title="4"><span class="pp">println!</span>(<span class="st">&quot;{}&quot;</span>, my_arr<span class="op">[</span><span class="dv">0</span><span class="op">]</span>); <span class="co">// output: 10</span></a>
+<a class="sourceLine" id="cb15-5" title="5"><span class="pp">println!</span>(<span class="st">&quot;{}&quot;</span>, my_slice<span class="op">[</span><span class="dv">0</span><span class="op">]</span>); <span class="co">// output: 30</span></a></code></pre></div>
 <h4 id="string-literal-str">string literal: <code>&amp;str</code></h4>
-<div class="sourceCode" id="cb16"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb16-1" title="1"><span class="kw">let</span> name = <span class="st">&quot;Rust&quot;</span>; <span class="co">// bind the string literal to variable `name`</span></a>
+<p>A string literal &amp;str is a slice <code>&amp;[u8]</code>. In Rust we call this a string slice or s_tuh_rrr.</p>
+<p>Use it if you just need an immutable string or a part of a string.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb16-1" title="1"><span class="kw">let</span> name = <span class="st">&quot;Rust 🦀&quot;</span>; <span class="co">// bind the string literal to variable `name`</span></a>
 <a class="sourceLine" id="cb16-2" title="2"><span class="kw">let</span> msg: &amp;<span class="dt">str</span> = <span class="st">&quot;Trust&quot;</span>;</a>
 <a class="sourceLine" id="cb16-3" title="3"></a>
-<a class="sourceLine" id="cb16-4" title="4"><span class="pp">println!</span>(<span class="st">&quot;In {} we {}&quot;</span>, name, msg); <span class="co">// output: In Rust we Trust</span></a></code></pre></div>
-<p>A string literal &amp;str is a slice <code>&amp;[u8]</code>. It is allocated on the stack as UTF-8 sequence. The stack is parts of memory available to your code to use at runtime. The size of &amp;str is fixed, meaning it cannot be resized.</p>
+<a class="sourceLine" id="cb16-4" title="4"><span class="pp">println!</span>(<span class="st">&quot;In {} we {}&quot;</span>, name, msg); <span class="co">// output: In Rust 🦀 we Trust</span></a></code></pre></div>
+<p>It is allocated on the stack as UTF-8 sequence. The stack is parts of memory available to your code to use at runtime. The size of &amp;str is fixed, meaning it cannot be resized.</p>
 <h4 id="string-allocation-on-the-heap">String: Allocation on the heap</h4>
-<p>A String is stored on the Heap as a vector of bytes <code>Vec&lt;u8&gt;</code> and is encoded in UTF 8 sequence. The heap is another parts of memory available to your code to use at runtime. Heap allocation akkows for growable strings.</p>
+<p>A String is stored on the Heap as a vector of bytes <code>Vec&lt;u8&gt;</code> and is encoded in UTF 8 sequence. The heap is another parts of memory available to your code to use at runtime. Heap allocation allows for growable, mutable strings.</p>
 <p>The data present in the string can be viewed using &amp;str.</p>
 <p>Creates a new empty String</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb17-1" title="1"><span class="kw">let</span> s = <span class="dt">String</span>::new();</a></code></pre></div>
-<p>String from a literal string with String::from</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb18-1" title="1"><span class="kw">let</span> hello = <span class="dt">String</span>::from(<span class="st">&quot;Hello, world!&quot;</span>);</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb17-1" title="1"><span class="kw">let</span> s = <span class="dt">String</span>::new();</a>
+<a class="sourceLine" id="cb17-2" title="2"><span class="kw">let</span> <span class="kw">mut</span> more_useful = <span class="dt">String</span>::new();</a>
+<a class="sourceLine" id="cb17-3" title="3"></a>
+<a class="sourceLine" id="cb17-4" title="4"><span class="co">// if you can allocate upfront enough capacity to store your data Use with_capacity.</span></a>
+<a class="sourceLine" id="cb17-5" title="5"><span class="co">// </span></a>
+<a class="sourceLine" id="cb17-6" title="6"><span class="co">// After the inital allocation, no memory allocated until it need more than 25</span></a>
+<a class="sourceLine" id="cb17-7" title="7"><span class="kw">let</span> <span class="kw">mut</span> I_know_my_initial_max_size = <span class="dt">String</span>::with_capacity(<span class="dv">25</span>);</a></code></pre></div>
+<p>The are different ways to crate a String from a literal string. Here are the most common ones.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb18-1" title="1"><span class="kw">let</span> s1 = <span class="dt">String</span>::from(<span class="st">&quot;Hello, world!&quot;</span>);</a>
+<a class="sourceLine" id="cb18-2" title="2"><span class="kw">let</span> s2 = <span class="st">&quot;Hello again&quot;</span>.to_string();</a>
+<a class="sourceLine" id="cb18-3" title="3"><span class="kw">let</span> s3 = <span class="st">&quot;this used to be faster but to_string caught up.&quot;</span>.to_owned();</a></code></pre></div>
+<p>Note that earler versions of Rust favored using <code>to_owned()</code> over <code>to_string()</code>. Back then to_owned was faster.</p>
 <p>also see: <a href="https://doc.rust-lang.org/stable/book/ch08-02-strings.html#storing-utf-8-encoded-text-with-strings">Storing UTF-8 Encoded Text with Strings</a></p>
 <h2 id="input---output-terminal">Input - Output: Terminal</h2>
 <h3 id="writing-to-the-terminal">Writing to the Terminal</h3>
@@ -399,149 +411,192 @@ _ rustbook</p>
 <a class="sourceLine" id="cb21-15" title="15"></a>
 <a class="sourceLine" id="cb21-16" title="16">    <span class="pp">println!</span>(<span class="st">&quot;{0} + {0} = {1}&quot;</span>, my_int, my_int+my_int);</a>
 <a class="sourceLine" id="cb21-17" title="17"><span class="op">}</span></a></code></pre></div>
-<h5 id="convert-to-characters">Convert to characters</h5>
-<div class="sourceCode" id="cb22"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb22-1" title="1">    <span class="pp">println!</span>(<span class="st">&quot;Please enter a word: &quot;</span>);</a>
-<a class="sourceLine" id="cb22-2" title="2"></a>
-<a class="sourceLine" id="cb22-3" title="3">    <span class="kw">let</span> <span class="kw">mut</span> user_input = <span class="dt">String</span>::new();</a>
-<a class="sourceLine" id="cb22-4" title="4">    stdin()</a>
-<a class="sourceLine" id="cb22-5" title="5">        .read_line(&amp;<span class="kw">mut</span> user_input)</a>
-<a class="sourceLine" id="cb22-6" title="6">        .expect(<span class="st">&quot;Failed to read line&quot;</span>);</a>
-<a class="sourceLine" id="cb22-7" title="7"></a>
-<a class="sourceLine" id="cb22-8" title="8">    <span class="kw">let</span> ch: <span class="dt">Vec</span>&lt;_&gt; = user_input.chars().collect();</a>
-<a class="sourceLine" id="cb22-9" title="9">    <span class="pp">println!</span>(<span class="st">&quot;the first char is {}&quot;</span>, ch<span class="op">[</span><span class="dv">0</span><span class="op">]</span>);</a>
-<a class="sourceLine" id="cb22-10" title="10"></a>
-<a class="sourceLine" id="cb22-11" title="11">    <span class="kw">for</span> ch <span class="kw">in</span> user_input.chars().<span class="pp">collect::</span>&lt;<span class="dt">Vec</span>&lt;<span class="dt">char</span>&gt;&gt;() <span class="op">{</span></a>
-<a class="sourceLine" id="cb22-12" title="12">        <span class="pp">println!</span>(<span class="st">&quot;{}&quot;</span>, ch);</a>
-<a class="sourceLine" id="cb22-13" title="13">    <span class="op">}</span></a>
-<a class="sourceLine" id="cb22-14" title="14">    <span class="kw">for</span> ch <span class="kw">in</span> user_input.chars() <span class="op">{</span></a>
-<a class="sourceLine" id="cb22-15" title="15">        <span class="pp">println!</span>(<span class="st">&quot;{}&quot;</span>, ch);</a>
-<a class="sourceLine" id="cb22-16" title="16">    <span class="op">}</span></a>
-<a class="sourceLine" id="cb22-17" title="17">    <span class="kw">for</span> (i,ch) <span class="kw">in</span> user_input.chars().enumerate() <span class="op">{</span></a>
-<a class="sourceLine" id="cb22-18" title="18">        <span class="pp">println!</span>(<span class="st">&quot;{} {}&quot;</span>, i, ch);</a>
-<a class="sourceLine" id="cb22-19" title="19">    <span class="op">}</span></a></code></pre></div>
-<p>.chars() converts the string to a char iterator</p>
-<p>.collect() converts the iterator to a collection</p>
 <h2 id="processing">Processing</h2>
 <h3 id="basic-mathematical-operations">Basic mathematical operations</h3>
-<div class="sourceCode" id="cb23"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb23-1" title="1"><span class="kw">fn</span> main() <span class="op">{</span></a>
-<a class="sourceLine" id="cb23-2" title="2">    <span class="co">// addition</span></a>
-<a class="sourceLine" id="cb23-3" title="3">    <span class="kw">let</span> sum = <span class="dv">5</span> + <span class="dv">10</span>;</a>
-<a class="sourceLine" id="cb23-4" title="4"></a>
-<a class="sourceLine" id="cb23-5" title="5">    <span class="co">// subtraction</span></a>
-<a class="sourceLine" id="cb23-6" title="6">    <span class="kw">let</span> difference = <span class="dv">95.5</span> - <span class="dv">4.3</span>;</a>
-<a class="sourceLine" id="cb23-7" title="7"></a>
-<a class="sourceLine" id="cb23-8" title="8">    <span class="co">// multiplication</span></a>
-<a class="sourceLine" id="cb23-9" title="9">    <span class="kw">let</span> product = <span class="dv">4</span> * <span class="dv">30</span>;</a>
-<a class="sourceLine" id="cb23-10" title="10"></a>
-<a class="sourceLine" id="cb23-11" title="11">    <span class="co">// division</span></a>
-<a class="sourceLine" id="cb23-12" title="12">    <span class="kw">let</span> quotient = <span class="dv">56.7</span> / <span class="dv">32.2</span>;</a>
-<a class="sourceLine" id="cb23-13" title="13">    <span class="kw">let</span> floored = <span class="dv">2</span> / <span class="dv">3</span>; <span class="co">// Results in 0</span></a>
-<a class="sourceLine" id="cb23-14" title="14"></a>
-<a class="sourceLine" id="cb23-15" title="15">    <span class="co">// remainder</span></a>
-<a class="sourceLine" id="cb23-16" title="16">    <span class="kw">let</span> remainder = <span class="dv">43</span> % <span class="dv">5</span>;</a>
-<a class="sourceLine" id="cb23-17" title="17"><span class="op">}</span></a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb22-1" title="1"><span class="kw">fn</span> main() <span class="op">{</span></a>
+<a class="sourceLine" id="cb22-2" title="2">    <span class="co">// addition</span></a>
+<a class="sourceLine" id="cb22-3" title="3">    <span class="kw">let</span> sum = <span class="dv">5</span> + <span class="dv">10</span>;</a>
+<a class="sourceLine" id="cb22-4" title="4"></a>
+<a class="sourceLine" id="cb22-5" title="5">    <span class="co">// subtraction</span></a>
+<a class="sourceLine" id="cb22-6" title="6">    <span class="kw">let</span> difference = <span class="dv">95.5</span> - <span class="dv">4.3</span>;</a>
+<a class="sourceLine" id="cb22-7" title="7"></a>
+<a class="sourceLine" id="cb22-8" title="8">    <span class="co">// multiplication</span></a>
+<a class="sourceLine" id="cb22-9" title="9">    <span class="kw">let</span> product = <span class="dv">4</span> * <span class="dv">30</span>;</a>
+<a class="sourceLine" id="cb22-10" title="10"></a>
+<a class="sourceLine" id="cb22-11" title="11">    <span class="co">// division</span></a>
+<a class="sourceLine" id="cb22-12" title="12">    <span class="kw">let</span> quotient = <span class="dv">56.7</span> / <span class="dv">32.2</span>;</a>
+<a class="sourceLine" id="cb22-13" title="13">    <span class="kw">let</span> floored = <span class="dv">2</span> / <span class="dv">3</span>; <span class="co">// Results in 0</span></a>
+<a class="sourceLine" id="cb22-14" title="14"></a>
+<a class="sourceLine" id="cb22-15" title="15">    <span class="co">// remainder</span></a>
+<a class="sourceLine" id="cb22-16" title="16">    <span class="kw">let</span> remainder = <span class="dv">43</span> % <span class="dv">5</span>;</a>
+<a class="sourceLine" id="cb22-17" title="17"><span class="op">}</span></a></code></pre></div>
 <p>NOTE:<br />
-The common power <code>^</code> or <code>**</code> is not used in rust.<br />
+Programming languages often use <code>^</code> or <code>**</code> for power_of (exponent). This is not used in rust.<br />
 Instead the numerical type has a method for it.<br />
 such as <a href="https://doc.rust-lang.org/std/primitive.f32.html#method.powi">powi</a> and <a href="https://doc.rust-lang.org/std/primitive.f32.html#method.powf">powf</a> for the <code>f32</code> type.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb24-1" title="1"><span class="kw">let</span> x: <span class="dt">f32</span> = <span class="dv">2.0</span>; </a>
-<a class="sourceLine" id="cb24-2" title="2"><span class="pp">println!</span>( x.powi(<span class="dv">2</span>) );</a>
-<a class="sourceLine" id="cb24-3" title="3"><span class="pp">println!</span>( x.powf(<span class="dv">2.0</span>) );</a></code></pre></div>
-<h3 id="user-defined-functions-in-rust">user defined <a href="https://doc.rust-lang.org/stable/book/ch03-03-how-functions-work.html">Functions in Rust</a></h3>
+<div class="sourceCode" id="cb23"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb23-1" title="1"><span class="kw">let</span> x: <span class="dt">f32</span> = <span class="dv">2.0</span>; </a>
+<a class="sourceLine" id="cb23-2" title="2"><span class="pp">println!</span>( x.powi(<span class="dv">2</span>) );</a>
+<a class="sourceLine" id="cb23-3" title="3"><span class="pp">println!</span>( x.powf(<span class="dv">2.0</span>) );</a></code></pre></div>
+<h3 id="working-with-strings-take-two">Working with strings: Take two</h3>
+<h4 id="working-with-text-useful-conversions">Working with text: Useful conversions</h4>
+<pre><code>&amp;str    -&gt; String  | String::from(s) or s.to_string() or s.to_owned()
+&amp;str    -&gt; &amp;[u8]   | s.as_bytes()
+&amp;str    -&gt; Vec&lt;u8&gt; | s.as_bytes().to_vec() or s.as_bytes().to_owned()
+String  -&gt; &amp;str    | &amp;s if possible* else s.as_str()
+String  -&gt; &amp;[u8]   | s.as_bytes()
+String  -&gt; Vec&lt;u8&gt; | s.into_bytes()
+&amp;[u8]   -&gt; &amp;str    | s.to_vec() or s.to_owned()
+&amp;[u8]   -&gt; String  | std::str::from_utf8(s).unwrap()
+&amp;[u8]   -&gt; Vec&lt;u8&gt; | String::from_utf8(s).unwrap()
+Vec&lt;u8&gt; -&gt; &amp;str    | &amp;s if possible* else s.as_slice()
+Vec&lt;u8&gt; -&gt; String  | std::str::from_utf8(&amp;s).unwrap()
+Vec&lt;u8&gt; -&gt; &amp;[u8]   | String::from_utf8(s).unwrap()
+
+* target should have explicit type (i.e., checker can&#39;t infer that)</code></pre>
+<p>source: <a href="https://vastorigins.com/2021/09/22/converting-rust-string-to-and-from/">Converting Rust String To And From</a></p>
+<h4 id="append-to-string">Append to string</h4>
+<h5 id="using-the-push_str">Using the <code>push_str</code></h5>
+<div class="sourceCode" id="cb25"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb25-1" title="1"><span class="kw">let</span> <span class="kw">mut</span> s = <span class="dt">String</span>::from(<span class="st">&quot;On your mark&quot;</span>);</a>
+<a class="sourceLine" id="cb25-2" title="2">s.push_str(<span class="st">&quot;, get set&quot;</span>);</a>
+<a class="sourceLine" id="cb25-3" title="3"><span class="pp">println!</span>(<span class="st">&quot;{s}&quot;</span>); <span class="co">// On your mark, get set</span></a></code></pre></div>
+<h5 id="using-the">Using the <code>+</code></h5>
+<div class="sourceCode" id="cb26"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb26-1" title="1"><span class="kw">let</span> s2 = s + <span class="st">&quot; -&gt; GO!&quot;</span>; <span class="co">// The String type comes before the str</span></a>
+<a class="sourceLine" id="cb26-2" title="2"><span class="pp">println!</span>(<span class="st">&quot;{s2}&quot;</span>); <span class="co">// On your mark, get set -&gt; GO!</span></a></code></pre></div>
+<h5 id="using-format-to-get-a-string">Using <code>format!()</code> to get a String</h5>
+<div class="sourceCode" id="cb27"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb27-1" title="1"><span class="kw">let</span> s3 = <span class="pp">format!</span>(<span class="st">&quot;{} - {} = {}&quot;</span>, <span class="st">&quot;1&quot;</span>, <span class="st">&quot;2&quot;</span>, <span class="st">&quot;3&quot;</span>);</a>
+<a class="sourceLine" id="cb27-2" title="2"><span class="pp">println!</span>(<span class="st">&quot;{s3}&quot;</span>); <span class="co">// 1 + 2  = 3</span></a></code></pre></div>
+<h5 id="using-concat-to-get-a-str">Using <code>concat!()</code> to get a str</h5>
+<div class="sourceCode" id="cb28"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb28-1" title="1"><span class="kw">let</span> s4 = <span class="pp">concat!</span>(<span class="st">&quot;last&quot;</span>, <span class="st">&quot;name&quot;</span>);</a>
+<a class="sourceLine" id="cb28-2" title="2"><span class="pp">println!</span>(<span class="st">&quot;{s4}&quot;</span>); <span class="co">// lastname</span></a></code></pre></div>
+<h4 id="convert-to-characters">Convert to characters</h4>
+<div class="sourceCode" id="cb29"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb29-1" title="1">    <span class="pp">println!</span>(<span class="st">&quot;Please enter a word: &quot;</span>);</a>
+<a class="sourceLine" id="cb29-2" title="2"></a>
+<a class="sourceLine" id="cb29-3" title="3">    <span class="kw">let</span> <span class="kw">mut</span> user_input = <span class="dt">String</span>::new();</a>
+<a class="sourceLine" id="cb29-4" title="4">    stdin()</a>
+<a class="sourceLine" id="cb29-5" title="5">        .read_line(&amp;<span class="kw">mut</span> user_input)</a>
+<a class="sourceLine" id="cb29-6" title="6">        .expect(<span class="st">&quot;Failed to read line&quot;</span>);</a>
+<a class="sourceLine" id="cb29-7" title="7"></a>
+<a class="sourceLine" id="cb29-8" title="8">    <span class="kw">let</span> ch: <span class="dt">Vec</span>&lt;_&gt; = user_input.chars().collect();</a>
+<a class="sourceLine" id="cb29-9" title="9">    <span class="pp">println!</span>(<span class="st">&quot;the first char is {}&quot;</span>, ch<span class="op">[</span><span class="dv">0</span><span class="op">]</span>);</a>
+<a class="sourceLine" id="cb29-10" title="10"></a>
+<a class="sourceLine" id="cb29-11" title="11">    <span class="kw">for</span> ch <span class="kw">in</span> user_input.chars().<span class="pp">collect::</span>&lt;<span class="dt">Vec</span>&lt;<span class="dt">char</span>&gt;&gt;() <span class="op">{</span></a>
+<a class="sourceLine" id="cb29-12" title="12">        <span class="pp">println!</span>(<span class="st">&quot;{}&quot;</span>, ch);</a>
+<a class="sourceLine" id="cb29-13" title="13">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb29-14" title="14">    <span class="kw">for</span> ch <span class="kw">in</span> user_input.chars() <span class="op">{</span></a>
+<a class="sourceLine" id="cb29-15" title="15">        <span class="pp">println!</span>(<span class="st">&quot;{}&quot;</span>, ch);</a>
+<a class="sourceLine" id="cb29-16" title="16">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb29-17" title="17">    <span class="kw">for</span> (i,ch) <span class="kw">in</span> user_input.chars().enumerate() <span class="op">{</span></a>
+<a class="sourceLine" id="cb29-18" title="18">        <span class="pp">println!</span>(<span class="st">&quot;{} {}&quot;</span>, i, ch);</a>
+<a class="sourceLine" id="cb29-19" title="19">    <span class="op">}</span></a></code></pre></div>
+<p>.chars() converts the string to a char iterator</p>
+<p>.collect() converts the iterator to a collection</p>
+<h3 id="code-block-scope-and-functions">Code block, scope and functions</h3>
+<p>A scope is the range within a program for which an item is valid.</p>
+<p>Like a lot of programming languages, a pair of brackets declares a block of code with its own scope. Variables remains valid from the point at which it is declared until it goes out of scope</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb30-1" title="1"><span class="co">// This prints &quot;in&quot;, then &quot;out&quot;</span></a>
+<a class="sourceLine" id="cb30-2" title="2"><span class="kw">fn</span> main() <span class="op">{</span></a>
+<a class="sourceLine" id="cb30-3" title="3">    <span class="kw">let</span> x = <span class="st">&quot;out&quot;</span>;</a>
+<a class="sourceLine" id="cb30-4" title="4">    <span class="op">{</span></a>
+<a class="sourceLine" id="cb30-5" title="5">        <span class="co">// this is a different `x`</span></a>
+<a class="sourceLine" id="cb30-6" title="6">        <span class="kw">let</span> x = <span class="st">&quot;in&quot;</span>;</a>
+<a class="sourceLine" id="cb30-7" title="7">        <span class="pp">println!</span>(<span class="st">&quot;{}&quot;</span>, x);</a>
+<a class="sourceLine" id="cb30-8" title="8">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb30-9" title="9">    <span class="pp">println!</span>(<span class="st">&quot;{}&quot;</span>, x);</a>
+<a class="sourceLine" id="cb30-10" title="10"><span class="op">}</span></a></code></pre></div>
+<p>Unlike most other languages brackets delimited blocks are also expressions. An expression evaluate to a value.</p>
+<h4 id="user-defined-functions">user defined functions</h4>
+<p>see also: <a href="https://doc.rust-lang.org/stable/book/ch03-03-how-functions-work.html" target="_blank">Functions in Rust</a></p>
 <p>The <code>fn</code> keyword is used to declare new functions.</p>
 <blockquote>
 <p>Rust code uses snake case as the conventional style for function and variable names, in which all letters are lowercase and underscores separate words.<br />
 _ rustbook</p>
 </blockquote>
-<div class="sourceCode" id="cb25"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb25-1" title="1"><span class="co">// program entry function is main</span></a>
-<a class="sourceLine" id="cb25-2" title="2"><span class="kw">fn</span> main() <span class="op">{</span></a>
-<a class="sourceLine" id="cb25-3" title="3">    <span class="pp">println!</span>(<span class="st">&quot;Hello, world!&quot;</span>);</a>
-<a class="sourceLine" id="cb25-4" title="4"></a>
-<a class="sourceLine" id="cb25-5" title="5">    another_function(); <span class="co">//user defined function called (used) here</span></a>
-<a class="sourceLine" id="cb25-6" title="6"><span class="op">}</span></a>
-<a class="sourceLine" id="cb25-7" title="7"></a>
-<a class="sourceLine" id="cb25-8" title="8"><span class="co">// user defined function declared and defined here</span></a>
-<a class="sourceLine" id="cb25-9" title="9"><span class="kw">fn</span> another_function() <span class="op">{</span></a>
-<a class="sourceLine" id="cb25-10" title="10">    <span class="pp">println!</span>(<span class="st">&quot;Another function.&quot;</span>);</a>
-<a class="sourceLine" id="cb25-11" title="11"><span class="op">}</span></a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb31-1" title="1"><span class="co">// program entry function is main</span></a>
+<a class="sourceLine" id="cb31-2" title="2"><span class="kw">fn</span> main() <span class="op">{</span></a>
+<a class="sourceLine" id="cb31-3" title="3">    <span class="pp">println!</span>(<span class="st">&quot;Hello, world!&quot;</span>);</a>
+<a class="sourceLine" id="cb31-4" title="4"></a>
+<a class="sourceLine" id="cb31-5" title="5">    another_function(); <span class="co">//user defined function called (used) here</span></a>
+<a class="sourceLine" id="cb31-6" title="6"><span class="op">}</span></a>
+<a class="sourceLine" id="cb31-7" title="7"></a>
+<a class="sourceLine" id="cb31-8" title="8"><span class="co">// user defined function declared and defined here</span></a>
+<a class="sourceLine" id="cb31-9" title="9"><span class="kw">fn</span> another_function() <span class="op">{</span></a>
+<a class="sourceLine" id="cb31-10" title="10">    <span class="pp">println!</span>(<span class="st">&quot;Another function.&quot;</span>);</a>
+<a class="sourceLine" id="cb31-11" title="11"><span class="op">}</span></a></code></pre></div>
 <h4 id="function-parameters-and-call-arguments">Function parameters and call arguments</h4>
 <blockquote>
 <p>We can define functions to have parameters, which are special variables that are part of a function’s signature. When a function has parameters, you can provide it with concrete values for those parameters. Technically, the concrete values are called arguments, but in casual conversation, people tend to use the words parameter and argument interchangeably for either the variables in a function’s definition or the concrete values passed in when you call a function.<br />
 _ rustbook</p>
 </blockquote>
-<div class="sourceCode" id="cb26"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb26-1" title="1"><span class="kw">fn</span> main() <span class="op">{</span></a>
-<a class="sourceLine" id="cb26-2" title="2">    <span class="kw">let</span> x = <span class="dv">20</span>;</a>
-<a class="sourceLine" id="cb26-3" title="3">    <span class="kw">let</span> y = <span class="dv">1</span>;</a>
-<a class="sourceLine" id="cb26-4" title="4">    <span class="kw">let</span> answer = double_me(x) + double_me(y);</a>
-<a class="sourceLine" id="cb26-5" title="5">    </a>
-<a class="sourceLine" id="cb26-6" title="6">    <span class="pp">println!</span>(<span class="st">&quot;{} is the answer&quot;</span>, answer);</a>
-<a class="sourceLine" id="cb26-7" title="7"><span class="op">}</span></a>
-<a class="sourceLine" id="cb26-8" title="8"></a>
-<a class="sourceLine" id="cb26-9" title="9"><span class="kw">fn</span> double_me(a: <span class="dt">i32</span>) -&gt; <span class="dt">i32</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb26-10" title="10">    <span class="kw">let</span> x = a;</a>
-<a class="sourceLine" id="cb26-11" title="11"></a>
-<a class="sourceLine" id="cb26-12" title="12">    x*<span class="dv">2</span>  <span class="co">// last line without `;` same as `return x*2;`</span></a>
-<a class="sourceLine" id="cb26-13" title="13"><span class="op">}</span></a></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb32-1" title="1"><span class="kw">fn</span> main() <span class="op">{</span></a>
+<a class="sourceLine" id="cb32-2" title="2">    <span class="kw">let</span> x = <span class="dv">20</span>;</a>
+<a class="sourceLine" id="cb32-3" title="3">    <span class="kw">let</span> y = <span class="dv">1</span>;</a>
+<a class="sourceLine" id="cb32-4" title="4">    <span class="kw">let</span> answer = double_me(x) + double_me(y);</a>
+<a class="sourceLine" id="cb32-5" title="5">    </a>
+<a class="sourceLine" id="cb32-6" title="6">    <span class="pp">println!</span>(<span class="st">&quot;{} is the answer&quot;</span>, answer);</a>
+<a class="sourceLine" id="cb32-7" title="7"><span class="op">}</span></a>
+<a class="sourceLine" id="cb32-8" title="8"></a>
+<a class="sourceLine" id="cb32-9" title="9"><span class="kw">fn</span> double_me(a: <span class="dt">i32</span>) -&gt; <span class="dt">i32</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb32-10" title="10">    <span class="kw">let</span> x = a;</a>
+<a class="sourceLine" id="cb32-11" title="11"></a>
+<a class="sourceLine" id="cb32-12" title="12">    x*<span class="dv">2</span>  <span class="co">// last line without `;` same as `return x*2;`</span></a>
+<a class="sourceLine" id="cb32-13" title="13"><span class="op">}</span></a></code></pre></div>
 <p>let’s make a better usage of this function and also remove unnecessary bindings inside the fuction</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb27-1" title="1"><span class="kw">fn</span> main() <span class="op">{</span></a>
-<a class="sourceLine" id="cb27-2" title="2">    <span class="kw">let</span> x = <span class="dv">20</span>;</a>
-<a class="sourceLine" id="cb27-3" title="3">    <span class="kw">let</span> y = <span class="dv">1</span>;</a>
-<a class="sourceLine" id="cb27-4" title="4">    <span class="kw">let</span> answer = double_me(x + y);</a>
-<a class="sourceLine" id="cb27-5" title="5">    </a>
-<a class="sourceLine" id="cb27-6" title="6">    <span class="pp">println!</span>(<span class="st">&quot;{} is the answer&quot;</span>, answer);</a>
-<a class="sourceLine" id="cb27-7" title="7"><span class="op">}</span></a>
-<a class="sourceLine" id="cb27-8" title="8"></a>
-<a class="sourceLine" id="cb27-9" title="9"><span class="kw">fn</span> double_me(a: <span class="dt">i32</span>) -&gt; <span class="dt">i32</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb27-10" title="10"></a>
-<a class="sourceLine" id="cb27-11" title="11">    a*<span class="dv">2</span></a>
-<a class="sourceLine" id="cb27-12" title="12"><span class="op">}</span></a></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb33-1" title="1"><span class="kw">fn</span> main() <span class="op">{</span></a>
+<a class="sourceLine" id="cb33-2" title="2">    <span class="kw">let</span> x = <span class="dv">20</span>;</a>
+<a class="sourceLine" id="cb33-3" title="3">    <span class="kw">let</span> y = <span class="dv">1</span>;</a>
+<a class="sourceLine" id="cb33-4" title="4">    <span class="kw">let</span> answer = double_me(x + y);</a>
+<a class="sourceLine" id="cb33-5" title="5">    </a>
+<a class="sourceLine" id="cb33-6" title="6">    <span class="pp">println!</span>(<span class="st">&quot;{} is the answer&quot;</span>, answer);</a>
+<a class="sourceLine" id="cb33-7" title="7"><span class="op">}</span></a>
+<a class="sourceLine" id="cb33-8" title="8"></a>
+<a class="sourceLine" id="cb33-9" title="9"><span class="kw">fn</span> double_me(a: <span class="dt">i32</span>) -&gt; <span class="dt">i32</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb33-10" title="10"></a>
+<a class="sourceLine" id="cb33-11" title="11">    a*<span class="dv">2</span></a>
+<a class="sourceLine" id="cb33-12" title="12"><span class="op">}</span></a></code></pre></div>
 <p>Lets include an add function</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb28-1" title="1"><span class="kw">fn</span> main() <span class="op">{</span></a>
-<a class="sourceLine" id="cb28-2" title="2">    <span class="kw">let</span> x = <span class="dv">20</span>;</a>
-<a class="sourceLine" id="cb28-3" title="3">    <span class="kw">let</span> y = <span class="dv">1</span>;</a>
-<a class="sourceLine" id="cb28-4" title="4">    <span class="kw">let</span> answer = add_me(double_me(x),  double_me(y));</a>
-<a class="sourceLine" id="cb28-5" title="5">    </a>
-<a class="sourceLine" id="cb28-6" title="6">    <span class="pp">println!</span>(<span class="st">&quot;{} is the answer&quot;</span>, answer);</a>
-<a class="sourceLine" id="cb28-7" title="7"><span class="op">}</span></a>
-<a class="sourceLine" id="cb28-8" title="8"></a>
-<a class="sourceLine" id="cb28-9" title="9"><span class="kw">fn</span>  add_me(x: <span class="dt">i32</span>, y: <span class="dt">i32</span>) -&gt; <span class="dt">i32</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb28-10" title="10"></a>
-<a class="sourceLine" id="cb28-11" title="11">    x+y</a>
-<a class="sourceLine" id="cb28-12" title="12"><span class="op">}</span></a>
-<a class="sourceLine" id="cb28-13" title="13"></a>
-<a class="sourceLine" id="cb28-14" title="14"><span class="kw">fn</span> double_me(a: <span class="dt">i32</span>) -&gt; <span class="dt">i32</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb28-15" title="15"></a>
-<a class="sourceLine" id="cb28-16" title="16">    a*<span class="dv">2</span></a>
-<a class="sourceLine" id="cb28-17" title="17"><span class="op">}</span></a></code></pre></div>
-<h3 id="code-block-and-scope">Code block and scope</h3>
-<p>A scope is the range within a program for which an item is valid.</p>
-<p>Like a lot of programming languages, a pair of brackets declares a block of code with its own scope. Variables remains valid from the point at which it is declared until it goes out of scope</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb29-1" title="1"><span class="co">// This prints &quot;in&quot;, then &quot;out&quot;</span></a>
-<a class="sourceLine" id="cb29-2" title="2"><span class="kw">fn</span> main() <span class="op">{</span></a>
-<a class="sourceLine" id="cb29-3" title="3">    <span class="kw">let</span> x = <span class="st">&quot;out&quot;</span>;</a>
-<a class="sourceLine" id="cb29-4" title="4">    <span class="op">{</span></a>
-<a class="sourceLine" id="cb29-5" title="5">        <span class="co">// this is a different `x`</span></a>
-<a class="sourceLine" id="cb29-6" title="6">        <span class="kw">let</span> x = <span class="st">&quot;in&quot;</span>;</a>
-<a class="sourceLine" id="cb29-7" title="7">        <span class="pp">println!</span>(<span class="st">&quot;{}&quot;</span>, x);</a>
-<a class="sourceLine" id="cb29-8" title="8">    <span class="op">}</span></a>
-<a class="sourceLine" id="cb29-9" title="9">    <span class="pp">println!</span>(<span class="st">&quot;{}&quot;</span>, x);</a>
-<a class="sourceLine" id="cb29-10" title="10"><span class="op">}</span></a></code></pre></div>
-<p>Unlike most other languages brackets delimited blocks are also expressions. An expression evaluate to a value.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb34-1" title="1"><span class="kw">fn</span> main() <span class="op">{</span></a>
+<a class="sourceLine" id="cb34-2" title="2">    <span class="kw">let</span> x = <span class="dv">20</span>;</a>
+<a class="sourceLine" id="cb34-3" title="3">    <span class="kw">let</span> y = <span class="dv">1</span>;</a>
+<a class="sourceLine" id="cb34-4" title="4">    <span class="kw">let</span> answer = add_me(double_me(x),  double_me(y));</a>
+<a class="sourceLine" id="cb34-5" title="5">    </a>
+<a class="sourceLine" id="cb34-6" title="6">    <span class="pp">println!</span>(<span class="st">&quot;{} is the answer&quot;</span>, answer);</a>
+<a class="sourceLine" id="cb34-7" title="7"><span class="op">}</span></a>
+<a class="sourceLine" id="cb34-8" title="8"></a>
+<a class="sourceLine" id="cb34-9" title="9"><span class="kw">fn</span>  add_me(x: <span class="dt">i32</span>, y: <span class="dt">i32</span>) -&gt; <span class="dt">i32</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb34-10" title="10"></a>
+<a class="sourceLine" id="cb34-11" title="11">    x+y</a>
+<a class="sourceLine" id="cb34-12" title="12"><span class="op">}</span></a>
+<a class="sourceLine" id="cb34-13" title="13"></a>
+<a class="sourceLine" id="cb34-14" title="14"><span class="kw">fn</span> double_me(a: <span class="dt">i32</span>) -&gt; <span class="dt">i32</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb34-15" title="15"></a>
+<a class="sourceLine" id="cb34-16" title="16">    a*<span class="dv">2</span></a>
+<a class="sourceLine" id="cb34-17" title="17"><span class="op">}</span></a></code></pre></div>
 <h1 id="level-02">Level 02</h1>
 <h2 id="data-take-two">Data: Take two</h2>
-<h3 id="ownership-and-borrowing">Ownership and Borrowing</h3>
-<p>Ownership is how Rust make memory safety guarantees without needing a garbage collector. It is a set of rules that governs how a Rust program manages memory and verified at compile time.</p>
-<p>Rust is a systems programming language. Understanding what <a href="https://doc.rust-lang.org/stable/book/ch04-01-what-is-ownership.html#the-stack-and-the-heap" target="_blank">The Stack and the Heap</a> are is important.</p>
+<h3 id="stack-and-heap-memory">Stack and Heap memory</h3>
+<p>The stack and the heap are parts of memory available to your code to use at runtime.</p>
 <h4 id="the-stack">The stack</h4>
-<p>The stack and the heap are parts of memory available to your code to use at runtime. The stack stores values in a last in, first out. But more importantly,<br />
+<p>The stack stores values in a last in, first out. But more importantly,<br />
 data stored on the stack must have a known, fixed size.</p>
 <h4 id="the-heap">The heap</h4>
 <p>Data with an unknown size at compile time or a size that might change must be stored on the heap instead. Putting data on the heap entails a request for a certain amount of space in memory. The memory allocator finds an empty spot in the heap that is big enough, marks it as being in use, and returns a pointer, which is the address of that location. The pointer to the heap is known, has fixed size and thus is stored on the stack. The actual data will be on the head as its sizer may not be know at compile time and or it may grow or shrink during run time. Thus access to the data is via the pointer.</p>
-<h3 id="ownership">Ownership</h3>
+<h3 id="ownership-and-borrowing">Ownership and Borrowing</h3>
+<p>Ownership is how Rust make memory safety guarantees without needing a garbage collector. It is a set of rules that governs how a Rust program manages memory and verified at compile time.</p>
+<p>Rust is a systems programming language. Understanding what <a href="https://doc.rust-lang.org/stable/book/ch04-01-what-is-ownership.html#the-stack-and-the-heap" target="_blank">The Stack and the Heap</a> are is important.</p>
+<h4 id="ownership">Ownership</h4>
 <p>Ownership Rules::</p>
 <pre><code>Each value in Rust has a variable that’s called its owner.
 There can only be one owner at a time.
 When the owner goes out of scope, the value will be dropped.</code></pre>
+<h4 id="move-copie-and-clone">Move, copie and clone</h4>
+<h4 id="borrowing-and-references">Borrowing and References</h4>
+<p>Ownership of a value can be transferred temporarily to an entity and then returned to the original owner entity. We call this borrowing and it is done through references denoted by <code>&amp;</code> before the variable name.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb36-1" title="1"><span class="kw">let</span> my_var = <span class="dt">String</span>::from(<span class="st">&quot;Hello&quot;</span>);</a>
+<a class="sourceLine" id="cb36-2" title="2"><span class="kw">let</span> my_ref = &amp;my_var;</a></code></pre></div>
+<p>Borrowing rules::</p>
+<pre><code>Either have multiple immutable (&amp;my_var) borrows
+OR exclusively one mutable (&amp;mut my_var) borrow
+References cannot outlive what it is refering too</code></pre>
 <h2 id="input-output-working-with-files-and-directories">Input-Output: Working with files and directories</h2>
 <h3 id="reading-a-file">Reading a file</h3>
 <h3 id="writing-to-a-file">Writing to a file</h3>
@@ -553,6 +608,39 @@ When the owner goes out of scope, the value will be dropped.</code></pre>
 <h1 id="level-03">Level 03</h1>
 <h2 id="data-take-three">Data: Take three</h2>
 <h3 id="traits-and-behaviour">Traits and behaviour</h3>
+<h3 id="generics">Generics</h3>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Rust</th>
+<th style="text-align: left;">C++</th>
+<th style="text-align: left;">comment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">a: &amp;T</td>
+<td style="text-align: left;">const T* const a;</td>
+<td style="text-align: left;">// can’t mutate either</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">mut a: &amp;T</td>
+<td style="text-align: left;">const T* a;</td>
+<td style="text-align: left;">// can’t mutate what is pointed to</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">a: &amp;mut T</td>
+<td style="text-align: left;">T* const a;</td>
+<td style="text-align: left;">// can’t mutate pointer</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">mut a: &amp;mut T</td>
+<td style="text-align: left;">T* a;</td>
+<td style="text-align: left;">// can mutate both</td>
+</tr>
+</tbody>
+</table>
+<p>source: <a href="https://stackoverflow.com/questions/28587698/whats-the-difference-between-placing-mut-before-a-variable-name-and-after-the#29682542">What’s the difference between placing “mut” before a variable name and after the “:”?</a></p>
 <h2 id="input-output">Input-output:</h2>
 <h3 id="getting-data-from-the-cli-arguments">Getting data from the CLI arguments</h3>
 <h3 id="undestanding-the-display-trait">Undestanding the Display trait</h3>
@@ -563,29 +651,31 @@ When the owner goes out of scope, the value will be dropped.</code></pre>
 <h3 id="lets-play-with">Let’s play with</h3>
 <h4 id="user-input-from-the-console-without-the-newline">user input from the console without the newline</h4>
 <p>Note: When using <code>print!()</code> keep in mind that stdout is frequently line-buffered by default so it may be necessary to use <code>io::stdout().flush()</code> to ensure the output is emitted immediately.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb31-1" title="1"><span class="kw">fn</span> main() <span class="op">{</span></a>
-<a class="sourceLine" id="cb31-2" title="2">    <span class="kw">use</span> <span class="pp">std::io::</span><span class="op">{</span>stdin,stdout,Write<span class="op">}</span>;</a>
-<a class="sourceLine" id="cb31-3" title="3"></a>
-<a class="sourceLine" id="cb31-4" title="4">    <span class="pp">print!</span>(<span class="st">&quot;Please enter some text: &quot;</span>);</a>
-<a class="sourceLine" id="cb31-5" title="5">    stdout().flush().unwrap();</a>
-<a class="sourceLine" id="cb31-6" title="6"></a>
-<a class="sourceLine" id="cb31-7" title="7">    <span class="kw">let</span> <span class="kw">mut</span> s = <span class="dt">String</span>::new();</a>
-<a class="sourceLine" id="cb31-8" title="8">    stdin()</a>
-<a class="sourceLine" id="cb31-9" title="9">        .read_line(&amp;<span class="kw">mut</span> s)</a>
-<a class="sourceLine" id="cb31-10" title="10">        .expect(<span class="st">&quot;Failed to read the line&quot;</span>);</a>
-<a class="sourceLine" id="cb31-11" title="11"></a>
-<a class="sourceLine" id="cb31-12" title="12">    <span class="kw">if</span> <span class="kw">let</span> <span class="cn">Some</span>(<span class="ch">&#39;</span><span class="sc">\n</span><span class="ch">&#39;</span>)=s.chars().next_back() <span class="op">{</span></a>
-<a class="sourceLine" id="cb31-13" title="13">        s.pop();</a>
-<a class="sourceLine" id="cb31-14" title="14">    <span class="op">}</span></a>
-<a class="sourceLine" id="cb31-15" title="15">    <span class="co">// windows has \r too</span></a>
-<a class="sourceLine" id="cb31-16" title="16">    <span class="kw">if</span> <span class="kw">let</span> <span class="cn">Some</span>(<span class="ch">&#39;</span><span class="sc">\r</span><span class="ch">&#39;</span>)=s.chars().next_back() <span class="op">{</span></a>
-<a class="sourceLine" id="cb31-17" title="17">        s.pop();</a>
-<a class="sourceLine" id="cb31-18" title="18">    <span class="op">}</span></a>
-<a class="sourceLine" id="cb31-19" title="19"></a>
-<a class="sourceLine" id="cb31-20" title="20">    <span class="pp">println!</span>(<span class="st">&quot;You typed: {}&quot;</span>,s);</a>
-<a class="sourceLine" id="cb31-21" title="21"><span class="op">}</span></a></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb38-1" title="1"><span class="kw">fn</span> main() <span class="op">{</span></a>
+<a class="sourceLine" id="cb38-2" title="2">    <span class="kw">use</span> <span class="pp">std::io::</span><span class="op">{</span>stdin,stdout,Write<span class="op">}</span>;</a>
+<a class="sourceLine" id="cb38-3" title="3"></a>
+<a class="sourceLine" id="cb38-4" title="4">    <span class="pp">print!</span>(<span class="st">&quot;Please enter some text: &quot;</span>);</a>
+<a class="sourceLine" id="cb38-5" title="5">    stdout().flush().unwrap();</a>
+<a class="sourceLine" id="cb38-6" title="6"></a>
+<a class="sourceLine" id="cb38-7" title="7">    <span class="kw">let</span> <span class="kw">mut</span> s = <span class="dt">String</span>::new();</a>
+<a class="sourceLine" id="cb38-8" title="8">    stdin()</a>
+<a class="sourceLine" id="cb38-9" title="9">        .read_line(&amp;<span class="kw">mut</span> s)</a>
+<a class="sourceLine" id="cb38-10" title="10">        .expect(<span class="st">&quot;Failed to read the line&quot;</span>);</a>
+<a class="sourceLine" id="cb38-11" title="11"></a>
+<a class="sourceLine" id="cb38-12" title="12">    <span class="kw">if</span> <span class="kw">let</span> <span class="cn">Some</span>(<span class="ch">&#39;</span><span class="sc">\n</span><span class="ch">&#39;</span>)=s.chars().next_back() <span class="op">{</span></a>
+<a class="sourceLine" id="cb38-13" title="13">        s.pop();</a>
+<a class="sourceLine" id="cb38-14" title="14">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb38-15" title="15">    <span class="co">// windows has \r too</span></a>
+<a class="sourceLine" id="cb38-16" title="16">    <span class="kw">if</span> <span class="kw">let</span> <span class="cn">Some</span>(<span class="ch">&#39;</span><span class="sc">\r</span><span class="ch">&#39;</span>)=s.chars().next_back() <span class="op">{</span></a>
+<a class="sourceLine" id="cb38-17" title="17">        s.pop();</a>
+<a class="sourceLine" id="cb38-18" title="18">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb38-19" title="19"></a>
+<a class="sourceLine" id="cb38-20" title="20">    <span class="pp">println!</span>(<span class="st">&quot;You typed: {}&quot;</span>,s);</a>
+<a class="sourceLine" id="cb38-21" title="21"><span class="op">}</span></a></code></pre></div>
 <p>see also:<br />
 <a href="https://doc.rust-lang.org/std/macro.print.html">std::print</a><br />
 <a href="https://doc.rust-lang.org/std/io/trait.Write.html#tymethod.flush">std::io::Write::flush</a></p>
+<h3 id="benchmarking">Benchmarking</h3>
+<p>see also : <a href="https://www.youtube.com/watch?v=3iC3FVS6UXQ">Should you use to_string() or .to_owned?</a>{target= "_blank"}</p>
 </body>
 </html>

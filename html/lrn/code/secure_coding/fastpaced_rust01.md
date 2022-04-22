@@ -228,43 +228,59 @@ Hence all the elements must be of the same type.
 let my_arr = [10, 20, 30, 40, 50];
 let my_slice = &my_arr[2..];
 
-println!("{}", my_slice[0]); // output: 30
 println!("{}", my_arr[0]); // output: 10
+println!("{}", my_slice[0]); // output: 30
 
 ```
 
 #### string literal: `&str`
 
+A string literal &str is a slice `&[u8]`.
+In Rust we call this a string slice or s_tuh_rrr.
+
+Use it if you just need an immutable string or a part of a string.
+
 ```rust
-let name = "Rust"; // bind the string literal to variable `name`
+let name = "Rust 🦀"; // bind the string literal to variable `name`
 let msg: &str = "Trust";
 
-println!("In {} we {}", name, msg); // output: In Rust we Trust
+println!("In {} we {}", name, msg); // output: In Rust 🦀 we Trust
 ```
 
-A string literal &str is a slice `&[u8]`.
 It is allocated on the stack as UTF-8 sequence.
 The stack is parts of memory available to your code to use at runtime.
 The size of &str is fixed, meaning it cannot be resized.
+
 
 #### String: Allocation on the heap
 
 A String is stored on the Heap as a vector of bytes `Vec<u8>` and is  encoded in UTF 8 sequence.
 The heap is another parts of memory available to your code to use at runtime.
-Heap allocation akkows for growable strings.
+Heap allocation allows for growable, mutable strings.
 
 The data present in the string can be viewed using &str.
 
 Creates a new empty String
 ```rust 
 let s = String::new();
+let mut more_useful = String::new();
 
+// if you can allocate upfront enough capacity to store your data Use with_capacity.
+// 
+// After the inital allocation, no memory allocated until it need more than 25
+let mut I_know_my_initial_max_size = String::with_capacity(25);
 ```
 
-String from a literal string with String::from
+The are different ways to crate a String from a literal string.
+Here are the most common ones.
+
 ```rust
-let hello = String::from("Hello, world!");
+let s1 = String::from("Hello, world!");
+let s2 = "Hello again".to_string();
+let s3 = "this used to be faster but to_string caught up.".to_owned();
 ```
+
+Note that earler versions of Rust favored using `to_owned()` over `to_string()`. Back then to_owned was faster.
 
 also see:
 [Storing UTF-8 Encoded Text with Strings](https://doc.rust-lang.org/stable/book/ch08-02-strings.html#storing-utf-8-encoded-text-with-strings)
@@ -342,7 +358,94 @@ fn main() {
 }
 ```
 
-##### Convert to characters
+
+## Processing
+
+### Basic mathematical operations
+```rust
+fn main() {
+    // addition
+    let sum = 5 + 10;
+
+    // subtraction
+    let difference = 95.5 - 4.3;
+
+    // multiplication
+    let product = 4 * 30;
+
+    // division
+    let quotient = 56.7 / 32.2;
+    let floored = 2 / 3; // Results in 0
+
+    // remainder
+    let remainder = 43 % 5;
+}
+```
+
+NOTE:  
+Programming languages often use `^` or `**` for power_of (exponent). 
+This is not used in rust.  
+Instead the numerical type has a method for it.  
+such as [powi](https://doc.rust-lang.org/std/primitive.f32.html#method.powi) and 
+[powf](https://doc.rust-lang.org/std/primitive.f32.html#method.powf) for the `f32` type.
+
+```rust
+let x: f32 = 2.0; 
+println!( x.powi(2) );
+println!( x.powf(2.0) );
+```
+### Working with strings: Take two
+
+#### Working with text: Useful conversions 
+
+```
+&str    -> String  | String::from(s) or s.to_string() or s.to_owned()
+&str    -> &[u8]   | s.as_bytes()
+&str    -> Vec<u8> | s.as_bytes().to_vec() or s.as_bytes().to_owned()
+String  -> &str    | &s if possible* else s.as_str()
+String  -> &[u8]   | s.as_bytes()
+String  -> Vec<u8> | s.into_bytes()
+&[u8]   -> &str    | s.to_vec() or s.to_owned()
+&[u8]   -> String  | std::str::from_utf8(s).unwrap()
+&[u8]   -> Vec<u8> | String::from_utf8(s).unwrap()
+Vec<u8> -> &str    | &s if possible* else s.as_slice()
+Vec<u8> -> String  | std::str::from_utf8(&s).unwrap()
+Vec<u8> -> &[u8]   | String::from_utf8(s).unwrap()
+
+* target should have explicit type (i.e., checker can't infer that)
+```
+
+source: [Converting Rust String To And From](https://vastorigins.com/2021/09/22/converting-rust-string-to-and-from/)
+
+
+#### Append to string
+
+##### Using the `push_str`  
+```rust
+let mut s = String::from("On your mark");
+s.push_str(", get set");
+println!("{s}"); // On your mark, get set
+```
+
+##### Using the `+`
+``` rust
+let s2 = s + " -> GO!"; // The String type comes before the str
+println!("{s2}"); // On your mark, get set -> GO!
+```
+
+##### Using `format!()` to get a String
+```rust
+let s3 = format!("{} - {} = {}", "1", "2", "3");
+println!("{s3}"); // 1 + 2  = 3
+```
+
+##### Using `concat!()` to get a str
+```rust
+let s4 = concat!("last", "name");
+println!("{s4}"); // lastname
+```
+ 
+#### Convert to characters
 
 ```rust
     println!("Please enter a word: ");
@@ -369,45 +472,29 @@ fn main() {
 
 .collect() converts the iterator to a collection
 
-    
+### Code block, scope and functions 
+A scope is the range within a program for which an item is valid.
 
+Like a lot of programming languages, a pair of brackets declares a block of code with its own scope.
+Variables remains valid from the point at which it is declared until it goes out of scope
 
-## Processing
-
-### Basic mathematical operations
 ```rust
+// This prints "in", then "out"
 fn main() {
-    // addition
-    let sum = 5 + 10;
-
-    // subtraction
-    let difference = 95.5 - 4.3;
-
-    // multiplication
-    let product = 4 * 30;
-
-    // division
-    let quotient = 56.7 / 32.2;
-    let floored = 2 / 3; // Results in 0
-
-    // remainder
-    let remainder = 43 % 5;
+    let x = "out";
+    {
+        // this is a different `x`
+        let x = "in";
+        println!("{}", x);
+    }
+    println!("{}", x);
 }
 ```
+Unlike most other languages brackets delimited blocks are also expressions. An expression evaluate to a value.
 
-NOTE:  
-The common power `^` or `**` is not used in rust.  
-Instead the numerical type has a method for it.  
-such as [powi](https://doc.rust-lang.org/std/primitive.f32.html#method.powi) and 
-[powf](https://doc.rust-lang.org/std/primitive.f32.html#method.powf) for the `f32` type.
+#### user defined functions
 
-```rust
-let x: f32 = 2.0; 
-println!( x.powi(2) );
-println!( x.powf(2.0) );
-```
-
-### user defined [Functions in Rust](https://doc.rust-lang.org/stable/book/ch03-03-how-functions-work.html)
+see also: [Functions in Rust](https://doc.rust-lang.org/stable/book/ch03-03-how-functions-work.html){target="_blank"}  
 
 The `fn` keyword is used to declare new functions.
 
@@ -489,40 +576,18 @@ fn double_me(a: i32) -> i32 {
 }
 ```
 
-### Code block and scope
-A scope is the range within a program for which an item is valid.
 
-Like a lot of programming languages, a pair of brackets declares a block of code with its own scope.
-Variables remains valid from the point at which it is declared until it goes out of scope
-
-```rust
-// This prints "in", then "out"
-fn main() {
-    let x = "out";
-    {
-        // this is a different `x`
-        let x = "in";
-        println!("{}", x);
-    }
-    println!("{}", x);
-}
-```
-Unlike most other languages brackets delimited blocks are also expressions. An expression evaluate to a value.
 
 # Level 02
 
 ## Data: Take two  
 
-### Ownership and Borrowing
-Ownership is how Rust make memory safety guarantees without needing a garbage collector.
-It is a set of rules that governs how a Rust program manages memory and verified at compile time.
+### Stack and Heap memory
 
-Rust is a systems programming language. 
-Understanding what [The Stack and the Heap](https://doc.rust-lang.org/stable/book/ch04-01-what-is-ownership.html#the-stack-and-the-heap){target="\_blank"} are is important.
+The stack and the heap are parts of memory available to your code to use at runtime.
 
 #### The stack
 
-The stack and the heap are parts of memory available to your code to use at runtime.
 The stack stores values in a last in, first out. But more importantly,  
 data stored on the stack must have a known, fixed size. 
 
@@ -536,8 +601,14 @@ The pointer to the heap is known, has fixed size and thus is stored on the stack
 The actual data will be on the head as its sizer may not be know at compile time and or it may grow or shrink during run time. Thus access to the data is via the pointer.
 
 
+### Ownership and Borrowing
+Ownership is how Rust make memory safety guarantees without needing a garbage collector.
+It is a set of rules that governs how a Rust program manages memory and verified at compile time.
 
-### Ownership 
+Rust is a systems programming language. 
+Understanding what [The Stack and the Heap](https://doc.rust-lang.org/stable/book/ch04-01-what-is-ownership.html#the-stack-and-the-heap){target="\_blank"} are is important.
+
+#### Ownership 
 
 Ownership Rules::
     
@@ -545,6 +616,25 @@ Ownership Rules::
     Each value in Rust has a variable that’s called its owner.
     There can only be one owner at a time.
     When the owner goes out of scope, the value will be dropped.
+
+
+#### Move, copie and clone
+
+#### Borrowing and References
+
+Ownership of a value can be transferred temporarily to an entity and then returned to the original owner entity. 
+We call this borrowing and it is done through references denoted by `&` before the variable name.
+
+```rust
+let my_var = String::from("Hello");
+let my_ref = &my_var;
+```
+
+Borrowing rules::
+
+    Either have multiple immutable (&my_var) borrows
+    OR exclusively one mutable (&mut my_var) borrow
+    References cannot outlive what it is refering too
 
 
 ## Input-Output: Working with files and directories  
@@ -568,6 +658,17 @@ Ownership Rules::
 ## Data: Take three 
 
 ### Traits and behaviour
+
+### Generics
+
+| Rust          | C++               | comment                            |
+|:--------------|:------------------|:-----------------------------------|
+| a: &T         | const T* const a; | // can't mutate either             |
+| mut a: &T     | const T* a;       | // can't mutate what is pointed to |
+| a: &mut T     | T* const a;       | // can't mutate pointer            |
+| mut a: &mut T | T* a;             | // can mutate both                 |
+
+source: [What's the difference between placing "mut" before a variable name and after the ":"?](https://stackoverflow.com/questions/28587698/whats-the-difference-between-placing-mut-before-a-variable-name-and-after-the#29682542)
 
 ## Input-output: 
 
@@ -617,3 +718,10 @@ fn main() {
 see also:  
 [std::print](https://doc.rust-lang.org/std/macro.print.html)  
 [std::io::Write::flush](https://doc.rust-lang.org/std/io/trait.Write.html#tymethod.flush)  
+
+### Benchmarking
+
+see also :
+[Should you use to_string() or .to_owned?](https://www.youtube.com/watch?v=3iC3FVS6UXQ){target= "_blank"}  
+
+
