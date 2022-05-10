@@ -2,6 +2,20 @@
 
 # Selected texts
 
+<section id="peace" class="tangena">
+
+<p>
+<em>P</em> assion tamed,<br/>
+<em>E</em> motions tutored,<br/>
+<em>A</em> nger deflated,<br/>
+<em>C</em> ravings moderated,<br/>
+<em>E</em> nergy regulated<br/>
+<br/>
+<em>PEACE</em> is spelled out.
+</p>
+
+</section>
+
 ## Poems & artistic
 - [Poems](poems.html)
 
