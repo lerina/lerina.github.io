@@ -40,7 +40,7 @@
 </style>
 <div class="image-mosaic">
 <div class="card card-tall card-wide">
-<div class="mosaic-hover-menu"  id="the_cure" ><p>A cure for insecure code</p><div style="font-size: 1rem;">
+<div class="mosaic-hover-menu"  id="the_cure" ><p>A cure <br/>for insecure <br/>code</p><div style="font-size: 1rem;">
 <a href="#">Services</a>
 <a href="#">Pricing</a>
 <a href="#">Contact</a>
@@ -48,13 +48,13 @@
 </div><!--^-- mosaic-hover-menu -->
 </div>
 <div class="card card-tall"
-style="background-image: url('img/writing.jpg')">Wasm</div>
+style="background-image: url('img/writing.jpg')">Learn <br/>Rust-Wasm<br/>& Webassembly</div>
 <div class="card"
 style="background-image: url('img/secureCodeDevelopment.jpg')">Coding Math</div>
 <div class="card"
-style="background-image: url('img/coding_math.jpg')">Tech Tips</div>
+style="background-image: url('img/coding_math.jpg')">Dev Notes</div>
 <div class="card"
-style="background-image: url('img/rain.jpg')">Developer's log</div>
+style="background-image: url('img/rain.jpg')">Retro Game Dev</div>
 <div class="card card-wide"
 style="background-image: url('img/theView3.jpg')">Discover Nosy Malagasy</div>
 <div class="card"
