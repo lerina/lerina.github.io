@@ -34,10 +34,13 @@
 <section id="featured_projects">
 
 ## Featured projects
-
+<style>
+#the_cure {background-image: url('img/20140711_BB.png'); background-size: cover;}
+#the_cure:hover {background-image: url('img/Rust_and_friends.png');color:rgba(183, 65, 14, 0.3);}
+</style>
 <div class="image-mosaic">
 <div class="card card-tall card-wide">
-<div class="mosaic-hover-menu"  style="background-image: url('img/20140711_BB.png'); background-size: cover;"><p>A cure for insecure code</p><div style="font-size: 1rem;">
+<div class="mosaic-hover-menu"  id="the_cure" ><p>A cure for insecure code</p><div style="font-size: 1rem;">
 <a href="#">Services</a>
 <a href="#">Pricing</a>
 <a href="#">Contact</a>

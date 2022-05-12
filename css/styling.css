@@ -262,9 +262,11 @@ text-align:left;
 }
 
 .mosaic-hover-menu div a:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
-
+a:hover {
+  text-decoration: none;
+}
 .mosaic-hover-menu:hover img {
   opacity: 0.5;
   right: -120px;
