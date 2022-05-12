@@ -36,7 +36,7 @@
 ## Featured projects
 <style>
 #the_cure {background-image: url('img/20140711_BB.png'); background-size: cover;}
-#the_cure:hover {background-image: url('img/Rust_and_friends.png');color:rgba(183, 65, 14, 0.3);}
+#the_cure:hover {background-image: url('img/Rust_and_friends.png');color:rgba(183, 65, 14, 0.0);}
 </style>
 <div class="image-mosaic">
 <div class="card card-tall card-wide">
