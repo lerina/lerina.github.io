@@ -275,6 +275,27 @@ text-align:left;
   opacity: 1;
 }
 
+/*
+.mosaic-hover-menu .pan  {
+ height : 100px;
+ border : 1px solid black;
+ display : flex;
+ align-items : center;
+ justify-content : center;
+}
+*/
+
+.mosaic-hover-menu > p {
+display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    height: 75%;
+}
+
+
 /* ## [Responsive image mosaic](https://www.30secondsofcode.org/css/s/image-mosaic)
 <div class="image-mosaic">
     <div class="card card-tall card-wide"
@@ -316,7 +337,8 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 background: #353535;
-font-size: 3rem;
+/*font-size: 3rem;*/
+font-size: clamp(1.2rem, -0.875rem + 3.333vw, 1.75rem);
 color: #fff;
 box-shadow: rgba(3, 8, 20, 0.1) 0px 0.15rem 0.5rem, rgba(2, 8, 20, 0.1) 0px 0.075rem 0.175rem;
 height: 100%;

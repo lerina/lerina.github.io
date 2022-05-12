@@ -37,7 +37,7 @@
 
 <div class="image-mosaic">
 <div class="card card-tall card-wide">
-<div class="mosaic-hover-menu"  style="padding: 15% 50% 10% 9%; height: 100%;;background-image: url('img/20140711_BB.png'); background-size: cover;">A cure for insecure code<div style="font-size: 1rem;">
+<div class="mosaic-hover-menu"  style="background-image: url('img/20140711_BB.png'); background-size: cover;"><p>A cure for insecure code</p><div style="font-size: 1rem;">
 <a href="#">Services</a>
 <a href="#">Pricing</a>
 <a href="#">Contact</a>
