@@ -54,11 +54,11 @@ style="background-image: url('img/secureCodeDevelopment.jpg')">Coding Math</div>
 <div class="card"
 style="background-image: url('img/coding_math.jpg')">Dev Notes</div>
 <div class="card"
-style="background-image: url('img/rain.jpg')">Retro Game Dev</div>
+style="background-image: url('img/rustbridge-paris.jpg')">Game Dev</div>
 <div class="card card-wide"
 style="background-image: url('img/theView3.jpg')">Discover Nosy Malagasy</div>
 <div class="card"
-style="background-image: url('img/rustbridge-paris.jpg')">The Rust Community</div>
+style="background-image: url('img/rain.jpg')">Beloha: A webnovel</div>
 </div><!--^-- image-mosaic -->
 </section>
 
