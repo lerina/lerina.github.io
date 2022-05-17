@@ -1,4 +1,4 @@
-<div class="bg_rnd"></div>
+<div class="bg_nrn"></div>
 <div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
 
 <main>
