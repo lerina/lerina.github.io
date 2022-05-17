@@ -25,6 +25,27 @@ a:active {
   color: white;
 }
 
+
+/* ## [Fluid typography](https://www.30secondsofcode.org/css/s/fluid-typography) 
+<p class="fluid-type">
+```css
+.sourceLine, .fluid-type { 
+font-size: clamp(1rem, 8vw - 2rem, 3rem);
+}
+```
+</p>
+*/
+.sourceLine, .fluid-type {
+/*font-size: clamp(1rem, 6vw - 2rem, 3rem);*/
+font-size: clamp(0.75rem, -0.875rem + 3.333vw, 1.5rem);
+text-align:left;
+}
+
+.line-block {
+font-family:Tangerine;
+font-size: clamp(1.75rem, 6vw - 2rem, 3rem);
+}
+
 h2 {color:#838996;}
 h3 {color: #b78727;}
 
@@ -42,7 +63,35 @@ main {
 margin: 0 auto;
 max-width: 940px;
 font-size: calc(0.75em + 1vmin);
+margin-top:2em;
+}
 
+.hide {display:none;}
+
+/* The navigation bar */
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0; /* Position the navbar at the top of the page */
+  /*  width: 100%; Full width */
+}
+
+/* Links inside the navbar */
+.navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: calc(0.75em + 1vmin);
+}
+
+/* Change background on mouse-over */
+.navbar a:hover {
+  background: #ddd;
+  color: black;
 }
 
 .bg {
@@ -54,6 +103,37 @@ background-position: center;
 background-repeat: no-repeat;
 background-size: cover;
 }
+
+.bg_lrn {
+background-image: url("../img/garden.png");
+/* height: 100%; */
+height: 75%;
+/* Center and scale the image nicely */
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+}
+
+.bg_rnd {
+background-image: url("../img/rnd.png");
+/* height: 100%; */
+height: 75%;
+/* Center and scale the image nicely */
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+}
+
+.bg_nrn {
+background-image: url("../img/nrn.png");
+/* height: 100%; */
+height: 75%;
+/* Center and scale the image nicely */
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+}
+
 
 
 /* [Sibling fade](https://www.30secondsofcode.org/css/s/sibling-fade)
@@ -83,7 +163,7 @@ overflow: hidden;
 .hover-nav li {
 float: left;
 }
-
+.hover-nav a {font-size:60%;}
 .hover-nav li a {
 position: relative;
 display: block;
@@ -94,7 +174,7 @@ text-decoration: none;
 z-index: 0;
 }
 
-li a:before {
+.hover-nav li a:before {
 position: absolute;
 content: "";
 width: 100%;
@@ -107,25 +187,9 @@ transform: scale(0);
 transition: transform 0.5s ease-in-out;
 }
 
-li a:hover:before,
-li a:focus:before {
+.hover-nav li a:hover:before,
+.hover-nav li a:focus:before {
 transform: scale(1);
-}
-
-
-/* ## [Fluid typography](https://www.30secondsofcode.org/css/s/fluid-typography) 
-<p class="fluid-type">
-```css
-.sourceLine, .fluid-type { 
-font-size: clamp(1rem, 8vw - 2rem, 3rem);
-}
-```
-</p>
-*/
-.sourceLine, .fluid-type {
-/*font-size: clamp(1rem, 6vw - 2rem, 3rem);*/
-font-size: clamp(0.75rem, -0.875rem + 3.333vw, 1.5rem);
-text-align:left;
 }
 
 
@@ -239,8 +303,8 @@ text-align:left;
 .mosaic-hover-menu div {
   position: absolute;
   top: 0;
-  left: -120px;
-  width: 120px;
+  left: -145px;
+  width: 145px;
   height: 100%;
   padding: 8px 4px;
   background: #000;
@@ -954,5 +1018,57 @@ background-image: url('../img/tangena_flower_blur.png');
 background-repeat: no-repeat;
  /* background-attachment: fixed; */
  background-position: center; 
+}
+
+/* The TOC menu */
+#TOC {
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0;
+  left: 0;
+  background-color: #111; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the TOC */
+}
+
+/* The TOC links */
+#TOC a {
+  padding: 8px 8px 8px 8px;
+  text-decoration: none;
+  font-size: clamp(0.95rem, -0.875rem + 3.333vw, 1.5rem); /* calc(0.75em + 1vmin); */
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+#TOC a:hover {
+  color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+#TOC .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: calc(0.75em + 1vmin);
+  margin-left: 50px;
+}
+
+/* The button used to open the TOC */
+.openbtn {
+  font-size: calc(0.75em + 1vmin);
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: #444;
 }
 

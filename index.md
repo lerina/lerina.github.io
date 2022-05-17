@@ -9,7 +9,7 @@
 <div class="text">
 <h3>Lerina</h3>
 <p>Secure Code Practitioner.</p>
-<a href="#" class="btn">more...</a>
+<a href="./html/lrn/index.html" class="btn">more...</a>
 </div>
 </article>
 <article>
@@ -17,7 +17,7 @@
 <div class="text">
 <h3>Rindra</h3>
 <p>Pure Math Scholar.</p>
-<a href="#" class="btn">more...</a>
+<a href="./html/rnd/index.html" class="btn">more...</a>
 </div>
 </article>
 <article>
@@ -25,7 +25,7 @@
 <div class="text">
 <h3>Nirina</h3>
 <p>Sun Wukong: Listen to the mp3.</p>
-<a href="#" class="btn">more...</a>
+<a href="./html/nrn/index.html" class="btn">more...</a>
 </div>
 </article>
 </section>
@@ -41,9 +41,9 @@
 <div class="image-mosaic">
 <div class="card card-tall card-wide">
 <div class="mosaic-hover-menu"  id="the_cure" ><p>A cure <br/>for insecure <br/>code</p><div style="font-size: 1rem;">
-<a href="#">Services</a>
-<a href="#">Pricing</a>
-<a href="#">Contact</a>
+<a href="#">Safety first</a>
+<a href="#">Blazingly fast</a>
+<a href="#">Modern tools</a>
 </div>
 </div><!--^-- mosaic-hover-menu -->
 </div>

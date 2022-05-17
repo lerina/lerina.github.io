@@ -17,17 +17,30 @@
 <nav id="TOC">
 <ul>
 <li><a href="#crazy-goal-smart-goals">Crazy <em>goal</em> &gt; Smart <em>goal’s</em></a></li>
+<li><a href="#c-ontrained-in-time-and-space"><code>C</code> ontrained in time and space</a></li>
+<li><a href="#r-elevant-resiliant"><code>R</code> elevant, resiliant</a></li>
+<li><a href="#a-ccountable-process-actions"><code>A</code> ccountable process actions</a></li>
+<li><a href="#z-oom-out-zoom-in-zap-it"><code>Z</code> oom out, zoom in: Zap it!</a></li>
+<li><a href="#y-ield-early-reap-frequently"><code>Y</code> ield early, reap frequently</a></li>
 <li><a href="#hello.-im-a-software-writer.">Hello. I’m a software writer.</a><ul>
 <li><a href="#selected-texts"><span>Selected texts</span></a></li>
 <li><a href="#code"><span>Code</span></a></li>
 </ul></li>
 </ul>
 </nav>
-<p>⇦ <a href="../../index.html">home</a></p>
+<div class="bg_lrn">
+
+</div>
+<div class="navbar">
+<a class="openbtn" onclick="openNav()">☰</a>
+</div>
+<main>
 <div class="line-block">There are those who “think and create”<br />
 and those who “blink and cry hate”.<br />
                             _ lerina</div>
 <h2 id="crazy-goal-smart-goals">Crazy <em>goal</em> &gt; Smart <em>goal’s</em></h2>
+<p>We’ve all heard of SMART the an acronym used for creating Specific Measurable Attainable Relevant and Time-based goals. It doesn’t say anything about execution.</p>
+<p>CRAZY goal is the next step.</p>
 <blockquote>
 <p><code>C</code> ontrained in time and space<br />
 <code>R</code> elevant, recoverable<br />
@@ -35,9 +48,19 @@ and those who “blink and cry hate”.<br />
 <code>Z</code> oom out, zoom in: Zap it!<br />
 <code>Y</code> ield early, reap frequently</p>
 </blockquote>
-<p>Progress is a process:<br />
-Plan progress with goals<br />
-Make progress with processes</p>
+<p>Notice its GOAL, not goals. Pick one goal and make sure its CRAZY.</p>
+<h2 id="c-ontrained-in-time-and-space"><code>C</code> ontrained in time and space</h2>
+<p>Schedule the <em>lifeline</em>. Number of time-bubbles to work on it.</p>
+<h2 id="r-elevant-resiliant"><code>R</code> elevant, resiliant</h2>
+<p>(non-frivoulus and impactful)</p>
+<h2 id="a-ccountable-process-actions"><code>A</code> ccountable process actions</h2>
+<p>top-down view, bottom-up execution</p>
+<h2 id="z-oom-out-zoom-in-zap-it"><code>Z</code> oom out, zoom in: Zap it!</h2>
+<p>see the context, the why, the big picture Dive into the task, one sub-task at a time</p>
+<h2 id="y-ield-early-reap-frequently"><code>Y</code> ield early, reap frequently</h2>
+<p>Measure progress by keeping count of the time-bubbles dedicated to the process of sub-task completion.</p>
+<p>Keep in mind that Progress is a process:<br />
+While one Plans progress with goals, one Makes progress with processes.</p>
 <h2 id="hello.-im-a-software-writer.">Hello. I’m a software writer.</h2>
 <p>That’s right! writer.</p>
 <p>More akin to writers of the film industry than the book market.<br />
@@ -60,8 +83,39 @@ been modelled and solved to yield three imperatives:</p>
 <h4 id="secure-coding"><a href="./code/secure_coding/index.html">Secure Coding</a></h4>
 <h4 id="game-dev"><a href="./code/game_dev/index.html">Game dev</a></h4>
 <h4 id="coding-math"><a href="./code/coding_math/index.html">Coding Math</a></h4>
+</main>
 <footer>
 <a href="https://github.com/lerina" target="_blank" title="github"><img src="https://razafy.com/img/github32px.png" alt="github" class="link glow" /> </a>
 </footer>
+<script>
+let anchor= document.createElement('a');
+anchor.href="javascript:closeNav()"; //void(0)"; //anchor[0].onclick = closeNav();
+anchor.className = "closebtn";  
+anchor.innerHTML="&times;";
+document.getElementById("TOC").prepend(anchor);
+
+/* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
+function openNav() {
+  document.getElementById("TOC").style.width = "60%";
+  document.getElementsByTagName("MAIN").style.marginLeft = "250px";
+}
+
+/* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+function closeNav() {
+  document.getElementById("TOC").style.width = "0%";
+  document.getElementsByTagName("MAIN").style.marginLeft = "0px";
+}
+
+let navCrumbs= document.createElement('div');
+navCrumbs.className = "hover-nav";
+navCrumbs.innerHTML = `
+<div class="hover-nav">
+<ul>
+<li><a href="../../index.html">⇦ home</a></li>
+<li><a href="./index.html">lerina</a></li>
+</ul>
+</div>`;
+document.getElementById("TOC").prepend(navCrumbs); 
+</script>
 </body>
 </html>

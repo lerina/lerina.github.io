@@ -14,13 +14,54 @@
   <link rel="stylesheet" href="https://razafy.com/css/styling.css" />
 </head>
 <body>
-<p>⇦ <a href="../../index.html">Razafy.com</a></p>
+<nav id="TOC">
 <ul>
-<li>Learn Malagasy
-<ul>
-<li>Course</li>
-<li>Malagasy Grammar</li>
+<li><a href="#learn-malagasy">Learn Malagasy</a><ul>
+<li><a href="#course">Course</a></li>
+<li><a href="#malagasy-grammar"><span>Malagasy Grammar</span></a></li>
 </ul></li>
 </ul>
+</nav>
+<div class="bg_rnd">
+
+</div>
+<div class="navbar">
+<a class="openbtn" onclick="openNav()">☰</a>
+</div>
+<main>
+<h2 id="learn-malagasy">Learn Malagasy</h2>
+<h3 id="course">Course</h3>
+<h3 id="malagasy-grammar"><a href="../nosy_malagasy/grammar.html">Malagasy Grammar</a></h3>
+</main>
+<script>
+let anchor= document.createElement('a');
+anchor.href="javascript:closeNav()"; //void(0)"; //anchor[0].onclick = closeNav();
+anchor.className = "closebtn";  
+anchor.innerHTML="&times;";
+document.getElementById("TOC").prepend(anchor);
+
+/* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
+function openNav() {
+  document.getElementById("TOC").style.width = "60%";
+  document.getElementsByTagName("MAIN").style.marginLeft = "250px";
+}
+
+/* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+function closeNav() {
+  document.getElementById("TOC").style.width = "0%";
+  document.getElementsByTagName("MAIN").style.marginLeft = "0px";
+}
+
+let navCrumbs= document.createElement('div');
+navCrumbs.className = "hover-nav";
+navCrumbs.innerHTML = `
+<div class="hover-nav">
+<ul>
+<li><a href="../../index.html">⇦ home</a></li>
+<li><a href="./index.html">rindra</a></li>
+</ul>
+</div>`;
+document.getElementById("TOC").prepend(navCrumbs); 
+</script>
 </body>
 </html>

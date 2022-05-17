@@ -14,7 +14,19 @@
   <link rel="stylesheet" href="https://razafy.com/css/styling.css" />
 </head>
 <body>
-<p>⇦ <a href="../../index.html">Razafy.com</a></p>
+<nav id="TOC">
+<ul>
+<li><a href="#linkedin"><span>linkedin</span></a></li>
+<li><a href="#github"><span>github</span></a></li>
+</ul>
+</nav>
+<div class="bg_rnd">
+
+</div>
+<div class="navbar">
+<a class="openbtn" onclick="openNav()">☰</a>
+</div>
+<main>
 <blockquote>
 <p>“You can retreat but never quit” …</p>
 <p>External doubt is the essence of science,<br />
@@ -23,7 +35,38 @@ Suvival then, like success,<br />
 is the fine art of progress thought obstacles and duress<br />
 _ rindra</p>
 </blockquote>
-<p><a href="https://ca.linkedin.com/in/rindra-razafy-b77509217">linkedin</a><br />
-<a href="https://github.com/razafy-rindra">github</a></p>
+<h2 id="linkedin"><a href="https://ca.linkedin.com/in/rindra-razafy-b77509217">linkedin</a></h2>
+<h2 id="github"><a href="https://github.com/razafy-rindra">github</a></h2>
+</main>
+<script>
+let anchor= document.createElement('a');
+anchor.href="javascript:closeNav()"; //void(0)"; //anchor[0].onclick = closeNav();
+anchor.className = "closebtn";  
+anchor.innerHTML="&times;";
+document.getElementById("TOC").prepend(anchor);
+
+/* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
+function openNav() {
+  document.getElementById("TOC").style.width = "60%";
+  document.getElementsByTagName("MAIN").style.marginLeft = "250px";
+}
+
+/* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+function closeNav() {
+  document.getElementById("TOC").style.width = "0%";
+  document.getElementsByTagName("MAIN").style.marginLeft = "0px";
+}
+
+let navCrumbs= document.createElement('div');
+navCrumbs.className = "hover-nav";
+navCrumbs.innerHTML = `
+<div class="hover-nav">
+<ul>
+<li><a href="../../index.html">⇦ home</a></li>
+<li><a href="./index.html">rindra</a></li>
+</ul>
+</div>`;
+document.getElementById("TOC").prepend(navCrumbs); 
+</script>
 </body>
 </html>
