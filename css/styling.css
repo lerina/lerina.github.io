@@ -65,16 +65,23 @@ max-width: 940px;
 font-size: calc(0.75em + 1vmin);
 margin-top:2em;
 }
+main h2 {padding-top:2em;} 
 
 .hide {display:none;}
 
 /* The navigation bar */
 .navbar {
-  overflow: hidden;
   background-color: #333;
   position: fixed; /* Set the navbar to fixed position */
   top: 0; /* Position the navbar at the top of the page */
-  /*  width: 100%; Full width */
+  /*  width: 100%; Full width   overflow: hidden; */
+
+}
+
+.stick_me {    
+    position: -webkit-sticky;
+	position: sticky;
+	top: 0;
 }
 
 /* Links inside the navbar */
