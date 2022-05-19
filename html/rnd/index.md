@@ -1,6 +1,5 @@
-<div class="bg_rnd"></div>
-<div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
-
+<script src="../../js/toc.js"></script>
+<div class="bg_rnd"></div><div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
 <main>
 
 > "You can retreat but never quit" ...  
@@ -24,18 +23,6 @@ anchor.href="javascript:closeNav()"; //void(0)"; //anchor[0].onclick = closeNav(
 anchor.className = "closebtn";  
 anchor.innerHTML="&times;";
 document.getElementById("TOC").prepend(anchor);
-
-/* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
-function openNav() {
-  document.getElementById("TOC").style.width = "60%";
-  document.getElementsByTagName("MAIN").style.marginLeft = "250px";
-}
-
-/* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
-function closeNav() {
-  document.getElementById("TOC").style.width = "0%";
-  document.getElementsByTagName("MAIN").style.marginLeft = "0px";
-}
 
 let navCrumbs= document.createElement('div');
 navCrumbs.className = "hover-nav";

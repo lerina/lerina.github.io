@@ -1,16 +1,4 @@
-<script>
-/* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
-function openNav() {
-  document.getElementById("TOC").style.width = "60%";
-  document.getElementsByTagName('main')[0].style.marginLeft = "65%";
-}
-
-/* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
-function closeNav() {
-  document.getElementById("TOC").style.width = "0%";
-  document.getElementsByTagName('main')[0].style.margin = "0 auto";
-}
-</script>
+<script src="../../js/toc.js"></script>
 <div class="bg_lrn"></div><div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
 <main>
 

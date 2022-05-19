@@ -114,7 +114,7 @@ background-size: cover;
 .bg_lrn {
 background-image: url("../img/garden.png");
 /* height: 100%; */
-height: 75%;
+height: 55%;
 /* Center and scale the image nicely */
 background-position: center;
 background-repeat: no-repeat;
@@ -124,7 +124,7 @@ background-size: cover;
 .bg_rnd {
 background-image: url("../img/rnd.png");
 /* height: 100%; */
-height: 75%;
+height: 55%;
 /* Center and scale the image nicely */
 background-position: center;
 background-repeat: no-repeat;
@@ -134,7 +134,7 @@ background-size: cover;
 .bg_nrn {
 background-image: url("../img/nrn.png");
 /* height: 100%; */
-height: 75%;
+height: 55%;
 /* Center and scale the image nicely */
 background-position: center;
 background-repeat: no-repeat;

@@ -1,11 +1,12 @@
-<div class="bg_nrn"></div>
-<div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
+<script src="../../js/toc.js"></script>
+<div class="bg_nrn"></div><div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
 
 <main>
 
-
 ## Learn Malagasy 
+
 ### Course
+
 ### [Malagasy Grammar](../nosy_malagasy/grammar.html)
 
 </main>
@@ -17,17 +18,6 @@ anchor.className = "closebtn";
 anchor.innerHTML="&times;";
 document.getElementById("TOC").prepend(anchor);
 
-/* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
-function openNav() {
-  document.getElementById("TOC").style.width = "60%";
-  document.getElementsByTagName("MAIN").style.marginLeft = "250px";
-}
-
-/* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
-function closeNav() {
-  document.getElementById("TOC").style.width = "0%";
-  document.getElementsByTagName("MAIN").style.marginLeft = "0px";
-}
 
 let navCrumbs= document.createElement('div');
 navCrumbs.className = "hover-nav";
@@ -35,7 +25,7 @@ navCrumbs.innerHTML = `
 <div class="hover-nav">
 <ul>
 <li><a href="../../index.html">⇦ home</a></li>
-<li><a href="./index.html">rindra</a></li>
+<li><a href="./index.html">nirina</a></li>
 </ul>
 </div>`;
 document.getElementById("TOC").prepend(navCrumbs); 
