@@ -1,4 +1,4 @@
-<script src="../../js/toc.js"></script>
+<script src="https://razafy.com/js/toc.js"></script>
 <div class="bg_lrn"></div><div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
 <main>
 
