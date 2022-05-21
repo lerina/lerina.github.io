@@ -1,3 +1,5 @@
+<div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
+<main>
 ⇦ [razafy.com](../../../../index.html)  - [lerina](../../index.html) - [code](../index.html) - [game dev](./index.html)  
 
 ##  Purpose
@@ -410,3 +412,28 @@ For skills that are not your forté you can roll and add these modifiers
 > Even    Distracted, not in charge   
 > Odd     Directed focuced, in charge  
 
+</main>
+
+⇦ [razafy.com]()  - [lerina]() - [code](../index.html) - [game dev](./index.html)  
+
+<script src="https://razafy.com/js/toc.js"></script>
+<script>
+let anchor= document.createElement('a');
+anchor.href="javascript:closeNav()"; //void(0)"; //anchor[0].onclick = closeNav();
+anchor.className = "closebtn";  
+anchor.innerHTML="&times;";
+document.getElementById("TOC").prepend(anchor);
+
+let navCrumbs= document.createElement('div');
+navCrumbs.className = "hover-nav";
+navCrumbs.innerHTML = `
+<div class="hover-nav">
+<ul>
+<li><a href="../../../../index.html">⇦ home</a></li>
+<li><a href="../../index.html">lerina</a></li>
+<li><a href="../index.html">code</a></li>
+<li><a href="./index.html">game dev</a></li>
+</ul>
+</div>`;
+document.getElementById("TOC").prepend(navCrumbs); 
+</script>

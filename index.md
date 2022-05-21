@@ -54,7 +54,7 @@ style="background-image: url('img/secureCodeDevelopment.jpg')">Coding Math</div>
 <div class="card"
 style="background-image: url('img/coding_math.jpg')">Dev Notes</div>
 <div class="card"
-style="background-image: url('img/rustbridge-paris.jpg')">Game Dev</div>
+style="background-image: url('img/rustbridge-paris.jpg')"><a href="./html/lrn/code/game_dev/index.html">Game Dev</a></div>
 <div class="card card-wide"
 style="background-image: url('img/theView3.jpg')">Discover Nosy Malagasy</div>
 <div class="card"
