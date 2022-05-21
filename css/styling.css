@@ -63,9 +63,12 @@ main {
 margin: 0 auto;
 max-width: 940px;
 font-size: calc(0.75em + 1vmin);
+/*
 margin-top:2em;
+padding: 3em;
+*/
 }
-main h2 {padding-top:2em;} 
+main h2 {padding-top:2em; text-align:right}
 
 .hide {display:none;}
 

@@ -5,7 +5,7 @@
 
 <section class="hero">
 <article>
-<img src="./img/garden.png" alt="Lerina">
+<a href="./html/lrn/index.html"><img src="./img/garden.png" alt="Lerina"></a>
 <div class="text">
 <h3>Lerina</h3>
 <p>Secure Code Practitioner.</p>
@@ -13,7 +13,7 @@
 </div>
 </article>
 <article>
-<img src="./img/rnd.png" alt="Rindra">
+<a href="./html/rnd/index.html"><img src="./img/rnd.png" alt="Rindra"></a>
 <div class="text">
 <h3>Rindra</h3>
 <p>Pure Math Scholar.</p>
@@ -21,7 +21,7 @@
 </div>
 </article>
 <article>
-<img src="./img/nrn.png" alt="Nirina">
+<a href="./html/nrn/index.html"><img src="./img/nrn.png" alt="Nirina"></a>
 <div class="text">
 <h3>Nirina</h3>
 <p>Sun Wukong: Listen to the mp3.</p>
