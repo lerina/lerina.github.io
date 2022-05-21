@@ -68,7 +68,7 @@ margin-top:2em;
 padding: 3em;
 */
 }
-main h2 {padding-top:2em; text-align:right}
+main h2 {padding-top:2em;}
 
 .hide {display:none;}
 
@@ -78,6 +78,7 @@ main h2 {padding-top:2em; text-align:right}
   position: fixed; /* Set the navbar to fixed position */
   top: 0; /* Position the navbar at the top of the page */
   /*  width: 100%; Full width   overflow: hidden; */
+  right: 0;
 
 }
 
@@ -1037,7 +1038,7 @@ background-repeat: no-repeat;
   position: fixed; /* Stay in place */
   z-index: 1; /* Stay on top */
   top: 0;
-  left: 0;
+  right: 0;
   background-color: #111; /* Black*/
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 60px; /* Place content 60px from the top */
