@@ -1,5 +1,16 @@
 ⇦ [razafy.com](../../../index.html)  - [lerina](../index.html)  
 
+
+
+- [Why rust](https://www.youtube.com/watch?v=_wy4tuFEpz0)
+- [Ownership](https://www.youtube.com/watch?v=TCUBSbJENO4)
+- [Shared borrow](https://www.youtube.com/watch?v=61bFe3jqi1E)
+- [Mutable borrow](https://www.youtube.com/watch?v=pd7PJ6q4I3M)
+
+
+
+
+
 <style>
 .hover-menu {
   position: relative;

@@ -1,4 +1,4 @@
-<script src="https://razafy.com/js/toc.js"></script>
+
 <div class="bg_lrn"></div><div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
 <main>
 
@@ -179,12 +179,23 @@ Keep in mind that
 Progress is a process:  
 While one Plans progress with goals, one Makes progress with processes.
 
+
+## Skills
+Technical: Rust, Go, C/C++, Java, Javascript, Python, distributed transactions and consensus,
+database implementation, SQL, programming language design, type theory, compilers, IDE implementation (including the Language Server Protocol), browser implementation, web development (HTML,
+CSS, React, Ember, JQuery), GitHub API, GraphQL, OpenGL, DirectX, 2D and 3D graphics, debugging (using GDB, Visual Studio, and WinDbg), optimisation and performance.
+Professional: code review, mentoring and coaching, software design, interviewing, formal and informal written communication, conference talks and tutorials, large and small group teaching, leading
+productive meetings, team building, strategic planning, open source development, software engineering
+practices (testing, documentation, CI, version control (Git, Mercurial), issue tracking, etc.), working
+with remote and distributed teams.
+
 </main>
 <footer>
   <a href="https://github.com/lerina" target="_blank" title="github">![github](https://razafy.com/img/github32px.png){.link .glow}
   </a>
 </footer>
 
+<script src="https://razafy.com/js/toc.js"></script>
 <script>
 let anchor= document.createElement('a');
 anchor.href="javascript:closeNav()"; //void(0)"; //anchor[0].onclick = closeNav();
