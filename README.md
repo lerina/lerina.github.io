@@ -1,5 +1,11 @@
 # lerina.github.io
-Projects Website
+
+-    Learn (how to do research)
+-    Contribution (Make an original knowledge contribution)
+    * develop a thesis 
+    * conduct experiments
+    * demonstrate its correctness (or otherwise).
+-    Share (Prepare a dissertation documenting your thesis and the experiments you conducted to demonstrate it.)
 
 ## REM:
 

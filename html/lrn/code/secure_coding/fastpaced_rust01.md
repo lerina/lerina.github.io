@@ -1,4 +1,7 @@
-⇦ [razafy.com](../../../../index.html)  - [lerina](../../index.html) - [code](./index.html) 
+<div class="bg_rustNfriends"></div><div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
+
+<main>
+
 
 > Installing Rust on Linux, macOS, and Windows
 >
@@ -724,4 +727,26 @@ see also:
 see also :
 [Should you use to_string() or .to_owned?](https://www.youtube.com/watch?v=3iC3FVS6UXQ){target= "_blank"}  
 
+</main>
 
+<script src="https://razafy.com/js/toc.js"></script>
+<script>
+let anchor= document.createElement('a');
+anchor.href="javascript:closeNav()"; //void(0)"; //anchor[0].onclick = closeNav();
+anchor.className = "closebtn";  
+anchor.innerHTML="&times;";
+document.getElementById("TOC").prepend(anchor);
+
+
+let navCrumbs= document.createElement('div');
+navCrumbs.className = "hover-nav";
+navCrumbs.innerHTML = `
+<div class="hover-nav">
+<ul>
+<li><a href="../../../index.html">⇦ home</a></li>
+<li><a href="../../index.html">lerina</a></li>
+<li><a href="./index.html">rust and friends</a></li>
+</ul>
+</div>`;
+document.getElementById("TOC").prepend(navCrumbs); 
+</script>

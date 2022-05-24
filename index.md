@@ -41,24 +41,25 @@
 <div class="image-mosaic">
 <div class="card card-tall card-wide">
 <div class="mosaic-hover-menu"  id="the_cure" ><p>A cure <br/>for insecure <br/>code</p><div style="font-size: 1rem;">
-<a href="#">Safety first</a>
-<a href="#">Blazingly fast</a>
-<a href="#">Modern tools</a>
+<a href="./html/lrn/code/secure_coding/index.html">Rust and Friends</a>
+<a href="./html/lrn/code/secure_coding/memory_safe.html">Safety first</a>
+<a href="./html/lrn/code/secure_coding/blasingly_fast.html">Blazingly fast</a>
+<a href="./html/lrn/code/secure_coding/modern_tools.html">Modern tools</a>
 </div>
 </div><!--^-- mosaic-hover-menu -->
 </div>
 <div class="card card-tall"
-style="background-image: url('img/writing.jpg')">Learn <br/>Rust-Wasm<br/>& Webassembly</div>
+style="background-image: url('img/writing.jpg')"><a href="./html/lrn/code/rust-wasm/index.html"><p>Learn <br/>Rust-Wasm<br/>& Webassembly</p></a></div>
 <div class="card"
-style="background-image: url('img/secureCodeDevelopment.jpg')">Coding Math</div>
+style="background-image: url('img/secureCodeDevelopment.jpg')"><a href="./html/lrn/code/coding_math/index.html"><p>Coding Math</p></a></div>
 <div class="card"
-style="background-image: url('img/coding_math.jpg')">Dev Notes</div>
+style="background-image: url('img/coding_math.jpg')"><a href="./html/lrn/text/dev_notes/index.html"><p>Dev Notes</p></a></div>
 <div class="card"
-style="background-image: url('img/rustbridge-paris.jpg')"><a href="./html/lrn/code/game_dev/index.html">Game Dev</a></div>
+style="background-image: url('img/rustbridge-paris.jpg')"><a href="./html/lrn/code/game_dev/index.html"><p>Game Dev</p></a></div>
 <div class="card card-wide"
-style="background-image: url('img/theView3.jpg')">Discover Nosy Malagasy</div>
+style="background-image: url('img/theView3.jpg')"><a href="./html/nosy_malagasy/index.html"><p>Discover Nosy Malagasy</p></a></div>
 <div class="card"
-style="background-image: url('img/rain.jpg')">Beloha: A webnovel</div>
+style="background-image: url('img/rain.jpg')"><a href="./html/lrn/beloha/index.html"><p>Beloha:<br/>a webnovel</p></a></div>
 </div><!--^-- image-mosaic -->
 </section>
 
