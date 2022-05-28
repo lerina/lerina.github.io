@@ -1,5 +1,5 @@
-⇦ [razafy.com](../../../index.html)  - [lerina](../index.html)  
-
+<div class="bg_lrn"></div><div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
+<main>
 
 
 - [Why rust](https://www.youtube.com/watch?v=_wy4tuFEpz0)
@@ -10,82 +10,6 @@
 
 
 
-
-<style>
-.hover-menu {
-  position: relative;
-  overflow: hidden;
-  margin: 8px;
-  min-width: 340px;
-  max-width: 480px;
-  max-height: 290px;
-  width: 100%;
-  background: #000;
-  text-align: center;
-  box-sizing: border-box;
-}
-
-.hover-menu * {
-  box-sizing: border-box;
-}
-
-.hover-menu img {
-  position: relative;
-  max-width: 100%;
-  top: 0;
-  right: 0;
-  opacity: 1;
-  transition: 0.3s ease-in-out;
-}
-
-.hover-menu div {
-  position: absolute;
-  top: 0;
-  left: -120px;
-  width: 120px;
-  height: 100%;
-  padding: 8px 4px;
-  background: #000;
-  transition: 0.3s ease-in-out;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.hover-menu div a {
-  display: block;
-  line-height: 2;
-  color: #fff;
-  text-decoration: none;
-  opacity: 0.8;
-  padding: 5px 15px;
-  position: relative;
-  transition: 0.3s ease-in-out;
-}
-
-.hover-menu div a:hover {
-  text-decoration: underline;
-}
-
-.hover-menu:hover img {
-  opacity: 0.5;
-  right: -120px;
-}
-
-.hover-menu:hover div {
-  left: 0;
-  opacity: 1;
-}
-</style>
-
-<figure class="hover-menu">
-<img src="https://picsum.photos/id/1060/800/480.jpg"/>
-<div>
-<a href="#">Home</a>
-<a href="#">Pricing</a>
-<a href="#">About</a>
-</div>
-</figure>
 
 Like most activities in life, perticularly in the realm of knowledge and its application, 
 one should approach coding with a growth mind set 
@@ -144,3 +68,24 @@ _ rustbook
   <a href="https://github.com/lerina" target="_blank" title="github">![github](https://razafy.com/img/github32px.png){.link .glow}
   </a>
 </footer>
+
+<script src="https://razafy.com/js/toc.js"></script>
+<script>
+let anchor= document.createElement('a');
+anchor.href="javascript:closeNav()"; //void(0)"; //anchor[0].onclick = closeNav();
+anchor.className = "closebtn";  
+anchor.innerHTML="&times;";
+document.getElementById("TOC").prepend(anchor);
+
+let navCrumbs= document.createElement('div');
+navCrumbs.className = "hover-nav";
+navCrumbs.innerHTML = `
+<div class="hover-nav">
+<ul>
+<li><a href="../../../index.html">⇦ home</a></li>
+<li><a href="../index.html">lerina</a></li>
+<li><a href="./index.html">code</a></li>
+</ul>
+</div>`;
+document.getElementById("TOC").prepend(navCrumbs); 
+</script>

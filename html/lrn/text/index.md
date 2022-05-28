@@ -1,43 +1,40 @@
-⇦ [home](../../../index.html) - [lerina](../index.html)
+<div class="bg_lerina"></div><div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
+<main>
+## Notes
+### [We all suffer from acronym driven development](./dev_notes/sect.html) 
+### [Problem-Solving Methodology](./dev_notes/D.M.Etter.html)
 
-# Selected texts
+## Tips
+### Vim
+### Git
+### Cinnamon
 
-<section id="peace" class="tangena">
+## The process
 
-<p>
-<em>P</em> assion tamed,<br/>
-<em>E</em> motions tutored,<br/>
-<em>A</em> nger deflated,<br/>
-<em>C</em> ravings moderated,<br/>
-<em>E</em> nergy regulated<br/>
-<br/>
-<em>PEACE</em> is spelled out.
-</p>
-
-</section>
-
-## Poems & artistic
-- [Poems](poems.html)
-
-## Tech related
-
-### Productivity
-
-- [quietEye](quietEye.html)
-- [the10Xprog](the10Xprog.html)
-- [timer](timer.html)
-- [use_a_timer](use_a_timer.html)
-- [ZONE_IN](ZONE_IN.html)
-
-### Software development
-- [acronym driven development](sect.html)
-- [The process](./the_process/index.html)
-- [Problem-solving](./D.M.Etter.html)
-- [coding styles](./coding_styles.html)
-
-
+</main>
 <footer>
   <a href="https://github.com/lerina" target="_blank" title="github">![github](https://razafy.com/img/github32px.png){.link .glow}
   </a>
 </footer>
+
+<script src="https://razafy.com/js/toc.js"></script>
+<script>
+let anchor= document.createElement('a');
+anchor.href="javascript:closeNav()"; //void(0)"; //anchor[0].onclick = closeNav();
+anchor.className = "closebtn";  
+anchor.innerHTML="&times;";
+document.getElementById("TOC").prepend(anchor);
+
+let navCrumbs= document.createElement('div');
+navCrumbs.className = "hover-nav";
+navCrumbs.innerHTML = `
+<div class="hover-nav">
+<ul>
+<li><a href="../../index.html">⇦ home</a></li>
+<li><a href="../index.html">lerina</a></li>
+<li><a href="./index.html">Dev notes</a></li>
+</ul>
+</div>`;
+document.getElementById("TOC").prepend(navCrumbs); 
+</script>
 

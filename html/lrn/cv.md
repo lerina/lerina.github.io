@@ -2,9 +2,36 @@
 <div class="bg_lrn"></div><div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
 <main>
 
-| Some "think and create",
-| while others "blink and cry hate".
-|                                   _ lerina
+## Parity
+
+We’re looking for a senior software developer with proven Rust experience, working knowledge of Substrate, and general familiarity with blockchain technologies. In this position, you must understand decentralized, high-performance systems, analyze and optimize the platform’s performance, be able to run tests in a distributed environment, and have experience with security audits of third-party and internal solutions. You must also be interested in the Polkadot ecosystem, and design, research and develop blockchain-based solutions. As an ideal candidate, you have proven experience coding, developing, and testing software programs, preferably using the Rust programming language. 
+
+
+## Preferred qualifications
+Experience with blockchain technology 
+Experience in Rust programming
+
+
+## Sample interview questions
+Can you explain Rust?   
+What are the advantages of using Rust?  
+How does Rust’s garbage collection work?  
+How do you get a command line argument in Rust?  
+What are some main features of Rust?  
+Does Rust include move constructors?  
+How would you write and run a Rust program?  
+What string type would you use with Rust?  
+Why is Rust a safer option compared to C and C++?  
+How do you use Rust’s reusable codes?  
+How would you efficiently input a user read file in Rust?  
+Rust syntax is similar to which programming language?  
+Can you list the platforms supported by Rust?  
+How do you install Rust?  
+How do you uninstall Rust?  
+What is Cargo?  
+How do you debug Rust programs?  
+Can Rust be used for Android/iOS programming?  
+How do you do dynamic Rust library loading?  
 
 Rust is a systems language that provides memory safety without garbage collection, and concurrency without race conditions
 
@@ -189,6 +216,11 @@ productive meetings, team building, strategic planning, open source development,
 practices (testing, documentation, CI, version control (Git, Mercurial), issue tracking, etc.), working
 with remote and distributed teams.
 
+## Skills
+Technical: Rust, C, Python, Javascript, Node, Deno  
+web development (HTML, CSS, Javascript, Typescript), GitHub API, debugging (using GDB, Visual Studio), optimisation and performance.  
+Professional: code review, mentoring and coaching, software design, interviewing, formal and informal written communication, conference talks and tutorials, large and small group teaching, leading productive meetings, team building, strategic planning, open source development, software engineering  
+practices (testing, documentation, CI, version control (Git, Mercurial), issue tracking, etc.), working with remote and distributed teams.  
 </main>
 <footer>
   <a href="https://github.com/lerina" target="_blank" title="github">![github](https://razafy.com/img/github32px.png){.link .glow}

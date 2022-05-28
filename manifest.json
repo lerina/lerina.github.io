@@ -1,6 +1,6 @@
 {
-  "name": "#{title}",
-  "short_name": "#{title}",
+  "name": "Razafy lerina",
+  "short_name": "Razafy",
   "icons": [
     {
       "src": "/logo_lerina_192x192.png",
@@ -13,7 +13,7 @@
       "type": "image/png"
     }
   ],
-  "theme_color": "#272822",
+  "theme_color": "#fff",
   "background_color": "#272822",
   "start_url": ".",
   "display": "standalone"

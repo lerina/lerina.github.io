@@ -6,7 +6,7 @@
 html, body {height: 100%;margin: 0; padding: 0}
 html{font-family:'Montserrat', sans-serif;line-height:1.3;text-align:justify;}
 body{background-color:#cccaca;color:#111;-moz-hyphens:auto;-ms-hyphens:auto;-webkit-hyphens:auto;hyphens:auto}
-code{font-family: 'Inconsolata', Inconsolata_local, monospace;background-color:#ddd;line-height:0.5;
+code{font-family: 'Inconsolata', Inconsolata_local, monospace;background-color:#ddd;line-height:.90;
 border:1px solid #bbb;padding:0px 0.15em 0px 0.15em;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px}
 pre{margin-right:1.5em;display:block}pre>code{display:block;padding:10px;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;overflow-x:auto}
 
@@ -69,6 +69,7 @@ padding: 3em;
 main h2 {padding-top:2em;}
 
 .hide {display:none;}
+.green_waterloo {color:#272822;} /* favicon bg */
 
 /* The navigation bar */
 .navbar {
@@ -151,6 +152,18 @@ background-position: center;
 background-repeat: no-repeat;
 background-size: cover;
 }
+
+.bg_lerina {
+background-image: url("../img/bg_lerina.jpg");
+height: 70%;
+/* Center and scale the image nicely */
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+}
+
+.video-container { position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden; }
+.video-container iframe, .video-container object, .video-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
 /* [Sibling fade](https://www.30secondsofcode.org/css/s/sibling-fade)
 <div class="sibling-fade">

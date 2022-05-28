@@ -1,4 +1,18 @@
 ⇦ [home](../../../index.html) - [lerina](../index.html) - [texts](./index.html)
+<main>
+
+<section id="peace" class="tangena">
+Hello friend, with
+<p>
+<em>P</em> assion tamed,<br/>
+<em>E</em> motions tutored,<br/>
+<em>A</em> nger deflated,<br/>
+<em>C</em> ravings moderated,<br/>
+<em>E</em> nergy regulated<br/>
+<br/>
+<em>PEACE</em> is spelled out.
+</p>
+</section>
 
 ### Poems {#poem}
 
@@ -254,3 +268,4 @@ Hence `loyalty` is our only lasting anchor to Humanity.
 23. Adapt before you Adopt 
  ```
 
+</main>

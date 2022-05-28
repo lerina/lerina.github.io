@@ -4,22 +4,74 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>index</title>
-  <style type="text/css">
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  <title>index index</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
-  <link rel="stylesheet" href="https://razafy.com/css/styling.css" />
+  <link rel="stylesheet" href="../../../../css/styling.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
 </head>
 <body>
-<nav id="TOC">
+<nav id="TOC" role="doc-toc">
 <ul>
-<li><a href="#secure-coding">Secure coding</a></li>
+<li><a href="#rust-and-friends" id="toc-rust-and-friends">Rust and
+Friends</a></li>
+<li><a href="#secure-coding" id="toc-secure-coding">Secure
+coding</a></li>
 </ul>
 </nav>
-<p>⇦ <a href="../../../../index.html">razafy.com</a> - <a href="../../index.html">lerina</a> - <a href="../index.html">code</a></p>
+<div class="bg_lrn">
+
+</div>
+<div class="navbar">
+<a class="openbtn" onclick="openNav()">☰</a>
+</div>
+<main>
+<h2 id="rust-and-friends">Rust and Friends</h2>
+<p>Rust works well with other programming languages.</p>
+<h3 id="what-problems-does-rust-solve">What problem(s) does Rust
+Solve?</h3>
+<p>https://www.rust-lang.org/</p>
+<p>Rust is a systems programming language that runs blazingly fast,
+prevents segfaults, and guarantees thread safety.</p>
+<p>Featuring</p>
+<ul>
+<li>zero-cost abstractions</li>
+<li>move semantics</li>
+<li>guaranteed memory safety</li>
+<li>threads without data races</li>
+<li>trait-based generics</li>
+<li>pattern matching</li>
+<li>type inference</li>
+<li>minimal runtime</li>
+<li>efficient C bindings</li>
+</ul>
+<p>source: The older “nerdy” rust</p>
+<p>Rust is a language that allows you to build high level abstractions,
+but without giving up low-level control - that is, control of how data
+is represented in memory, control of which threading model you want to
+use etc. Rust is a language that can usually detect, during compilation,
+the worst parallelism and memory management errors (such as accessing
+data on different threads without synchronization, or using data after
+they have been deallocated), but gives you a hatch escape in the case
+you really know what you’re doing. Rust is a language that, because it
+has no runtime, can be used to integrate with any runtime; you can write
+a native extension in Rust that is called by a program node.js, or by a
+python program, or by a program in ruby, lua etc. and, however, you can
+script a program in Rust using these languages. – “Elias Gabriel Amaral
+da Silva”</p>
+<h3 id="memory_safe">memory_safe</h3>
+<p><a href="Memory%20safety">wikipedia Memory safety</a></p>
+<h3 id="blasingly_fast">blasingly_fast</h3>
+<h3 id="modern_tools">modern_tools</h3>
 <h2 id="secure-coding">Secure coding</h2>
 <ul>
 <li>Back to first principles</li>
@@ -28,7 +80,30 @@
 <li>Building web3 with Rust and Wasm</li>
 </ul>
 <footer>
-<a href="https://github.com/lerina" target="_blank" title="github"><img src="https://razafy.com/img/github32px.png" alt="github" class="link glow" /> </a>
+<a href="https://github.com/lerina" target="_blank" title="github"><img
+src="https://razafy.com/img/github32px.png" class="link glow"
+alt="github" /> </a>
 </footer>
+<script src="https://razafy.com/js/toc.js"></script>
+<script>
+let anchor= document.createElement('a');
+anchor.href="javascript:closeNav()"; //void(0)"; //anchor[0].onclick = closeNav();
+anchor.className = "closebtn";  
+anchor.innerHTML="&times;";
+document.getElementById("TOC").prepend(anchor);
+
+let navCrumbs= document.createElement('div');
+navCrumbs.className = "hover-nav";
+navCrumbs.innerHTML = `
+<div class="hover-nav">
+<ul>
+<li><a href="../../../../index.html">⇦ home</a></li>
+<li><a href="../../index.html">lerina</a></li>
+<li><a href="../index.html">code</a></li>
+<li><a href="./index.html">secure coding</a></li>
+</ul>
+</div>`;
+document.getElementById("TOC").prepend(navCrumbs); 
+</script>
 </body>
 </html>

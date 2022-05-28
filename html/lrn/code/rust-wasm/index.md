@@ -1,26 +1,24 @@
 <div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
 <main>
-⇦ [razafy.com](../../../../index.html)  - [lerina](../../index.html) - [code](../index.html)  
 
-## Game Dev
+## Rust, Wasm and Webassembly
 
-### Retro Games
-
-#### Pong
-
-#### Snake Game
-
-#### Taipan
+### Learn Rust
+- [The book](https://doc.rust-lang.org/book/title-page.html)
+- The best youtube resource to learn Rust is [LetsGetRusty](https://www.youtube.com/c/LetsGetRusty/playlists)
+- my quick guide
 
 
-## [A fun productivity RPG game without complexity](./nmRpg_builder.html)
+### Learn Wasm
+- the book
+- My no-bloat workflow
 
-### The Rules
-Pen and Paper 
-
-### Online game builder
+### Webassembly
+- the book
+- A fun dive into Webassembly 
 
 </main>
+
 <script src="https://razafy.com/js/toc.js"></script>
 <script>
 let anchor= document.createElement('a');
