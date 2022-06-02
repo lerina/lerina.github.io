@@ -1,17 +1,10 @@
-⇦ [home](../../../../index.html) - [lerina](../../index.html) - [texts](../index.html) - [the process](./index.html)
+<div class="bg_lerina"></div><div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
+<main>
 
-## Productivity
-To bridge the gap between intention and action, some people like to t hinking 
+## Personal Productivity
+
+To bridge the gap between intention and action, some people like to thinking 
 of their work in terms of war. I prefer to see it as a live action, a performance.
-
-### The system is called 0x80
-0x80 is a alias for `do what was previously defined`.
-The system hold in 3 points.
-- Perfom the process
-- until time is up
-- without distraction
-
-In other words when you do something specific, you are *on air* , *in session*, *live*  
 
 Have a [SQUID GAME ▲●■](https://en.wikipedia.org/wiki/Squid_Game) mindset: Code as if your life depended on it.
 
@@ -19,7 +12,37 @@ Have a [SQUID GAME ▲●■](https://en.wikipedia.org/wiki/Squid_Game) mindset:
 ● Perform the Process  
 ■ While in Session  
 
-### 4 rules
+### The system is called 0x80
+
+0x80 is a alias for `do what was previously defined`.  
+The system hold in 3 points.  
+- Perfom the process  
+- until time is up  
+- without distraction  
+
+####  ● Perfom the process
+In the end, nothing is accomplished without actual work
+Here is the heart of this system: [Stacks and Heaps: A Personal Productivity Process](./stack_heap.html)
+
+The circle ● represents the gears of execution.
+
+#### ■ until time is up
+All things will pass, and most things are out of one's control.
+But for a specific period of time choose to do and only do the task at end.
+Nothing else matters.
+
+The square ■ represents the time box dedicated to execution.
+
+#### ▲ without distraction
+
+When you do something specific, you are *on air* , *in session*, *live*  
+Fully commit! At the very least your name is attached to it.
+
+The ▲ triangle represents that single pointedness driving execution.
+
+### Get better at practicing 0x80 with these tools
+
+#### 4 rules
 In order to accomplish 0x80 it is assumed one wants to do what was previously defined .
 Hence some rules apply
 
@@ -32,67 +55,57 @@ It is unwise to give in to instant self-gratification
 4. It is wise to seek feedback.  
 It is unwise to take it personally.
 
-### ODY: Remedy to 
+#### ODY: A Checklist to `Remedy` inefficient use of deepwork time.
 
-[] `O`bstacle cleared
-[] `D`istractions to avoid identified
-[] `Y`ield to the *process*
+[] `O`bstacle cleared  
+[] `D`istractions to avoid identified  
+[] `Y`ield to the *process*  
 
-### TMP: Create a temporary focus bubble
+#### TMP: Create a temporary focus bubble
 
 Until the time is up, *shift*  into session mode and "observe the doing"
 
-#### Temporal (Do the time: Stick to it)
+##### Temporal (Do the time: Stick to it)
 
 - Protect your Time
 - Limit your Time
 - Use your Time
 
-#### Mental (Be water: Egoless nothing can stick to it)
+##### Mental (Be water: Egoless nothing can stick to it)
 
 - Let go of Feelings
 - Let go of Desires
 - Let go of Doubt
 
-#### Physical (Stick-out: Fail it til you make it)
+##### Physical (Stick-out: Fail it til you make it)
 
 - Deliberate speed (Slow down)
 - Deliberate Actions (Attend to the intent)
 - Deliberate Posture (Decorium)
 
-## Tinker - Thinker - Hacker
+</main>
+<footer>
+  <a href="https://github.com/lerina" target="_blank" title="github">![github](https://razafy.com/img/github32px.png){.link .glow}
+  </a>
+</footer>
 
-### Tinker: Deliberate practice of discovery
+<script src="https://razafy.com/js/toc.js"></script>
+<script>
+let anchor= document.createElement('a');
+anchor.href="javascript:closeNav()"; //void(0)"; //anchor[0].onclick = closeNav();
+anchor.className = "closebtn";  
+anchor.innerHTML="&times;";
+document.getElementById("TOC").prepend(anchor);
 
-| Iterating through GRIT 
-
-"The process of iteration is important to tinkering, and critical to supporting 
-thinking and learning while tinkering. 
-Exploring a variety of ways to build and refine an idea over time is an important 
-part of the process.  
-Working on iterations provides an opportunity for learning to deepen, 
-and often lead to unexpected new perspectives, and a variety of outcomes.
-
-Ideas and thoughts develop slowly, so do new new questions, observations, 
-and experimental outcomes.  
-Step-by-step kits, or projects where the outcome is already known (or predictable) 
-are less impactful for someone developing a deep understanding of why things work 
-the way they do.  
-Iteration supports the ability to model the ways that new questions can lead 
-to new discoveries. " 
-_ [The art of Iteration](https://www.exploratorium.edu/tinkering/blog/2016/06/19/the-art-of-iteration)
-
-
-### Thinker: Deliberate deliberations on Practice and Discovery
-
-| Iterating through GROWTH
-
-### Hacker: Deliberate discovery of practice
-
-| GROWING GRIT by GRITING THROUGH GROWTH
-
-
-| There is no TRY.
-| Only TRIES
-|         _ ~~Yoda~~ Lerina
-
+let navCrumbs= document.createElement('div');
+navCrumbs.className = "hover-nav";
+navCrumbs.innerHTML = `
+<div class="hover-nav">
+<ul>
+<li><a href="../../index.html">⇦ home</a></li>
+<li><a href="../../index.html">lerina</a></li>
+<li><a href="../index.html">text</a></li>
+</ul>
+</div>`;
+document.getElementById("TOC").prepend(navCrumbs); 
+</script>

@@ -4,15 +4,12 @@
 ## My Live Presentation heros
 
 ### Rust
+
 - Rainer Stropek - Karlsruhe JS: An Intro to Rust and Webassembly
 <figure class="video-container"><iframe src="https://www.youtube.com/embed/97I_LZCSsDo" frameborder="0" allowfullscreen="true"> </iframe></figure>
 
 - Rainer Stropek iJS 2021: WebAssembly, Rust, and TypeScript – a Match Made in Heaven
 <figure class="video-container"><iframe src="https://www.youtube.com/embed/zq4s3LAUz4A" frameborder="0" allowfullscreen="true"> </iframe></figure>
-
-- 
-
-
 
 ### Javascript
 
@@ -37,25 +34,34 @@
 
 ## Cool Tech Talks
 
-Anything by Kevlin Henney
+### Kevlin Henney
 
-- Kevlin Henney: Refactoring to Immutability
+- Refactoring to Immutability
 <figure class="video-container"><iframe src="https://www.youtube.com/embed/APUCMSPiNh4" frameborder="0" allowfullscreen="true"> </iframe></figure>
 
-- Kevlin Henney: Old Is the New New • GOTO 2018
+- Old Is the New New • GOTO 2018
 <figure class="video-container"><iframe src="https://www.youtube.com/embed/AbgsfeGvg3E" frameborder="0" allowfullscreen="true"> </iframe></figure>
 
-Nell Shamrell-Harrington
+### Dave Farley
+
+- How to Start a New Software Project
+<figure class="video-container"><iframe src="https://www.youtube.com/embed/eozFlgu6ByY" frameborder="0" allowfullscreen="true"> </iframe></figure>
+
+
+- Breaking Bad Software Development Habits
+<figure class="video-container"><iframe src="https://www.youtube.com/embed/gLYYXKL-Jug" frameborder="0" allowfullscreen="true"> </iframe></figure>
+
+### Nell Shamrell-Harrington
 
 - Traits and You: A Deep Dive — Nell Shamrell-Harrington
 <figure class="video-container"><iframe src="https://www.youtube.com/embed/grU-4u0Okto" frameborder="0" allowfullscreen="true"> </iframe></figure>
 
-Dr Felienne Hermans
+### Dr Felienne Hermans
 
 - "How to Read Complex Code" 
 <figure class="video-container"><iframe src="https://www.youtube.com/embed/jjMlguOrWHc" frameborder="0" allowfullscreen="true"> </iframe></figure>
 
-Lin Clak
+### Lin Clak
 
 <figure class="video-container"><iframe src="https://www.youtube.com/embed/KFpU30xluxo" frameborder="0" allowfullscreen="true"> </iframe></figure>
 </main>

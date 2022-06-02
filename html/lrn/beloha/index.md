@@ -1,11 +1,5 @@
-
-<div class="bg_lerina"></div><div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
+<div class="bg_blh"></div><div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
 <main>
-
-- [Stacks and Heaps: A Personal Productivity Process](./stack_heap.html)
-- [0x80_productivity_system](./0x80_productivity_system.html)
-- [SIMPLE](./SIMPLE.html)
-- [Top-down - Inside-out](./top_up.html)
 
 
 </main>
@@ -27,9 +21,9 @@ navCrumbs.className = "hover-nav";
 navCrumbs.innerHTML = `
 <div class="hover-nav">
 <ul>
-<li><a href="../../index.html">⇦ home</a></li>
-<li><a href="../../index.html">lerina</a></li>
-<li><a href="../index.html">text</a></li>
+<li><a href="../../../index.html">⇦ home</a></li>
+<li><a href="../index.html">lerina</a></li>
+<li><a href="./index.html">beloha: a webnovel</a></li>
 </ul>
 </div>`;
 document.getElementById("TOC").prepend(navCrumbs); 

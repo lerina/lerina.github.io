@@ -1,12 +1,33 @@
-
 <div class="bg_lerina"></div><div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
 <main>
+# The Heaps and Stacks Process
 
-- [Stacks and Heaps: A Personal Productivity Process](./stack_heap.html)
-- [0x80_productivity_system](./0x80_productivity_system.html)
-- [SIMPLE](./SIMPLE.html)
-- [Top-down - Inside-out](./top_up.html)
+A Simple alternative to Kanban board for personal productivity
 
+While Kanban is great for collaborative work, this one is simple and very powerful 
+for personal efficiency. When you have your don't disturb cap on, nothing cuts through 
+deep work backlog like the Heaps and Stacks process. 
+
+This is the heart of the [0x80 productivity system](./0x80_productivity_system.html), which
+includes additional help to keep focused one the work in a sustainable way.
+
+## start with the Heap
+
+* Note things on the a heap. 
+* One heap per topic
+* complete the heap with the dependencies and prerequisites
+
+## stack the Stack
+
+* start with the end in mind
+* What is the last step just before the end result
+* what comes just before that
+* ... proceed until you back track to your current situation
+
+## do the work. 
+
+* Pop the first element of the stack.
+* Pop and do until the stack is empty
 
 </main>
 <footer>
