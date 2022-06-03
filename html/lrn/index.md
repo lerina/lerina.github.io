@@ -2,11 +2,6 @@
 <div class="bg_lerina"></div><div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
 <main>
 
-| Some "think and create",
-| while others "blink and cry hate".
-|                                   _ lerina
-
-
 # Hi, I'm Lerina, 
 a software developer based in Waterloo ON, Canada<br/> but you can sometimes find me in Paris (France) or Antananarivo (Madagascar).
 
@@ -24,12 +19,29 @@ and a decrease the possibility of cyber-attack through bug explotation memory mi
 
 Rust performs the majority of its safety checks and memory management decisions at compile time, so that your program’s runtime performance isn’t impacted.
 
+see also: [Rust works well with other programming languages](./code/secure_coding/index.html)
 
-## Learn more about Rust
+## Is your project ready to ascend to the next level?
 
-Rust is a programming language that’s focused on safety, speed, and concurrency. Its design lets you create programs that have the performance and control of a low-level language, but with the powerful abstractions of a high-level language. These properties make Rust suitable for programmers who have experience in languages like C and are looking for a safer alternative, as well as those from languages like Python who are looking for ways to write code that performs better without sacrificing expressiveness.  source: the [rustbook](https://doc.rust-lang.org/book/foreword.html)
+Does it need Safer libraries, Faster modules, Leaner dependencies?
 
-- [more about Rust...](./code/secure_coding/index.html)  
+Tell me about YOUR Pain:
+
+`P`roject or Problem (to solve)  
+`A`spiration or Angst/Anger (to fix)  
+`I`tch or Irritation  (to heal)  
+`N`eed or Niche (to satisfy)  
+
+## See more about software Development
+with code examples and opinionated short texts
+
+<figure class="hover-img"><a href="./code/index.html">
+<img src="../../img/code_index.jpg"/>
+<figcaption>
+<h3>more about <br/>software Development</h3>
+</figcaption></a>
+</figure>
+
 
 ## My Workflow
 
@@ -40,10 +52,7 @@ This is Reflective equilibrium applied to software development.
 
 [read more](./code/workflow.html)  
 
-see also:
 
-- Video: [my tech and programming heroes](./my_heroes.html)
-- papers:
 
 </main>
 <footer>

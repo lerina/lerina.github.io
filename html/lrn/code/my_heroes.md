@@ -63,7 +63,12 @@
 
 ### Lin Clak
 
+- Rust beyond Rust: RustConf 2019 - Closing Keynote by Lin Clark
 <figure class="video-container"><iframe src="https://www.youtube.com/embed/KFpU30xluxo" frameborder="0" allowfullscreen="true"> </iframe></figure>
+
+- WebAssembly nanoprocesses: making WebAssembly outside-the-browser secure by default, Lin Clark 
+<figure class="video-container"><iframe src="https://www.youtube.com/embed/TF-tXDRAEmg" frameborder="0" allowfullscreen="true"> </iframe></figure>
+
 </main>
 
 <footer>

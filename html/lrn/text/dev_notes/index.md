@@ -1,6 +1,11 @@
 
 <div class="bg_lerina"></div><div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
 <main>
+
+| Some "think and create",
+| while others "blink and cry hate".
+|                                   _ lerina
+
 ## [We all suffer from acronym driven development](./sect.html)
 
 </main>

@@ -16,6 +16,18 @@ among these set of design decisions and particular developers judgements.
 
 ### Process Dynamics
 
+```
+|↴  
+| TOP-DOWN DESIGN 
+|     ↱↴ Think a little    
+|     ↑↲      Write a little  
+|  
+| BOTTOM-UP IMPLEMENTATION  
+|     ↱↴ Code a little  
+|     ↑↲      Test a little  
+|←  
+```
+
 #### Top-down vision
 
 - What do we want?
@@ -24,11 +36,15 @@ among these set of design decisions and particular developers judgements.
 - What do I need to make it happen?
 - verify and confirm impact.
 
+see also: [outside-in](https://www.holdenrehg.com/blog/2018-09-22_write-better-code-outside-in)  
+
 #### Bottom-up implementation
 
 - Given what I have which fundamental block can I tackle
 - What are the clear steps involved
 - What's my immediate action. (Spike, test/code loop, verify)
+
+see also: [inside-out](http://xunitpatterns.com/Philosophy%20Of%20Test%20Automation.html)  
 
 </main>
 <footer>
