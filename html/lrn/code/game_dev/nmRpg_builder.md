@@ -2,11 +2,45 @@
 <main>
 ⇦ [razafy.com](../../../../index.html)  - [lerina](../../index.html) - [code](../index.html) - [game dev](./index.html)  
 
+# The thrust RPG
+
+## The heart of the game
+
+Given a set of Tasks, 
+
+<div class="image-mosaic">
+<div class="card card-tall"><div class="card2"><h3>▲ Without Distraction</h3>
+<img src="./pix/Hourglass.jpg"/><h3>Beat the time</h3><div class="focus-content">
+<p>Build the habit to beat the timer</p>
+<ol><li>Pick a Task or step.</li><li>Set the time to beat.</li><li>Finish before the time is up.</li></ol>
+</div></div></div>
+<div class="card card-tall"><div class="card2"><h3>● Perform the Process</h3>
+<img src="./pix/Hourglass.jpg"/><h3>Perform Deepwork</h3><div class="focus-content">
+<p>Practice Deepwork for long periods.</p>
+<p>Start with 20 minutes, then 40, 60, ...</p>
+<p>Perform the task. Nothing else matters until the time is up.</p>
+</div></div></div>
+<div class="card card-tall"><div class="card2"><h3>■ While in Session</h3><img src="./pix/Hourglass.jpg"/><h3>Aim for 3 hours sessions</h3>
+<div class="focus-content">
+<p>Divide the 3 hours into work sessions</p>
+<p>Start gradually in 20, 40, 60, 40 , 20 minutes chunks.</p>
+
+</div></div></div>
+</div>
+
+This is the core of The personal productivity system called mutex_0x80 hex80
+
+[more about the 0x80 Productivity System](../../text/the_process/0x80_productivity_system.html){target=_blank}
+
+## The 0x80 RPGGamification
+
+We can use this productivity system to power our RPG game.
+
 ##  Purpose
 
 The purpose of the game is to create a story where your PC progresses 
-only if you complete 9 specific items each day.
-A real day corresponds to a scene of the character's adventure.
+only if you complete 9 specific items.
+The completed set of 9 items corresponds to a scene of the character's adventure.
 
 - First you select 3 actions to do for the day.
 - Next you select 3 actions **not** to do for the day.
@@ -18,6 +52,7 @@ There is one last but optional work to do.
 Writing down the scene to grow the story. 
 
 ## Procedure
+
 1) Define the setting, the genre, the gameworld of the adventure.
 2) Create your Player Character (PC), a name and a brief description 
 is sufficient but you can create your PC using the rules of any RPG you want.
@@ -279,11 +314,14 @@ Going out of your way to seek approval.
 Gets stronger each time you seek validation by prioritizing the needs of everyone else
 at your own expense.
 
+Source and inspiration: [Master your Mindset, Overcome Self-Deception, Change your Life | Shadé Zahrai | TEDxDRC](https://www.youtube.com/watch?v=4AzpmZ7AjaQ){target=_blank}
+
 The Antidote to deceivers:
 Create emotional distance from the deceiver. This make room for more rationality.
 This helps shifting into an internal locus of control. How?
 
 Become aware when under attack.
+
 Call it out. Then **choose** not to listen.
 write down or go through all the deceivers arguments: 
 

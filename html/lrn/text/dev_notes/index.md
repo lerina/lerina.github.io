@@ -6,7 +6,13 @@
 | while others "blink and cry hate".
 |                                   _ lerina
 
+
+
 ## [We all suffer from acronym driven development](./sect.html)
+
+## Take away from Brain Prog
+
+## my version of SIMPL
 
 </main>
 <footer>

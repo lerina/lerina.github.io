@@ -9,6 +9,8 @@
 
 ### Fanorona
 
+[more ...](./fanorona.html)
+
 ### Sakafo
 
 ### Learn Malagasy with Nirina

@@ -1,32 +1,42 @@
 <div class="bg_lerina"></div><div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
 <main>
 
-## Personal Productivity
+## Personal Productivity with `thrust` 
 
 To bridge the gap between intention and action, some people like to thinking 
 of their work in terms of war. I prefer to see it as a live action, a performance.
 
-Have a [SQUID GAME ▲●■](https://en.wikipedia.org/wiki/Squid_Game) mindset: Code as if your life depended on it.
+Have a [SQUID GAME ▲●■](https://en.wikipedia.org/wiki/Squid_Game){target=_blank} mindset: Code as if your life depended on it.
+
+Work in successive propulsive burst of energy, deepwork, focus.
 
 ▲ Without Distraction  
 ● Perform the Process  
 ■ While in Session  
 
-### The system is called 0x80
+### The process
 
-0x80 is a alias for `do what was previously defined`.  
+`thrust` incorporate the programming notions of mutex and int 0x80.
+Acquire a exclusive lock on your attention (mutex)  
+while performing a task previously defined (int 0x80).
+
+[mutex or lock ](https://en.wikipedia.org/wiki/Lock_(computer_science))
+[0x80 is a alias for `do what was previously defined`]().  
+
 The system hold in 3 points.  
 - Perfom the process  
 - until time is up  
 - without distraction  
 
 ####  ● Perfom the process
-In the end, nothing is accomplished without actual work
+
+Nothing is accomplished without actual work. Rustle up.
 Here is the heart of this system: [Stacks and Heaps: A Personal Productivity Process](./stack_heap.html)
 
 The circle ● represents the gears of execution.
 
 #### ■ until time is up
+
 All things will pass, and most things are out of one's control.
 But for a specific period of time choose to do and only do the task at end.
 Nothing else matters.
@@ -41,6 +51,18 @@ Fully commit! At the very least your name is attached to it.
 The ▲ triangle represents that single pointedness driving execution.
 
 ### Get better at practicing 0x80 with these tools
+
+#### Aim for 3hours sessions
+<p>Aim for 3 hours sessions.</p>
+<p>Divide the 3 hours into work sessions</p>
+<p>Take a break between sessions</p>
+<p>First 20, 40, 60, 40, 20 minutes</p>
+<p>then 40, 20, 60, 40, 20 minutes</p>
+<p>then 60, 60, 60 minutes</p>
+
+#### Just do
+
+<ol><li>Pick a 1, 3, 5, 7, or 9 steps Task.</li><li>Set a time to beat: 20, 40, 60 minutes.</li><li>Finish the steps before the time is up.</li></ol>
 
 #### 4 rules
 In order to accomplish 0x80 it is assumed one wants to do what was previously defined .

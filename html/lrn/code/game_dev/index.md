@@ -8,17 +8,32 @@
 
 #### Pong
 
+-- coming soon --
+
 #### Snake Game
+
+-- coming soon --
 
 #### Taipan
 
+-- coming soon --
 
 ## [A fun productivity RPG game without complexity](./nmRpg_builder.html)
 
 ### The Rules
-Pen and Paper 
+This is an optional Pen and Paper game with a personal productivity benefit.
+
+Select a Task. Set your Timer. Start!
+
+▲ Without Distraction  
+● Perform the Process  
+■ While in Session  
+
+[more ...](./nmRpg_builder.html)
 
 ### Online game builder
+
+-- coming soon --
 
 </main>
 <script src="https://razafy.com/js/toc.js"></script>

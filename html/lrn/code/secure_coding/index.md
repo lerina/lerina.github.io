@@ -5,15 +5,17 @@
 ## Rust and Friends
 Rust works well with other programming languages. 
 
-### What problem(s) does Rust Solve?
-
-https://www.rust-lang.org/
-
+### What is Rust
 
 Rust is a systems programming language that runs blazingly fast, prevents segfaults, and guarantees thread safety.
 
 > Rust is a programming language that’s focused on safety, speed, and concurrency. Its design lets you create programs that have the performance and control of a low-level language, but with the powerful abstractions of a high-level language. These properties make Rust suitable for programmers who have experience in languages like C and are looking for a safer alternative, as well as those from languages like Python who are looking for ways to write code that performs better without sacrificing expressiveness.
 _ rustbook
+
+[Rust](https://www.rust-lang.org/)
+[wikipedia: Rust programming language](https://en.wikipedia.org/wiki/Rust_(programming_language))
+
+### What problem(s) does Rust Solve?
 
 Featuring
 
@@ -27,11 +29,23 @@ Featuring
 - minimal runtime
 - efficient C bindings
 
-source: The older "nerdy" rust 
+source: The older "_nerdy_" rust website
 
-Rust is a language that allows you to build high level abstractions, but without giving up low-level control - that is, control of how data is represented in memory, control of which threading model you want to use etc.
-Rust is a language that can usually detect, during compilation, the worst parallelism and memory management errors (such as accessing data on different threads without synchronization, or using data after they have been deallocated), but gives you a hatch escape in the case you really know what you're doing.
-Rust is a language that, because it has no runtime, can be used to integrate with any runtime; you can write a native extension in Rust that is called by a program node.js, or by a python program, or by a program in ruby, lua etc. and, however, you can script a program in Rust using these languages. -- "Elias Gabriel Amaral da Silva"
+
+Rust is a language that allows you to build high level abstractions, 
+but without giving up low-level control - that is, 
+control of how data is represented in memory, control of which threading model 
+you want to use etc.
+Rust is a language that can usually detect, during compilation, 
+the worst parallelism and memory management errors (such as accessing data 
+on different threads without synchronization, or using data after they have 
+been deallocated), but gives you a hatch escape in the case you really know 
+what you're doing.
+Rust is a language that, because it has no runtime, can be used to integrate 
+with any runtime; you can write a native extension in Rust that is called 
+by a program node.js, or by a python program, or by a program in ruby, lua etc. 
+and, however, you can script a program in Rust using these languages. 
+-- "Elias Gabriel Amaral da Silva"
 
 ### memory_safe
 [wikipedia Memory safety](Memory safety)
@@ -47,18 +61,19 @@ Rust makes it difficult to leak memory.
 - [Mutable borrow](https://www.youtube.com/watch?v=pd7PJ6q4I3M)
 
 
-
 ### blasingly_fast
+
+benckmarks here
 
 ### modern_tools
 
+ecosystem here
 
 ## Secure coding
 
-- Back to first principles
-- [A quick tour of Rust](./fastpaced_rust01.html)
-- Teaching Rust as a first language
-- Building web3 with Rust and Wasm
+The French government did a great job with the ANSSI GUIDELINES for Rust:  
+[PROGRAMMING RULES TO DEVELOP SECURE APPLICATIONS WITH RUST](https://www.ssi.gouv.fr/uploads/2020/06/anssi-guide-programming_rules_to_develop_secure_applications_with_rust-v1.0.pdf)
+
 
 <footer>
   <a href="https://github.com/lerina" target="_blank" title="github">![github](https://razafy.com/img/github32px.png){.link .glow}

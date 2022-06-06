@@ -2,6 +2,19 @@
 <div class="bg_lrn"></div><div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
 <main>
 
+## pricing
+timely material contract = only paying for the hours that we are working
+booking resources in increments of 1 week.
+aka base unit to charge is  1 week.
+minimum project length is 1 month.
+
+monthly releases, broken down to weekly iterations
+daily standup hummm
+
+
+
+
+
 ## Parity
 
 We’re looking for a senior software developer with proven Rust experience, working knowledge of Substrate, and general familiarity with blockchain technologies. In this position, you must understand decentralized, high-performance systems, analyze and optimize the platform’s performance, be able to run tests in a distributed environment, and have experience with security audits of third-party and internal solutions. You must also be interested in the Polkadot ecosystem, and design, research and develop blockchain-based solutions. As an ideal candidate, you have proven experience coding, developing, and testing software programs, preferably using the Rust programming language. 

@@ -634,6 +634,65 @@ padding: 8px 12px 0;
 
 
 
+.card2 {
+width: 100%;
+height: 350px;
+padding: 0;
+box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
+border-radius: 8px;
+box-sizing: border-box;
+overflow: hidden;
+}
+
+.card2 * {
+transition: 0.3s ease all;
+}
+
+.card2 img {
+margin: 0;
+width: 400px;
+height: 324px;
+object-fit: cover;
+display: block;
+}
+
+.card2 h3 {
+margin: 0;
+padding: 2px 12px 48px;
+line-height: 32px;
+/*font-weight: 500;*/
+font-size: 20px;
+color: #b78727;
+}
+
+.card2 .focus-content {
+display: block;
+padding: 8px 12px;
+}
+
+.card2 p {
+margin: 0;
+line-height: 1.5;
+color:#343434;
+font-size: clamp(1.0rem, -0.875rem + 1.333vw, 1.75rem);
+}
+
+.card2 ol {
+margin: 0;
+line-height: 1.5;
+color:#343434;
+font-size: clamp(1.0rem, -0.875rem + 1.333vw, 1.75rem);
+}
+
+.card2:hover img, .card2:focus-within img {
+margin-top: -324px;
+}
+
+.card2:hover h3, .card2:focus-within h3 {
+padding: 8px 12px 0;
+}
+
+
 
 
 /* ## Rotating Card for flashcards ...
