@@ -28,9 +28,9 @@ Given a set of Tasks,
 </div></div></div>
 </div>
 
-This is the core of The personal productivity system called mutex_0x80 hex80
+This is the core of The personal productivity system called `thrust`
 
-[more about the 0x80 Productivity System](../../text/the_process/0x80_productivity_system.html){target=_blank}
+[more about the `thrust` Productivity System](../../text/the_process/thrust_productivity_system.html){target=_blank}
 
 ## The 0x80 RPGGamification
 

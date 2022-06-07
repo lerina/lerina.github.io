@@ -8,7 +8,7 @@ While Kanban is great for collaborative work, this one is simple and very powerf
 for personal efficiency. When you have your don't disturb cap on, nothing cuts through 
 deep work backlog like the Heaps and Stacks process. 
 
-This is the heart of the [0x80 productivity system](./0x80_productivity_system.html), which
+This is the heart of the [`thrust` productivity system](./thrust_productivity_system.html), which
 includes additional help to keep focused one the work in a sustainable way.
 
 ## start with the Heap
