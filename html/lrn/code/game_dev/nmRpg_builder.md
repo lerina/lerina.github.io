@@ -3,6 +3,7 @@
 ⇦ [razafy.com](../../../../index.html)  - [lerina](../../index.html) - [code](../index.html) - [game dev](./index.html)  
 
 # The thrust RPG
+冲 (chōng) to thrust, dash, charge, forge ahead
 
 ## The heart of the game
 
@@ -32,7 +33,7 @@ This is the core of The personal productivity system called `thrust`
 
 [more about the `thrust` Productivity System](../../text/the_process/thrust_productivity_system.html){target=_blank}
 
-## The 0x80 RPGGamification
+## 冲 thrust RPG Gamification
 
 We can use this productivity system to power our RPG game.
 
@@ -65,6 +66,20 @@ Examples: Cool equipment, rare outfits, special titles or appointments etc.
 7) To make it more solemn you can start on a New Moon. 
 
 ## Setup
+
+This system doesn't really use dices. Instead we check the current time 
+and add the digits on the seconds. It gives a hat like distribution \_----\_
+
+&#127922; | &#8986;
+---|------------------------
+1  | 0
+2  | 1, 2
+3  | 3, 4
+4  | 5, 6
+5  | 7, 8
+6  | 9
+
+
 
 ### Create the adventure premise
 
