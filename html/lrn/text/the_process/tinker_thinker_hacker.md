@@ -1,5 +1,13 @@
 ## Tinker - Thinker - Hacker
 
+Training is just like sailing a boat against a river’s flow.   
+One would regress if one did not advance.   
+Training is particular about persistence.   
+In order to become an expert who would be the focus of attention,   
+one must naturally put in an effort that others would have difficulty matching.  
+("code alchemy" _ lerina)  
+
+
 ### Tinker: Deliberate practice of discovery
 
 | Iterating through GRIT 
