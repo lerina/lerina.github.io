@@ -9,6 +9,8 @@
 
 ## Developer's Notes and Tech Tips
 
+Solve - Verify - top-down Design - Bottom-up Implementation - CI. 
+
 ## Game Dev
 
 ---
