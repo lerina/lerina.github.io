@@ -119,4 +119,170 @@ fn main(){
 }
 ```
 
+----
+## a better prompt
+
+remove the input echo at the command line
+
+```rust
+#![allow(dead_code)]
+
+use std::io::{stdin,stdout,Write};
+
+// Playing with how read_line appends to a buff
+fn main() {
+    //trim_the_input();
+    //add_the_number();
+    get_char();
+}
+```
+
+```rust
+fn get_char(){
+    print!("Please enter a word: ");
+    stdout().flush().unwrap();
+
+    let mut user_input = String::new();
+    stdin()
+        .read_line(&mut user_input)
+        .expect("Failed to read line");
+
+    trim_pop(&mut user_input);
+
+    let ch: Vec<_> = user_input.chars().collect();
+    println!("{:?}", ch);
+
+    for ch in user_input.chars().collect::<Vec<char>>() {
+        println!("{}", ch);
+    }
+
+    for ch in user_input.chars() {
+        println!("{}", ch);
+    }
+
+    for (i,ch) in user_input.chars().enumerate() {
+        println!("{} {}", i, ch);
+    }
+}
+```
+
+```rust
+fn add_the_number(){
+    println!("Please enter a number: ");
+
+    let mut user_input = String::new();
+    stdin()
+        .read_line(&mut user_input)
+        .expect("Failed to read line");
+
+    let my_int: u32 = user_input
+                        .trim()
+                        .parse()
+                        .expect("Please type a number!");
+    println!("{0} + {0} = {1}", my_int, my_int+my_int);
+}
+```
+
+```rust
+fn trim_the_input() {
+
+/* WITH TRIM
+prompt_plain: toto
+prompt_plain: is here
+toto
+is here
+prompt_pop: toto
+prompt_pop: is here
+totois here
+*/
+    let mut s = String::new();
+    prompt_plain(&mut s);
+    //s = s.trim();
+    // s comes back as a str. why? 
+    //println!("{}",s.trim());
+    prompt_plain(&mut s);
+    println!("{}",s.trim());
+
+    let mut s = String::new();
+    prompt_pop(&mut s);
+    //println!("{}",s.trim());
+    prompt_pop(&mut s);
+    println!("{}",s);
+
+/* NO TRIM
+prompt_plain: toto
+prompt_plain: is here
+toto
+is here
+
+prompt_pop: toto
+prompt_pop: is here
+totois here
+*/
+    let mut s = String::new();
+    prompt_plain(&mut s);
+    //s = s.trim();
+    // s comes back as a str. why? 
+    //println!("{}",s.trim());
+    prompt_plain(&mut s);
+    println!("{}",s);
+
+    let mut s = String::new();
+    prompt_pop(&mut s);
+    //println!("{}",s.trim());
+    prompt_pop(&mut s);
+    println!("{}",s);
+}
+```
+
+```rust
+fn trim_pop(s: &mut String) {
+    if let Some('\n')=s.chars().next_back() {
+        s.pop();
+    }
+    // windows has \r too
+    if let Some('\r')=s.chars().next_back() {
+        s.pop();
+    }
+}
+```
+
+
+```rust
+fn prompt_pop(s: &mut String) {
+    print!("prompt_pop: ");
+    stdout().flush().unwrap();
+
+    stdin()
+        .read_line(s) // s is already &mut 
+        .expect("Failed to read the line");    
+
+    if let Some('\n')=s.chars().next_back() {
+        s.pop();
+    }
+    // windows has \r too
+    if let Some('\r')=s.chars().next_back() {
+        s.pop();
+    }
+
+
+
+}
+```
+
+```rust
+fn prompt_plain(s: &mut String) {
+    print!("prompt_plain: ");
+    stdout().flush().unwrap();
+
+    //let mut s = String::new();
+    stdin()
+        .read_line(s) // s is already &mut 
+        .expect("Failed to read line");
+}
+```
+
+---
+
+Read, BufRead, Write
 
