@@ -1,5 +1,11 @@
 <div class="bg_blh"></div><div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
 <main>
+Beastuary : use real fossil from Mcar (geant lemur, dwarf hippo, elephant bird, ...)
+
+Entities: itrimobe, fanan'ampitoloha, kakabemaso, mpamosavy, voay-menamaso, ...
+
+Places: Caves, tsingy, underwater caves, mahanoro vortex cave network, ...
+
 
 
 </main>
