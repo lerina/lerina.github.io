@@ -69,6 +69,13 @@ benckmarks here
 
 ecosystem here
 
+- cargo
+- crates.io
+
+cargo-edit
+cargo-watch
+
+
 ## Secure coding
 
 The French government did a great job with the ANSSI GUIDELINES for Rust:  
