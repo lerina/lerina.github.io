@@ -1,4 +1,5 @@
 # Mpikajy bohinahitra
+
 9 vtr kely -> 1vtr  
 9 vtr -> 1vtr fotsy  
 9 vtr fotsy -> 1 vtr mena  
@@ -19,6 +20,7 @@ storage ring = git repo
 successful challenge = completed project
 martial training = code drills
 training retreat = code retreat
+sparring = coding challenge
 
 ## Leveling up
 Alchemy level: num cs concepts (algo, Data struct, ...)   
