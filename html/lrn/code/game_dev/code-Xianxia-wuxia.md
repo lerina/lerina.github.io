@@ -24,4 +24,5 @@ sparring = coding challenge
 
 ## Leveling up
 Alchemy level: num cs concepts (algo, Data struct, ...)   
-Qi level: num finished projects.  
+Qi level: num finished projects. 
+Power level: money
