@@ -11,6 +11,9 @@ I replaced the term cheating used in the original text and main source of inspir
 text with the more widespread usage "stubbing" as described 
 here [The purpose of ‘stubbing out’ a function](https://courses.engr.illinois.edu/cs225/sp2019/guides/stub-out/)
 
+## The 10 Rules of Simple
+
+
 ##    1 SIMPLE: A flexible structured approach to code implemention
 <a href="#TOC"> ` ^-- ` </a>
 
