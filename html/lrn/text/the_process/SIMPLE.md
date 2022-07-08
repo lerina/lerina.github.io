@@ -7,9 +7,11 @@ I've been trying to express what [software writers](https://www.youtube.com/watc
 We are both [logician](https://en.wikipedia.org/wiki/Logic) and [poets](https://www.youtube.com/watch?v=-jRREn6ifEQ). 
 We are also [iterative artists](http://fineartdrawinglca.blogspot.com/2016/07/iterative-drawing_11.html)
 
+<!--
 I replaced the term cheating used in the original text and main source of inspiration for this
 text with the more widespread usage "stubbing" as described 
 here [The purpose of ‘stubbing out’ a function](https://courses.engr.illinois.edu/cs225/sp2019/guides/stub-out/)
+-->
 
 ## The 10 Rules of Simple
 
