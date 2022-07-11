@@ -21,3 +21,12 @@ This is not working any more
 
 [Hello, world!]{:target="_blank" rel="noopener"}
 
+### Favicon 
+
+Browser favicons - 16x16  
+Taskbar shortcut icons – 32x32  
+Desktop shortcut icons – 96x96  
+Apple touch icons – 180x180  
+WordPress sizing – 512x512  
+
+
