@@ -1,10 +1,15 @@
 ⇦ [home](../../../../index.html) - [lerina](../../index.html) - [texts](../index.html) - [the process](./index.html)
 
+# Onja (Wave)
+<!--
 #  SIMPLE – A Minimalistic Programming Methodology
+-->
 
 This text is an adaptation of this wonderful page [SIMPLE: A Programming Methodology](http://wrigstad.com/ioopm18/simple.html) by Tobias Wrigstad, a Professor in Computing Science at [Uppsala University](http://www.uu.se/).
+
 I've been trying to express what [software writers](https://www.youtube.com/watch?v=xPecMsFmEm4) do.
 We are both [logician](https://en.wikipedia.org/wiki/Logic) and [poets](https://www.youtube.com/watch?v=-jRREn6ifEQ). 
+
 We are also [iterative artists](http://fineartdrawinglca.blogspot.com/2016/07/iterative-drawing_11.html)
 
 <!--
@@ -13,6 +18,20 @@ text with the more widespread usage "stubbing" as described
 here [The purpose of ‘stubbing out’ a function](https://courses.engr.illinois.edu/cs225/sp2019/guides/stub-out/)
 -->
 NOTE: Replace dodging with defer and cheating with faking.
+
+Think Big _ in small steps.
+
+* Break it down
+* Validate 
+    - test assumptions and hypothesis
+    - test your thinking with code
+* Broken is not an option. 
+
+Its not a cycle. Its a three stages wave rippling through the flow
+
+- Nadir: Think
+- Surface: Validate 
+- Zenith: unbroken idea or code 
 
 ## The 10 Rules of Simple
 
