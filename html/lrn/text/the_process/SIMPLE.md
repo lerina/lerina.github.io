@@ -33,6 +33,15 @@ Its not a cycle. Its a three stages wave rippling through the flow
 - Surface: Validate 
 - Zenith: unbroken idea or code 
 
+TDD: Thinking Driven development
+
+alternate between `thinking` and `validating`
+
+Think a little: not so much that you get stuck in analysis paralysis.
+Validate a little: Just enough tries or code to validate the thinking.
+
+
+---
 ## The 10 Rules of Simple
 
 
