@@ -18,6 +18,7 @@ text with the more widespread usage "stubbing" as described
 here [The purpose of ‘stubbing out’ a function](https://courses.engr.illinois.edu/cs225/sp2019/guides/stub-out/)
 -->
 NOTE: Replace dodging with defer and cheating with faking.
+use fiml vocabulary :stand-in, props, takes
 
 Think Big _ in small steps.
 
