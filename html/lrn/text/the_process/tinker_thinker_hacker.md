@@ -5,8 +5,13 @@ One would regress if one did not advance.
 Training is particular about persistence.   
 In order to become an expert who would be the focus of attention,   
 one must naturally put in an effort that others would have difficulty matching.  
-("code alchemy" _ lerina)  
+_ Lerina ("code alchemy" _ lerina)  
 
+Art is a high calling -- fears are coincidental.   
+Coincidental, sneaky and disruptive, we might add,   
+disguising themselves variously as laziness, resistance to deadlines, irritation with materials or surroundings, distraction over the achievements of others -- indeed anything that keeps you from giving your work your best shot.  
+What separates artists from ex-artists is that those who challenge their fears, continue; those who don't, quit. Each step in the artmaking process puts that issue to the test.”  
+― David Bayles, Art and Fear: Observations on the Perils (and Rewards) of Artmaking 
 
 ### Tinker: Deliberate practice of discovery
 

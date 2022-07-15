@@ -34,6 +34,11 @@
 
 ## Cool Tech Talks
 
+### Venkat Subramaniam 
+
+- Refactoring from Imperative to Functional Style
+<figure class="video-container"><iframe src="https://www.youtube.com/embed/E8G2ByTQzuY" frameborder="0" allowfullscreen="true"> </iframe></figure>
+
 ### Kevlin Henney
 
 - Refactoring to Immutability

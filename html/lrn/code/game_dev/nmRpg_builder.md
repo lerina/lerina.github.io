@@ -72,13 +72,13 @@ and add the digits on the seconds. It gives a hat like distribution \_----\_
 
 &#127922; | &#8986;
 ---|------------------------
-1  | 0
-2  | 1, 2
-3  | 3, 4
-4  | 5, 6
-5  | 7, 8
-6  | 9
-
+⚀  | 0 <!-- U+2680 -->
+⚁  | 1, 2
+⚂  | 3, 4
+⚃  | 5, 6
+⚄  | 7, 8
+⚅  | 9
+<!-- ⚅ U+2685 -->
 
 
 ### Create the adventure premise

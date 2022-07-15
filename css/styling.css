@@ -162,6 +162,15 @@ background-repeat: no-repeat;
 background-size: cover;
 }
 
+.bg_onja {
+background-image: url("../html/lrn/text/the_process/pix/wave_tunnel.jpeg");
+height: 70%;
+/* Center and scale the image nicely */
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+}
+
 .video-container { position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden; }
 .video-container iframe, .video-container object, .video-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
