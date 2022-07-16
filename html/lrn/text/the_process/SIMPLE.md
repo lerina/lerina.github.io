@@ -18,11 +18,15 @@ I had the good fortune of stumbling upon [SIMPLE: A Programming Methodology](htt
 It expressed better than I could what most programmers I know, including myself actually apply in some form or another.
 
 
-This text is a re-interpretation of those ideas consolidated under three guiding principles.
+This text is a re-interpretation of those ideas consolidated under three guiding principles and three precepts. 
 
-1. KISS (keep it small and  straightforward). Think Big _ in small steps.  
+__Principles__
+
+1. KISS (keep it small and  straightforward). Think Big _ in small steps.
 2. TDD stands for **Thinking** Driven development  
 3. BDD stands for **Build** Driven development  
+
+__Precepts__
 
 * Break it down
 * Validate 
