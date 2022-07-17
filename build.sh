@@ -1,5 +1,6 @@
 # USAGE: build -d myFile myTitle can be multi words
 #      : build ../../ myFile myTitle can be multi words
+set -xe
 #TODO: make it work with multiwords dir names     
 LOCAL=$1
 TARGET=$PWD/$2
