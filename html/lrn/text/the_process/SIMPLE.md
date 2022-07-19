@@ -28,12 +28,21 @@ __Principles__
 
 __Precepts__
 
-* Break it down
+* Break it down  
 * Validate 
     - test assumptions and hypothesis
     - test your thinking with code
 * Never end in a Broken state. 
 
+__Rules fo coding__
+
+- you must test working build
+- You can only commit working builds
+- Breakdown Tasks until there is only one Item per sub-tasks
+- Maintain the flow
+    * Avoid stoping by temporarly subtituting complicated tasks with a simpler version
+    * use `props` and `stand-ins` until the real think can take over the task
+- Write your thoughs as comments or pseudo-code
 alternate between `thinking` and `validating`
 
 Think a little: not so much that you get stuck in analysis paralysis.
