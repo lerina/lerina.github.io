@@ -22,19 +22,19 @@ This text is a re-interpretation of those ideas consolidated under three guiding
 
 __Principles__
 
-1. KISS (keep it small and  straightforward). Think Big _ in small steps.
+1. KISS (keep it small and  straightforward). Think Big _ in **small steps**.
 2. TDD stands for **Thinking** Driven development  
 3. BDD stands for **Build** Driven development  
 
 __Precepts__
 
-* Break it down  
-* Validate 
-    - test assumptions and hypothesis
-    - test your thinking with code
-* Never end in a Broken state. 
+- Break it down  
+- Validate 
+    * test assumptions and hypothesis
+    * test your thinking with code
+- Never end in a Broken state. 
 
-__Rules fo coding__
+__Rules for coding__
 
 - you must test working build
 - You can only commit working builds
@@ -43,10 +43,28 @@ __Rules fo coding__
     * Avoid stoping by temporarly subtituting complicated tasks with a simpler version
     * use `props` and `stand-ins` until the real think can take over the task
 - Write your thoughs as comments or pseudo-code
-alternate between `thinking` and `validating`
+- Never stop with a Broken build.
 
-Think a little: not so much that you get stuck in analysis paralysis.
-Validate a little: Just enough tries or code to validate the thinking.
+__Rules for design__
+
+- Write imperatively first. Then refactor into a functional style.
+- See thing in three 
+    * Data - Input - Output - processing
+    * Noun - Verbs - Attributes
+    * Data - Calculations - Actions
+- Favor push over pull when it comes to Data.
+
+---
+
+__Keep the tempo__
+
+Alternate between::
+    
+    `thinking` and `validating`
+    `coding` and `verifying`
+
+Think a little: not so much that you get stuck in analysis paralysis.  
+Validate a little: Just enough tries or code to validate the thinking.  
 _ Tobias Wrigstad
 
 "make it work

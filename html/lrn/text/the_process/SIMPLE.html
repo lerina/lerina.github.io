@@ -14,7 +14,7 @@
     ul.task-list{list-style: none;}
     .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
-  <link rel="stylesheet" href="../../../../css/styling.css" />
+  <link rel="stylesheet" href="https://razafy.com/css/styling.css" />
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -71,15 +71,16 @@ know, including myself actually apply in some form or another.</p>
 three guiding principles and three precepts.</p>
 <p><strong>Principles</strong></p>
 <ol type="1">
-<li>KISS (keep it small and straightforward). Think Big _ in small
-steps.</li>
+<li>KISS (keep it small and straightforward). Think Big _ in
+<strong>small steps</strong>.</li>
 <li>TDD stands for <strong>Thinking</strong> Driven development<br />
 </li>
 <li>BDD stands for <strong>Build</strong> Driven development</li>
 </ol>
 <p><strong>Precepts</strong></p>
 <ul>
-<li>Break it down</li>
+<li>Break it down<br />
+</li>
 <li>Validate
 <ul>
 <li>test assumptions and hypothesis</li>
@@ -87,11 +88,43 @@ steps.</li>
 </ul></li>
 <li>Never end in a Broken state.</li>
 </ul>
-<p>alternate between <code>thinking</code> and
-<code>validating</code></p>
-<p>Think a little: not so much that you get stuck in analysis paralysis.
-Validate a little: Just enough tries or code to validate the thinking. _
-Tobias Wrigstad</p>
+<p><strong>Rules for coding</strong></p>
+<ul>
+<li>you must test working build</li>
+<li>You can only commit working builds</li>
+<li>Breakdown Tasks until there is only one Item per sub-tasks</li>
+<li>Maintain the flow
+<ul>
+<li>Avoid stoping by temporarly subtituting complicated tasks with a
+simpler version</li>
+<li>use <code>props</code> and <code>stand-ins</code> until the real
+think can take over the task</li>
+</ul></li>
+<li>Write your thoughs as comments or pseudo-code</li>
+<li>Never stop with a Broken build.</li>
+</ul>
+<p><strong>Rules for design</strong></p>
+<ul>
+<li>Write imperatively first. Then refactor into a functional
+style.</li>
+<li>See thing in three
+<ul>
+<li>Data - Input - Output - processing</li>
+<li>Noun - Verbs - Attributes</li>
+<li>Data - Calculations - Actions</li>
+</ul></li>
+<li>Favor push over pull when it comes to Data.</li>
+</ul>
+<hr />
+<p><strong>Keep the tempo</strong></p>
+<p>Alternate between::</p>
+<pre><code>`thinking` and `validating`
+`coding` and `verifying`</code></pre>
+<p>Think a little: not so much that you get stuck in analysis
+paralysis.<br />
+Validate a little: Just enough tries or code to validate the
+thinking.<br />
+_ Tobias Wrigstad</p>
 <p>“make it work make it better REAL SOON!” _ Coding Mantra (Venkat
 Subramaniam)</p>
 <p>“Simplicity is a great virtue but it requires hard work to achieve it
