@@ -67,6 +67,14 @@ Think a little: not so much that you get stuck in analysis paralysis.
 Validate a little: Just enough tries or code to validate the thinking.  
 _ Tobias Wrigstad
 
+
+__WAVE tempo__
+
+- ⋰⋱⋰⋱⋰⋯
+- Think - Confirm - Create - Confirm - Think ...
+
+
+
 "make it work
 make it better
 REAL SOON!"
