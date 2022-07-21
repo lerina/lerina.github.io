@@ -6,6 +6,12 @@ Entities: itrimobe, fanan'ampitoloha, kakabemaso, mpamosavy, voay-menamaso, ...
 
 Places: Caves, tsingy, underwater caves, mahanoro vortex cave network, ...
 
+```
+He knew that those recent thoughts of carefulness 
+were only his own weakness looking for an excuse. 
+Thus, he strengthened his mind 
+and resumed walking on the path.
+```
 
 
 </main>

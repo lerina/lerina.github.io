@@ -141,7 +141,27 @@ The apparent Cerelity hit due to short wavelength is offset though sustainable h
 hurdles
 you will require a good understanding of the algorithms and techniques you intend to implement.
 
+---
 
+### Think a little
+
+- What is the quest?
+What is the desired final result? This is your ultimate output. 
+    * That is last step in a chain of results to satisfy or complete the quest.
+    * Define the scope of the project. 
+
+- What are you starting with?
+What are the available the inputs.
+
+- What is missing to get from those initial input to the final output.
+
+### Create a little
+
+- Validate
+    
+- Concretize your thinking or code.
+
+- Verify
 
 ---
 
