@@ -72,7 +72,9 @@ __WAVE tempo__
 
 - ⋰⋱⋰⋱⋰⋯
 - Think - Confirm - Create - Confirm - Think ...
-
+    * Think a little
+    * Code a little
+    `C`onsidered `O`utput `D`one `E`fficiently (CODE)
 
 
 "make it work
@@ -101,7 +103,7 @@ Its not a cycle. Its a three stages wave rippling through the flow
 - Crest: unbroken idea or code 
 
 ```
-concretize --------**------------------**------------------**----------------***---------
+concretize --------**------------------**------------------**----------------***--------
 |                *    *              *    *              *    *            *    
 Verify     ----*--------*----------*--------*----------*--------*--------*--------------
 |            *            *      *            *      *            *    *            
