@@ -51,8 +51,9 @@ __Rules for design__
 - See thing in three 
     * Data - Input - Output - processing
     * Noun - Verbs - Attributes
-    * Data - Calculations - Actions
+    * Data - Computation - Actions
 - Favor push over pull when it comes to Data.
+- Favor decomposition and composition at all times.
 
 ---
 
