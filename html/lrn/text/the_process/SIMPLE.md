@@ -238,6 +238,17 @@ https://www.geeksforgeeks.org/how-to-approach-a-coding-problem/
 
 ### Specific required features
 
+### The rhythmic wave
+
+stages of building our project:
+• Analyzing the problem domain
+• Modeling system behavior
+• Building the tokenizer
+• Building the parser
+• Building the evaluator
+• Dealing with errors
+• Building a command-line application
+
 </main>
 
 <footer>
