@@ -68,6 +68,24 @@ Think a little: not so much that you get stuck in analysis paralysis.
 Validate a little: Just enough tries or code to validate the thinking.  
 _ Tobias Wrigstad
 
+- Think a little
+Understand and Organize
+
+`T`urn  
+`H`ypothesis  
+`I`nto  
+`N`imble  
+`K`ickstarters  
+
+- Code a little
+Try and Verify
+
+`C`onsise  
+`O`utput  
+`D`irectly  
+`E`valuated  
+
+
 
 __WAVE tempo__
 
