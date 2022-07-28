@@ -56,6 +56,14 @@ Maintain `PEACE` with
 
 | "The happiness of pursuit far outweight the pursuit of happiness."
 
+---
+
+`P` assion: A decision - not a feeling.  
+`E` motion: A tool - not a reason.  
+`A` nger: It will flare - fan it not.  
+`C` ravings: A reward - keep it scarce.  
+`E` nergy: The only one true currency.  
+
 -----
 
 #### Perseverance: relentless tenacity
