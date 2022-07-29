@@ -24,7 +24,7 @@ __Principles__
 
 1. KISS (keep it small and  straightforward). Think Big _ in **small steps**.
 2. TDD stands for **Thinking** Driven development  
-3. BDD stands for **Build** Driven development  
+3. BDD stands for **Build** Driven deployment  
 
 __Precepts__
 
@@ -48,10 +48,10 @@ __Rules for coding__
 __Rules for design__
 
 - Write imperatively first. Then refactor into a functional style.
-- See thing in three 
-    * Data - Input - Output - processing
-    * Noun - Verbs - Attributes
-    * Data - Computation - Actions
+- See thing through three point of views 
+    * Data - Input - Output - processing    (Procedural)
+    * Noun - Verbs - Attributes             (Objects)
+    * Data - Computation - Actions          (Fuctional)
 - Favor push over pull when it comes to Data.
 - Favor decomposition and composition at all times.
 
@@ -68,7 +68,7 @@ Think a little: not so much that you get stuck in analysis paralysis.
 Validate a little: Just enough tries or code to validate the thinking.  
 _ Tobias Wrigstad
 
-- Think a little
+- T.h.i.n.k. a little
 Understand and Organize
 
 `T`urn  
@@ -77,14 +77,13 @@ Understand and Organize
 `N`imble  
 `K`ickstarters  
 
-- Code a little
+- C.o.d.e. a little
 Try and Verify
 
-`C`onsise  
+`C`oncise  
 `O`utput  
 `D`irectly  
 `E`valuated  
-
 
 
 __WAVE tempo__
@@ -92,19 +91,21 @@ __WAVE tempo__
 - ⋰⋱⋰⋱⋰⋯
 - Think - Confirm - Create - Confirm - Think ...
     * Think a little
+    `T`urn `H`ypothesis `I`nto `N`imble `K`ickstarters  
     * Code a little
-    `C`onsidered `O`utput `D`one `E`fficiently (CODE)
+    `C`oncise `O`utput `D`one `E`fficiently (CODE)  
 
+__Think to keep in mind__
 
-"make it work
-make it better
-REAL SOON!"
+"make it work  
+make it better  
+REAL SOON!"  
 _ Coding Mantra (Venkat Subramaniam)
 
-"Simplicity is a great virtue 
-but it requires hard work to achieve it 
-and education to appreciate it. 
-And to make matters worse: complexity sells better."
+"Simplicity is a great virtue   
+but it requires hard work to achieve it   
+and education to appreciate it.   
+And to make matters worse: complexity sells better."  
 _ [Edsger Dijkstra](https://www.goodreads.com/quotes/215637-simplicity-is-a-great-virtue-but-it-requires-hard-work){target=_blank}
 
 ---
@@ -163,6 +164,19 @@ hurdles
 you will require a good understanding of the algorithms and techniques you intend to implement.
 
 ---
+State the 5 D.D.Etter points here
+
+Understanding the Problem::
+1. State the problem clearly.
+2. Describe the input and output information.
+3. Work the problem by hand (or with a calculator) for a simple set of data.
+
+Validate the solution::
+4. Develop a solution and convert it to a computer program.
+5. Test the solution with a variety of data
+
+
+Condense into t.h.i.n.k. a little, c.o.d.e. a little
 
 ### Think a little
 
