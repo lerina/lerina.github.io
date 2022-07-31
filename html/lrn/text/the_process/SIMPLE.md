@@ -6,6 +6,7 @@
 # Onja ⋰⋱⋰⋱⋰⋯ (Wave) – A Minimalistic Programming Methodology
 
 <!-- ↝  U+219D -->
+<!--
 I've been trying to explore what "loops" [software writers](https://www.youtube.com/watch?v=xPecMsFmEm4){target=_blank} actually go though both internally and externally while developing or implementing a solution to a POC (Problem, Opportunity, Challenge).
 
 We are both [logician](https://en.wikipedia.org/wiki/Logic){target=_blank} and 
@@ -14,8 +15,9 @@ We are both [logician](https://en.wikipedia.org/wiki/Logic){target=_blank} and
 We are also [iterative artists](http://fineartdrawinglca.blogspot.com/2016/07/iterative-drawing_11.html){target=_blank} building layers of abstractions to solve a given purpose. 
 
 What rituals and set of practices do programmers use when alone and ready to pick a problem to solve?
-I had the good fortune of stumbling upon [SIMPLE: A Programming Methodology](http://wrigstad.com/ioopm18/simple.html) by Tobias Wrigstad, a Professor in Computing Science at [Uppsala University](http://www.uu.se/){target=_blank}.
-It expressed better than I could what most programmers I know, including myself actually apply in some form or another.
+-->
+This text is inspired by [SIMPLE: A Programming Methodology](http://wrigstad.com/ioopm18/simple.html) by Tobias Wrigstad, a Professor in Computing Science at [Uppsala University](http://www.uu.se/){target=_blank}.
+It expresses better than I could what most experienced programmers, I've had the good fortune to work with, actually apply in some form or another.
 
 
 This text is a re-interpretation of those ideas consolidated under three guiding principles and three precepts. 
