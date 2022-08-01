@@ -6,21 +6,12 @@
 # Onja ⋰⋱⋰⋱⋰⋯ (Wave) – A Minimalistic Programming Methodology
 
 <!-- ↝  U+219D -->
-<!--
-I've been trying to explore what "loops" [software writers](https://www.youtube.com/watch?v=xPecMsFmEm4){target=_blank} actually go though both internally and externally while developing or implementing a solution to a POC (Problem, Opportunity, Challenge).
 
-We are both [logician](https://en.wikipedia.org/wiki/Logic){target=_blank} and 
-[poets](https://www.youtube.com/watch?v=-jRREn6ifEQ){target=_blank}. 
-
-We are also [iterative artists](http://fineartdrawinglca.blogspot.com/2016/07/iterative-drawing_11.html){target=_blank} building layers of abstractions to solve a given purpose. 
-
-What rituals and set of practices do programmers use when alone and ready to pick a problem to solve?
--->
 This text is inspired by [SIMPLE: A Programming Methodology](http://wrigstad.com/ioopm18/simple.html) by Tobias Wrigstad, a Professor in Computing Science at [Uppsala University](http://www.uu.se/){target=_blank}.
 It expresses better than I could what most experienced programmers, I've had the good fortune to work with, actually apply in some form or another.
 
-
 This text is a re-interpretation of those ideas consolidated under three guiding principles and three precepts. 
+
 
 __Principles__
 
@@ -137,28 +128,6 @@ Think, Verify your thinking, concretize, verify your implementation, think ...
 longitudinal progress (side to side though the flow of time and working build delivered)  
 transverse (up and down) phases think, verify (manual walkthrough, automated tests, code that validate the thinking), concretize (task breakdown, working build, ...) 
 
-<!--
-Waves are actually energy passing through the water, causing it to move in a circular motion.
-Though waves do cause the surface water to move, the idea that waves are travelling bodies of water is misleading.
-The water in waves doesn’t travel much at all. The only thing waves do transmit across the sea is energy.
-
-Wave height: the distance between the crest and the trough.
-Wavelength: the distance between two identical points on successive waves, for example crest to crest, or trough to trough.
-Still water level: where the water surface would be if there were no waves present and the sea was completely calm.
-
-source: https://oceanexplorer.noaa.gov/facts/waves.html
-
-Period: the time it takes for two successive crests to pass a given point.
-Frequency: the number of waves passing a point in a given amount of time, usually expressed as waves per second. This is the inverse of the period.
-Speed: how fast the wave travels, or the distance traveled per unit of time. This is also called `celerity` (c), where
-
-c = wavelength  x  frequency
-
-Therefore, the longer the wavelength, the faster the wave.
-
- that celerity is responsible for increases and decreases in stream discharge (the hydrograph), while velocity controls how old is the water reaching the stream at a given time.
-source: https://www.annascaini.com/velocity-and-celerity
--->
 The point is to be as Still as possible. The shorter wavelength and the smaller the wave height the flatter and managable our activity will be.
 The apparent Cerelity hit due to short wavelength is offset though sustainable high frequency.
 
@@ -166,7 +135,7 @@ hurdles
 you will require a good understanding of the algorithms and techniques you intend to implement.
 
 ---
-State the 5 D.D.Etter points here
+State the 5 Dolores M. Etter points here
 
 Understanding the Problem::
 1. State the problem clearly.
