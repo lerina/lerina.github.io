@@ -4,7 +4,7 @@
 
 - [Stacks and Heaps: A Personal Productivity Process](./stack_heap.html)
 - [0x80_productivity_system](./0x80_productivity_system.html)
-- [SIMPLE](./SIMPLE.html)
+- [ONJA: Programming process or minimal methodology](./SIMPLE.html)
 
 
 </main>

@@ -1,6 +1,7 @@
 <div class="bg_lerina"></div><div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
 <main>
 ## Notes
+### [Onja: Minimal Programming Methodology](./the_process/SIMPLE.html)
 ### [0x80 Process: A Personal Productivity system](./the_process/0x80_productivity_system.html)
 ### [Stacks and Heaps: The heart of 0x80 Process](./the_process/stack_heap.html)
 ### [We all suffer from acronym driven development](./dev_notes/sect.html) 
