@@ -26,10 +26,17 @@
 id="toc-onja-wave-a-minimalistic-programming-methodology">Onja ⋰⋱⋰⋱⋰⋯
 (Wave) – A Minimalistic Programming Methodology</a>
 <ul>
-<li><a href="#the-wave-onja" id="toc-the-wave-onja">The Wave (Onja 〜 )
+<li><a href="#context" id="toc-context">Context</a></li>
+<li><a href="#this-text-is-a-re-interpretation-of-those-ideas."
+id="toc-this-text-is-a-re-interpretation-of-those-ideas.">This text is a
+re-interpretation of those ideas.</a></li>
+<li><a href="#introducing-the-wave-onja"
+id="toc-introducing-the-wave-onja">Introducing The Wave (Onja 〜 )
 ⋰⋱⋰⋱⋰</a></li>
+<li><a href="#keep-the-tempo" id="toc-keep-the-tempo">Keep the
+tempo</a></li>
 <li><a href="#running-example-the-simple-warehouse"
-id="toc-running-example-the-simple-warehouse">2 Running Example: The
+id="toc-running-example-the-simple-warehouse">Running Example: The
 Simple Warehouse</a></li>
 </ul></li>
 </ul>
@@ -47,37 +54,136 @@ href="../../index.html">lerina</a> - <a href="../index.html">texts</a> -
 <h1 id="onja-wave-a-minimalistic-programming-methodology">Onja ⋰⋱⋰⋱⋰⋯
 (Wave) – A Minimalistic Programming Methodology</h1>
 <!-- ↝  U+219D -->
-<p>I’ve been trying to explore what “loops” <a
-href="https://www.youtube.com/watch?v=xPecMsFmEm4"
-target="_blank">software writers</a> actually go though both internally
-and externally while developing or implementing a solution to a POC
-(Problem, Opportunity, Challenge).</p>
-<p>We are both <a href="https://en.wikipedia.org/wiki/Logic"
-target="_blank">logician</a> and <a
-href="https://www.youtube.com/watch?v=-jRREn6ifEQ"
-target="_blank">poets</a>.</p>
-<p>We are also <a
-href="http://fineartdrawinglca.blogspot.com/2016/07/iterative-drawing_11.html"
-target="_blank">iterative artists</a> building layers of abstractions to
-solve a given purpose.</p>
-<p>What rituals and set of practices do programmers use when alone and
-ready to pick a problem to solve? I had the good fortune of stumbling
-upon <a href="http://wrigstad.com/ioopm18/simple.html">SIMPLE: A
+<h2 id="context">Context</h2>
+<p>This text is inspired by <a
+href="http://wrigstad.com/ioopm18/simple.html" target="_blank">SIMPLE: A
 Programming Methodology</a> by Tobias Wrigstad, a Professor in Computing
 Science at <a href="http://www.uu.se/" target="_blank">Uppsala
-University</a>. It expressed better than I could what most programmers I
-know, including myself actually apply in some form or another.</p>
-<p>This text is a re-interpretation of those ideas consolidated under
-three guiding principles and three precepts.</p>
-<p><strong>Principles</strong></p>
+University</a>.</p>
+<p>It also draws from structured programming ideas already in usage back
+in the 70’s and best exposed by Dolores M. Etter in Problem solving with
+structured FORTRAN 77 (The Benjamin/Cummings Pub 1984) and</p>
+<p><strong>Problem-Solving process or methodology</strong></p>
+<p>Etter stipulates a five point process to solve problems involving the
+a computer:</p>
+<p>The process or methodology for problem solving has the following five
+steps:</p>
+<ol type="1">
+<li>State the problem clearly.</li>
+<li>Describe the input and output information.</li>
+<li>Work the problem by hand (or with a calculator) for a simple set of
+data.</li>
+<li>Develop a solution and convert it to a computer program.</li>
+<li>Test the solution with a variety of data.</li>
+</ol>
+<p><a href="https://archive.org/details/problemsolvingwi0000ette"
+target="_blank">source: Dolores M. Etter in Problem solving with
+structured FORTRAN 77</a></p>
+<p>Key Steps for Problem Solving 1. Define your problem 2. Make sure you
+fully understand the problem 3. Break the problem down into small and
+manageable pieces 4. Go as deep as you can, until you can get to easy
+(yes or no) questions 5. Work your way from the bottom until the problem
+is solved 6. Recognise some problems are completely out of your control
+and that’s ok.</p>
+<p><a href="https://www.youtube.com/watch?v=x77-gT8bWLo"
+target="_blank">source: Problem Solve Like a Computer Programmer | Kyle
+Smyth | TEDxRPLCentralLibrary</a></p>
+<p><strong>Programming methodology</strong></p>
+<p>Wrigstad lays out a Ten Steps system he calls “SIMPLE”</p>
+<ol type="1">
+<li>Start with a high-level work breakdown structure<br />
+Mine your specification for data (nouns) and actions (verbs –
+behaviour/functions). Make simple drawings, e.g., mindmaps, to record
+your insights. Making things look easy is almost always good.</li>
+<li>Write code to test the validity of your thinking<br />
+…not to drive the thinking! Thinking should invariably come before
+coding, especially thinking about how you check that your thinking is
+valid.</li>
+<li>Always have a working program<br />
+In combination with cheating, this usually means inserting dummy
+functions.</li>
+<li>Compile after every change<br />
+Fix errors now, not later. Fix errors one by one. Fix errors in the
+order they were printed. Take time to actually read the compiler message
+so you know you are fixing the right thing.</li>
+<li>Run the program “all the time” to spot errors<br />
+This requires always working code – preferably in combination with
+automated test that don’t involve ocular inspection, etc.</li>
+<li>Recursively break your problems up into smaller sub problems<br />
+Only start solving problems when they start feeling easy. Make a task
+for each problem or subproblem to put on the stack, take tasks from the
+stack in a reasonable order (preferably easiest first); when the stack
+is empty – you are done!</li>
+<li>Break each task up into increments and start with the easy
+ones<br />
+Generate new tasks to put on the stack as you go. If suitable, start
+with a straight-line version (without any if-statements). When the
+straight-line version works add conditionals, one by one. Start with the
+most basic or the most insteresting cases. When you are writing a loop,
+do the above steps first and add the looping step last.</li>
+<li>Whenever you run the risk of getting stuck, cheat<br />
+Don’t forget to push new tasks on the stack that undoes the cheating,
+later. This records the cheat, which is great.</li>
+<li>Use dodging to help breaking complex cases up into several less
+complex ones<br />
+Don’t forget to push new tasks on the stack that undoes the dodge,
+later. This records the dodge, which is great.</li>
+<li>Alternate between thinking, coding and refactoring
+<ul>
+<li>thinking – not so much that you get stuck, though,</li>
+<li>coding – but never without first thinking about what to code, and
+occasionally</li>
+<li>refactoring – especially to address your cheats and dodges.</li>
+</ul></li>
+</ol>
+<p>[<a href="http://wrigstad.com/ioopm18/simple.html"
+target="_blank">source: SIMPLE _ A Programming Methodology</a></p>
+<p><strong>TDD</strong></p>
+<p>There are 5 steps in the TDD flow:</p>
+<ol type="1">
+<li>Read, understand, and process the feature or bug request.</li>
+<li>Translate the requirement by writing a unit test. The unit test will
+run and fail as no code is implemented yet.</li>
+<li>Write and implement the code that fulfills the requirement. Run all
+tests and they should pass, if not repeat this step.</li>
+<li>Clean up your code by refactoring.</li>
+<li>Rinse, lather and repeat.</li>
+</ol>
+<p><a
+href="https://developer.ibm.com/articles/5-steps-of-test-driven-development/"
+target="_blank">source: 5 steps of test-driven development</a></p>
+<p><strong>REACTO</strong></p>
+<ol type="1">
+<li>Repeat: make sure you do understand the problem.</li>
+<li>Example: get insights by doing examples</li>
+<li>Approach: come up with your approach(es) to the problem (brute force
+first)</li>
+<li>Code: write the code for your chosen approach</li>
+<li>Testing: pass the testcases</li>
+<li>Optimize: optimize the complexities (time and space) of your
+algorithm</li>
+</ol>
+<p><a href="https://www.youtube.com/watch?v=DIR_rxusO8Q"
+target="_blank">source: Whiteboard Coding Interviews: A 6 Step Process
+to Solve Any Problem</a></p>
+<h2 id="this-text-is-a-re-interpretation-of-those-ideas.">This text is a
+re-interpretation of those ideas.</h2>
+<!--
+"Simplicity is a great virtue   
+but it requires hard work to achieve it   
+and education to appreciate it.   
+And to make matters worse: complexity sells better."  
+_ [Edsger Dijkstra](https://www.goodreads.com/quotes/215637-simplicity-is-a-great-virtue-but-it-requires-hard-work){target=_blank}
+-->
+<p><strong>I Principles</strong></p>
 <ol type="1">
 <li>KISS (keep it small and straightforward). Think Big _ in
 <strong>small steps</strong>.</li>
 <li>TDD stands for <strong>Thinking</strong> Driven development<br />
 </li>
-<li>BDD stands for <strong>Build</strong> Driven development</li>
+<li>BDD stands for <strong>Build</strong> Driven deployment</li>
 </ol>
-<p><strong>Precepts</strong></p>
+<p><strong>II Precepts</strong></p>
 <ul>
 <li>Break it down<br />
 </li>
@@ -88,7 +194,7 @@ three guiding principles and three precepts.</p>
 </ul></li>
 <li>Never end in a Broken state.</li>
 </ul>
-<p><strong>Rules for coding</strong></p>
+<p><strong>III Rules for coding</strong></p>
 <ul>
 <li>you must test working build</li>
 <li>You can only commit working builds</li>
@@ -103,15 +209,15 @@ think can take over the task</li>
 <li>Write your thoughs as comments or pseudo-code</li>
 <li>Never stop with a Broken build.</li>
 </ul>
-<p><strong>Rules for design</strong></p>
+<p><strong>IV Rules for design</strong></p>
 <ul>
 <li>Write imperatively first. Then refactor into a functional
 style.</li>
-<li>See thing in three
+<li>See thing through three point of views
 <ul>
-<li>Data - Input - Output - processing</li>
-<li>Noun - Verbs - Attributes</li>
-<li>Data - Computation - Actions</li>
+<li>Data - Input - Output - processing (Procedural)</li>
+<li>Noun - Verbs - Attributes (Objects)</li>
+<li>Data - Computation - Actions (Fuctional)</li>
 </ul></li>
 <li>Favor push over pull when it comes to Data.</li>
 <li>Favor decomposition and composition at all times.</li>
@@ -127,7 +233,7 @@ Validate a little: Just enough tries or code to validate the
 thinking.<br />
 _ Tobias Wrigstad</p>
 <ul>
-<li>Think a little Understand and Organize</li>
+<li>T.h.i.n.k. a little Understand and Organize</li>
 </ul>
 <p><code>T</code>urn<br />
 <code>H</code>ypothesis<br />
@@ -135,85 +241,31 @@ _ Tobias Wrigstad</p>
 <code>N</code>imble<br />
 <code>K</code>ickstarters</p>
 <ul>
-<li>Code a little Try and Verify</li>
+<li>C.o.d.e. a little Try and Verify</li>
 </ul>
-<p><code>C</code>onsise<br />
+<p><code>C</code>oncise<br />
 <code>O</code>utput<br />
 <code>D</code>irectly<br />
 <code>E</code>valuated</p>
-<p><strong>WAVE tempo</strong></p>
-<ul>
-<li>⋰⋱⋰⋱⋰⋯</li>
-<li>Think - Confirm - Create - Confirm - Think …
-<ul>
-<li>Think a little</li>
-<li>Code a little <code>C</code>onsidered <code>O</code>utput
-<code>D</code>one <code>E</code>fficiently (CODE)</li>
-</ul></li>
-</ul>
-<p>“make it work make it better REAL SOON!” _ Coding Mantra (Venkat
-Subramaniam)</p>
-<p>“Simplicity is a great virtue but it requires hard work to achieve it
-and education to appreciate it. And to make matters worse: complexity
-sells better.” _ <a
-href="https://www.goodreads.com/quotes/215637-simplicity-is-a-great-virtue-but-it-requires-hard-work"
-target="_blank">Edsger Dijkstra</a></p>
-<hr />
-<h2 id="the-wave-onja">The Wave (Onja 〜 ) ⋰⋱⋰⋱⋰</h2>
-<!-- U+301C 〜  U+22F1 ⋱  U+22F0 ⋰ -->
-<p>≋ U+224B<br />
-❀ (U+2740)<br />
-⥵ U+2975</p>
-<p>Its not a cycle. Its a three stages wave rippling through the
-flow</p>
-<ul>
-<li>Trough: Think: not so much that you get stuck in analysis
-paralysis.</li>
-<li>base: Validate</li>
-<li>Crest: unbroken idea or code</li>
-</ul>
-<pre><code>concretize --------**------------------**------------------**----------------***--------
-|                *    *              *    *              *    *            *    
-Verify     ----*--------*----------*--------*----------*--------*--------*--------------
-|            *            *      *            *      *            *    *            
-Think      *----------------**-*----------------**-*----------------**------------------</code></pre>
-<p>Think, Verify your thinking, concretize, verify your implementation,
-think …</p>
-<p>longitudinal progress (side to side though the flow of time and
-working build delivered)<br />
-transverse (up and down) phases think, verify (manual walkthrough,
-automated tests, code that validate the thinking), concretize (task
-breakdown, working build, …)</p>
-<!--
-Waves are actually energy passing through the water, causing it to move in a circular motion.
-Though waves do cause the surface water to move, the idea that waves are travelling bodies of water is misleading.
-The water in waves doesn’t travel much at all. The only thing waves do transmit across the sea is energy.
-
-Wave height: the distance between the crest and the trough.
-Wavelength: the distance between two identical points on successive waves, for example crest to crest, or trough to trough.
-Still water level: where the water surface would be if there were no waves present and the sea was completely calm.
-
-source: https://oceanexplorer.noaa.gov/facts/waves.html
-
-Period: the time it takes for two successive crests to pass a given point.
-Frequency: the number of waves passing a point in a given amount of time, usually expressed as waves per second. This is the inverse of the period.
-Speed: how fast the wave travels, or the distance traveled per unit of time. This is also called `celerity` (c), where
-
-c = wavelength  x  frequency
-
-Therefore, the longer the wavelength, the faster the wave.
-
- that celerity is responsible for increases and decreases in stream discharge (the hydrograph), while velocity controls how old is the water reaching the stream at a given time.
-source: https://www.annascaini.com/velocity-and-celerity
+<h2 id="introducing-the-wave-onja">Introducing The Wave (Onja 〜 )
+⋰⋱⋰⋱⋰</h2>
+<!-- U+301C 〜  U+22F1 ⋱  U+22F0 ⋰ 
+≋ U+224B  
+❀ (U+2740)  
+⥵  U+2975  
 -->
-<p>The point is to be as Still as possible. The shorter wavelength and
-the smaller the wave height the flatter and managable our activity will
-be. The apparent Cerelity hit due to short wavelength is offset though
-sustainable high frequency.</p>
-<p>hurdles you will require a good understanding of the algorithms and
-techniques you intend to implement.</p>
-<hr />
-<h3 id="think-a-little">Think a little</h3>
+<p>The Onja ⋰⋱⋰⋯ distiles these rules and stages into a rythmic wave
+like software is writting process one can condense into
+<sub><code>t.h.i.n.k. a little</code></sub>⋰<sup><code>c.o.d.e. a little</code></sup>⋱⋰⋯</p>
+<h2 id="keep-the-tempo">Keep the tempo</h2>
+<ul>
+<li>Think a little: <code>T</code>urn <code>H</code>ypothesis
+<code>I</code>nto <code>N</code>imble <code>K</code>ickstarters<br />
+</li>
+<li>Code a little: <code>C</code>oncise <code>O</code>utput
+<code>D</code>irectly <code>E</code>valuated (CODE)</li>
+</ul>
+<h3 id="t.h.i.n.k.-a-little">T.h.i.n.k. a little</h3>
 <ul>
 <li><p>What is the quest? What is the desired final result? This is your
 ultimate output.</p>
@@ -227,14 +279,65 @@ inputs.</p></li>
 <li><p>What is missing to get from those initial input to the final
 output.</p></li>
 </ul>
-<h3 id="create-a-little">Create a little</h3>
+<h3 id="c.o.d.e.-a-little">C.o.d.e. a little</h3>
 <ul>
 <li><p>Validate</p></li>
 <li><p>Concretize your thinking or code.</p></li>
 <li><p>Verify</p></li>
 </ul>
+<p>Its not a cycle. Its a three stages wave rippling through the
+flow</p>
+<ul>
+<li>Trough: Think: not so much that you get stuck in analysis
+paralysis.</li>
+<li>base: Validate</li>
+<li>Crest: unbroken idea or code</li>
+</ul>
+<pre><code>C.o.d.e.   --------**------------------**------------------**----------------***-
+|                *    *              *    *              *    *            *    
+Verify     ----*--------*----------*--------*----------*--------*--------*-------
+|            *            *      *            *      *            *    *            
+T.h.i.n.k. *----------------**-*----------------**-*----------------**-----------</code></pre>
+<p>Think, Verify your thinking, concretize, verify your implementation,
+think …</p>
+<p>longitudinal progress (side to side though the flow of time and
+working build delivered)<br />
+transverse (up and down) phases think, verify (manual walkthrough,
+automated tests, code that validate the thinking), concretize (task
+breakdown, working build, …)</p>
+<p>The point is to be as Still as possible. The shorter wavelength and
+the smaller the wave height the flatter and managable our activity will
+be. The apparent Cerelity hit due to short wavelength is offset though
+sustainable high frequency.</p>
+<p>hurdles you will require a good understanding of the algorithms and
+techniques you intend to implement.</p>
 <hr />
-<h2 id="running-example-the-simple-warehouse">2 Running Example: The
+<p>There is no clear cut between Etter’s Problem-Solving with a computer
+program solution and Wrigstad’s SIMPL Programming Methodology.</p>
+<p>Dolores M. Etter’s 5 stage process can be can seen as the high-level
+view of tackling Problems Opportunities or Challenges. This high-level
+view can be subdivided into <code>Understanding the Problem</code> and
+<code>Validate the Solution</code></p>
+<p>Understanding the Problem:</p>
+<ol type="1">
+<li>State the problem clearly.</li>
+<li>Describe the input and output information.</li>
+<li>Work the problem by hand (or with a calculator) for a simple set of
+data.</li>
+</ol>
+<p>Validate the Solution:</p>
+<ol start="4" type="1">
+<li>Develop a solution and convert it to a computer program.</li>
+<li>Test the solution with a variety of data</li>
+</ol>
+<p>And the 10 rules may be seen as the low-level expression of what
+actually goes through the mind of a programmer as software is
+written.</p>
+<p>⌌ ———————– ⌍ <!-- U+230C U+230D --><br />
+⌨ Practice time <!-- U+2328 --><br />
+⌎ ———————– ⌏ <!-- U+230E U+230F --></p>
+<p>https://www.geeksforgeeks.org/how-to-approach-a-coding-problem/</p>
+<h2 id="running-example-the-simple-warehouse">Running Example: The
 Simple Warehouse</h2>
 <p><a href="#TOC"> <code>^--</code> </a></p>
 <p>The simple warehouse program is an information system for managing
@@ -291,11 +394,6 @@ saves the information to the database and then returns to the main menu.
 The abort alternative returns to the main menu without saving.</p>
 <p>The rest of the actions on the main menu should be fairly
 self-explanatory.</p>
-<hr />
-<p>⌌ ———————– ⌍ <!-- U+230C U+230D --><br />
-⌨ Practice time <!-- U+2328 --><br />
-⌎ ———————– ⌏ <!-- U+230E U+230F --></p>
-<p>https://www.geeksforgeeks.org/how-to-approach-a-coding-problem/</p>
 <h3 id="the-minimum-viable-product-was-defined-in-abstract-terms">The
 minimum viable product was defined in abstract terms</h3>
 <h3 id="specific-required-features">Specific required features</h3>

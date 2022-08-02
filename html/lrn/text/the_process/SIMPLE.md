@@ -6,20 +6,107 @@
 # Onja ⋰⋱⋰⋱⋰⋯ (Wave) – A Minimalistic Programming Methodology
 
 <!-- ↝  U+219D -->
+## Context
 
-This text is inspired by [SIMPLE: A Programming Methodology](http://wrigstad.com/ioopm18/simple.html) by Tobias Wrigstad, a Professor in Computing Science at [Uppsala University](http://www.uu.se/){target=_blank}.
-It expresses better than I could what most experienced programmers, I've had the good fortune to work with, actually apply in some form or another.
+This text is inspired by [SIMPLE: A Programming Methodology](http://wrigstad.com/ioopm18/simple.html){target=_blank} by Tobias Wrigstad, a Professor in Computing Science at [Uppsala University](http://www.uu.se/){target=_blank}.
 
-This text is a re-interpretation of those ideas consolidated under three guiding principles and three precepts. 
+It also draws from structured programming ideas already in usage back in the 70's and best exposed by Dolores M. Etter in Problem solving with structured FORTRAN 77 (The Benjamin/Cummings Pub 1984) and 
+
+__Problem-Solving process or methodology__
+
+Etter stipulates  a five point process to solve problems involving the a computer:
+
+The process or methodology for problem solving has the following five steps:
+
+1. State the problem clearly.
+2. Describe the input and output information.
+3. Work the problem by hand (or with a calculator) for a simple set of data.
+4. Develop a solution and convert it to a computer program.
+5. Test the solution with a variety of data.
+
+[source: Dolores M. Etter in Problem solving with structured FORTRAN 77](https://archive.org/details/problemsolvingwi0000ette){target=_blank}
+
+Key Steps for Problem Solving
+1. Define your problem
+2. Make sure you fully understand the problem
+3. Break the problem down into small and manageable pieces 
+4. Go as deep as you can, until you can get to easy (yes or no) questions
+5. Work your way from the bottom until the problem is solved
+6. Recognise some problems are completely out of your control and that's ok.
+
+[source: Problem Solve Like a Computer Programmer | Kyle Smyth | TEDxRPLCentralLibrary](https://www.youtube.com/watch?v=x77-gT8bWLo){target=_blank}
+
+__Programming methodology__
+
+Wrigstad lays out a Ten Steps system he calls "SIMPLE"
+
+1. Start with a high-level work breakdown structure  
+Mine your specification for data (nouns) and actions (verbs – behaviour/functions). Make simple drawings, e.g., mindmaps, to record your insights. Making things look easy is almost always good.
+2. Write code to test the validity of your thinking  
+…not to drive the thinking! Thinking should invariably come before coding, especially thinking about how you check that your thinking is valid.
+3. Always have a working program  
+In combination with cheating, this usually means inserting dummy functions.
+4. Compile after every change  
+Fix errors now, not later. Fix errors one by one. Fix errors in the order they were printed. Take time to actually read the compiler message so you know you are fixing the right thing.
+5. Run the program “all the time” to spot errors  
+This requires always working code – preferably in combination with automated test that don’t involve ocular inspection, etc.
+6. Recursively break your problems up into smaller sub problems  
+Only start solving problems when they start feeling easy. Make a task for each problem or subproblem to put on the stack, take tasks from the stack in a reasonable order (preferably easiest first); when the stack is empty – you are done!
+7. Break each task up into increments and start with the easy ones  
+Generate new tasks to put on the stack as you go. If suitable, start with a straight-line version (without any if-statements). When the straight-line version works add conditionals, one by one. Start with the most basic or the most insteresting cases. When you are writing a loop, do the above steps first and add the looping step last.
+8. Whenever you run the risk of getting stuck, cheat  
+Don’t forget to push new tasks on the stack that undoes the cheating, later. This records the cheat, which is great.
+9. Use dodging to help breaking complex cases up into several less complex ones  
+Don’t forget to push new tasks on the stack that undoes the dodge, later. This records the dodge, which is great.
+10. Alternate between thinking, coding and refactoring  
+    * thinking – not so much that you get stuck, though,
+    * coding – but never without first thinking about what to code, and occasionally
+    * refactoring – especially to address your cheats and dodges.
+
+[[source: SIMPLE _ A Programming Methodology](http://wrigstad.com/ioopm18/simple.html){target=_blank}
+
+__TDD__
 
 
-__Principles__
+There are 5 steps in the TDD flow:
+
+1. Read, understand, and process the feature or bug request.
+2. Translate the requirement by writing a unit test. The unit test will run and fail as no code is implemented yet.
+3. Write and implement the code that fulfills the requirement. Run all tests and they should pass, if not repeat this step.
+4. Clean up your code by refactoring.
+5. Rinse, lather and repeat.
+
+[source: 5 steps of test-driven development](https://developer.ibm.com/articles/5-steps-of-test-driven-development/){target=_blank}
+
+__REACTO__
+
+1. Repeat: make sure you do understand the problem.
+2. Example: get insights by doing examples 
+3. Approach: come up with your approach(es) to the problem (brute force first)
+4. Code: write the code for your chosen approach
+5. Testing: pass the testcases
+6. Optimize: optimize the complexities (time and space) of your algorithm
+
+[source: Whiteboard Coding Interviews: A 6 Step Process to Solve Any Problem](https://www.youtube.com/watch?v=DIR_rxusO8Q){target=_blank}
+
+This text is a re-interpretation of those ideas.
+---
+
+<!--
+"Simplicity is a great virtue   
+but it requires hard work to achieve it   
+and education to appreciate it.   
+And to make matters worse: complexity sells better."  
+_ [Edsger Dijkstra](https://www.goodreads.com/quotes/215637-simplicity-is-a-great-virtue-but-it-requires-hard-work){target=_blank}
+-->
+
+__I Principles__
 
 1. KISS (keep it small and  straightforward). Think Big _ in **small steps**.
 2. TDD stands for **Thinking** Driven development  
 3. BDD stands for **Build** Driven deployment  
 
-__Precepts__
+__II Precepts__
 
 - Break it down  
 - Validate 
@@ -27,7 +114,7 @@ __Precepts__
     * test your thinking with code
 - Never end in a Broken state. 
 
-__Rules for coding__
+__III Rules for coding__
 
 - you must test working build
 - You can only commit working builds
@@ -38,7 +125,7 @@ __Rules for coding__
 - Write your thoughs as comments or pseudo-code
 - Never stop with a Broken build.
 
-__Rules for design__
+__IV Rules for design__
 
 - Write imperatively first. Then refactor into a functional style.
 - See thing through three point of views 
@@ -78,36 +165,44 @@ Try and Verify
 `D`irectly  
 `E`valuated  
 
+## Introducing The Wave (Onja 〜 ) ⋰⋱⋰⋱⋰
 
-__WAVE tempo__
-
-- ⋰⋱⋰⋱⋰⋯
-- Think - Confirm - Create - Confirm - Think ...
-    * Think a little
-    `T`urn `H`ypothesis `I`nto `N`imble `K`ickstarters  
-    * Code a little
-    `C`oncise `O`utput `D`one `E`fficiently (CODE)  
-
-__Think to keep in mind__
-
-"make it work  
-make it better  
-REAL SOON!"  
-_ Coding Mantra (Venkat Subramaniam)
-
-"Simplicity is a great virtue   
-but it requires hard work to achieve it   
-and education to appreciate it.   
-And to make matters worse: complexity sells better."  
-_ [Edsger Dijkstra](https://www.goodreads.com/quotes/215637-simplicity-is-a-great-virtue-but-it-requires-hard-work){target=_blank}
-
----
-
-## The Wave (Onja 〜 ) ⋰⋱⋰⋱⋰
-<!-- U+301C 〜  U+22F1 ⋱  U+22F0 ⋰ -->
+<!-- U+301C 〜  U+22F1 ⋱  U+22F0 ⋰ 
 ≋ U+224B  
 ❀ (U+2740)  
 ⥵  U+2975  
+-->
+
+The Onja ⋰⋱⋰⋯ distiles these rules and stages into a rythmic wave like software is writting process
+one can condense into <sub>`t.h.i.n.k. a little`</sub>⋰<sup>`c.o.d.e. a little`</sup>⋱⋰⋯ 
+
+## Keep the tempo
+
+* Think a little: 
+`T`urn `H`ypothesis `I`nto `N`imble `K`ickstarters  
+* Code a little: 
+`C`oncise `O`utput `D`irectly `E`valuated (CODE)  
+
+### T.h.i.n.k. a little
+
+- What is the quest?
+What is the desired final result? This is your ultimate output. 
+    * That is last step in a chain of results to satisfy or complete the quest.
+    * Define the scope of the project. 
+
+- What are you starting with?
+What are the available the inputs.
+
+- What is missing to get from those initial input to the final output.
+
+### C.o.d.e. a little
+
+- Validate
+    
+- Concretize your thinking or code.
+
+- Verify
+
 
 Its not a cycle. Its a three stages wave rippling through the flow
 
@@ -116,11 +211,11 @@ Its not a cycle. Its a three stages wave rippling through the flow
 - Crest: unbroken idea or code 
 
 ```
-concretize --------**------------------**------------------**----------------***--------
+C.o.d.e.   --------**------------------**------------------**----------------***-
 |                *    *              *    *              *    *            *    
-Verify     ----*--------*----------*--------*----------*--------*--------*--------------
+Verify     ----*--------*----------*--------*----------*--------*--------*-------
 |            *            *      *            *      *            *    *            
-Think      *----------------**-*----------------**-*----------------**------------------
+T.h.i.n.k. *----------------**-*----------------**-*----------------**-----------
 ```
 
 Think, Verify your thinking, concretize, verify your implementation, think ...
@@ -135,43 +230,36 @@ hurdles
 you will require a good understanding of the algorithms and techniques you intend to implement.
 
 ---
-State the 5 Dolores M. Etter points here
+There is no clear cut between Etter's Problem-Solving with a computer program solution
+and Wrigstad's SIMPL Programming Methodology. 
 
-Understanding the Problem::
+Dolores M. Etter's 5 stage process can be can seen as the high-level view of tackling Problems Opportunities or Challenges. 
+This high-level view can be subdivided into `Understanding the Problem` and `Validate the Solution`
+
+Understanding the Problem:
+    
 1. State the problem clearly.
 2. Describe the input and output information.
 3. Work the problem by hand (or with a calculator) for a simple set of data.
 
-Validate the solution::
+Validate the Solution:
+    
 4. Develop a solution and convert it to a computer program.
 5. Test the solution with a variety of data
 
+And the 10 rules may be seen as the low-level expression of what actually goes through the mind of a programmer
+as software is written.
 
-Condense into t.h.i.n.k. a little, c.o.d.e. a little
 
-### Think a little
 
-- What is the quest?
-What is the desired final result? This is your ultimate output. 
-    * That is last step in a chain of results to satisfy or complete the quest.
-    * Define the scope of the project. 
 
-- What are you starting with?
-What are the available the inputs.
+⌌ ----------------------- ⌍    <!-- U+230C U+230D -->  
+  ⌨ Practice time             <!-- U+2328 -->  
+⌎ ----------------------- ⌏    <!-- U+230E U+230F -->  
 
-- What is missing to get from those initial input to the final output.
+https://www.geeksforgeeks.org/how-to-approach-a-coding-problem/
 
-### Create a little
-
-- Validate
-    
-- Concretize your thinking or code.
-
-- Verify
-
----
-
-##    2 Running Example: The Simple Warehouse
+## Running Example: The Simple Warehouse 
 <a href="#TOC"> ` ^-- ` </a>
 
 The simple warehouse program is an information system for managing the
@@ -226,16 +314,6 @@ saves the information to the database and then returns to the main menu.
 The abort alternative returns to the main menu without saving.
 
 The rest of the actions on the main menu should be fairly self-explanatory.
-
-
----
-
-⌌ ----------------------- ⌍    <!-- U+230C U+230D -->  
-  ⌨ Practice time      <!-- U+2328 -->  
-⌎ ----------------------- ⌏    <!-- U+230E U+230F -->  
-
-
-https://www.geeksforgeeks.org/how-to-approach-a-coding-problem/
 
 ### The minimum viable product was defined in abstract terms
 
