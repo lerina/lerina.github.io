@@ -10,7 +10,7 @@
 
 This text is inspired by [SIMPLE: A Programming Methodology](http://wrigstad.com/ioopm18/simple.html){target=_blank} by Tobias Wrigstad, a Professor in Computing Science at [Uppsala University](http://www.uu.se/){target=_blank}.
 
-It also draws from structured programming ideas already in usage back in the 70's and best exposed by Dolores M. Etter in Problem solving with structured FORTRAN 77 (The Benjamin/Cummings Pub 1984) and 
+It also draws from structured programming ideas already in usage back in the 70's and best exposed by Dolores M. Etter in Problem solving with structured FORTRAN 77 (The Benjamin/Cummings Pub 1984) and Engineering Problem Solving with C.
 
 __Problem-Solving process or methodology__
 
@@ -27,6 +27,7 @@ The process or methodology for problem solving has the following five steps:
 [source: Dolores M. Etter in Problem solving with structured FORTRAN 77](https://archive.org/details/problemsolvingwi0000ette){target=_blank}
 
 Key Steps for Problem Solving
+
 1. Define your problem
 2. Make sure you fully understand the problem
 3. Break the problem down into small and manageable pieces 
@@ -78,6 +79,14 @@ There are 5 steps in the TDD flow:
 
 [source: 5 steps of test-driven development](https://developer.ibm.com/articles/5-steps-of-test-driven-development/){target=_blank}
 
+REM: every simgle point of TTD has been turned into a business
+
+1. ... Tools, books and seminars about Group work and software for ticketing, bug tracking ...
+2. ... Books & seminars about the benefits of tests.
+3. ... Tools & seminars about Writing tests.
+4. ... Books & seminars about Clean code and refactoring.
+5. ... Books & seminars about CI/CD and devops.
+
 __REACTO__
 
 1. Repeat: make sure you do understand the problem.
@@ -89,8 +98,23 @@ __REACTO__
 
 [source: Whiteboard Coding Interviews: A 6 Step Process to Solve Any Problem](https://www.youtube.com/watch?v=DIR_rxusO8Q){target=_blank}
 
-This text is a re-interpretation of those ideas.
----
+__ALSO of NOTE__
+
+[How to Solve a Problem in Four Steps: The IDEA Model](https://www.youtube.com/watch?v=QOjTJAFyNrU){target=_blank}  
+[Problem-Solving for Developers - A Beginner's Guide](https://www.youtube.com/watch?v=UFc-RPbq8kg){target=_blank}  
+[](){target=_blank}  
+[](){target=_blank}  
+[](){target=_blank}  
+
+
+## Introducing The Wave (Onja 〜 ) ⋰⋱⋰⋱⋰
+
+<!-- U+301C 〜  U+22F1 ⋱  U+22F0 ⋰ 
+≋ U+224B  
+❀ (U+2740)  
+⥵  U+2975  
+-->
+
 
 <!--
 "Simplicity is a great virtue   
@@ -99,6 +123,30 @@ and education to appreciate it.
 And to make matters worse: complexity sells better."  
 _ [Edsger Dijkstra](https://www.goodreads.com/quotes/215637-simplicity-is-a-great-virtue-but-it-requires-hard-work){target=_blank}
 -->
+There is no clear cut between programming steps accumulated over time. More importantly, programming in real life seem to blend
+these way of aproching the actual practice of writing software.
+
+Etter's Problem-Solving with a computer program solution
+and Wrigstad's SIMPL Programming Methodology. 
+
+Dolores M. Etter's 5 stage process can be can seen as the high-level view of tackling Problems Opportunities or Challenges. 
+This high-level view can be subdivided into `Understanding the Problem` and `Validate the Solution`
+
+Understanding the Problem:
+    
+1. State the problem clearly.
+2. Describe the input and output information.
+3. Work the problem by hand (or with a calculator) for a simple set of data.
+
+Validate the Solution:
+    
+4. Develop a solution and convert it to a computer program.
+5. Test the solution with a variety of data
+
+And the 10 rules may be seen as the low-level expression of what actually goes through the mind of a programmer
+as software is written.
+
+
 
 __I Principles__
 
@@ -148,6 +196,28 @@ Think a little: not so much that you get stuck in analysis paralysis.
 Validate a little: Just enough tries or code to validate the thinking.  
 _ Tobias Wrigstad
 
+
+
+The Onja ⋰⋱⋰⋯ distiles these rules and stages into a rythmic wave like software writting process
+one can condense into <sub>`t.h.i.n.k. a little`</sub>⋰<sup>`c.o.d.e. a little`</sup>⋱⋰⋯ 
+
+## The wave 
+
+Its not a cycle. Its a three stages wave rippling through the flow
+
+- Trough: Think: not so much that you get stuck in analysis paralysis.
+- base: Validate 
+- Crest: unbroken idea or code 
+
+```
+C.o.d.e.   --------**------------------**------------------**----------------***-
+|                *    *              *    *              *    *            *    
+Verify     ----*--------*----------*--------*----------*--------*--------*-------
+|            *            *      *            *      *            *    *            
+T.h.i.n.k. *----------------**-*----------------**-*----------------**-----------
+```
+
+
 - T.h.i.n.k. a little
 Understand and Organize
 
@@ -165,23 +235,6 @@ Try and Verify
 `D`irectly  
 `E`valuated  
 
-## Introducing The Wave (Onja 〜 ) ⋰⋱⋰⋱⋰
-
-<!-- U+301C 〜  U+22F1 ⋱  U+22F0 ⋰ 
-≋ U+224B  
-❀ (U+2740)  
-⥵  U+2975  
--->
-
-The Onja ⋰⋱⋰⋯ distiles these rules and stages into a rythmic wave like software is writting process
-one can condense into <sub>`t.h.i.n.k. a little`</sub>⋰<sup>`c.o.d.e. a little`</sup>⋱⋰⋯ 
-
-## Keep the tempo
-
-* Think a little: 
-`T`urn `H`ypothesis `I`nto `N`imble `K`ickstarters  
-* Code a little: 
-`C`oncise `O`utput `D`irectly `E`valuated (CODE)  
 
 ### T.h.i.n.k. a little
 
@@ -204,20 +257,7 @@ What are the available the inputs.
 - Verify
 
 
-Its not a cycle. Its a three stages wave rippling through the flow
-
-- Trough: Think: not so much that you get stuck in analysis paralysis.
-- base: Validate 
-- Crest: unbroken idea or code 
-
-```
-C.o.d.e.   --------**------------------**------------------**----------------***-
-|                *    *              *    *              *    *            *    
-Verify     ----*--------*----------*--------*----------*--------*--------*-------
-|            *            *      *            *      *            *    *            
-T.h.i.n.k. *----------------**-*----------------**-*----------------**-----------
-```
-
+<!-- 
 Think, Verify your thinking, concretize, verify your implementation, think ...
 
 longitudinal progress (side to side though the flow of time and working build delivered)  
@@ -229,27 +269,7 @@ The apparent Cerelity hit due to short wavelength is offset though sustainable h
 hurdles
 you will require a good understanding of the algorithms and techniques you intend to implement.
 
----
-There is no clear cut between Etter's Problem-Solving with a computer program solution
-and Wrigstad's SIMPL Programming Methodology. 
-
-Dolores M. Etter's 5 stage process can be can seen as the high-level view of tackling Problems Opportunities or Challenges. 
-This high-level view can be subdivided into `Understanding the Problem` and `Validate the Solution`
-
-Understanding the Problem:
-    
-1. State the problem clearly.
-2. Describe the input and output information.
-3. Work the problem by hand (or with a calculator) for a simple set of data.
-
-Validate the Solution:
-    
-4. Develop a solution and convert it to a computer program.
-5. Test the solution with a variety of data
-
-And the 10 rules may be seen as the low-level expression of what actually goes through the mind of a programmer
-as software is written.
-
+-->
 
 
 
