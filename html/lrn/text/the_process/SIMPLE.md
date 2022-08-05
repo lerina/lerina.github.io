@@ -98,6 +98,12 @@ __REACTO__
 
 [source: Whiteboard Coding Interviews: A 6 Step Process to Solve Any Problem](https://www.youtube.com/watch?v=DIR_rxusO8Q){target=_blank}
 
+__Function Design Recipe__
+UofT
+
+__Js recipe__
+find it
+
 __ALSO of NOTE__
 
 [How to Solve a Problem in Four Steps: The IDEA Model](https://www.youtube.com/watch?v=QOjTJAFyNrU){target=_blank}  
@@ -156,22 +162,19 @@ __I Principles__
 
 __II Precepts__
 
-- Break it down  
+- Breakdown Quests or Tasks until there is only one Item per sub-tasks
 - Validate 
     * test assumptions and hypothesis
     * test your thinking with code
-- Never end in a Broken state. 
+- Never stop in a Broken state or build. 
 
 __III Rules for coding__
 
-- you must test working build
-- You can only commit working builds
-- Breakdown Tasks until there is only one Item per sub-tasks
+- You can only commit tested working builds
 - Maintain the flow
     * Avoid stoping by temporarly subtituting complicated tasks with a simpler version
     * use `props` and `stand-ins` until the real think can take over the task
-- Write your thoughs as comments or pseudo-code
-- Never stop with a Broken build.
+- Write your thoughts as comments or pseudo-code
 
 __IV Rules for design__
 
@@ -183,9 +186,7 @@ __IV Rules for design__
 - Favor push over pull when it comes to Data.
 - Favor decomposition and composition at all times.
 
----
-
-__Keep the tempo__
+__V Keep the tempo__
 
 Alternate between::
     
@@ -201,7 +202,7 @@ _ Tobias Wrigstad
 The Onja ⋰⋱⋰⋯ distiles these rules and stages into a rythmic wave like software writting process
 one can condense into <sub>`t.h.i.n.k. a little`</sub>⋰<sup>`c.o.d.e. a little`</sup>⋱⋰⋯ 
 
-## The wave 
+### The wave Metaphor
 
 Its not a cycle. Its a three stages wave rippling through the flow
 
@@ -238,12 +239,17 @@ Try and Verify
 
 ### T.h.i.n.k. a little
 
-- What is the quest?
+- What do we want?
+
+Define the quest. Is it a problem, opportunity or challenge.
+
 What is the desired final result? This is your ultimate output. 
     * That is last step in a chain of results to satisfy or complete the quest.
     * Define the scope of the project. 
 
-- What are you starting with?
+- What do we have?
+
+What are you starting with?
 What are the available the inputs.
 
 - What is missing to get from those initial input to the final output.
