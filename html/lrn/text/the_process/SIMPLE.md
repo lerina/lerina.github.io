@@ -5,6 +5,18 @@
 
 # Onja ⋰⋱⋰⋱⋰⋯ (Wave) – A Minimalistic Programming Methodology
 
+> Beautiful Code  
+
+```
+We ascribe `beauty` to that which is simple,
+which has no superfluous parts;
+    which exaclty answers its end,
+    which stands related to all things,
+    which is the mean of all extremes.
+    
+    _ Ralph Waldo Emerson, _The conduct of life_
+```
+
 <!-- ↝  U+219D -->
 ## Context
 
