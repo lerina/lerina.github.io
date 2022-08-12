@@ -120,34 +120,21 @@ __ALSO of NOTE__
 
 [How to Solve a Problem in Four Steps: The IDEA Model](https://www.youtube.com/watch?v=QOjTJAFyNrU){target=_blank}  
 [Problem-Solving for Developers - A Beginner's Guide](https://www.youtube.com/watch?v=UFc-RPbq8kg){target=_blank}  
-[](){target=_blank}  
-[](){target=_blank}  
+[How to Design Programs, Second Edition](http://htdp.org/2022-8-7/Book/index.html){target=_blank}  
+[The Program Design Recipe](https://course.ccs.neu.edu/cs5010sp15/recipe.html){target=_blank}  
 [](){target=_blank}  
 
 
 ## Introducing The Wave (Onja 〜 ) ⋰⋱⋰⋱⋰
 
-<!-- U+301C 〜  U+22F1 ⋱  U+22F0 ⋰ 
-≋ U+224B  
-❀ (U+2740)  
-⥵  U+2975  
--->
+There is no clear cut between programming steps accumulated over time. 
+In real life tend to blend these ways of approaching the actual practice of writing software.
+Through time these methods and practices have been either made systematic or rendered implicit.
 
+In developing Onja, we took the _ancient_ but still very pertinant 5-points "Problem-Solving with a computer program solution" as exposed by D. M. Etter
+and the most recent SIMPL Programming Methodology described by Wrigstad. 
 
-<!--
-"Simplicity is a great virtue   
-but it requires hard work to achieve it   
-and education to appreciate it.   
-And to make matters worse: complexity sells better."  
-_ [Edsger Dijkstra](https://www.goodreads.com/quotes/215637-simplicity-is-a-great-virtue-but-it-requires-hard-work){target=_blank}
--->
-There is no clear cut between programming steps accumulated over time. More importantly, programming in real life seem to blend
-these way of aproching the actual practice of writing software.
-
-Etter's Problem-Solving with a computer program solution
-and Wrigstad's SIMPL Programming Methodology. 
-
-Dolores M. Etter's 5 stage process can be can seen as the high-level view of tackling Problems Opportunities or Challenges. 
+Dolores M. Etter's 5 stage process can be can seen as the high-level view of tackling Problems, Opportunities or Challenges (POC). 
 This high-level view can be subdivided into `Understanding the Problem` and `Validate the Solution`
 
 Understanding the Problem:
@@ -161,10 +148,8 @@ Validate the Solution:
 4. Develop a solution and convert it to a computer program.
 5. Test the solution with a variety of data
 
-And the 10 rules may be seen as the low-level expression of what actually goes through the mind of a programmer
+Wrigstad's "10 rules" may be seen as the low-level expression of what actually goes through the mind of a programmer
 as software is written.
-
-
 
 __I Principles__
 
@@ -209,172 +194,15 @@ Think a little: not so much that you get stuck in analysis paralysis.
 Validate a little: Just enough tries or code to validate the thinking.  
 _ Tobias Wrigstad
 
-
-
 The Onja ⋰⋱⋰⋯ distiles these rules and stages into a rythmic wave like software writting process
 one can condense into <sub>`t.h.i.n.k. a little`</sub>⋰<sup>`c.o.d.e. a little`</sup>⋱⋰⋯ 
 
-### The wave Metaphor
-
-Its not a cycle. Its a three stages wave rippling through the flow
-
-- Trough: Think: not so much that you get stuck in analysis paralysis.
-- base: Validate 
-- Crest: unbroken idea or code 
-
-```
-C.o.d.e.   --------**------------------**------------------**----------------***-
-|                *    *              *    *              *    *            *    
-Verify     ----*--------*----------*--------*----------*--------*--------*-------
-|            *            *      *            *      *            *    *            
-T.h.i.n.k. *----------------**-*----------------**-*----------------**-----------
-```
-
-
-- T.h.i.n.k. a little
-Understand and Organize
-
-`T`urn  
-`H`ypothesis  
-`I`nto  
-`N`imble  
-`K`ickstarters  
-
-- C.o.d.e. a little
-Try and Verify
-
-`C`oncise  
-`O`utput  
-`D`irectly  
-`E`valuated  
-
-
-### T.h.i.n.k. a little
-
-- What do we want?
-
-Define the quest. Is it a problem, opportunity or challenge.
-
-What is the desired final result? This is your ultimate output. 
-    * That is last step in a chain of results to satisfy or complete the quest.
-    * Define the scope of the project. 
-
-- What do we have?
-
-What are you starting with?
-What are the available the inputs.
-
-- What is missing to get from those initial input to the final output.
-
-### C.o.d.e. a little
-
-- Validate
-    
-- Concretize your thinking or code.
-
-- Verify
-
-
-<!-- 
-Think, Verify your thinking, concretize, verify your implementation, think ...
-
-longitudinal progress (side to side though the flow of time and working build delivered)  
-transverse (up and down) phases think, verify (manual walkthrough, automated tests, code that validate the thinking), concretize (task breakdown, working build, ...) 
-
-The point is to be as Still as possible. The shorter wavelength and the smaller the wave height the flatter and managable our activity will be.
-The apparent Cerelity hit due to short wavelength is offset though sustainable high frequency.
-
-hurdles
-you will require a good understanding of the algorithms and techniques you intend to implement.
-
--->
-
-
-
-⌌ ----------------------- ⌍    <!-- U+230C U+230D -->  
-  ⌨ Practice time             <!-- U+2328 -->  
-⌎ ----------------------- ⌏    <!-- U+230E U+230F -->  
-
-https://www.geeksforgeeks.org/how-to-approach-a-coding-problem/
-
-## Running Example: The Simple Warehouse 
-<a href="#TOC"> ` ^-- ` </a>
-
-The simple warehouse program is an information system for managing the
-contents of a storage facility for different kinds of wares.  
-Every ware in the warehouse has a name, a description, a storage location, 
-a pricetag, information about the number of items of the particular ware
-stored in the warehouse, and the cost of each item.  
-A storage location is a “section” (a single letter a-z), plus a shelf (an integer).
-
-The simple warehouse program manages a database of wares and supports
-the following operations:
-
--    `A`dding a ware
--    `R`emoving a ware
--    `E`diting the information about a ware
--    `P`rinting the information for a specific ware
--    `L`isting all wares in the database
--    `U`ndoing the last action
--    `Q`uitting the program
-
-When starting the program, the user is presented with the main menu with
-the above alternatives and picks a choice by entering the first letter
-of each alternative, i.e., |`A`|, |`R`|, |`E`|, |`P`|, |`L`|, |`U`|, or |`Q`|.
-
-When choosing to quit, the user is prompted with a yes/no question: do
-you really want to quit? If the answer is |Y|, the program exits. If the
-answer is |N|, the program displays the main menu again. If the answer
-is anything other than |Y| or |N|, an error message is printed and the
-question repeated.
-
-When choosing to add a ware, the user is prompted with five consecutive
-dialogues asking her to enter the required information for a ware:
-
-* Name
-* Description
-* Storage location
-* Price
-* Amount
-
-The program then displays the information back to the user and asks
-whether this is correct or not. The user has three options:
-
-* Edit the information
-* Save the information
-* Abort
-
-The choice is again indicated by entering the first character of each
-option. The first alternative allows the user to re-enter one piece of
-the required information for a ware after which the editer ware is
-displayed again with the same question as above. The save alternative
-saves the information to the database and then returns to the main menu.
-The abort alternative returns to the main menu without saving.
-
-The rest of the actions on the main menu should be fairly self-explanatory.
-
-### The minimum viable product was defined in abstract terms
-
-### Specific required features
-
-### The rhythmic wave
-
-stages of building our project:
-• Analyzing the problem domain
-• Modeling system behavior
-• Building the tokenizer
-• Building the parser
-• Building the evaluator
-• Dealing with errors
-• Building a command-line application
+<button>[NEXT: The wave Metaphor](./onja01.html)</button>  
 
 </main>
 
-<footer>
-  <a href="https://github.com/lerina" target="_blank" title="github">![github](https://razafy.com/img/github32px.png){.link .glow}
-  </a>
+<footer><a href="https://github.com/lerina" target="_blank" title="github">![github](https://razafy.com/img/github32px.png){.link .glow}</a>
 </footer>
-
 <script src="https://razafy.com/js/toc.js"></script>
 <script>
 let anchor= document.createElement('a');

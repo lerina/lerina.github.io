@@ -30,9 +30,6 @@ id="toc-onja-wave-a-minimalistic-programming-methodology">Onja ⋰⋱⋰⋱⋰�
 <li><a href="#introducing-the-wave-onja"
 id="toc-introducing-the-wave-onja">Introducing The Wave (Onja 〜 )
 ⋰⋱⋰⋱⋰</a></li>
-<li><a href="#running-example-the-simple-warehouse"
-id="toc-running-example-the-simple-warehouse">Running Example: The
-Simple Warehouse</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -195,31 +192,25 @@ Model</a><br />
 <a href="https://www.youtube.com/watch?v=UFc-RPbq8kg"
 target="_blank">Problem-Solving for Developers - A Beginner’s
 Guide</a><br />
-<a href="" target="_blank"></a><br />
-<a href="" target="_blank"></a><br />
+<a href="http://htdp.org/2022-8-7/Book/index.html" target="_blank">How
+to Design Programs, Second Edition</a><br />
+<a href="https://course.ccs.neu.edu/cs5010sp15/recipe.html"
+target="_blank">The Program Design Recipe</a><br />
 <a href="" target="_blank"></a></p>
 <h2 id="introducing-the-wave-onja">Introducing The Wave (Onja 〜 )
 ⋰⋱⋰⋱⋰</h2>
-<!-- U+301C 〜  U+22F1 ⋱  U+22F0 ⋰ 
-≋ U+224B  
-❀ (U+2740)  
-⥵  U+2975  
--->
-<!--
-"Simplicity is a great virtue   
-but it requires hard work to achieve it   
-and education to appreciate it.   
-And to make matters worse: complexity sells better."  
-_ [Edsger Dijkstra](https://www.goodreads.com/quotes/215637-simplicity-is-a-great-virtue-but-it-requires-hard-work){target=_blank}
--->
 <p>There is no clear cut between programming steps accumulated over
-time. More importantly, programming in real life seem to blend these way
-of aproching the actual practice of writing software.</p>
-<p>Etter’s Problem-Solving with a computer program solution and
-Wrigstad’s SIMPL Programming Methodology.</p>
+time. In real life tend to blend these ways of approaching the actual
+practice of writing software. Through time these methods and practices
+have been either made systematic or rendered implicit.</p>
+<p>In developing Onja, we took the <em>ancient</em> but still very
+pertinant 5-points “Problem-Solving with a computer program solution” as
+exposed by D. M. Etter and the most recent SIMPL Programming Methodology
+described by Wrigstad.</p>
 <p>Dolores M. Etter’s 5 stage process can be can seen as the high-level
-view of tackling Problems Opportunities or Challenges. This high-level
-view can be subdivided into <code>Understanding the Problem</code> and
+view of tackling Problems, Opportunities or Challenges (POC). This
+high-level view can be subdivided into
+<code>Understanding the Problem</code> and
 <code>Validate the Solution</code></p>
 <p>Understanding the Problem:</p>
 <ol type="1">
@@ -233,7 +224,7 @@ data.</li>
 <li>Develop a solution and convert it to a computer program.</li>
 <li>Test the solution with a variety of data</li>
 </ol>
-<p>And the 10 rules may be seen as the low-level expression of what
+<p>Wrigstad’s “10 rules” may be seen as the low-level expression of what
 actually goes through the mind of a programmer as software is
 written.</p>
 <p><strong>I Principles</strong></p>
@@ -292,144 +283,14 @@ _ Tobias Wrigstad</p>
 <p>The Onja ⋰⋱⋰⋯ distiles these rules and stages into a rythmic wave
 like software writting process one can condense into
 <sub><code>t.h.i.n.k. a little</code></sub>⋰<sup><code>c.o.d.e. a little</code></sup>⋱⋰⋯</p>
-<h3 id="the-wave-metaphor">The wave Metaphor</h3>
-<p>Its not a cycle. Its a three stages wave rippling through the
-flow</p>
-<ul>
-<li>Trough: Think: not so much that you get stuck in analysis
-paralysis.</li>
-<li>base: Validate</li>
-<li>Crest: unbroken idea or code</li>
-</ul>
-<pre><code>C.o.d.e.   --------**------------------**------------------**----------------***-
-|                *    *              *    *              *    *            *    
-Verify     ----*--------*----------*--------*----------*--------*--------*-------
-|            *            *      *            *      *            *    *            
-T.h.i.n.k. *----------------**-*----------------**-*----------------**-----------</code></pre>
-<ul>
-<li>T.h.i.n.k. a little Understand and Organize</li>
-</ul>
-<p><code>T</code>urn<br />
-<code>H</code>ypothesis<br />
-<code>I</code>nto<br />
-<code>N</code>imble<br />
-<code>K</code>ickstarters</p>
-<ul>
-<li>C.o.d.e. a little Try and Verify</li>
-</ul>
-<p><code>C</code>oncise<br />
-<code>O</code>utput<br />
-<code>D</code>irectly<br />
-<code>E</code>valuated</p>
-<h3 id="t.h.i.n.k.-a-little">T.h.i.n.k. a little</h3>
-<ul>
-<li>What do we want?</li>
-</ul>
-<p>Define the quest. Is it a problem, opportunity or challenge.</p>
-<p>What is the desired final result? This is your ultimate output. *
-That is last step in a chain of results to satisfy or complete the
-quest. * Define the scope of the project.</p>
-<ul>
-<li>What do we have?</li>
-</ul>
-<p>What are you starting with? What are the available the inputs.</p>
-<ul>
-<li>What is missing to get from those initial input to the final
-output.</li>
-</ul>
-<h3 id="c.o.d.e.-a-little">C.o.d.e. a little</h3>
-<ul>
-<li><p>Validate</p></li>
-<li><p>Concretize your thinking or code.</p></li>
-<li><p>Verify</p></li>
-</ul>
-<!-- 
-Think, Verify your thinking, concretize, verify your implementation, think ...
-
-longitudinal progress (side to side though the flow of time and working build delivered)  
-transverse (up and down) phases think, verify (manual walkthrough, automated tests, code that validate the thinking), concretize (task breakdown, working build, ...) 
-
-The point is to be as Still as possible. The shorter wavelength and the smaller the wave height the flatter and managable our activity will be.
-The apparent Cerelity hit due to short wavelength is offset though sustainable high frequency.
-
-hurdles
-you will require a good understanding of the algorithms and techniques you intend to implement.
-
--->
-<p>⌌ ———————– ⌍ <!-- U+230C U+230D --><br />
-⌨ Practice time <!-- U+2328 --><br />
-⌎ ———————– ⌏ <!-- U+230E U+230F --></p>
-<p>https://www.geeksforgeeks.org/how-to-approach-a-coding-problem/</p>
-<h2 id="running-example-the-simple-warehouse">Running Example: The
-Simple Warehouse</h2>
-<p><a href="#TOC"> <code>^--</code> </a></p>
-<p>The simple warehouse program is an information system for managing
-the contents of a storage facility for different kinds of wares.<br />
-Every ware in the warehouse has a name, a description, a storage
-location, a pricetag, information about the number of items of the
-particular ware stored in the warehouse, and the cost of each
-item.<br />
-A storage location is a “section” (a single letter a-z), plus a shelf
-(an integer).</p>
-<p>The simple warehouse program manages a database of wares and supports
-the following operations:</p>
-<ul>
-<li><code>A</code>dding a ware</li>
-<li><code>R</code>emoving a ware</li>
-<li><code>E</code>diting the information about a ware</li>
-<li><code>P</code>rinting the information for a specific ware</li>
-<li><code>L</code>isting all wares in the database</li>
-<li><code>U</code>ndoing the last action</li>
-<li><code>Q</code>uitting the program</li>
-</ul>
-<p>When starting the program, the user is presented with the main menu
-with the above alternatives and picks a choice by entering the first
-letter of each alternative, i.e., |<code>A</code>|, |<code>R</code>|,
-|<code>E</code>|, |<code>P</code>|, |<code>L</code>|, |<code>U</code>|,
-or |<code>Q</code>|.</p>
-<p>When choosing to quit, the user is prompted with a yes/no question:
-do you really want to quit? If the answer is |Y|, the program exits. If
-the answer is |N|, the program displays the main menu again. If the
-answer is anything other than |Y| or |N|, an error message is printed
-and the question repeated.</p>
-<p>When choosing to add a ware, the user is prompted with five
-consecutive dialogues asking her to enter the required information for a
-ware:</p>
-<ul>
-<li>Name</li>
-<li>Description</li>
-<li>Storage location</li>
-<li>Price</li>
-<li>Amount</li>
-</ul>
-<p>The program then displays the information back to the user and asks
-whether this is correct or not. The user has three options:</p>
-<ul>
-<li>Edit the information</li>
-<li>Save the information</li>
-<li>Abort</li>
-</ul>
-<p>The choice is again indicated by entering the first character of each
-option. The first alternative allows the user to re-enter one piece of
-the required information for a ware after which the editer ware is
-displayed again with the same question as above. The save alternative
-saves the information to the database and then returns to the main menu.
-The abort alternative returns to the main menu without saving.</p>
-<p>The rest of the actions on the main menu should be fairly
-self-explanatory.</p>
-<h3 id="the-minimum-viable-product-was-defined-in-abstract-terms">The
-minimum viable product was defined in abstract terms</h3>
-<h3 id="specific-required-features">Specific required features</h3>
-<h3 id="the-rhythmic-wave">The rhythmic wave</h3>
-<p>stages of building our project: • Analyzing the problem domain •
-Modeling system behavior • Building the tokenizer • Building the parser
-• Building the evaluator • Dealing with errors • Building a command-line
-application</p>
+<button>
+<a href="./onja01.html">NEXT: The wave Metaphor</a>
+</button>
 </main>
 <footer>
 <a href="https://github.com/lerina" target="_blank" title="github"><img
 src="https://razafy.com/img/github32px.png" class="link glow"
-alt="github" /> </a>
+alt="github" /></a>
 </footer>
 <script src="https://razafy.com/js/toc.js"></script>
 <script>
