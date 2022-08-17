@@ -42,6 +42,8 @@ Try and Verify
 
 ### T.h.i.n.k. a little
 
+#### Understanding the Proble, opportunity or challenge. 
+
 - What do we want?
 
 Define the quest. Is it a problem, opportunity or challenge.
