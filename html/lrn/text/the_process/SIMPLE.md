@@ -17,6 +17,14 @@ which has no superfluous parts;
     _ Ralph Waldo Emerson, _The conduct of life_
 ```
 
+```
+“La perfection est atteinte, 
+non pas lorsqu'il n'y a plus rien à ajouter, 
+mais lorsqu'il n'y a plus rien à retirer.”
+
+    ― Antoine de Saint-Exupéry
+```
+
 <!-- ↝  U+219D -->
 ## Context
 
