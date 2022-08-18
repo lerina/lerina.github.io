@@ -22,7 +22,11 @@ which has no superfluous parts;
 non pas lorsqu'il n'y a plus rien à ajouter, 
 mais lorsqu'il n'y a plus rien à retirer.”
 
-    ― Antoine de Saint-Exupéry
+Perfection is achieved, 
+not when there is nothing more to add, 
+but when there is nothing left to take away.”
+
+    ― Antoine de Saint-Exupéry, Airman's Odyssey 
 ```
 
 <!-- ↝  U+219D -->
