@@ -1,5 +1,5 @@
 [package]
-name = "sine_snake"
+name = "circles"
 version = "0.1.0"
 edition = "2021"
 
@@ -13,6 +13,8 @@ crate-type = ["cdylib", "rlib"]
 [dependencies]
 wasm-bindgen = "0.2.8"
 console_error_panic_hook = "0.1.7"
+rand = "0.8.5"
+getrandom = { version = "0.2", features = ["js"] }
 
 [dependencies.web-sys]
 version = "0.3.58"
@@ -24,4 +26,7 @@ features = [
     "CanvasRenderingContext2d", 
     "Element",
     ]
+
+[dev-dependencies]
+wasm-bindgen-test = "0.3.32"
 
