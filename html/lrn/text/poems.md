@@ -33,7 +33,7 @@ With **E**fficient Effort,  Ease the Way.
 With *e*xecution, mark the way.  
 .  
 With **R**esolve, Arc around Obstacles.  
-With *r*esources, fuel the power.  
+With *r*esources, fuel the POWER.  
 
 
 #### Establish  `PEACE`
@@ -55,6 +55,8 @@ Maintain `PEACE` with
 `E` nergy regulated  
 
 | "The happiness of pursuit far outweight the pursuit of happiness."
+
+_ lerina
 
 ---
 

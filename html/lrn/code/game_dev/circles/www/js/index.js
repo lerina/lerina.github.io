@@ -10,7 +10,6 @@ async function run() {
 
     function draw_circle() {
       circle = world.circle;
-      //DEBUG:console.log("circle.x = " + circle.x);
 
       ctx.beginPath();
       ctx.arc(circle.x, circle.y, circle.radius, 
