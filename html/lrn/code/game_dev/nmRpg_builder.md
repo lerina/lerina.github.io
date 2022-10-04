@@ -143,12 +143,13 @@ D6    |Is Motivated       	|Has the 	            |Burdened
 
 Example:
 
-Good at: Social engineering 	(rolled 3: Charming)  
-Know for: Hacking 		(rolled 2: Hacks)  
-Have: Corporate Access 		(rolled 2)  
-Motivated by: Self-interest 	(rolled 6)  
-Reputation: Driven 		(rolled 3)  
-Baggage: On-the-Run 		(rolled 5)  
+Good at: Social engineering 	        (rolled 3: Charming)  
+Know for: Hacking 		                (rolled 2: Hacks)  
+Have: VIP Access badge		            (rolled 2: Corp access)  
+Motivated by: Need to clear name        (rolled 6: Self-interest)  
+Reputation: Can't let go once fired up  (rolled 3: Driven)  
+Baggage: Was setup by his own fixer     (rolled 5: On-the-Run)  
+
 
 Then select a name and flech out the PC with the following questions.
 
