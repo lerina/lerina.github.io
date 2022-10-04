@@ -3,7 +3,6 @@
 ⇦ [razafy.com](../../../../index.html)  - [lerina](../../index.html) - [code](../index.html) - [game dev](./index.html)  
 
 # The thrust RPG
-冲 (chōng) to thrust, dash, charge, forge ahead
 
 ## The heart of the game
 
@@ -33,7 +32,7 @@ This is the core of The personal productivity system called `thrust`
 
 [more about the `thrust` Productivity System](../../text/the_process/thrust_productivity_system.html){target=_blank}
 
-## 冲 thrust RPG Gamification
+## thrust RPG Gamification
 
 We can use this productivity system to power our RPG game.
 
