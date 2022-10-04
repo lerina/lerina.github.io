@@ -82,23 +82,28 @@ and add the digits on the seconds. It gives a hat like distribution \_----\_
 
 ### Create the adventure premise
 
-D6 | Who?<br/> The proposer |What?<br/> The mission |Why?<br/> The incentive
--- |-------------- |-------------- |--------------  
-1  |Authority      |Explore        |Help
-2  |Organization   |Protection     |Fortune
-3  |Ally(friend,rel)|Exploit       |Coercition
-4  |Mentor         |Rescue         |Impulse
-5  |Helpseeker     |Escape         |Ambition
-6  |Blackmailer    |Pursuit        |Revenge
+D6    | Who?              |What?          |Why?
+--    |------------------ |-------------- |------------------------------------  
+&nbsp;|**The proposer**   |**The mission**|**The incentive**
+1     |Authority          |Explore        |Help
+2     |Organization       |Protection     |Fortune
+3     |Ally(friend,rel)   |Exploit        |Coercition
+4     |Mentor             |Rescue         |Impulse
+5     |Helpseeker         |Escape         |Ambition
+6     |Blackmailer        |Pursuit        |Revenge
 
-D6 | Where?<br/> The target |How?<br/> The seed   |Obstacle?<br/> The complication
--- |------------------- |------------------------ |-----------------------------  
-1  |Person      	|Casual encounter         |Opposition
-2  |Group   		|Old acquaintance     	  |Deception
-3  |Location		|Rumors       		  |Environment
-4  |Treasure         	|Mishap        		  |Disguise
-5  |A device     	|Capture         	  |Time
-6  |Confession<br/> Leak|Object<br/>map, document |Space
+<br/>
+
+D6    | Where?              |How?                     |Obstacle?  
+--    |-------------------- |------------------------ |------------------------  
+&nbsp;|**The target**       |**The seed**             |**The complication**
+1     |Person      	        |Casual encounter         |Opposition
+2     |Group   		        |Old acquaintance     	  |Deception
+3     |Location		        |Rumors       		      |Environment
+4     |Treasure         	|Mishap        		      |Disguise
+5     |A device     	    |Capture         	      |Time
+6     |Confession           |Object, map,             |Space
+&nbsp;|Leak                 |document                 |
 
 Example:
 
@@ -113,24 +118,27 @@ The obstacle: Flat open land (rolled 6: Space)
 
 ### Create a character/alter-ego
 
-D6 |Good<br/>at |Known<br/>for	|Have		
----|------------|---------------|---------------
-1  |Strong	|Weapons	|New Tech	
-2  |Witted	|Hacks		|Corp access	
-3  |Charming	|Tech  		|Enemy		
-4  |Quick	|Persuasion	|Secret		
-5  |Focused	|Infiltration	|Disfunction	
-6  |Deft hands	|Tracking	|Wealth		
+D6      |Good           |Known      	|Have		
+--      |---------------|---------------|---------------
+&nbsp;  |**at**         |**for**        |
+1       |Strong	        |Weapons	    |New Tech	
+2       |Witted	        |Hacks		    |Corp access	
+3       |Charming	    |Tech  		    |Enemy		
+4       |Quick	        |Persuasion	    |Secret		
+5       |Focused	    |Infiltration	|Disfunction	
+6       |Deft hands     |Tracking	    |Wealth		
 
+<br/>
 
-D6 |Motivated<br/>by	 |Reputation	|Baggage 
----|---------------------|--------------|------------
-1  |Retribution	 	 |Sly		|Ex-con
-2  |Money	 	 |Consistent	|Blackmailed
-3  |Cure 		 |Driven	|Mental pb
-4  |Social J 	 	 |Efficient	|Physical pb
-5  |Fear		 |Snob		|On-the-Run
-6  |Self-interest	 |Dangerous	|Family
+D6    |Is Motivated       	|Has the 	            |Burdened 
+--    |---------------------|-----------------------|------------
+&nbsp;|**by**               |**Reputation of**&nbsp;|**by**
+1     |Retribution	 	    |Sly		            |Ex-con
+2     |Money	 	        |Consistent	            |Blackmailed
+3     |Cure 		        |Driven	                |Mental pb
+4     |Social J 	 	    |Efficient	            |Physical pb
+5     |Fear		            |Snob		            |On-the-Run
+6     |Self-interest        |Dangerous	            |Family
 
 
 Example:
@@ -230,11 +238,13 @@ We enter the *Go (commitment)* phase and as the PC prepares for the mission,
 the first couple of scenes should make the PC enter an unfamiliar situation
 
 ### Build a Mission: Selecting and designing challenges and activities
+
 Once you have a tentative story outline, it is time to select some real life 
 actions, tasks and things to avoid and map it to scenes in our story.
 Doing and accomplishing real stuff makes the story go forward.
 
 #### 1. Real activities
+
 You make a list of all the tasks you have to do, big or small. 
 Don’t filter or organize the items you add to the list, just write it all down 
 in a list format.
@@ -266,25 +276,28 @@ practice rust code with rustlings
 ```
 
 #### 2. Map activities to Scenes and action play
+
 By maping activities within the game to be in the same spirit as those performed 
 by the player in the real life, we get to evolve both the character and the story
 as the p[layer actually accomplish real life objectives and targets.
 
 ##### Map the story scene to a real life work session or activity
 
-Real life (OC)	| In the Game (IC)
-----------------|---------------------------
-renew licence	| Get new gear
-pay rent	| Rent a van
-appointment to <br/> change winter tire| meeting with the colonel
--               |-                     
-no coffee 	| succesfully dodge the police
-no facebook     | found a spyware tracker
-no elevator     | survived a bar fight while trying to upgrade some gears
--   		| -
-read the third chapter of <br/>The Rust Programming Language book| Gather your team
-do laundry      | Settled the shares and loot division
-practice rust <br/>code | Hack into DMV to get new IDs
+Real life (OC)	    | In the Game (IC)
+--------------------|---------------------------
+renew licence	    | Get new gear
+pay rent	        | Rent a van
+appointment to      | meeting with the colonel
+change winter tire  |
+-                   |-                     
+no coffee 	        | succesfully dodge the police
+no facebook         | found a spyware tracker
+no elevator         | survived a bar fight while trying to upgrade some gears
+-   		        | -
+read chapter 3 of   | Gather your team
+The Rust Programming Language book|
+do laundry          | Settled the shares and loot division
+practice drills     | Hack into DMV to get new IDs
 
 ##### Map story baddees to real life things to avoid
 
@@ -360,8 +373,8 @@ Your power:
 A positive thinker will see the opportunity in every difficulty.” 
 _ Zig Ziglar 
 
-RPG  |  Real Life                   | In Game NPC       | Why 
------|------------------------------|-------------------|---------------------
+RPG |  Real Life                   | In Game NPC       | Why 
+----|------------------------------|-------------------|---------------------
 1   |  Shopping spree               | JudgeMental           | Keep your money
 2   |  Youtube while "working"      | Victimizer            | Protect your time
 3   |  Incomplete task switching    | ringmaster            | Stay on course
@@ -402,7 +415,8 @@ certifications ... Lv is incremented each time a "real" project with "real" cons
 RPG  |  Real Life                   | to measure
 -----|------------------------------|-----------------------------------------
 Xp   |  Skcor completed per  5 days | Time actually used for meaningful things
-Hp   |  Number of "5 days" without <br>breaking the chain  | Current consistency streak
+Hp   |  Number of "5 days" without  | Current consistency streak
+&nbsp;|breaking the chain           |
 Lv   |  Number of project completed | Compounded achievements
 
 
