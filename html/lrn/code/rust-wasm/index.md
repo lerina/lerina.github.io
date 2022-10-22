@@ -34,8 +34,99 @@ It allows you to run WebAssembly WASI binaries as HTTP handlers.
 
 
 ### Learn Wasm
-- the book
-- My no-bloat workflow
+
+#### the book
+
+#### My no-bloat workflow
+
+Wasm with out npm and bundlers is actually quite simple. Unfortunatly its 
+not easy to find complete examples on the web.
+
+- Get the canvas smiley face example from wasm-bindgen.
+
+```bash
+git clone https://github.com/rustwasm/wasm-bindgen/
+cd wasm-bindgen/examples/canvas
+```
+
+- modify index.js
+
+from 
+
+```javascript
+import('./pkg')
+  .catch(console.error);
+```
+
+to
+
+```javascript
+import init from './pkg/canvas.js';
+
+init()
+    .catch(console.error);
+```
+
+- In index.html
+
+add a script tag to bring into scope and specifies that index.js is a module
+
+```html
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
+  </head>
+  <body>
+    <canvas id="canvas" height="150" width="150"></canvas>
+  
+    <script type="module" src="./index.js"></script>
+  </body>
+</html>
+```
+
+- Compile using wasm-pack
+
+```bash
+wasm-pack build --target web
+```
+
+- Finaly 
+
+install something to server your website if you don't have one installed .
+
+```bash
+cargo install http
+```
+
+and serve
+
+```
+http ./
+```
+
+####
+
+I like to keep anything non-rust in `www` so all my wasm project 
+uses this simple script to build and serve.
+
+```bash
+#!/bin/sh
+
+## pre-req a web server
+# cargo install http
+
+## exit on error and  prints each executed command
+set -ex
+
+## compile for plain vanilla no javascript framework 
+wasm-pack build --target web --out-dir www/pkg
+
+## display link for easy access
+echo "Serving at: http://127.0.0.1:8080/html/"
+
+## run the web server
+http -a 127.0.0.1 -p 8080 www
+```
 
 ### Webassembly
 - the book

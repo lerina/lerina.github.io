@@ -12,9 +12,72 @@
     div.column{display: inline-block; vertical-align: top; width: 50%;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
     .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
-  <link rel="stylesheet" href="../../../../css/styling.css" />
+  <link rel="stylesheet" href="https://razafy.com/css/styling.css" />
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -24,6 +87,7 @@
 <ul>
 <li><a href="#rust-wasm-and-webassembly"
 id="toc-rust-wasm-and-webassembly">Rust, Wasm and Webassembly</a></li>
+<li><a href="#about-rust" id="toc-about-rust">About Rust</a></li>
 </ul>
 </nav>
 <div class="navbar">
@@ -31,16 +95,125 @@ id="toc-rust-wasm-and-webassembly">Rust, Wasm and Webassembly</a></li>
 </div>
 <main>
 <h2 id="rust-wasm-and-webassembly">Rust, Wasm and Webassembly</h2>
+<h2 id="about-rust">About Rust</h2>
+<p>Rust is a programming language that’s focused on safety, speed, and
+concurrency. Its design lets you create programs that have the
+performance and control of a low-level language, but with the powerful
+abstractions of a high-level language. These properties make Rust
+suitable for programmers who have experience in languages like C and are
+looking for a safer alternative, as well as those from languages like
+Python who are looking for ways to write code that performs better
+without sacrificing expressiveness. source: the <a
+href="https://doc.rust-lang.org/book/foreword.html">rustbook</a></p>
+<ul>
+<li><p><a href="./code/secure_coding/index.html">more about
+Rust…</a></p></li>
+<li><p>Webassembly: Wasm</p></li>
+</ul>
+<p>“WebAssembly… defines a portable, size- and load-time-efficient
+format and execution model” _ <a
+href="https://blog.mozilla.org/luke/2015/06/17/webassembly/">Luke
+Wagner</a>{taget: _blank}</p>
+<p>WebAssembly is a safe, portable, and low-level binary instruction
+format. Originaly designed to serve as a compilation target for the Web,
+it can also be used to run applications outside of the browser, thanks
+to WASI.</p>
+<ul>
+<li>WASI, the WebAssembly System Interface</li>
+</ul>
+<p>It is a modular collection of standardized APIs. None of the APIs are
+required to be implemented to have a compliant runtime. Instead, host
+environments can choose which APIs make sense for their use cases. For
+instance, filesystem access, environment variable support, and support
+for clocks and random number generators are commonly implemented.</p>
+<ul>
+<li>WAGI: WebAssembly Gateway Interface</li>
+</ul>
+<p>WAGI is a system for building HTTP services with simple WASM+WASI
+modules. It allows you to run WebAssembly WASI binaries as HTTP
+handlers.</p>
 <h3 id="learn-rust">Learn Rust</h3>
 <ul>
-<li>the book</li>
+<li><a href="https://doc.rust-lang.org/book/title-page.html">The
+book</a></li>
+<li>The best youtube resource to learn Rust is <a
+href="https://www.youtube.com/c/LetsGetRusty/playlists">LetsGetRusty</a></li>
 <li>my quick guide</li>
 </ul>
 <h3 id="learn-wasm">Learn Wasm</h3>
+<h4 id="the-book">the book</h4>
+<h4 id="my-no-bloat-workflow">My no-bloat workflow</h4>
+<p>Wasm with out npm and bundlers is actually quite simple. Unfortunatly
+its not easy to find complete examples on the web.</p>
 <ul>
-<li>the book</li>
-<li>My no-bloat workflow</li>
+<li>Get the canvas smiley face example from wasm-bindgen.</li>
 </ul>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/rustwasm/wasm-bindgen/</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> wasm-bindgen/examples/canvas</span></code></pre></div>
+<ul>
+<li>modify index.js</li>
+</ul>
+<p>from</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span>(<span class="st">&#39;./pkg&#39;</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">catch</span>(<span class="bu">console</span><span class="op">.</span><span class="fu">error</span>)<span class="op">;</span></span></code></pre></div>
+<p>to</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> init <span class="im">from</span> <span class="st">&#39;./pkg/canvas.js&#39;</span><span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">init</span>()</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">catch</span>(<span class="bu">console</span><span class="op">.</span><span class="fu">error</span>)<span class="op">;</span></span></code></pre></div>
+<ul>
+<li>In index.html</li>
+</ul>
+<p>add a script tag to bring into scope and specifies that index.js is a
+module</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;html&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;head&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;meta</span> <span class="er">content</span><span class="ot">=</span><span class="st">&quot;text/html;charset=utf-8&quot;</span> <span class="er">http-equiv</span><span class="ot">=</span><span class="st">&quot;Content-Type&quot;</span><span class="kw">/&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/head&gt;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;body&gt;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;canvas</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;canvas&quot;</span> <span class="er">height</span><span class="ot">=</span><span class="st">&quot;150&quot;</span> <span class="er">width</span><span class="ot">=</span><span class="st">&quot;150&quot;</span><span class="kw">&gt;&lt;/canvas&gt;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;module&quot;</span> <span class="er">src</span><span class="ot">=</span><span class="st">&quot;./index.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/body&gt;</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
+<ul>
+<li>Compile using wasm-pack</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">wasm-pack</span> build <span class="at">--target</span> web</span></code></pre></div>
+<ul>
+<li>Finaly</li>
+</ul>
+<p>install something to server your website if you don’t have one
+installed .</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> install http</span></code></pre></div>
+<p>and serve</p>
+<pre><code>http ./</code></pre>
+<h4 id="section"></h4>
+<p>I like to keep anything non-rust in <code>www</code> so all my wasm
+project uses this simple script to build and serve.</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/sh</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">## pre-req a web server</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># cargo install http</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">## exit on error and  prints each executed command</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-ex</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">## compile for plain vanilla no javascript framework </span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="ex">wasm-pack</span> build <span class="at">--target</span> web <span class="at">--out-dir</span> www/pkg</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">## display link for easy access</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;Serving at: http://127.0.0.1:8080/html/&quot;</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co">## run the web server</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="ex">http</span> <span class="at">-a</span> 127.0.0.1 <span class="at">-p</span> 8080 www</span></code></pre></div>
 <h3 id="webassembly">Webassembly</h3>
 <ul>
 <li>the book</li>
