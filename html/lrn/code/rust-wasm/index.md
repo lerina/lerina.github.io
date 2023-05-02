@@ -39,7 +39,7 @@ It allows you to run WebAssembly WASI binaries as HTTP handlers.
 
 #### My no-bloat workflow
 
-Wasm with out npm and bundlers is actually quite simple. Unfortunatly its 
+Wasm without npm and bundlers is actually quite simple. Unfortunately it's 
 not easy to find complete examples on the web.
 
 - Get the canvas smiley face example from wasm-bindgen.
@@ -93,9 +93,12 @@ wasm-pack build --target web
 - Finaly 
 
 install something to server your website if you don't have one installed .
+such as 
+[http](https://github.com/thecoshman/http) 
+or [devserver](https://github.com/kettle11/devserver)
 
 ```bash
-cargo install http
+cargo install https
 ```
 
 and serve
@@ -113,7 +116,7 @@ uses this simple script to build and serve.
 #!/bin/sh
 
 ## pre-req a web server
-# cargo install http
+# cargo install https
 
 ## exit on error and  prints each executed command
 set -ex
