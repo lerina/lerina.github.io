@@ -26,9 +26,15 @@ includes additional help to keep focused one the work in a sustainable way.
 
 ## do the work. 
 
-* Pop the first element of the stack.
+* Pop the first element of the stack. Assign to the register.
 * Pop and do until the stack is empty
 
+## Register
+
+It can be a notepad, a dry-erase board, a mirror ...
+
+* Write down the element poped for the stack
+* Do AFAP (as Fast as possible): Beat the timer
 </main>
 <footer>
   <a href="https://github.com/lerina" target="_blank" title="github">![github](https://razafy.com/img/github32px.png){.link .glow}
