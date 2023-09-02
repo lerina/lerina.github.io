@@ -34,7 +34,7 @@ includes additional help to keep focused one the work in a sustainable way.
 It can be a notepad, a dry-erase board, a mirror ...
 
 * Write down the element poped for the stack
-* Do AFAP (as Fast as possible): Beat the timer
+* Do NOW AFAP (as Fast as Possible): Beat the timer
 </main>
 <footer>
   <a href="https://github.com/lerina" target="_blank" title="github">![github](https://razafy.com/img/github32px.png){.link .glow}

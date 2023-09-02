@@ -39,8 +39,10 @@ We can use this productivity system to power our RPG game.
 ##  Purpose
 
 The purpose of the game is to create a story where your PC progresses 
-only if you complete 9 specific items.
-The completed set of 9 items corresponds to a scene of the character's adventure.
+only if you complete x amount of real-life challenges.
+
+For instance if the challenge is to completed a set of 9 items 
+then will match the completion on these items to a scene from the character's adventure.
 
 - First you select 3 actions to do for the day.
 - Next you select 3 actions **not** to do for the day.
@@ -48,7 +50,8 @@ The completed set of 9 items corresponds to a scene of the character's adventure
 
 These are the 9 Items for the day.
 
-There is one last but optional work to do. 
+If you choose to write down such generated story,
+there is one last but optional work to do. 
 Writing down the scene to grow the story. 
 
 ## Procedure
@@ -478,6 +481,33 @@ For skills that are not your forté you can roll and add these modifiers
 
 > Even    Distracted, not in charge   
 > Odd     Directed focuced, in charge  
+
+## Tips for writing the story arc
+
+The Kishotenketsu (from qichengzhuanhe), a storytelling structure, can actually correspond to the Dan Harmon Story Circle.
+
+Ki (Introduction):
+1. You
+2. Need
+
+Sho (Development):
+3. Go
+4. Search
+
+Ten (Twist):
+5. Find
+6. Take
+
+Ketsu (Conclusion):
+7. Return
+8. Change
+
+In a story, the following might happen:
+
+    Introduction (ki): an introduction to the characters, era, and other information required to understand the plot.
+    Development (shō): follows leads towards the twist in the story. No major changes so far.
+    Twist (ten): the story turns toward an unexpected development. This is the crux of the story, the yama (ヤマ) or climax. If the narrative takes several turns, this is the biggest one.
+    Conclusion (ketsu), also called ochi (落ち) or ending, wraps up the story.
 
 </main>
 
