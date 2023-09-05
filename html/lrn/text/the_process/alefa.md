@@ -20,7 +20,7 @@ Acquire a exclusive lock on your attention (mutex)
 while performing a task previously defined (int 0x80).
 
 [mutex or lock ](https://en.wikipedia.org/wiki/Lock_(computer_science))
-[0x80 is a alias for `do what was previously defined`]().  
+[0x80 is a alias for `do what was previously defined`](https://en.wikipedia.org/wiki/INT_(x86_instruction)).  
 
 The system hold in 3 points.  
 
