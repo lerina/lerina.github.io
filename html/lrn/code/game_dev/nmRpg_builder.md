@@ -387,6 +387,7 @@ RPG |  Real Life                   | In Game NPC       | Why
 6   |  Project without time constraint | TheSiren       | Don't just dream: Do!
 
 ### Progression
+
 We track three things:
 - Time spent on  Deep work.
 - Commitment and consistency.
@@ -427,6 +428,7 @@ Lv   |  Number of project completed | Compounded achievements
 ---
 
 ## Running the game
+
 Everything above could be seen as a productivity tool and story telling engine.
 Real life actions are mapped to in game scenes.
 
@@ -454,6 +456,7 @@ No, and...      You don’t get what you want, and things get worse.          Ta
 
 
 #### DOUBLES AND THE TWIST COUNTER
+
 If you roll twice the same number consecutively, you get to alter the narrative itself.
   
 ```
@@ -467,6 +470,7 @@ D6          Subject                             Action
 ```
 
 ### DETERMINE THE MOOD OF THE NEXT SCENE
+
 When the next scene is not clear, you can start by setting the mood.
 
 ```
@@ -477,6 +481,7 @@ D6          Next Scene
 ```
 
 ###  DISTRACTION and DIRECTION
+
 For skills that are not your forté you can roll and add these modifiers
 
 > Even    Distracted, not in charge   
