@@ -56,21 +56,7 @@ We can use this productivity system to power our RPG game.
 
 ### Binary (ish) questions
 
-
-
 ### DOUBLES AND THE TWIST COUNTER
-
-If you roll twice the same number consecutively, you get to alter the narrative itself.
-  
-```
-D6          Subject                             Action
-1           A 3rd party                         Appears
-2           The hero                            Alters the location
-3           An encounter                        Helps the hero
-4           A physical event                    Hinders the hero
-5           An emotional event                  Changers the goal
-6           An object                           Ends the scene
-```
 
 ### DETERMINE THE MOOD OF THE NEXT SCENE
 
