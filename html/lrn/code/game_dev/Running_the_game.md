@@ -38,4 +38,14 @@ D6          Subject                             Action
 5           An emotional event                  Changers the goal
 6           An object                           Ends the scene
 ```
+### DETERMINE THE MOOD OF THE NEXT SCENE
+
+When the next scene is not clear, you can start by setting the mood.
+
+```
+D6          Next Scene
+1-3         Dramatic Scene
+4-5         Quite Scene 
+6           Meanwhile
+```
 

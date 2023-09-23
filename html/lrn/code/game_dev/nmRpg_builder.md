@@ -60,15 +60,6 @@ We can use this productivity system to power our RPG game.
 
 ### DETERMINE THE MOOD OF THE NEXT SCENE
 
-When the next scene is not clear, you can start by setting the mood.
-
-```
-D6          Next Scene
-1-3         Dramatic Scene
-4-5         Quite Scene 
-6           Meanwhile
-```
-
 ###  DISTRACTION and DIRECTION
 
 For skills that are not your forté you can roll and add these modifiers
