@@ -62,11 +62,6 @@ We can use this productivity system to power our RPG game.
 
 ###  DISTRACTION and DIRECTION
 
-For skills that are not your forté you can roll and add these modifiers
-
-> Even    Distracted, not in charge   
-> Odd     Directed focuced, in charge  
-
 ## Tips for writing the story arc
 
 The Kishotenketsu (from qichengzhuanhe), a storytelling structure, can actually correspond to the Dan Harmon Story Circle.

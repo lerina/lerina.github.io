@@ -48,4 +48,11 @@ D6          Next Scene
 4-5         Quite Scene 
 6           Meanwhile
 ```
+###  DISTRACTION and DIRECTION
+
+For skills that are not your forté you can roll and add these modifiers
+
+> Even    Distracted, not in charge   
+> Odd     Directed focuced, in charge  
+
 
