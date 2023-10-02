@@ -28,9 +28,11 @@ Given a set of Tasks,
 </div></div></div>
 </div>
 
-This is the core of The personal productivity system called `thrust`
+
+
 
 [more about the `thrust` Productivity System](../../text/the_process/thrust_productivity_system.html){target=_blank}
+
 
 ## thrust RPG Gamification
 
