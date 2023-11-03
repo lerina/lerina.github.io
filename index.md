@@ -56,9 +56,10 @@ style="background-image: url('img/secureCodeDevelopment.jpg')"><a href="./html/l
 style="background-image: url('img/coding_math.jpg')"><a href="./html/lrn/text/index.html"><p>Dev Notes</p></a></div>
 <div class="card"
 style="background-image: url('img/rustbridge-paris.jpg')"><a href="./html/lrn/code/game_dev/index.html"><p>Game Dev</p></a></div>
-<!--
+
 <div class="card card-wide"
 style="background-image: url('img/theView3.jpg')"><a href="./html/nosy_malagasy/index.html"><p>Discover Nosy Malagasy</p></a></div>
+<!--
 <div class="card"
 style="background-image: url('img/rain.jpg')"><a href="./html/lrn/beloha/index.html"><p>Beloha:<br/>a webnovel</p></a></div>
 -->
