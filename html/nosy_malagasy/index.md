@@ -13,11 +13,13 @@
 
 ### Sakafo
 
-### Learn Malagasy with Nirina
+### Learn Malagasy
 
 #### Course
 
-#### [Malagasy Grammar](../nosy_malagasy/grammar.html)
+- [Lesona_001-007](./lesona/Lesona_001-007.html)
+
+#### [Malagasy Grammar](./grammar.html)
 
 
 <!-- 
