@@ -1176,3 +1176,13 @@ background-repeat: no-repeat;
   background-color: #444;
 }
 
+
+/* code line numbers ```{.rust .numberLines startFrom="20"} 
+   up to 99 only to keep max line length for code
+*/
+@media screen {
+ pre > code.sourceCode > span > a:first-child::before { text-decoration: none; }
+ pre.numberSource { margin-left:1em; }
+ pre.numberSource code > span > a:first-child::before { padding: 0;}
+}
+
