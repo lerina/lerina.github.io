@@ -56,11 +56,11 @@ This is Reflective equilibrium applied to software development.
 
 </main>
 <footer>
-  <a href="https://github.com/lerina" target="_blank" title="github">![github](https://razafy.com/img/github32px.png){.link .glow}
+  <a href="https://github.com/lerina" target="_blank" title="github">![github](https://lerina.github.io/img/github32px.png){.link .glow}
   </a>
 </footer>
 
-<script src="https://razafy.com/js/toc.js"></script>
+<script src="https://lerina.github.io/js/toc.js"></script>
 <script>
 let anchor= document.createElement('a');
 anchor.href="javascript:closeNav()"; //void(0)"; //anchor[0].onclick = closeNav();

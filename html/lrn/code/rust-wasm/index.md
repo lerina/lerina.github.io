@@ -137,7 +137,7 @@ http -a 127.0.0.1 -p 8080 www
 
 </main>
 
-<script src="https://razafy.com/js/toc.js"></script>
+<script src="https://lerina.github.io/js/toc.js"></script>
 <script>
 let anchor= document.createElement('a');
 anchor.href="javascript:closeNav()"; //void(0)"; //anchor[0].onclick = closeNav();

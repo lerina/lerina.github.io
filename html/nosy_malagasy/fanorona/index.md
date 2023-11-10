@@ -1,4 +1,4 @@
-⇦ [razafy.com](../../index.html)  - [Nosy Malagasy](../index.html)
+⇦ [lerina.github.io](../../index.html)  - [Nosy Malagasy](../index.html)
 
 <canvas id="sivy" height="250" width="350"></canvas>
 <script type="module">
@@ -13,6 +13,6 @@
 </script>
 
 <footer>
-  <a href="https://github.com/lerina" target="_blank" title="github">![github](https://razafy.com/img/github32px.png){.link .glow}
+  <a href="https://github.com/lerina" target="_blank" title="github">![github](https://lerina.github.io/img/github32px.png){.link .glow}
   </a>
 </footer>

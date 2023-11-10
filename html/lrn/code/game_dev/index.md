@@ -1,6 +1,6 @@
 <div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
 <main>
-⇦ [razafy.com](../../../../index.html)  - [lerina](../../index.html) - [code](../index.html)  
+⇦ [lerina.github.io](../../../../index.html)  - [lerina](../../index.html) - [code](../index.html)  
 
 ## Game Dev
 
@@ -41,7 +41,7 @@ Select a Task. Set your Timer. Start!
 -- coming soon --
 
 </main>
-<script src="https://razafy.com/js/toc.js"></script>
+<script src="https://lerina.github.io/js/toc.js"></script>
 <script>
 let anchor= document.createElement('a');
 anchor.href="javascript:closeNav()"; //void(0)"; //anchor[0].onclick = closeNav();
