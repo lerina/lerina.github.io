@@ -12,21 +12,28 @@
 <div class="image-mosaic">
 <div class="card card-tall card-wide">
 <div class="mosaic-hover-menu"  id="the_cure" ><p>A cure <br/>for insecure <br/>code</p><div style="font-size: 1rem;">
-<a href="./html/lrn/code/secure_coding/index.html">Rust and Friends</a>
-<a href="./html/lrn/code/secure_coding/index.html#memory_safe">Safety first</a>
-<a href="./html/lrn/code/secure_coding/index.html#blasingly_fast">Blazingly fast</a>
-<a href="./html/lrn/code/secure_coding/index.html#modern_tools">Modern tools</a>
+<a href="./html/code/secure_coding/index.html">
+Rust and Friends<br/>
+Safety first<br/>
+Blazingly fast
+Modern tools
+</a>
+<!--
+<a href="./html/code/secure_coding/index.html#memory_safe">Safety first</a>
+<a href="./html/code/secure_coding/index.html#blasingly_fast">Blazingly fast</a>
+<a href="./html/code/secure_coding/index.html#modern_tools">Modern tools</a>
+-->
 </div>
 </div><!--^-- mosaic-hover-menu -->
 </div>
 <div class="card card-tall"
-style="background-image: url('img/writing.jpg')"><a href="./html/lrn/code/rust-wasm/index.html"><p>Learn <br/>Rust-Wasm<br/>& Webassembly</p></a></div>
+style="background-image: url('img/writing.jpg')"><a href="./html/code/rust-wasm/index.html"><p>Learn <br/>Rust-Wasm<br/>& Webassembly</p></a></div>
 <div class="card"
-style="background-image: url('img/secureCodeDevelopment.jpg')"><a href="./html/lrn/code/coding_math/index.html"><p>Coding Math</p></a></div>
+style="background-image: url('img/secureCodeDevelopment.jpg')"><a href="./html/code/coding_math/index.html"><p>Coding Math</p></a></div>
 <div class="card"
 style="background-image: url('img/coding_math.jpg')"><a href="./html/lrn/text/index.html"><p>Dev Notes</p></a></div>
 <div class="card"
-style="background-image: url('img/rustbridge-paris.jpg')"><a href="./html/lrn/code/game_dev/index.html"><p>Game Dev</p></a></div>
+style="background-image: url('img/rustbridge-paris.jpg')"><a href="./html/code/game_dev/index.html"><p>Game Dev</p></a></div>
 
 <div class="card card-wide"
 style="background-image: url('img/theView3.jpg')"><a href="./html/nosy_malagasy/index.html"><p>Discover Nosy Malagasy</p></a></div>

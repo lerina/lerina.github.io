@@ -192,8 +192,7 @@ navCrumbs.className = "hover-nav";
 navCrumbs.innerHTML = `
 <div class="hover-nav">
 <ul>
-<li><a href="../../../../index.html">⇦ home</a></li>
-<li><a href="../../index.html">lerina</a></li>
+<li><a href="../../../index.html">⇦ home</a></li>
 <li><a href="../index.html">code</a></li>
 <li><a href="./index.html">coding math</a></li>
 </ul>

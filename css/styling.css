@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 @import url(https://fonts.googleapis.com/css?family=Tangerine);
-/*@import url('https://font.googleapis.com/css2?family=Inconsolata:wght@200;400&display=swap');*/
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wdth@66.6&display=swap');
 @font-face {font-family: 'Inconsolata_local';src: url(../fonts/Inconsolata-Regular.ttf);}
 html, body {height: 100%;margin: 0; padding: 0}
@@ -24,17 +23,7 @@ a:active {
 }
 
 
-/* ## [Fluid typography](https://www.30secondsofcode.org/css/s/fluid-typography) 
-<p class="fluid-type">
-```css
-.sourceLine, .fluid-type { 
-font-size: clamp(1rem, 8vw - 2rem, 3rem);
-}
-```
-</p>
-*/
 .sourceLine, .fluid-type {
-/*font-size: clamp(1rem, 6vw - 2rem, 3rem);*/
 font-size: clamp(0.75rem, -0.875rem + 3.333vw, 1.5rem);
 text-align:left;
 }
@@ -61,10 +50,6 @@ main {
 margin: 0 auto;
 max-width: 940px;
 font-size: calc(0.75em + 1vmin);
-/*
-margin-top:2em;
-padding: 3em;
-*/
 }
 main h2 {padding-top:2em;}
 
@@ -312,11 +297,6 @@ transform: scale(1);
   position: relative;
   overflow: hidden;
   margin: 0;
-/*
-  min-width: 340px;
-  max-width: 480px;
-  max-height: 290px;
-*/
   width: 100%;
   height: 100%;
   background: #000;
@@ -407,10 +387,6 @@ display: flex;
     <div class="card card-tall"
     style="background-image: url('https://picsum.photos/id/566/800/530')"></div>
     <div class="card"
-    style="background-image: url('https://picsum.photos/id/575/800/530')"></div>
-    <div class="card"
-    style="background-image: url('https://picsum.photos/id/626/800/530')"></div>
-    <div class="card"
     style="background-image: url('https://picsum.photos/id/667/800/530')"></div>
     <div class="card"
     style="background-image: url('https://picsum.photos/id/678/800/530')"></div>
@@ -418,14 +394,6 @@ display: flex;
     style="background-image: url('https://picsum.photos/id/695/800/530')"></div>
     <div class="card"
     style="background-image: url('https://picsum.photos/id/683/800/530')"></div>
-    <div class="card"
-    style="background-image: url('https://picsum.photos/id/693/800/530')"></div>
-    <div class="card"
-    style="background-image: url('https://picsum.photos/id/715/800/530')"></div>
-    <div class="card"
-    style="background-image: url('https://picsum.photos/id/610/800/530')"></div>
-    <div class="card"
-    style="background-image: url('https://picsum.photos/id/599/800/530')"></div>
 </div>
 */
 .image-mosaic {
@@ -641,8 +609,6 @@ margin-top: -80px;
 padding: 8px 12px 0;
 }
 
-
-
 .card2 {
 width: 100%;
 height: 350px;
@@ -702,8 +668,6 @@ padding: 8px 12px 0;
 }
 
 
-
-
 /* ## Rotating Card for flashcards ...
 <div class="rcard">
     <div class="rcard-side front">
@@ -755,8 +719,6 @@ transform: rotateY(180deg);
 .rcard:hover .rcard-side.back {
 transform: rotateY(0deg);
 }
-
-
 
 
 /* ## Image zoom rotate on hover
@@ -1047,7 +1009,6 @@ color: #5f79ff;
 }
 
 .text .btn { position:absolute; bottom:0;margin: 0.25rem 0.25rem 0.45rem 0rem;} 
-/*.btn a {color:#fff;} .btn:visited {color:#fff;}*/
 
 /* footer avatar */
 
@@ -1066,30 +1027,6 @@ footer p {
     padding:8px;
     margin-top: -12px;
 }
-
-/*
-footer section {
-  display: flex
-  background: #333;
-  color: #999;
-  font-family: sans-serif;
-}
-footer section ul {
-  list-style: none;
-  display: block;
-  float: left;
-}
-footer section h3 {
-  font-weight: 100;
-  margin-bottom: 0;
-}
-.pink{color: pink;}
-.red{color: red;}
-.orange{color: orange;}
-.green{color: green;}
-
-*/
-
 
 #avatar {
     /* This image is 687 wide by 1024 tall, similar to your aspect ratio */

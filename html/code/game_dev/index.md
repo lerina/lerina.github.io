@@ -1,6 +1,6 @@
 <div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
 <main>
-⇦ [lerina.github.io](../../../../index.html)  - [lerina](../../index.html) - [code](../index.html)  
+⇦ [lerina.github.io](../../../index.html) - [code](../index.html)  
 
 ## Game Dev
 
@@ -54,8 +54,7 @@ navCrumbs.className = "hover-nav";
 navCrumbs.innerHTML = `
 <div class="hover-nav">
 <ul>
-<li><a href="../../../../index.html">⇦ home</a></li>
-<li><a href="../../index.html">lerina</a></li>
+<li><a href="../../../index.html">⇦ home</a></li>
 <li><a href="../index.html">code</a></li>
 </ul>
 </div>`;
