@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>index index</title>
   <style>
-    code{white-space: pre-wrap;}
+    code{white-space: pre-wrap; }
     span.smallcaps{font-variant: small-caps;}
     span.underline{text-decoration: underline;}
     div.column{display: inline-block; vertical-align: top; width: 50%;}
@@ -77,7 +77,7 @@
     code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
     .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
-  <link rel="stylesheet" href="https://lerina.github.io/css/styling.css" />
+  <link rel="stylesheet" href="./foana.css" />
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -143,8 +143,8 @@ href="https://www.youtube.com/c/LetsGetRusty/playlists">LetsGetRusty</a></li>
 <h3 id="learn-wasm">Learn Wasm</h3>
 <h4 id="the-book">the book</h4>
 <h4 id="my-no-bloat-workflow">My no-bloat workflow</h4>
-<p>Wasm with out npm and bundlers is actually quite simple. Unfortunatly
-its not easy to find complete examples on the web.</p>
+<p>Wasm without npm and bundlers is actually quite simple. Unfortunately
+it’s not easy to find complete examples on the web.</p>
 <ul>
 <li>Get the canvas smiley face example from wasm-bindgen.</li>
 </ul>
@@ -170,16 +170,16 @@ class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb3-
 <p>add a script tag to bring into scope and specifies that index.js is a
 module</p>
 <div class="sourceCode" id="cb4"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;html&gt;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;head&gt;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;meta</span> <span class="er">content</span><span class="ot">=</span><span class="st">&quot;text/html;charset=utf-8&quot;</span> <span class="er">http-equiv</span><span class="ot">=</span><span class="st">&quot;Content-Type&quot;</span><span class="kw">/&gt;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/head&gt;</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;body&gt;</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;canvas</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;canvas&quot;</span> <span class="er">height</span><span class="ot">=</span><span class="st">&quot;150&quot;</span> <span class="er">width</span><span class="ot">=</span><span class="st">&quot;150&quot;</span><span class="kw">&gt;&lt;/canvas&gt;</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;module&quot;</span> <span class="er">src</span><span class="ot">=</span><span class="st">&quot;./index.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/body&gt;</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
+class="sourceCode numberSource html numberLines"><code class="sourceCode html"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">&lt;html&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="kw">&lt;head&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>    <span class="kw">&lt;meta</span> <span class="er">content</span><span class="ot">=</span><span class="st">&quot;text/html;charset=utf-8&quot;</span> <span class="er">http-equiv</span><span class="ot">=</span><span class="st">&quot;Content-Type&quot;</span><span class="kw">/&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>  <span class="kw">&lt;/head&gt;</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>  <span class="kw">&lt;body&gt;</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a>    <span class="kw">&lt;canvas</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;canvas&quot;</span> <span class="er">height</span><span class="ot">=</span><span class="st">&quot;150&quot;</span> <span class="er">width</span><span class="ot">=</span><span class="st">&quot;150&quot;</span><span class="kw">&gt;&lt;/canvas&gt;</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>  </span>
+<span id="cb4-8"><a href="#cb4-8"></a>    <span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;module&quot;</span> <span class="er">src</span><span class="ot">=</span><span class="st">&quot;./index.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a>  <span class="kw">&lt;/body&gt;</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
 <ul>
 <li>Compile using wasm-pack</li>
 </ul>
@@ -189,11 +189,14 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="
 <li>Finaly</li>
 </ul>
 <p>install something to server your website if you don’t have one
-installed .</p>
+installed . such as <a
+href="https://github.com/thecoshman/http">http</a> or <a
+href="https://github.com/kettle11/devserver">devserver</a></p>
 <div class="sourceCode" id="cb6"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> install http</span></code></pre></div>
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> install https</span></code></pre></div>
 <p>and serve</p>
-<pre><code>http ./</code></pre>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">http</span> ./</span></code></pre></div>
 <h4 id="section"></h4>
 <p>I like to keep anything non-rust in <code>www</code> so all my wasm
 project uses this simple script to build and serve.</p>
@@ -201,7 +204,7 @@ project uses this simple script to build and serve.</p>
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/sh</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">## pre-req a web server</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># cargo install http</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># cargo install https</span></span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">## exit on error and  prints each executed command</span></span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-ex</span></span>
@@ -218,7 +221,66 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="
 <ul>
 <li>the book</li>
 <li>A fun dive into Webassembly</li>
+<li>other <code>resources</code> elsewhere</li>
 </ul>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode numberSource rust numberLines"><code class="sourceCode rust"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">use</span> <span class="pp">std::</span><span class="dt">f64</span><span class="op">;</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="kw">use</span> <span class="pp">wasm_bindgen::prelude::</span><span class="op">*;</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="kw">use</span> <span class="pp">wasm_bindgen::</span>JsCast<span class="op">;</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="at">#[</span>wasm_bindgen<span class="at">(</span>start<span class="at">)]</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a><span class="kw">pub</span> <span class="kw">fn</span> start() <span class="op">{</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a>    <span class="kw">let</span> c <span class="op">=</span> <span class="ch">&#39;A&#39;</span><span class="op">;</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a>    <span class="kw">let</span> document <span class="op">=</span> <span class="pp">web_sys::</span>window()<span class="op">.</span>unwrap()<span class="op">.</span>document()<span class="op">.</span>unwrap()<span class="op">;</span></span>
+<span id="cb9-9"><a href="#cb9-9"></a>    <span class="kw">let</span> canvas <span class="op">=</span> document<span class="op">.</span>get_element_by_id(<span class="st">&quot;canvas002&quot;</span>)<span class="op">.</span>unwrap()<span class="op">;</span></span>
+<span id="cb9-10"><a href="#cb9-10"></a>    <span class="kw">let</span> canvas<span class="op">:</span> <span class="pp">web_sys::</span>HtmlCanvasElement <span class="op">=</span> canvas</span>
+<span id="cb9-11"><a href="#cb9-11"></a>        <span class="op">.</span><span class="pp">dyn_into::</span><span class="op">&lt;</span><span class="pp">web_sys::</span>HtmlCanvasElement<span class="op">&gt;</span>()</span>
+<span id="cb9-12"><a href="#cb9-12"></a>        <span class="op">.</span>map_err(<span class="op">|</span>_<span class="op">|</span> ())</span>
+<span id="cb9-13"><a href="#cb9-13"></a>        <span class="op">.</span>unwrap()<span class="op">;</span></span>
+<span id="cb9-14"><a href="#cb9-14"></a>    <span class="kw">let</span> width <span class="op">=</span> <span class="dv">1024</span><span class="op">;</span></span>
+<span id="cb9-15"><a href="#cb9-15"></a>    <span class="kw">let</span> height <span class="op">=</span> <span class="dv">1024</span><span class="op">;</span></span>
+<span id="cb9-16"><a href="#cb9-16"></a>    canvas<span class="op">.</span>set_width(width)<span class="op">;</span></span>
+<span id="cb9-17"><a href="#cb9-17"></a>    canvas<span class="op">.</span>set_height(height)<span class="op">;</span></span>
+<span id="cb9-18"><a href="#cb9-18"></a></span>
+<span id="cb9-19"><a href="#cb9-19"></a>    <span class="kw">let</span> context <span class="op">=</span> canvas</span>
+<span id="cb9-20"><a href="#cb9-20"></a>        <span class="op">.</span>get_context(<span class="st">&quot;2d&quot;</span>)</span>
+<span id="cb9-21"><a href="#cb9-21"></a>        <span class="op">.</span>unwrap()</span>
+<span id="cb9-22"><a href="#cb9-22"></a>        <span class="op">.</span>unwrap()</span>
+<span id="cb9-23"><a href="#cb9-23"></a>        <span class="op">.</span><span class="pp">dyn_into::</span><span class="op">&lt;</span><span class="pp">web_sys::</span>CanvasRenderingContext2d<span class="op">&gt;</span>()</span>
+<span id="cb9-24"><a href="#cb9-24"></a>        <span class="op">.</span>unwrap()<span class="op">;</span></span>
+<span id="cb9-25"><a href="#cb9-25"></a></span>
+<span id="cb9-26"><a href="#cb9-26"></a>    context<span class="op">.</span>fill_rect(<span class="dv">0.0</span><span class="op">,</span><span class="dv">0.0</span><span class="op">,</span>width <span class="kw">as</span> <span class="dt">f64</span><span class="op">,</span> height <span class="kw">as</span> <span class="dt">f64</span>)<span class="op">;</span></span>
+<span id="cb9-27"><a href="#cb9-27"></a>    </span>
+<span id="cb9-28"><a href="#cb9-28"></a>    <span class="kw">let</span> color <span class="op">=</span> <span class="pp">JsValue::</span>from_str(<span class="st">&quot;#ff0000&quot;</span>)<span class="op">;</span></span>
+<span id="cb9-29"><a href="#cb9-29"></a>    context<span class="op">.</span>set_fill_style(<span class="op">&amp;</span>color)<span class="op">;</span> <span class="co">// rect uses fill not stroke.</span></span>
+<span id="cb9-30"><a href="#cb9-30"></a></span>
+<span id="cb9-31"><a href="#cb9-31"></a>    context<span class="op">.</span>translate(<span class="dv">0.0</span><span class="op">,</span> height <span class="kw">as</span> <span class="dt">f64</span> <span class="op">/</span><span class="dv">2.0</span> )<span class="op">;</span></span>
+<span id="cb9-32"><a href="#cb9-32"></a>    context<span class="op">.</span>scale(<span class="dv">1.0</span><span class="op">,</span> <span class="op">-</span><span class="dv">1.0</span>)<span class="op">;</span> <span class="co">// direction: go up then down</span></span>
+<span id="cb9-33"><a href="#cb9-33"></a></span>
+<span id="cb9-34"><a href="#cb9-34"></a></span>
+<span id="cb9-35"><a href="#cb9-35"></a>    <span class="kw">let</span> PI2 <span class="op">=</span> <span class="dv">1024</span><span class="op">;</span> <span class="dv">31415926</span> <span class="op">*</span><span class="dv">2</span><span class="op">;</span> <span class="co">// Mountain then Valley</span></span>
+<span id="cb9-36"><a href="#cb9-36"></a><span class="co">/*</span></span>
+<span id="cb9-37"><a href="#cb9-37"></a><span class="co">    for angle in (0..PI2).step_by(100000){ // there is only so many pixels we can see. </span></span>
+<span id="cb9-38"><a href="#cb9-38"></a><span class="co">        // Rust does not allow iterating over a range of f32 or f64. </span></span>
+<span id="cb9-39"><a href="#cb9-39"></a><span class="co">        // Instead, it forces you to use integral steps</span></span>
+<span id="cb9-40"><a href="#cb9-40"></a><span class="co">        // ajusting the decimal point</span></span>
+<span id="cb9-41"><a href="#cb9-41"></a><span class="co">        let angle = angle as f64 * 0.0000001  ;        </span></span>
+<span id="cb9-42"><a href="#cb9-42"></a><span class="co">        let x = angle * 160.0;</span></span>
+<span id="cb9-43"><a href="#cb9-43"></a><span class="co">        let y = angle.sin() * 160.0; </span></span>
+<span id="cb9-44"><a href="#cb9-44"></a><span class="co">        </span></span>
+<span id="cb9-45"><a href="#cb9-45"></a><span class="co">        </span></span>
+<span id="cb9-46"><a href="#cb9-46"></a><span class="co">        context.fill_rect(x, y, 5.0, 5.0);</span></span>
+<span id="cb9-47"><a href="#cb9-47"></a><span class="co">   }</span></span>
+<span id="cb9-48"><a href="#cb9-48"></a><span class="co">*/</span></span>
+<span id="cb9-49"><a href="#cb9-49"></a></span>
+<span id="cb9-50"><a href="#cb9-50"></a>    <span class="cf">for</span> angle <span class="kw">in</span> (<span class="dv">0</span><span class="op">..</span>PI2)<span class="op">.</span>step_by(<span class="dv">2</span>)<span class="op">.</span>map(<span class="op">|</span>x<span class="op">|</span> x <span class="kw">as</span> <span class="dt">f64</span> <span class="op">*</span> <span class="dv">0.01</span>) <span class="op">{</span>      </span>
+<span id="cb9-51"><a href="#cb9-51"></a>        <span class="kw">let</span> x <span class="op">=</span> angle <span class="op">*</span> <span class="dv">160.0</span><span class="op">;</span></span>
+<span id="cb9-52"><a href="#cb9-52"></a>        <span class="kw">let</span> y <span class="op">=</span> angle<span class="op">.</span>sin() <span class="op">*</span> <span class="dv">160.0</span><span class="op">;</span> </span>
+<span id="cb9-53"><a href="#cb9-53"></a>        </span>
+<span id="cb9-54"><a href="#cb9-54"></a>        context<span class="op">.</span>fill_rect(x<span class="op">,</span> y<span class="op">,</span> <span class="dv">5.0</span><span class="op">,</span> <span class="dv">5.0</span>)<span class="op">;</span></span>
+<span id="cb9-55"><a href="#cb9-55"></a>   <span class="op">}</span></span>
+<span id="cb9-56"><a href="#cb9-56"></a></span>
+<span id="cb9-57"><a href="#cb9-57"></a><span class="op">}</span></span></code></pre></div>
 </main>
 <script src="https://lerina.github.io/js/toc.js"></script>
 <script>
