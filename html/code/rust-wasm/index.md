@@ -1,41 +1,41 @@
 <div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
 <main>
+> These pages are dedicated to Understanding and developing in Rust/wasm without bloat or bundles.
 
-## Rust, Wasm and Webassembly
+If you need to learn Rust or unrust your Rust these are you best free options.
 
-## About Rust
-
-Rust is a programming language that’s focused on safety, speed, and concurrency. Its design lets you create programs that have the performance and control of a low-level language, but with the powerful abstractions of a high-level language. These properties make Rust suitable for programmers who have experience in languages like C and are looking for a safer alternative, as well as those from languages like Python who are looking for ways to write code that performs better without sacrificing expressiveness.  source: the [rustbook](https://doc.rust-lang.org/book/foreword.html)
-
-- [more about Rust...](./code/secure_coding/index.html)  
-
-- Webassembly: Wasm
-
-"WebAssembly... defines a portable, size- and load-time-efficient format and execution model" _ [Luke Wagner](https://blog.mozilla.org/luke/2015/06/17/webassembly/){taget: _blank}
-
-WebAssembly  is a safe, portable, and low-level binary instruction format.
-Originaly designed to serve as a compilation target for the Web, 
-it can also be used to run applications outside of the browser, thanks to WASI.
-
-- WASI, the WebAssembly System Interface
-
-It is a modular collection of standardized APIs. None of the APIs are required to be implemented to have a compliant runtime. Instead, host environments can choose which APIs make sense for their use cases.
-For instance, filesystem access, environment variable support, and support for clocks and random number generators are commonly implemented.
-
-- WAGI: WebAssembly Gateway Interface 
-
-WAGI is a system for building HTTP services with simple WASM+WASI modules. 
-It allows you to run WebAssembly WASI binaries as HTTP handlers. 
-
-### Learn Rust
 - [The book](https://doc.rust-lang.org/book/title-page.html)
 - The best youtube resource to learn Rust is [LetsGetRusty](https://www.youtube.com/c/LetsGetRusty/playlists)
-- my quick guide
 
+## Motivation
+ 
+I was an "ex-" 'C' programmer due to my academic background 
+and a professional Python developer due to my job until I drank the Cool-aid and fell for the
+Rust evangelism.  When webassembly started to be a thing, Rust kept poping up as the Language of choice
+to build webassembly/JavaScript apps for the web or target some specific module that need speeding, memory safety, or both.
+
+To my dismay most tutorial including the official one lean heavily on NPM and co. workflow.
+I was a Django guy, I didn't even have an up to date Node on my system.
+
+Do I really need all these things to just have something writen in Rust, compiled into wasm and integrated with 
+plain vanilla JavaScript and HTML/css?
+Good news, the answer is No!  
+Less joyful news however is that information on programming Rust-wasm without bloat is scarces. 
+Findind a paragraph or two about it brings excitement to the lonely searcher.
+
+- 2019-05-25 [WASM in Rust without NodeJS](https://dev.to/dandyvica/wasm-in-rust-without-nodejs-2e0c)
+- 2022-02-14 [Frontend Rust Without Node](https://blog.urth.org/2022/02/14/frontend-rust-without-node/)
+- 2022-03-10 [Rust/Wasm without npm](https://lionturkey.github.io/posts/rustwasm/rustwasm.html)
+
+Of course one should not dismiss the official [Rust 🦀 and WebAssembly] small book that describes how to use Rust and WebAssembly together.
+Or MDN's [Compiling from Rust to WebAssembly](https://developer.mozilla.org/en-US/docs/WebAssembly/Rust_to_Wasm)
+
+[Welcome to the wasm-pack docs!](https://rustwasm.github.io/docs/wasm-pack/introduction.html)  
+[trunkrs.dev](https://trunkrs.dev/)  
 
 ### Learn Wasm
 
-#### the book
+#### The tools
 
 #### My no-bloat workflow
 
@@ -92,9 +92,9 @@ wasm-pack build --target web
 
 - Finaly 
 
-install something to server your website if you don't have one installed .
+install something to serve your website if you don't have one installed .
 such as 
-[http](https://github.com/thecoshman/http) 
+[http](https://github.com/thecoshman/http)  
 or [devserver](https://github.com/kettle11/devserver)
 
 ```bash
@@ -138,7 +138,9 @@ http -a 127.0.0.1 -p 8080 www
 - A fun dive into Webassembly 
 - other `resources` elsewhere
 
-```{.rust .numberLines}
+```rust
+// src/browser.rs
+
 use anyhow::{anyhow, Result};
 use std::future::Future;
 use wasm_bindgen::closure::{Closure, WasmClosureFnOnce, WasmClosure};
@@ -366,7 +368,6 @@ navCrumbs.innerHTML = `
 <div class="hover-nav">
 <ul>
 <li><a href="../../../../index.html">⇦ home</a></li>
-<li><a href="../../index.html">lerina</a></li>
 <li><a href="../index.html">code</a></li>
 </ul>
 </div>`;
