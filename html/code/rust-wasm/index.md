@@ -32,11 +32,12 @@ Findind a paragraph or two about it brings excitement to the lonely searcher.
 Of course one should not dismiss the official [Rust 🦀 and WebAssembly] small book that describes how to use Rust and WebAssembly together.
 Or MDN's [Compiling from Rust to WebAssembly](https://developer.mozilla.org/en-US/docs/WebAssembly/Rust_to_Wasm)
 
-[wasm-bindgen: without-a-bundler](https://rustwasm.github.io/docs/wasm-bindgen/examples/without-a-bundler.html)
-Actually has everyting you need to get started with rust-wasm without NPM, ...
+The documentation for [wasm-bindgen: without-a-bundler](https://rustwasm.github.io/docs/wasm-bindgen/examples/without-a-bundler.html)
+actually has everyting you need to get started with rust-wasm without NPM, ...
+
 Unfortunatly if you don't know what you are looking at your still clueless in the end.
 
-here is an example
+Here is an example
 
 ```
 Without a Bundler
@@ -54,7 +55,13 @@ The CLI also supports an output mode called --target no-modules which is similar
 ```
 
 What do you really do with that? Ironicaly its actually very clear once you know and don't need these kind of 
-information. 
+information. The problem is the infomation is squatered all over the place.
+
+> These pages brings under one location all those bits and pieces you want to know in order to understand and build wasm stuff with Rust. 
+
+### Learn Wasm
+
+#### The tools
 
 Webassembly is still a moving target and some tools and convenient crates make the experience more appealing.
 
@@ -73,14 +80,11 @@ We'll use and get familliar with the following tools and crates:
 [trunkrs.dev](https://trunkrs.dev/)  
 -->
 
-### Learn Wasm
 
-#### The tools
-
-#### My no-bloat workflow
+#### A no-bloat workflow
 
 Wasm without npm and bundlers is actually quite simple. Unfortunately it's 
-not easy to find complete examples on the web.
+not easy to find **complete examples** on the web.
 
 - Get the canvas smiley face example from wasm-bindgen.
 
