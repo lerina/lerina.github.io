@@ -9,13 +9,15 @@ If you need to learn Rust or unrust your Rust these are you best free options.
 
 ## Motivation
  
-I was an "ex-" 'C' programmer due to my academic background 
-and a professional Python developer due to my job until I drank the Cool-aid and fell for the
-Rust evangelism.  When webassembly started to be a thing, Rust kept poping up as the Language of choice
-to build webassembly/JavaScript apps for the web or target some specific module that need speeding, memory safety, or both.
+Sometime back Rust kept popping up on my radar.  
+I drank the Cool-aid and fell for the Rust evangelism.  
+I love the language. It make programming fun again. 
+When webassembly started to be a thing, once again Rust kept popping up as the Language of choice
+to build webassembly/JavaScript apps for the web or target some specific module that need speeding, 
+memory safety, or both.
 
-To my dismay most tutorial including the official one lean heavily on NPM and co. workflow.
-I was a Django guy, I didn't even have an up to date Node on my system.
+To my dismay however, most tutorial including the official one lean heavily on "NPM and co". 
+I just wanted to wrap my head around the Rust thing, I didn't even have an up to date Node on my system.
 
 Do I really need all these things to just have something writen in Rust, compiled into wasm and integrated with 
 plain vanilla JavaScript and HTML/css?
@@ -30,8 +32,46 @@ Findind a paragraph or two about it brings excitement to the lonely searcher.
 Of course one should not dismiss the official [Rust 🦀 and WebAssembly] small book that describes how to use Rust and WebAssembly together.
 Or MDN's [Compiling from Rust to WebAssembly](https://developer.mozilla.org/en-US/docs/WebAssembly/Rust_to_Wasm)
 
-[Welcome to the wasm-pack docs!](https://rustwasm.github.io/docs/wasm-pack/introduction.html)  
+[wasm-bindgen: without-a-bundler](https://rustwasm.github.io/docs/wasm-bindgen/examples/without-a-bundler.html)
+Actually has everyting you need to get started with rust-wasm without NPM, ...
+Unfortunatly if you don't know what you are looking at your still clueless in the end.
+
+here is an example
+
+```
+Without a Bundler
+
+--target web or --target no-modules
+
+If you're not using a bundler but you're still running code in a web browser, wasm-bindgen still supports this! For this use case you'll want to use the --target web flag. You can check out a full example in the documentation, but the highlights of this output are:
+
+    When compiling you'll pass --target web to wasm-bindgen
+    The output can natively be included on a web page, and doesn't require any further postprocessing. The output is included as an ES module.
+    The --target web mode is not able to use NPM dependencies.
+    You'll want to review the browser requirements for wasm-bindgen because no polyfills will be available.
+
+The CLI also supports an output mode called --target no-modules which is similar to the web target in that it requires manual initialization of the wasm and is intended to be included in web pages without any further postprocessing. See the without a bundler example for some more information about --target no-modules.
+```
+
+What do you really do with that? Ironicaly its actually very clear once you know and don't need these kind of 
+information. 
+
+Webassembly is still a moving target and some tools and convenient crates make the experience more appealing.
+
+In the following pages we'll dive into understanding how to transform most webpack, NPM loaded Rust/wasm tutorial into lean no-bloat rust-wasm with no-bundle.
+
+We'll use and get familliar with the following tools and crates: 
+- [wasm-pack](https://rustwasm.github.io/wasm-pack/installer/)  
+[wasm-pack docs](https://rustwasm.github.io/docs/wasm-pack/introduction.html)  
+- [wasm-bindgen](https://github.com/rustwasm/wasm-bindgen)  
+[wasm-bindgen docs](https://rustwasm.github.io/docs/wasm-bindgen/)  
+- [js-sys](https://lib.rs/crates/js-sys) & [web-sys](https://lib.rs/crates/web-sys)  
+[wasm-bindgen: js-sys example](https://rustwasm.github.io/wasm-bindgen/examples/wasm-in-wasm.html)  
+[wasm-bindgen: web-sys examples](https://rustwasm.github.io/wasm-bindgen/examples/dom.html)  
+
+<!-- 
 [trunkrs.dev](https://trunkrs.dev/)  
+-->
 
 ### Learn Wasm
 
