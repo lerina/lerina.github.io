@@ -86,6 +86,9 @@
 <nav id="TOC" role="doc-toc">
 <ul>
 <li><a href="#motivation" id="toc-motivation">Motivation</a></li>
+<li><a href="#learn-no-bundle-wasm-by-example"
+id="toc-learn-no-bundle-wasm-by-example">Learn no-bundle Wasm by
+example</a></li>
 </ul>
 </nav>
 <div class="navbar">
@@ -99,47 +102,50 @@ Rust/wasm without bloat or bundles.</p>
 <p>If you need to learn Rust or unrust your Rust these are you best free
 options.</p>
 <ul>
-<li><a href="https://doc.rust-lang.org/book/title-page.html">The
-book</a></li>
+<li><a href="https://doc.rust-lang.org/book/title-page.html"
+target="_blank">The book</a></li>
 <li>The best youtube resource to learn Rust is <a
-href="https://www.youtube.com/c/LetsGetRusty/playlists">LetsGetRusty</a></li>
+href="https://www.youtube.com/c/LetsGetRusty/playlists"
+target="_blank">LetsGetRusty</a></li>
 </ul>
 <h2 id="motivation">Motivation</h2>
-<p>Sometime back Rust kept popping up on my radar.<br />
+<p>A while back Rust kept popping up on my radar.<br />
 I drank the Cool-aid and fell for the Rust evangelism.<br />
-I love the language. It make programming fun again. When webassembly
-started to be a thing, once again Rust kept popping up as the Language
-of choice to build webassembly/JavaScript apps for the web or target
-some specific module that need speeding, memory safety, or both.</p>
+I love the language. It make programming fun again.</p>
+<p>When webassembly started to be a thing, once again Rust kept popping
+up as the Language of choice: - to build webassembly/JavaScript apps for
+the web or - target some specific module that need speeding, memory
+safety, or both.</p>
 <p>To my dismay however, most tutorial including the official one lean
 heavily on “NPM and co”. I just wanted to wrap my head around the Rust
 thing, I didn’t even have an up to date Node on my system.</p>
 <p>Do I really need all these things to just have something writen in
 Rust, compiled into wasm and integrated with plain vanilla JavaScript
-and HTML/css? Good news, the answer is No!<br />
+and HTML/css?<br />
+Good news, the answer is No!<br />
 Less joyful news however is that information on programming Rust-wasm
 without bloat is scarces. Findind a paragraph or two about it brings
 excitement to the lonely searcher.</p>
 <ul>
 <li>2019-05-25 <a
-href="https://dev.to/dandyvica/wasm-in-rust-without-nodejs-2e0c">WASM in
-Rust without NodeJS</a></li>
+href="https://dev.to/dandyvica/wasm-in-rust-without-nodejs-2e0c"
+target="_blank">WASM in Rust without NodeJS</a></li>
 <li>2022-02-14 <a
-href="https://blog.urth.org/2022/02/14/frontend-rust-without-node/">Frontend
-Rust Without Node</a></li>
+href="https://blog.urth.org/2022/02/14/frontend-rust-without-node/"
+target="_blank">Frontend Rust Without Node</a></li>
 <li>2022-03-10 <a
-href="https://lionturkey.github.io/posts/rustwasm/rustwasm.html">Rust/Wasm
-without npm</a></li>
+href="https://lionturkey.github.io/posts/rustwasm/rustwasm.html"
+target="_blank">Rust/Wasm without npm</a></li>
 </ul>
 <p>Of course one should not dismiss the official [Rust 🦀 and
 WebAssembly] small book that describes how to use Rust and WebAssembly
 together. Or MDN’s <a
-href="https://developer.mozilla.org/en-US/docs/WebAssembly/Rust_to_Wasm">Compiling
-from Rust to WebAssembly</a></p>
+href="https://developer.mozilla.org/en-US/docs/WebAssembly/Rust_to_Wasm"
+target="_blank">Compiling from Rust to WebAssembly</a></p>
 <p>The documentation for <a
-href="https://rustwasm.github.io/docs/wasm-bindgen/examples/without-a-bundler.html">wasm-bindgen:
-without-a-bundler</a> actually has everyting you need to get started
-with rust-wasm without NPM, …</p>
+href="https://rustwasm.github.io/docs/wasm-bindgen/examples/without-a-bundler.html"
+target="_blank">wasm-bindgen: without-a-bundler</a> actually has
+everyting you need to get started with rust-wasm without NPM, …</p>
 <p>Unfortunatly if you don’t know what you are looking at your still
 clueless in the end.</p>
 <p>Here is an example</p>
@@ -157,13 +163,16 @@ If you&#39;re not using a bundler but you&#39;re still running code in a web bro
 The CLI also supports an output mode called --target no-modules which is similar to the web target in that it requires manual initialization of the wasm and is intended to be included in web pages without any further postprocessing. See the without a bundler example for some more information about --target no-modules.</code></pre>
 <p>What do you really do with that? Ironicaly its actually very clear
 once you know and don’t need these kind of information. The problem is
-the infomation is squatered all over the place.</p>
+the information is squatered, not always up to date and biased toward
+bundlers.</p>
 <blockquote>
-<p>These pages brings under one location all those bits and pieces you
-want to know in order to understand and build wasm stuff with Rust.</p>
+<p>The following pages brings under one location all those bits and
+pieces you want to know in order to understand and build wasm stuff with
+Rust.</p>
 </blockquote>
-<h3 id="learn-wasm">Learn Wasm</h3>
-<h4 id="the-tools">The tools</h4>
+<h2 id="learn-no-bundle-wasm-by-example">Learn no-bundle Wasm by
+example</h2>
+<h3 id="the-tools">The tools</h3>
 <p>Webassembly is still a moving target and some tools and convenient
 crates make the experience more appealing.</p>
 <p>In the following pages we’ll dive into understanding how to transform
@@ -171,72 +180,276 @@ most webpack, NPM loaded Rust/wasm tutorial into lean no-bloat rust-wasm
 with no-bundle.</p>
 <p>We’ll use and get familliar with the following tools and crates:</p>
 <ul>
-<li><a
-href="https://rustwasm.github.io/wasm-pack/installer/">wasm-pack</a><br />
-<a
-href="https://rustwasm.github.io/docs/wasm-pack/introduction.html">wasm-pack
-docs</a><br />
+<li><a href="https://rustwasm.github.io/wasm-pack/installer/"
+target="_blank">wasm-pack</a>, <a
+href="https://rustwasm.github.io/docs/wasm-pack/introduction.html"
+target="_blank">docs</a><br />
 </li>
-<li><a
-href="https://github.com/rustwasm/wasm-bindgen">wasm-bindgen</a><br />
-<a href="https://rustwasm.github.io/docs/wasm-bindgen/">wasm-bindgen
-docs</a><br />
+<li><a href="https://github.com/rustwasm/wasm-bindgen"
+target="_blank">wasm-bindgen</a>, <a
+href="https://rustwasm.github.io/docs/wasm-bindgen/"
+target="_blank">docs</a><br />
 </li>
-<li><a href="https://lib.rs/crates/js-sys">js-sys</a> &amp; <a
-href="https://lib.rs/crates/web-sys">web-sys</a><br />
+<li><a href="https://lib.rs/crates/js-sys" target="_blank">js-sys</a>
+&amp; <a href="https://lib.rs/crates/web-sys"
+target="_blank">web-sys</a><br />
 <a
-href="https://rustwasm.github.io/wasm-bindgen/examples/wasm-in-wasm.html">wasm-bindgen:
-js-sys example</a><br />
-<a
-href="https://rustwasm.github.io/wasm-bindgen/examples/dom.html">wasm-bindgen:
-web-sys examples</a></li>
+href="https://rustwasm.github.io/wasm-bindgen/examples/wasm-in-wasm.html"
+target="_blank">js-sys example</a>, <a
+href="https://rustwasm.github.io/wasm-bindgen/examples/dom.html"
+target="_blank">web-sys examples</a></li>
 </ul>
 <!-- 
-[trunkrs.dev](https://trunkrs.dev/)  
+[trunkrs.dev](https://trunkrs.dev/){target="_blank"}  
 -->
-<h4 id="a-no-bloat-workflow">A no-bloat workflow</h4>
+<h3 id="a-no-bloat-workflow">A no-bloat workflow</h3>
 <p>Wasm without npm and bundlers is actually quite simple. Unfortunately
 it’s not easy to find <strong>complete examples</strong> on the web.</p>
+<p>Let’s convert each example from wasm-bindgen to a no-bundle version.
+But before that we’ll prepare our workspace, and setup out tools.</p>
+<p>It is assumed that you have Rust on your machine and cargo ready for
+use. (If not get the installer <a href="https://rustup.rs/"
+target="_blank">here: rustup.rs</a>).</p>
+<ol start="0" type="1">
+<li>Get wasm-pack and something to serve our website locally</li>
+</ol>
+<p>0.1 wasm-pack</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> install wasm-pack</span></code></pre></div>
+<p>wasm-pack helps you build rust-generated WebAssembly packages Its a
+convinience that is widely used by the Rust community.</p>
+<p>If your interested see <a
+href="./wasm-pack_under_the_hood.html">wasm-pack under the hood</a></p>
+<p>0.2 Get a local tiny static file server</p>
+<p>We need something to serve your website so we can test and see what
+we develop on our local machine. If you don’t have one installed you can
+use <a href="https://github.com/thecoshman/http"
+target="_blank">http</a></p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> install https</span></code></pre></div>
+<p>Note:</p>
+<p><a href="https://trunkrs.dev/" target="_blank">trunkrs.dev</a> is
+getting traction in the Rust community but its a much more ambitious
+tool and beyond our needs here.</p>
+<h4 id="converting-the-first-example">Converting the first example</h4>
+<p>Now we are ready to tackle the first example <a
+href="https://rustwasm.github.io/wasm-bindgen/examples/hello-world.html"
+target="_blank"><code>hello_world</code></a></p>
+<h5 id="seven-steps-to-hello-world">Seven steps to hello world</h5>
+<ol type="1">
+<li>Set up your file structure</li>
+<li>Edit Cargo.toml: Set the crate-type and add wasm-bindgen as a
+dependency.</li>
+<li>Get the lib.rs code for hello_world</li>
+<li>Specify type module in index.html</li>
+<li>import with file extension included and Wrap the code in async/await
+index.js</li>
+<li>build with wasm-pack</li>
+<li>Run the web server and open your browser</li>
+</ol>
+<hr />
+<h6 id="set-up-your-file-structure">1. Set up your file structure</h6>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> new hello_world <span class="at">--lib</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> hello_world</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> www/html www/js www/css www/assets</span></code></pre></div>
+<p>You should have this file structure</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">.</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> Cargo.toml</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> src</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">│  </span> └── lib.rs</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">└──</span> www</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="ex">├──</span> assets</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="ex">├──</span> css</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="ex">├──</span> html</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="ex">└──</span> js</span></code></pre></div>
+<h6
+id="edit-cargo.toml-set-the-crate-type-and-add-wasm-bindgen-as-a-dependency.">2.
+Edit Cargo.toml: Set the crate-type and add wasm-bindgen as a
+dependency.</h6>
+<p>In Cargo.toml, put <code>crate-type = ["cdylib"]</code> after
+<code>edition</code> entry. And add wasm-bindgen as a dependency.</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode toml"><code class="sourceCode toml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[</span><span class="dt">package</span><span class="kw">]</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">&quot;hello_world&quot;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">&quot;0.1.0&quot;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="dt">edition</span> <span class="op">=</span> <span class="st">&quot;2021&quot;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="kw">[</span><span class="dt">lib</span><span class="kw">]</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="dt">crate-type</span> <span class="op">=</span> <span class="op">[</span><span class="st">&quot;cdylib&quot;</span><span class="op">]</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="kw">[</span><span class="dt">dependencies</span><span class="kw">]</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="dt">wasm-bindgen</span> <span class="op">=</span> <span class="st">&quot;0.2.88&quot;</span></span></code></pre></div>
+<p>Note: <code>wasm-bindgen-cli</code> was already installed by
+wasm-pack so we are all good to go.</p>
+<h6 id="get-the-lib.rs-code-for-hello_world">3. Get the lib.rs code for
+hello_world</h6>
+<p>We’ll cut and paste and modify the examples. The point is to get used
+to convert code meant to be deployed with NPM-Webpack ecosystem into a
+play vanilla no-bundle Rust wasm code.</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">// src/lib.rs</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">wasm_bindgen::prelude::</span><span class="op">*;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>wasm_bindgen<span class="at">]</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="kw">extern</span> <span class="st">&quot;C&quot;</span> <span class="op">{</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> alert(s<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>)<span class="op">;</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>wasm_bindgen<span class="at">]</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">fn</span> greet(name<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>) <span class="op">{</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    alert(<span class="op">&amp;</span><span class="pp">format!</span>(<span class="st">&quot;Hello, {}!&quot;</span><span class="op">,</span> name))<span class="op">;</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h6 id="specify-type-module-in-index.html">4. Specify type module in
+index.html</h6>
+<p>Here is the first difference.</p>
+<p>import declarations can only be present in modules, so our
+<code>html</code> must use</p>
+<p><code>&lt;script type="module" src="../js/index.js"&gt;&lt;/script&gt;</code></p>
+<p>So our index file at <code>www/html/index.html</code> look like
+this:</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;html&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;head&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;meta</span> <span class="er">charset</span><span class="ot">=</span><span class="st">&quot;UTF-8&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;title&gt;</span>Wasm no NPM no Webpack<span class="kw">&lt;/title&gt;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;link</span> <span class="er">rel</span><span class="ot">=</span><span class="st">&quot;stylesheet&quot;</span> <span class="er">href</span><span class="ot">=</span><span class="st">&quot;../css/styles.css&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/head&gt;</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;body&gt;</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;module&quot;</span> <span class="er">src</span><span class="ot">=</span><span class="st">&quot;../js/index.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/body&gt;</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
+<h6
+id="import-with-file-extension-included-and-wrap-the-code-in-asyncawait-index.js">5.
+import with file extension included and Wrap the code in async/await
+index.js</h6>
+<p>You may still come across unhelpful old information.for our purpose,
+information such as</p>
+<pre><code>// Note that a dynamic `import` statement here is required due to
+// webpack/webpack#6615, but in theory `import { greet } from &#39;./pkg&#39;;`
+// will work here one day as well!
+const rust = import(&#39;./pkg&#39;);
+
+rust
+  .then(m =&gt; m.greet(&#39;World!&#39;))
+  .catch(console.error);</code></pre>
+<p>We are starting to see examples of the “modern” version of doing
+things but its still bundle specific like this:</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { greet } <span class="im">from</span> <span class="st">&#39;./pkg&#39;</span><span class="op">;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">greet</span>(<span class="st">&#39;World&#39;</span>)<span class="op">;</span></span></code></pre></div>
+<p>Because we are not using a bundler we must specify the filename with
+its extension in our <code>import</code> statement:
+<code>import ... from "../pkg/hello_world.js";</code></p>
+<p>Where did we get <code>hello_world.js</code> from? wasm-pack gets it
+from our crate as specified in Cargo.toml</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode toml"><code class="sourceCode toml"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[</span><span class="dt">package</span><span class="kw">]</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">&quot;hello_world&quot;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="er">...</span></span></code></pre></div>
+<p>We also need to wrap the code in an async/await function</p>
+<p>So our full index.js is:</p>
+<pre><code>import init, { greet } from &quot;../pkg/hello_world.js&quot;;
+
+async function run() {
+    const wasm = await init();
+
+    greet(&#39;World&#39;);
+}
+
+run();
+</code></pre>
+<h6 id="build-with-wasm-pack">6. build with wasm-pack</h6>
+<ul>
+<li><code>--target web</code> to specify nobundle</li>
+<li><code>--out-dir www/pkg</code> because the defaultis to put pkg at
+the root, the same level as our src directory. Its cleaner to have all
+our web stuff in <code>www</code>.</li>
+</ul>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">wasm-pack</span> build <span class="at">--target</span> web <span class="at">--out-dir</span> www/pkg</span></code></pre></div>
+<p>wasm-pack through wasm-bindgen-cli will generate the following in our
+<code>wwww</code> directory.</p>
+<pre><code>└── pkg
+    ├── hello_world_bg.wasm
+    ├── hello_world_bg.wasm.d.ts
+    ├── hello_world.d.ts
+    ├── hello_world.js
+    └── package.json</code></pre>
+<h6 id="run-the-web-server-and-open-your-browser">7. Run the web server
+and open your browser</h6>
+<p><code>http www</code> this defaults at http://127.0.0.1:8000</p>
+<p>You can pass the address and port number like this:</p>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">http</span> <span class="at">-a</span> 127.0.0.1 <span class="at">-p</span> 8080 www</span></code></pre></div>
+<p>Specifying our directory <code>www</code> will expose the following
+file structure to our server</p>
+<pre><code>www
+├── assets
+├── css
+├── html
+│   └── index.html
+├── js
+│   └── index.js
+└── pkg
+    ├── hello_world_bg.wasm
+    ├── hello_world_bg.wasm.d.ts
+    ├── hello_world.d.ts
+    ├── hello_world.js
+    └── package.json</code></pre>
+<p>Open <code>index.html</code> in a browser by pointing at
+[http://127.0.0.1:8080/html/]</p>
+<figure>
+<img src="./pix/hello_world.png" alt="enjoy!" />
+<figcaption aria-hidden="true">enjoy!</figcaption>
+</figure>
+<hr />
+<h3 id="section"></h3>
 <ul>
 <li>Get the canvas smiley face example from wasm-bindgen.</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/rustwasm/wasm-bindgen/</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> wasm-bindgen/examples/canvas</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/rustwasm/wasm-bindgen/</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> wasm-bindgen/examples/canvas</span></code></pre></div>
 <ul>
 <li>modify index.js</li>
 </ul>
 <p>from</p>
-<div class="sourceCode" id="cb3"><pre
-class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span>(<span class="st">&#39;./pkg&#39;</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">catch</span>(<span class="bu">console</span><span class="op">.</span><span class="fu">error</span>)<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span>(<span class="st">&#39;./pkg&#39;</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">catch</span>(<span class="bu">console</span><span class="op">.</span><span class="fu">error</span>)<span class="op">;</span></span></code></pre></div>
 <p>to</p>
-<div class="sourceCode" id="cb4"><pre
-class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> init <span class="im">from</span> <span class="st">&#39;./pkg/canvas.js&#39;</span><span class="op">;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">init</span>()</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">catch</span>(<span class="bu">console</span><span class="op">.</span><span class="fu">error</span>)<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> init <span class="im">from</span> <span class="st">&#39;./pkg/canvas.js&#39;</span><span class="op">;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">init</span>()</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">catch</span>(<span class="bu">console</span><span class="op">.</span><span class="fu">error</span>)<span class="op">;</span></span></code></pre></div>
 <ul>
 <li>In index.html</li>
 </ul>
 <p>add a script tag to bring into scope and specifies that index.js is a
 module</p>
-<div class="sourceCode" id="cb5"><pre
-class="sourceCode numberSource html numberLines"><code class="sourceCode html"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">&lt;html&gt;</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>  <span class="kw">&lt;head&gt;</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a>    <span class="kw">&lt;meta</span> <span class="er">content</span><span class="ot">=</span><span class="st">&quot;text/html;charset=utf-8&quot;</span> <span class="er">http-equiv</span><span class="ot">=</span><span class="st">&quot;Content-Type&quot;</span><span class="kw">/&gt;</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a>  <span class="kw">&lt;/head&gt;</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a>  <span class="kw">&lt;body&gt;</span></span>
-<span id="cb5-6"><a href="#cb5-6"></a>    <span class="kw">&lt;canvas</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;canvas&quot;</span> <span class="er">height</span><span class="ot">=</span><span class="st">&quot;150&quot;</span> <span class="er">width</span><span class="ot">=</span><span class="st">&quot;150&quot;</span><span class="kw">&gt;&lt;/canvas&gt;</span></span>
-<span id="cb5-7"><a href="#cb5-7"></a>  </span>
-<span id="cb5-8"><a href="#cb5-8"></a>    <span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;module&quot;</span> <span class="er">src</span><span class="ot">=</span><span class="st">&quot;./index.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></span>
-<span id="cb5-9"><a href="#cb5-9"></a>  <span class="kw">&lt;/body&gt;</span></span>
-<span id="cb5-10"><a href="#cb5-10"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre
+class="sourceCode numberSource html numberLines"><code class="sourceCode html"><span id="cb20-1"><a href="#cb20-1"></a><span class="kw">&lt;html&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a>  <span class="kw">&lt;head&gt;</span></span>
+<span id="cb20-3"><a href="#cb20-3"></a>    <span class="kw">&lt;meta</span> <span class="er">content</span><span class="ot">=</span><span class="st">&quot;text/html;charset=utf-8&quot;</span> <span class="er">http-equiv</span><span class="ot">=</span><span class="st">&quot;Content-Type&quot;</span><span class="kw">/&gt;</span></span>
+<span id="cb20-4"><a href="#cb20-4"></a>  <span class="kw">&lt;/head&gt;</span></span>
+<span id="cb20-5"><a href="#cb20-5"></a>  <span class="kw">&lt;body&gt;</span></span>
+<span id="cb20-6"><a href="#cb20-6"></a>    <span class="kw">&lt;canvas</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;canvas&quot;</span> <span class="er">height</span><span class="ot">=</span><span class="st">&quot;150&quot;</span> <span class="er">width</span><span class="ot">=</span><span class="st">&quot;150&quot;</span><span class="kw">&gt;&lt;/canvas&gt;</span></span>
+<span id="cb20-7"><a href="#cb20-7"></a>  </span>
+<span id="cb20-8"><a href="#cb20-8"></a>    <span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;module&quot;</span> <span class="er">src</span><span class="ot">=</span><span class="st">&quot;./index.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></span>
+<span id="cb20-9"><a href="#cb20-9"></a>  <span class="kw">&lt;/body&gt;</span></span>
+<span id="cb20-10"><a href="#cb20-10"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
 <ul>
 <li>Compile using wasm-pack</li>
 </ul>
-<div class="sourceCode" id="cb6"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">wasm-pack</span> build <span class="at">--target</span> web</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">wasm-pack</span> build <span class="at">--target</span> web</span></code></pre></div>
 <ul>
 <li>Finaly</li>
 </ul>
@@ -244,247 +457,248 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="
 installed . such as <a
 href="https://github.com/thecoshman/http">http</a><br />
 or <a href="https://github.com/kettle11/devserver">devserver</a></p>
-<div class="sourceCode" id="cb7"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> install https</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> install https</span></code></pre></div>
 <p>and serve</p>
-<div class="sourceCode" id="cb8"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">http</span> ./</span></code></pre></div>
-<h4 id="section"></h4>
+<div class="sourceCode" id="cb23"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">http</span> ./</span></code></pre></div>
+<h4 id="section-1"></h4>
 <p>I like to keep anything non-rust in <code>www</code> so all my wasm
 project uses this simple script to build and serve.</p>
-<div class="sourceCode" id="cb9"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/sh</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">## pre-req a web server</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># cargo install https</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">## exit on error and  prints each executed command</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-ex</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">## compile for plain vanilla no javascript framework </span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="ex">wasm-pack</span> build <span class="at">--target</span> web <span class="at">--out-dir</span> www/pkg</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">## display link for easy access</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;Serving at: http://127.0.0.1:8080/html/&quot;</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co">## run the web server</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="ex">http</span> <span class="at">-a</span> 127.0.0.1 <span class="at">-p</span> 8080 www</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/sh</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co">## pre-req a web server</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># cargo install https</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co">## exit on error and  prints each executed command</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-ex</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="co">## compile for plain vanilla no javascript framework </span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="ex">wasm-pack</span> build <span class="at">--target</span> web <span class="at">--out-dir</span> www/pkg</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a><span class="co">## display link for easy access</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;Serving at: http://127.0.0.1:8080/html/&quot;</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a><span class="co">## run the web server</span></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a><span class="ex">http</span> <span class="at">-a</span> 127.0.0.1 <span class="at">-p</span> 8080 www</span></code></pre></div>
 <h3 id="webassembly">Webassembly</h3>
 <ul>
 <li>the book</li>
 <li>A fun dive into Webassembly</li>
 <li>other <code>resources</code> elsewhere</li>
 </ul>
-<div class="sourceCode" id="cb10"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">// src/browser.rs</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">anyhow::</span><span class="op">{</span>anyhow<span class="op">,</span> <span class="dt">Result</span><span class="op">};</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::future::</span><span class="bu">Future</span><span class="op">;</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">wasm_bindgen::closure::</span><span class="op">{</span>Closure<span class="op">,</span> WasmClosureFnOnce<span class="op">,</span> WasmClosure<span class="op">};</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">wasm_bindgen::</span><span class="op">{</span>JsCast<span class="op">,</span> JsValue<span class="op">};</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">wasm_bindgen_futures::</span>JsFuture<span class="op">;</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">web_sys::</span><span class="op">{</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    CanvasRenderingContext2d<span class="op">,</span> Document<span class="op">,</span> HtmlCanvasElement<span class="op">,</span> </span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    HtmlImageElement<span class="op">,</span> Response<span class="op">,</span> Window<span class="op">,</span> Element<span class="op">,</span> HtmlElement<span class="op">,};</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">js_sys::</span>ArrayBuffer<span class="op">;</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co">// It&#39;s a macro that allows you to log in to the console with log!</span></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co">// using a syntax such as the format! function.</span></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co">// Taken from https://rustwasm.github.io/book/game-of-life/debugging.html</span></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="pp">macro_rules!</span> log <span class="op">{</span></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    ( <span class="op">$</span>( <span class="op">$</span>t<span class="op">:</span>tt )<span class="op">*</span> ) <span class="op">=&gt;</span> <span class="op">{</span></span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>        <span class="pp">web_sys::console::</span>log_1(<span class="op">&amp;</span><span class="pp">format!</span>( <span class="op">$</span>( <span class="op">$</span>t )<span class="op">*</span> )<span class="op">.</span>into())<span class="op">;</span></span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="pp">macro_rules!</span> error <span class="op">{</span></span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>    ( <span class="op">$</span>( <span class="op">$</span>t<span class="op">:</span>tt )<span class="op">*</span> ) <span class="op">=&gt;</span> <span class="op">{</span></span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>        <span class="pp">web_sys::console::</span>error_1(<span class="op">&amp;</span><span class="pp">format!</span>( <span class="op">$</span>( <span class="op">$</span>t )<span class="op">*</span> )<span class="op">.</span>into())<span class="op">;</span></span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">fn</span> window() <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>Window<span class="op">&gt;</span> <span class="op">{</span></span>
-<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>    <span class="pp">web_sys::</span>window()<span class="op">.</span>ok_or_else(<span class="op">||</span> <span class="pp">anyhow!</span>(<span class="st">&quot;No Window Found&quot;</span>))</span>
-<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">fn</span> document() <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>Document<span class="op">&gt;</span> <span class="op">{</span></span>
-<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>    window()<span class="op">?</span></span>
-<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>document()</span>
-<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>ok_or_else(<span class="op">||</span> <span class="pp">anyhow!</span>(<span class="st">&quot;No Document Found&quot;</span>))</span>
-<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">fn</span> canvas() <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>HtmlCanvasElement<span class="op">&gt;</span> <span class="op">{</span></span>
-<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>    document()<span class="op">?</span></span>
-<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>get_element_by_id(<span class="st">&quot;canvas&quot;</span>)</span>
-<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>ok_or_else(<span class="op">||</span> <span class="pp">anyhow!</span>(<span class="st">&quot;No Canvas Element found with ID &#39;canvas&#39;&quot;</span>))<span class="op">?</span></span>
-<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="pp">dyn_into::</span><span class="op">&lt;</span><span class="pp">web_sys::</span>HtmlCanvasElement<span class="op">&gt;</span>()</span>
-<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>map_err(<span class="op">|</span>element<span class="op">|</span> <span class="pp">anyhow!</span>(<span class="st">&quot;Error converting {:#?} to HtmlCanvasElement&quot;</span><span class="op">,</span> element))</span>
-<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">fn</span> context() <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>CanvasRenderingContext2d<span class="op">&gt;</span> <span class="op">{</span></span>
-<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a>    canvas()<span class="op">?</span></span>
-<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>get_context(<span class="st">&quot;2d&quot;</span>)</span>
-<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>map_err(<span class="op">|</span>js_value<span class="op">|</span> <span class="pp">anyhow!</span>(<span class="st">&quot;Error getting 2d context {:#?}&quot;</span><span class="op">,</span> js_value))<span class="op">?</span></span>
-<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>ok_or_else(<span class="op">||</span> <span class="pp">anyhow!</span>(<span class="st">&quot;No 2d context found&quot;</span>))<span class="op">?</span></span>
-<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="pp">dyn_into::</span><span class="op">&lt;</span><span class="pp">web_sys::</span>CanvasRenderingContext2d<span class="op">&gt;</span>()</span>
-<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>map_err(<span class="op">|</span>element<span class="op">|</span> <span class="op">{</span></span>
-<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a>            <span class="pp">anyhow!</span>(</span>
-<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;Error converting {:#?} to CanvasRenderingContext2d&quot;</span><span class="op">,</span></span>
-<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a>                element</span>
-<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a>            )</span>
-<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span>)</span>
-<span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">fn</span> spawn_local<span class="op">&lt;</span>F<span class="op">&gt;</span>(future<span class="op">:</span> F)</span>
-<span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a><span class="kw">where</span></span>
-<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a>    F<span class="op">:</span> <span class="bu">Future</span><span class="op">&lt;</span>Output <span class="op">=</span> ()<span class="op">&gt;</span> <span class="op">+</span> <span class="ot">&#39;static</span><span class="op">,</span></span>
-<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb10-66"><a href="#cb10-66" aria-hidden="true" tabindex="-1"></a>    <span class="pp">wasm_bindgen_futures::</span>spawn_local(future)<span class="op">;</span></span>
-<span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-69"><a href="#cb10-69" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> fetch_with_str(resource<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>) <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>JsValue<span class="op">&gt;</span> <span class="op">{</span></span>
-<span id="cb10-70"><a href="#cb10-70" aria-hidden="true" tabindex="-1"></a>    <span class="pp">JsFuture::</span>from(window()<span class="op">?.</span>fetch_with_str(resource))</span>
-<span id="cb10-71"><a href="#cb10-71" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="kw">await</span></span>
-<span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>map_err(<span class="op">|</span>err<span class="op">|</span> <span class="pp">anyhow!</span>(<span class="st">&quot;error fetching {:#?}&quot;</span><span class="op">,</span> err))</span>
-<span id="cb10-73"><a href="#cb10-73" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb10-74"><a href="#cb10-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-75"><a href="#cb10-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-76"><a href="#cb10-76" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> fetch_response(resource<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>) <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>Response<span class="op">&gt;</span> <span class="op">{</span></span>
-<span id="cb10-77"><a href="#cb10-77" aria-hidden="true" tabindex="-1"></a>    fetch_with_str(resource)</span>
-<span id="cb10-78"><a href="#cb10-78" aria-hidden="true" tabindex="-1"></a>                        <span class="op">.</span><span class="kw">await</span><span class="op">?</span></span>
-<span id="cb10-79"><a href="#cb10-79" aria-hidden="true" tabindex="-1"></a>                        <span class="op">.</span>dyn_into()</span>
-<span id="cb10-80"><a href="#cb10-80" aria-hidden="true" tabindex="-1"></a>                        <span class="op">.</span>map_err(<span class="op">|</span>err<span class="op">|</span> <span class="pp">anyhow!</span>(<span class="st">&quot;error converting fetch to Response {:#?}&quot;</span><span class="op">,</span> err))</span>
-<span id="cb10-81"><a href="#cb10-81" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb10-82"><a href="#cb10-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-83"><a href="#cb10-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-84"><a href="#cb10-84" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> fetch_json(json_path<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>) <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>JsValue<span class="op">&gt;</span> <span class="op">{</span></span>
-<span id="cb10-85"><a href="#cb10-85" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> resp <span class="op">=</span> fetch_response(json_path)<span class="op">.</span><span class="kw">await</span><span class="op">?;</span></span>
-<span id="cb10-86"><a href="#cb10-86" aria-hidden="true" tabindex="-1"></a>    <span class="pp">JsFuture::</span>from( resp<span class="op">.</span>json()</span>
-<span id="cb10-87"><a href="#cb10-87" aria-hidden="true" tabindex="-1"></a>                        <span class="op">.</span>map_err(<span class="op">|</span>err<span class="op">|</span> <span class="pp">anyhow!</span>(<span class="st">&quot;Could not get JSON from response {:#?}&quot;</span><span class="op">,</span> err))<span class="op">?,</span></span>
-<span id="cb10-88"><a href="#cb10-88" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb10-89"><a href="#cb10-89" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="kw">await</span></span>
-<span id="cb10-90"><a href="#cb10-90" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span>map_err(<span class="op">|</span>err<span class="op">|</span> <span class="pp">anyhow!</span>(<span class="st">&quot;error fetching JSON {:#?}&quot;</span><span class="op">,</span> err))</span>
-<span id="cb10-91"><a href="#cb10-91" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb10-92"><a href="#cb10-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-93"><a href="#cb10-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-94"><a href="#cb10-94" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> fetch_array_buffer(resource<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>) <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>ArrayBuffer<span class="op">&gt;</span> <span class="op">{</span></span>
-<span id="cb10-95"><a href="#cb10-95" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> array_buffer <span class="op">=</span> fetch_response(resource)</span>
-<span id="cb10-96"><a href="#cb10-96" aria-hidden="true" tabindex="-1"></a>                        <span class="op">.</span><span class="kw">await</span><span class="op">?</span></span>
-<span id="cb10-97"><a href="#cb10-97" aria-hidden="true" tabindex="-1"></a>                        <span class="op">.</span>array_buffer()</span>
-<span id="cb10-98"><a href="#cb10-98" aria-hidden="true" tabindex="-1"></a>                        <span class="op">.</span>map_err(<span class="op">|</span>err<span class="op">|</span> <span class="pp">anyhow!</span>(<span class="st">&quot;Error loading array buffer {:#?}&quot;</span><span class="op">,</span> err))<span class="op">?;</span></span>
-<span id="cb10-99"><a href="#cb10-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-100"><a href="#cb10-100" aria-hidden="true" tabindex="-1"></a>    <span class="pp">JsFuture::</span>from(array_buffer)</span>
-<span id="cb10-101"><a href="#cb10-101" aria-hidden="true" tabindex="-1"></a>                        <span class="op">.</span><span class="kw">await</span></span>
-<span id="cb10-102"><a href="#cb10-102" aria-hidden="true" tabindex="-1"></a>                        <span class="op">.</span>map_err(<span class="op">|</span>err<span class="op">|</span> <span class="pp">anyhow!</span>(<span class="st">&quot;Error converting array buffer into a future {:#?}&quot;</span><span class="op">,</span> err))<span class="op">?</span></span>
-<span id="cb10-103"><a href="#cb10-103" aria-hidden="true" tabindex="-1"></a>                        <span class="op">.</span>dyn_into()</span>
-<span id="cb10-104"><a href="#cb10-104" aria-hidden="true" tabindex="-1"></a>                        <span class="op">.</span>map_err(<span class="op">|</span>err<span class="op">|</span> <span class="pp">anyhow!</span>(<span class="st">&quot;Error converting raw JSValue to ArrayBuffer {:#?}&quot;</span><span class="op">,</span> err))</span>
-<span id="cb10-105"><a href="#cb10-105" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb10-106"><a href="#cb10-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-107"><a href="#cb10-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-108"><a href="#cb10-108" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-109"><a href="#cb10-109" aria-hidden="true" tabindex="-1"></a><span class="co">/*</span></span>
-<span id="cb10-110"><a href="#cb10-110" aria-hidden="true" tabindex="-1"></a><span class="co">This function is just a wrapper around HtmlImageElement ; there&#39;s not much to</span></span>
-<span id="cb10-111"><a href="#cb10-111" aria-hidden="true" tabindex="-1"></a><span class="co">explain. In the future, we may decide we want our own type for images, but for now,</span></span>
-<span id="cb10-112"><a href="#cb10-112" aria-hidden="true" tabindex="-1"></a><span class="co">we&#39;ll stick with the browser-provided type.</span></span>
-<span id="cb10-113"><a href="#cb10-113" aria-hidden="true" tabindex="-1"></a><span class="co">*/</span></span>
-<span id="cb10-114"><a href="#cb10-114" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">fn</span> new_image() <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>HtmlImageElement<span class="op">&gt;</span> <span class="op">{</span></span>
-<span id="cb10-115"><a href="#cb10-115" aria-hidden="true" tabindex="-1"></a>    <span class="pp">HtmlImageElement::</span>new()<span class="op">.</span>map_err(<span class="op">|</span>err<span class="op">|</span> <span class="pp">anyhow!</span>(<span class="st">&quot;Could not create HtmlImageElement: {:#?}&quot;</span><span class="op">,</span> err))</span>
-<span id="cb10-116"><a href="#cb10-116" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb10-117"><a href="#cb10-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-118"><a href="#cb10-118" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">type</span> LoopClosure <span class="op">=</span> Closure<span class="op">&lt;</span><span class="kw">dyn</span> <span class="bu">FnMut</span>(<span class="dt">f64</span>)<span class="op">&gt;;</span></span>
-<span id="cb10-119"><a href="#cb10-119" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">fn</span> create_raf_closure(f<span class="op">:</span> <span class="kw">impl</span> <span class="bu">FnMut</span>(<span class="dt">f64</span>) <span class="op">+</span> <span class="ot">&#39;static</span>) <span class="op">-&gt;</span> LoopClosure <span class="op">{</span></span>
-<span id="cb10-120"><a href="#cb10-120" aria-hidden="true" tabindex="-1"></a>    closure_wrap(<span class="dt">Box</span><span class="pp">::</span>new(f))</span>
-<span id="cb10-121"><a href="#cb10-121" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb10-122"><a href="#cb10-122" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-123"><a href="#cb10-123" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">fn</span> request_animation_frame(callback<span class="op">:</span> <span class="op">&amp;</span>Closure<span class="op">&lt;</span><span class="kw">dyn</span> <span class="bu">FnMut</span>(<span class="dt">f64</span>)<span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span><span class="dt">i32</span><span class="op">&gt;</span> <span class="op">{</span></span>
-<span id="cb10-124"><a href="#cb10-124" aria-hidden="true" tabindex="-1"></a>    window()<span class="op">?</span></span>
-<span id="cb10-125"><a href="#cb10-125" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>request_animation_frame(callback<span class="op">.</span>as_ref()<span class="op">.</span>unchecked_ref())</span>
-<span id="cb10-126"><a href="#cb10-126" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>map_err(<span class="op">|</span>err<span class="op">|</span> <span class="pp">anyhow!</span>(<span class="st">&quot;Cannot request animation frame {:#?}&quot;</span><span class="op">,</span> err))</span>
-<span id="cb10-127"><a href="#cb10-127" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb10-128"><a href="#cb10-128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-129"><a href="#cb10-129" aria-hidden="true" tabindex="-1"></a><span class="co">/*</span></span>
-<span id="cb10-130"><a href="#cb10-130" aria-hidden="true" tabindex="-1"></a><span class="co">We just mimic the exact same type signature of the</span></span>
-<span id="cb10-131"><a href="#cb10-131" aria-hidden="true" tabindex="-1"></a><span class="co">Closure::once function from wasm_bindgen .</span></span>
-<span id="cb10-132"><a href="#cb10-132" aria-hidden="true" tabindex="-1"></a><span class="co">*/</span></span>
-<span id="cb10-133"><a href="#cb10-133" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">fn</span> closure_once<span class="op">&lt;</span>F<span class="op">,</span> A<span class="op">,</span> R<span class="op">&gt;</span>(fn_once<span class="op">:</span> F) <span class="op">-&gt;</span> Closure<span class="op">&lt;</span><span class="pp">F::</span><span class="bu">FnMut</span><span class="op">&gt;</span></span>
-<span id="cb10-134"><a href="#cb10-134" aria-hidden="true" tabindex="-1"></a><span class="kw">where</span></span>
-<span id="cb10-135"><a href="#cb10-135" aria-hidden="true" tabindex="-1"></a>    F<span class="op">:</span> <span class="ot">&#39;static</span> <span class="op">+</span> WasmClosureFnOnce<span class="op">&lt;</span>A<span class="op">,</span> R<span class="op">&gt;,</span></span>
-<span id="cb10-136"><a href="#cb10-136" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb10-137"><a href="#cb10-137" aria-hidden="true" tabindex="-1"></a>    <span class="pp">Closure::</span>once(fn_once)</span>
-<span id="cb10-138"><a href="#cb10-138" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb10-139"><a href="#cb10-139" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-140"><a href="#cb10-140" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">fn</span> closure_wrap<span class="op">&lt;</span>T<span class="op">:</span> WasmClosure <span class="op">+</span> <span class="op">?</span><span class="bu">Sized</span><span class="op">&gt;</span>(data<span class="op">:</span> <span class="dt">Box</span><span class="op">&lt;</span>T<span class="op">&gt;</span>) <span class="op">-&gt;</span> Closure<span class="op">&lt;</span>T<span class="op">&gt;</span> <span class="op">{</span></span>
-<span id="cb10-141"><a href="#cb10-141" aria-hidden="true" tabindex="-1"></a>    <span class="pp">Closure::</span>wrap(data)</span>
-<span id="cb10-142"><a href="#cb10-142" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb10-143"><a href="#cb10-143" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-144"><a href="#cb10-144" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-145"><a href="#cb10-145" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">fn</span> now() <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span><span class="dt">f64</span><span class="op">&gt;</span> <span class="op">{</span></span>
-<span id="cb10-146"><a href="#cb10-146" aria-hidden="true" tabindex="-1"></a>    <span class="cn">Ok</span>(window()<span class="op">?</span></span>
-<span id="cb10-147"><a href="#cb10-147" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>performance()</span>
-<span id="cb10-148"><a href="#cb10-148" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>ok_or_else(<span class="op">||</span> <span class="pp">anyhow!</span>(<span class="st">&quot;Performance object not found&quot;</span>))<span class="op">?</span></span>
-<span id="cb10-149"><a href="#cb10-149" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>now())</span>
-<span id="cb10-150"><a href="#cb10-150" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb10-151"><a href="#cb10-151" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-152"><a href="#cb10-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-153"><a href="#cb10-153" aria-hidden="true" tabindex="-1"></a><span class="co">//------------- UI</span></span>
-<span id="cb10-154"><a href="#cb10-154" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">fn</span> draw_ui(html<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>) <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> <span class="op">{</span></span>
-<span id="cb10-155"><a href="#cb10-155" aria-hidden="true" tabindex="-1"></a>    find_ui()<span class="op">?</span></span>
-<span id="cb10-156"><a href="#cb10-156" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>insert_adjacent_html(<span class="st">&quot;afterbegin&quot;</span><span class="op">,</span> html)</span>
-<span id="cb10-157"><a href="#cb10-157" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>map_err(<span class="op">|</span>err<span class="op">|</span> <span class="pp">anyhow!</span>(<span class="st">&quot;Could not insert html {:#?}&quot;</span><span class="op">,</span> err))</span>
-<span id="cb10-158"><a href="#cb10-158" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb10-159"><a href="#cb10-159" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-160"><a href="#cb10-160" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">fn</span> hide_ui() <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> <span class="op">{</span></span>
-<span id="cb10-161"><a href="#cb10-161" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> ui <span class="op">=</span> find_ui()<span class="op">?;</span></span>
-<span id="cb10-162"><a href="#cb10-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-163"><a href="#cb10-163" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">let</span> <span class="cn">Some</span>(child) <span class="op">=</span> ui<span class="op">.</span>first_child() <span class="op">{</span></span>
-<span id="cb10-164"><a href="#cb10-164" aria-hidden="true" tabindex="-1"></a>        ui<span class="op">.</span>remove_child(<span class="op">&amp;</span>child)</span>
-<span id="cb10-165"><a href="#cb10-165" aria-hidden="true" tabindex="-1"></a>            <span class="op">.</span>map(<span class="op">|</span>_removed_child<span class="op">|</span> ())</span>
-<span id="cb10-166"><a href="#cb10-166" aria-hidden="true" tabindex="-1"></a>            <span class="op">.</span>map_err(<span class="op">|</span>err<span class="op">|</span> <span class="pp">anyhow!</span>(<span class="st">&quot;Failed to remove child {:#?}&quot;</span><span class="op">,</span> err))</span>
-<span id="cb10-167"><a href="#cb10-167" aria-hidden="true" tabindex="-1"></a>            <span class="op">.</span>and_then(<span class="op">|</span>_unit<span class="op">|</span> <span class="op">{</span></span>
-<span id="cb10-168"><a href="#cb10-168" aria-hidden="true" tabindex="-1"></a>                canvas()<span class="op">?</span></span>
-<span id="cb10-169"><a href="#cb10-169" aria-hidden="true" tabindex="-1"></a>                    <span class="op">.</span>focus()</span>
-<span id="cb10-170"><a href="#cb10-170" aria-hidden="true" tabindex="-1"></a>                    <span class="op">.</span>map_err(<span class="op">|</span>err<span class="op">|</span> <span class="pp">anyhow!</span>(<span class="st">&quot;Could not set focus to canvas! {:#?}&quot;</span><span class="op">,</span> err))</span>
-<span id="cb10-171"><a href="#cb10-171" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span>)</span>
-<span id="cb10-172"><a href="#cb10-172" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
-<span id="cb10-173"><a href="#cb10-173" aria-hidden="true" tabindex="-1"></a>        <span class="cn">Ok</span>(())</span>
-<span id="cb10-174"><a href="#cb10-174" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb10-175"><a href="#cb10-175" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb10-176"><a href="#cb10-176" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-177"><a href="#cb10-177" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> find_ui() <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>Element<span class="op">&gt;</span> <span class="op">{</span></span>
-<span id="cb10-178"><a href="#cb10-178" aria-hidden="true" tabindex="-1"></a>    document()<span class="op">.</span>and_then(<span class="op">|</span>doc<span class="op">|</span> <span class="op">{</span></span>
-<span id="cb10-179"><a href="#cb10-179" aria-hidden="true" tabindex="-1"></a>        doc<span class="op">.</span>get_element_by_id(<span class="st">&quot;ui&quot;</span>)</span>
-<span id="cb10-180"><a href="#cb10-180" aria-hidden="true" tabindex="-1"></a>            <span class="op">.</span>ok_or_else(<span class="op">||</span> <span class="pp">anyhow!</span>(<span class="st">&quot;UI element not found&quot;</span>))</span>
-<span id="cb10-181"><a href="#cb10-181" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span>)</span>
-<span id="cb10-182"><a href="#cb10-182" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb10-183"><a href="#cb10-183" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-184"><a href="#cb10-184" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">fn</span> find_html_element_by_id(id<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>) <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>HtmlElement<span class="op">&gt;</span> <span class="op">{</span></span>
-<span id="cb10-185"><a href="#cb10-185" aria-hidden="true" tabindex="-1"></a>    document()</span>
-<span id="cb10-186"><a href="#cb10-186" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>and_then(<span class="op">|</span>doc<span class="op">|</span> <span class="op">{</span></span>
-<span id="cb10-187"><a href="#cb10-187" aria-hidden="true" tabindex="-1"></a>            doc<span class="op">.</span>get_element_by_id(id)</span>
-<span id="cb10-188"><a href="#cb10-188" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span>ok_or_else(<span class="op">||</span> <span class="pp">anyhow!</span>(<span class="st">&quot;Element with id {} not found&quot;</span><span class="op">,</span> id))</span>
-<span id="cb10-189"><a href="#cb10-189" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span>)</span>
-<span id="cb10-190"><a href="#cb10-190" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>and_then(<span class="op">|</span>element<span class="op">|</span> <span class="op">{</span></span>
-<span id="cb10-191"><a href="#cb10-191" aria-hidden="true" tabindex="-1"></a>            element</span>
-<span id="cb10-192"><a href="#cb10-192" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="pp">dyn_into::</span><span class="op">&lt;</span>HtmlElement<span class="op">&gt;</span>()</span>
-<span id="cb10-193"><a href="#cb10-193" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span>map_err(<span class="op">|</span>err<span class="op">|</span> <span class="pp">anyhow!</span>(<span class="st">&quot;Could not cast into HtmlElement {:#?}&quot;</span><span class="op">,</span> err))</span>
-<span id="cb10-194"><a href="#cb10-194" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span>)</span>
-<span id="cb10-195"><a href="#cb10-195" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb10-196"><a href="#cb10-196" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-197"><a href="#cb10-197" aria-hidden="true" tabindex="-1"></a><span class="co">//===============================</span></span>
-<span id="cb10-198"><a href="#cb10-198" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>cfg<span class="at">(</span>test<span class="at">)]</span></span>
-<span id="cb10-199"><a href="#cb10-199" aria-hidden="true" tabindex="-1"></a><span class="kw">mod</span> tests <span class="op">{</span></span>
-<span id="cb10-200"><a href="#cb10-200" aria-hidden="true" tabindex="-1"></a>    <span class="kw">use</span> <span class="kw">super</span><span class="pp">::</span><span class="op">*;</span></span>
-<span id="cb10-201"><a href="#cb10-201" aria-hidden="true" tabindex="-1"></a>    <span class="kw">use</span> <span class="pp">wasm_bindgen_test::</span>wasm_bindgen_test<span class="op">;</span></span>
-<span id="cb10-202"><a href="#cb10-202" aria-hidden="true" tabindex="-1"></a>    <span class="pp">wasm_bindgen_test::wasm_bindgen_test_configure!</span>(run_in_browser)<span class="op">;</span></span>
-<span id="cb10-203"><a href="#cb10-203" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-204"><a href="#cb10-204" aria-hidden="true" tabindex="-1"></a>    <span class="at">#[</span>wasm_bindgen_test<span class="at">]</span></span>
-<span id="cb10-205"><a href="#cb10-205" aria-hidden="true" tabindex="-1"></a>    <span class="kw">async</span> <span class="kw">fn</span> test_error_loading_json() <span class="op">{</span></span>
-<span id="cb10-206"><a href="#cb10-206" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> json <span class="op">=</span> fetch_json(<span class="st">&quot;not_there.json&quot;</span>)<span class="op">.</span><span class="kw">await</span><span class="op">;</span></span>
-<span id="cb10-207"><a href="#cb10-207" aria-hidden="true" tabindex="-1"></a>        <span class="pp">assert_eq!</span>(json<span class="op">.</span>is_err()<span class="op">,</span> <span class="cn">true</span>)<span class="op">;</span></span>
-<span id="cb10-208"><a href="#cb10-208" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb10-209"><a href="#cb10-209" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">// src/browser.rs</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">anyhow::</span><span class="op">{</span>anyhow<span class="op">,</span> <span class="dt">Result</span><span class="op">};</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::future::</span><span class="bu">Future</span><span class="op">;</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">wasm_bindgen::closure::</span><span class="op">{</span>Closure<span class="op">,</span> WasmClosureFnOnce<span class="op">,</span> WasmClosure<span class="op">};</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">wasm_bindgen::</span><span class="op">{</span>JsCast<span class="op">,</span> JsValue<span class="op">};</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">wasm_bindgen_futures::</span>JsFuture<span class="op">;</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">web_sys::</span><span class="op">{</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>    CanvasRenderingContext2d<span class="op">,</span> Document<span class="op">,</span> HtmlCanvasElement<span class="op">,</span> </span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>    HtmlImageElement<span class="op">,</span> Response<span class="op">,</span> Window<span class="op">,</span> Element<span class="op">,</span> HtmlElement<span class="op">,};</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">js_sys::</span>ArrayBuffer<span class="op">;</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="co">// It&#39;s a macro that allows you to log in to the console with log!</span></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="co">// using a syntax such as the format! function.</span></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a><span class="co">// Taken from https://rustwasm.github.io/book/game-of-life/debugging.html</span></span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a><span class="pp">macro_rules!</span> log <span class="op">{</span></span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>    ( <span class="op">$</span>( <span class="op">$</span>t<span class="op">:</span>tt )<span class="op">*</span> ) <span class="op">=&gt;</span> <span class="op">{</span></span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>        <span class="pp">web_sys::console::</span>log_1(<span class="op">&amp;</span><span class="pp">format!</span>( <span class="op">$</span>( <span class="op">$</span>t )<span class="op">*</span> )<span class="op">.</span>into())<span class="op">;</span></span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a><span class="pp">macro_rules!</span> error <span class="op">{</span></span>
+<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a>    ( <span class="op">$</span>( <span class="op">$</span>t<span class="op">:</span>tt )<span class="op">*</span> ) <span class="op">=&gt;</span> <span class="op">{</span></span>
+<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a>        <span class="pp">web_sys::console::</span>error_1(<span class="op">&amp;</span><span class="pp">format!</span>( <span class="op">$</span>( <span class="op">$</span>t )<span class="op">*</span> )<span class="op">.</span>into())<span class="op">;</span></span>
+<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">fn</span> window() <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>Window<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a>    <span class="pp">web_sys::</span>window()<span class="op">.</span>ok_or_else(<span class="op">||</span> <span class="pp">anyhow!</span>(<span class="st">&quot;No Window Found&quot;</span>))</span>
+<span id="cb25-32"><a href="#cb25-32" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb25-33"><a href="#cb25-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-34"><a href="#cb25-34" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">fn</span> document() <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>Document<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb25-35"><a href="#cb25-35" aria-hidden="true" tabindex="-1"></a>    window()<span class="op">?</span></span>
+<span id="cb25-36"><a href="#cb25-36" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>document()</span>
+<span id="cb25-37"><a href="#cb25-37" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>ok_or_else(<span class="op">||</span> <span class="pp">anyhow!</span>(<span class="st">&quot;No Document Found&quot;</span>))</span>
+<span id="cb25-38"><a href="#cb25-38" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb25-39"><a href="#cb25-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-40"><a href="#cb25-40" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">fn</span> canvas() <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>HtmlCanvasElement<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb25-41"><a href="#cb25-41" aria-hidden="true" tabindex="-1"></a>    document()<span class="op">?</span></span>
+<span id="cb25-42"><a href="#cb25-42" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>get_element_by_id(<span class="st">&quot;canvas&quot;</span>)</span>
+<span id="cb25-43"><a href="#cb25-43" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>ok_or_else(<span class="op">||</span> <span class="pp">anyhow!</span>(<span class="st">&quot;No Canvas Element found with ID &#39;canvas&#39;&quot;</span>))<span class="op">?</span></span>
+<span id="cb25-44"><a href="#cb25-44" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="pp">dyn_into::</span><span class="op">&lt;</span><span class="pp">web_sys::</span>HtmlCanvasElement<span class="op">&gt;</span>()</span>
+<span id="cb25-45"><a href="#cb25-45" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>map_err(<span class="op">|</span>element<span class="op">|</span> <span class="pp">anyhow!</span>(<span class="st">&quot;Error converting {:#?} to HtmlCanvasElement&quot;</span><span class="op">,</span> element))</span>
+<span id="cb25-46"><a href="#cb25-46" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb25-47"><a href="#cb25-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-48"><a href="#cb25-48" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">fn</span> context() <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>CanvasRenderingContext2d<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb25-49"><a href="#cb25-49" aria-hidden="true" tabindex="-1"></a>    canvas()<span class="op">?</span></span>
+<span id="cb25-50"><a href="#cb25-50" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>get_context(<span class="st">&quot;2d&quot;</span>)</span>
+<span id="cb25-51"><a href="#cb25-51" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>map_err(<span class="op">|</span>js_value<span class="op">|</span> <span class="pp">anyhow!</span>(<span class="st">&quot;Error getting 2d context {:#?}&quot;</span><span class="op">,</span> js_value))<span class="op">?</span></span>
+<span id="cb25-52"><a href="#cb25-52" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>ok_or_else(<span class="op">||</span> <span class="pp">anyhow!</span>(<span class="st">&quot;No 2d context found&quot;</span>))<span class="op">?</span></span>
+<span id="cb25-53"><a href="#cb25-53" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="pp">dyn_into::</span><span class="op">&lt;</span><span class="pp">web_sys::</span>CanvasRenderingContext2d<span class="op">&gt;</span>()</span>
+<span id="cb25-54"><a href="#cb25-54" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>map_err(<span class="op">|</span>element<span class="op">|</span> <span class="op">{</span></span>
+<span id="cb25-55"><a href="#cb25-55" aria-hidden="true" tabindex="-1"></a>            <span class="pp">anyhow!</span>(</span>
+<span id="cb25-56"><a href="#cb25-56" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;Error converting {:#?} to CanvasRenderingContext2d&quot;</span><span class="op">,</span></span>
+<span id="cb25-57"><a href="#cb25-57" aria-hidden="true" tabindex="-1"></a>                element</span>
+<span id="cb25-58"><a href="#cb25-58" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb25-59"><a href="#cb25-59" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span>)</span>
+<span id="cb25-60"><a href="#cb25-60" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb25-61"><a href="#cb25-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-62"><a href="#cb25-62" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">fn</span> spawn_local<span class="op">&lt;</span>F<span class="op">&gt;</span>(future<span class="op">:</span> F)</span>
+<span id="cb25-63"><a href="#cb25-63" aria-hidden="true" tabindex="-1"></a><span class="kw">where</span></span>
+<span id="cb25-64"><a href="#cb25-64" aria-hidden="true" tabindex="-1"></a>    F<span class="op">:</span> <span class="bu">Future</span><span class="op">&lt;</span>Output <span class="op">=</span> ()<span class="op">&gt;</span> <span class="op">+</span> <span class="ot">&#39;static</span><span class="op">,</span></span>
+<span id="cb25-65"><a href="#cb25-65" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb25-66"><a href="#cb25-66" aria-hidden="true" tabindex="-1"></a>    <span class="pp">wasm_bindgen_futures::</span>spawn_local(future)<span class="op">;</span></span>
+<span id="cb25-67"><a href="#cb25-67" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb25-68"><a href="#cb25-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-69"><a href="#cb25-69" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> fetch_with_str(resource<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>) <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>JsValue<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb25-70"><a href="#cb25-70" aria-hidden="true" tabindex="-1"></a>    <span class="pp">JsFuture::</span>from(window()<span class="op">?.</span>fetch_with_str(resource))</span>
+<span id="cb25-71"><a href="#cb25-71" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="kw">await</span></span>
+<span id="cb25-72"><a href="#cb25-72" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>map_err(<span class="op">|</span>err<span class="op">|</span> <span class="pp">anyhow!</span>(<span class="st">&quot;error fetching {:#?}&quot;</span><span class="op">,</span> err))</span>
+<span id="cb25-73"><a href="#cb25-73" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb25-74"><a href="#cb25-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-75"><a href="#cb25-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-76"><a href="#cb25-76" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> fetch_response(resource<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>) <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>Response<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb25-77"><a href="#cb25-77" aria-hidden="true" tabindex="-1"></a>    fetch_with_str(resource)</span>
+<span id="cb25-78"><a href="#cb25-78" aria-hidden="true" tabindex="-1"></a>                        <span class="op">.</span><span class="kw">await</span><span class="op">?</span></span>
+<span id="cb25-79"><a href="#cb25-79" aria-hidden="true" tabindex="-1"></a>                        <span class="op">.</span>dyn_into()</span>
+<span id="cb25-80"><a href="#cb25-80" aria-hidden="true" tabindex="-1"></a>                        <span class="op">.</span>map_err(<span class="op">|</span>err<span class="op">|</span> <span class="pp">anyhow!</span>(<span class="st">&quot;error converting fetch to Response {:#?}&quot;</span><span class="op">,</span> err))</span>
+<span id="cb25-81"><a href="#cb25-81" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb25-82"><a href="#cb25-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-83"><a href="#cb25-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-84"><a href="#cb25-84" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> fetch_json(json_path<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>) <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>JsValue<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb25-85"><a href="#cb25-85" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> resp <span class="op">=</span> fetch_response(json_path)<span class="op">.</span><span class="kw">await</span><span class="op">?;</span></span>
+<span id="cb25-86"><a href="#cb25-86" aria-hidden="true" tabindex="-1"></a>    <span class="pp">JsFuture::</span>from( resp<span class="op">.</span>json()</span>
+<span id="cb25-87"><a href="#cb25-87" aria-hidden="true" tabindex="-1"></a>                        <span class="op">.</span>map_err(<span class="op">|</span>err<span class="op">|</span> <span class="pp">anyhow!</span>(<span class="st">&quot;Could not get JSON from response {:#?}&quot;</span><span class="op">,</span> err))<span class="op">?,</span></span>
+<span id="cb25-88"><a href="#cb25-88" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb25-89"><a href="#cb25-89" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="kw">await</span></span>
+<span id="cb25-90"><a href="#cb25-90" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span>map_err(<span class="op">|</span>err<span class="op">|</span> <span class="pp">anyhow!</span>(<span class="st">&quot;error fetching JSON {:#?}&quot;</span><span class="op">,</span> err))</span>
+<span id="cb25-91"><a href="#cb25-91" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb25-92"><a href="#cb25-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-93"><a href="#cb25-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-94"><a href="#cb25-94" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> fetch_array_buffer(resource<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>) <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>ArrayBuffer<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb25-95"><a href="#cb25-95" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> array_buffer <span class="op">=</span> fetch_response(resource)</span>
+<span id="cb25-96"><a href="#cb25-96" aria-hidden="true" tabindex="-1"></a>                        <span class="op">.</span><span class="kw">await</span><span class="op">?</span></span>
+<span id="cb25-97"><a href="#cb25-97" aria-hidden="true" tabindex="-1"></a>                        <span class="op">.</span>array_buffer()</span>
+<span id="cb25-98"><a href="#cb25-98" aria-hidden="true" tabindex="-1"></a>                        <span class="op">.</span>map_err(<span class="op">|</span>err<span class="op">|</span> <span class="pp">anyhow!</span>(<span class="st">&quot;Error loading array buffer {:#?}&quot;</span><span class="op">,</span> err))<span class="op">?;</span></span>
+<span id="cb25-99"><a href="#cb25-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-100"><a href="#cb25-100" aria-hidden="true" tabindex="-1"></a>    <span class="pp">JsFuture::</span>from(array_buffer)</span>
+<span id="cb25-101"><a href="#cb25-101" aria-hidden="true" tabindex="-1"></a>                        <span class="op">.</span><span class="kw">await</span></span>
+<span id="cb25-102"><a href="#cb25-102" aria-hidden="true" tabindex="-1"></a>                        <span class="op">.</span>map_err(<span class="op">|</span>err<span class="op">|</span> <span class="pp">anyhow!</span>(<span class="st">&quot;Error converting array buffer into a future {:#?}&quot;</span><span class="op">,</span> err))<span class="op">?</span></span>
+<span id="cb25-103"><a href="#cb25-103" aria-hidden="true" tabindex="-1"></a>                        <span class="op">.</span>dyn_into()</span>
+<span id="cb25-104"><a href="#cb25-104" aria-hidden="true" tabindex="-1"></a>                        <span class="op">.</span>map_err(<span class="op">|</span>err<span class="op">|</span> <span class="pp">anyhow!</span>(<span class="st">&quot;Error converting raw JSValue to ArrayBuffer {:#?}&quot;</span><span class="op">,</span> err))</span>
+<span id="cb25-105"><a href="#cb25-105" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb25-106"><a href="#cb25-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-107"><a href="#cb25-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-108"><a href="#cb25-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-109"><a href="#cb25-109" aria-hidden="true" tabindex="-1"></a><span class="co">/*</span></span>
+<span id="cb25-110"><a href="#cb25-110" aria-hidden="true" tabindex="-1"></a><span class="co">This function is just a wrapper around HtmlImageElement ; there&#39;s not much to</span></span>
+<span id="cb25-111"><a href="#cb25-111" aria-hidden="true" tabindex="-1"></a><span class="co">explain. In the future, we may decide we want our own type for images, but for now,</span></span>
+<span id="cb25-112"><a href="#cb25-112" aria-hidden="true" tabindex="-1"></a><span class="co">we&#39;ll stick with the browser-provided type.</span></span>
+<span id="cb25-113"><a href="#cb25-113" aria-hidden="true" tabindex="-1"></a><span class="co">*/</span></span>
+<span id="cb25-114"><a href="#cb25-114" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">fn</span> new_image() <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>HtmlImageElement<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb25-115"><a href="#cb25-115" aria-hidden="true" tabindex="-1"></a>    <span class="pp">HtmlImageElement::</span>new()<span class="op">.</span>map_err(<span class="op">|</span>err<span class="op">|</span> <span class="pp">anyhow!</span>(<span class="st">&quot;Could not create HtmlImageElement: {:#?}&quot;</span><span class="op">,</span> err))</span>
+<span id="cb25-116"><a href="#cb25-116" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb25-117"><a href="#cb25-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-118"><a href="#cb25-118" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">type</span> LoopClosure <span class="op">=</span> Closure<span class="op">&lt;</span><span class="kw">dyn</span> <span class="bu">FnMut</span>(<span class="dt">f64</span>)<span class="op">&gt;;</span></span>
+<span id="cb25-119"><a href="#cb25-119" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">fn</span> create_raf_closure(f<span class="op">:</span> <span class="kw">impl</span> <span class="bu">FnMut</span>(<span class="dt">f64</span>) <span class="op">+</span> <span class="ot">&#39;static</span>) <span class="op">-&gt;</span> LoopClosure <span class="op">{</span></span>
+<span id="cb25-120"><a href="#cb25-120" aria-hidden="true" tabindex="-1"></a>    closure_wrap(<span class="dt">Box</span><span class="pp">::</span>new(f))</span>
+<span id="cb25-121"><a href="#cb25-121" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb25-122"><a href="#cb25-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-123"><a href="#cb25-123" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">fn</span> request_animation_frame(callback<span class="op">:</span> <span class="op">&amp;</span>Closure<span class="op">&lt;</span><span class="kw">dyn</span> <span class="bu">FnMut</span>(<span class="dt">f64</span>)<span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span><span class="dt">i32</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb25-124"><a href="#cb25-124" aria-hidden="true" tabindex="-1"></a>    window()<span class="op">?</span></span>
+<span id="cb25-125"><a href="#cb25-125" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>request_animation_frame(callback<span class="op">.</span>as_ref()<span class="op">.</span>unchecked_ref())</span>
+<span id="cb25-126"><a href="#cb25-126" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>map_err(<span class="op">|</span>err<span class="op">|</span> <span class="pp">anyhow!</span>(<span class="st">&quot;Cannot request animation frame {:#?}&quot;</span><span class="op">,</span> err))</span>
+<span id="cb25-127"><a href="#cb25-127" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb25-128"><a href="#cb25-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-129"><a href="#cb25-129" aria-hidden="true" tabindex="-1"></a><span class="co">/*</span></span>
+<span id="cb25-130"><a href="#cb25-130" aria-hidden="true" tabindex="-1"></a><span class="co">We just mimic the exact same type signature of the</span></span>
+<span id="cb25-131"><a href="#cb25-131" aria-hidden="true" tabindex="-1"></a><span class="co">Closure::once function from wasm_bindgen .</span></span>
+<span id="cb25-132"><a href="#cb25-132" aria-hidden="true" tabindex="-1"></a><span class="co">*/</span></span>
+<span id="cb25-133"><a href="#cb25-133" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">fn</span> closure_once<span class="op">&lt;</span>F<span class="op">,</span> A<span class="op">,</span> R<span class="op">&gt;</span>(fn_once<span class="op">:</span> F) <span class="op">-&gt;</span> Closure<span class="op">&lt;</span><span class="pp">F::</span><span class="bu">FnMut</span><span class="op">&gt;</span></span>
+<span id="cb25-134"><a href="#cb25-134" aria-hidden="true" tabindex="-1"></a><span class="kw">where</span></span>
+<span id="cb25-135"><a href="#cb25-135" aria-hidden="true" tabindex="-1"></a>    F<span class="op">:</span> <span class="ot">&#39;static</span> <span class="op">+</span> WasmClosureFnOnce<span class="op">&lt;</span>A<span class="op">,</span> R<span class="op">&gt;,</span></span>
+<span id="cb25-136"><a href="#cb25-136" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb25-137"><a href="#cb25-137" aria-hidden="true" tabindex="-1"></a>    <span class="pp">Closure::</span>once(fn_once)</span>
+<span id="cb25-138"><a href="#cb25-138" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb25-139"><a href="#cb25-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-140"><a href="#cb25-140" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">fn</span> closure_wrap<span class="op">&lt;</span>T<span class="op">:</span> WasmClosure <span class="op">+</span> <span class="op">?</span><span class="bu">Sized</span><span class="op">&gt;</span>(data<span class="op">:</span> <span class="dt">Box</span><span class="op">&lt;</span>T<span class="op">&gt;</span>) <span class="op">-&gt;</span> Closure<span class="op">&lt;</span>T<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb25-141"><a href="#cb25-141" aria-hidden="true" tabindex="-1"></a>    <span class="pp">Closure::</span>wrap(data)</span>
+<span id="cb25-142"><a href="#cb25-142" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb25-143"><a href="#cb25-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-144"><a href="#cb25-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-145"><a href="#cb25-145" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">fn</span> now() <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span><span class="dt">f64</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb25-146"><a href="#cb25-146" aria-hidden="true" tabindex="-1"></a>    <span class="cn">Ok</span>(window()<span class="op">?</span></span>
+<span id="cb25-147"><a href="#cb25-147" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>performance()</span>
+<span id="cb25-148"><a href="#cb25-148" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>ok_or_else(<span class="op">||</span> <span class="pp">anyhow!</span>(<span class="st">&quot;Performance object not found&quot;</span>))<span class="op">?</span></span>
+<span id="cb25-149"><a href="#cb25-149" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>now())</span>
+<span id="cb25-150"><a href="#cb25-150" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb25-151"><a href="#cb25-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-152"><a href="#cb25-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-153"><a href="#cb25-153" aria-hidden="true" tabindex="-1"></a><span class="co">//------------- UI</span></span>
+<span id="cb25-154"><a href="#cb25-154" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">fn</span> draw_ui(html<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>) <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb25-155"><a href="#cb25-155" aria-hidden="true" tabindex="-1"></a>    find_ui()<span class="op">?</span></span>
+<span id="cb25-156"><a href="#cb25-156" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>insert_adjacent_html(<span class="st">&quot;afterbegin&quot;</span><span class="op">,</span> html)</span>
+<span id="cb25-157"><a href="#cb25-157" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>map_err(<span class="op">|</span>err<span class="op">|</span> <span class="pp">anyhow!</span>(<span class="st">&quot;Could not insert html {:#?}&quot;</span><span class="op">,</span> err))</span>
+<span id="cb25-158"><a href="#cb25-158" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb25-159"><a href="#cb25-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-160"><a href="#cb25-160" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">fn</span> hide_ui() <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb25-161"><a href="#cb25-161" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> ui <span class="op">=</span> find_ui()<span class="op">?;</span></span>
+<span id="cb25-162"><a href="#cb25-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-163"><a href="#cb25-163" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">let</span> <span class="cn">Some</span>(child) <span class="op">=</span> ui<span class="op">.</span>first_child() <span class="op">{</span></span>
+<span id="cb25-164"><a href="#cb25-164" aria-hidden="true" tabindex="-1"></a>        ui<span class="op">.</span>remove_child(<span class="op">&amp;</span>child)</span>
+<span id="cb25-165"><a href="#cb25-165" aria-hidden="true" tabindex="-1"></a>            <span class="op">.</span>map(<span class="op">|</span>_removed_child<span class="op">|</span> ())</span>
+<span id="cb25-166"><a href="#cb25-166" aria-hidden="true" tabindex="-1"></a>            <span class="op">.</span>map_err(<span class="op">|</span>err<span class="op">|</span> <span class="pp">anyhow!</span>(<span class="st">&quot;Failed to remove child {:#?}&quot;</span><span class="op">,</span> err))</span>
+<span id="cb25-167"><a href="#cb25-167" aria-hidden="true" tabindex="-1"></a>            <span class="op">.</span>and_then(<span class="op">|</span>_unit<span class="op">|</span> <span class="op">{</span></span>
+<span id="cb25-168"><a href="#cb25-168" aria-hidden="true" tabindex="-1"></a>                canvas()<span class="op">?</span></span>
+<span id="cb25-169"><a href="#cb25-169" aria-hidden="true" tabindex="-1"></a>                    <span class="op">.</span>focus()</span>
+<span id="cb25-170"><a href="#cb25-170" aria-hidden="true" tabindex="-1"></a>                    <span class="op">.</span>map_err(<span class="op">|</span>err<span class="op">|</span> <span class="pp">anyhow!</span>(<span class="st">&quot;Could not set focus to canvas! {:#?}&quot;</span><span class="op">,</span> err))</span>
+<span id="cb25-171"><a href="#cb25-171" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span>)</span>
+<span id="cb25-172"><a href="#cb25-172" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb25-173"><a href="#cb25-173" aria-hidden="true" tabindex="-1"></a>        <span class="cn">Ok</span>(())</span>
+<span id="cb25-174"><a href="#cb25-174" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb25-175"><a href="#cb25-175" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb25-176"><a href="#cb25-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-177"><a href="#cb25-177" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> find_ui() <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>Element<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb25-178"><a href="#cb25-178" aria-hidden="true" tabindex="-1"></a>    document()<span class="op">.</span>and_then(<span class="op">|</span>doc<span class="op">|</span> <span class="op">{</span></span>
+<span id="cb25-179"><a href="#cb25-179" aria-hidden="true" tabindex="-1"></a>        doc<span class="op">.</span>get_element_by_id(<span class="st">&quot;ui&quot;</span>)</span>
+<span id="cb25-180"><a href="#cb25-180" aria-hidden="true" tabindex="-1"></a>            <span class="op">.</span>ok_or_else(<span class="op">||</span> <span class="pp">anyhow!</span>(<span class="st">&quot;UI element not found&quot;</span>))</span>
+<span id="cb25-181"><a href="#cb25-181" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span>)</span>
+<span id="cb25-182"><a href="#cb25-182" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb25-183"><a href="#cb25-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-184"><a href="#cb25-184" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">fn</span> find_html_element_by_id(id<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>) <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>HtmlElement<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb25-185"><a href="#cb25-185" aria-hidden="true" tabindex="-1"></a>    document()</span>
+<span id="cb25-186"><a href="#cb25-186" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>and_then(<span class="op">|</span>doc<span class="op">|</span> <span class="op">{</span></span>
+<span id="cb25-187"><a href="#cb25-187" aria-hidden="true" tabindex="-1"></a>            doc<span class="op">.</span>get_element_by_id(id)</span>
+<span id="cb25-188"><a href="#cb25-188" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span>ok_or_else(<span class="op">||</span> <span class="pp">anyhow!</span>(<span class="st">&quot;Element with id {} not found&quot;</span><span class="op">,</span> id))</span>
+<span id="cb25-189"><a href="#cb25-189" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span>)</span>
+<span id="cb25-190"><a href="#cb25-190" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>and_then(<span class="op">|</span>element<span class="op">|</span> <span class="op">{</span></span>
+<span id="cb25-191"><a href="#cb25-191" aria-hidden="true" tabindex="-1"></a>            element</span>
+<span id="cb25-192"><a href="#cb25-192" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="pp">dyn_into::</span><span class="op">&lt;</span>HtmlElement<span class="op">&gt;</span>()</span>
+<span id="cb25-193"><a href="#cb25-193" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span>map_err(<span class="op">|</span>err<span class="op">|</span> <span class="pp">anyhow!</span>(<span class="st">&quot;Could not cast into HtmlElement {:#?}&quot;</span><span class="op">,</span> err))</span>
+<span id="cb25-194"><a href="#cb25-194" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span>)</span>
+<span id="cb25-195"><a href="#cb25-195" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb25-196"><a href="#cb25-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-197"><a href="#cb25-197" aria-hidden="true" tabindex="-1"></a><span class="co">//===============================</span></span>
+<span id="cb25-198"><a href="#cb25-198" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>cfg<span class="at">(</span>test<span class="at">)]</span></span>
+<span id="cb25-199"><a href="#cb25-199" aria-hidden="true" tabindex="-1"></a><span class="kw">mod</span> tests <span class="op">{</span></span>
+<span id="cb25-200"><a href="#cb25-200" aria-hidden="true" tabindex="-1"></a>    <span class="kw">use</span> <span class="kw">super</span><span class="pp">::</span><span class="op">*;</span></span>
+<span id="cb25-201"><a href="#cb25-201" aria-hidden="true" tabindex="-1"></a>    <span class="kw">use</span> <span class="pp">wasm_bindgen_test::</span>wasm_bindgen_test<span class="op">;</span></span>
+<span id="cb25-202"><a href="#cb25-202" aria-hidden="true" tabindex="-1"></a>    <span class="pp">wasm_bindgen_test::wasm_bindgen_test_configure!</span>(run_in_browser)<span class="op">;</span></span>
+<span id="cb25-203"><a href="#cb25-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-204"><a href="#cb25-204" aria-hidden="true" tabindex="-1"></a>    <span class="at">#[</span>wasm_bindgen_test<span class="at">]</span></span>
+<span id="cb25-205"><a href="#cb25-205" aria-hidden="true" tabindex="-1"></a>    <span class="kw">async</span> <span class="kw">fn</span> test_error_loading_json() <span class="op">{</span></span>
+<span id="cb25-206"><a href="#cb25-206" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> json <span class="op">=</span> fetch_json(<span class="st">&quot;not_there.json&quot;</span>)<span class="op">.</span><span class="kw">await</span><span class="op">;</span></span>
+<span id="cb25-207"><a href="#cb25-207" aria-hidden="true" tabindex="-1"></a>        <span class="pp">assert_eq!</span>(json<span class="op">.</span>is_err()<span class="op">,</span> <span class="cn">true</span>)<span class="op">;</span></span>
+<span id="cb25-208"><a href="#cb25-208" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb25-209"><a href="#cb25-209" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<hr />
 </main>
 <script src="https://lerina.github.io/js/toc.js"></script>
 <script>
