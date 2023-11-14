@@ -136,12 +136,13 @@ WebAssembly] small book that describes how to use Rust and WebAssembly
 together. Or MDN’s <a
 href="https://developer.mozilla.org/en-US/docs/WebAssembly/Rust_to_Wasm">Compiling
 from Rust to WebAssembly</a></p>
-<p><a
+<p>The documentation for <a
 href="https://rustwasm.github.io/docs/wasm-bindgen/examples/without-a-bundler.html">wasm-bindgen:
-without-a-bundler</a> Actually has everyting you need to get started
-with rust-wasm without NPM, … Unfortunatly if you don’t know what you
-are looking at your still clueless in the end.</p>
-<p>here is an example</p>
+without-a-bundler</a> actually has everyting you need to get started
+with rust-wasm without NPM, …</p>
+<p>Unfortunatly if you don’t know what you are looking at your still
+clueless in the end.</p>
+<p>Here is an example</p>
 <pre><code>Without a Bundler
 
 --target web or --target no-modules
@@ -155,37 +156,47 @@ If you&#39;re not using a bundler but you&#39;re still running code in a web bro
 
 The CLI also supports an output mode called --target no-modules which is similar to the web target in that it requires manual initialization of the wasm and is intended to be included in web pages without any further postprocessing. See the without a bundler example for some more information about --target no-modules.</code></pre>
 <p>What do you really do with that? Ironicaly its actually very clear
-once you know and don’t need these kind of information.</p>
+once you know and don’t need these kind of information. The problem is
+the infomation is squatered all over the place.</p>
+<blockquote>
+<p>These pages brings under one location all those bits and pieces you
+want to know in order to understand and build wasm stuff with Rust.</p>
+</blockquote>
+<h3 id="learn-wasm">Learn Wasm</h3>
+<h4 id="the-tools">The tools</h4>
 <p>Webassembly is still a moving target and some tools and convenient
 crates make the experience more appealing.</p>
 <p>In the following pages we’ll dive into understanding how to transform
 most webpack, NPM loaded Rust/wasm tutorial into lean no-bloat rust-wasm
 with no-bundle.</p>
-<p>We’ll use and get familliar with the following tools and crates: - <a
+<p>We’ll use and get familliar with the following tools and crates:</p>
+<ul>
+<li><a
 href="https://rustwasm.github.io/wasm-pack/installer/">wasm-pack</a><br />
 <a
 href="https://rustwasm.github.io/docs/wasm-pack/introduction.html">wasm-pack
 docs</a><br />
-- <a
+</li>
+<li><a
 href="https://github.com/rustwasm/wasm-bindgen">wasm-bindgen</a><br />
 <a href="https://rustwasm.github.io/docs/wasm-bindgen/">wasm-bindgen
 docs</a><br />
-- <a href="https://lib.rs/crates/js-sys">js-sys</a> &amp; <a
+</li>
+<li><a href="https://lib.rs/crates/js-sys">js-sys</a> &amp; <a
 href="https://lib.rs/crates/web-sys">web-sys</a><br />
 <a
 href="https://rustwasm.github.io/wasm-bindgen/examples/wasm-in-wasm.html">wasm-bindgen:
 js-sys example</a><br />
 <a
 href="https://rustwasm.github.io/wasm-bindgen/examples/dom.html">wasm-bindgen:
-web-sys examples</a></p>
+web-sys examples</a></li>
+</ul>
 <!-- 
 [trunkrs.dev](https://trunkrs.dev/)  
 -->
-<h3 id="learn-wasm">Learn Wasm</h3>
-<h4 id="the-tools">The tools</h4>
-<h4 id="my-no-bloat-workflow">My no-bloat workflow</h4>
+<h4 id="a-no-bloat-workflow">A no-bloat workflow</h4>
 <p>Wasm without npm and bundlers is actually quite simple. Unfortunately
-it’s not easy to find complete examples on the web.</p>
+it’s not easy to find <strong>complete examples</strong> on the web.</p>
 <ul>
 <li>Get the canvas smiley face example from wasm-bindgen.</li>
 </ul>
