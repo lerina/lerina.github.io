@@ -194,6 +194,8 @@ http www
 Open the browser at http://127.0.0.1:8000/html/  
 and `ctrl-shift + I` to see the output in the browsers console log
 
+![Console log](./pix/console_log.png)
+
 ## What's next?
 
 There is nothing specific for nobundle in the [Small wasm files](https://rustwasm.github.io/wasm-bindgen/examples/add.html){target="_blank"} example sot will pass it.
