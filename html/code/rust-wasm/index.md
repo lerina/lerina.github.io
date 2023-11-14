@@ -68,6 +68,7 @@ Webassembly is still a moving target and some tools and convenient crates make t
 In the following pages we'll dive into understanding how to transform most webpack, NPM loaded Rust/wasm tutorial into lean no-bloat rust-wasm with no-bundle.
 
 We'll use and get familliar with the following tools and crates: 
+
 - [wasm-pack](https://rustwasm.github.io/wasm-pack/installer/)  
 [wasm-pack docs](https://rustwasm.github.io/docs/wasm-pack/introduction.html)  
 - [wasm-bindgen](https://github.com/rustwasm/wasm-bindgen)  
