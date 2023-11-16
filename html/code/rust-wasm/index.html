@@ -111,45 +111,38 @@ href="https://www.youtube.com/c/LetsGetRusty/playlists"
 target="_blank">LetsGetRusty</a></li>
 </ul>
 <h2 id="motivation">Motivation</h2>
-<p>A while back Rust kept popping up on my radar.<br />
-I drank the Cool-aid and fell for the Rust evangelism.<br />
+<p>I drank the Cool-aid and fell for the Rust evangelism.<br />
 I love the language. It make programming fun again.</p>
-<p>When webassembly started to be a thing, once again Rust kept popping
-up as the Language of choice: - to build webassembly/JavaScript apps for
-the web or - target some specific module that need speeding, memory
-safety, or both.</p>
-<p>To my dismay however, most tutorial including the official one lean
-heavily on “NPM and co”. I just wanted to wrap my head around the Rust
-thing, I didn’t even have an up to date Node on my system.</p>
-<p>Do I really need all these things to just have something writen in
-Rust, compiled into wasm and integrated with plain vanilla JavaScript
-and HTML/css?<br />
-Good news, the answer is No!<br />
-Less joyful news however is that information on programming Rust-wasm
-without bloat is scarces. Findind a paragraph or two about it brings
-excitement to the lonely searcher.</p>
+<p>When webassembly started to be a thing, Rust kept popping up as the
+Language of choice:</p>
 <ul>
-<li>2019-05-25 <a
-href="https://dev.to/dandyvica/wasm-in-rust-without-nodejs-2e0c"
-target="_blank">WASM in Rust without NodeJS</a></li>
-<li>2022-02-14 <a
-href="https://blog.urth.org/2022/02/14/frontend-rust-without-node/"
-target="_blank">Frontend Rust Without Node</a></li>
-<li>2022-03-10 <a
-href="https://lionturkey.github.io/posts/rustwasm/rustwasm.html"
-target="_blank">Rust/Wasm without npm</a></li>
+<li>to build webassembly/JavaScript apps for the web or</li>
+<li>target some specific module that need speeding, memory safety, or
+both.</li>
 </ul>
-<p>Of course one should not dismiss the official [Rust 🦀 and
-WebAssembly] small book that describes how to use Rust and WebAssembly
-together. Or MDN’s <a
+<p>Most Rust-wasm tutorials, however, lean heavily on “NPM and webpack”,
+just to get a “hello world”.</p>
+<p>It is stated that NPM and webpack are optional, but complete examples
+to get wasm in the browser are hard to find.</p>
+<p>Can one code in Rust, compiled into wasm and integrated with plain
+vanilla JavaScript and HTML/css?<br />
+Yes! But how?</p>
+<p>Information on programming Rust-wasm without bundlers is scarces.</p>
+<p>Of course despite assuming that you are following the
+<em>with-NPM-and_webpack</em> tutorials, one should not dismiss the
+official <a href="https://rustwasm.github.io/docs/book/"
+target="_blank">Rust 🦀 and WebAssembly</a> small book that describes
+how to use Rust and WebAssembly together. Or MDN’s <a
 href="https://developer.mozilla.org/en-US/docs/WebAssembly/Rust_to_Wasm"
-target="_blank">Compiling from Rust to WebAssembly</a></p>
-<p>The documentation for <a
+target="_blank">Compiling from Rust to WebAssembly</a> Just come back to
+it once you’ve gone through a couple of examples in these pages.</p>
+<p>Also note that the documentation for <a
 href="https://rustwasm.github.io/docs/wasm-bindgen/examples/without-a-bundler.html"
 target="_blank">wasm-bindgen: without-a-bundler</a> actually has
 everyting you need to get started with rust-wasm without NPM, …</p>
-<p>Unfortunatly if you don’t know what you are looking at your still
-clueless in the end.</p>
+<p>Unfortunatly it assumes you followed the <em>rust with bundler</em>
+tutorial. If you don’t know what you are looking at your still clueless
+in the end.</p>
 <p>Here is an example</p>
 <pre><code>Without a Bundler
 
@@ -164,9 +157,22 @@ If you&#39;re not using a bundler but you&#39;re still running code in a web bro
 
 The CLI also supports an output mode called --target no-modules which is similar to the web target in that it requires manual initialization of the wasm and is intended to be included in web pages without any further postprocessing. See the without a bundler example for some more information about --target no-modules.</code></pre>
 <p>What do you really do with that? Ironicaly its actually very clear
-once you know and don’t need these kind of information. The problem is
-the information is squatered, not always up to date and biased toward
-bundlers.</p>
+once you know and don’t need these kind of information anymore.</p>
+<p>Another problem is that alternative information is squatered, not
+always up to date and biased toward bundlers. Findind a paragraph or two
+about it brings excitement to the lonely searcher. Of note are the
+following:</p>
+<ul>
+<li>2019-05-25 <a
+href="https://dev.to/dandyvica/wasm-in-rust-without-nodejs-2e0c"
+target="_blank">WASM in Rust without NodeJS</a></li>
+<li>2022-02-14 <a
+href="https://blog.urth.org/2022/02/14/frontend-rust-without-node/"
+target="_blank">Frontend Rust Without Node</a></li>
+<li>2022-03-10 <a
+href="https://lionturkey.github.io/posts/rustwasm/rustwasm.html"
+target="_blank">Rust/Wasm without npm</a></li>
+</ul>
 <blockquote>
 <p>The following pages brings under one location all those bits and
 pieces you want to know in order to understand and build wasm stuff with
@@ -203,24 +209,29 @@ target="_blank">web-sys examples</a></li>
 <!-- 
 [trunkrs.dev](https://trunkrs.dev/){target="_blank"}  
 -->
-<h3 id="a-no-bloat-workflow">A no-bloat workflow</h3>
+<h3 id="let-the-tutorial-begin">Let the tutorial begin!</h3>
 <p>Wasm without npm and bundlers is actually quite simple. Unfortunately
 it’s not easy to find <strong>complete examples</strong> on the web.</p>
-<p>Let’s convert each example from wasm-bindgen to a no-bundle version.
-But before that we’ll prepare our workspace, and setup out tools.</p>
+<p>Let’s convert each example from wasm-bindgen to a no-bundle
+version.</p>
+<ul>
+<li>In Part I, we’ll get a example running.</li>
+<li>Then in Part II, we’ll study the code</li>
+</ul>
+<p>But before that let’s prepare our workspace, and setup our tools.</p>
 <p>It is assumed that you have Rust on your machine and cargo ready for
 use. (If not get the installer <a href="https://rustup.rs/"
 target="_blank">here: rustup.rs</a>).</p>
-<ol start="0" type="1">
-<li>Get wasm-pack and something to serve our website locally</li>
-</ol>
-<p>0.1 wasm-pack</p>
+<h4 id="get-wasm-pack-and-something-to-serve-our-website-locally">0. Get
+wasm-pack and something to serve our website locally</h4>
+<h5 id="wasm-pack">0.1 wasm-pack</h5>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> install wasm-pack</span></code></pre></div>
 <p>wasm-pack helps you build rust-generated WebAssembly packages Its a
-convinience that is widely used by the Rust community.</p>
-<p>If your interested see <a
-href="./wasm-pack_under_the_hood.html">wasm-pack under the hood</a></p>
-<p>0.2 Get a local tiny static file server</p>
+useful convenience that is widely used by the Rust community.</p>
+<p>If your interested see <a href="./wasm-pack_under_the_hood.html"
+target="_blank">wasm-pack under the hood</a></p>
+<h5 id="get-a-local-tiny-static-file-server">0.2 Get a local tiny static
+file server</h5>
 <p>We need something to serve your website so we can test and see what
 we develop on our local machine. If you don’t have one installed you can
 use <a href="https://github.com/thecoshman/http"
@@ -249,6 +260,9 @@ index.js</li>
 <li>Run the web server and open your browser</li>
 </ol>
 <hr />
+<blockquote>
+<p>PART I. Make it run</p>
+</blockquote>
 <h5 id="set-up-your-file-structure">1. Set up your file structure</h5>
 <div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> new hello_world <span class="at">--lib</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> hello_world</span>
@@ -411,6 +425,10 @@ file structure to our server</p>
 <img src="./pix/hello_world.png" alt="enjoy!" />
 <figcaption aria-hidden="true">enjoy!</figcaption>
 </figure>
+<hr />
+<blockquote>
+<p>PART II. Understand the Code</p>
+</blockquote>
 <hr />
 <h2 id="console.log"><a
 href="./002_console_log.html">console.log</a></h2>

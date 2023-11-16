@@ -9,34 +9,34 @@ If you need to learn Rust or unrust your Rust these are you best free options.
 
 ## Motivation
  
-A while back Rust kept popping up on my radar.  
 I drank the Cool-aid and fell for the Rust evangelism.  
 I love the language. It make programming fun again. 
 
-When webassembly started to be a thing, once again Rust kept popping up as the Language of choice:
+When webassembly started to be a thing, Rust kept popping up as the Language of choice:
+
 - to build webassembly/JavaScript apps for the web or 
 - target some specific module that need speeding, memory safety, or both.
 
-To my dismay however, most tutorial including the official one lean heavily on "NPM and co". 
-I just wanted to wrap my head around the Rust thing, I didn't even have an up to date Node on my system.
+Most Rust-wasm tutorials, however, lean heavily on "NPM and webpack", just to get a "hello world".
 
-Do I really need all these things to just have something writen in Rust, 
-compiled into wasm and integrated with plain vanilla JavaScript and HTML/css?  
-Good news, the answer is No!  
-Less joyful news however is that information on programming Rust-wasm without bloat is scarces. 
-Findind a paragraph or two about it brings excitement to the lonely searcher.
+It is stated that NPM and webpack are optional, but complete examples to get wasm in the browser 
+are hard to find. 
 
-- 2019-05-25 [WASM in Rust without NodeJS](https://dev.to/dandyvica/wasm-in-rust-without-nodejs-2e0c){target="_blank"}
-- 2022-02-14 [Frontend Rust Without Node](https://blog.urth.org/2022/02/14/frontend-rust-without-node/){target="_blank"}
-- 2022-03-10 [Rust/Wasm without npm](https://lionturkey.github.io/posts/rustwasm/rustwasm.html){target="_blank"}
+Can one code in Rust, compiled into wasm and integrated with plain vanilla JavaScript and HTML/css?  
+Yes! But how?  
 
-Of course one should not dismiss the official [Rust 🦀 and WebAssembly] small book that describes how to use Rust and WebAssembly together.
+Information on programming Rust-wasm without bundlers is scarces. 
+
+Of course despite assuming that you are following the *with-NPM-and_webpack* tutorials, one should not dismiss the official [Rust 🦀 and WebAssembly](https://rustwasm.github.io/docs/book/){target="_blank"} 
+small book that describes how to use Rust and WebAssembly together.
 Or MDN's [Compiling from Rust to WebAssembly](https://developer.mozilla.org/en-US/docs/WebAssembly/Rust_to_Wasm){target="_blank"}
+Just come back to it once you've gone through a couple of examples in these pages.
 
-The documentation for [wasm-bindgen: without-a-bundler](https://rustwasm.github.io/docs/wasm-bindgen/examples/without-a-bundler.html){target="_blank"}
+Also note that the documentation for [wasm-bindgen: without-a-bundler](https://rustwasm.github.io/docs/wasm-bindgen/examples/without-a-bundler.html){target="_blank"}
 actually has everyting you need to get started with rust-wasm without NPM, ...
 
-Unfortunatly if you don't know what you are looking at your still clueless in the end.
+Unfortunatly it assumes you followed the *rust with bundler*  tutorial.
+If you don't know what you are looking at your still clueless in the end.
 
 Here is an example
 
@@ -56,7 +56,15 @@ The CLI also supports an output mode called --target no-modules which is similar
 ```
 
 What do you really do with that? Ironicaly its actually very clear once you know and don't need these kind of 
-information. The problem is the information is squatered, not always up to date and biased toward bundlers.
+information anymore. 
+
+Another problem is that alternative information is squatered, not always up to date and biased toward bundlers.
+Findind a paragraph or two about it brings excitement to the lonely searcher.
+Of note are the following:
+
+- 2019-05-25 [WASM in Rust without NodeJS](https://dev.to/dandyvica/wasm-in-rust-without-nodejs-2e0c){target="_blank"}
+- 2022-02-14 [Frontend Rust Without Node](https://blog.urth.org/2022/02/14/frontend-rust-without-node/){target="_blank"}
+- 2022-03-10 [Rust/Wasm without npm](https://lionturkey.github.io/posts/rustwasm/rustwasm.html){target="_blank"}
 
 > The following pages brings under one location all those bits and pieces you want to know in order to understand and build wasm stuff with Rust. 
 
@@ -83,31 +91,35 @@ We'll use and get familliar with the following tools and crates:
 -->
 
 
-### A no-bloat workflow
+### Let the tutorial begin!
 
 Wasm without npm and bundlers is actually quite simple. Unfortunately it's 
 not easy to find **complete examples** on the web.
 
 Let's convert each example from wasm-bindgen to a no-bundle version.
-But before that we'll prepare our workspace, and setup out tools.
+
+- In Part I, we'll get a example running.
+- Then in Part II, we'll study the code
+
+But before that let's prepare our workspace, and setup our tools.
 
 It is assumed that you have Rust on your machine and cargo ready for use.
 (If not get the installer [here: rustup.rs](https://rustup.rs/){target="_blank"}).
 
-0. Get wasm-pack and something to serve our website locally
+#### 0. Get wasm-pack and something to serve our website locally
 
-0.1 wasm-pack
+##### 0.1 wasm-pack
 
 ```sh
 cargo install wasm-pack
 ```
 
 wasm-pack helps you build rust-generated WebAssembly packages 
-Its a convinience that is widely used by the Rust community.
+Its a useful convenience that is widely used by the Rust community.
 
-If your interested see [wasm-pack under the hood](./wasm-pack_under_the_hood.html)
+If your interested see [wasm-pack under the hood](./wasm-pack_under_the_hood.html){target="_blank"}
 
-0.2 Get a local tiny static file server
+##### 0.2 Get a local tiny static file server
 
 We need something to serve your website so we can test and see what we develop on our local machine.
 If you don't have one installed you can use [http](https://github.com/thecoshman/http){target="_blank"} 
@@ -138,6 +150,8 @@ Now we are ready to tackle the first example [`hello_world`](https://rustwasm.gi
 7. Run the web server and open your browser
 
 ---
+
+> PART I. Make it run
 
 ##### 1. Set up your file structure
 
@@ -342,6 +356,10 @@ www
 Open `index.html` in a browser by pointing at [http://127.0.0.1:8080/html/]
 
 ![enjoy!](./pix/hello_world.png)
+
+---
+
+> PART II. Understand the Code
 
 ---
 
