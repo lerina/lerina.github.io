@@ -7,7 +7,7 @@
 1. Make the file structure
 
 ```
-cargo new console_log --lib
+cargo new import_js --lib
 cd console_log
 mkdir -p www/html www/js
 ```
@@ -30,11 +30,18 @@ wasm-bindgen = "0.2.88"
 
 ```
 
-Note will add the web-sys crate later
- 
-3. cut and paste the console-log example [src/lib.rs](https://rustwasm.github.io/wasm-bindgen/examples/console-log.html)
+3. cut and paste the import-js example from github [src/lib.rs](https://github.com/rustwasm/wasm-bindgen/blob/main/examples/import_js/crate/src/lib.rs)
 
-The only modification is specifying our webserver's  root as `www`
+or the rust code in 
+
+[wasm-bindgen: import-js](https://rustwasm.github.io/wasm-bindgen/examples/import-js.html)
+
+Note:
+
+    We need to modify `#[wasm_bindgen(module = "/defined-in-js.js")]`
+    as we made the commitment not to mix Rust and web code.
+    Our version will have `defined-in-js.js` in the `js` directory
+    with our `index.js` file. 
 
 ```rust
 
@@ -106,9 +113,8 @@ fn run() {
 
 ```
 
-5. The first js file 
+5. The first js file is `index.js`
 
-We could have written the file like this
 
 ```javascript
 // www/js/index.js
@@ -121,7 +127,7 @@ async function run() {
 
 run();
 ```
-Our second javascript file
+Our second javascript file `defined-in-js.js`
 
 ```js
 // www/js/defined-in-js.js

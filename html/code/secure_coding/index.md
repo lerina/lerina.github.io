@@ -76,11 +76,6 @@ cargo-edit
 cargo-watch
 
 
-## Secure coding
-
-The French government did a great job with the ANSSI GUIDELINES for Rust:  
-[PROGRAMMING RULES TO DEVELOP SECURE APPLICATIONS WITH RUST](https://www.ssi.gouv.fr/uploads/2020/06/anssi-guide-programming_rules_to_develop_secure_applications_with_rust-v1.0.pdf)
-
 
 <footer>
   <a href="https://github.com/lerina" target="_blank" title="github">![github](https://lerina.github.io/img/github32px.png){.link .glow}

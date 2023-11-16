@@ -30,9 +30,10 @@ wasm-bindgen = "0.2.88"
 
 ```
 
-Note will add the web-sys crate later
+Note we'll add the web-sys crate later
  
 3. cut and paste the console-log example [src/lib.rs](https://rustwasm.github.io/wasm-bindgen/examples/console-log.html)
+
 
 ```rust
 // src/lib.rs
@@ -198,7 +199,7 @@ and `ctrl-shift + I` to see the output in the browsers console log
 
 ## What's next?
 
-There is nothing specific for nobundle in the [Small wasm files](https://rustwasm.github.io/wasm-bindgen/examples/add.html){target="_blank"} example sot will pass it.
+There is nothing specific for nobundle in the [Small wasm files](https://rustwasm.github.io/wasm-bindgen/examples/add.html){target="_blank"} example so we'll pass it.
 
 Now the [Without a Bundler](https://rustwasm.github.io/wasm-bindgen/examples/without-a-bundler.html){target="_blank"}  section makes sense. 
 

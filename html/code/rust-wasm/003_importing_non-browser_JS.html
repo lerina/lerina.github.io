@@ -100,7 +100,7 @@ console.log</a></p>
 <ol type="1">
 <li>Make the file structure</li>
 </ol>
-<pre><code>cargo new console_log --lib
+<pre><code>cargo new import_js --lib
 cd console_log
 mkdir -p www/html www/js</code></pre>
 <ol start="2" type="1">
@@ -119,120 +119,126 @@ class="sourceCode toml"><code class="sourceCode toml"><span id="cb2-1"><a href="
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="kw">[</span><span class="dt">dependencies</span><span class="kw">]</span></span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="dt">wasm-bindgen</span> <span class="op">=</span> <span class="st">&quot;0.2.88&quot;</span></span></code></pre></div>
-<p>Note will add the web-sys crate later</p>
 <ol start="3" type="1">
-<li>cut and paste the console-log example <a
-href="https://rustwasm.github.io/wasm-bindgen/examples/console-log.html">src/lib.rs</a></li>
+<li>cut and paste the import-js example from github <a
+href="https://github.com/rustwasm/wasm-bindgen/blob/main/examples/import_js/crate/src/lib.rs">src/lib.rs</a></li>
 </ol>
-<p>The only modification is specifying our webserver’s root as
-<code>www</code></p>
-<div class="sourceCode" id="cb3"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>wasm_bindgen<span class="at">(</span>module <span class="op">=</span> <span class="st">&quot;/www/js/defined-in-js.js&quot;</span><span class="at">)]</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="op">...</span></span></code></pre></div>
-<p>So the full code is :</p>
+<p>or the rust code in</p>
+<p><a
+href="https://rustwasm.github.io/wasm-bindgen/examples/import-js.html">wasm-bindgen:
+import-js</a></p>
+<p>Note:</p>
+<pre><code>We need to modify `#[wasm_bindgen(module = &quot;/defined-in-js.js&quot;)]`
+as we made the commitment not to mix Rust and web code.
+Our version will have `defined-in-js.js` in the `js` directory
+with our `index.js` file. </code></pre>
 <div class="sourceCode" id="cb4"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">// src/lib.rs</span></span>
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">wasm_bindgen::prelude::</span><span class="op">*;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">// our webserver&#39;s  root is www</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>wasm_bindgen<span class="at">(</span>module <span class="op">=</span> <span class="st">&quot;/www/js/defined-in-js.js&quot;</span><span class="at">)]</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="kw">extern</span> <span class="st">&quot;C&quot;</span> <span class="op">{</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> name() <span class="op">-&gt;</span> <span class="dt">String</span><span class="op">;</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">type</span> MyClass<span class="op">;</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">#[</span>wasm_bindgen<span class="at">(</span>constructor<span class="at">)]</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> new() <span class="op">-&gt;</span> MyClass<span class="op">;</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">#[</span>wasm_bindgen<span class="at">(</span>method<span class="op">,</span> getter<span class="at">)]</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> number(this<span class="op">:</span> <span class="op">&amp;</span>MyClass) <span class="op">-&gt;</span> <span class="dt">u32</span><span class="op">;</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">#[</span>wasm_bindgen<span class="at">(</span>method<span class="op">,</span> setter<span class="at">)]</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> set_number(this<span class="op">:</span> <span class="op">&amp;</span>MyClass<span class="op">,</span> number<span class="op">:</span> <span class="dt">u32</span>) <span class="op">-&gt;</span> MyClass<span class="op">;</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">#[</span>wasm_bindgen<span class="at">(</span>method<span class="at">)]</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> render(this<span class="op">:</span> <span class="op">&amp;</span>MyClass) <span class="op">-&gt;</span> <span class="dt">String</span><span class="op">;</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="co">// lifted from the `console_log` example</span></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>wasm_bindgen<span class="at">]</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="kw">extern</span> <span class="st">&quot;C&quot;</span> <span class="op">{</span></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">#[</span>wasm_bindgen<span class="at">(</span>js_namespace <span class="op">=</span> console<span class="at">)]</span></span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> log(s<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>)<span class="op">;</span></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>wasm_bindgen<span class="at">(</span>start<span class="at">)]</span></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> run() <span class="op">{</span></span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    log(<span class="op">&amp;</span><span class="pp">format!</span>(<span class="st">&quot;Hello from {}!&quot;</span><span class="op">,</span> name()))<span class="op">;</span> <span class="co">// should output &quot;Hello from Rust!&quot;</span></span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> x <span class="op">=</span> <span class="pp">MyClass::</span>new()<span class="op">;</span></span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    <span class="pp">assert_eq!</span>(x<span class="op">.</span>number()<span class="op">,</span> <span class="dv">42</span>)<span class="op">;</span></span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    x<span class="op">.</span>set_number(<span class="dv">10</span>)<span class="op">;</span></span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    log(<span class="op">&amp;</span>x<span class="op">.</span>render())<span class="op">;</span></span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>wasm_bindgen<span class="at">(</span>module <span class="op">=</span> <span class="st">&quot;/www/js/defined-in-js.js&quot;</span><span class="at">)]</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="op">...</span></span></code></pre></div>
+<p>So the full code is :</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">// src/lib.rs</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">wasm_bindgen::prelude::</span><span class="op">*;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">// our webserver&#39;s  root is www</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>wasm_bindgen<span class="at">(</span>module <span class="op">=</span> <span class="st">&quot;/www/js/defined-in-js.js&quot;</span><span class="at">)]</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="kw">extern</span> <span class="st">&quot;C&quot;</span> <span class="op">{</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> name() <span class="op">-&gt;</span> <span class="dt">String</span><span class="op">;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">type</span> MyClass<span class="op">;</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">#[</span>wasm_bindgen<span class="at">(</span>constructor<span class="at">)]</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> new() <span class="op">-&gt;</span> MyClass<span class="op">;</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">#[</span>wasm_bindgen<span class="at">(</span>method<span class="op">,</span> getter<span class="at">)]</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> number(this<span class="op">:</span> <span class="op">&amp;</span>MyClass) <span class="op">-&gt;</span> <span class="dt">u32</span><span class="op">;</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">#[</span>wasm_bindgen<span class="at">(</span>method<span class="op">,</span> setter<span class="at">)]</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> set_number(this<span class="op">:</span> <span class="op">&amp;</span>MyClass<span class="op">,</span> number<span class="op">:</span> <span class="dt">u32</span>) <span class="op">-&gt;</span> MyClass<span class="op">;</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">#[</span>wasm_bindgen<span class="at">(</span>method<span class="at">)]</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> render(this<span class="op">:</span> <span class="op">&amp;</span>MyClass) <span class="op">-&gt;</span> <span class="dt">String</span><span class="op">;</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="co">// lifted from the `console_log` example</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>wasm_bindgen<span class="at">]</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="kw">extern</span> <span class="st">&quot;C&quot;</span> <span class="op">{</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">#[</span>wasm_bindgen<span class="at">(</span>js_namespace <span class="op">=</span> console<span class="at">)]</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> log(s<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>)<span class="op">;</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>wasm_bindgen<span class="at">(</span>start<span class="at">)]</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> run() <span class="op">{</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>    log(<span class="op">&amp;</span><span class="pp">format!</span>(<span class="st">&quot;Hello from {}!&quot;</span><span class="op">,</span> name()))<span class="op">;</span> <span class="co">// should output &quot;Hello from Rust!&quot;</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> x <span class="op">=</span> <span class="pp">MyClass::</span>new()<span class="op">;</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>    <span class="pp">assert_eq!</span>(x<span class="op">.</span>number()<span class="op">,</span> <span class="dv">42</span>)<span class="op">;</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>    x<span class="op">.</span>set_number(<span class="dv">10</span>)<span class="op">;</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>    log(<span class="op">&amp;</span>x<span class="op">.</span>render())<span class="op">;</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <ol start="4" type="1">
 <li>create the index file at <code>www/html/index.html</code>:</li>
 </ol>
-<div class="sourceCode" id="cb5"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;html&gt;</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;head&gt;</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;meta</span> <span class="er">charset</span><span class="ot">=</span><span class="st">&quot;UTF-8&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;title&gt;</span>Wasm no NPM no Webpack<span class="kw">&lt;/title&gt;</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/head&gt;</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;body&gt;</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;module&quot;</span> <span class="er">src</span><span class="ot">=</span><span class="st">&quot;../js/index.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/body&gt;</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
-<ol start="5" type="1">
-<li>The first js file</li>
-</ol>
-<p>We could have written the file like this</p>
 <div class="sourceCode" id="cb6"><pre
-class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">// www/js/index.js</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> init <span class="im">from</span> <span class="st">&quot;../pkg/import_js.js&quot;</span><span class="op">;</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">run</span>() {</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> wasm <span class="op">=</span> <span class="cf">await</span> <span class="fu">init</span>()<span class="op">;</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>}</span>
+class="sourceCode html"><code class="sourceCode html"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;html&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;head&gt;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;meta</span> <span class="er">charset</span><span class="ot">=</span><span class="st">&quot;UTF-8&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;title&gt;</span>Wasm no NPM no Webpack<span class="kw">&lt;/title&gt;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/head&gt;</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;body&gt;</span></span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">run</span>()<span class="op">;</span></span></code></pre></div>
-<p>Our second javascript file</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">// www/js/defined-in-js.js</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;module&quot;</span> <span class="er">src</span><span class="ot">=</span><span class="st">&quot;../js/index.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/body&gt;</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
+<ol start="5" type="1">
+<li>The first js file is <code>index.js</code></li>
+</ol>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">// www/js/index.js</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">function</span> <span class="fu">name</span>() {</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">&#39;Rust&#39;</span><span class="op">;</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">class</span> MyClass {</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">constructor</span>() {</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        <span class="kw">this</span><span class="op">.</span><span class="at">_number</span> <span class="op">=</span> <span class="dv">42</span><span class="op">;</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    get <span class="fu">number</span>() {</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="kw">this</span><span class="op">.</span><span class="at">_number</span><span class="op">;</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    set <span class="fu">number</span>(n) {</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="kw">this</span><span class="op">.</span><span class="at">_number</span> <span class="op">=</span> n<span class="op">;</span></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">render</span>() {</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="vs">`My number is: </span><span class="sc">${</span><span class="kw">this</span><span class="op">.</span><span class="at">number</span><span class="sc">}</span><span class="vs">`</span><span class="op">;</span></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> init <span class="im">from</span> <span class="st">&quot;../pkg/import_js.js&quot;</span><span class="op">;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">run</span>() {</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> wasm <span class="op">=</span> <span class="cf">await</span> <span class="fu">init</span>()<span class="op">;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fu">run</span>()<span class="op">;</span></span></code></pre></div>
+<p>Our second javascript file <code>defined-in-js.js</code></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">// www/js/defined-in-js.js</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">function</span> <span class="fu">name</span>() {</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">&#39;Rust&#39;</span><span class="op">;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">class</span> MyClass {</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">constructor</span>() {</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>        <span class="kw">this</span><span class="op">.</span><span class="at">_number</span> <span class="op">=</span> <span class="dv">42</span><span class="op">;</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    get <span class="fu">number</span>() {</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="kw">this</span><span class="op">.</span><span class="at">_number</span><span class="op">;</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    set <span class="fu">number</span>(n) {</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="kw">this</span><span class="op">.</span><span class="at">_number</span> <span class="op">=</span> n<span class="op">;</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">render</span>() {</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="vs">`My number is: </span><span class="sc">${</span><span class="kw">this</span><span class="op">.</span><span class="at">number</span><span class="sc">}</span><span class="vs">`</span><span class="op">;</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <ol start="6" type="1">
 <li>build it</li>
 </ol>
-<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">wasm-pack</span> build <span class="at">--target</span> web <span class="at">--out-dir</span> www/pkg</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">wasm-pack</span> build <span class="at">--target</span> web <span class="at">--out-dir</span> www/pkg</span></code></pre></div>
 <ol start="7" type="1">
 <li>serve it</li>
 </ol>
-<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">http</span> www</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">http</span> www</span></code></pre></div>
 <p>Open the browser at http://127.0.0.1:8000/html/<br />
 and <code>ctrl-shift + I</code> to see the output in the browsers
 console log</p>
