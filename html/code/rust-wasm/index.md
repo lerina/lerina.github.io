@@ -279,14 +279,12 @@ import { greet } from './pkg';
 greet('World');
 ```
 
-Because we are not using a bundler, we are using ES6 flavor of JavaScript.
-
-With the ES module import syntax, we must specify the filename 
-with its extension in our `import` statement:
+Because we are not using a bundler, we have to use the ES module import syntax.
+That is, we must specify the filename with its extension in our `import` statement:
 
 `import ... from "../pkg/hello_world.js";`
 
-Where did we get `hello_world.js` from? wasm-pack gets it from our crate as specified in Cargo.toml
+Where did we get `hello_world.js` from? wasm-pack gets it from our crate name as specified in Cargo.toml
 
 ```toml
 [package]
@@ -294,8 +292,9 @@ name = "hello_world"
 ...
 ```
 
-`init` is the `default` import.  Its an initialization function which
+Its an initialization function `init` which
 will "boot" the module and make it ready to use.
+Its the `default` import. 
 
 `import init, ... from "../pkg/hello_world.js";`
 
@@ -345,6 +344,10 @@ wasm-pack through wasm-bindgen-cli will generate the following in our `pkg` dire
     └── package.json
 ```
 
+
+The output of `--target web` is included as an ES module.
+Thats why we endup with an ES6 flavor of JavaScript.
+
 ##### 7. Run the web server and open your browser
 
 You can use any file server, or follow along with `http` which we installed after wasm-pack.
@@ -383,7 +386,6 @@ Open `index.html` in a browser by pointing at [http://127.0.0.1:8080/html/]
 ---
 
 > PART II. Understand the Code
-
 
 
 ---
