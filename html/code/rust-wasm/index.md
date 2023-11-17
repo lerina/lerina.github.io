@@ -122,7 +122,8 @@ If your interested see [wasm-pack under the hood](./wasm-pack_under_the_hood.htm
 ##### 0.2 Get a local tiny static file server
 
 We need something to serve your website so we can test and see what we develop on our local machine.
-If you don't have one installed you can use [http](https://github.com/thecoshman/http){target="_blank"} 
+If you don't have one installed you can use `H`ost `T`hese `T`hings `P`lease - a basic http server 
+for hosting a folder fast and simply [http](https://github.com/thecoshman/http){target="_blank"} 
 
 ```bash
 cargo install https
@@ -175,6 +176,11 @@ You should have this file structure
     └── js
 ```
 
+Note:
+
+    We don't really need assets and css directories for this hello world example. 
+Its just to show how our file structure will be when we'll do more web oriented examples
+
 ##### 2. Edit Cargo.toml: Set the crate-type and add wasm-bindgen as a dependency.
 
 In Cargo.toml, put `crate-type = ["cdylib"]` after `edition` entry.
@@ -225,6 +231,7 @@ pub fn greet(name: &str) {
 
 Here is the first difference.
 
+We must specify that our `index.js`  is a ES6 module.
 import declarations can only be present in modules, so our `html` must use
 
 `<script type="module" src="../js/index.js"></script>`
@@ -272,8 +279,11 @@ import { greet } from './pkg';
 greet('World');
 ```
 
-Because we are not using a bundler
-we must specify the filename with its extension in our `import` statement:
+Because we are not using a bundler, we are using ES6 flavor of JavaScript.
+
+With the ES module import syntax, we must specify the filename 
+with its extension in our `import` statement:
+
 `import ... from "../pkg/hello_world.js";`
 
 Where did we get `hello_world.js` from? wasm-pack gets it from our crate as specified in Cargo.toml
@@ -284,7 +294,18 @@ name = "hello_world"
 ...
 ```
 
-We also need to wrap the code in an async/await function
+`init` is the `default` import.  Its an initialization function which
+will "boot" the module and make it ready to use.
+
+`import init, ... from "../pkg/hello_world.js";`
+
+This is also where we import the `greet` function we made public in our Rust code and accessible in our JavaScript
+with `#[wasm_bindgen]`
+
+`import init, {greet} from "../pkg/hello_world.js";`
+
+ 
+Finally, we need to wrap the code in an async/await function
 
 So our full index.js is:
 
@@ -326,7 +347,9 @@ wasm-pack through wasm-bindgen-cli will generate the following in our `pkg` dire
 
 ##### 7. Run the web server and open your browser
 
-You can host locally with `http www`.
+You can use any file server, or follow along with `http` which we installed after wasm-pack.
+
+You can host locally the `www` directory with `http www`.
 It defaults at  http://127.0.0.1:8000
 
 You can pass the address and port number like this:
@@ -360,6 +383,8 @@ Open `index.html` in a browser by pointing at [http://127.0.0.1:8080/html/]
 ---
 
 > PART II. Understand the Code
+
+
 
 ---
 
