@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>motivation motivation</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="https://lerina.github.io/css/styles.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>It is stated that NPM and webpack are optional, but complete examples
+to get wasm in the browser are hard to find.</p>
+<p>Can one code in Rust, compiled into wasm and integrated with plain
+vanilla JavaScript and HTML/css?<br />
+Yes! But how?</p>
+<p>Information on programming Rust-wasm without bundlers is scarces.</p>
+<p>MDN’s <a
+href="https://developer.mozilla.org/en-US/docs/WebAssembly/Rust_to_Wasm"
+target="_blank">Compiling from Rust to WebAssembly</a> is the best
+walkthrough out there.</p>
+<p>Of course despite assuming that you are following the
+<em>with-NPM-and_webpack</em> tutorials, one should not dismiss the
+official <a href="https://rustwasm.github.io/docs/book/"
+target="_blank">Rust 🦀 and WebAssembly</a> small book that describes
+how to use Rust and WebAssembly together.</p>
+<p>Also note that the documentation for <a
+href="https://rustwasm.github.io/docs/wasm-bindgen/examples/without-a-bundler.html"
+target="_blank">wasm-bindgen: without-a-bundler</a> actually has
+everyting you need to get started with rust-wasm without NPM, …</p>
+<p>Unfortunatly it assumes you followed the <em>rust with bundler</em>
+tutorial. If you don’t know what you are looking at your still clueless
+in the end.</p>
+<p>Here is an example</p>
+<pre><code>Without a Bundler
+
+--target web or --target no-modules
+
+If you&#39;re not using a bundler but you&#39;re still running code in a web browser, wasm-bindgen still supports this! For this use case you&#39;ll want to use the --target web flag. You can check out a full example in the documentation, but the highlights of this output are:
+
+    When compiling you&#39;ll pass --target web to wasm-bindgen
+    The output can natively be included on a web page, and doesn&#39;t require any further postprocessing. The output is included as an ES module.
+    The --target web mode is not able to use NPM dependencies.
+    You&#39;ll want to review the browser requirements for wasm-bindgen because no polyfills will be available.
+
+The CLI also supports an output mode called --target no-modules which is similar to the web target in that it requires manual initialization of the wasm and is intended to be included in web pages without any further postprocessing. See the without a bundler example for some more information about --target no-modules.</code></pre>
+<p>What do you really do with that? Ironicaly its actually very clear
+once you know and don’t need these kind of information anymore.</p>
+<p>Another problem is that alternative information is squatered, not
+always up to date and biased toward bundlers. Findind a paragraph or two
+about it brings excitement to the lonely searcher. Of note are the
+following:</p>
+<ul>
+<li>2018-04-04 <a
+href="https://hacks.mozilla.org/2018/04/javascript-to-rust-and-back-again-a-wasm-bindgen-tale/"
+target="_blank">JavaScript to Rust and Back Again: A wasm-bindgen
+Tale</a></li>
+<li>2019-05-25 <a
+href="https://dev.to/dandyvica/wasm-in-rust-without-nodejs-2e0c"
+target="_blank">WASM in Rust without NodeJS</a></li>
+<li>2022-02-14 <a
+href="https://blog.urth.org/2022/02/14/frontend-rust-without-node/"
+target="_blank">Frontend Rust Without Node</a></li>
+<li>2022-03-10 <a
+href="https://lionturkey.github.io/posts/rustwasm/rustwasm.html"
+target="_blank">Rust/Wasm without npm</a></li>
+</ul>
+<blockquote>
+<p>The following pages brings under one location all those bits and
+pieces you want to know in order to understand and build wasm stuff with
+Rust.</p>
+</blockquote>
+<p>More specifically the intent is to address these wishes:</p>
+<ul>
+<li>Rust developers should be able to produce WebAssembly packages for
+use in JavaScript without requiring a Node.js development
+environment</li>
+<li>JavaScript developers should be able to use WebAssembly without
+requiring a Rust development environment</li>
+</ul>
+<p>source: <a href="https://hacks.mozilla.org/2018/04/hello-wasm-pack/"
+target="_bank">Hello wasm-pack!</a></p>
+</body>
+</html>

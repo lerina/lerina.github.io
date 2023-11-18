@@ -19,54 +19,8 @@ When webassembly started to be a thing, Rust kept popping up as the Language of 
 
 Most Rust-wasm tutorials, however, lean heavily on "NPM and webpack", just to get a "hello world".
 
-It is stated that NPM and webpack are optional, but complete examples to get wasm in the browser 
-are hard to find. 
+More on that [here](./motivation.html){target="_blank"}
 
-Can one code in Rust, compiled into wasm and integrated with plain vanilla JavaScript and HTML/css?  
-Yes! But how?  
-
-Information on programming Rust-wasm without bundlers is scarces. 
-
-Of course despite assuming that you are following the *with-NPM-and_webpack* tutorials, one should not dismiss the official [Rust 🦀 and WebAssembly](https://rustwasm.github.io/docs/book/){target="_blank"} 
-small book that describes how to use Rust and WebAssembly together.
-Or MDN's [Compiling from Rust to WebAssembly](https://developer.mozilla.org/en-US/docs/WebAssembly/Rust_to_Wasm){target="_blank"}
-Just come back to it once you've gone through a couple of examples in these pages.
-
-Also note that the documentation for [wasm-bindgen: without-a-bundler](https://rustwasm.github.io/docs/wasm-bindgen/examples/without-a-bundler.html){target="_blank"}
-actually has everyting you need to get started with rust-wasm without NPM, ...
-
-Unfortunatly it assumes you followed the *rust with bundler*  tutorial.
-If you don't know what you are looking at your still clueless in the end.
-
-Here is an example
-
-```
-Without a Bundler
-
---target web or --target no-modules
-
-If you're not using a bundler but you're still running code in a web browser, wasm-bindgen still supports this! For this use case you'll want to use the --target web flag. You can check out a full example in the documentation, but the highlights of this output are:
-
-    When compiling you'll pass --target web to wasm-bindgen
-    The output can natively be included on a web page, and doesn't require any further postprocessing. The output is included as an ES module.
-    The --target web mode is not able to use NPM dependencies.
-    You'll want to review the browser requirements for wasm-bindgen because no polyfills will be available.
-
-The CLI also supports an output mode called --target no-modules which is similar to the web target in that it requires manual initialization of the wasm and is intended to be included in web pages without any further postprocessing. See the without a bundler example for some more information about --target no-modules.
-```
-
-What do you really do with that? Ironicaly its actually very clear once you know and don't need these kind of 
-information anymore. 
-
-Another problem is that alternative information is squatered, not always up to date and biased toward bundlers.
-Findind a paragraph or two about it brings excitement to the lonely searcher.
-Of note are the following:
-
-- 2019-05-25 [WASM in Rust without NodeJS](https://dev.to/dandyvica/wasm-in-rust-without-nodejs-2e0c){target="_blank"}
-- 2022-02-14 [Frontend Rust Without Node](https://blog.urth.org/2022/02/14/frontend-rust-without-node/){target="_blank"}
-- 2022-03-10 [Rust/Wasm without npm](https://lionturkey.github.io/posts/rustwasm/rustwasm.html){target="_blank"}
-
-> The following pages brings under one location all those bits and pieces you want to know in order to understand and build wasm stuff with Rust. 
 
 ## no-bundle Wasm by example
 
@@ -257,7 +211,7 @@ So our index file at `www/html/index.html` look like this:
 
 ##### 5. import with file extension included and Wrap the code in async/await index.js
 
-You may still come across unhelpful old information.for our purpose, information such as
+You may still come across unhelpful old information for our purpose. Information such as
 
 ```
 // Note that a dynamic `import` statement here is required due to
@@ -284,7 +238,8 @@ That is, we must specify the filename with its extension in our `import` stateme
 
 `import ... from "../pkg/hello_world.js";`
 
-Where did we get `hello_world.js` from? wasm-pack gets it from our crate name as specified in Cargo.toml
+Where did we get `hello_world.js` from?  
+`wasm-pack` gets it from our crate name as specified in Cargo.toml
 
 ```toml
 [package]
@@ -292,13 +247,13 @@ name = "hello_world"
 ...
 ```
 
-Its an initialization function `init` which
+There is an initialization function `init` which
 will "boot" the module and make it ready to use.
 Its the `default` import. 
 
 `import init, ... from "../pkg/hello_world.js";`
 
-This is also where we import the `greet` function we made public in our Rust code and accessible in our JavaScript
+Next we import the `greet` function, we made public in our Rust code and accessible in our JavaScript
 with `#[wasm_bindgen]`
 
 `import init, {greet} from "../pkg/hello_world.js";`
@@ -386,6 +341,65 @@ Open `index.html` in a browser by pointing at [http://127.0.0.1:8080/html/]
 ---
 
 > PART II. Understand the Code
+
+The following is heavily indebted to MDN's [Compiling from Rust to WebAssembly](https://developer.mozilla.org/en-US/docs/WebAssembly/Rust_to_Wasm){target="_blank"}
+
+<!--
+For more details have a look at
+[wasm-bindgen — how does it work?!](https://fitzgen.github.io/wasm-cg-wasm-bindgen/#1) by Nick Fitzgerald
+-->
+## Using wasm-bindgen to communicate between Rust and JavaScript
+
+`wasm-pack` uses `wasm-bindgen`, to provide a bridge between the types of JavaScript and Rust. 
+It allows JavaScript to call a Rust API with a string, or a Rust function to catch a JavaScript exception.
+
+"The src/lib.rs file is the root of the Rust crate that we are compiling to WebAssembly. It uses wasm-bindgen to interface with JavaScript. It imports the window.alert JavaScript function, and exports the greet Rust function, which alerts a greeting message."
+[rustwasm book:](https://rustwasm.github.io/docs/book/game-of-life/hello-world.html#wasm-game-of-lifesrclibrs){target="_blank"}
+
+
+`extern` tells Rust that we want to call some externally defined functions. 
+`#[wasm-bindgen]` on top of it knows how to find these functions for us in JavaScript.
+in this case it will glue window.alert() from the browser's JavaScript to the Rust function header
+that provides us a function signature Rust can understand.
+
+Whenever you want to call JavaScript functions, 
+you can add them to this file in this manner, 
+and wasm-bindgen takes care of setting everything up for you.
+
+
+```rust
+// src/lib.rs
+
+// To communicate between Rust and JavaScript
+use wasm_bindgen::prelude::*;
+
+
+// Calling external functions in JavaScript from Rust
+#[wasm_bindgen]
+extern "C" {
+    fn alert(s: &str);
+}
+
+// Producing Rust functions that JavaScript can call 
+#[wasm_bindgen]
+pub fn greet(name: &str) {
+    alert(&format!("Hello, {}!", name)); //call alert function we asked for in the extern block above
+}
+
+```
+
+`#[wasm_bindgen]` attribute, over the greet function, is not modifying an extern block, 
+but a fn;  this means that we want this Rust function to be able to be called by JavaScript. 
+It's the opposite of extern.
+
+These aren't the functions we need in Rust, 
+but rather the functions we're giving out to the JavaScript world.
+
+This function is named greet, and takes one argument, a string (written &str), name. 
+It then calls the alert function we asked for in the extern block above.
+
+We use the `format!` macro to concatenate two string-literal and convert in to a String slices `&`
+
 
 
 ---
