@@ -41,17 +41,11 @@ Another problem is that alternative information is squatered, not always up to d
 Findind a paragraph or two about it brings excitement to the lonely searcher.
 Of note are the following:
 
+
 - 2018-04-04 [JavaScript to Rust and Back Again: A wasm-bindgen Tale](https://hacks.mozilla.org/2018/04/javascript-to-rust-and-back-again-a-wasm-bindgen-tale/){target="_blank"}
 - 2019-05-25 [WASM in Rust without NodeJS](https://dev.to/dandyvica/wasm-in-rust-without-nodejs-2e0c){target="_blank"}
+- 2019-06-19 [wasm by example](https://wasmbyexample.dev/home.en-us.html){target="_blank"}
 - 2022-02-14 [Frontend Rust Without Node](https://blog.urth.org/2022/02/14/frontend-rust-without-node/){target="_blank"}
 - 2022-03-10 [Rust/Wasm without npm](https://lionturkey.github.io/posts/rustwasm/rustwasm.html){target="_blank"}
 
-> The following pages brings under one location all those bits and pieces you want to know in order to understand and build wasm stuff with Rust. 
-
-More specifically the intent is to address these wishes:
-
-- Rust developers should be able to produce WebAssembly packages for use in JavaScript without requiring a Node.js development environment
-- JavaScript developers should be able to use WebAssembly without requiring a Rust development environment
-
-source: [Hello wasm-pack!](https://hacks.mozilla.org/2018/04/hello-wasm-pack/){target="_bank"}
 

@@ -21,6 +21,14 @@ Most Rust-wasm tutorials, however, lean heavily on "NPM and webpack", just to ge
 
 More on that [here](./motivation.html){target="_blank"}
 
+> The following pages brings under one location all those bits and pieces you want to know in order to understand and build wasm stuff with Rust. 
+
+More specifically the intent is to address these wishes:
+
+- Rust developers should be able to produce WebAssembly packages for use in JavaScript without requiring a Node.js development environment
+- JavaScript developers should be able to use WebAssembly without requiring a Rust development environment
+
+source: [Hello wasm-pack!](https://hacks.mozilla.org/2018/04/hello-wasm-pack/){target="_bank"}
 
 ## no-bundle Wasm by example
 
@@ -62,7 +70,7 @@ It is assumed that you have Rust on your machine and cargo ready for use.
 
 #### 0. Get wasm-pack and something to serve our website locally
 
-##### 0.1 wasm-pack
+##### 0.1 Install wasm-pack
 
 ```sh
 cargo install wasm-pack
@@ -73,7 +81,7 @@ Its a useful convenience that is widely used by the Rust community.
 
 If your interested see [wasm-pack under the hood](./wasm-pack_under_the_hood.html){target="_blank"}
 
-##### 0.2 Get a local tiny static file server
+##### 0.2 Install a local tiny static file server
 
 We need something to serve your website so we can test and see what we develop on our local machine.
 If you don't have one installed you can use `H`ost `T`hese `T`hings `P`lease - a basic http server 
@@ -87,6 +95,7 @@ Note:
     
 [trunkrs.dev](https://trunkrs.dev/){target="_blank"} is getting traction in the Rust community 
 but its a much more ambitious tool and beyond our needs here.
+
 
 ## hello_world
  
@@ -211,7 +220,7 @@ Second difference.
 
 Our full index.js is modified to look like this:
 
-```
+```javascript
 import init, { greet } from "../pkg/hello_world.js";
 
 async function run() {
@@ -241,8 +250,8 @@ wasm-pack through wasm-bindgen-cli will generate the following in our `pkg` dire
 
 ```
 └── pkg
-    ├── hello_world_bg.wasm
-    ├── hello_world.js
+    ├── hello_world_bg.wasm   # Wasm bytecode
+    ├── hello_world.js        # JavaScript module to import (ESM)
     └── package.json
 ```
 
@@ -273,7 +282,7 @@ www
 │   └── index.js
 └── pkg
     ├── hello_world_bg.wasm
-    ├── hello_world.js
+    ├── hello_world.js        
     └── package.json
 ```
 
@@ -394,10 +403,14 @@ greet('World');
 ```
 
 
-Because we are not using a bundler, we used `wasm-pack --target web --out-dir www` to compile pour code.
-This will output ES6 code in `www/pkg`. 
+To specify that we are not using NPM and a bundler, and in consequence have not use for *.ts files 
+we used `wasm-pack --target web --no-typescript --out-dir www` to compile our code.
+
+
+Without NPM, the build will produce ES6 code in `www/pkg`. 
 Hence we have to use the ES module import syntax.
-That is, we must specify the filename with its extension in our `import` statement:
+That is, we must specify the filename with its extension `.js` in our `import` statement:
+
 
 `import ... from "../pkg/hello_world.js";`
 
@@ -412,9 +425,11 @@ name = "hello_world"
 
 There is an initialization function `init` which
 will "boot" the module and make it ready to use.
-Its the `default` import. 
+We must include this provided default init function. 
 
 `import init, ... from "../pkg/hello_world.js";`
+
+The init() function will load the  `.wasm` binary in `www/pkg`
 
 Next we import the `greet` function, we made public in our Rust code and accessible in our JavaScript
 with `#[wasm_bindgen]`
@@ -423,10 +438,69 @@ with `#[wasm_bindgen]`
 
  
 Finally, we need to wrap the code in an async/await function
+Using async/await, `greet` will not be called until `init()` finishes loading the Wasm 
+that `greet("World")` needs to run.
 
+
+Here again is the full listing:
+
+```javascript
+import init, { greet } from "../pkg/hello_world.js";
+
+async function run() {
+    const wasm = await init();
+
+    greet('World');
+}
+
+run();
+
+```
 
 
 ---
+
+## One more thing (Shrink the size)
+
+Wasm files are notorious for being large by default
+You can reduce the size with [wasm-gc](https://github.com/alexcrichton/wasm-gc){target="_blank"}
+
+The wasm-pack (and wasm-bindgen) project will already run this by default for you, so there's no need to run it again. 
+
+
+Using the official way through Cargo.toml:
+
+```
+[profile.release]
+# optimization for size ( more aggressive )
+opt-level = 'z'
+# optimization for size
+# opt-level = 's'
+# link time optimization using using whole-program analysis
+lto = true
+#
+wasm-opt = ['-Oz']
+```
+and building with the `--release` flag
+
+```sh
+wasm-pack build --release --target web --no-typescript --out-dir www/pkg
+```
+
+Original size: 1.8M hello_world.wasm
+New size: 109k hello_world.wasm
+
+However using wasm-gc ourself we get a mush smaller size
+
+
+```sh
+wasm-gc target/wasm32-unknown-unknown/release/hello_world.wasm 
+```
+Original size: 1.8M hello_world.wasm
+New size: 28k hello_world.wasm
+
+
+humm.
 
 ##  [console.log](./002_console_log.html)
 
