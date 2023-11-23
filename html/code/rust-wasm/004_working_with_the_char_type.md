@@ -51,8 +51,8 @@ extern "C" {
     fn log(s: &str);
 }
 
-#[wasm_bindgen]
 #[derive(Debug)]
+#[wasm_bindgen]
 pub struct Counter {
     key: char,
     count: i32,
@@ -87,21 +87,96 @@ impl Counter {
 
 ```
 
+Note we have the wasm_bindgen macro immediatly before our 
+struct declaration. 
+
+```
+#[derive(Debug)]
+#[wasm_bindgen]
+pub struct Counter {
+    key: char,
+    count: i32,
+}
+
+```
+
+Having it placed as in the official example  resulted in Counter not being pick up
+and as a result not available in the glue code `pkg/char.js` which resulted in 
+`SyntaxError: ambiguous indirect export: Counter` in the browser.
+
+```
+// DONT DO THIS
+
+#[wasm_bindgen]
+#[derive(Debug)]
+pub struct Counter {
+    key: char,
+    count: i32,
+}
+```
 4. create the index file at `www/html/index.html`:
 
 ```html
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Wasm no NPM no Webpack</title>
-</head>
+    <meta charset="UTF-8">
+    <title>Counter nobundle</title>
+    <link rel="stylesheet" href="../css/style.css"></head>
 <body>
+   <button id="add-counter" type="button">add counter</button>
+    <div id="container">
 
-
-  <script type="module" src="../js/index.js"></script>
+    </div>
+    <script type="module" src="../js/index.js"></script>
 </body>
 </html>
+```
+
+Let's put the stylesheet in `www/css/style.css`
+
+```css
+* {
+    font-family: sans-serif;
+    font-size: 16pt;
+}
+h1 {
+    font-size: 18pt;
+    font-weight: bold;
+    margin: 0;
+}
+button {
+    padding: 5px 10px;
+    border: none;
+    background: slategrey;
+    margin: 10px auto;
+    color: white;
+}
+body {
+    width: 400px;
+    margin: auto;
+}
+#container,
+.counter {
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+}
+.counter {
+    margin-bottom: 10px;
+    background: steelblue;
+    color: white;
+    align-items: center;
+    width: 100%;
+}
+.field {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+    width: 100%;
+}
 ```
 
 5. Create the initial `index.js`
@@ -227,13 +302,6 @@ async function run() {
     alert("b");
     if (!b) throw new Error('Unable to find #add-counter');
     b.addEventListener('click', ev => addCounter());
-}
-
-run();
-
-//let imp = import('./pkg');
-//let mod;
-
 
 function addCounter() {
     let ctr = Counter.new(randomChar(), 0);
@@ -297,13 +365,17 @@ function newField(key, value) {
     return ret;
 }
 
+}//^-- async function run
+
+run();
+
 ```
 
 ## What's next?
 
 
 
-Next example: [Importing non-browser JS `-->`](./003_importing_non-browser_JS.html)
+Next example: [js-sys: WebAssembly in WebAssembly `-->`](./005_js-sys.html)
 
   
 </main>
