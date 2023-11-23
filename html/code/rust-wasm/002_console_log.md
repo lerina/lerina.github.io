@@ -4,6 +4,8 @@
 
 ## console.log
 
+[wasm-bindgen example](https://rustwasm.github.io/wasm-bindgen/examples/console-log.html){target="_blank"}
+
 1. Make the file structure
 
 ```
@@ -32,7 +34,7 @@ wasm-bindgen = "0.2.88"
 
 Note we'll add the web-sys crate later
  
-3. cut and paste the console-log example [src/lib.rs](https://rustwasm.github.io/wasm-bindgen/examples/console-log.html)
+3. cut and paste the console-log example [src/lib.rs](https://rustwasm.github.io/wasm-bindgen/examples/console-log.html){target="_blank"}
 
 
 ```rust

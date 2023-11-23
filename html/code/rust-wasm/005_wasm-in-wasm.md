@@ -4,7 +4,11 @@
 
 ---
 
-## setup the project
+## js-sys: WebAssembly in WebAssembly
+
+[wasm-bindgen example](https://rustwasm.github.io/wasm-bindgen/examples/wasm-in-wasm.html){target="_blank"}
+
+### setup the project
 
 ```sh
 cargo new wasm-in-wasm --lib
@@ -19,17 +23,16 @@ edit Cargo.toml to add `crate-type`
 crate-type = ["cdylib",]
 ```
 
-<!-- NOTE: My add is not working. Yet! So this doesn't apply
-## make the wasm file to be used by wasm-in-wasm later
+#### make the wasm file to be used by wasm-in-wasm later
 
-the code for add
+The code for `add.wasm`
 
 ```
 use wasm_biindgen::prelude::wasm_bindgen;
 
 #[wasm_bindgen]
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
+pub fn add(a: usize, b: usize) -> usize {
+    a + b
 }
 ```
 
@@ -47,18 +50,22 @@ crate-type = ["cdylib",]
 
 Build the wasm file
 ```sh
-cargo build --release --target wasm32-unknown-unknown
+wasm-pack build --release --target web --out-dir www/pkg
 ```
 
-move the add.wasm to src/ (as it is meant to be used by our lib.rs directly),  
-and reset the project
+move and rename the `www/pkg/add_bg.wasm` to `src/add.wasm` 
+ 
+and clean the project for our real code
 
 ```sh
-mv target/wasm32-unknown-unknown/release/add.wasm ./src/
+mv target/wasm32-unknown-unknown/release/add_bg.wasm ./src/add.wasm
 cargo clean
 ```
 
-revert to real name in Cargo.toml
+### The real code
+
+Now that we have the wasm file to be used in `lib.rs
+we can revert to real name in Cargo.toml
 
 ```toml
 [package]
@@ -67,7 +74,6 @@ name = "wasm-in-wasm"
 [lib]
 crate-type = ["cdylib,"]
 ```
--->
 
 in `www/html/index.html` we have
 
@@ -76,6 +82,7 @@ in `www/html/index.html` we have
 <html>
   <head>
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
+    <title>Using wasm in Rust</title>
   </head>
   <body>
     <p>Everything happens in rust/wasm <br/ >
@@ -105,10 +112,8 @@ run();
 
 Note: wasm-bindgen output the file as  `wasm_in_wasm.js` not `wasm-in-wasm.js`
 
-## Everything happens in src
+### Everything happens in src
 
-<!-- NOTE: My add is not working. Yet! So this doesn't apply
-The `lib.rs` with the `add` function can now be replaced with the real code -->
 
 ```rust
 // src/lib.rs
@@ -128,7 +133,7 @@ macro_rules! console_log {
     ($($t:tt)*) => (log(&format_args!($($t)*).to_string()))
 }
 
-const WASM: &[u8] = include_bytes!("add.wasm");
+const WASM: &[u8] = include_bytes!("add.wasm"); // path relative to lib.rs
 
 async fn run_async() -> Result<(), JsValue> {
     console_log!("instantiating a new wasm module directly");
@@ -172,7 +177,7 @@ cargo add js-sys
 cargo add wasm-bindgen-futures
 ```
 
-## build and serve
+### build and serve
 
 ```sh
 wasm-pack build --target web --out-dir www/pkg
@@ -181,6 +186,8 @@ http www; firefox www/html
 ```
 
 ---
+
+## What's next?
 
 Next example: [web-sys: DOM hello world `-->`](./006_DOM.html)
 

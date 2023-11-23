@@ -4,6 +4,8 @@
 
 ## Importing non-browser JS.
 
+[wasm-bindgen example](https://rustwasm.github.io/wasm-bindgen/examples/import-js.html){target="_blank"}
+
 1. Make the file structure
 
 ```

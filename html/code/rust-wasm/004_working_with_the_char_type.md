@@ -1,10 +1,12 @@
 <div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
 <main>
-
 [`<--` Importing non-browser JS ](./003_importing_non-browser_JS.html)
+
+---
 
 ## Working with the char type
 
+[wasm-bindgen example](https://rustwasm.github.io/wasm-bindgen/examples/char.html){target="_blank"}
 
 1. Make the file structure
 
@@ -372,8 +374,6 @@ run();
 ```
 
 ## What's next?
-
-
 
 Next example: [js-sys: WebAssembly in WebAssembly `-->`](./005_wasm-in-wasm.html)
 
