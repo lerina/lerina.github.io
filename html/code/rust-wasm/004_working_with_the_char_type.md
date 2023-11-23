@@ -375,7 +375,7 @@ run();
 
 
 
-Next example: [js-sys: WebAssembly in WebAssembly `-->`](./005_js-sys.html)
+Next example: [js-sys: WebAssembly in WebAssembly `-->`](./005_wasm-in-wasm.html)
 
   
 </main>

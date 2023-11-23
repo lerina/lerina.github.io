@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>index index</title>
+  <title>index. index.</title>
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -96,6 +96,9 @@ wasm-bindgen to communicate between Rust and JavaScript</a></li>
 <li><a href="#index.html-and-index.js-files"
 id="toc-index.html-and-index.js-files">index.html and index.js
 files</a></li>
+<li><a href="#one-more-thing-shrink-the-size"
+id="toc-one-more-thing-shrink-the-size">One more thing (Shrink the
+size)</a></li>
 <li><a href="#console.log"
 id="toc-console.log"><span>console.log</span></a></li>
 </ul>
@@ -130,6 +133,21 @@ both.</li>
 <p>Most Rust-wasm tutorials, however, lean heavily on “NPM and webpack”,
 just to get a “hello world”.</p>
 <p>More on that <a href="./motivation.html" target="_blank">here</a></p>
+<blockquote>
+<p>The following pages brings under one location all those bits and
+pieces you want to know in order to understand and build wasm stuff with
+Rust.</p>
+</blockquote>
+<p>More specifically the intent is to address these wishes:</p>
+<ul>
+<li>Rust developers should be able to produce WebAssembly packages for
+use in JavaScript without requiring a Node.js development
+environment</li>
+<li>JavaScript developers should be able to use WebAssembly without
+requiring a Rust development environment</li>
+</ul>
+<p>source: <a href="https://hacks.mozilla.org/2018/04/hello-wasm-pack/"
+target="_bank">Hello wasm-pack!</a></p>
 <h2 id="no-bundle-wasm-by-example">no-bundle Wasm by example</h2>
 <h3 id="the-tools">The tools</h3>
 <p>Webassembly is still a moving target and some tools and convenient
@@ -176,14 +194,14 @@ use. (If not get the installer <a href="https://rustup.rs/"
 target="_blank">here: rustup.rs</a>).</p>
 <h4 id="get-wasm-pack-and-something-to-serve-our-website-locally">0. Get
 wasm-pack and something to serve our website locally</h4>
-<h5 id="wasm-pack">0.1 wasm-pack</h5>
+<h5 id="install-wasm-pack">0.1 Install wasm-pack</h5>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> install wasm-pack</span></code></pre></div>
 <p>wasm-pack helps you build rust-generated WebAssembly packages Its a
 useful convenience that is widely used by the Rust community.</p>
 <p>If your interested see <a href="./wasm-pack_under_the_hood.html"
 target="_blank">wasm-pack under the hood</a></p>
-<h5 id="get-a-local-tiny-static-file-server">0.2 Get a local tiny static
-file server</h5>
+<h5 id="install-a-local-tiny-static-file-server">0.2 Install a local
+tiny static file server</h5>
 <p>We need something to serve your website so we can test and see what
 we develop on our local machine. If you don’t have one installed you can
 use <code>H</code>ost <code>T</code>hese <code>T</code>hings
@@ -299,16 +317,16 @@ import with file extension included and Wrap the code in async/await
 index.js</h5>
 <p>Second difference.</p>
 <p>Our full index.js is modified to look like this:</p>
-<pre><code>import init, { greet } from &quot;../pkg/hello_world.js&quot;;
-
-async function run() {
-    const wasm = await init();
-
-    greet(&#39;World&#39;);
-}
-
-run();
-</code></pre>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> init<span class="op">,</span> { greet } <span class="im">from</span> <span class="st">&quot;../pkg/hello_world.js&quot;</span><span class="op">;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">run</span>() {</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> wasm <span class="op">=</span> <span class="cf">await</span> <span class="fu">init</span>()<span class="op">;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">greet</span>(<span class="st">&#39;World&#39;</span>)<span class="op">;</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">run</span>()<span class="op">;</span></span></code></pre></div>
 <h5 id="build-with-wasm-pack">6. build with wasm-pack</h5>
 <div class="sourceCode" id="cb10"><pre
 class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">wasm-pack</span> build <span class="at">--target</span> web <span class="at">--no-typescript</span> <span class="at">--out-dir</span> www/pkg</span></code></pre></div>
@@ -323,8 +341,8 @@ our web stuff in <code>www</code>.</li>
 <p>wasm-pack through wasm-bindgen-cli will generate the following in our
 <code>pkg</code> directory.</p>
 <pre><code>└── pkg
-    ├── hello_world_bg.wasm
-    ├── hello_world.js
+    ├── hello_world_bg.wasm   # Wasm bytecode
+    ├── hello_world.js        # JavaScript module to import (ESM)
     └── package.json</code></pre>
 <p>The output of <code>--target web</code> is included as an ES module.
 Thats why we endup with an ES6 flavor of JavaScript.</p>
@@ -346,7 +364,7 @@ file structure to our server</p>
 │   └── index.js
 └── pkg
     ├── hello_world_bg.wasm
-    ├── hello_world.js
+    ├── hello_world.js        
     └── package.json</code></pre>
 <p>Open <code>index.html</code> in a browser by pointing at
 [http://127.0.0.1:8080/html/]</p>
@@ -455,11 +473,14 @@ things but its still bundle specific like this:</p>
 class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { greet } <span class="im">from</span> <span class="st">&#39;./pkg&#39;</span><span class="op">;</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">greet</span>(<span class="st">&#39;World&#39;</span>)<span class="op">;</span></span></code></pre></div>
-<p>Because we are not using a bundler, we used
-<code>wasm-pack --target web --out-dir www</code> to compile pour code.
-This will output ES6 code in <code>www/pkg</code>. Hence we have to use
-the ES module import syntax. That is, we must specify the filename with
-its extension in our <code>import</code> statement:</p>
+<p>To specify that we are not using NPM and a bundler, and in
+consequence have not use for *.ts files we used
+<code>wasm-pack --target web --no-typescript --out-dir www</code> to
+compile our code.</p>
+<p>Without NPM, the build will produce ES6 code in <code>www/pkg</code>.
+Hence we have to use the ES module import syntax. That is, we must
+specify the filename with its extension <code>.js</code> in our
+<code>import</code> statement:</p>
 <p><code>import ... from "../pkg/hello_world.js";</code></p>
 <p>Where did we get <code>hello_world.js</code> from?<br />
 <code>wasm-pack</code> gets it from our crate name as specified in
@@ -469,15 +490,59 @@ class="sourceCode toml"><code class="sourceCode toml"><span id="cb17-1"><a href=
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">&quot;hello_world&quot;</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="er">...</span></span></code></pre></div>
 <p>There is an initialization function <code>init</code> which will
-“boot” the module and make it ready to use. Its the <code>default</code>
-import.</p>
+“boot” the module and make it ready to use. We must include this
+provided default init function.</p>
 <p><code>import init, ... from "../pkg/hello_world.js";</code></p>
+<p>The init() function will load the <code>.wasm</code> binary in
+<code>www/pkg</code></p>
 <p>Next we import the <code>greet</code> function, we made public in our
 Rust code and accessible in our JavaScript with
 <code>#[wasm_bindgen]</code></p>
 <p><code>import init, {greet} from "../pkg/hello_world.js";</code></p>
-<p>Finally, we need to wrap the code in an async/await function</p>
+<p>Finally, we need to wrap the code in an async/await function Using
+async/await, <code>greet</code> will not be called until
+<code>init()</code> finishes loading the Wasm that
+<code>greet("World")</code> needs to run.</p>
+<p>Here again is the full listing:</p>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> init<span class="op">,</span> { greet } <span class="im">from</span> <span class="st">&quot;../pkg/hello_world.js&quot;</span><span class="op">;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">run</span>() {</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> wasm <span class="op">=</span> <span class="cf">await</span> <span class="fu">init</span>()<span class="op">;</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">greet</span>(<span class="st">&#39;World&#39;</span>)<span class="op">;</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="fu">run</span>()<span class="op">;</span></span></code></pre></div>
 <hr />
+<h2 id="one-more-thing-shrink-the-size">One more thing (Shrink the
+size)</h2>
+<p>Wasm files are notorious for being large by default You can reduce
+the size with <a href="https://github.com/alexcrichton/wasm-gc"
+target="_blank">wasm-gc</a></p>
+<p>The wasm-pack (and wasm-bindgen) project will already run this by
+default for you, so there’s no need to run it again.</p>
+<p>Using the official way through Cargo.toml:</p>
+<pre><code>[profile.release]
+# optimization for size ( more aggressive )
+opt-level = &#39;z&#39;
+# optimization for size
+# opt-level = &#39;s&#39;
+# link time optimization using using whole-program analysis
+lto = true
+#
+wasm-opt = [&#39;-Oz&#39;]</code></pre>
+<p>and building with the <code>--release</code> flag</p>
+<div class="sourceCode" id="cb20"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">wasm-pack</span> build <span class="at">--release</span> <span class="at">--target</span> web <span class="at">--no-typescript</span> <span class="at">--out-dir</span> www/pkg</span></code></pre></div>
+<p>Original size: 1.8M hello_world.wasm New size: 109k
+hello_world.wasm</p>
+<p>However using wasm-gc ourself we get a mush smaller size</p>
+<div class="sourceCode" id="cb21"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">wasm-gc</span> target/wasm32-unknown-unknown/release/hello_world.wasm </span></code></pre></div>
+<p>Original size: 1.8M hello_world.wasm New size: 28k
+hello_world.wasm</p>
+<p>humm.</p>
 <h2 id="console.log"><a
 href="./002_console_log.html">console.log</a></h2>
 <p>Next example: <a href="./002_console_log.html">console.log</a></p>
