@@ -8,7 +8,7 @@
 
 ```
 cargo new import_js --lib
-cd console_log
+cd import_js
 mkdir -p www/html www/js
 ```
 
@@ -110,7 +110,6 @@ fn run() {
   <script type="module" src="../js/index.js"></script>
 </body>
 </html>
-
 ```
 
 5. The first js file is `index.js`
