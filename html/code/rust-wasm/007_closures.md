@@ -34,6 +34,7 @@ crate-type = ["cdylib",]
 in `www/html/index.html` we have
 
 ```html
+<!DOCTYPE html>
 <html>
   <head>
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
@@ -238,7 +239,7 @@ firefox http://localhost:8000/html/
 
 ## What's next?
 
-Next example: [web-sys: Closures `-->`](./007_closures.html)
+Next example: [web-sys: performance.now `-->`](./008_performance.html)
 
 </main>
 <script src="https://lerina.github.io/js/toc.js"></script>
