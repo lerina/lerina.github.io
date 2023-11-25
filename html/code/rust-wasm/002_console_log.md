@@ -32,8 +32,6 @@ wasm-bindgen = "0.2.88"
 
 ```
 
-Note we'll add the web-sys crate later
- 
 3. cut and paste the console-log example [src/lib.rs](https://rustwasm.github.io/wasm-bindgen/examples/console-log.html){target="_blank"}
 
 
@@ -112,7 +110,7 @@ fn using_web_sys() {
 Note: 
 
 Since `use web_sys::console;` brings into scope console from the web-sys crate we need to 
-declare it in our Cargo dependencies
+declare it in our Cargo dependencies.
 
 ```toml
 ...
@@ -128,7 +126,7 @@ web-sys = { version = "0.3.65", features = ['console'] }`
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Wasm no NPM no Webpack</title>
+  <title>nobundle: console_log</title>
 </head>
 <body>
 
@@ -185,7 +183,7 @@ run();
 6. build it
 
 ```sh
-wasm-pack build --target web --out-dir www/pkg
+wasm-pack build --target web --no-typescript --out-dir www/pkg
 ```
 
 7. serve it
@@ -195,6 +193,11 @@ http www
 ```
 
 Open the browser at http://127.0.0.1:8000/html/  
+
+```sh
+firefox http://localhost:8000/html/
+```
+
 and `ctrl-shift + I` to see the output in the browsers console log
 
 ![Console log](./pix/console_log.png)

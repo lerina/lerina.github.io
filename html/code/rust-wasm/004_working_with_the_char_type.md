@@ -27,11 +27,11 @@ edition = "2021"
 [lib]
 crate-type = ["cdylib"]
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+# See more keys and their definitions at 
+# https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 wasm-bindgen = "0.2.88"
-
 ```
 
 3. cut and paste the import-js example from github [src/lib.rs](https://github.com/rustwasm/wasm-bindgen/blob/main/examples/char/src/lib.rs)
@@ -43,7 +43,6 @@ or the rust code in
 
 ```rust
 // src/lib.rs
-
 use wasm_bindgen::prelude::*;
 
 // lifted from the `console_log` example
@@ -86,20 +85,18 @@ impl Counter {
         self.key = key;
     }
 }
-
 ```
 
 Note we have the wasm_bindgen macro immediatly before our 
 struct declaration. 
 
-```
+```rust
 #[derive(Debug)]
 #[wasm_bindgen]
 pub struct Counter {
     key: char,
     count: i32,
 }
-
 ```
 
 Having it placed as in the official example  resulted in Counter not being pick up
@@ -109,7 +106,7 @@ and as a result not available in the glue code `pkg/char.js` which resulted in
 ```
 // DONT DO THIS
 
-#[wasm_bindgen]
+#[wasm_bindgen]    <--- wrong place
 #[derive(Debug)]
 pub struct Counter {
     key: char,
@@ -181,23 +178,11 @@ body {
 }
 ```
 
-5. Create the initial `index.js`
+5. js files
 
+5.1 Get `char-list.js`
 
-```javascript
-// www/js/index.js
-
-import init from "../pkg/char.js";
-
-async function run() {
-    const wasm = await init();
-}
-
-run();
-```
-
-
-Get the `char-list.js` file
+*Cut & paste*  [char-list](https://github.com/rustwasm/wasm-bindgen/blob/main/examples/char/chars-list.js){target="_blank"} and save as `char-list.js` in `www/js`
 
 ```js
 export let chars = [
@@ -289,27 +274,101 @@ export let chars = [
 
 ```
 
-Next modify the code that goes in `index.js`
+5.2 `index.js`: Some modification required
+
+Cut and paste [the code](https://raw.githubusercontent.com/rustwasm/wasm-bindgen/main/examples/char/index.js){target="_blank"}  to index.js.
+
+5.2.1 imports
+
+This  
+```
+/* eslint-disable no-unused-vars */
+import { chars } from './chars-list.js';
+let imp = import('./pkg');
+let mod;
+```
+becomes 
 
 ```js
-import init, { Counter } from "../pkg/char.js";
+// www/js/index.js
+import init, { Counter }  from "../pkg/char.js";
 import { chars } from './chars-list.js';
+```
 
+We don't need the `imp` as we get our wasm code from `init()` 
+and we don't need `mod` since we import `Counter` from the glue code.
+
+Finally this:
+
+```js
 let counters = [];
+imp
+  .then(wasm => {
+      mod = wasm;
+      addCounter();
+      let b = document.getElementById('add-counter');
+      if (!b) throw new Error('Unable to find #add-counter');
+      b.addEventListener('click', ev => addCounter());
+  })
+  .catch(console.error);
+
+```
+
+becomes this
+
+```js
+let counters = [];
+
 async function run() {
     const wasm = await init();
-
+           
     addCounter();
     let b = document.getElementById('add-counter');
     alert("b");
     if (!b) throw new Error('Unable to find #add-counter');
     b.addEventListener('click', ev => addCounter());
+}//^-- async run
+
+run();
+
+
+```
+And `Counter` is directly accessible by the other functions so we drop the `mod.Counter`
+
+```js
+function addCounter() {
+    let ctr = Counter.new(randomChar(), 0);
+```
+
+So the final code is:
+
+```js
+// www/js/index.js
+import init, { Counter }  from "../pkg/char.js";
+import { chars } from './chars-list.js';
+
+let counters = [];
+
+async function run() {
+    const wasm = await init();
+           
+    addCounter();
+    let b = document.getElementById('add-counter');
+    alert("b");
+    if (!b) throw new Error('Unable to find #add-counter');
+    b.addEventListener('click', ev => addCounter());
+    
+
+}//^-- async run
+
+run();
+
 
 function addCounter() {
     let ctr = Counter.new(randomChar(), 0);
     counters.push(ctr);
     update();
-    console.log("toto");
+    console.log("in addCounter");
 }
 
 function update() {
@@ -366,11 +425,21 @@ function newField(key, value) {
     ret.appendChild(val);
     return ret;
 }
+```
 
-}//^-- async function run
 
-run();
+## build and serve
 
+```sh
+wasm-pack build --target web --no-typescript --out-dir www/pkg
+
+http www
+```
+
+open `index.html`
+
+```sh
+firefox http://localhost:8000/html/
 ```
 
 ## What's next?

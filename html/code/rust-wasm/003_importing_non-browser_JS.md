@@ -32,7 +32,7 @@ wasm-bindgen = "0.2.88"
 
 ```
 
-3. cut and paste the import-js example from github [src/lib.rs](https://github.com/rustwasm/wasm-bindgen/blob/main/examples/import_js/crate/src/lib.rs)
+3. *Cut and paste* the import-js example from github [src/lib.rs](https://github.com/rustwasm/wasm-bindgen/blob/main/examples/import_js/crate/src/lib.rs)
 
 or the rust code in 
 
@@ -157,16 +157,18 @@ export class MyClass {
 
 ```
 
-6. build it
+## build and serve
 
 ```sh
-wasm-pack build --target web --out-dir www/pkg
+wasm-pack build --target web --no-typescript --out-dir www/pkg
+
+http www
 ```
 
-7. serve it
+open `index.html`
 
 ```sh
-http www
+firefox http://localhost:8000/html/
 ```
 
 Open the browser at http://127.0.0.1:8000/html/  

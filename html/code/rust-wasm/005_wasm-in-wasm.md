@@ -60,6 +60,7 @@ and clean the project for our real code
 ```sh
 mv target/wasm32-unknown-unknown/release/add_bg.wasm ./src/add.wasm
 cargo clean
+'rm -fr www/pkg'
 ```
 
 ### The real code
@@ -101,16 +102,19 @@ import init from "../pkg/wasm_in_wasm.js"
 init();
 
 /* 
-//async is handled directly in lib.rs
-async function run() {
-    const wasm = await init();
-}
+    //async is handled directly in lib.rs
+    async function run() {
+        const wasm = await init();
+    }
 
-run();
+    run();
 */
 ```
 
-Note: wasm-bindgen output the file as  `wasm_in_wasm.js` not `wasm-in-wasm.js`
+Note: 
+
+The build outputs the file as `wasm_in_wasm.js` not `wasm-in-wasm.js`
+we've seen that before (ie: the crate `wasm-bindgen` is used as `wasm_bindgen`)
 
 ### Everything happens in src
 
@@ -177,12 +181,18 @@ cargo add js-sys
 cargo add wasm-bindgen-futures
 ```
 
-### build and serve
+## build and serve
 
 ```sh
-wasm-pack build --target web --out-dir www/pkg
+wasm-pack build --target web --no-typescript --out-dir www/pkg
 
-http www; firefox www/html
+http www
+```
+
+open `index.html`
+
+```sh
+firefox http://localhost:8000/html/
 ```
 
 ---

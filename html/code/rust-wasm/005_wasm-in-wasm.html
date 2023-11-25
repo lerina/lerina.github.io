@@ -88,6 +88,8 @@
 <li><a href="#js-sys-webassembly-in-webassembly"
 id="toc-js-sys-webassembly-in-webassembly">js-sys: WebAssembly in
 WebAssembly</a></li>
+<li><a href="#build-and-serve" id="toc-build-and-serve">build and
+serve</a></li>
 <li><a href="#whats-next" id="toc-whats-next">What’s next?</a></li>
 </ul>
 </nav>
@@ -134,7 +136,8 @@ class="sourceCode toml"><code class="sourceCode toml"><span id="cb4-1"><a href="
 <code>src/add.wasm</code></p>
 <p>and clean the project for our real code</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> target/wasm32-unknown-unknown/release/add_bg.wasm ./src/add.wasm</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> clean</span></code></pre></div>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> clean</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;rm -fr www/pkg&#39;</span></span></code></pre></div>
 <h3 id="the-real-code">The real code</h3>
 <p>Now that we have the wasm file to be used in `lib.rs we can revert to
 real name in Cargo.toml</p>
@@ -165,15 +168,17 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb8-1"><a href="
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">init</span>()<span class="op">;</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">/* </span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">//async is handled directly in lib.rs</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">async function run() {</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">    const wasm = await init();</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">}</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">    //async is handled directly in lib.rs</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">    async function run() {</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">        const wasm = await init();</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">    }</span></span>
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">run();</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">    run();</span></span>
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">*/</span></span></code></pre></div>
-<p>Note: wasm-bindgen output the file as <code>wasm_in_wasm.js</code>
-not <code>wasm-in-wasm.js</code></p>
+<p>Note:</p>
+<p>The build outputs the file as <code>wasm_in_wasm.js</code> not
+<code>wasm-in-wasm.js</code> we’ve seen that before (ie: the crate
+<code>wasm-bindgen</code> is used as <code>wasm_bindgen</code>)</p>
 <h3 id="everything-happens-in-src">Everything happens in src</h3>
 <div class="sourceCode" id="cb10"><pre
 class="sourceCode rust"><code class="sourceCode rust"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">// src/lib.rs</span></span>
@@ -231,11 +236,14 @@ class="sourceCode rust"><code class="sourceCode rust"><span id="cb10-1"><a href=
 <div class="sourceCode" id="cb11"><pre
 class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> add js-sys</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> add wasm-bindgen-futures</span></code></pre></div>
-<h3 id="build-and-serve">build and serve</h3>
+<h2 id="build-and-serve">build and serve</h2>
 <div class="sourceCode" id="cb12"><pre
-class="sourceCode sh"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">wasm-pack</span> build <span class="at">--target</span> web <span class="at">--out-dir</span> www/pkg</span>
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">wasm-pack</span> build <span class="at">--target</span> web <span class="at">--no-typescript</span> <span class="at">--out-dir</span> www/pkg</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">http</span> www<span class="kw">;</span> <span class="ex">firefox</span> www/html</span></code></pre></div>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">http</span> www</span></code></pre></div>
+<p>open <code>index.html</code></p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">firefox</span> http://localhost:8000/html/</span></code></pre></div>
 <hr />
 <h2 id="whats-next">What’s next?</h2>
 <p>Next example: <a href="./006_DOM.html">web-sys: DOM hello world

@@ -87,6 +87,8 @@
 <ul>
 <li><a href="#importing-non-browser-js."
 id="toc-importing-non-browser-js.">Importing non-browser JS.</a></li>
+<li><a href="#build-and-serve" id="toc-build-and-serve">build and
+serve</a></li>
 <li><a href="#whats-next" id="toc-whats-next">What’s next?</a></li>
 </ul>
 </nav>
@@ -123,7 +125,7 @@ class="sourceCode toml"><code class="sourceCode toml"><span id="cb2-1"><a href="
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="kw">[</span><span class="dt">dependencies</span><span class="kw">]</span></span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="dt">wasm-bindgen</span> <span class="op">=</span> <span class="st">&quot;0.2.88&quot;</span></span></code></pre></div>
 <ol start="3" type="1">
-<li>cut and paste the import-js example from github <a
+<li><em>Cut and paste</em> the import-js example from github <a
 href="https://github.com/rustwasm/wasm-bindgen/blob/main/examples/import_js/crate/src/lib.rs">src/lib.rs</a></li>
 </ol>
 <p>or the rust code in</p>
@@ -233,15 +235,13 @@ class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb7-
 <span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="vs">`My number is: </span><span class="sc">${</span><span class="kw">this</span><span class="op">.</span><span class="at">number</span><span class="sc">}</span><span class="vs">`</span><span class="op">;</span></span>
 <span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    }</span>
 <span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<ol start="6" type="1">
-<li>build it</li>
-</ol>
-<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">wasm-pack</span> build <span class="at">--target</span> web <span class="at">--out-dir</span> www/pkg</span></code></pre></div>
-<ol start="7" type="1">
-<li>serve it</li>
-</ol>
+<h2 id="build-and-serve">build and serve</h2>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">wasm-pack</span> build <span class="at">--target</span> web <span class="at">--no-typescript</span> <span class="at">--out-dir</span> www/pkg</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ex">http</span> www</span></code></pre></div>
+<p>open <code>index.html</code></p>
 <div class="sourceCode" id="cb10"><pre
-class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">http</span> www</span></code></pre></div>
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">firefox</span> http://localhost:8000/html/</span></code></pre></div>
 <p>Open the browser at http://127.0.0.1:8000/html/<br />
 and <code>ctrl-shift + I</code> to see the output in the browsers
 console log</p>
