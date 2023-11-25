@@ -6,7 +6,15 @@
 
 ## Working with the char type
 
-[wasm-bindgen example](https://rustwasm.github.io/wasm-bindgen/examples/char.html){target="_blank"}
+*The #[wasm_bindgen] macro will convert the rust char type to a single code-point js string, and this example shows how to work with this.*
+
+*Opening this example should display a single counter with a random character for it's key and 0 for its count. You can click the + button to increase a counter's count. By clicking on the "add counter" button you should see a new counter added to the list with a different random character for it's key.*
+
+*Under the hood javascript is choosing a random character from an Array of characters and passing that to the rust Counter struct's constructor so the character you are seeing on the page has made the full round trip from js to rust and back to js.*  
+_ [wasm-bindgen Guide](https://rustwasm.github.io/wasm-bindgen/examples/char.html){target="_blank"}
+
+
+[wasm-bindgen example](https://github.com/rustwasm/wasm-bindgen/tree/master/examples/char){target="_blank"}
 
 1. Make the file structure
 

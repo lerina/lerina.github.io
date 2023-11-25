@@ -99,8 +99,15 @@ serve</a></li>
 <p><a href="./002_console_log.html"><code>&lt;--</code>
 console.log</a></p>
 <h2 id="importing-non-browser-js.">Importing non-browser JS.</h2>
-<p><a
+<p><em>The <code>#[wasm_bindgen]</code> attribute can be used on
+<code>extern "C" { .. }</code> blocks to import functionality from JS.
+This is how the <code>js-sys</code> and the <code>web-sys</code> crates
+are built, but you can also use it in your own crate!</em><br />
+_ <a
 href="https://rustwasm.github.io/wasm-bindgen/examples/import-js.html"
+target="_blank">wasm-bindgen Guide</a></p>
+<p><a
+href="https://github.com/rustwasm/wasm-bindgen/tree/master/examples/import_js"
 target="_blank">wasm-bindgen example</a></p>
 <ol type="1">
 <li>Make the file structure</li>

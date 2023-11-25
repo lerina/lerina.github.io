@@ -101,7 +101,10 @@ but its a much more ambitious tool and beyond our needs here.
  
 ### Converting the first example
 
-Now we are ready to tackle the first example [`hello_world`](https://rustwasm.github.io/wasm-bindgen/examples/hello-world.html){target="_blank"}
+*This is the "Hello, world!" example of #[wasm_bindgen] showing how to set up a project, export a function to JS, call it from JS, and then call the alert function in Rust.*  
+_ [wasm-bindgen Guide](https://rustwasm.github.io/wasm-bindgen/examples/hello-world.html){target="_blank"}
+
+[wasm-bindgen example](https://rustwasm.github.io/wasm-bindgen/examples/hello-world.html){target="_blank"}
 
 #### Seven steps to hello world
 

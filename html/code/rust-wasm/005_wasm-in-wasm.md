@@ -6,7 +6,10 @@
 
 ## js-sys: WebAssembly in WebAssembly
 
-[wasm-bindgen example](https://rustwasm.github.io/wasm-bindgen/examples/wasm-in-wasm.html){target="_blank"}
+*Using the js-sys crate we can instantiate WebAssembly modules from inside WebAssembly modules!*  
+_ [wasm-bindgen Guide](https://rustwasm.github.io/wasm-bindgen/examples/wasm-in-wasm.html){target="_blank"}
+
+[wasm-bindgen example](https://github.com/rustwasm/wasm-bindgen/tree/master/examples/wasm-in-wasm){target="_blank"}
 
 ### setup the project
 

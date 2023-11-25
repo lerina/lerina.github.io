@@ -4,7 +4,10 @@
 
 ## console.log
 
-[wasm-bindgen example](https://rustwasm.github.io/wasm-bindgen/examples/console-log.html){target="_blank"}
+*This example shows off how to use console.log in a variety of ways, all the way from bare-bones usage to a println!-like macro with web_sys.*  
+_ [wasm-bindgen Guide](https://rustwasm.github.io/wasm-bindgen/examples/console-log.html){target="_blank"}
+
+[wasm-bindgen example](https://github.com/rustwasm/wasm-bindgen/tree/master/examples/console_log){target="_blank"}
 
 1. Make the file structure
 

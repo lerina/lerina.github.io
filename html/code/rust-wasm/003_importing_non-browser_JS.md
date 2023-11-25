@@ -4,7 +4,10 @@
 
 ## Importing non-browser JS.
 
-[wasm-bindgen example](https://rustwasm.github.io/wasm-bindgen/examples/import-js.html){target="_blank"}
+*The `#[wasm_bindgen]` attribute can be used on `extern "C" { .. }` blocks to import functionality from JS. This is how the `js-sys` and the `web-sys` crates are built, but you can also use it in your own crate!*  
+_ [wasm-bindgen Guide](https://rustwasm.github.io/wasm-bindgen/examples/import-js.html){target="_blank"}
+
+[wasm-bindgen example](https://github.com/rustwasm/wasm-bindgen/tree/master/examples/import_js){target="_blank"}
 
 1. Make the file structure
 

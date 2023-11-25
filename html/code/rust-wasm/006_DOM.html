@@ -85,12 +85,13 @@
 <body>
 <nav id="TOC" role="doc-toc">
 <ul>
-<li><a href="#setup-the-project" id="toc-setup-the-project">setup the
-project</a></li>
+<li><a href="#web-sys-dom-hello-world"
+id="toc-web-sys-dom-hello-world">web-sys: DOM hello world</a></li>
 <li><a href="#everything-happens-in-src"
 id="toc-everything-happens-in-src">Everything happens in src</a></li>
 <li><a href="#build-and-serve" id="toc-build-and-serve">build and
 serve</a></li>
+<li><a href="#whats-next" id="toc-whats-next">What’s next?</a></li>
 </ul>
 </nav>
 <div class="navbar">
@@ -100,7 +101,17 @@ serve</a></li>
 <p><a href="./005_wasm-in-wasm.html"><code>&lt;--</code> js-sys:
 WebAssembly in WebAssembly</a></p>
 <hr />
-<h2 id="setup-the-project">setup the project</h2>
+<h2 id="web-sys-dom-hello-world">web-sys: DOM hello world</h2>
+<p><em>Using web-sys we’re able to interact with all the standard web
+platform methods, including those of the DOM! Here we take a look at a
+simple “Hello, world!” which manufactures a DOM element in Rust,
+customizes it, and then appends it to the page.</em><br />
+_ <a href="https://rustwasm.github.io/wasm-bindgen/examples/dom.html"
+target="_blank">wasm-bindgen Guide</a></p>
+<p><a
+href="https://github.com/rustwasm/wasm-bindgen/tree/master/examples/dom"
+target="_blank">wasm-bindgen DOM example</a></p>
+<h3 id="setup-the-project">setup the project</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> new dom <span class="at">--lib</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> dom</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> www/js www/html</span>
@@ -169,12 +180,13 @@ class="sourceCode toml"><code class="sourceCode toml"><span id="cb6-1"><a href="
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;</span><span class="vs">Window</span><span class="st">&#39;</span><span class="op">,</span></span>
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="op">]</span></span></code></pre></div>
 <h2 id="build-and-serve">build and serve</h2>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">wasm-pack</span> build <span class="at">--target</span> web <span class="at">--out-dir</span> www/pkg</span>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">wasm-pack</span> build <span class="at">--target</span> web <span class="at">--no-typescript</span> <span class="at">--out-dir</span> www/pkg</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">http</span> www</span></code></pre></div>
 <p>open <code>index.html</code></p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">firefox</span> http://localhost:8000/html/</span></code></pre></div>
 <hr />
+<h2 id="whats-next">What’s next?</h2>
 <p>Next example: <a href="./007_closures.html">web-sys: Closures
 <code>--&gt;</code></a></p>
 </main>
