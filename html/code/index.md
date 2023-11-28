@@ -19,6 +19,11 @@ This is a Rust/wasm port of
 [`Coding Math`](https://www.youtube.com/playlist?list=PL7wAPgl1JVvUEb0dIygHzO4698tmcwLk9){target="_blank"}
 by Keith Peters
 
+- Episode 001 to 005
+- Episode 006 to 010
+- Episode 011 to 015
+- Episode 016 to 020
+
 ## Game Dev
 
 ### Games for the browser
