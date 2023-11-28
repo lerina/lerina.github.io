@@ -40,7 +40,7 @@ see also: [outside-in](https://www.holdenrehg.com/blog/2018-09-22_write-better-c
 
 #### Bottom-up implementation
 
-- Given what I have which fundamental block can I tackle
+- Given what I have, which fundamental block can I tackle
 - What are the clear steps involved
 - What's my immediate action. (Spike, test/code loop, verify)
 

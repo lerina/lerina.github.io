@@ -1,5 +1,12 @@
 <div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
 <main>
+
+For Debug is `--keep-debug`:
+
+`wasm-pack build --target web --keep-debug --no-typescript --out-dir www`
+
+---
+
 Of interest to us, this is what wasm-pack does [under the hood](https://github.com/rustwasm/wasm-pack/blob/master/src/command/build.rs#L264).
 
 [source: chinoto_vokro](https://www.reddit.com/r/rust/comments/kd22u5/wasmpack_dissectionhow_to_work_with_wasmbindgen/)

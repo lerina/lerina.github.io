@@ -1,68 +1,29 @@
 <div class="bg_lrn"></div><div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
 <main>
 
-## Rust, Wasm and Webassembly 
+# Secure coding with Rust & Friends
 
-<div class="image-mosaic">
-<div
-class="card card-tall card-wide"
-style="background-image: url('https://picsum.photos/id/564/1200/800')"
-></div>
-<div
-class="card card-tall"
-style="background-image: url('https://picsum.photos/id/566/800/530')"
-></div>
-<div
-class="card"
-style="background-image: url('https://picsum.photos/id/575/800/530')"
-></div>
-<div
-class="card"
-style="background-image: url('https://picsum.photos/id/626/800/530')"
-></div>
-<div
-class="card"
-style="background-image: url('https://picsum.photos/id/667/800/530')"
-></div>
-<div
-class="card"
-style="background-image: url('https://picsum.photos/id/678/800/530')"
-></div>
-<div
-class="card card-wide"
-style="background-image: url('https://picsum.photos/id/695/800/530')"
-></div>
-<div
-class="card"
-style="background-image: url('https://picsum.photos/id/683/800/530')"
-></div>
-<div
-class="card"
-style="background-image: url('https://picsum.photos/id/693/800/530')"
-></div>
-<div
-class="card"
-style="background-image: url('https://picsum.photos/id/715/800/530')"
-></div>
-<div
-class="card"
-style="background-image: url('https://picsum.photos/id/610/800/530')"
-></div>
-<div
-class="card"
-style="background-image: url('https://picsum.photos/id/599/800/530')"
-></div>
-</div>
+## Rust, Wasm and more 
 
-## Secure coding with Rust & Friends
+- Rust and webassembly
+
+- Rust and Python
+
+- Rust and C
+
+- Rust and JavaScript
 
 ## Coding Math
 
-## Developer's Notes and Tech Tips
-
-Solve - Verify - top-down Design - Bottom-up Implementation - CI. 
+This is a Rust/wasm port of 
+[`Coding Math`](https://www.youtube.com/playlist?list=PL7wAPgl1JVvUEb0dIygHzO4698tmcwLk9){target="_blank"}
+by Keith Peters
 
 ## Game Dev
+
+### Games for the browser
+
+### Developer's Notes and Tech Tips
 
 ---
 
@@ -89,9 +50,10 @@ navCrumbs.className = "hover-nav";
 navCrumbs.innerHTML = `
 <div class="hover-nav">
 <ul>
-<li><a href="../../../index.html">⇦ home</a></li>
-<li><a href="../index.html">lerina</a></li>
-<li><a href="./index.html">code</a></li>
+<li><a href="../../index.html">⇦ home</a></li>
+<li><a href="./coding_math/index.html">Coding Math</a></li>
+<li><a href="./game_dev/index.html">Game Dev</a></li>
+<li><a href="./index.html">Rust&Friends</a></li>
 </ul>
 </div>`;
 document.getElementById("TOC").prepend(navCrumbs); 
