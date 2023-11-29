@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>wasm-pack_under_the_hood. wasm-pack_under_the_hood.</title>
+  <title>wasm-pack_under_the_hood wasm-pack_under_the_hood</title>
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -87,6 +87,9 @@
 <a class="openbtn" onclick="openNav()">☰</a>
 </div>
 <main>
+<p>For Debug is <code>--keep-debug</code>:</p>
+<p><code>wasm-pack build --target web --keep-debug --no-typescript --out-dir www</code></p>
+<hr />
 <p>Of interest to us, this is what wasm-pack does <a
 href="https://github.com/rustwasm/wasm-pack/blob/master/src/command/build.rs#L264">under
 the hood</a>.</p>
