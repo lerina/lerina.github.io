@@ -21,7 +21,7 @@ cargo add wasm-bindgen js-sys wasm-bindgen-futures
 
 ```
 
-edit Cargo.toml to add `crate-type`
+edit Cargo.toml to add `crate-type` & `web-sys` features
 
 ```toml
 [lib]
@@ -134,6 +134,27 @@ pub async fn run(repo: String) -> Result<JsValue, JsValue> {
 
 
 ```
+
+## build and serve
+
+```sh
+wasm-pack build --target web --no-typescript --out-dir www/pkg
+
+http www
+```
+
+open `index.html`
+
+```sh
+firefox http://localhost:8000/html/
+```
+---
+
+
+
+## What's next?
+
+Next example: [web-sys: Weather report `-->`](./010.weather_report.html)
 
 </main>
 <script src="https://lerina.github.io/js/toc.js"></script>
