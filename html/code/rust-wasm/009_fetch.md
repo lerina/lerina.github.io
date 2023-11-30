@@ -3,6 +3,14 @@
 
 [`<--` web-sys: performance.now](./008_performance.html)
 
+## web-sys: performance.now
+
+*This example uses the fetch API to make an HTTP request to the GitHub API and then parses the resulting JSON.*
+_ [wasm-bindgen Guide](https://rustwasm.github.io/wasm-bindgen/examples/fetch.html){target="_blank"}
+
+[web-sys: The fetch API](https://github.com/rustwasm/wasm-bindgen/tree/master/examples/fetch){target="_blank"}
+
+
 ### setup the project
 
 ```sh

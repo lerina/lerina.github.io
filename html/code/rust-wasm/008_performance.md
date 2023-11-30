@@ -2,6 +2,8 @@
 <main>
 [`<--` web-sys: Closures](./007_closures.html)
 
+## web-sys: performance.now
+
 *Want to profile some Rust code in the browser? No problem! You can use the performance.now() API and friends to get timing information to see how long things take.*
 _ [wasm-bindgen Guide](https://rustwasm.github.io/wasm-bindgen/examples/performance.html){target="_blank"}
 
