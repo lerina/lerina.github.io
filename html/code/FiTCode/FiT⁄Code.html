@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>FiT⁄Code FiT⁄Code</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="https://lerina.github.io/css/styles.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#fitcode" id="toc-fitcode">FiT⁄Code</a>
+<ul>
+<li><a href="#tips" id="toc-tips">Tips:</a></li>
+</ul></li>
+</ul>
+</nav>
+<style>  
+body {line-height: 1.2;}
+pre {line-height: 90%;}
+</style>
+<!-- 
+
+Fraction Slash ⁄
+unicode: U+2044 ⁄  ctrl+shift U 2044 <enter>
+html: &#8260;  ⁄
+css: \2044   ⁄
+
+-->
+<h1 id="fitcode">FiT⁄Code</h1>
+<p>Get into the habit of Iterative, incremental software development
+with <!-- Feedback informed Test/Code --> <strong>F</strong>eedback
+<strong>i</strong>nformed
+<strong>T</strong>est/<strong>C</strong>ode</p>
+<ol type="1">
+<li><p>First feedback: From Requirement to test<br />
+Can the developer write a test for the selected requirement? If not
+requirements are not clear and/or understood. What is the behavioral
+intent?</p></li>
+<li><p>Second feedback: Failing test first<br />
+Is the failing test succint? Have you encoded the behavioral expectation
+within your assertion. Does the error indicate the most proximate
+missing feature?</p></li>
+<li><p>Third feedback: Code Interface<br />
+Can the test easily use the code? Testable code is a must. Take some
+time to think of function signature and design of the interface to the
+code.</p></li>
+<li><p>Fourth feedback: The right code works write<br />
+Does the test pass? The code that makes a test pass is a response to a
+particular requirement. YAGNI is built-in. It does the job and thats
+all.</p></li>
+<li><p>Fifth feedback: DRY, SOLID, put best practices acronyms
+here<br />
+Is it time for a refactor session? FiT code is readable, clean,
+lean.</p></li>
+</ol>
+<h3 id="from-requirement-to-test">From Requirement to test</h3>
+<p>The answers to the “blank page”; Where to start? You start with the
+requirements. Select a requirement.</p>
+<blockquote>
+<p>Can the developer write a test for the selected requirement?</p>
+</blockquote>
+<p>If not requirements are not clear and/or understood. What is the
+behavioral intent? Understanding the requirements is the responsability
+of the developer. What do we want? What do we have? How do we go from
+what we have to what we want.</p>
+<p>Invest time in data design, domain design, and the interaction
+between entities.</p>
+<h3 id="failing-test-first">Failing test first</h3>
+<p>Is the failing test succint? Have you encoded the behavioral
+expectation within your assertion. Does the error indicate the most
+proximate missing feature?</p>
+<p>Focus is shifted to how can I test this rather than how can I write
+this.</p>
+<h3 id="code-interface">Code Interface</h3>
+<p>Can the test easily use the code? Testable code is a must. Take some
+time to think of function signature and design of the interface to the
+code.</p>
+<h4 id="function-design-recipe">Function Design Recipe</h4>
+<h3 id="the-right-code-works-write">The right code works write</h3>
+<p>Does the test pass? The code that makes a test pass is a response to
+a particular requirement. YAGNI is built-in. It does the job and thats
+all.</p>
+<h3 id="dry-solid-put-best-practices-acronyms-here">DRY, SOLID, put best
+practices acronyms here</h3>
+<p>Is it time for a refactor session? FiT code is readable, clean,
+lean.</p>
+<hr />
+<h2 id="tips">Tips:</h2>
+<ul>
+<li><p>Read more than you write:</p></li>
+<li><p>When reading code, it’s not crucial to understand the whole
+project or the ins and outs of the entire design. Read the code. Look at
+the comments, see what the authors are doing, and how they went about
+it.</p></li>
+<li><p>Develop an aesthetic appreciation for code. Read the source code
+of famous open-source tools and frameworks. Train yourself to know what
+great code looks like and what bad code “smells” like.</p></li>
+<li><p>Get used to Basic TDD</p></li>
+<li><p>Guidelines for names</p></li>
+<li><p>Functions/Method – Say what it does. What is the outcome? Why
+would I call this?</p></li>
+<li><p>Variable – Say what it contains. Why would I access
+this?</p></li>
+</ul>
+</body>
+</html>
