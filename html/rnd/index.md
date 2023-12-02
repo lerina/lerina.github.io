@@ -11,8 +11,11 @@
 > thought obstacles and duress  
 >                                                   _ rindra   
 
-## [linkedin](https://ca.linkedin.com/in/rindra-razafy-b77509217)
-## [github](https://github.com/razafy-rindra)
+
+- [Research_Proposal](./Rindra_Research_Proposal.pdf){target="_blank"}
+
+- [linkedin](https://ca.linkedin.com/in/rindra-razafy-b77509217)
+- [github](https://github.com/razafy-rindra)
 
 </main>
 
