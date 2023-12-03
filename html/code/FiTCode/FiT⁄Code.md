@@ -16,6 +16,54 @@ Get into the habit of Iterative, incremental software development with
 <!-- Feedback informed Test/Code -->
 **F**eedback **i**nformed **T**est/**C**ode 
 
+Break Down the Problem into chunks that can be solved more readily.
+
+For non-trivial projects these additional prelimineries maybe necessary.
+ 
+- Descriptive Scope of Work.
+
+- Defines Features for the End User.
+User requirements cover the different goals your users can achieve using the product and are commonly documented in the form of user stories, use cases, and scenarios.
+
+- Functional Requirements.
+Functional requirements are product features that developers must implement to enable the users to achieve their goals. They define the basic system behavior under specific conditions.
+
+<!--
+Functional requirements examples
+
+Functional requirements need to be clear, simple, and unambiguous. Here are some examples of well-written functional requirements:
+
+    The system must send a confirmation email whenever an order is placed.
+
+    The system must allow blog visitors to sign up for the newsletter by leaving their email.
+
+    The system must allow users to verify their accounts using their phone number.
+
+Contrary to a popular misconception, functional requirements are not analogous to user stories, but stories can be a useful tool for deriving requirements with the user in mind. For example:
+
+User story: As an existing user, I want to be able to log into my account.
+
+    Functional requirements:
+
+        The system must allow users to log into their account by entering their email and password.
+
+        The system must allow users to log in with their Google accounts.
+
+        The system must allow users to reset their password by clicking on "I forgot my password" and receiving a link to their verified email address.
+
+
+Every functional requirement typically has a set of related non-functional requirements, for example:
+
+    Functional requirement: "The system must allow the user to submit feedback through a contact form in the app."
+
+    Non-functional requirement: "When the submit button is pressed, the confirmation screen must load within 2 seconds."
+
+
+
+-->
+
+This also helps to increase understanding of issues and makes them easier to tackle.
+
 1. First feedback: From Requirement to test  
 Can the developer write a test for the selected requirement? If not requirements are not clear and/or understood. 
 What is the behavioral intent?
@@ -26,8 +74,14 @@ This is different from *unit tests* which is basically function testing.
 2. Second feedback: Failing test first  
 Is the failing test succint? Have you encoded the behavioral expectation within your assertion. Does the error indicate the most proximate missing feature?
 
+Start by writing a test that calls a function and the output should match the specifications. 
+To write this test, you don't need to consider any sort of implementation; 
+the function is a black box. Focus on understanding the most important aspect: the expected output.
+
 3. Third feedback: Code Interface  
 Can the test easily use the code? Testable code is a must. Take some time to think of function signature and design of the interface to the code.
+
+Focus on understanding the 2nd most important aspect: the intended inputs.
 
 We build the code from the inside-out:
 
@@ -83,6 +137,12 @@ It does the job and thats all.
 
 Is it time for a refactor session? FiT code is readable, clean, lean. 
 
+
+- Are the tests covering all of the functionality expected?
+- Are the tests descriptive enough to allow others to understand when there are failures?
+- Are the tests independent of each other?
+- Are there any places in the code or tests where duplication can be eliminated?
+- Can something in the test or code be written more simply, clearly or efficiently?
 
 ## The warehouse demo
 
@@ -164,4 +224,19 @@ The rest of the actions on the main menu should be fairly self-explanatory.
 
 - Functions/Method    – Say what it does. What is the outcome? Why would I call this?
 - Variable            – Say what it contains. Why would I access this?
+
+* Testable code
+
+- Printing is detestable to tests. To make a function to be testable, Rather than print the item, 
+have the function simply return the data we want. Now, we can test it.
+- Avoid Functional Complexities
+Simplicity is important. Break down tasks into manageable units, focusing on one function or feature at a time.
+- Tests should be atomic, focusing on specific behaviors and functionalities. Keep them short, enhancing readability and maintainability and easing the debugging process. Atomic tests pinpoint issues more precisely, facilitating quicker resolutions.
+- Write tests to test behavior, not implementation.
+- Write the Simplest Test Case first.
+Begin with the basics baby steps. Write the simplest test case that reflects the expected behavior. This sets a solid foundation, allowing you to build upon it and gradually handle more complex scenarios.
+- Refactor Regularly
+- Test failures is Development Feedback. Analyze the failure, pinpoint the root cause, and let it inform your development decisions.
+- Compiler error are Development Feedback.
+
 
