@@ -43,12 +43,14 @@ css: \2044   ⁄
 
 -->
 <h1 id="fitcode">FiT⁄Code</h1>
-<p>Get into the habit of Iterative, incremental software development
+<p>Whether agile or lean or old-school one should strive for FiT/Code,
+and get into the habit of Iterative, incremental software development
 with <!-- Feedback informed Test/Code --> <strong>F</strong>eedback
 <strong>i</strong>nformed
 <strong>T</strong>est/<strong>C</strong>ode</p>
-<p>Break Down the Problem into chunks that can be solved more
-readily.</p>
+<p><strong>todo!()</strong>: move prereq to 80’s style in DM Etter
+section. ——-&gt; Break Down the Problem into chunks that can be solved
+more readily.</p>
 <p>For non-trivial projects these additional prelimineries maybe
 necessary.</p>
 <ul>
@@ -95,6 +97,7 @@ Every functional requirement typically has a set of related non-functional requi
 
 
 -->
+<p>… &lt; ———</p>
 <p>This also helps to increase understanding of issues and makes them
 easier to tackle.</p>
 <ol type="1">
@@ -124,10 +127,10 @@ code.</li>
 </ol>
 <p>Focus on understanding the 2nd most important aspect: the intended
 inputs.</p>
-<p>We build the code from the inside-out:</p>
+<p>We build the code from the inside-out iteratively:</p>
 <ul>
 <li>Core interface</li>
-<li>Calculations and blranches</li>
+<li>Calculations and branches</li>
 <li>Loops and generalization</li>
 <li>Special cases and error handling</li>
 </ul>
@@ -165,6 +168,18 @@ time to think of function signature and design of the interface to the
 code. Design code for testability means paying attention to inputs and
 output. Dependency injection is the norm.</p>
 <h4 id="function-design-recipe">Function Design Recipe</h4>
+<ol type="1">
+<li><strong>L</strong>ist key usage (docstrings, usage with expected
+output)</li>
+<li><strong>E</strong>xpress Expectations in one line (Type contract for
+weakly typed languages)</li>
+<li><strong>R</strong>eveal Header signature (function/method signature:
+name, param &amp; return type)</li>
+<li><strong>I</strong>nsert Description (purpose, help text)</li>
+<li><strong>N</strong>urture Neat&amp;Nimble code (code body)</li>
+<li><strong>A</strong>test Demo usage passes (run doctest and/or unit
+test and/or dev test if TDD)</li>
+</ol>
 <h3 id="the-right-code-works-write">The right code works write</h3>
 <p>Does the test pass? The code that makes a test pass is a response to
 a particular requirement. YAGNI is built-in. It does the job and thats

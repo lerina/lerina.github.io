@@ -12,10 +12,13 @@ css: \2044   ⁄
 -->
 # FiT⁄Code
 
-Get into the habit of Iterative, incremental software development with 
+Whether agile or lean or old-school one should strive for  FiT/Code,
+and get into the habit of Iterative, incremental software development with 
 <!-- Feedback informed Test/Code -->
 **F**eedback **i**nformed **T**est/**C**ode 
 
+
+**todo!()**: move prereq to 80's style in DM Etter section. ------->
 Break Down the Problem into chunks that can be solved more readily.
 
 For non-trivial projects these additional prelimineries maybe necessary.
@@ -61,6 +64,8 @@ Every functional requirement typically has a set of related non-functional requi
 
 
 -->
+... < ---------
+
 
 This also helps to increase understanding of issues and makes them easier to tackle.
 
@@ -83,10 +88,10 @@ Can the test easily use the code? Testable code is a must. Take some time to thi
 
 Focus on understanding the 2nd most important aspect: the intended inputs.
 
-We build the code from the inside-out:
+We build the code from the inside-out iteratively:
 
 - Core interface
-- Calculations and blranches
+- Calculations and branches
 - Loops and generalization
 - Special cases and error handling
 
@@ -127,6 +132,14 @@ Can the test easily use the code? Testable code is a must. Take some time to thi
 Dependency injection is the norm.
 
 #### Function Design Recipe
+
+1. **L**ist key usage (docstrings, usage with expected output)
+2. **E**xpress Expectations in one line (Type contract for weakly typed languages)
+3. **R**eveal Header signature (function/method signature: name, param & return type)
+4. **I**nsert Description (purpose, help text)
+5. **N**urture Neat&Nimble code (code body)
+6. **A**test Demo usage passes (run doctest and/or unit test and/or dev test if TDD)
+
 
 ###  The right code works write  
 
@@ -229,6 +242,7 @@ The rest of the actions on the main menu should be fairly self-explanatory.
 
 - Printing is detestable to tests. To make a function to be testable, Rather than print the item, 
 have the function simply return the data we want. Now, we can test it.
+In general: write code that interacts with abstract interfaces, which can be mocked for tests, rather than concrete implementations, which can't.
 - Avoid Functional Complexities
 Simplicity is important. Break down tasks into manageable units, focusing on one function or feature at a time.
 - Tests should be atomic, focusing on specific behaviors and functionalities. Keep them short, enhancing readability and maintainability and easing the debugging process. Atomic tests pinpoint issues more precisely, facilitating quicker resolutions.
@@ -238,5 +252,12 @@ Begin with the basics baby steps. Write the simplest test case that reflects the
 - Refactor Regularly
 - Test failures is Development Feedback. Analyze the failure, pinpoint the root cause, and let it inform your development decisions.
 - Compiler error are Development Feedback.
+
+---
+
+## References:
+
+Essential viewing: 
+- [Everything You Wanted to Know About Rust Unit Testing (and then some more)](https://www.youtube.com/watch?v=_jDKeOtOiEo)
 
 
