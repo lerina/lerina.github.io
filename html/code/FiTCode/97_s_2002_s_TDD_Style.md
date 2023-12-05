@@ -237,6 +237,10 @@ The Assert step will reveal whether the results of our code are difficult to use
 
 ### The refactor phase
 
+
+*“In anything at all, perfection is finally attained not when there is no longer anything to add, but when there is no longer anything to take away, <!-- when a body has been stripped down to its nakedness -->...”*  
+― Antoine de Saint-Exupéry 
+
 This is the phase where we go into software engineering mode. We have some working, simple code with a test that passes. Now is the time to refine that into clean code – meaning code that will be easy to read later. With the confidence that a passing test provides, we are free to apply any valid refactoring technique to our code. Some examples of refactoring techniques we can use during this phase include the following:
 
 - Extracting a method to remove duplicated code

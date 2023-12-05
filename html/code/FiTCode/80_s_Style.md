@@ -17,6 +17,9 @@ _ Tony Hoare
 _ Niklaus Wirth 
 
 
+## 0 Structured Programming
+
+
 
 ## 1 SIMPLE: A Programming Methodology
 
@@ -144,7 +147,7 @@ _ Niklaus Wirth
 The SIMPLE approach is all about adding functions to the program little
 by little until it suddenly is finished.
 
-In essence at first its the reverse of Picasso
+In essence at first programming is the reverse of Picasso
 
 ![the bull](./reverse_me.gif)
 
@@ -167,13 +170,14 @@ Compile after each edit. Commit after each running build.
 
 Simplicity implies code that is
 
+"
 - Ease to understand
 - Easy to change
 - Easier to debug
 - Flexible
     * API policy
     * location
-
+"
 _ Rich Hickey (Closure creator)
 
 
