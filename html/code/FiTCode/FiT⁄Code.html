@@ -27,6 +27,7 @@
 <li><a href="#the-warehouse-demo" id="toc-the-warehouse-demo">The
 warehouse demo</a></li>
 <li><a href="#tips" id="toc-tips">Tips:</a></li>
+<li><a href="#references" id="toc-references">References:</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -42,6 +43,10 @@ html: &#8260;  ⁄
 css: \2044   ⁄
 
 -->
+<p>“In the practical world of computing, it is rather uncommon that a
+program, once it performs correctly and satisfactorily, remains
+unchanged forever.”<br />
+_ Niklaus Wirth</p>
 <h1 id="fitcode">FiT⁄Code</h1>
 <p>Whether agile or lean or old-school one should strive for FiT/Code,
 and get into the habit of Iterative, incremental software development
@@ -280,7 +285,9 @@ this?</p></li>
 <li><p>Testable code</p></li>
 <li><p>Printing is detestable to tests. To make a function to be
 testable, Rather than print the item, have the function simply return
-the data we want. Now, we can test it.</p></li>
+the data we want. Now, we can test it. In general: write code that
+interacts with abstract interfaces, which can be mocked for tests,
+rather than concrete implementations, which can’t.</p></li>
 <li><p>Avoid Functional Complexities Simplicity is important. Break down
 tasks into manageable units, focusing on one function or feature at a
 time.</p></li>
@@ -299,5 +306,10 @@ pinpoint the root cause, and let it inform your development
 decisions.</p></li>
 <li><p>Compiler error are Development Feedback.</p></li>
 </ul>
+<hr />
+<h2 id="references">References:</h2>
+<p>Essential viewing: - <a
+href="https://www.youtube.com/watch?v=_jDKeOtOiEo">Everything You Wanted
+to Know About Rust Unit Testing (and then some more)</a></p>
 </body>
 </html>

@@ -10,6 +10,10 @@ html: &#8260;  ⁄
 css: \2044   ⁄
 
 -->
+
+"In the practical world of computing, it is rather uncommon that a program, once it performs correctly and satisfactorily, remains unchanged forever."  
+_ Niklaus Wirth 
+
 # FiT⁄Code
 
 Whether agile or lean or old-school one should strive for  FiT/Code,
