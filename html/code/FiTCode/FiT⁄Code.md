@@ -70,6 +70,15 @@ Every functional requirement typically has a set of related non-functional requi
 -->
 ... < ---------
 
+```
+FiT/Code
+↓
+| - Understand the requirements
+|🔃                              ↖
+| - Spike 80's style              | Requirement
+|                🔃               | Changes
+| - Dev TDD style                ↗
+```
 
 This also helps to increase understanding of issues and makes them easier to tackle.
 

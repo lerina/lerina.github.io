@@ -183,7 +183,7 @@ by little until it suddenly is finished.
 
 In essence at first programming is the reverse of Picasso
 
-![the bull](./reverse_me.gif)
+![the bull](./pix/reverse_me.gif)
 
 
 By always having a working program, it is easier to test the program,
