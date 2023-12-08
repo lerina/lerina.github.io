@@ -172,7 +172,6 @@ Is it time for a refactor session? FiT code is readable, clean, lean.
 
 ## The warehouse demo
 
-
 ### Problem Statement: Here is the COP (Challenge, Opportunity, Problem).
 
 > The simple warehouse program is an information system for managing the

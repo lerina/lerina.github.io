@@ -106,12 +106,12 @@ Steps</a></li>
 <li><a href="#tickets-tasks-and-post-it-stacks"
 id="toc-tickets-tasks-and-post-it-stacks">5 Tickets, Tasks and Post-it
 Stacks</a></li>
-<li><a href="#the-three-rules-of-cheating"
-id="toc-the-three-rules-of-cheating">6 The Three Rules of
-Cheating</a></li>
-<li><a href="#dodging-not-quite-cheating"
-id="toc-dodging-not-quite-cheating">7 Dodging: Not Quite
-Cheating</a></li>
+<li><a href="#the-three-rules-of-passing_the_buck"
+id="toc-the-three-rules-of-passing_the_buck">6 The Three Rules of
+passing_the_buck</a></li>
+<li><a href="#dodging-not-quite-passing_the_buck"
+id="toc-dodging-not-quite-passing_the_buck">7 Dodging: Not Quite
+passing_the_buck</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -623,8 +623,8 @@ class="sourceCode rust"><code class="sourceCode rust"><span id="cb9-1"><a href="
 <span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p><em>3.4: test002</em></p>
 <p>Once this edit is done, we run the tests and/or compile and run the
-program. Just to be sure we did not break anything. But oh, it does!
-Anditwonteven compile in Rust. <code>quit_action()</code> must first be
+program. Just to be sure we did not break anything. But oh, it does! And
+it wont even compile in Rust. <code>quit_action()</code> must first be
 updated to return a <code>bool</code>. We fix this with the simplest
 code to pass the test by adding a return false; as the default return
 and also include <code>stdbool.h</code> at the top of the file.</p>
@@ -698,10 +698,10 @@ class="sourceCode rust"><code class="sourceCode rust"><span id="cb15-1"><a href=
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>       <span class="cn">false</span></span>
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span></code></pre></div>
-<p><strong>You really need to understand that</strong> cheating is one
-of the best tools in the programming toolbox. You should use it all the
-time.</p>
-<p>The first rule of cheating is this:</p>
+<p><strong>You really need to understand that</strong> passing_the_buck
+is one of the best tools in the programming toolbox. You should use it
+all the time.</p>
+<p>The first rule of passing_the_buck is this:</p>
 <blockquote>
 <p><em>If you don’t know immediately how to solve a problem, assume the
 existence of a function that solves this problem for you, and call that
@@ -1175,10 +1175,10 @@ class="sourceCode rust"><code class="sourceCode rust"><span id="cb32-1"><a href=
 <span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>      price<span class="op">:</span> <span class="dt">i32</span><span class="op">,</span></span>
 <span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>      amount<span class="op">:</span> <span class="dt">i32</span><span class="op">,</span></span>
 <span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span></code></pre></div>
-<p>By cheating a little, we now have a type <code>ware</code>. However,
-in the interest of making progress and working in an incremental
-fashion, we are also going to apply another great simplification trick:
-<strong>dodging</strong>.</p>
+<p>By passing_the_buck a little, we now have a type <code>ware</code>.
+However, in the interest of making progress and working in an
+incremental fashion, we are also going to apply another great
+simplification trick: <strong>dodging</strong>.</p>
 <p>Getting information from the user at all is a great first step in an
 incremental development methodology. Once that is done and works, we can
 start caring about making sure that the information is correct.</p>
@@ -1395,10 +1395,10 @@ right time to start solving them. That’s SIMPLE in a nutshell.</p>
 <p>As soon as we hit a bump in the road – a problem we don’t know
 immediately how to solve, or don’t know how to solve well, or just
 cannot be bothered with solving right now – we keep things simple by
-cheating and dodging. We reserve ourselves that right by always making
-clear notes about our cheats and dodges and by promising ourselves that
-we will set things straight in the future. And by keeping our
-promises.</p>
+passing_the_buck and dodging. We reserve ourselves that right by always
+making clear notes about our cheats and dodges and by promising
+ourselves that we will set things straight in the future. And by keeping
+our promises.</p>
 <h2 id="a-summary-of-simple-in-ten-steps">4 A Summary of SIMPLE in Ten
 Steps</h2>
 <dl>
@@ -1416,7 +1416,7 @@ valid.
 </dd>
 <dt>Always have a working program</dt>
 <dd>
-In combination with cheating, this usually means inserting dummy
+In combination with passing_the_buck, this usually means inserting dummy
 functions.
 </dd>
 <dt>Compile after every change</dt>
@@ -1447,8 +1447,8 @@ do the above steps first and add the looping step last.
 </dd>
 <dt>Whenever you run the risk of getting stuck, cheat</dt>
 <dd>
-Don’t forget to push new tasks on the stack that undoes the cheating,
-later. This records the cheat, which is great.
+Don’t forget to push new tasks on the stack that undoes the
+passing_the_buck, later. This records the cheat, which is great.
 </dd>
 <dt>Use dodging to help breaking complex cases up into several less
 complex ones</dt>
@@ -1515,7 +1515,8 @@ tasks to perform. When this pile is empty, you’re done.</p>
 <li>As part of the data design</li>
 <li>When you pick a task to implement, you usually start by breaking it
 down into several smaller tasks</li>
-<li>Cheating creates a new task for the cheating function</li>
+<li>passing_the_buck creates a new task for the passing_the_buck
+function</li>
 <li>Dodging creates one or more new tasks to undo the
 simplifications</li>
 </ol>
@@ -1550,16 +1551,17 @@ ticket is a task like any other, just one that’s about fixing something
 that’s inadvertently broken. Creating tickets for defects is a good way
 to avoid breaking the current flow by switching into debugging mode, and
 helps us remember it so it eventually gets fixed.</p>
-<h2 id="the-three-rules-of-cheating">6 The Three Rules of Cheating</h2>
-<p>Cheating is one of the best tools in the programming toolbox, and a
-trick you should be using all the time. The rule of cheating is this
-(also repeated above):</p>
+<h2 id="the-three-rules-of-passing_the_buck">6 The Three Rules of
+passing_the_buck</h2>
+<p>passing_the_buck is one of the best tools in the programming toolbox,
+and a trick you should be using all the time. The rule of
+passing_the_buck is this (also repeated above):</p>
 <p>If you don’t know immediately how to solve a problem,<br />
 assume the existence of a function<br />
 that solves this problem for you,<br />
 and call that function.<br />
 </p>
-<p>There is also a second rule of cheating:</p>
+<p>There is also a second rule of passing_the_buck:</p>
 <p>If you write code that you think about as<br />
 Step 1; Step 2; Step 3; … Step n,<br />
 and one of the steps suddenly turns out to be<br />
@@ -1568,7 +1570,7 @@ assume the existence of a function that performs that step for
 you,<br />
 and call that function.<br />
 </p>
-<p>Finally, there is a third rule of cheating:</p>
+<p>Finally, there is a third rule of passing_the_buck:</p>
 <p>If you write straight-line code,<br />
 and you suddenly come across a step that you<br />
 just cannot be bothered with implementing right now,<br />
@@ -1578,17 +1580,19 @@ and call that function.<br />
 </p>
 <p>(Yes – I deliberately formatted them as poems.)</p>
 <p>In addition to help you stay focused on the control flow you are
-implementing and not get stuck in details, cheating has the automatic
-side-effect of breaking down your code into smaller chunks. It also
-isolates trickier code inside single functions. For example, the logic
-for reading user input is now nicely encapsulated inside the
+implementing and not get stuck in details, passing_the_buck has the
+automatic side-effect of breaking down your code into smaller chunks. It
+also isolates trickier code inside single functions. For example, the
+logic for reading user input is now nicely encapsulated inside the
 <code>get_char_input()</code> function and we can solve this problem
 completely in isolation of the rest of the code for quitting the program
 although that code depends on it.</p>
-<p>By giving a proper name to each function invented by cheating, we
-make sure that the code reads more high-level, and it also helps us
-remember what problem the function in question should solve.</p>
-<h2 id="dodging-not-quite-cheating">7 Dodging: Not Quite Cheating</h2>
+<p>By giving a proper name to each function invented by
+passing_the_buck, we make sure that the code reads more high-level, and
+it also helps us remember what problem the function in question should
+solve.</p>
+<h2 id="dodging-not-quite-passing_the_buck">7 Dodging: Not Quite
+passing_the_buck</h2>
 <p>When doing the initial database design, we made proper use of dodging
 twice to make immediate simplifications that help us make progress and
 construct good increments. Here are two examples of dodging

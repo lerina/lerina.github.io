@@ -604,7 +604,7 @@ mod tests {
 *3.4: test002*
 
 Once this edit is done, we run the tests and/or compile and run the program. Just to be sure
-we did not break anything. But oh, it does! Anditwonteven compile in Rust. `quit_action()` must first
+we did not break anything. But oh, it does! And it wont even compile in Rust. `quit_action()` must first
 be updated to return a `bool`. We fix this with the simplest code to pass the test by adding a return false; as the default return 
 and also include `stdbool.h` at the top of the file.
 
@@ -698,10 +698,10 @@ In Rust
     }
 ```
 
-**You really need to understand that** cheating is one of the best tools
+**You really need to understand that** passing_the_buck is one of the best tools
 in the programming toolbox. You should use it all the time. 
 
-The first rule of cheating is this:
+The first rule of passing_the_buck is this:
 
 > *If you don't know immediately how to solve a problem, assume the
 > existence of a function that solves this problem for you, and call that
@@ -1255,7 +1255,7 @@ Now, we can write the type for ware:
     }
 ```
 
-By cheating a little, we now have a type `ware`. However, in the
+By passing_the_buck a little, we now have a type `ware`. However, in the
 interest of making progress and working in an incremental fashion, we
 are also going to apply another great simplification trick: **dodging**.
 
@@ -1529,7 +1529,7 @@ them. That's SIMPLE in a nutshell.
 As soon as we hit a bump in the road -- a problem we don't know
 immediately how to solve, or don't know how to solve well, or just
 cannot be bothered with solving right now -- we keep things simple by
-cheating and dodging. We reserve ourselves that right by always making
+passing_the_buck and dodging. We reserve ourselves that right by always making
 clear notes about our cheats and dodges and by promising ourselves that
 we will set things straight in the future. And by keeping our promises.
 
@@ -1546,7 +1546,7 @@ Write code to test the validity of your thinking
     is valid.
 
 Always have a working program
-:   In combination with cheating, this usually means inserting dummy
+:   In combination with passing_the_buck, this usually means inserting dummy
     functions.
 
 Compile after every change
@@ -1573,7 +1573,7 @@ Break each task up into increments and start with the easy ones
 
 Whenever you run the risk of getting stuck, cheat
 :   Don't forget to push new tasks on the stack that undoes the
-    cheating, later. This records the cheat, which is great.
+    passing_the_buck, later. This records the cheat, which is great.
 
 Use dodging to help breaking complex cases up into several less complex ones
 :   Don't forget to push new tasks on the stack that undoes the dodge,
@@ -1637,7 +1637,7 @@ The cases where tasks are created in SIMPLE are ideally:
 2.  As part of the data design
 3.  When you pick a task to implement, you usually start by breaking it
     down into several smaller tasks
-4.  Cheating creates a new task for the cheating function
+4.  passing_the_buck creates a new task for the passing_the_buck function
 5.  Dodging creates one or more new tasks to undo the simplifications
 
 Naturally, tasks are sometimes created because you forgot to create them
@@ -1674,10 +1674,10 @@ to avoid breaking the current flow by switching into debugging mode, and
 helps us remember it so it eventually gets fixed.
 
 
-## 6 The Three Rules of Cheating
+## 6 The Three Rules of passing_the_buck
 
-Cheating is one of the best tools in the programming toolbox, and a
-trick you should be using all the time. The rule of cheating is this
+passing_the_buck is one of the best tools in the programming toolbox, and a
+trick you should be using all the time. The rule of passing_the_buck is this
 (also repeated above):
 
 If you don't know immediately how to solve a problem,\
@@ -1685,7 +1685,7 @@ assume the existence of a function\
 that solves this problem for you,\
 and call that function.\
 
-There is also a second rule of cheating:
+There is also a second rule of passing_the_buck:
 
 If you write code that you think about as\
 Step 1; Step 2; Step 3; ... Step n,\
@@ -1694,7 +1694,7 @@ way longer/more complicated/more involved than the others,\
 assume the existence of a function that performs that step for you,\
 and call that function.\
 
-Finally, there is a third rule of cheating:
+Finally, there is a third rule of passing_the_buck:
 
 If you write straight-line code,\
 and you suddenly come across a step that you\
@@ -1705,7 +1705,7 @@ and call that function.\
 (Yes -- I deliberately formatted them as poems.)
 
 In addition to help you stay focused on the control flow you are
-implementing and not get stuck in details, cheating has the automatic
+implementing and not get stuck in details, passing_the_buck has the automatic
 side-effect of breaking down your code into smaller chunks. It also
 isolates trickier code inside single functions. For example, the logic
 for reading user input is now nicely encapsulated inside the
@@ -1713,11 +1713,11 @@ for reading user input is now nicely encapsulated inside the
 isolation of the rest of the code for quitting the program although that
 code depends on it.
 
-By giving a proper name to each function invented by cheating, we make
+By giving a proper name to each function invented by passing_the_buck, we make
 sure that the code reads more high-level, and it also helps us remember
 what problem the function in question should solve.
 
-## 7 Dodging: Not Quite Cheating
+## 7 Dodging: Not Quite passing_the_buck
 
 When doing the initial database design, we made proper use of dodging
 twice to make immediate simplifications that help us make progress and
