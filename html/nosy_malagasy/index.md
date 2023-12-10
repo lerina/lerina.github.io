@@ -19,7 +19,7 @@
 
 - [Lesona_001-007](./lesona/Lesona_001-007.html)
 - [Lesona_008-014](./lesona/Lesona_008-014.html)
-- [Lesona_015-022](./lesona/Lesona_015-022.html)
+- [Lesona_015-021](./lesona/Lesona_015-021.html)
 
 #### [Malagasy Grammar](./grammar.html)
 

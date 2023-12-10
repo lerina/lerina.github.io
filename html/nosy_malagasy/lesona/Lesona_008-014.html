@@ -1003,6 +1003,13 @@ qu’ils déterminent: <code>irỳ trano irỳ</code>, cette maison là-bas
 les mots et les structures que vous venez de rencontrer au cours de
 cette deuxième série de six leçons. De plus, nous vous laissons quelques
 traductions mot à mot pour vous donner un coup de pouce.</p>
+<div class="bg_nm">
+
+</div>
+<div class="navbar">
+<a class="openbtn" onclick="openNav()">☰</a>
+</div>
+<main>
 <h4 id="resaka-mandravona">Resaka mandravona</h4>
 <ol type="1">
 <li>Nankaiza izy ireo, azafady?</li>
@@ -1031,5 +1038,28 @@ sud-le marché la poste).</li>
 <li>Les timbres ne sont pas bon marché.</li>
 </ol>
 </main>
+<p><a href="./Lesona_015-021.html">Lesona 015-021
+<code>-&gt;</code></a></p>
+</main>
+<script src="https://lerina.github.io/js/toc.js"></script>
+<script>
+let anchor= document.createElement('a');
+anchor.href="javascript:closeNav()"; //void(0)"; //anchor[0].onclick = closeNav();
+anchor.className = "closebtn";  
+anchor.innerHTML="&times;";
+document.getElementById("TOC").prepend(anchor);
+
+
+let navCrumbs= document.createElement('div');
+navCrumbs.className = "hover-nav";
+navCrumbs.innerHTML = `
+<div class="hover-nav">
+<ul>
+<li><a href="../../../index.html">⇦ home</a></li>
+<li><a href="../index.html">Nosy Malagasy</a></li>
+</ul>
+</div>`;
+document.getElementById("TOC").prepend(navCrumbs); 
+</script>
 </body>
 </html>

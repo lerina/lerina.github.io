@@ -44,6 +44,13 @@ id="toc-lesona-faharaika-amby-roapolo">Lesona faharaika amby
 roapolo</a></li>
 </ul>
 </nav>
+<div class="bg_nm">
+
+</div>
+<div class="navbar">
+<a class="openbtn" onclick="openNav()">☰</a>
+</div>
+<main>
 <h2 id="lesona-fahadimy-ambinny-folo">Lesona fahadimy ambin’ny folo</h2>
 <p>[lésna fa-dim a-(m) bifoulou]</p>
 <p><em>A partir de cette leçon, nous ne ferons apparaître l’accent
@@ -699,5 +706,28 @@ fito.</p>
 <li>Ma petite sceur ira au bord de la mer.</li>
 <li>Est-ce qu’elle ira [en] avion ? 10 Non, [en] taxi-brousse.</li>
 </ol>
+</main>
+<p><a href="">Lesona 022-29 <code>-&gt;</code></a></p>
+</main>
+<script src="https://lerina.github.io/js/toc.js"></script>
+<script>
+let anchor= document.createElement('a');
+anchor.href="javascript:closeNav()"; //void(0)"; //anchor[0].onclick = closeNav();
+anchor.className = "closebtn";  
+anchor.innerHTML="&times;";
+document.getElementById("TOC").prepend(anchor);
+
+
+let navCrumbs= document.createElement('div');
+navCrumbs.className = "hover-nav";
+navCrumbs.innerHTML = `
+<div class="hover-nav">
+<ul>
+<li><a href="../../../index.html">⇦ home</a></li>
+<li><a href="../index.html">Nosy Malagasy</a></li>
+</ul>
+</div>`;
+document.getElementById("TOC").prepend(navCrumbs); 
+</script>
 </body>
 </html>

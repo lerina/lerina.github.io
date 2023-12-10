@@ -45,6 +45,12 @@ id="toc-lesona-fahafito-lésna-fa-fitou">Lesona fahafito [lésna
 fa-fitou]</a></li>
 </ul>
 </nav>
+<div class="bg_nm">
+
+</div>
+<div class="navbar">
+<a class="openbtn" onclick="openNav()">☰</a>
+</div>
 <main>
 <h2 id="lesona-voalohany-lésna-vôlou-ani">Lesona voalohany (lésna
 vôlou-ani)</h2>
@@ -808,7 +814,28 @@ accueillir. 6. Les parents et les amis vont bien? 7. La mère de Soa est
 assez fatiguée. 8. Je rendrai visite à la mère de Soa demain. 9. Comment
 s’est déroulé le voyage? 10. Le voyage a été bien agréable.</p>
 </main>
-<p><a href="./Lesona_008-014.html">Lesona 08-14
+<p><a href="./Lesona_008-014.html">Lesona 008-014
 <code>-&gt;</code></a></p>
+</main>
+<script src="https://lerina.github.io/js/toc.js"></script>
+<script>
+let anchor= document.createElement('a');
+anchor.href="javascript:closeNav()"; //void(0)"; //anchor[0].onclick = closeNav();
+anchor.className = "closebtn";  
+anchor.innerHTML="&times;";
+document.getElementById("TOC").prepend(anchor);
+
+
+let navCrumbs= document.createElement('div');
+navCrumbs.className = "hover-nav";
+navCrumbs.innerHTML = `
+<div class="hover-nav">
+<ul>
+<li><a href="../../../index.html">⇦ home</a></li>
+<li><a href="../index.html">Nosy Malagasy</a></li>
+</ul>
+</div>`;
+document.getElementById("TOC").prepend(navCrumbs); 
+</script>
 </body>
 </html>
