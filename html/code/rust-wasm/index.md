@@ -109,7 +109,7 @@ but its a much more ambitious tool and beyond our needs here.
 7. Run the web server and open your browser
 
 
-Let's see that in practice with the first example: [wasm Hello world](./001.hello_world.html)
+Let's see that in practice with the first example: [wasm Hello world](./001_hello_world.html)
 
 ---
 
@@ -166,7 +166,7 @@ humm.
 
 --- 
 
-Move on to the first example: [wasm Hello world](./001.hello_world.html)
+Move on to the first example: [wasm Hello world](./001_hello_world.html)
 
 </main>
 

@@ -1,6 +1,8 @@
 <div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
 <main>
-[`<--` hello_world](./index.html#hello_world)
+[Example list](./index.html#list)
+
+Previous example [`<--` hello_world](./001_hello_world.html)
 
 ## console.log
 
