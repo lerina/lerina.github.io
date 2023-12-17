@@ -407,6 +407,19 @@ pass the flag <code>--target no-modules</code></p>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="ex">http</span> www</span></code></pre></div>
 <p>open <code>index.html</code></p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">firefox</span> http://localhost:8000/html/</span></code></pre></div>
+<p>NOTE:</p>
+<p>You may need to Enable SharedArrayBuffers in Firefox</p>
+<p>In early 2018, the Spectre and Meltdown vulnerabilities were
+discovered. In response, browser manufacturers disabled
+SharedArrayBuffer by default.</p>
+<ul>
+<li>Open Firefox.</li>
+<li>Navigate to about:config.</li>
+<li>Click I accept the risk!</li>
+<li>Search for shared.</li>
+<li>Double-click javascript.options.shared_memory.</li>
+<li>This option should now have the value true:</li>
+</ul>
 <hr />
 <h2 id="whats-next">What’s next?</h2>
 <p>Next example: <a href="./020.raytrace-parallel.html">threads:

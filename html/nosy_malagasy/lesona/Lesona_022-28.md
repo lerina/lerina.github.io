@@ -117,6 +117,112 @@ Corrigé de l'exercice 2
 
 
 
+## Lesona fahatelo amby roapolo
+[lésne fa-tél a-(m)b rôpoul]
+
+### Ny asa tany
+
+n asa ta-n
+
+1.Miasa tany amin'ny angady ve ianareo ?
+miasa tani am ni a-(n)gad vé naréou
+
+2. Tsia, miasa amin'ny angadin'omby izahay.
+tsi mias am ni a-(n)gadn ou-(m)b za-a-i
+
+3. Ny lehilahy no manomana ny tanimbary?
+n léla nou manoumana n tan-(m)bari
+
+4. Izany tokoa, ary ny vehivavy no mamafy ny vary.
+za-n tkou ar ni vévav nou mamaf n vari
+
+5. Mizara tsara izany ny asa.
+mzara tsar za-n ni as
+
+Les travaux des champs (Le travail terre)
+
+1. Est-ce que vous travaillez la terre avec la bêche ?
+2. Non, nous travaillons avec la charrue (bêche-de-bœufs).
+3. Ce sont les hommes qui préparent la rizière (Le homme c'est-que préparer la terre-de-riz )?
+4. C'est cela, et ce sont les femmes qui sèment le riz.
+5. Ainsi, les tâches sont bien partagées(partager bien cela le travail).
+
+
+Note:
+
+- `angadin'omby`, charrue, se compose comme suit : `angady`,
+bêche + `-n'`+ `omby`, boeuf ; `omby` étant complément du nom
+`angady`, la construction suit la règle énoncée dans la 21ème leçon,
+par.3, c'est-à-dire qu'il faut ajouter la préposition `-n'` au nom, à
+la seule différence qu'ici le complément `omby` n'est pas déterminé. 
+En fait, le complément peut être, selon le cas, défini ou non.
+
+- `manomana`, préparer, qui est composé de `man-` + `omana`,
+préparation, présente le même radical omana que le verbe intransitif
+`miomana`, se préparer, que vous avez rencontré en 15ème leçon. 
+Remarquez que le préfixe de la forme active `man-` forme des verbes transitifs, 
+c'est-à-dire des verbes qui réclament un complément d'objet direct: 
+`manomana ny tanimbary`, préparer la `rizière`. 
+En revanche, le préfixe `mi-` forme, en général, des verbes intransitifs 
+qui se traduisent en général en français par des verbes pronominaux: 
+`miomana aho`, je me prépare.  
+Notez que cette opposition s'applique quand le radical peut fonctionner 
+avec `man-` et avec `mi-` (ce qui n'est pas toujours le cas).
+
+- `mamafy`, semer, est un verbe actif transitif : `man-` + `fafy`, action 
+de semer -> `mamafy`. Notez que l'apport du préfixe a entraîné la disparition 
+de la consonne initiale `f` du radical `fafy` et le changement de la consonne `n` 
+du préfixe `man-` en `m`. 
+Ces modifications — qui entrent dans la règle des alternances de consonnes —, 
+nous les avons déjà rencontrées dans la 5ème leçon avec le verbe `hamangy`: 
+futur `-man-` + `vangy` (futur-rendre-visite) — futur `-mam-` + `(v)angy`.
+
+### Fanazarana 1 — Adikao
+
+1. Miasa amin'ny angady ny lehilahy. 
+2. Miasa amin'ny angadin'omby izy. 
+3. Tsy ny lehilahy no mamafy ny vary. 
+4. Manomana ny tanimbary izy ireo. 
+5. Manomana ny asa tany ny lehilahy.
+
+Corrigé de l'exercice 1
+
+1. Les hommes travaillent avec la bêche. 
+2. Il travaille avec la charrue. 
+3. Ce ne sont pas les hommes qui sèment le riz. 
+4. lls préparent la rizière. 
+5. Les hommes préparent les travaux des champs.
+
+
+### Fanazarana 2 — Fenoy ny banga
+
+1. Les hommes travaillent.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
