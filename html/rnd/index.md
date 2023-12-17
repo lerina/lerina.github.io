@@ -2,12 +2,14 @@
 <div class="bg_rnd"></div><div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
 <main>
 
-> "You can retreat but never quit" ...  
-> 
+> "You can retreat   
+> but never quit" ...  
+>  &nbsp;  
 > External doubt is the essence of science,  
-> internal doubt the nuisance of persistence.  
+> internal doubt a nuisance to persistence.  
+>  &nbsp;  
 > Suvival then, like success,  
-> is the fine art of progress
+> is the fine art of progress  
 > thought obstacles and duress  
 >                                                   _ rindra   
 
