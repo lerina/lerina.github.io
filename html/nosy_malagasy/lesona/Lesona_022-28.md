@@ -197,11 +197,31 @@ Corrigé de l'exercice 1
 ### Fanazarana 2 — Fenoy ny banga
 
 1. Les hommes travaillent.
+..... ny lehilahy
+
+2. Ils travaillent la terre.
+..... .... izy ireo.
+
+3. Ils ne travaillent pas avec la bêche.
+Tsy miasa amin'ny ...... izy ireo.
+
+4. Est-ce que les femmes préparent la rizière ?
+Manomanany ......... ve ny vehivavy?
+
+5. Non, les femmes sèment le riz.
+Tsia, ...... ny vary ny .........
+
+Corrigé de l'exercice 2
+
+1. Miasa 
+2. Miasa tany 
+3. angady 
+4. tanimbary
+5. mamafy — vehivavy
 
 
 
-
-
+## Lesona fahefatra amby roapolo
 
 
 
