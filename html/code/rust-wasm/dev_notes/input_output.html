@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>input_output input_output</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="https://lerina.github.io/css/styles_min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#rust-input---output" id="toc-rust-input---output">Rust
+Input - Output</a>
+<ul>
+<li><a href="#input-from-a-terminalconsole"
+id="toc-input-from-a-terminalconsole">Input from a
+terminal/console</a></li>
+<li><a href="#command-line-arguments-and-environment-variables"
+id="toc-command-line-arguments-and-environment-variables">Command line
+arguments and environment variables</a></li>
+<li><a href="#managing-files-and-directories"
+id="toc-managing-files-and-directories">Managing files and
+directories</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="rust-input---output">Rust Input - Output</h1>
+<p><a
+href="https://fitech101.aalto.fi/programming-languages/rust/8-interaction-input-and-os/#:~:text=To%20read%20user%20input%20in,written%20on%20the%20command%20line">source</a></p>
+<h2 id="input-from-a-terminalconsole">Input from a terminal/console</h2>
+<h3 id="read-a-line">Read a line</h3>
+<ul>
+<li>Production code</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::</span>io<span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> input <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>new()<span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">match</span> <span class="pp">io::</span>stdin()<span class="op">.</span>read_line(<span class="op">&amp;</span><span class="kw">mut</span> input) <span class="op">{</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="cn">Ok</span>(n) <span class="op">=&gt;</span> <span class="op">{</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>            <span class="pp">println!</span>(<span class="st">&quot;{} bytes read&quot;</span><span class="op">,</span> n)<span class="op">;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>            <span class="pp">println!</span>(<span class="st">&quot;{}&quot;</span><span class="op">,</span> input)<span class="op">;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="cn">Err</span>(error) <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">&quot;error: {error}&quot;</span>)<span class="op">,</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<ul>
+<li>Spike or example code</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::</span>io<span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> input <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>new()<span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> n <span class="op">=</span> <span class="pp">io::</span>stdin()<span class="op">.</span>read_line(<span class="op">&amp;</span><span class="kw">mut</span> input)<span class="op">.</span>unwrap()<span class="op">;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;{} bytes read&quot;</span><span class="op">,</span> n)<span class="op">;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;{}&quot;</span><span class="op">,</span> input)<span class="op">;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>You can cause an error on purpose with read_line by passing invalid
+UTF-8 as input from e.g. an image file. File contents can be redirected
+to the standard input of a program process with the syntax command &lt;
+file.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> run <span class="op">&lt;</span> my-image.png</span></code></pre></div>
+<p>Note:<br />
+The read_line method that we used to read a line from stdin is a
+blocking function. It will read from the underlying input stream until
+it encounters a newline <code>\n</code> (pressing Enter when inserting
+input in an interactive command line environment) or an EOF i.e. end of
+file marker.<br />
+In other words, calling read_line will wait until a new line appears,
+which is the case when we press Enter in an interactive command line
+program, or the input stream ends.</p>
+<h3 id="multiple-line-input">multiple-line input</h3>
+<p>We can get an iterator over the lines in the standard input stream by
+using the lines method of Stdin.</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::</span>io<span class="op">;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;Input 3 numbers&quot;</span>)<span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> numbers <span class="op">=</span> <span class="pp">vec!</span>[]<span class="op">;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> line <span class="kw">in</span> <span class="pp">io::</span>stdin()<span class="op">.</span>lines()<span class="op">.</span>take(<span class="dv">3</span>) <span class="op">{</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        numbers<span class="op">.</span>push(line)<span class="op">;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;The numbers were {numbers:?}&quot;</span>)<span class="op">;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>We use the iterator’s take method to stop the iterator after going
+through three lines. Otherwise the program would run forever waiting for
+more lines when executed in a command line</p>
+<p>As an alternative to read_line. We may take one line from the
+iterator given by calling lines.</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::</span>io<span class="op">;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;Input one line&quot;</span>)<span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> line <span class="op">=</span> <span class="pp">io::</span>stdin()<span class="op">.</span>lines()<span class="op">.</span>next()<span class="op">.</span>unwrap()<span class="op">.</span>unwrap()<span class="op">;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;The line was {line:?}&quot;</span>)<span class="op">;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Here we see something that can be a bit unpleasant to the eye: two
+unwraps in a row. The first unwrap is on the Option returned by next
+(the next line might not exist) that needs to be handled for any
+iterator.<br />
+The second unwrap is on the Result for handling invalid input.</p>
+<p>With the <code>read_line</code> method, we needed only one
+unwrap.<br />
+With this approach, we don’t need to trim the string and we don’t need
+to define a mutable string to store the input.</p>
+<p>Choose your poison.</p>
+<h3 id="parsing-input-into-numbers">Parsing input into numbers</h3>
+<p>Next, we have a slightly more complex example than just reading
+input. We will read two numbers from the standard input and print out
+their sum.</p>
+<p>To parse a string into a number, we can use the parse method on the
+str type.</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::</span>io<span class="op">;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> read_i32() <span class="op">-&gt;</span> <span class="dt">i32</span> <span class="op">{</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> line <span class="op">=</span> <span class="pp">io::</span>stdin()<span class="op">.</span>lines()<span class="op">.</span>next()<span class="op">.</span>unwrap()<span class="op">.</span>unwrap()<span class="op">;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    line<span class="op">.</span>parse()<span class="op">.</span>unwrap()</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;Input a number&quot;</span>)<span class="op">;</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> number1 <span class="op">=</span> read_i32()<span class="op">;</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;Input another number&quot;</span>)<span class="op">;</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> number2 <span class="op">=</span> read_i32()<span class="op">;</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;{number1} + {number2} = {}&quot;</span><span class="op">,</span> number1 <span class="op">+</span> number2)<span class="op">;</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Parsing the string into i32 returns a Result, so we need to handle
+that too in addition to all the possible errors from reading input. The
+resulting code is a bit verbose, but it is necessary to keep the
+compiler happy.</p>
+<p>The error type of the Result returned by the parse method is
+ParseIntError, which represents multiple different error kinds that are
+defined in the enum IntErrorKind. For example, parsing a string that
+contains invalid characters will result in an
+IntErrorKind::InvalidDigit.</p>
+<p>We can handle the different error kinds by first getting the kind
+enum from the error with kind(), and then using the match expression to
+handle the enum variants.</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::</span>io<span class="op">;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::num::</span>IntErrorKind<span class="op">;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> line <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>new()<span class="op">;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">loop</span> <span class="op">{</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">&quot;Please enter a number&quot;</span>)<span class="op">;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        <span class="pp">io::</span>stdin()<span class="op">.</span>read_line(<span class="op">&amp;</span><span class="kw">mut</span> line)<span class="op">.</span>unwrap()<span class="op">;</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">let</span> <span class="cn">Err</span>(e) <span class="op">=</span> line<span class="op">.</span><span class="pp">parse::</span><span class="op">&lt;</span><span class="dt">i32</span><span class="op">&gt;</span>() <span class="op">{</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">match</span> e<span class="op">.</span>kind() <span class="op">{</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>                <span class="pp">IntErrorKind::</span>Empty <span class="op">=&gt;</span> <span class="op">{</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>                    <span class="pp">println!</span>(<span class="st">&quot;Exiting...&quot;</span>)<span class="op">;</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>                <span class="pp">IntErrorKind::</span>InvalidDigit <span class="op">=&gt;</span> <span class="op">{</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>                    <span class="pp">println!</span>(<span class="st">&quot;Invalid digit, try again&quot;</span>)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>                error <span class="op">=&gt;</span> <span class="op">{</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>                    <span class="pp">panic!</span>(<span class="st">&quot;Unexpected error {error:?}&quot;</span>)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>        line<span class="op">.</span>clear()</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h2 id="command-line-arguments-and-environment-variables">Command line
+arguments and environment variables</h2>
+<p>When running a program from a command line, we can provide arguments
+to the program after giving the program name, like run for cargo in
+cargo run.<br />
+Passing arguments to a program is not that different from passing
+arguments (i.e. values) to a parameterized function.</p>
+<p>The following example works like the “echo” program, it prints out
+the arguments it is given.</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::</span>env<span class="op">;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> args<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">String</span><span class="op">&gt;</span> <span class="op">=</span> <span class="pp">env::</span>args()<span class="op">.</span>collect()<span class="op">;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;{args:?}&quot;</span>)<span class="op">;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>We first bring into scope the <code>std::env</code> module, which
+contains various functions for getting information about the environment
+of the process (the instance of a computer program being
+executed).<br />
+We then get an iterator of the program arguments with the
+<code>std::env::args</code> function and collect the iterator values
+before printing them out.</p>
+<p>Running the above example with <code>cargo run -- Hello World</code>
+in a terminal prints out
+<code>["target/debug/echo", "Hello", "World"]</code> (assuming the
+project name is echo). The first argument (at index 0) is the path to
+the program. The rest of the arguments are the arguments passed to the
+program. We need to include the <code>--</code> argument to tell cargo
+that the arguments after the <code>--</code> are not for cargo run, but
+for the program that is run.</p>
+<p>Below, we have a program that reads two arguments and multiplies them
+together. It gets the arguments by using the indices 1 and 2, and then
+parses them into f64s. It doesn’t handle the case where the user doesn’t
+provide two arguments very nicely but provides an obscure message
+instead. With get, we can provide a better error explanation or a
+default value to use when the index is out of bounds</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::</span>env<span class="op">;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> args<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">String</span><span class="op">&gt;</span> <span class="op">=</span> <span class="pp">env::</span>args()<span class="op">.</span>collect()<span class="op">;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> number1 <span class="op">=</span> args[<span class="dv">1</span>]<span class="op">.</span><span class="pp">parse::</span><span class="op">&lt;</span><span class="dt">f64</span><span class="op">&gt;</span>()<span class="op">.</span>unwrap()<span class="op">;</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> number2 <span class="op">=</span> args[<span class="dv">2</span>]<span class="op">.</span><span class="pp">parse::</span><span class="op">&lt;</span><span class="dt">f64</span><span class="op">&gt;</span>()<span class="op">.</span>unwrap()<span class="op">;</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> product <span class="op">=</span> number1 <span class="op">*</span> number2<span class="op">;</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;{product}&quot;</span>)<span class="op">;</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>With this sort of an application that simply multiplies its values,
+we could easily do much better than multiplying only two values. We can
+handle an arbitrary number of arguments by using the
+<code>product</code> method directly on the args iterator.</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::</span>env<span class="op">;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> product <span class="op">=</span> <span class="pp">env::</span>args()</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>map(<span class="op">|</span>arg<span class="op">|</span> arg<span class="op">.</span><span class="pp">parse::</span><span class="op">&lt;</span><span class="dt">f64</span><span class="op">&gt;</span>()<span class="op">.</span>expect(<span class="st">&quot;Could not parse argument to number&quot;</span>))</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="pp">product::</span><span class="op">&lt;</span><span class="dt">f64</span><span class="op">&gt;</span>()<span class="op">;</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;{product}&quot;</span>)<span class="op">;</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>We’ll want to ignore the filename argument at the beginning of the
+iterator though for our multiplication. For this, the skip method of the
+iterator comes in handy. The product method returns 1.0 if the iterator
+is empty, which makes this approach safe to use also when providing no
+arguments.</p>
+<h3 id="environment-variables">Environment variables</h3>
+<p>Environment variables are variables defined in a shell’s environment
+that programs inherit when they are run in the shell. Environment
+variables are often used to configure a program. For example, cargo uses
+the RUST_BACKTRACE environment variable for enabling backtrace for Rust
+runtime errors.</p>
+<p>In Rust, we can access environment variables with the env::vars
+function. It returns an iterator of environment variables names and
+values as tuples, which we can collect into a hash map for further
+use.</p>
+<p>Let’s see what environment variables are available to us in our
+program.</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::</span>env<span class="op">;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::collections::</span>HashMap<span class="op">;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> vars<span class="op">:</span> HashMap<span class="op">&lt;</span><span class="dt">String</span><span class="op">,</span> <span class="dt">String</span><span class="op">&gt;</span> <span class="op">=</span> <span class="pp">env::</span>vars()<span class="op">.</span>collect()<span class="op">;</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;{vars:#?}&quot;</span>)<span class="op">;</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h2 id="managing-files-and-directories">Managing files and
+directories</h2>
+<p>An operating system (OS) manages the resources our computer can use:
+memory, disks, networking, filesystem and drawing to the screen.</p>
+<p>Next, we will look at how to interact with the operating system by
+reading and writing files within Rust code</p>
+<h3 id="reading-files">Reading files</h3>
+<p>Reading a file requires knowing the path to it. In Unix-like
+operating systems, like Linux, the directories and files of the
+directory structure are separated by slashes / in the path. In Windows,
+the directories and files are separated by backslashes . We use
+unix-like paths in this course material.</p>
+<p>A path can start with ./ to indicate that it is relative to the
+directory the program is being run at. Let’s say we are running the
+following program from the path /home/user/project/. We can use the
+std::fs::read function to read the contents of a file into a vector of
+bytes (Vec<u8>). We can then convert the bytes into a string with the
+String::from_utf8 function.</p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::</span>fs<span class="op">;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> bytes <span class="op">=</span> <span class="pp">fs::</span>read(<span class="st">&quot;./src/main.rs&quot;</span>)<span class="op">.</span>expect(<span class="st">&quot;Unable to read file&quot;</span>)<span class="op">;</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;file contents as bytes:&quot;</span>)<span class="op">;</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;{bytes:?}&quot;</span>)<span class="op">;</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> string <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from_utf8(bytes)<span class="op">.</span>expect(<span class="st">&quot;Invalid UTF-8&quot;</span>)<span class="op">;</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;file contents as string:&quot;</span>)<span class="op">;</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;{string}&quot;</span>)<span class="op">;</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Calling
+<code>fs::read("./src/main.rs")`` will try to read the ``/home/user/project/src/main.rs</code>
+file. If the file exists, and the user’s permissions are sufficient, the
+contents of that file will be saved in the bytes variable.</p>
+<p>Try to modify the path in the above example to a file that does not
+exist, e.g. <code>/src/main.rs</code>, to see a runtime error.</p>
+<p>In the usual case, we want to read a file and convert its contents to
+a string, like we did with <code>fs::read</code> and
+<code>String::from_utf8</code>. Being such a common operation
+<code>fs</code> has a function for just that
+<code>fs::read_to_string</code>.</p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::</span>fs<span class="op">;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> data <span class="op">=</span> <span class="pp">fs::</span>read_to_string(<span class="st">&quot;./src/main.rs&quot;</span>)<span class="op">.</span>expect(<span class="st">&quot;Unable to read file to UTF-8 String&quot;</span>)<span class="op">;</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;{data}&quot;</span>)<span class="op">;</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h3 id="writing-to-a-file">Writing to a file</h3>
+<p>We can use the standard library function <code>fs::write</code> to
+write a string to a file in the specified path. The
+<code>fs::write</code> first creates a file (if it doesn’t already
+exist) and then writes to the file by combining the
+<code>fs::File::create</code> and <code>io::Write::write_all</code>
+functions into one convenient function.</p>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::</span>fs<span class="op">;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> data <span class="op">=</span> <span class="st">&quot;This will be deleted anyway&quot;</span><span class="op">;</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="pp">fs::</span>write(<span class="st">&quot;/tmp/testing&quot;</span><span class="op">,</span> data)<span class="op">.</span>expect(<span class="st">&quot;Unable to write file&quot;</span>)<span class="op">;</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">// read and print the file contents to see the changes</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> new_contents <span class="op">=</span> <span class="pp">fs::</span>read_to_string(<span class="st">&quot;/tmp/testing&quot;</span>)<span class="op">.</span>expect(<span class="st">&quot;Unable to read file&quot;</span>)<span class="op">;</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;{new_contents}&quot;</span>)<span class="op">;</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>We can also pass a byte vector to fs::write to write any binary data
+to a file, like the contents of an image or a video.</p>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::</span>fs<span class="op">;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> random_bytes <span class="op">=</span> <span class="pp">vec!</span>[<span class="dv">255</span><span class="op">,</span> <span class="dv">23</span><span class="op">,</span> <span class="dv">42</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">255</span><span class="op">,</span> <span class="dv">235</span><span class="op">,</span> <span class="dv">222</span><span class="op">,</span> <span class="dv">10</span>]<span class="op">;</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="pp">fs::</span>write(<span class="st">&quot;/tmp/testing&quot;</span><span class="op">,</span> random_bytes)<span class="op">.</span>expect(<span class="st">&quot;Unable to write file&quot;</span>)<span class="op">;</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">// read and print the file contents to see the changes</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> new_contents <span class="op">=</span> <span class="pp">fs::</span>read_to_string(<span class="st">&quot;/tmp/testing&quot;</span>)<span class="op">.</span>expect(<span class="st">&quot;Unable to read file&quot;</span>)<span class="op">;</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;{new_contents}&quot;</span>)<span class="op">;</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Note that the <code>fs::write</code> function will overwrite the file
+if it already exists.</p>
+<p>To avoid overwriting an existing file, we can check its existence
+before writing to it with the path::Path struct and its exists
+method.</p>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::</span>fs<span class="op">;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::path::</span><span class="dt">Path</span><span class="op">;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> data <span class="op">=</span> <span class="st">&quot;This will be deleted anyway&quot;</span><span class="op">;</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">!</span><span class="dt">Path</span><span class="pp">::</span>new(<span class="st">&quot;/tmp/testing&quot;</span>)<span class="op">.</span>exists() <span class="op">{</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>        <span class="pp">fs::</span>write(<span class="st">&quot;/tmp/testing&quot;</span><span class="op">,</span> data)<span class="op">.</span>expect(<span class="st">&quot;Unable to write file&quot;</span>)<span class="op">;</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">// read and print the file contents to see the changes</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> new_contents <span class="op">=</span> <span class="pp">fs::</span>read_to_string(<span class="st">&quot;/tmp/testing&quot;</span>)<span class="op">.</span>expect(<span class="st">&quot;Unable to read file&quot;</span>)<span class="op">;</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;{new_contents}&quot;</span>)<span class="op">;</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h3 id="appending-to-a-file">Appending to a file</h3>
+<p>Rust does not provide a convenience function for appending to a file,
+but we can use the <code>fs::OpenOptions</code> struct to open the file
+in append mode. We can then append text to the file using the
+<code>writeln!</code> macro, which is a convenience macro for writing a
+string and a newline to a buffer (there is also <code>write!</code> when
+we don’t want a new line at the end). Using the macro requires an
+additional method for <code>OpenOptions</code> though, which can be
+added by importing the trait <code>std::io::Write</code> (the compiler
+kindly hints us to do so in case we forget).</p>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::</span>fs<span class="op">;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="pp">fs::</span>write(<span class="st">&quot;/tmp/testing&quot;</span><span class="op">,</span> <span class="st">&quot;&quot;</span>)<span class="op">.</span>expect(<span class="st">&quot;Unable to write file&quot;</span>)<span class="op">;</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> data <span class="op">=</span> <span class="st">&quot;This will be deleted anyway&quot;</span><span class="op">;</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> file <span class="op">=</span> <span class="pp">fs::OpenOptions::</span>new()</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>append(<span class="cn">true</span>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>open(<span class="st">&quot;/tmp/testing&quot;</span>)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>expect(<span class="st">&quot;Unable to open file&quot;</span>)<span class="op">;</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    <span class="pp">writeln!</span>(file<span class="op">,</span> <span class="st">&quot;{}&quot;</span><span class="op">,</span> data)<span class="op">.</span>expect(<span class="st">&quot;Unable to write data&quot;</span>)<span class="op">;</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    <span class="pp">writeln!</span>(file<span class="op">,</span> <span class="st">&quot;{}&quot;</span><span class="op">,</span> data)<span class="op">.</span>expect(<span class="st">&quot;Unable to write data&quot;</span>)<span class="op">;</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">// read and print the file contents to see the changes</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> new_contents <span class="op">=</span> <span class="pp">fs::</span>read_to_string(<span class="st">&quot;/tmp/testing&quot;</span>)<span class="op">.</span>expect(<span class="st">&quot;Unable to read file&quot;</span>)<span class="op">;</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;{new_contents}&quot;</span>)<span class="op">;</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h3 id="removing-a-file">Removing a file</h3>
+<p>Removing a file in Rust code is as straightforward as creating or
+overwriting them with fs::write with the fs::remove_file function. This
+function will return an error if the given path doesn’t exist, the path
+is a directory, or the user doesn’t have permission to remove the
+file.</p>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::</span>fs<span class="op">;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> data <span class="op">=</span> <span class="st">&quot;This will be deleted anyway&quot;</span><span class="op">;</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="pp">fs::</span>write(<span class="st">&quot;/tmp/testing&quot;</span><span class="op">,</span> data)<span class="op">.</span>expect(<span class="st">&quot;Unable to write file&quot;</span>)<span class="op">;</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="pp">fs::</span>remove_file(<span class="st">&quot;/tmp/testing&quot;</span>)<span class="op">.</span>expect(<span class="st">&quot;Unable to remove file&quot;</span>)<span class="op">;</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h4 id="reading-a-file-at-compile-time">Reading a file at Compile
+time</h4>
+<p>We can also read files at compile time with the include_str! macro.
+The include_str! macro will read the file at compile time and include
+the contents of the file as a string. The path of the read file is
+located relative to the file where the macro is called.</p>
+<p>An invalid path will cause a compile time error. On the other hand,
+the file will not be read at runtime so the file does not need to exist
+when the program is run.</p>
+<div class="sourceCode" id="cb19"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::</span>fs<span class="op">;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> cargo_toml <span class="op">=</span> <span class="pp">include_str!</span>(<span class="st">&quot;./Cargo.toml&quot;</span>)<span class="op">;</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="pp">fs::</span>remove_file(<span class="st">&quot;./Cargo.toml&quot;</span>)<span class="op">.</span>expect(<span class="st">&quot;Unable to remove Cargo.toml&quot;</span>)<span class="op">;</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;Project toml:</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="st">{cargo_toml}&quot;</span>)<span class="op">;</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h3 id="try-operator"><code>?</code> try operator</h3>
+<p>Rust can often be verbose, but it doesn’t have to be always. Let’s
+have a look at a simple backup function that leverages the
+fs::read_to_string function along with the fs::write to create a backup
+copy of a file.</p>
+<div class="sourceCode" id="cb20"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::</span><span class="op">{</span>io<span class="op">,</span> fs<span class="op">};</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> backup(filename<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>) <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>()<span class="op">,</span> <span class="pp">io::</span><span class="bu">Error</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> contents <span class="op">=</span> <span class="cf">match</span> <span class="pp">fs::</span>read_to_string(filename) <span class="op">{</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>        <span class="cn">Ok</span>(contents) <span class="op">=&gt;</span> contents<span class="op">,</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>        <span class="cn">Err</span>(e) <span class="op">=&gt;</span> <span class="cf">return</span> <span class="cn">Err</span>(e)<span class="op">,</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">};</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> backup <span class="op">=</span> <span class="pp">format!</span>(<span class="st">&quot;// this is a backup</span><span class="sc">\n</span><span class="st">{contents}&quot;</span>)<span class="op">;</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> backup_path <span class="op">=</span> <span class="pp">format!</span>(<span class="st">&quot;{filename}.backup&quot;</span>)<span class="op">;</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">match</span> <span class="pp">fs::</span>write(<span class="op">&amp;</span>backup_path<span class="op">,</span> backup) <span class="op">{</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>        <span class="cn">Ok</span>(_) <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">&quot;Contents of {filename} successfully backed up to {backup_path}!&quot;</span>)<span class="op">,</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>        <span class="cn">Err</span>(e) <span class="op">=&gt;</span> <span class="cf">return</span> <span class="cn">Err</span>(e)<span class="op">,</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">};</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>    <span class="cn">Ok</span>(())</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">let</span> <span class="cn">Err</span>(e) <span class="op">=</span> backup(<span class="st">&quot;main.rs&quot;</span>) <span class="op">{</span></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">&quot;Error: {e}&quot;</span>)<span class="op">;</span></span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Even though the function does not do that much, it contains quite a
+lot of code. We could of course use the more concise expect or unwrap
+functions to handle the error by causing a runtime panic, but often we
+want to propagate the error back to the caller instead. This way the
+caller can choose how to handle the error, and that is also the way most
+programming languages work implicitly.</p>
+<p>To make error handling simpler, Rust provides a way to propagate
+errors by using the ? (pronounced try) operator. With it, our backup
+function can look rather nice and concise.</p>
+<div class="sourceCode" id="cb21"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::</span><span class="op">{</span>io<span class="op">,</span> fs<span class="op">};</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> backup(filename<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>) <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>()<span class="op">,</span> <span class="pp">io::</span><span class="bu">Error</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> contents <span class="op">=</span> <span class="pp">fs::</span>read_to_string(filename)<span class="op">?;</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> backup <span class="op">=</span> <span class="pp">format!</span>(<span class="st">&quot;// this is a backup</span><span class="sc">\n</span><span class="st">{contents}&quot;</span>)<span class="op">;</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> backup_path <span class="op">=</span> <span class="pp">format!</span>(<span class="st">&quot;{filename}.backup&quot;</span>)<span class="op">;</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    <span class="pp">fs::</span>write(<span class="op">&amp;</span>backup_path<span class="op">,</span> backup)<span class="op">?;</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;Contents of {filename} successfully backed up to {backup_path}!&quot;</span>)<span class="op">;</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    <span class="cn">Ok</span>(())</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">let</span> <span class="cn">Err</span>(e) <span class="op">=</span> backup(<span class="st">&quot;main.rs&quot;</span>) <span class="op">{</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">&quot;Error: {e}&quot;</span>)<span class="op">;</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>The ? operator works for both Options and Results by checking if the
+value in front of it is None or Err and returning the error prematurely.
+If the value is Some or Ok, ? unwraps the value.</p>
+<p>Note that using ? requires the function to return either an Option or
+a Result, and the propagated value needs to match the return type.</p>
+<h3 id="listing-directories">Listing directories</h3>
+<p>Listing directories can be a bit more complicated than reading and
+writing files because we have more possible errors to deal with.
+Although with the help of the <code>?</code> (try) operator, we can
+streamline through most of them by propagating the errors back to the
+caller.</p>
+<p>Using std::fs::read_dir we can get an iterator over all the files and
+directories at the path provided as argument.</p>
+<p>The read_dir function returns an io::Result<ReadDir>, which we can
+iterate over, but iterating over a Result only gives the wrapped value
+if it is Ok. We want to iterate over the ReadDir instead to get
+individual DirEntrys, which contain information about the entry, like
+whether it is a directory or a file.</p>
+<p>Here is a good place to try the ? operator to get the value inside
+the result and propagate the error to the caller if it is an Err. Note
+that we need to give the function a return type of Result or Option to
+be able to use ?.</p>
+<div class="sourceCode" id="cb22"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::fs::</span>read_dir<span class="op">;</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> dir_entry <span class="kw">in</span> read_dir(<span class="st">&quot;.&quot;</span>) <span class="op">{</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">&quot;{dir_entry:?}&quot;</span>)<span class="op">;</span> <span class="co">// ReadDir(&quot;.&quot;) ???</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>The ReadDir iterator gives us io::Result<DirEntry>s, which is
+interesting because we have just handled the errors from read_dir. The
+reason is that the ReadDir iterator doesn’t contain the contents of the
+directory in any way. When the for loop calls next() during each
+iteration, the program gets the next DirEntry from the operating system.
+As with anything that interacts with the operating system, this may also
+fail.</p>
+<p>But now we finally have access to the DirEntrys which have many
+useful methods, like file_name, path and metadata. We can use the
+metadata method on a DirEntry to get more information about the file or
+directory. metadata also interacts with the operating system, thus
+requiring us to handle potential errors.</p>
+<p>We can see for example, which entries are directories and how big
+each file is.</p>
+<div class="sourceCode" id="cb23"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::fs::</span>read_dir<span class="op">;</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">-&gt;</span> <span class="pp">std::io::</span><span class="dt">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> entry <span class="kw">in</span> read_dir(<span class="st">&quot;.&quot;</span>)<span class="op">?</span> <span class="op">{</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> entry <span class="op">=</span> entry<span class="op">?;</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> metadata <span class="op">=</span> entry<span class="op">.</span>metadata()<span class="op">?;</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> filename <span class="op">=</span> entry<span class="op">.</span>file_name()<span class="op">;</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;{filename:?}: is_dir = {}, len = {}, created = {:?}&quot;</span><span class="op">,</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>            metadata<span class="op">.</span>is_dir()<span class="op">,</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>            metadata<span class="op">.</span>len()<span class="op">,</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>            metadata<span class="op">.</span>created()</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>        )<span class="op">;</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>    <span class="cn">Ok</span>(())</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Here we also use the Result type from the io module as the return
+type, which works with the ? operator because it is just a regular
+Result with the error type already set to io::Error.</p>
+<p>The metadata for a file or directory can be accessed also by using
+the fs::metadata function, which takes a path as argument. It too
+returns a Result in case the path doesn’t exist or the program doesn’t
+have permission to access it.</p>
+<div class="sourceCode" id="cb24"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::</span>fs<span class="op">;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">-&gt;</span> <span class="pp">std::io::</span><span class="dt">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> metadata <span class="op">=</span> <span class="pp">fs::</span>metadata(<span class="st">&quot;./src&quot;</span>)<span class="op">?;</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;is_dir = {}, len = {}, created = {:?}&quot;</span><span class="op">,</span> metadata<span class="op">.</span>is_dir()<span class="op">,</span> metadata<span class="op">.</span>len()<span class="op">,</span> metadata<span class="op">.</span>created())<span class="op">;</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="cn">Ok</span>(())</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>When we need to create a new directory, Rust standard library
+provides the functions fs::create_dir and fs::create_dir_all. The
+create_dir function will return an error if a directory with the same
+name already exists or if one of it’s parent directories doesn’t exist.
+The create_dir_all function will create all the parent directories if
+they don’t exist and will return Ok even when all directories in a given
+path exists.</p>
+<p>For removing directories, Rust standard library provides the
+functions fs::remove_dir and fs::remove_dir_all. The remove_dir function
+only works for empty directories, while remove_dir_all recursively
+removes all the files and directories inside the directory before
+removing the directory itself.</p>
+<div class="sourceCode" id="cb25"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::</span>fs<span class="op">;</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">-&gt;</span> <span class="pp">std::io::</span><span class="dt">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;{:?}&quot;</span><span class="op">,</span> <span class="pp">fs::</span>create_dir(<span class="st">&quot;new_dir/subdir&quot;</span>))<span class="op">;</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;{:?}&quot;</span><span class="op">,</span> <span class="pp">fs::</span>create_dir_all(<span class="st">&quot;new_dir/subdir&quot;</span>))<span class="op">;</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;{:?}&quot;</span><span class="op">,</span> <span class="pp">fs::</span>remove_dir(<span class="st">&quot;new_dir&quot;</span>))<span class="op">;</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;{:?}&quot;</span><span class="op">,</span> <span class="pp">fs::</span>remove_dir_all(<span class="st">&quot;new_dir&quot;</span>))<span class="op">;</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    <span class="cn">Ok</span>(())</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Like the file modification and removal functions, these all return an
+error on failure due to e.g. insufficient permissions.</p>
+<h3 id="ossrting">OsSrting</h3>
+<p>The file_name method of DirEntry doesn’t return a String or a
+&amp;str which are already familiar to us, but rather an
+std::ffi::OsString. OsString is a compatibility feature in Rust which
+can store data in the different encodings different operating systems
+use — an OsString may contain non-valid UTF-8 unlike a String.</p>
+<p>Let’s say we want to format our file metadata listing from previous
+example with padding (:&gt;20) for more pleasant reading. An OsString
+can’t be displayed without debug format (:?) and padding doesn’t work on
+debug format, so we need to get a String or &amp;str from the
+OsString.</p>
+<div class="sourceCode" id="cb26"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> os_string <span class="op">=</span> <span class="pp">std::ffi::OsString::</span>from(<span class="st">&quot;chicken&quot;</span>)<span class="op">;</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="pp">println!</span>(<span class="st">&quot;{os_string:&gt;20?}!&quot;</span>)<span class="op">;</span> <span class="co">// chicken!</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>The simplest way to convert an OsString to a &amp;str is to use the
+to_string_lossy method, which returns a &amp;str where invalid unicode
+characters are replaced with �. This method technically returns a
+Clone-on-write smart pointer Cow<str>, but we don’t need to worry about
+that yet. For our current purposes, we can use it like a normal &amp;str
+— we’ll cover smart pointers later when looking closer into memory and
+lifetimes.</p>
+<p>With this information, we should now know for instance how to format
+the prints in our previous metadata listing example for prettier output.
+The following code won’t compile however because in it a temporary value
+is dropped before it is being used. To fix this, we need to follow the
+compiler’s advice and store the result of calling entry.file_name() in a
+separate variable.</p>
+<div class="sourceCode" id="cb27"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::fs::</span>read_dir<span class="op">;</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">-&gt;</span> <span class="pp">std::io::</span><span class="dt">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> entry <span class="kw">in</span> read_dir(<span class="st">&quot;.&quot;</span>)<span class="op">?</span> <span class="op">{</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> entry <span class="op">=</span> entry<span class="op">?;</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> metadata <span class="op">=</span> entry<span class="op">.</span>metadata()<span class="op">?;</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> filename <span class="op">=</span> entry<span class="op">.</span>file_name()<span class="op">.</span>to_string_lossy()<span class="op">;</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;{:&gt;20}: is_dir = {:&lt;5}, len = {:&lt;8}, created = {:?}&quot;</span><span class="op">,</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>            filename<span class="op">,</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>            metadata<span class="op">.</span>is_dir()<span class="op">,</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>            metadata<span class="op">.</span>len()<span class="op">,</span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>            metadata<span class="op">.</span>created()</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>        )<span class="op">;</span></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>    <span class="cn">Ok</span>(())</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>This mistake is very common, and can be quite surprising to new
+Rustaceans. The problem here is that entry.file_name() returns a new
+OsString, which is not a reference to entry. Then calling
+to_string_lossy on the OsString returns a value that references the
+OsString. But the referenced OsString gets dropped because no variable
+is going to be its owner in the current scope. To fix this, we can add a
+variable for the temporary owned value OsString. Later in the course
+when discussing lifetimes this behaviour will hopefully become
+clearer.</p>
+</body>
+</html>
