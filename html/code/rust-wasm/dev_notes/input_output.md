@@ -1,3 +1,6 @@
+<div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
+<main>
+
 # Rust Input - Output
 
 [source](https://fitech101.aalto.fi/programming-languages/rust/8-interaction-input-and-os/#:~:text=To%20read%20user%20input%20in,written%20on%20the%20command%20line)
@@ -37,26 +40,26 @@ fn main() {
 ```
 
 
-You can cause an error on purpose with read_line by passing invalid UTF-8 as input 
+You can cause an error on purpose with `read_line` by passing invalid UTF-8 as input 
 from e.g. an image file. 
-File contents can be redirected to the standard input of a program process with the syntax command < file.
+File contents can be redirected to the standard input of a program process with the syntax `command < file`.
 
 ```sh
 cargo run < my-image.png
 ```
 
 Note:  
-The read_line method that we used to read a line from stdin is a blocking function. 
+The `read_line` method that we used to read a line from `stdin` is a *blocking* function. 
 It will read from the underlying input stream until it encounters a newline `\n` 
 (pressing Enter when inserting input in an interactive command line environment) 
-or an EOF i.e. end of file marker.  
-In other words, calling read_line will wait until a new line appears, 
+or an `EOF` i.e. end of file marker.  
+In other words, calling `read_line` will wait until a new line appears, 
 which is the case when we press Enter in an interactive command line program, or the input stream ends.
 
 
 ### multiple-line input
 
-We can get an iterator over the lines in the standard input stream by using the lines method of Stdin.
+We can get an iterator over the lines in the standard input stream by using the lines method of `Stdin`.
 
 ```rust
 use std::io;
@@ -70,10 +73,10 @@ fn main() {
 }
 ```
 
-We use the iterator's take method to stop the iterator after going through three lines. 
+Here we used the iterator's `take` method to stop the iterator after going through three lines. 
 Otherwise the program would run forever waiting for more lines when executed in a command line 
 
-As an alternative to read_line. We may take one line from the iterator given by calling lines.
+As an alternative to `read_line`. We may take one line from the iterator given by calling lines.
 
 ```rust
 use std::io;
@@ -85,6 +88,7 @@ fn main() {
 ```
 
 Here we see something that can be a bit unpleasant to the eye: two unwraps in a row. 
+
 The first unwrap is on the Option returned by next (the next line might not exist) that needs to be handled for any iterator.  
 The second unwrap is on the Result for handling invalid input.
 
@@ -95,7 +99,8 @@ Choose your poison.
 
 ### Parsing input into numbers
 
-Next, we have a slightly more complex example than just reading input. We will read two numbers from the standard input and print out their sum.
+Next, we have a slightly more complex example than just reading input.  
+We will read two numbers from the standard input and print out their sum.
 
 To parse a string into a number, we can use the parse method on the str type.
 
@@ -103,6 +108,7 @@ To parse a string into a number, we can use the parse method on the str type.
 use std::io;
 fn read_i32() -> i32 {
     let line = io::stdin().lines().next().unwrap().unwrap();
+
     line.parse().unwrap()
 }
 
@@ -115,12 +121,12 @@ fn main() {
 }
 ```
 
-Parsing the string into i32 returns a Result, so we need to handle that too in addition to all the possible errors from reading input. 
+Parsing the string into `i32` returns a `Result`, so we need to handle that too in addition to all the possible errors from reading input. 
 The resulting code is a bit verbose, but it is necessary to keep the compiler happy.
 
-The error type of the Result returned by the parse method is ParseIntError, which represents multiple different error kinds that are defined in the enum IntErrorKind. For example, parsing a string that contains invalid characters will result in an IntErrorKind::InvalidDigit.
+The error type of the `Result` returned by the parse method is `ParseIntError`, which represents multiple different error kinds that are defined in the enum `IntErrorKind`. For example, parsing a string that contains invalid characters will result in an `IntErrorKind::InvalidDigit`.
 
-We can handle the different error kinds by first getting the kind enum from the error with kind(), and then using the match expression to handle the enum variants.
+We can handle the different error kinds by first getting the kind enum from the error with `kind()`, and then using the match expression to handle the enum variants.
 
 ```rust
 use std::io;
@@ -166,23 +172,22 @@ fn main() {
 }
 ```
 
-We first bring into scope the `std::env` module, which contains various functions for getting information about the environment 
-of the process (the instance of a computer program being executed).  
+We first bring into scope the `std::env` module, which contains various functions for getting information about the environment of the process (the instance of a computer program being executed).  
 We then get an iterator of the program arguments with the `std::env::args` function and collect the iterator values before printing them out.
 
-Running the above example with `cargo run -- Hello World` in a terminal prints out `["target/debug/echo", "Hello", "World"]` 
-(assuming the project name is echo). 
-The first argument (at index 0) is the path to the program. 
-The rest of the arguments are the arguments passed to the program. 
+Running the above example with `cargo run -- Hello World` in a terminal prints out `["target/debug/echo", "Hello", "World"]` (assuming the project name is echo). 
+
+The first argument (at index 0) is the path to the program.  
+The rest of the arguments are the arguments passed to the program.  
 We need to include the `--` argument to tell cargo that the arguments after the `--` are not for cargo run, 
 but for the program that is run.
 
 
 Below, we have a program that reads two arguments and multiplies them together. 
 It gets the arguments by using the indices 1 and 2, and then parses them into f64s. 
-It doesn't handle the case where the user doesn't provide two arguments very nicely 
-but provides an obscure message instead. 
-With get, we can provide a better error explanation or a default value to use when the index is out of bounds
+
+It doesn't handle the case where the user doesn't provide two arguments very nicely  but provides an obscure message instead. 
+With `get`, we can provide a better error explanation or a default value to use when the index is out of bounds
 
 ```rust
 use std::env;
@@ -211,13 +216,13 @@ fn main() {
 }
 ```
 
-We'll want to ignore the filename argument at the beginning of the iterator though for our multiplication. For this, the skip method of the iterator comes in handy. The product method returns 1.0 if the iterator is empty, which makes this approach safe to use also when providing no arguments.
+We'll want to ignore the filename argument at the beginning of the iterator though for our multiplication. For this, the `skip` method of the iterator comes in handy. The product method returns 1.0 if the iterator is empty, which makes this approach safe to use also when providing no arguments.
 
 ### Environment variables
 
-Environment variables are variables defined in a shell's environment that programs inherit when they are run in the shell. Environment variables are often used to configure a program. For example, cargo uses the RUST_BACKTRACE environment variable for enabling backtrace for Rust runtime errors.
+Environment variables are variables defined in a shell's environment that programs inherit when they are run in the shell. Environment variables are often used to configure a program. For example, cargo uses the `RUST_BACKTRACE` environment variable for enabling backtrace for Rust runtime errors.
 
-In Rust, we can access environment variables with the env::vars function. It returns an iterator of environment variables names and values as tuples, which we can collect into a hash map for further use.
+In Rust, we can access environment variables with the `env::vars` function. It returns an iterator of environment variables names and values as tuples, which we can collect into a hash map for further use.
 
 Let's see what environment variables are available to us in our program.
 
@@ -239,9 +244,94 @@ Next, we will look at how to interact with the operating system by reading and w
 
 ### Reading files
 
-Reading a file requires knowing the path to it. In Unix-like operating systems, like Linux, the directories and files of the directory structure are separated by slashes / in the path. In Windows, the directories and files are separated by backslashes \. We use unix-like paths in this course material.
+> A quick look.
 
-A path can start with ./ to indicate that it is relative to the directory the program is being run at. Let's say we are running the following program from the path /home/user/project/. We can use the std::fs::read function to read the contents of a file into a vector of bytes (Vec<u8>). We can then convert the bytes into a string with the String::from_utf8 function.
+#### Checking if a file exists
+
+```rust
+fn main() {
+    let fp = "/etc/hosts";
+    let b = std::path::Path::new(fp).exists();
+    println!("{}: {}", fp, b);
+
+    let fp = "/etc/kittens";
+    let b = std::path::Path::new(fp).exists();
+    println!("{}: {}", fp, b);
+}
+```
+
+output:
+
+```sh
+/etc/hosts: true
+/etc/kittens: false
+```
+
+#### Reading the file as a string
+
+```rust
+use std::fs;
+fn main() {
+    let file_contents = fs::read_to_string("info.txt")
+        .expect("LogRocket: Should have been able to read the file");
+    println!("info.txt context =\n{file_contents}");
+}
+```
+
+#### Reading a file as a vector
+
+```rust
+use std::fs::File;
+use std::io::Read;
+
+fn main() -> std::io::Result<()> {
+    let mut file = File::open("info.txt")?;
+    let mut contents = Vec::new();
+    file.read_to_end(&mut contents)?;
+
+    println!("File contents: {:?}", contents);
+
+    Ok(())
+}
+```
+
+#### Reading a file with a buffer
+
+Reading a Rust file with a buffer can be more efficient than reading the entire file at once 
+because it allows the program to process the data in chunks. 
+This can be particularly useful for large files that may not fit in memory in their entirety.
+
+To read a file using buffer, you can use the `BufReader` struct and the `BufRead` trait:
+
+```rust
+use std::fs::File;
+use std::io::{BufReader, BufRead};
+
+fn main() -> std::io::Result<()> {
+    let file = File::open("info.txt")?;
+    let reader = BufReader::new(file);
+
+    for line in reader.lines() {
+        let line = line?;
+        println!("{}", line);
+    }
+
+    Ok(())
+}
+```
+
+The `BufReader` reads the file in chunks (or “buffers”) rather than reading it all at once, which can be more efficient for large files.
+
+---
+
+> A longer view
+
+Reading a file requires knowing the path to it. In Unix-like operating systems, like Linux, the directories and files of the directory structure are separated by slashes `/` in the path. 
+In Windows, the directories and files are separated by backslashes `\.` 
+
+A path can start with `./` to indicate that it is relative to the directory the program is being run at. 
+Let's say we are running the following program from the path `/home/user/project/`. 
+We can use the `std::fs::read` function to read the contents of a file into a vector of bytes (`Vec<u8>`). We can then convert the bytes into a string with the `String::from_utf8` function.
 
 ```rust
 use std::fs;
@@ -262,6 +352,7 @@ If the file exists, and the user's permissions are sufficient, the contents of t
 Try to modify the path in the above example to a file that does not exist, e.g. `/src/main.rs`, to see a runtime error.
 
 In the usual case, we want to read a file and convert its contents to a string, like we did with `fs::read` and `String::from_utf8`. 
+
 Being such a common operation `fs` has a function for just that `fs::read_to_string`.
 
 ```rust
@@ -292,7 +383,7 @@ fn main() {
 }
 ```
 
-We can also pass a byte vector to fs::write to write any binary data to a file, like the contents of an image or a video.
+We can also pass a *byte vector* to `fs::write` to write any binary data to a file, like the contents of an image or a video.
 
 ```rust
 use std::fs;
@@ -307,9 +398,9 @@ fn main() {
 }
 ```
 
-Note that the `fs::write` function will overwrite the file if it already exists. 
+Note that the `fs::write` function will **overwrite** the file if it already exists. 
 
-To avoid overwriting an existing file, we can check its existence before writing to it with the path::Path struct and its exists method.
+To avoid overwriting an existing file, we can check its existence before writing to it with the `path::Path` struct and its exists method.
 
 ```rust
 use std::fs;
@@ -329,7 +420,7 @@ fn main() {
 
 ### Appending to a file
 
-Rust does not provide a convenience function for appending to a file, but we can use the `fs::OpenOptions` struct to open the file in append mode. 
+Rust does not provide a convenience function for appending to a file, but we can use the `fs::OpenOptions` struct to open the file in append mode.  
 We can then append text to the file using the `writeln!` macro, which is a convenience macro for writing a string 
 and a newline to a buffer (there is also `write!` when we don't want a new line at the end). 
 Using the macro requires an additional method for `OpenOptions` though, 
@@ -356,7 +447,7 @@ fn main() {
 
 ### Removing a file
 
-Removing a file in Rust code is as straightforward as creating or overwriting them with fs::write with the fs::remove_file function. This function will return an error if the given path doesn't exist, the path is a directory, or the user doesn't have permission to remove the file.
+Removing a file in Rust code is as straightforward as creating or overwriting them with `fs::write` with the `fs::remove_file` function. This function will return an error if the given path doesn't exist, the path is a directory, or the user doesn't have permission to remove the file.
 
 ```rust
 use std::fs;
@@ -370,7 +461,9 @@ fn main() {
 
 #### Reading a file at Compile time
 
-We can also read files at compile time with the include_str! macro. The include_str! macro will read the file at compile time and include the contents of the file as a string. The path of the read file is located relative to the file where the macro is called.
+We can also read files at compile time with the `include_str!` macro. 
+The `include_str!` macro will read the file at compile time and include the contents of the file as a string. 
+The path of the read file is located relative to the file where the macro is called.
 
 An invalid path will cause a compile time error. On the other hand, the file will not be read at runtime so the file does not need to exist when the program is run.
 
@@ -385,11 +478,13 @@ fn main() {
 }
 ```
 
-
+---
 
 ### `?` try operator
 
-Rust can often be verbose, but it doesn't have to be always. Let's have a look at a simple backup function that leverages the fs::read_to_string function along with the fs::write to create a backup copy of a file.
+Rust can often be verbose, but it doesn't have to be always. 
+Let's have a look at a simple backup function that leverages the `fs::read_to_string` function 
+along with the `fs::write` to create a backup copy of a file.
 
 ```rust
 use std::{io, fs};
@@ -415,19 +510,22 @@ fn main() {
     }
 }
 ```
-Even though the function does not do that much, it contains quite a lot of code. We could of course use the more concise expect or unwrap functions to handle the error by causing a runtime panic, but often we want to propagate the error back to the caller instead. This way the caller can choose how to handle the error, and that is also the way most programming languages work implicitly.
+Even though the function does not do that much, it contains quite a lot of code. 
 
-To make error handling simpler, Rust provides a way to propagate errors by using the ? (pronounced try) operator. With it, our backup function can look rather nice and concise.
+We could of course use the more concise `expect` or `unwrap` functions to handle the error by causing a runtime panic, but often we want to propagate the error back to the caller instead.  
+This way the caller can choose how to handle the error, and that is also the way most programming languages work implicitly.
+
+To make error handling simpler, Rust provides a way to propagate errors by using the `?` (pronounced try) operator. With it, our backup function can look rather nice and concise.
 
 ```rust
 use std::{io, fs};
 
 fn backup(filename: &str) -> Result<(), io::Error> {
-    let contents = fs::read_to_string(filename)?;
+    let contents = fs::read_to_string(filename)?;               // <--------- try!
     let backup = format!("// this is a backup\n{contents}");
 
     let backup_path = format!("{filename}.backup");
-    fs::write(&backup_path, backup)?;
+    fs::write(&backup_path, backup)?;                           // <--------- try!
     println!("Contents of {filename} successfully backed up to {backup_path}!");
     Ok(())
 }
@@ -439,20 +537,70 @@ fn main() {
 }
 ```
 
-The ? operator works for both Options and Results by checking if the value in front of it is None or Err and returning the error prematurely. If the value is Some or Ok, ? unwraps the value.
+The `?` operator works for both Options and Results by checking 
+if the value in front of it is `None` or `Err` and returning the error prematurely. 
+If the value is `Some` or `Ok`, `?` unwraps the value.
 
-Note that using ? requires the function to return either an Option or a Result, and the propagated value needs to match the return type.
+Note that using `?` requires the function to return either an `Option` or a `Result`, 
+and the propagated value needs to match the return type.
+
+
+#### Handling a file I/O error in Rust
+
+Wondering how to handle an error when a Rust file cannot be opened or read? 
+You can use the `std::io::Result` type and the `?` operator.
+
+Here’s an example of handling a specific I/O error:
+
+
+```rust
+use std::fs::File;
+use std::io::Read;
+
+fn main() -> std::io::Result<()> {
+    let mut file = match File::open("info.txt") {
+        Ok(file) => file,
+        Err(error) => {
+            match error.kind() {
+                std::io::ErrorKind::NotFound => {
+                    println!("File not found");
+                    return Ok(());
+                }
+                _ => return Err(error),
+            }
+        }
+    };
+    let mut contents = Vec::new();
+    file.read_to_end(&mut contents)?;
+
+    println!("File contents: {:?}", contents);
+
+    Ok(())
+}
+```
+---
 
 ### Listing directories
 
-Listing directories can be a bit more complicated than reading and writing files because we have more possible errors to deal with. 
-Although with the help of the `?` (try) operator, we can streamline through most of them by propagating the errors back to the caller.
+Listing directories can be a bit more complicated than reading and writing files because we have more possible errors to deal with.   
+Although with the help of the `?` (try) operator, we can streamline through most of them by propagating the errors back to the caller.  
 
-Using std::fs::read_dir we can get an iterator over all the files and directories at the path provided as argument.
+Using `std::fs::read_dir` we can get an iterator over all the files and directories at the path provided as argument.  
 
-The read_dir function returns an io::Result<ReadDir>, which we can iterate over, but iterating over a Result only gives the wrapped value if it is Ok. We want to iterate over the ReadDir instead to get individual DirEntrys, which contain information about the entry, like whether it is a directory or a file.
+The `read_dir` function returns an `io::Result<ReadDir>`, which we can iterate over, but iterating over a `Result` only gives the wrapped value if it is `Ok`.  
 
-Here is a good place to try the ? operator to get the value inside the result and propagate the error to the caller if it is an Err. Note that we need to give the function a return type of Result or Option to be able to use ?.
+<aside>
+Note:  
+<br/>
+We need to give the function a return type of `Result` 
+or `Option` to be able to use `?`.
+</aside>
+
+We want to iterate over the `ReadDir` instead to get individual `DirEntrys`, 
+which contain information about the entry, like whether it is a directory or a file.
+
+Here is a good place to try the `?` operator to get the value inside the result and propagate the error to the caller if it is an `Err`. 
+
 
 ```rust
 use std::fs::read_dir;
@@ -464,9 +612,9 @@ fn main() {
 }
 ```
 
-The ReadDir iterator gives us io::Result<DirEntry>s, which is interesting because we have just handled the errors from read_dir. The reason is that the ReadDir iterator doesn't contain the contents of the directory in any way. When the for loop calls next() during each iteration, the program gets the next DirEntry from the operating system. As with anything that interacts with the operating system, this may also fail.
+The `ReadDir` iterator gives us `io::Result<DirEntry>`s, which is interesting because we have just handled the errors from `read_dir`. The reason is that the `ReadDir` iterator doesn't contain the contents of the directory in any way. When the `for loop` calls `next()` during each iteration, the program gets the next `DirEntry` from the operating system. As with anything that interacts with the operating system, this may also fail.
 
-But now we finally have access to the DirEntrys which have many useful methods, like file_name, path and metadata. We can use the metadata method on a DirEntry to get more information about the file or directory. metadata also interacts with the operating system, thus requiring us to handle potential errors.
+But now we finally have access to the `DirEntry`s which have many useful methods, like `file_name`, `path` and `metadata`. We can use the `metadata` method on a `DirEntry` to get more information about the *file* or *directory*. `metadata` also interacts with the operating system, thus requiring us to handle potential errors.
 
 We can see for example, which entries are directories and how big each file is.
 
@@ -488,22 +636,29 @@ fn main() -> std::io::Result<()> {
 }
 ```
 
-Here we also use the Result type from the io module as the return type, which works with the ? operator because it is just a regular Result with the error type already set to io::Error.
+Here we also use the `Result` type from the `io` module as the return type, which works with the `?` operator because it is just a regular `Result` with the error type already set to `io::Error`.
 
-The metadata for a file or directory can be accessed also by using the fs::metadata function, which takes a path as argument. It too returns a Result in case the path doesn't exist or the program doesn't have permission to access it.
+The `metadata` for a file or directory can be accessed also by using the `fs::metadata` function, which takes a `path` as argument. It too returns a `Result` in case the `path` doesn't exist or the program doesn't have permission to access it.
 
 ```rust
 use std::fs;
 fn main() -> std::io::Result<()> {
     let metadata = fs::metadata("./src")?;
-    println!("is_dir = {}, len = {}, created = {:?}", metadata.is_dir(), metadata.len(), metadata.created());
+    println!("is_dir = {}, len = {}, created = {:?}", 
+                metadata.is_dir(), metadata.len(), metadata.created()
+    );
+
     Ok(())
 }
 ```
 
-When we need to create a new directory, Rust standard library provides the functions fs::create_dir and fs::create_dir_all. The create_dir function will return an error if a directory with the same name already exists or if one of it's parent directories doesn't exist. The create_dir_all function will create all the parent directories if they don't exist and will return Ok even when all directories in a given path exists.
+When we need to create a new directory, Rust standard library provides the functions `fs::create_dir` and `fs::create_dir_all`.  
+The `create_dir` function will return an error if a directory with the same name already exists or if one of it's parent directories doesn't exist.   
+The `create_dir_all` function will create all the parent directories if they don't exist and will return `Ok` even when all directories in a given path exists.
 
-For removing directories, Rust standard library provides the functions fs::remove_dir and fs::remove_dir_all. The remove_dir function only works for empty directories, while remove_dir_all recursively removes all the files and directories inside the directory before removing the directory itself.
+For removing directories, Rust standard library provides the functions `fs::remove_dir` and `fs::remove_dir_all`.  
+The `remove_dir` function only works for empty directories,   
+while `remove_dir_all` recursively removes all the files and directories inside the directory before removing the directory itself.
 
 ```rust
 use std::fs;
@@ -521,9 +676,11 @@ Like the file modification and removal functions, these all return an error on f
 
 ### OsSrting
 
-The file_name method of DirEntry doesn't return a String or a &str which are already familiar to us, but rather an std::ffi::OsString. OsString is a compatibility feature in Rust which can store data in the different encodings different operating systems use — an OsString may contain non-valid UTF-8 unlike a String.
+The `file_name` method of `DirEntry` doesn't return a `String` or a `&str` which are already familiar to us, but rather an `std::ffi::OsString`.   
 
-Let's say we want to format our file metadata listing from previous example with padding (:>20) for more pleasant reading. An OsString can't be displayed without debug format (:?) and padding doesn't work on debug format, so we need to get a String or &str from the OsString.
+`OsString` is a compatibility feature in Rust which can store data in the different encodings different operating systems use — an `OsString` may contain `non-valid UTF-8` unlike a `String`.
+
+Let's say we want to format our file metadata listing from previous example with padding (`:>20`) for more pleasant reading. An OsString can't be displayed without debug format (`:?`) and padding doesn't work on debug format, so we need to get a `String` or `&str` from the `OsString`.
 
 ```rust
 fn main() {
@@ -532,9 +689,12 @@ fn main() {
 }
 ```
 
-The simplest way to convert an OsString to a &str is to use the to_string_lossy method, which returns a &str where invalid unicode characters are replaced with �. This method technically returns a Clone-on-write smart pointer Cow<str>, but we don't need to worry about that yet. For our current purposes, we can use it like a normal &str — we'll cover smart pointers later when looking closer into memory and lifetimes.
+The simplest way to convert an `OsString` to a `&str` is to use the `to_string_lossy` method, which returns a `&str` where invalid unicode characters are replaced with `�`. 
+This method technically returns a *Clone-on-write* smart pointer `Cow<str>`, but we don't need to worry about that yet. 
+For our current purposes, we can use it like a normal `&str` — we'll cover smart pointers later when looking closer into memory and lifetimes.
 
-With this information, we should now know for instance how to format the prints in our previous metadata listing example for prettier output. The following code won't compile however because in it a temporary value is dropped before it is being used. To fix this, we need to follow the compiler's advice and store the result of calling entry.file_name() in a separate variable.
+With this information, we should now know for instance how to format the prints in our previous metadata listing example for prettier output. The following code won't compile however because in it a temporary value is dropped before it is being used. 
+To fix this, we need to follow the compiler's advice and store the result of calling `entry.file_name()` in a separate variable.
 
 ```rust
 use std::fs::read_dir;
@@ -555,23 +715,34 @@ fn main() -> std::io::Result<()> {
 }
 ```
 
-This mistake is very common, and can be quite surprising to new Rustaceans. The problem here is that entry.file_name() returns a new OsString, which is not a reference to entry. Then calling to_string_lossy on the OsString returns a value that references the OsString. But the referenced OsString gets dropped because no variable is going to be its owner in the current scope. To fix this, we can add a variable for the temporary owned value OsString. Later in the course when discussing lifetimes this behaviour will hopefully become clearer.
+This mistake is very common, and can be quite surprising to new Rustaceans. 
+The problem here is that `entry.file_name()` returns a new `OsString`, which is not a reference to entry. 
+Then calling `to_string_lossy` on the OsString returns a value that references the `OsString`. 
+But the referenced `OsString` gets dropped because no variable is going to be its owner in the current scope. 
+To fix this, we can add a variable for the temporary owned value `OsString`. 
+
+</main>
 
 
+<script src="https://lerina.github.io/js/toc.js"></script>
+<script>
+let anchor= document.createElement('a');
+anchor.href="javascript:closeNav()"; //void(0)"; //anchor[0].onclick = closeNav();
+anchor.className = "closebtn";  
+anchor.innerHTML="&times;";
+document.getElementById("TOC").prepend(anchor);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+let navCrumbs= document.createElement('div');
+navCrumbs.className = "hover-nav";
+navCrumbs.innerHTML = `
+<div class="hover-nav">
+<ul>
+<li><a href="../../../../../index.html">⇦ home</a></li>
+<li><a href="../../index.html">code</a></li>
+<li><a href="../index.html">Rust / Wasm</a></li>
+<li><a href="./index.html">dev notes</a></li>
+</ul>
+</div>`;
+document.getElementById("TOC").prepend(navCrumbs); 
+</script>
 
