@@ -223,8 +223,30 @@ Corrigé de l'exercice 2
 
 ## Lesona fahefatra amby roapolo
 
+[lésna fa-é fat'a-(m) b rô poul]
+
+### Ankizy iray tam-po 
+
+a-(n)kizi ra-i ta-(m)pou
+
+1. Firy mianadahy ianareo?
+fir ménada naréou
+
+2. Fito mianadahy izahay, roa lahy ary dimy vavy.
+fit ménada za-a-i rô la ar dim vavi
+
+3. Mipetraka eto Antananarivo daholo ve ianareo ?
+mipét'ak étou atannriv dôl vé naréou
+
+4. Tsia, any Toamasina ny rahavaviko iray, ary any Toliary ny lahimatoa.
+tsi a-n tômasna n ravavkô ra-i ari ani touliar n lamatou
+
+5. Manana Z havana betsaka any Toliary izahay.
+mana-n avana bétsak a-n touliar za-a-i
 
 
+Freres et steurs de sang
+(Enfants un issu-de-cœur)
 
 
 
