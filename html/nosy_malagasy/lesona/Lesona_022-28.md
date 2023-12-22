@@ -261,10 +261,68 @@ et l'aîné des garçons [est] (là-bas) à Toliary.
 5 — Nous avons beaucoup de parents à Toliary.
 
 
+### Fanazarana 1 — Adikao
+
+1. Dimy mianadahy izahay. 
+2. Miasa any Canada ny lahimatoa. 
+3. Any Suisse ny rahavaviko.
+4. Tsy mipetraka eto Madagasikara daholo izahay.
+5. Manana rahavavy betsaka izy.
+
+Corrigé de l'exercice 1
+
+1. Nous sommes cinq frères et sceurs.
+2. L'aîné des garçons travaille au Canada. 
+3. Ma sœur est en Suisse. 
+4. Nous ne résidons pas tous à Madagascar. 
+5. Elle a beaucoup de sœurs
+
+### Fanazarana 2 — Fenoy ny banga
+
+1. Elles sont toutes mes sceurs.*
+Rahavaviko ...... izy ireo.
+
+* C'est une femme qui parle.
+
+2. Elle a trois sœurs.
+Manana ........ telo izy.
+
+3. Ils ont des parents en Suisse.
+...... havana any Suisse izy ire
+
+4. C'est lui qui est l'aîné des garçons.
+Izy no ..........
+
+5. Il habite au Canada.
+......... any Canada izy.
 
 
+Corrigé de l'exercice 2
+
+1. daholo 
+2. rahavavy 
+3. Manana 
+4. lahimatoa
+5. Mipetraka
 
 
+Note:
+
+Vous allez vite vous rendre compte que votre interlocuteur
+malgache, bien souvent, s'adressera à vous comme si vous étiez
+sa soeur, son frère ou même son père ou sa mère. N'en soyez pas
+étonné. La notion de famille est très large à Madagascar. Les frères
+et sœurs de sang sont appelés `mianadahy`, mais il faut y ajouter les
+cousins et cousines éloignés ou non, car, considérés comme faisant
+partie de la famille proche, ce sont aussi des `anadahy` ou `rahalahy`,
+frères, ou des `rahavavy`, sceurs. Les relations sociales se fondent sur
+cette structure familiale élargie. C'est pourquoi les gens de la même 
+tranche d'âge ou d'âges différents, même s'ils n'ont aucun lien de 
+parenté entre eux, se comportent respectivement soit en frères 
+et sœurs — ou en aînés et cadets —, soit en parents et enfants. 
+Au marché, les commerçants s'adressent, tout naturellement, 
+aux clients en utilisant des termes de parenté : `neny`, maman, pour les femmes 
+et papa ou `Radada`, monsieur papa, pour les hommes.
 
 
 
