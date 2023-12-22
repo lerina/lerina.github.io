@@ -248,6 +248,17 @@ mana-n avana bétsak a-n touliar za-a-i
 Freres et steurs de sang
 (Enfants un issu-de-cœur)
 
+1. Combien de frères et de soeurs avez-vous (Combien frère-sœur vous)?
+
+2 — Nous sommes sept frères et sœurs, deux garçons et cinq filles.
+
+3 — Est-ce que vous habitez tous ici, à Antananarivo
+(S'asseoir ici Antananarivo tous est-ce-que vous) ?
+
+4 — Non, une de mes sceurs (?a sœur-de-moi une) [est] (tà-bas) à Toamasina, 
+et l'aîné des garçons [est] (là-bas) à Toliary.
+
+5 — Nous avons beaucoup de parents à Toliary.
 
 
 
