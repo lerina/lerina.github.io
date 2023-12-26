@@ -89,8 +89,8 @@
 id="toc-iterators-and-combinators">Iterators and Combinators</a>
 <ul>
 <li><a href="#iterators" id="toc-iterators">Iterators</a></li>
-<li><a href="#consuming-iterators"
-id="toc-consuming-iterators">Consuming iterators</a></li>
+<li><a href="#iterator-adapters" id="toc-iterator-adapters">Iterator
+adapters</a></li>
 <li><a href="#combinators" id="toc-combinators">Combinators</a></li>
 <li><a href="#option" id="toc-option">Option</a></li>
 <li><a href="#result" id="toc-result">Result</a></li>
@@ -106,82 +106,164 @@ id="toc-composing-combinators">Composing combinators</a></li>
 <p>⇦ <a href="../../../index.html">lerina.github.io</a> - <a
 href="../index.html">code</a></p>
 <h1 id="iterators-and-combinators">Iterators and Combinators</h1>
+<hr />
+<pre><code>    //function combinators example
+    fn main() {
+     let vector = vec![1,3,4,5,3];
+
+     //all
+     //all is basically folding with &amp;&amp; and since the identity element for &amp;&amp; is true 
+     //it is what gets returned by all. 
+
+     let greater_than_zero = vector.iter().all(|&amp;x| x &gt; 0 ) ;
+     println!(&quot;greater than zero {}&quot;,greater_than_zero);
+
+    let a: Vec&lt;i32&gt; = vec![1, 2, 3, 4];
+    println!(&quot;{}&quot;, a.into_iter().all(|x| x &gt; 1));
+
+    // any on the other hand is a fold with || and the identity for || is false 
+
+
+     //list of words using flat map
+     let lines_vec = vec!(&quot;hello,how&quot;,&quot;are,you&quot;);
+     let words_vec = lines_vec.iter().flat_map(|&amp;x| x.split(&quot;,&quot;)).collect::&lt;Vec&lt;&amp;str&gt;&gt;();
+     println!(&quot;{:?}&quot;, words_vec);
+    }</code></pre>
+<hr />
 <h2 id="iterators">Iterators</h2>
-<h3 id="owned-iterator">owned iterator</h3>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main () <span class="op">{</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> v1 <span class="op">=</span> <span class="pp">vec!</span>[<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span>]<span class="op">;</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// consume v1</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> x <span class="kw">in</span> v1<span class="op">.</span>into_iter() <span class="op">{</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">&quot;{}&quot;</span><span class="op">,</span> x)<span class="op">;</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<h3 id="borrowed-iterator">borrowed iterator</h3>
+<h3 id="creating-iterators-in-rust">Creating Iterators in Rust</h3>
+<p>We can create an iterator by converting a collection into an
+iterator. There are three ways to create an iterator.</p>
+<ol type="1">
+<li>Owned iterator using <code>into_iter()</code> method</li>
+<li>Borrowed iterator using <code>iter()</code> method</li>
+<li>mutable iterator using <code>iter_mut()</code> method</li>
+</ol>
+<h3 id="owned-iterator">Owned iterator</h3>
+<p>Using the into_iter() method on a collection will iterate on the same
+element of the collection in each iteration. Thus, the collection will
+no longer be available for reuse as the value moves within the loop.</p>
 <div class="sourceCode" id="cb2"><pre
 class="sourceCode rust"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main () <span class="op">{</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> v2 <span class="op">=</span> <span class="pp">vec!</span>[<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span>]<span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> v1 <span class="op">=</span> <span class="pp">vec!</span>[<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span>]<span class="op">;</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// borrow v2</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> x <span class="kw">in</span> v2<span class="op">.</span>iter() <span class="op">{</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// consume v1</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> x <span class="kw">in</span> v1<span class="op">.</span>into_iter() <span class="op">{</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">&quot;{}&quot;</span><span class="op">,</span> x)<span class="op">;</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;We can still use v2: {:?}&quot;</span><span class="op">,</span> v2)<span class="op">;</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Note: By default the <code>for</code> loop will apply
+<code>into_iter()</code> to the collection.</p>
+<p>Thanx to <em>sugar syntaxing</em>, these two ways to loop through an
+iterator are the same.</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> mycollection<span class="op">.</span>into_iter() <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">// code</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> mycollection <span class="op">{</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">// code</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h3 id="borrowed-iterator">Borrowed iterator</h3>
+<p>Using the <code>iter()</code> method on a collection will borrow
+(reference) each element of the collection in each iteration. Thus, the
+collection will be available for use after we have looped through
+it.</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main () <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> v2 <span class="op">=</span> <span class="pp">vec!</span>[<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span>]<span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// borrow v2</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> x <span class="kw">in</span> v2<span class="op">.</span>iter() <span class="op">{</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">&quot;{}&quot;</span><span class="op">,</span> x)<span class="op">;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;We can still use v2: {:?}&quot;</span><span class="op">,</span> v2)<span class="op">;</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h3 id="mutable-iterator">mutable iterator</h3>
+<p>Using the <code>iter_mut()</code> method on a collection will mutably
+borrow each element of the collection in each iteration. It means we can
+modify the collection in place.</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> languages <span class="op">=</span> <span class="pp">vec!</span>[<span class="st">&quot;Python&quot;</span><span class="op">,</span> <span class="st">&quot;Ruby&quot;</span><span class="op">,</span> <span class="st">&quot;C&quot;</span>]<span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// using iter_mut() to iterate through a collection</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> language <span class="kw">in</span> languages<span class="op">.</span>iter_mut() <span class="op">{</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        <span class="co">// modify the item in the collection</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">*</span>language <span class="op">==</span> <span class="st">&quot;Ruby&quot;</span> <span class="op">{</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>            <span class="op">*</span>language <span class="op">=</span> <span class="st">&quot;Rust&quot;</span><span class="op">;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">&quot;{}&quot;</span><span class="op">,</span> language)<span class="op">;</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">// the modified collection is available here</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;languages = {:?}&quot;</span><span class="op">,</span> languages)<span class="op">;</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <h3 id="iterators-are-lazy">Iterators are lazy</h3>
 <p>All Rust collection types (arrays, vectors, maps, …) are not iterable
 by default. Using the
 <code>iter()</code>/<code>iter_mut()</code>/<code>into_iter()</code>
 methods we get an iterable.</p>
-<div class="sourceCode" id="cb3"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> v <span class="op">=</span> <span class="pp">vec!</span>[<span class="st">&quot;Hello&quot;</span><span class="op">,</span> <span class="st">&quot;my&quot;</span><span class="op">,</span> <span class="st">&quot;friend&quot;</span><span class="op">,</span> <span class="st">&quot;!&quot;</span>]<span class="op">.</span>into_iter()<span class="op">;</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    v<span class="op">.</span>for_each(<span class="op">|</span>word<span class="op">|</span> <span class="pp">println!</span>(<span class="st">&quot;{}&quot;</span><span class="op">,</span> word) )<span class="op">;</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<h2 id="consuming-iterators">Consuming iterators</h2>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> v <span class="op">=</span> <span class="pp">vec!</span>[<span class="st">&quot;Hello&quot;</span><span class="op">,</span> <span class="st">&quot;my&quot;</span><span class="op">,</span> <span class="st">&quot;friend&quot;</span><span class="op">,</span> <span class="st">&quot;!&quot;</span>]<span class="op">.</span>into_iter()<span class="op">;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    v<span class="op">.</span>for_each(<span class="op">|</span>word<span class="op">|</span> <span class="pp">println!</span>(<span class="st">&quot;{}&quot;</span><span class="op">,</span> word) )<span class="op">;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h2 id="iterator-adapters">Iterator adapters</h2>
+<p>Iterator adapters are used to transform it into another kind of
+iterator by altering its behavior</p>
 <h3 id="collect">collect</h3>
 <p>Iterator to collection</p>
 <p><code>collect()</code> can take anything iterable, and turn it into a
 relevant collection.</p>
-<div class="sourceCode" id="cb4"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> x <span class="op">=</span> <span class="pp">vec!</span>[<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">6</span><span class="op">,</span> <span class="dv">7</span><span class="op">,</span> <span class="dv">8</span><span class="op">,</span> <span class="dv">9</span><span class="op">,</span> <span class="dv">10</span>]<span class="op">.</span>into_iter()<span class="op">;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> y<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">u64</span><span class="op">&gt;</span> <span class="op">=</span> x<span class="op">.</span>collect()<span class="op">;</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;{}&quot;</span><span class="op">,</span>y[<span class="dv">9</span>])<span class="op">;</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> x <span class="op">=</span> <span class="pp">vec!</span>[<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">6</span><span class="op">,</span> <span class="dv">7</span><span class="op">,</span> <span class="dv">8</span><span class="op">,</span> <span class="dv">9</span><span class="op">,</span> <span class="dv">10</span>]<span class="op">.</span>into_iter()<span class="op">;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> y<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">u64</span><span class="op">&gt;</span> <span class="op">=</span> x<span class="op">.</span>collect()<span class="op">;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;{}&quot;</span><span class="op">,</span>y[<span class="dv">9</span>])<span class="op">;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <h3 id="from_iter">from_iter</h3>
-<div class="sourceCode" id="cb5"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::collections::</span>HashMap<span class="op">;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::iter::</span><span class="bu">FromIterator</span><span class="op">;</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> x <span class="op">=</span> <span class="pp">vec!</span>[(<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span>)<span class="op">,</span> (<span class="dv">3</span><span class="op">,</span> <span class="dv">4</span>)<span class="op">,</span> (<span class="dv">5</span><span class="op">,</span> <span class="dv">6</span>)]<span class="op">.</span>into_iter()<span class="op">;</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> hm<span class="op">:</span> HashMap<span class="op">&lt;</span><span class="dt">u64</span><span class="op">,</span> <span class="dt">u64</span><span class="op">&gt;</span> <span class="op">=</span> <span class="pp">HashMap::</span>from_iter(x)<span class="op">;</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;:?&quot;</span><span class="op">,</span> hm)<span class="op">;</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::collections::</span>HashMap<span class="op">;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::iter::</span><span class="bu">FromIterator</span><span class="op">;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> x <span class="op">=</span> <span class="pp">vec!</span>[(<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span>)<span class="op">,</span> (<span class="dv">3</span><span class="op">,</span> <span class="dv">4</span>)<span class="op">,</span> (<span class="dv">5</span><span class="op">,</span> <span class="dv">6</span>)]<span class="op">.</span>into_iter()<span class="op">;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> hm<span class="op">:</span> HashMap<span class="op">&lt;</span><span class="dt">u64</span><span class="op">,</span> <span class="dt">u64</span><span class="op">&gt;</span> <span class="op">=</span> <span class="pp">HashMap::</span>from_iter(x)<span class="op">;</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;:?&quot;</span><span class="op">,</span> hm)<span class="op">;</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h3 id="next">next</h3>
+<p>The next() method is used to fetch individual values from the
+iterator.</p>
+<p>The next() method of an iterator can be used to traverse through the
+values in the iterator. Every iterator in Rust must implement a next()
+method.</p>
+<p>The next() method either returns Some value or None. None is returned
+when the iterator reaches the end of the sequence</p>
 <h3 id="reduce">reduce</h3>
 <p><code>reduce</code> accumulates over an iterator by applying a
 closure If the iterator is empty, returns None; otherwise, returns the
 result of the reduction.</p>
 <p>reduce() can be used to use the first element as the initial value,
 if the accumulator type and item type is the same.</p>
-<div class="sourceCode" id="cb6"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">// reduce</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> values <span class="op">=</span> <span class="pp">vec!</span>[<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">.</span>into_iter()<span class="op">;</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> sum <span class="op">=</span> <span class="cf">match</span> values<span class="op">.</span>clone()<span class="op">.</span>reduce(<span class="op">|</span>acc<span class="op">,</span> x<span class="op">|</span> acc <span class="op">+</span> x)<span class="op">{</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>        <span class="cn">Some</span>(s) <span class="op">=&gt;</span> s<span class="op">,</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        <span class="cn">None</span> <span class="op">=&gt;</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">};</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;sum of {:?} is: {sum}&quot;</span><span class="op">,</span> values)<span class="op">;</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">// reduce</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> values <span class="op">=</span> <span class="pp">vec!</span>[<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">.</span>into_iter()<span class="op">;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> sum <span class="op">=</span> <span class="cf">match</span> values<span class="op">.</span>clone()<span class="op">.</span>reduce(<span class="op">|</span>acc<span class="op">,</span> x<span class="op">|</span> acc <span class="op">+</span> x)<span class="op">{</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        <span class="cn">Some</span>(s) <span class="op">=&gt;</span> s<span class="op">,</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        <span class="cn">None</span> <span class="op">=&gt;</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">};</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;sum of {:?} is: {sum}&quot;</span><span class="op">,</span> values)<span class="op">;</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <h3 id="fold">fold</h3>
 <p>Folds every element into an accumulator by applying an operation,
 returning the final result.</p>
@@ -195,12 +277,12 @@ returns the accumulator.</p>
 <p>_ <a
 href="https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.fold">Rust
 doc</a></p>
-<div class="sourceCode" id="cb7"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> a <span class="op">=</span> [<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span>]<span class="op">;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 10 + the sum of all of the elements of the array</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> sum_plus_10 <span class="op">=</span> a<span class="op">.</span>iter()<span class="op">.</span>fold(<span class="dv">10</span><span class="op">,</span> <span class="op">|</span>acc<span class="op">,</span> x<span class="op">|</span> acc <span class="op">+</span> x)<span class="op">;</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;sum plus 10 of {:?} is: {sum_plus_10}&quot;</span><span class="op">,</span> a)<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> a <span class="op">=</span> [<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span>]<span class="op">;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 10 + the sum of all of the elements of the array</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> sum_plus_10 <span class="op">=</span> a<span class="op">.</span>iter()<span class="op">.</span>fold(<span class="dv">10</span><span class="op">,</span> <span class="op">|</span>acc<span class="op">,</span> x<span class="op">|</span> acc <span class="op">+</span> x)<span class="op">;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;sum plus 10 of {:?} is: {sum_plus_10}&quot;</span><span class="op">,</span> a)<span class="op">;</span></span></code></pre></div>
 <h2 id="combinators">Combinators</h2>
 <h3 id="filter">filter</h3>
 <p>Creates an iterator which uses a closure to determine if an element
@@ -211,30 +293,30 @@ true.<br />
 <a
 href="https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.filter">Rust
 doc</a></p>
-<div class="sourceCode" id="cb8"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> v <span class="op">=</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">6</span><span class="op">,</span> <span class="dv">7</span><span class="op">,</span> <span class="dv">8</span><span class="op">,</span> <span class="dv">9</span>]<span class="op">;</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> even_v<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;&amp;</span><span class="dt">i32</span><span class="op">&gt;</span> <span class="op">=</span> v<span class="op">.</span>iter()<span class="op">.</span>filter(<span class="op">|&amp;</span>x<span class="op">|</span> x <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span> )<span class="op">.</span>collect()<span class="op">;</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>                           <span class="co">//v.iter().filter(|&amp;x| x % 2 == 0 ).collect::&lt;Vec&lt;&amp;i32&gt;&gt;();</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;even_v: {:?}&quot;</span><span class="op">,</span> even_v)<span class="op">;</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> v <span class="op">=</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">6</span><span class="op">,</span> <span class="dv">7</span><span class="op">,</span> <span class="dv">8</span><span class="op">,</span> <span class="dv">9</span>]<span class="op">;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> even_v<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;&amp;</span><span class="dt">i32</span><span class="op">&gt;</span> <span class="op">=</span> v<span class="op">.</span>iter()<span class="op">.</span>filter(<span class="op">|&amp;</span>x<span class="op">|</span> x <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span> )<span class="op">.</span>collect()<span class="op">;</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>                           <span class="co">//v.iter().filter(|&amp;x| x % 2 == 0 ).collect::&lt;Vec&lt;&amp;i32&gt;&gt;();</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;even_v: {:?}&quot;</span><span class="op">,</span> even_v)<span class="op">;</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <h3 id="inspect">inspect</h3>
-<div class="sourceCode" id="cb9"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> v <span class="op">=</span> <span class="pp">vec!</span>[<span class="op">-</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="op">-</span><span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">.</span>into_iter()<span class="op">;</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">initial v: {:?}&quot;</span><span class="op">,</span> v)<span class="op">;</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> positive_numbers<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">i32</span><span class="op">&gt;</span> <span class="op">=</span> v</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>inspect(<span class="op">|</span>x<span class="op">|</span> <span class="pp">println!</span>(<span class="st">&quot;Before filter: {}&quot;</span><span class="op">,</span> x))</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>filter(<span class="op">|</span>x<span class="op">:</span> <span class="op">&amp;</span><span class="dt">i32</span><span class="op">|</span> x<span class="op">.</span>is_positive())</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>inspect(<span class="op">|</span>x<span class="op">|</span> <span class="pp">println!</span>(<span class="st">&quot;After filter: {}&quot;</span><span class="op">,</span> x))</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>collect()<span class="op">;</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;positive_numbers: {:?}&quot;</span><span class="op">,</span>positive_numbers)<span class="op">;</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> v <span class="op">=</span> <span class="pp">vec!</span>[<span class="op">-</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="op">-</span><span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">.</span>into_iter()<span class="op">;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">initial v: {:?}&quot;</span><span class="op">,</span> v)<span class="op">;</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> positive_numbers<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">i32</span><span class="op">&gt;</span> <span class="op">=</span> v</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>inspect(<span class="op">|</span>x<span class="op">|</span> <span class="pp">println!</span>(<span class="st">&quot;Before filter: {}&quot;</span><span class="op">,</span> x))</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>filter(<span class="op">|</span>x<span class="op">:</span> <span class="op">&amp;</span><span class="dt">i32</span><span class="op">|</span> x<span class="op">.</span>is_positive())</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>inspect(<span class="op">|</span>x<span class="op">|</span> <span class="pp">println!</span>(<span class="st">&quot;After filter: {}&quot;</span><span class="op">,</span> x))</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>collect()<span class="op">;</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;positive_numbers: {:?}&quot;</span><span class="op">,</span>positive_numbers)<span class="op">;</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <h3 id="map">map</h3>
 <p>Takes a closure and creates an iterator which calls that closure on
 each element.</p>
@@ -245,38 +327,46 @@ this closure on each element of the original iterator.</p>
 lazy, it is best used when you’re already working with other iterators.
 If you’re doing some sort of looping for a side effect, it’s considered
 more idiomatic to use for than map().</p>
-<div class="sourceCode" id="cb10"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> a <span class="op">=</span> [<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span>]<span class="op">;</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> <span class="kw">mut</span> iter <span class="op">=</span> a<span class="op">.</span>iter()<span class="op">.</span>map(<span class="op">|</span>x<span class="op">|</span> <span class="dv">2</span> <span class="op">*</span> x)<span class="op">;</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="pp">assert_eq!</span>(iter<span class="op">.</span>next()<span class="op">,</span> <span class="cn">Some</span>(<span class="dv">2</span>))<span class="op">;</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="pp">assert_eq!</span>(iter<span class="op">.</span>next()<span class="op">,</span> <span class="cn">Some</span>(<span class="dv">4</span>))<span class="op">;</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="pp">assert_eq!</span>(iter<span class="op">.</span>next()<span class="op">,</span> <span class="cn">Some</span>(<span class="dv">6</span>))<span class="op">;</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="pp">assert_eq!</span>(iter<span class="op">.</span>next()<span class="op">,</span> <span class="cn">None</span>)<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> a <span class="op">=</span> [<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span>]<span class="op">;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> <span class="kw">mut</span> iter <span class="op">=</span> a<span class="op">.</span>iter()<span class="op">.</span>map(<span class="op">|</span>x<span class="op">|</span> <span class="dv">2</span> <span class="op">*</span> x)<span class="op">;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="pp">assert_eq!</span>(iter<span class="op">.</span>next()<span class="op">,</span> <span class="cn">Some</span>(<span class="dv">2</span>))<span class="op">;</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="pp">assert_eq!</span>(iter<span class="op">.</span>next()<span class="op">,</span> <span class="cn">Some</span>(<span class="dv">4</span>))<span class="op">;</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="pp">assert_eq!</span>(iter<span class="op">.</span>next()<span class="op">,</span> <span class="cn">Some</span>(<span class="dv">6</span>))<span class="op">;</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="pp">assert_eq!</span>(iter<span class="op">.</span>next()<span class="op">,</span> <span class="cn">None</span>)<span class="op">;</span></span></code></pre></div>
 <p>Note:</p>
-<div class="sourceCode" id="cb11"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">// don&#39;t do this:</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>(<span class="dv">0</span><span class="op">..</span><span class="dv">5</span>)<span class="op">.</span>map(<span class="op">|</span>x<span class="op">|</span> <span class="pp">println!</span>(<span class="st">&quot;{x}&quot;</span>))<span class="op">;</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">// it won&#39;t even execute, as it is lazy. Rust will warn you about this.</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">// Instead, use for:</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> <span class="dv">0</span><span class="op">..</span><span class="dv">5</span> <span class="op">{</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;{x}&quot;</span>)<span class="op">;</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">// don&#39;t do this:</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>(<span class="dv">0</span><span class="op">..</span><span class="dv">5</span>)<span class="op">.</span>map(<span class="op">|</span>x<span class="op">|</span> <span class="pp">println!</span>(<span class="st">&quot;{x}&quot;</span>))<span class="op">;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">// it won&#39;t even execute, as it is lazy. Rust will warn you about this.</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">// Instead, use for:</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> <span class="dv">0</span><span class="op">..</span><span class="dv">5</span> <span class="op">{</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;{x}&quot;</span>)<span class="op">;</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>_ <a
 href="https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.map">Rust
 doc</a></p>
-<div class="sourceCode" id="cb12"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> v <span class="op">=</span> <span class="pp">vec!</span>[<span class="st">&quot;Hello&quot;</span><span class="op">,</span> <span class="st">&quot;World&quot;</span><span class="op">,</span> <span class="st">&quot;!&quot;</span>]<span class="op">.</span>into_iter()<span class="op">;</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> w<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">String</span><span class="op">&gt;</span> <span class="op">=</span> v<span class="op">.</span>map(<span class="op">|</span>x<span class="op">|</span> x<span class="op">.</span>to_string()<span class="op">.</span>to_uppercase())<span class="op">.</span>collect()<span class="op">;</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;{:?}&quot;</span><span class="op">,</span> w)<span class="op">;</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> v <span class="op">=</span> <span class="pp">vec!</span>[<span class="st">&quot;Hello&quot;</span><span class="op">,</span> <span class="st">&quot;World&quot;</span><span class="op">,</span> <span class="st">&quot;!&quot;</span>]<span class="op">.</span>into_iter()<span class="op">;</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> w<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">String</span><span class="op">&gt;</span> <span class="op">=</span> v<span class="op">.</span>map(<span class="op">|</span>x<span class="op">|</span> x<span class="op">.</span>to_string()<span class="op">.</span>to_uppercase())<span class="op">.</span>collect()<span class="op">;</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;{:?}&quot;</span><span class="op">,</span> w)<span class="op">;</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> v <span class="op">=</span> <span class="pp">vec!</span>[<span class="dv">1</span><span class="op">,</span><span class="dv">3</span><span class="op">,</span><span class="dv">4</span><span class="op">,</span><span class="dv">5</span><span class="op">,</span><span class="dv">3</span>]<span class="op">;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">//map values</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> map_add_1 <span class="op">=</span> v<span class="op">.</span>iter()<span class="op">.</span>map(<span class="op">|&amp;</span>x<span class="op">|</span> x <span class="op">+</span><span class="dv">1</span>)<span class="op">.</span><span class="pp">collect::</span><span class="op">&lt;</span><span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">i32</span><span class="op">&gt;&gt;</span>()<span class="op">;</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;{:?}&quot;</span><span class="op">,</span> map_add_1)<span class="op">;</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <h3 id="filter_map">filter_map</h3>
 <p>Creates an iterator that both filters and maps.</p>
 <p>The returned iterator yields only the values for which the supplied
@@ -284,43 +374,61 @@ closure returns Some(value).</p>
 <p><code>filter_map</code> can be used to make chains of filter and map
 more concise</p>
 <p>This</p>
-<div class="sourceCode" id="cb13"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> a <span class="op">=</span> [<span class="st">&quot;1&quot;</span><span class="op">,</span> <span class="st">&quot;two&quot;</span><span class="op">,</span> <span class="st">&quot;NaN&quot;</span><span class="op">,</span> <span class="st">&quot;four&quot;</span><span class="op">,</span> <span class="st">&quot;5&quot;</span>]<span class="op">;</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> <span class="kw">mut</span> iter <span class="op">=</span> a<span class="op">.</span>iter()<span class="op">.</span>filter_map(<span class="op">|</span>s<span class="op">|</span> s<span class="op">.</span>parse()<span class="op">.</span>ok())<span class="op">;</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="pp">assert_eq!</span>(iter<span class="op">.</span>next()<span class="op">,</span> <span class="cn">Some</span>(<span class="dv">1</span>))<span class="op">;</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="pp">assert_eq!</span>(iter<span class="op">.</span>next()<span class="op">,</span> <span class="cn">Some</span>(<span class="dv">5</span>))<span class="op">;</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="pp">assert_eq!</span>(iter<span class="op">.</span>next()<span class="op">,</span> <span class="cn">None</span>)<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> a <span class="op">=</span> [<span class="st">&quot;1&quot;</span><span class="op">,</span> <span class="st">&quot;two&quot;</span><span class="op">,</span> <span class="st">&quot;NaN&quot;</span><span class="op">,</span> <span class="st">&quot;four&quot;</span><span class="op">,</span> <span class="st">&quot;5&quot;</span>]<span class="op">;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> <span class="kw">mut</span> iter <span class="op">=</span> a<span class="op">.</span>iter()<span class="op">.</span>filter_map(<span class="op">|</span>s<span class="op">|</span> s<span class="op">.</span>parse()<span class="op">.</span>ok())<span class="op">;</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="pp">assert_eq!</span>(iter<span class="op">.</span>next()<span class="op">,</span> <span class="cn">Some</span>(<span class="dv">1</span>))<span class="op">;</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="pp">assert_eq!</span>(iter<span class="op">.</span>next()<span class="op">,</span> <span class="cn">Some</span>(<span class="dv">5</span>))<span class="op">;</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="pp">assert_eq!</span>(iter<span class="op">.</span>next()<span class="op">,</span> <span class="cn">None</span>)<span class="op">;</span></span></code></pre></div>
 <p>Instead of this</p>
-<div class="sourceCode" id="cb14"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> a <span class="op">=</span> [<span class="st">&quot;1&quot;</span><span class="op">,</span> <span class="st">&quot;two&quot;</span><span class="op">,</span> <span class="st">&quot;NaN&quot;</span><span class="op">,</span> <span class="st">&quot;four&quot;</span><span class="op">,</span> <span class="st">&quot;5&quot;</span>]<span class="op">;</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> <span class="kw">mut</span> iter <span class="op">=</span> a<span class="op">.</span>iter()<span class="op">.</span>map(<span class="op">|</span>s<span class="op">|</span> s<span class="op">.</span>parse())</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>                       <span class="op">.</span>filter(<span class="op">|</span>s<span class="op">|</span> s<span class="op">.</span>is_ok())</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>                       <span class="op">.</span>map(<span class="op">|</span>s<span class="op">|</span> s<span class="op">.</span>unwrap())<span class="op">;</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="pp">assert_eq!</span>(iter<span class="op">.</span>next()<span class="op">,</span> <span class="cn">Some</span>(<span class="dv">1</span>))<span class="op">;</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="pp">assert_eq!</span>(iter<span class="op">.</span>next()<span class="op">,</span> <span class="cn">Some</span>(<span class="dv">5</span>))<span class="op">;</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="pp">assert_eq!</span>(iter<span class="op">.</span>next()<span class="op">,</span> <span class="cn">None</span>)<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> a <span class="op">=</span> [<span class="st">&quot;1&quot;</span><span class="op">,</span> <span class="st">&quot;two&quot;</span><span class="op">,</span> <span class="st">&quot;NaN&quot;</span><span class="op">,</span> <span class="st">&quot;four&quot;</span><span class="op">,</span> <span class="st">&quot;5&quot;</span>]<span class="op">;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> <span class="kw">mut</span> iter <span class="op">=</span> a<span class="op">.</span>iter()<span class="op">.</span>map(<span class="op">|</span>s<span class="op">|</span> s<span class="op">.</span>parse())</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>                       <span class="op">.</span>filter(<span class="op">|</span>s<span class="op">|</span> s<span class="op">.</span>is_ok())</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>                       <span class="op">.</span>map(<span class="op">|</span>s<span class="op">|</span> s<span class="op">.</span>unwrap())<span class="op">;</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="pp">assert_eq!</span>(iter<span class="op">.</span>next()<span class="op">,</span> <span class="cn">Some</span>(<span class="dv">1</span>))<span class="op">;</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="pp">assert_eq!</span>(iter<span class="op">.</span>next()<span class="op">,</span> <span class="cn">Some</span>(<span class="dv">5</span>))<span class="op">;</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="pp">assert_eq!</span>(iter<span class="op">.</span>next()<span class="op">,</span> <span class="cn">None</span>)<span class="op">;</span></span></code></pre></div>
 <p>filter_map has the advantage of dealing with Option instead of
 bool</p>
-<div class="sourceCode" id="cb15"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>     <span class="kw">let</span> v <span class="op">=</span> <span class="pp">vec!</span>[<span class="st">&quot;Hello&quot;</span><span class="op">,</span> <span class="st">&quot;World&quot;</span><span class="op">,</span> <span class="st">&quot;!&quot;</span>]<span class="op">.</span>into_iter()<span class="op">;</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> w<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">String</span><span class="op">&gt;</span> <span class="op">=</span> v</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>filter_map(<span class="op">|</span>x<span class="op">|</span> <span class="op">{</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> x<span class="op">.</span>len() <span class="op">&gt;</span> <span class="dv">2</span> <span class="op">{</span>                         <span class="co">// filter</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>                <span class="cn">Some</span>(<span class="dt">String</span><span class="pp">::</span>from(x)<span class="op">.</span>to_uppercase()) <span class="co">// map</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>                <span class="cn">None</span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span>)</span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>collect()<span class="op">;</span></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;{:?}. living out the `!`&quot;</span><span class="op">,</span> w)<span class="op">;</span></span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>     <span class="kw">let</span> v <span class="op">=</span> <span class="pp">vec!</span>[<span class="st">&quot;Hello&quot;</span><span class="op">,</span> <span class="st">&quot;World&quot;</span><span class="op">,</span> <span class="st">&quot;!&quot;</span>]<span class="op">.</span>into_iter()<span class="op">;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> w<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">String</span><span class="op">&gt;</span> <span class="op">=</span> v</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>filter_map(<span class="op">|</span>x<span class="op">|</span> <span class="op">{</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> x<span class="op">.</span>len() <span class="op">&gt;</span> <span class="dv">2</span> <span class="op">{</span>                         <span class="co">// filter</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>                <span class="cn">Some</span>(<span class="dt">String</span><span class="pp">::</span>from(x)<span class="op">.</span>to_uppercase()) <span class="co">// map</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>                <span class="cn">None</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span>)</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>collect()<span class="op">;</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;{:?}. living out the `!`&quot;</span><span class="op">,</span> w)<span class="op">;</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h3 id="count">count</h3>
+<div class="sourceCode" id="cb20"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> v <span class="op">=</span> <span class="pp">vec!</span>[<span class="dv">1</span><span class="op">,</span><span class="dv">3</span><span class="op">,</span><span class="dv">4</span><span class="op">,</span><span class="dv">5</span><span class="op">,</span><span class="dv">3</span>]<span class="op">;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">//count number of items</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> item_count <span class="op">=</span> v<span class="op">.</span>iter()<span class="op">.</span>count()<span class="op">;</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;count  is {}&quot;</span><span class="op">,</span>item_count)<span class="op">;</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h3 id="max">max</h3>
+<div class="sourceCode" id="cb21"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> v <span class="op">=</span> <span class="pp">vec!</span>[<span class="dv">1</span><span class="op">,</span><span class="dv">3</span><span class="op">,</span><span class="dv">4</span><span class="op">,</span><span class="dv">5</span><span class="op">,</span><span class="dv">3</span>]<span class="op">;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">//find max </span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> max <span class="op">=</span> v<span class="op">.</span>iter()<span class="op">.</span>max()<span class="op">.</span>unwrap()<span class="op">;</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;max is {}&quot;</span><span class="op">,</span>max)<span class="op">;</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <h3 id="chain">chain</h3>
 <p>Takes two iterators and creates a new iterator over both in
 sequence.</p>
@@ -329,150 +437,161 @@ values from the first iterator and then over values from the second
 iterator.</p>
 <p>In other words, it links two iterators together, in a chain: chain
 merges two iterators.</p>
-<div class="sourceCode" id="cb16"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> a1 <span class="op">=</span> [<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span>]<span class="op">;</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> a2 <span class="op">=</span> [<span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">6</span>]<span class="op">;</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> both <span class="op">=</span> a1<span class="op">.</span>iter()<span class="op">.</span>chain(a2<span class="op">.</span>iter())<span class="op">;</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="dv">0</span><span class="op">..</span><span class="dv">7</span> <span class="op">{</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">&quot;{:?}&quot;</span><span class="op">,</span> both<span class="op">.</span>next())<span class="op">;</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> a1 <span class="op">=</span> [<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span>]<span class="op">;</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> a2 <span class="op">=</span> [<span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">6</span>]<span class="op">;</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> both <span class="op">=</span> a1<span class="op">.</span>iter()<span class="op">.</span>chain(a2<span class="op">.</span>iter())<span class="op">;</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="dv">0</span><span class="op">..</span><span class="dv">7</span> <span class="op">{</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">&quot;{:?}&quot;</span><span class="op">,</span> both<span class="op">.</span>next())<span class="op">;</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <h3 id="flatten">flatten</h3>
 <p>Creates an iterator that flattens nested structure.</p>
 <p>This is useful when you have an iterator of iterators or an iterator
 of things that can be turned into iterators and you want to remove one
 level of indirection.</p>
-<div class="sourceCode" id="cb17"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> data <span class="op">=</span> <span class="pp">vec!</span>[<span class="pp">vec!</span>[<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span>]<span class="op">,</span> <span class="pp">vec!</span>[<span class="dv">5</span><span class="op">,</span> <span class="dv">6</span>]]<span class="op">;</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;{:?}&quot;</span><span class="op">,</span> data)<span class="op">;</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> flattened <span class="op">=</span> data<span class="op">.</span>into_iter()<span class="op">.</span>flatten()<span class="op">.</span><span class="pp">collect::</span><span class="op">&lt;</span><span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">u8</span><span class="op">&gt;&gt;</span>()<span class="op">;</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;{:?}&quot;</span><span class="op">,</span> flattened)<span class="op">;</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> data <span class="op">=</span> <span class="pp">vec!</span>[<span class="pp">vec!</span>[<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span>]<span class="op">,</span> <span class="pp">vec!</span>[<span class="dv">5</span><span class="op">,</span> <span class="dv">6</span>]]<span class="op">;</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;{:?}&quot;</span><span class="op">,</span> data)<span class="op">;</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> flattened <span class="op">=</span> data<span class="op">.</span>into_iter()<span class="op">.</span>flatten()<span class="op">.</span><span class="pp">collect::</span><span class="op">&lt;</span><span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">u8</span><span class="op">&gt;&gt;</span>()<span class="op">;</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;{:?}&quot;</span><span class="op">,</span> flattened)<span class="op">;</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h3 id="zip">Zip</h3>
+<p>MOD THIS</p>
+<div class="sourceCode" id="cb24"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>fm main() <span class="op">{</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> vector <span class="op">=</span> <span class="pp">vec!</span>[<span class="dv">1</span><span class="op">,</span><span class="dv">3</span><span class="op">,</span><span class="dv">4</span><span class="op">,</span><span class="dv">5</span><span class="op">,</span><span class="dv">3</span>]<span class="op">;</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">//zip with index</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> index_vec <span class="op">=</span> <span class="dv">0</span><span class="op">..</span>vec_count<span class="op">;</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> index_zipped_vector <span class="op">=</span> vector<span class="op">.</span>iter()<span class="op">.</span>zip(index_vec)<span class="op">.</span><span class="pp">collect::</span><span class="op">&lt;</span><span class="dt">Vec</span><span class="op">&lt;</span>(<span class="op">&amp;</span><span class="dt">i32</span><span class="op">,</span><span class="dt">usize</span>)<span class="op">&gt;&gt;</span>()<span class="op">;</span> </span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;zipped vector is {:?}&quot;</span><span class="op">,</span>index_zipped_vector)<span class="op">;</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>MOD NEEDED</p>
 <h2 id="option">Option</h2>
 <h3 id="unwrap_or">unwrap_or</h3>
 <p>Use a default value</p>
-<div class="sourceCode" id="cb18"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> option_unwrap_or() <span class="op">{</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> _port <span class="op">=</span> <span class="pp">std::env::</span>var(<span class="st">&quot;PORT&quot;</span>)<span class="op">.</span>ok()<span class="op">.</span>unwrap_or(<span class="dt">String</span><span class="pp">::</span>from(<span class="st">&quot;8080&quot;</span>))<span class="op">;</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> option_unwrap_or() <span class="op">{</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> _port <span class="op">=</span> <span class="pp">std::env::</span>var(<span class="st">&quot;PORT&quot;</span>)<span class="op">.</span>ok()<span class="op">.</span>unwrap_or(<span class="dt">String</span><span class="pp">::</span>from(<span class="st">&quot;8080&quot;</span>))<span class="op">;</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <h3 id="or">or</h3>
 <p>Use a default Option value</p>
-<div class="sourceCode" id="cb19"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">// config.port is an Option&lt;String&gt;</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> _port <span class="op">=</span> config<span class="op">.</span>port<span class="op">.</span>or(<span class="pp">std::env::</span>var(<span class="st">&quot;PORT&quot;</span>)<span class="op">.</span>ok())<span class="op">;</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co">// _port is an Option&lt;String&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">// config.port is an Option&lt;String&gt;</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> _port <span class="op">=</span> config<span class="op">.</span>port<span class="op">.</span>or(<span class="pp">std::env::</span>var(<span class="st">&quot;PORT&quot;</span>)<span class="op">.</span>ok())<span class="op">;</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co">// _port is an Option&lt;String&gt;</span></span></code></pre></div>
 <h3 id="and_then">and_then</h3>
 <p>Call a function if Option is Some</p>
-<div class="sourceCode" id="cb20"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> port_to_address() <span class="op">-&gt;</span> <span class="dt">Option</span><span class="op">&lt;</span><span class="dt">String</span><span class="op">&gt;</span> <span class="op">{</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ...</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> _address <span class="op">=</span> <span class="pp">std::env::</span>var(<span class="st">&quot;PORT&quot;</span>)<span class="op">.</span>ok()<span class="op">.</span>and_then(port_to_address)<span class="op">;</span></span></code></pre></div>
-<h3 id="or_else">or_else</h3>
-<p>Call a function if Option is None</p>
-<div class="sourceCode" id="cb21"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> get_default_port() <span class="op">-&gt;</span> <span class="dt">Option</span><span class="op">&lt;</span><span class="dt">String</span><span class="op">&gt;</span> <span class="op">{</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ...</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> _port <span class="op">=</span> <span class="pp">std::env::</span>var(<span class="st">&quot;PORT&quot;</span>)<span class="op">.</span>ok()<span class="op">.</span>or_else(get_default_port)<span class="op">;</span></span></code></pre></div>
-<h3 id="is_some">is_some</h3>
-<p>Returns true if an Option is Some(value)</p>
-<div class="sourceCode" id="cb22"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> a<span class="op">:</span> <span class="dt">Option</span><span class="op">&lt;</span><span class="dt">u32</span><span class="op">&gt;</span> <span class="op">=</span> <span class="cn">Some</span>(<span class="dv">1</span>)<span class="op">;</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> a<span class="op">.</span>is_some() <span class="op">{</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;will be printed&quot;</span>)<span class="op">;</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> b<span class="op">:</span> <span class="dt">Option</span><span class="op">&lt;</span><span class="dt">u32</span><span class="op">&gt;</span> <span class="op">=</span> <span class="cn">None</span><span class="op">;</span></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> b<span class="op">.</span>is_some() <span class="op">{</span></span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;will NOT be printed&quot;</span>)<span class="op">;</span></span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<h3 id="is_none">is_none</h3>
-<p>Returns true is an Option is None</p>
-<div class="sourceCode" id="cb23"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> a<span class="op">:</span> <span class="dt">Option</span><span class="op">&lt;</span><span class="dt">u32</span><span class="op">&gt;</span> <span class="op">=</span> <span class="cn">Some</span>(<span class="dv">1</span>)<span class="op">;</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> a<span class="op">.</span>is_none() <span class="op">{</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;will NOT be printed&quot;</span>)<span class="op">;</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> b<span class="op">:</span> <span class="dt">Option</span><span class="op">&lt;</span><span class="dt">u32</span><span class="op">&gt;</span> <span class="op">=</span> <span class="cn">None</span><span class="op">;</span></span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> b<span class="op">.</span>is_none() <span class="op">{</span></span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;will be printed&quot;</span>)<span class="op">;</span></span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<h2 id="result">Result</h2>
-<h3 id="ok">ok</h3>
-<p>Convert a Result to an Option</p>
-<div class="sourceCode" id="cb24"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> result_ok() <span class="op">{</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> _port<span class="op">:</span> <span class="dt">Option</span><span class="op">&lt;</span><span class="dt">String</span><span class="op">&gt;</span> <span class="op">=</span> <span class="pp">std::env::</span>var(<span class="st">&quot;PORT&quot;</span>)<span class="op">.</span>ok()<span class="op">;</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<h3 id="or-1">or</h3>
-<p>Use a default Result if Result is Err</p>
-<div class="sourceCode" id="cb25"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> result_or() <span class="op">{</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> _port<span class="op">:</span> <span class="dt">Result</span><span class="op">&lt;</span><span class="dt">String</span><span class="op">,</span> <span class="pp">std::env::</span>VarError<span class="op">&gt;</span> <span class="op">=</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>        <span class="pp">std::env::</span>var(<span class="st">&quot;PORT&quot;</span>)<span class="op">.</span>or(<span class="cn">Ok</span>(<span class="dt">String</span><span class="pp">::</span>from(<span class="st">&quot;8080&quot;</span>)))<span class="op">;</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<h3 id="map_err">map_err</h3>
-<p>Converts a <code>Result&lt;T, E&gt;</code> to a
-<code>Result&lt;T, F&gt;</code> by calling a given function</p>
-<div class="sourceCode" id="cb26"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> convert_error(err<span class="op">:</span> ErrorType1) <span class="op">-&gt;</span> ErrorType2 <span class="op">{</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ...</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> _port<span class="op">:</span> <span class="dt">Result</span><span class="op">&lt;</span><span class="dt">String</span><span class="op">,</span> ErrorType2<span class="op">&gt;</span> <span class="op">=</span> <span class="pp">std::env::</span>var(<span class="st">&quot;PORT&quot;</span>)<span class="op">.</span>map_err(convert_error)<span class="op">;</span></span></code></pre></div>
-<h3 id="and_then-1">and_then</h3>
-<p>Call a function if Results is Ok</p>
 <div class="sourceCode" id="cb27"><pre
 class="sourceCode rust"><code class="sourceCode rust"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> port_to_address() <span class="op">-&gt;</span> <span class="dt">Option</span><span class="op">&lt;</span><span class="dt">String</span><span class="op">&gt;</span> <span class="op">{</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ...</span></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
 <span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> _address <span class="op">=</span> <span class="pp">std::env::</span>var(<span class="st">&quot;PORT&quot;</span>)<span class="op">.</span>and_then(port_to_address)<span class="op">;</span></span></code></pre></div>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> _address <span class="op">=</span> <span class="pp">std::env::</span>var(<span class="st">&quot;PORT&quot;</span>)<span class="op">.</span>ok()<span class="op">.</span>and_then(port_to_address)<span class="op">;</span></span></code></pre></div>
+<h3 id="or_else">or_else</h3>
+<p>Call a function if Option is None</p>
+<div class="sourceCode" id="cb28"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> get_default_port() <span class="op">-&gt;</span> <span class="dt">Option</span><span class="op">&lt;</span><span class="dt">String</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ...</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> _port <span class="op">=</span> <span class="pp">std::env::</span>var(<span class="st">&quot;PORT&quot;</span>)<span class="op">.</span>ok()<span class="op">.</span>or_else(get_default_port)<span class="op">;</span></span></code></pre></div>
+<h3 id="is_some">is_some</h3>
+<p>Returns true if an Option is Some(value)</p>
+<div class="sourceCode" id="cb29"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> a<span class="op">:</span> <span class="dt">Option</span><span class="op">&lt;</span><span class="dt">u32</span><span class="op">&gt;</span> <span class="op">=</span> <span class="cn">Some</span>(<span class="dv">1</span>)<span class="op">;</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> a<span class="op">.</span>is_some() <span class="op">{</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;will be printed&quot;</span>)<span class="op">;</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> b<span class="op">:</span> <span class="dt">Option</span><span class="op">&lt;</span><span class="dt">u32</span><span class="op">&gt;</span> <span class="op">=</span> <span class="cn">None</span><span class="op">;</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> b<span class="op">.</span>is_some() <span class="op">{</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;will NOT be printed&quot;</span>)<span class="op">;</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h3 id="is_none">is_none</h3>
+<p>Returns true is an Option is None</p>
+<div class="sourceCode" id="cb30"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> a<span class="op">:</span> <span class="dt">Option</span><span class="op">&lt;</span><span class="dt">u32</span><span class="op">&gt;</span> <span class="op">=</span> <span class="cn">Some</span>(<span class="dv">1</span>)<span class="op">;</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> a<span class="op">.</span>is_none() <span class="op">{</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;will NOT be printed&quot;</span>)<span class="op">;</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> b<span class="op">:</span> <span class="dt">Option</span><span class="op">&lt;</span><span class="dt">u32</span><span class="op">&gt;</span> <span class="op">=</span> <span class="cn">None</span><span class="op">;</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> b<span class="op">.</span>is_none() <span class="op">{</span></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;will be printed&quot;</span>)<span class="op">;</span></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h2 id="result">Result</h2>
+<h3 id="ok">ok</h3>
+<p>Convert a Result to an Option</p>
+<div class="sourceCode" id="cb31"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> result_ok() <span class="op">{</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> _port<span class="op">:</span> <span class="dt">Option</span><span class="op">&lt;</span><span class="dt">String</span><span class="op">&gt;</span> <span class="op">=</span> <span class="pp">std::env::</span>var(<span class="st">&quot;PORT&quot;</span>)<span class="op">.</span>ok()<span class="op">;</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h3 id="or-1">or</h3>
+<p>Use a default Result if Result is Err</p>
+<div class="sourceCode" id="cb32"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> result_or() <span class="op">{</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> _port<span class="op">:</span> <span class="dt">Result</span><span class="op">&lt;</span><span class="dt">String</span><span class="op">,</span> <span class="pp">std::env::</span>VarError<span class="op">&gt;</span> <span class="op">=</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>        <span class="pp">std::env::</span>var(<span class="st">&quot;PORT&quot;</span>)<span class="op">.</span>or(<span class="cn">Ok</span>(<span class="dt">String</span><span class="pp">::</span>from(<span class="st">&quot;8080&quot;</span>)))<span class="op">;</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h3 id="map_err">map_err</h3>
+<p>Converts a <code>Result&lt;T, E&gt;</code> to a
+<code>Result&lt;T, F&gt;</code> by calling a given function</p>
+<div class="sourceCode" id="cb33"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> convert_error(err<span class="op">:</span> ErrorType1) <span class="op">-&gt;</span> ErrorType2 <span class="op">{</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ...</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> _port<span class="op">:</span> <span class="dt">Result</span><span class="op">&lt;</span><span class="dt">String</span><span class="op">,</span> ErrorType2<span class="op">&gt;</span> <span class="op">=</span> <span class="pp">std::env::</span>var(<span class="st">&quot;PORT&quot;</span>)<span class="op">.</span>map_err(convert_error)<span class="op">;</span></span></code></pre></div>
+<h3 id="and_then-1">and_then</h3>
+<p>Call a function if Results is Ok</p>
+<div class="sourceCode" id="cb34"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> port_to_address() <span class="op">-&gt;</span> <span class="dt">Option</span><span class="op">&lt;</span><span class="dt">String</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ...</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> _address <span class="op">=</span> <span class="pp">std::env::</span>var(<span class="st">&quot;PORT&quot;</span>)<span class="op">.</span>and_then(port_to_address)<span class="op">;</span></span></code></pre></div>
 <h3 id="map_or">map_or</h3>
 <p>Call a function and default value</p>
-<div class="sourceCode" id="cb28"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> http_port <span class="op">=</span> <span class="pp">std::env::</span>var(<span class="st">&quot;PORT&quot;</span>)</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span>map_or(<span class="cn">Ok</span>(<span class="dt">String</span><span class="pp">::</span>from(<span class="st">&quot;8080&quot;</span>))<span class="op">,</span> <span class="op">|</span>env_val<span class="op">|</span> env_val<span class="op">.</span><span class="pp">parse::</span><span class="op">&lt;</span><span class="dt">u16</span><span class="op">&gt;</span>())<span class="op">?;</span></span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> http_port <span class="op">=</span> <span class="pp">std::env::</span>var(<span class="st">&quot;PORT&quot;</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span>map_or(<span class="cn">Ok</span>(<span class="dt">String</span><span class="pp">::</span>from(<span class="st">&quot;8080&quot;</span>))<span class="op">,</span> <span class="op">|</span>env_val<span class="op">|</span> env_val<span class="op">.</span><span class="pp">parse::</span><span class="op">&lt;</span><span class="dt">u16</span><span class="op">&gt;</span>())<span class="op">?;</span></span></code></pre></div>
 <h3 id="map-1">map</h3>
 <p>Chain a function if Result is Ok</p>
-<div class="sourceCode" id="cb29"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> master_key <span class="op">=</span> <span class="pp">std::env::</span>var(<span class="st">&quot;MASTER_KEY&quot;</span>)</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span>map_err(<span class="op">|</span>_<span class="op">|</span> env_not_found(<span class="st">&quot;MASTER_KEY&quot;</span>))</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span>map(<span class="pp">base64::</span>decode)<span class="op">??;</span></span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> master_key <span class="op">=</span> <span class="pp">std::env::</span>var(<span class="st">&quot;MASTER_KEY&quot;</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span>map_err(<span class="op">|</span>_<span class="op">|</span> env_not_found(<span class="st">&quot;MASTER_KEY&quot;</span>))</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span>map(<span class="pp">base64::</span>decode)<span class="op">??;</span></span></code></pre></div>
 <h3 id="is_ok">is_ok</h3>
 <p>Returns true is an Result is Ok</p>
-<div class="sourceCode" id="cb30"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="pp">std::env::</span>var(<span class="st">&quot;DOES_EXIST&quot;</span>)<span class="op">.</span>is_ok() <span class="op">{</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;will be printed&quot;</span>)<span class="op">;</span></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="pp">std::env::</span>var(<span class="st">&quot;DOES_NOT_EXIST&quot;</span>)<span class="op">.</span>is_ok() <span class="op">{</span></span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;will NOT be printed&quot;</span>)<span class="op">;</span></span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="pp">std::env::</span>var(<span class="st">&quot;DOES_EXIST&quot;</span>)<span class="op">.</span>is_ok() <span class="op">{</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;will be printed&quot;</span>)<span class="op">;</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="pp">std::env::</span>var(<span class="st">&quot;DOES_NOT_EXIST&quot;</span>)<span class="op">.</span>is_ok() <span class="op">{</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;will NOT be printed&quot;</span>)<span class="op">;</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <h3 id="is_err">is_err</h3>
 <p>Returns true is an Result is Err</p>
-<div class="sourceCode" id="cb31"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="pp">std::env::</span>var(<span class="st">&quot;DOES_NOT_EXIST&quot;</span>)<span class="op">.</span>is_err() <span class="op">{</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;will be printed&quot;</span>)<span class="op">;</span></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="pp">std::env::</span>var(<span class="st">&quot;DOES_EXIST&quot;</span>)<span class="op">.</span>is_err() <span class="op">{</span></span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;will NOT be printed&quot;</span>)<span class="op">;</span></span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="pp">std::env::</span>var(<span class="st">&quot;DOES_NOT_EXIST&quot;</span>)<span class="op">.</span>is_err() <span class="op">{</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;will be printed&quot;</span>)<span class="op">;</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="pp">std::env::</span>var(<span class="st">&quot;DOES_EXIST&quot;</span>)<span class="op">.</span>is_err() <span class="op">{</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;will NOT be printed&quot;</span>)<span class="op">;</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <h2 id="composing-combinators">Composing combinators</h2>
 <ul>
 <li>Try to parse an array of strings into numbers</li>
@@ -480,30 +599,30 @@ class="sourceCode rust"><code class="sourceCode rust"><span id="cb31-1"><a href=
 <li>filter numbers less than 0</li>
 <li>collect everything in a new vector</li>
 </ul>
-<div class="sourceCode" id="cb32"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> a <span class="op">=</span> <span class="pp">vec!</span>[</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;1&quot;</span><span class="op">,</span></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;2&quot;</span><span class="op">,</span></span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;-1&quot;</span><span class="op">,</span></span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;4&quot;</span><span class="op">,</span></span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;-4&quot;</span><span class="op">,</span></span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;100&quot;</span><span class="op">,</span></span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;invalid&quot;</span><span class="op">,</span></span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;Not a number&quot;</span><span class="op">,</span></span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;&quot;</span><span class="op">,</span></span>
-<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>    ]<span class="op">;</span></span>
-<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;before: {:?}&quot;</span><span class="op">,</span> a)<span class="op">;</span></span>
-<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> only_positive_numbers<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">i64</span><span class="op">&gt;</span> <span class="op">=</span> a</span>
-<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>into_iter()</span>
-<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>filter_map(<span class="op">|</span>x<span class="op">|</span> x<span class="op">.</span><span class="pp">parse::</span><span class="op">&lt;</span><span class="dt">i64</span><span class="op">&gt;</span>()<span class="op">.</span>ok())</span>
-<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>filter(<span class="op">|</span>x<span class="op">|</span> x <span class="op">&gt;</span> <span class="op">&amp;</span><span class="dv">0</span>)</span>
-<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>collect()<span class="op">;</span></span>
-<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;after: {:?}&quot;</span><span class="op">,</span> only_positive_numbers)<span class="op">;</span></span>
-<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> a <span class="op">=</span> <span class="pp">vec!</span>[</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;1&quot;</span><span class="op">,</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;2&quot;</span><span class="op">,</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;-1&quot;</span><span class="op">,</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;4&quot;</span><span class="op">,</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;-4&quot;</span><span class="op">,</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;100&quot;</span><span class="op">,</span></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;invalid&quot;</span><span class="op">,</span></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;Not a number&quot;</span><span class="op">,</span></span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;&quot;</span><span class="op">,</span></span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>    ]<span class="op">;</span></span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;before: {:?}&quot;</span><span class="op">,</span> a)<span class="op">;</span></span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> only_positive_numbers<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">i64</span><span class="op">&gt;</span> <span class="op">=</span> a</span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>into_iter()</span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>filter_map(<span class="op">|</span>x<span class="op">|</span> x<span class="op">.</span><span class="pp">parse::</span><span class="op">&lt;</span><span class="dt">i64</span><span class="op">&gt;</span>()<span class="op">.</span>ok())</span>
+<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>filter(<span class="op">|</span>x<span class="op">|</span> x <span class="op">&gt;</span> <span class="op">&amp;</span><span class="dv">0</span>)</span>
+<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>collect()<span class="op">;</span></span>
+<span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-22"><a href="#cb39-22" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;after: {:?}&quot;</span><span class="op">,</span> only_positive_numbers)<span class="op">;</span></span>
+<span id="cb39-23"><a href="#cb39-23" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>This replaces a big loop with complex logic with a few lines of
 idiomatic Rust.</p>
 </main>

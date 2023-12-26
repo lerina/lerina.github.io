@@ -4,9 +4,47 @@
 
 # Iterators and Combinators
 
+---
+
+        //function combinators example
+        fn main() {
+         let vector = vec![1,3,4,5,3];
+
+         //all
+         //all is basically folding with && and since the identity element for && is true 
+         //it is what gets returned by all. 
+
+         let greater_than_zero = vector.iter().all(|&x| x > 0 ) ;
+         println!("greater than zero {}",greater_than_zero);
+
+        let a: Vec<i32> = vec![1, 2, 3, 4];
+        println!("{}", a.into_iter().all(|x| x > 1));
+
+        // any on the other hand is a fold with || and the identity for || is false 
+
+
+         //list of words using flat map
+         let lines_vec = vec!("hello,how","are,you");
+         let words_vec = lines_vec.iter().flat_map(|&x| x.split(",")).collect::<Vec<&str>>();
+         println!("{:?}", words_vec);
+        }
+
+---
+
 ## Iterators
 
-### owned iterator
+### Creating Iterators in Rust
+
+We can create an iterator by converting a collection into an iterator. 
+There are three ways to create an iterator.
+
+1. Owned iterator using `into_iter()` method
+2. Borrowed iterator using `iter()` method
+3. mutable iterator using `iter_mut()` method
+
+### Owned iterator
+
+Using the into_iter() method on a collection will iterate on the same element of the collection in each iteration. Thus, the collection will no longer be available for reuse as the value moves within the loop.
 
 ```rust
 fn main () {
@@ -20,7 +58,25 @@ fn main () {
 }
 ```
 
-### borrowed iterator
+
+
+Note: By default the `for` loop will apply `into_iter()` to the collection. 
+
+Thanx to *sugar syntaxing*, these two ways to loop through an iterator are the same.
+
+```rust
+for item in mycollection.into_iter() {
+    // code
+}
+
+for item in mycollection {
+    // code
+}
+```
+
+### Borrowed iterator
+
+Using the `iter()` method on a collection will borrow (reference) each element of the collection in each iteration. Thus, the collection will be available for use after we have looped through it.
 
 ```rust
 fn main () {
@@ -32,6 +88,29 @@ fn main () {
     }
 
     println!("We can still use v2: {:?}", v2);
+}
+```
+
+### mutable iterator
+
+Using the `iter_mut()` method on a collection will mutably borrow each element of the collection in each iteration. It means we can modify the collection in place.
+
+```rust
+fn main() {
+    let mut languages = vec!["Python", "Ruby", "C"];
+    
+    // using iter_mut() to iterate through a collection
+    for language in languages.iter_mut() {
+        // modify the item in the collection
+        if *language == "Ruby" {
+            *language = "Rust";
+        }
+        println!("{}", language);
+    }
+
+    
+    // the modified collection is available here
+    println!("languages = {:?}", languages);
 }
 ```
 
@@ -48,7 +127,9 @@ fn main() {
 }
 ```
 
-## Consuming iterators
+## Iterator adapters
+
+Iterator adapters are used to transform it into another kind of iterator by altering its behavior
 
 ### collect
 
@@ -81,6 +162,15 @@ fn main() {
 
 ```
 
+### next
+
+The next() method is used to fetch individual values from the iterator.
+
+The next() method of an iterator can be used to traverse through the values in the iterator.
+Every iterator in Rust must implement a next() method. 
+
+The next() method either returns Some value or None.
+None is returned when the iterator reaches the end of the sequence
 
 ### reduce
 
@@ -125,7 +215,6 @@ _ [Rust doc](https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.fold)
 
 ```
 
-
 ## Combinators
 
 ### filter
@@ -145,6 +234,7 @@ fn main() {
     println!("even_v: {:?}", even_v);
 }
 ```
+
 
 ### inspect
 
@@ -210,6 +300,15 @@ fn main() {
     println!("{:?}", w);
 }
 ```
+```rust
+fn main() {
+    let v = vec![1,3,4,5,3];
+
+    //map values
+    let map_add_1 = v.iter().map(|&x| x +1).collect::<Vec<i32>>();
+    println!("{:?}", map_add_1);
+}
+```
 
 ### filter_map
 
@@ -264,7 +363,29 @@ fn main() {
     println!("{:?}. living out the `!`", w);
 }
 ```
+### count
 
+```rust
+fn main() {
+    let v = vec![1,3,4,5,3];
+
+    //count number of items
+    let item_count = v.iter().count();
+    println!("count  is {}",item_count);
+}
+```
+
+### max
+
+```rust
+fn main() {
+    let v = vec![1,3,4,5,3];
+
+    //find max 
+    let max = v.iter().max().unwrap();
+    println!("max is {}",max);
+}
+```
 ### chain
 
 Takes two iterators and creates a new iterator over both in sequence.
@@ -299,6 +420,21 @@ fn main() {
     println!("{:?}", data);
     let flattened = data.into_iter().flatten().collect::<Vec<u8>>();
     println!("{:?}", flattened);
+}
+```
+
+### Zip
+
+MOD THIS
+
+```rust
+fm main() {
+    let vector = vec![1,3,4,5,3];
+
+    //zip with index
+    let index_vec = 0..vec_count;
+    let index_zipped_vector = vector.iter().zip(index_vec).collect::<Vec<(&i32,usize)>>(); 
+    println!("zipped vector is {:?}",index_zipped_vector);
 }
 ```
 
