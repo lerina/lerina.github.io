@@ -30,6 +30,9 @@ by Keith Peters
 
 ### Developer's Notes and Tech Tips
 
+- [Input / Output](./dev_notes/input_output.html)
+- [Iterators and Combinators](./dev_notes/iterators_and_combinators.html)
+
 ---
 
 see also:
