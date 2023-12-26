@@ -5,7 +5,7 @@
 
 ## Rust, Wasm and more 
 
-- Rust and webassembly
+- [Rust and webassembly](./rust_wasm/index.html)
 
 - Rust and Python
 
@@ -30,9 +30,11 @@ by Keith Peters
 
 ### Developer's Notes and Tech Tips
 
-- [Input / Output](./dev_notes/input_output.html)
-- [Iterators and Combinators](./dev_notes/iterators_and_combinators.html)
-
+- Rust [Input / Output](./dev_notes/input_output.html)
+- Rust [Iterators and Combinators](./dev_notes/iterators_and_combinators.html)
+- Rust [Serde / Reqwest]()
+- Git [git actions]()
+- hx [Helix editor]()
 ---
 
 see also:
