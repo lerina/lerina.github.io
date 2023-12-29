@@ -519,6 +519,99 @@ fn main() {
 }
 ```
 
+## Serde
+
+
+Serde is "a framework for serializing and deserializing Rust data structures efficiently and generically."
+
+```
+Rust structure 
+  ↓
+  -- Serialize --> Structure in terms of the Serde data model*
+  ↓
+  -- Data format (JSON/Bincode/etc) --> Convert the Serde data model to the output format
+```
+
+\*The Serde data model is a simplified form of Rust's type system.
+In the case of most Rust types, their mapping into the Serde data model is straightforward.
+
+### Using derive
+
+Serde provides a derive macro to generate implementations of the Serialize and Deserialize traits for data structures defined in your crate, allowing them to be represented conveniently in all of Serde's data formats.
+
+To use `#[derive(Serialize, Deserialize)]` in the code,
+
+- Add serde = { version = "1.0", features = ["derive"] } as a dependency in Cargo.toml.
+- Ensure that all other Serde-based dependencies (for example serde_json) are on a version that is compatible with serde 1.0.
+- On structs and enums that you want to serialize, import the derive macro as use serde::Serialize; within the same module and write #[derive(Serialize)] on the struct or enum.
+- Similarly *import* `use serde::Deserialize;` and write `#[derive(Deserialize)]` on structs and enums that you want to deserialize.
+
+So in `Cargo.toml` we have:
+
+```toml
+...
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+
+# serde_json is just for the example, not required in general
+serde_json = "1.0"
+...
+```
+
+Usage example
+
+```rust
+use serde::{Serialize, Deserialize};
+
+#[derive(Serialize, Deserialize, Debug)]
+struct Point {
+    x: i32,
+    y: i32,
+}
+
+fn main() {
+    let point = Point { x: 1, y: 2 };
+
+    let serialized = serde_json::to_string(&point).unwrap();
+    println!("serialized = {}", serialized);  
+    // Output: serialized = {"x":1,"y":2}
+
+    let deserialized: Point = serde_json::from_str(&serialized).unwrap();
+    println!("deserialized = {:?}", deserialized);
+    // Output: deserialized = Point { x: 1, y: 2 }
+}
+```
+
+Run it
+
+```sh
+$ cargo run
+serialized = {"x":1,"y":2}
+deserialized = Point { x: 1, y: 2 }
+```
+
+
+
+Note: 
+
+_Sometimes you may see compile-time errors that tell you:<br/><br/>the trait `serde::ser::Serialize` is not implemented for `...`<br/><br/>even though the struct or enum clearly has #[derive(Serialize)] on it._
+<br/>
+*This almost always means that you are using libraries that depend on incompatible versions of Serde. You may be depending on serde 1.0 in your Cargo.toml but using some other library that depends on serde 0.9. So the Serialize trait from serde 1.0 may be implemented, but the library expects an implementation of the Serialize trait from serde 0.9. From the Rust compiler's perspective these are totally different traits.*
+<br/><br/>
+*The fix is to upgrade or downgrade libraries as appropriate until the Serde versions match. The cargo tree -d command is helpful for finding all the places that duplicate dependencies are being pulled in.*
+
+_ [serde.rs doc](https://serde.rs/derive.html)
+
+
+
+## curl
+
+```sh
+curl "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current=temperature_2m,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m"
+```
+
+
+
 ---
 
 </main>
