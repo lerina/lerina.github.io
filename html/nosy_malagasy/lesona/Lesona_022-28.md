@@ -325,6 +325,129 @@ aux clients en utilisant des termes de parenté : `neny`, maman, pour les femmes
 et papa ou `Radada`, monsieur papa, pour les hommes.
 
 
+## Lesona fahadimy amby roapolo
+
+lésna fa-dimi a-(m)b rôpoul
+
+### Resadresaky ny mpinamana
+
+résad'ésaki ni pnama-n
+
+1. Miasa any Toliary ve ny zokinao vavimatoa I~ ?
+miasa a-n touliari vé n zouknaou vavmatou
+
+2. Eny, mpiasa ao amin'ny seranan-tsambon' V2.
+i Toliary izy.
+éni pias aou am sérana tsa-(m)bou-n touliari izi
+
+3. Monina "' any koa ny anadahiko 4.
+mou-n a-n kou ni anada-akou
+
+4. Hay ! Inona no raharahany .>' ?
+a-i inna n rara-a-n
+
+5. Izy no talen'ny seranam-piaramanidina.
+iz n talé-nn sérana-piaramanidn
+
+
+Conversation entre amis (Conversation de-les amis)
+
+1. Est-ce que ta sœur aînée (le aîné-de-toi femelle-aînée) travaille à Toliary ?
+2. Oui, elle est employée au port maritime de (là à-le port-de-bateau-de-le) Toliary.
+3. Mon frère y (là-bas) réside aussi.
+4. Ah bon ! Quel est son métier ?
+5. C'est le directeur de l'aéroport (directeur-de-le port-de-avion ).
+
+Notes:
+
+1. Vous vous rappelez sans doute que `zoky`, aîné, doit être suivi
+de `lahy`, mâle, ou de `vavy`, femelle, afin de préciser le sexe.
+L'emploi de `vavimatoa`, aînée des filles, donne plus d'informations: 
+il précise à la fois le sexe et le rang occupé par le `zoky`, aîné, 
+dont il est question. 
+C'est l'équivalent féminin de `lahimatoa`, aîné des garçons, vu en 24ème leçon, phrase 4.
+
+2. `seranan-tsambo` = `seranana`, port+ `sambo`, bateau ; 
+`sambo` qui n'est pas défini, est complément du nom `seranana`,
+qui se termine par `-na` et est accentué sur l'avant-avant-dernière
+syllabe. Dans ce cas, la voyelle `a` de la finale `-na` s'efface-
+remplacée par un trait d'union `—` et la consonne initiale `s` du
+complément `sambo` suit la règle des alternances de consonnes
+et devient `ts`: `seranana` + `sambo` -> `seranan-tsambo`.
+C'est la même construction que vous allez rencontrer
+dans la phrase 5 avec `seranam-piaramanidina`, aéroport. 
+La syllabe finale `-na` de `seranana`, port, s'abrège en `n`, qui, 
+par alternance, devient `m`, et la consonne initiale `f` du
+complément `fiaramanidina`, avion, devient `p`: `seranana` +
+`fiaramanidina` -> `seranam-piaramanidina`. 
+Remarquez que `fiaramanidina` est synonyme de `aerôplanina`, aéroplane, avion, 
+mot d'emprunt,  que vous avez déjà rencontré en 17ème leçon, phrase 5.
+
+3. `monina`, résider /habiter, est un verbe à la forme active: 
+`m-`+ `onina` -> `monina`. Le verbe `mipetraka`, s'asseoir — rencontré
+dans la leçon précédente — peut fonctionner, selon la phrase où
+il est employé, comme un synonyme de `monina`.
+
+4. `anadahiko`, mon frère, vient de `anaka`, enfant + `lahy`, mâle + `-ko`, de moi. 
+Il est utilisé par la soeur pour désigner son frère de sang. 
+Notez que le `-ka` de `anaka` s'efface et que la consonne initiale `l` de lahy devient `d`. 
+Souvenez-vous de `rahalahy`, frère, rencontré en 22ème leçon, et de `rahavavy`, sour, en 24ème leçon, 
+qui s'utilisent respectivement entre hommes et entre femmes.
+`raharaha`, travail, est synonyme de `asa`, travail / métier
+
+### Fanazarana 1 — Adikao
+
+1. Monina any Toliary ny zokiko vavimatoa. 
+2. Izy no vavimatoa. 
+3. Tale ao amin'ny seranan-tsambo izy. 
+4. Mi asa ao amin'ny seranam-piaramanidina ny anadahiko. 
+5. Manana anadahy any Toliary aho.
+
+Corrige de l'exercice 1
+
+1. Ma soeur aînée habite à Toliary. 
+2. C'est elle qui est l'aînée des filles. 
+3. Il/Elle est directeur/directrice au port. 
+4. Mon frère travaille à l'aéroport. 
+5. J'ai un frère à Toliary.
+
+
+### Fanazarana 2 — Fenoy ny banga
+
+1. J'ai beaucoup de travail.
+Be ........ aho
+
+2. Ma soeur aînée est employée à l'aéroport.
+Mpiasa ao amin'ny seranam-piaramanidina ny
+zokiko .........  .
+
+3. C'est mon frère qui est le directeur,*
+Ny ......... no tale
+
+* C'est une femme qui parle.
+
+4. Le directeur ne réside pas à Toliary.
+Tsy monina any Toliary ny .... .
+
+5. Il réside à Antananarivo.
+...... ao Antananarivo izy
+
+
+Corrigé de l'exercice 2
+
+1. raharaha
+2. vavimatoa 
+3. anadahiko 
+4. tale
+5. Monina
+
+
+
+
+
+
+
+
 
 
 
