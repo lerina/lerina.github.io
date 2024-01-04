@@ -9,6 +9,40 @@
 
 ### from prompt
 
+#### io::stdin().read_line
+
+- Spike or example code
+
+```rust
+use std::io;
+
+fn main() {
+    let mut input = String::new();
+    let n = io::stdin().read_line(&mut input).unwrap();
+    println!("{} bytes read", n);
+    println!("{}", input);
+}
+```
+
+- Production code
+
+```rust
+use std::io;
+
+fn main() {
+    let mut input = String::new();
+    match io::stdin().read_line(&mut input) {
+        Ok(n) => {
+            println!("{} bytes read", n);
+            println!("{}", input);
+        }
+        Err(error) => println!("error: {error}"),
+    }
+}
+```
+
+Or
+
 ```rust
 use std::io;
 
@@ -33,6 +67,8 @@ fn get_input(prompt: &str) -> String{
     input.trim().to_string()
 }
 ```
+
+[more here](./dev_studies/input_output.html)
 
 ### from env
 
