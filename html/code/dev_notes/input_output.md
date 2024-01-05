@@ -210,7 +210,405 @@ fn main() {
 }
 ```
 
-## String to File
+## Write String to File
+
+### 1. Write all data to a file at once
+
+```rust
+use std::fs;
+use std::io::Write;
+
+// 1. Write all data to a file at once
+// 1.1 data as &str
+fn write_data_to_file(path: &str, data: &str) -> Result<(), Box<dyn std::error::Error>> {
+    fs::write(&path, &data)?;
+
+    Ok(())
+}
+// 1.2 data as [u8] (&str if not using as_bytes())
+fn write_data_to_file_as_bytes(path: &str, data: &[u8]) -> Result<(), Box<dyn std::error::Error>> {
+    fs::write(&path, &data)?;
+
+    Ok(())
+}
+
+fn main() {
+    let data = "\
+He he he
+
+plenty data
+ 
+here.";
+
+    // 1.1. Write all data to a file at once
+    match write_data_to_file(&"db_1.1.txt", &data) {
+        Ok(_) => println!("Write all data to a file at once"),
+        Err(e) => println!("Opps: {e}"),
+    }
+
+    // 1.2. Write all data to a file at once as *[u8]
+    match write_data_to_file_as_bytes(&"db_1.2.txt", &data.as_bytes()) {
+        Ok(_) => println!("Write all data to a file at once as *[u8]"),
+        Err(e) => println!("Opps: {e}"),
+    }
+
+}
+```
+
+### 2. Write all data to a file at once with fs::File
+
+```rust
+use std::fs;
+use std::io::Write;
+
+// 2.1 all at once
+fn write_data_to_file_with_fs_write_all(
+    path: &str,
+    data: &str,
+) -> Result<(), Box<dyn std::error::Error>> {
+    let mut file: fs::File = fs::File::create(&path)?;
+
+    file.write_all(&data.as_bytes())?;
+
+    Ok(())
+}
+
+// 2.2 handle bytes
+fn write_data_to_file_with_fs_with_write(
+    path: &str,
+    data: &[u8],
+) -> Result<(), Box<dyn std::error::Error>> {
+    let mut file: fs::File = fs::File::create(&path)?;
+
+    let remaining = file.write(&data)?;
+    if remaining > 0 {
+        println!("{remaining} bytes not written");
+    }
+
+    Ok(())
+}
+
+fn main() {
+    let data = "\
+He he he
+
+plenty data
+ 
+here.";
+
+    // 2. Write all data to a file at once with fs::File
+    // 2.1 all at once
+    match write_data_to_file_with_fs_write_all(&"db_2.1.txt", &data) {
+        Ok(_) => println!("Write all data as &str to a file at once with fs::File and write_all()"),
+        Err(e) => println!("Opps: {e}"),
+    }
+    // 2.2 handle bytes
+    match write_data_to_file_with_fs_with_write(&"db_2.2.txt", &data.as_bytes()) {
+        Ok(_) => println!("Write all data as [u8] to a file with fs::File and write()"),
+        Err(e) => println!("Opps: {e}"),
+    }
+
+
+}
+```
+
+
+### 3. Append data to a file
+
+```rust
+use std::fs;
+use std::io::Write;
+
+Append data to a file
+// 3.1 write_all data as &str
+fn append_data_to_file_with_write_all(
+    path: &str,
+    data: &str,
+) -> Result<(), Box<dyn std::error::Error>> {
+    let mut file: fs::File = fs::OpenOptions::new()
+        .create(true)
+        .append(true)
+        .open(&path)?;
+
+    file.write_all(&data.as_bytes())?;
+
+    Ok(())
+}
+
+// 3.2 append data.as_bytes()
+fn append_data_to_file_with_write(
+    path: &str,
+    data: &[u8],
+) -> Result<(), Box<dyn std::error::Error>> {
+    let mut file: fs::File = fs::OpenOptions::new()
+        .create(true)
+        .append(true)
+        .open(&path)?;
+
+    let remaining = file.write(&data)?;
+    if remaining > 0 {
+        println!("{remaining} bytes not written");
+    }
+
+    Ok(())
+}
+
+fn main() {
+    let data = "\
+He he he
+
+plenty data
+ 
+here.";
+
+
+    // 3.1 data as &str ([u8] if using as_bytes())
+    match append_data_to_file_with_write_all(&"db_3.txt", &data) {
+        Ok(_) => println!("Append all data as &str to a file at once using write_all()"),
+        Err(e) => println!("Opps: {e}"),
+    }
+
+    // 3.2 data as [u8] (&str if not using as_bytes())
+    match append_data_to_file_with_write(&"db_3.txt", &data.as_bytes()) {
+        Ok(_) => println!("Append all data as [u8] to a file using write()"),
+        Err(e) => println!("Opps: {e}"),
+    }
+}
+```
+
+### 4. Write and Append data to a file with BufWriter
+
+```rust
+use std::fs;
+use std::io::{Write, BufWriter};
+
+// 4.1 append data as &str with write_all
+#[allow(non_snake_case)] 
+fn append_data_to_file_with_BufWriter_with_write_all(
+    path: &str,
+    data: &str,
+) -> Result<(), Box<dyn std::error::Error>> {
+    let file: fs::File = fs::OpenOptions::new()
+        .create(true)
+        .append(true)
+        .open(&path)?;
+
+    let mut file: BufWriter<fs::File>  = BufWriter::new(file);
+
+    file.write_all(&data.as_bytes())?;
+
+    file.flush()?; // <--- make sure Os really writes it
+ 
+    Ok(())
+}
+
+// 4.2 append data.as_bytes() with write
+#[allow(non_snake_case)] 
+fn append_data_to_file_with_BufWriter_with_write(
+    path: &str,
+    data: &[u8],
+) -> Result<(), Box<dyn std::error::Error>> {
+    let file: fs::File = fs::OpenOptions::new()
+        .create(true)
+        .append(true)
+        .open(&path)?;
+
+    let mut file: BufWriter<fs::File>  = BufWriter::new(file);
+
+    let remaining = file.write(&data)?;
+    if remaining > 0 {
+        println!("{remaining} bytes not written");
+    }
+
+    file.flush()?; // <--- make sure Os really writes it
+ 
+    Ok(())
+}
+
+fn main() {
+
+    // 4.1 append data as &str with write_all 
+    match append_data_to_file_with_BufWriter_with_write_all(&"db_4.txt", &data) {
+        Ok(_) => println!("Append all data as &str to a file at once with BufWriter and write_all()"),
+        Err(e) => println!("Opps: {e}"),
+    }
+
+    // 4.2 append data.as_bytes() with BufWriter and write
+    match append_data_to_file_with_BufWriter_with_write(&"db_4.txt", &data.as_bytes()) {
+        Ok(_) => println!("Append all data as &str to a file at once with BufWriter and write()"),
+        Err(e) => println!("Opps: {e}"),
+    }
+}
+```
+
+
+## Read File
+
+### 1. read whole file into String.
+
+```rust
+use std::fs;
+
+fn file_to_string() -> Result<String, Box<dyn std::error::Error>> {
+    let content = fs::read_to_string("./db.txt")?;
+
+    Ok(content)
+}
+
+fn main() {
+    println!("1. read whole file into String.");
+    let data = file_to_string();
+    match data {
+        Ok(content) => println!("{}", content),
+        Err(e) => println!("Something happened {e}"),
+    }
+
+```
+
+### 2. read whole file into Vec<u8> then convert string.
+
+```rust
+use std::fs;
+use std::str;
+
+fn file_to_vec_u8() -> Result<Vec<u8>, Box<dyn std::error::Error>> {
+    let content = fs::read("./db.txt")?;
+
+    Ok(content)
+}
+
+fn main() {
+    println!("2. read whole file into Vec<u8> then convert string.");
+    let data = file_to_vec_u8();
+    match data {
+        Ok(content) => match str::from_utf8(&content) {
+            Ok(str_data) => println!("{str_data}"),
+            Err(e) => println!("Could not convert: {e}"),
+        },
+        Err(e) => println!("Something happened {e}"),
+    }
+}
+```
+
+### 3. read file line by line in to a Vec<String>
+
+```rust
+use std::fs::File;
+use std::io::{BufRead, BufReader};
+
+fn file_line_by_line() -> Result<Vec<String>, Box<dyn std::error::Error>> {
+    let file: File = File::open("./db.txt")?;
+    let reader: BufReader<File> = BufReader::new(file);
+    let mut content: Vec<String> = Vec::new();
+
+    for line in reader.lines() {
+        match line {
+            Ok(aline) => content.push(aline),
+            Err(e) => println!("Opps: {e}"),
+        }
+    }
+
+    Ok(content)
+}
+
+fn main() {
+    println!("3. read file line by line in to a Vec<String>");
+    let data = file_line_by_line();
+    match data {
+        Ok(content) => {
+            for line in content {
+                println!("{line}");
+            }
+        }
+        Err(e) => println!("Something happened {e}"),
+    }
+} 
+```
+
+### 4. read file byte by byte in to a Vec<u8>
+
+```rust
+use std::fs::File;
+use std::io::{BufRead, BufReader, Read};
+
+fn file_byte_by_byte() -> Result<Vec<u8>, Box<dyn std::error::Error>> {
+    let file: File = File::open("./db.txt")?;
+    let reader: BufReader<File> = BufReader::new(file);
+    let mut content: Vec<u8> = Vec::new();
+
+    for line in reader.bytes() {
+        match line {
+            Ok(aline) => content.push(aline),
+            Err(e) => println!("Opps: {e}"),
+        }
+    }
+
+    Ok(content)
+}
+
+fn main() {
+    println!("4. read file byte by byte in to a Vec<u8>");
+    let data = file_byte_by_byte();
+    match data {
+        Ok(content) => {
+            for line in content {
+                println!("{line}");
+            }
+        }
+        Err(e) => println!("Something happened {e}"),
+    }
+
+}
+```
+
+### 5. read file byte chunks by byte chunk in to an array [u8]
+
+```rust
+use std::fs::File; 
+use std::io::{BufRead, BufReader, Read}; 
+
+fn file_byte_chunk_by_byte_chunk(buffer_size: usize) 
+    -> Result<Vec<Vec<u8>>, Box<dyn std::error::Error>> {
+
+    let file: File = File::open("./db.txt")?;
+    let mut reader: BufReader<File> = 
+        BufReader::with_capacity(buffer_size, file);
+    
+    let mut content: Vec<Vec<u8>> = Vec::new();
+    loop {
+        let buffer = reader.fill_buf()?;
+        let buffer_length: usize = buffer.len();
+        
+        if buffer_length == 0 { break; }
+
+        content.push(buffer.to_vec());
+        reader.consume(buffer_length);
+    };
+    
+    Ok(content)
+}
+
+fn main() {
+    println!("5. read file byte by byte in chunks of {BUFFER_SIZE} ");
+    const BUFFER_SIZE: usize = 4;
+    let data = file_byte_chunk_by_byte_chunk(BUFFER_SIZE);
+    match data {
+        Ok(content) => {
+            for line in content {
+                match str::from_utf8(&line) {
+                    Ok(chunk) => println!("{chunk}"),
+                    Err(e) => println!("Could not convert to utf8: {e}"),
+                }
+            }
+        }
+        Err(e) => println!("Something happened {e}"),
+    }
+}
+```
+
+---
+
+### Write File: Everything together
 
 ```rust
 use std::fs;
@@ -396,12 +794,13 @@ here.";
 }
 ```
 
-## File to String
+
+### Read File: Everything together
 
 ```rust
 use std::fs; // 1.
-use std::fs::File; // 3. and 4.
-use std::io::{BufRead, BufReader, Read}; // 3. and 4.needs Read
+use std::fs::File; // 3, 4 and 5
+use std::io::{BufRead, BufReader, Read}; // 3. 4 and 5 needs Read
 use std::str; // 2.
 
 // 1. read whole file into String.
@@ -640,13 +1039,54 @@ _ [serde.rs doc](https://serde.rs/derive.html)
 
 
 
-## curl
+## Replacing command-line `curl` with Rust `reqwest` & `tokio`
 
 ```sh
 curl "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current=temperature_2m,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m"
 ```
 
+```rust
+use reqwest::{Client, Error};
 
+async fn meteo() -> Result<(), Error> {
+    const URL1: &str = "https://api.open-meteo.com/v1/forecast?latitude=-18.879190&longitude=47.507904&current=temperature_2m,wind_speed_10m";
+    match reqwest::get(URL1).await {
+        Ok(resp) => {
+            let antananarivo: OpenMeteo = resp.json().await?;
+             //= serde_json::from_str(&json).unwrap();
+            //println!("Antananarivo\n{:#?}", antananarivo)
+            println!("Antananarivo\n current weather is {}{}", 
+                antananarivo.current.temperature_2m, 
+                antananarivo.current_units.temperature_2m);
+        }
+        Err(err) => {
+            println!("Reqwest Error: {}", err)
+        }
+    }
+
+    Ok(())
+}
+
+// tokio let's us use "async" on our main function
+#[tokio::main]
+async fn main() -> Result<(), Error> {
+
+    meteo().await?;
+
+    Ok(())
+}
+```
+
+In Cargo.toml
+
+```toml
+[dependencies]
+reqwest = { version = "0.11.23", features = ["json"] } # reqwest with JSON parsing support
+#serde = { version = "1.0.193", features = ["derive"] }
+#serde_json = "1.0.108"
+tokio = { version = "1.35.1", features = ["full"] } # for our async runtime
+
+```
 
 ---
 
