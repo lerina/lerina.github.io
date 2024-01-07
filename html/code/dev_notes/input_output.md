@@ -446,6 +446,11 @@ fn main() {
 
 ### 1. read whole file into String.
 
+Read the entire contents of a file into a string.
+
+*This is a convenience function for using `File::open` and `read_to_string` with fewer imports and without an intermediate variable.*  
+_ [Rust doc: fs::read_to_string](https://doc.rust-lang.org/std/fs/fn.read_to_string.html)
+
 ```rust
 use std::fs;
 
@@ -480,10 +485,16 @@ fn main() {
         Ok(content) => println!("{}", content),
         Err(e) => println!("Something happened {e}"),
     }
-
+}
 ```
 
 ### 2. read whole file into Vec<u8> then convert string.
+
+Read the entire contents of a file into a bytes vector.
+
+
+*This is a convenience function for using `File::open` and `read_to_end` with fewer imports and without an intermediate variable.*  
+_ [Rust doc: fs::read](https://doc.rust-lang.org/std/fs/fn.read.html)
 
 ```rust
 use std::fs;
@@ -510,9 +521,32 @@ fn main() {
 
 ### 3. read file line by line in to a Vec<String>
 
+**fs::File**  
+An object providing access to an open file on the filesystem.
+
+*An instance of a File can be read and/or written depending on what options it was opened with. Files also implement Seek to alter the logical cursor that the file contains internally.*
+
+*Files are automatically closed when they go out of scope.*  
+_ [Rust doc: fs::File](https://doc.rust-lang.org/std/fs/struct.File.html)  
+
+**File::open**  
+Attempts to open a file in read-only mode.
+
+**BufReader**  
+The `BufReader` struct adds buffering to any reader.
+
+*A `BufReader` performs large, infrequent reads on the underlying Read and maintains an in-memory buffer of the results.*  
+*`BufReader` can improve the speed of programs that make small and repeated read calls to the same file or network socket.*   
+*It does not help when reading very large amounts at once, or reading just one or a few times.*   
+*It also provides no advantage when reading from a source that is already in memory, like a `Vec<u8>`.*   
+_ [Rust doc: BufReader](https://doc.rust-lang.org/std/io/struct.BufReader.html)
+
 ```rust
 use std::fs::File;
-use std::io::{BufRead, BufReader};
+use std::io::{
+    BufRead, // lines()
+    BufReader
+};
 
 fn file_line_by_line() -> Result<Vec<String>, Box<dyn std::error::Error>> {
     let file: File = File::open("./db.txt")?;
@@ -547,7 +581,10 @@ fn main() {
 
 ```rust
 use std::fs::File;
-use std::io::{BufRead, BufReader, Read};
+use std::io::{
+    BufReader,
+    Read, // bytes()
+};
 
 fn file_byte_by_byte() -> Result<Vec<u8>, Box<dyn std::error::Error>> {
     let file: File = File::open("./db.txt")?;
