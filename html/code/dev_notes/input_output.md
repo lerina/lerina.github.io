@@ -449,6 +449,24 @@ fn main() {
 ```rust
 use std::fs;
 
+fn read_to_string(file: &str) -> String {
+    match fs::read_to_string(file) {
+        Ok(f) => f.to_string(),
+        Err(_) => "".to_string(),
+    }
+}
+
+fn main() {
+    let read_from_string = read_to_string("fs.rs");
+    println!("{}", read_from_string);
+}
+```
+
+or
+
+```rust
+use std::fs;
+
 fn file_to_string() -> Result<String, Box<dyn std::error::Error>> {
     let content = fs::read_to_string("./db.txt")?;
 
