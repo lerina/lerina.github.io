@@ -621,6 +621,7 @@ fn main() {
 ```rust
 use std::fs::File; 
 use std::io::{BufRead, BufReader, Read}; 
+use std::str;
 
 fn file_byte_chunk_by_byte_chunk(buffer_size: usize) 
     -> Result<Vec<Vec<u8>>, Box<dyn std::error::Error>> {
@@ -853,10 +854,10 @@ here.";
 ### Read File: Everything together
 
 ```rust
-use std::fs; // 1.
-use std::fs::File; // 3, 4 and 5
+use std::fs;                             // 1.
+use std::fs::File;                       // 3, 4 and 5
 use std::io::{BufRead, BufReader, Read}; // 3. 4 and 5 needs Read
-use std::str; // 2.
+use std::str;                            // 2, 5
 
 // 1. read whole file into String.
 fn file_to_string() -> Result<String, Box<dyn std::error::Error>> {
