@@ -89,7 +89,8 @@
 <ul>
 <li><a href="#consoleterminal-user-input"
 id="toc-consoleterminal-user-input">Console/Terminal User input</a></li>
-<li><a href="#fmtdisplay" id="toc-fmtdisplay">fmt::Display</a></li>
+<li><a href="#display-trait" id="toc-display-trait">Display
+trait</a></li>
 <li><a href="#write-string-to-file" id="toc-write-string-to-file">Write
 String to File</a></li>
 <li><a href="#read-file" id="toc-read-file">Read File</a></li>
@@ -113,6 +114,18 @@ href="../index.html">code</a></p>
 <h2 id="consoleterminal-user-input">Console/Terminal User input</h2>
 <h3 id="from-prompt">from prompt</h3>
 <h4 id="iostdin.read_line">io::stdin().read_line</h4>
+<p><strong>Struct std::io::Stdin</strong><br />
+<em>A handle to the standard input stream of a process.</em></p>
+<p><em>Each handle is a shared reference to a global buffer of input
+data to this process.</em></p>
+<p><strong>Function std::io::stdin</strong><br />
+<em>Constructs a new handle to the standard input of the current
+process.</em></p>
+<p><em>Each handle returned is a reference to a shared global buffer
+whose access is synchronized via a mutex.</em></p>
+<p><strong>io::stdin().read_line</strong><br />
+<em>Locks this handle and reads a line of input, appending it to the
+specified buffer.</em></p>
 <ul>
 <li>Spike or example code</li>
 </ul>
@@ -167,6 +180,21 @@ class="sourceCode rust"><code class="sourceCode rust"><span id="cb3-1"><a href="
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p><a href="./dev_studies/input_output.html">more here</a></p>
 <h3 id="from-env">from env</h3>
+<p><strong>std::env</strong><br />
+<em>This module contains functions to inspect various aspects such as
+environment variables, process arguments, the current directory, and
+various other important directories.</em></p>
+<p><em>There are several functions and structs in this module that have
+a counterpart ending in os. Those ending in os will return an OsString
+and those without will return a String.</em></p>
+<p><strong>env::args()</strong><br />
+<em>Returns the arguments that this program was started with (normally
+passed via the command line).</em> <em>An iterator over the arguments of
+a process, yielding a String value for each argument.</em></p>
+<p><em>The first element is traditionally the path of the
+executable</em>,<br />
+but it can be set to arbitrary text, and might not even exist. This
+means this property should not be relied upon for security purposes.</p>
 <div class="sourceCode" id="cb4"><pre
 class="sourceCode rust"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::</span>env<span class="op">;</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -202,7 +230,14 @@ class="sourceCode rust"><code class="sourceCode rust"><span id="cb4-1"><a href="
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">USER:</span> tac</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Shell</span> is set to /bin/bash</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">The</span> current directory is /media/tac/Sikidy/Videos/Rs_Studies/io_Files/Display/Spike</span></code></pre></div>
-<h2 id="fmtdisplay">fmt::Display</h2>
+<h2 id="display-trait">Display trait</h2>
+<p><strong>fmt::Display</strong><br />
+<em>Implementing this trait for a type will automatically implement the
+ToString trait for the type, allowing the usage of the .to_string()
+method. Prefer implementing the Display trait for a type, rather than
+ToString.</em></p>
+<p><em>Display is similar to Debug, but Display is for user-facing
+output, and so cannot be derived.</em></p>
 <div class="sourceCode" id="cb6"><pre
 class="sourceCode rust"><code class="sourceCode rust"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">// [source](https://doc.rust-lang.org/rust-by-example/hello/print/print_display.html)</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>

@@ -11,6 +11,20 @@
 
 #### io::stdin().read_line
 
+**Struct std::io::Stdin**  
+*A handle to the standard input stream of a process.*
+
+*Each handle is a shared reference to a global buffer of input data to this process.*
+
+**Function std::io::stdin**  
+*Constructs a new handle to the standard input of the current process.*
+
+*Each handle returned is a reference to a shared global buffer whose access is synchronized via a mutex.*
+
+**io::stdin().read_line**  
+*Locks this handle and reads a line of input, appending it to the specified buffer.*
+
+
 - Spike or example code
 
 ```rust
@@ -72,6 +86,18 @@ fn get_input(prompt: &str) -> String{
 
 ### from env
 
+**std::env**  
+*This module contains functions to inspect various aspects such as environment variables, process arguments, the current directory, and various other important directories.*
+
+*There are several functions and structs in this module that have a counterpart ending in os. Those ending in os will return an OsString and those without will return a String.*
+
+**env::args()**  
+*Returns the arguments that this program was started with (normally passed via the command line).*
+*An iterator over the arguments of a process, yielding a String value for each argument.*
+
+*The first element is traditionally the path of the executable*,  
+but it can be set to arbitrary text, and might not even exist. This means this property should not be relied upon for security purposes.
+
 ```rust
 use std::env;
 
@@ -113,7 +139,12 @@ Shell is set to /bin/bash
 The current directory is /media/tac/Sikidy/Videos/Rs_Studies/io_Files/Display/Spike
 ```
 
-## fmt::Display
+## Display trait
+
+**fmt::Display**  
+*Implementing this trait for a type will automatically implement the ToString trait for the type, allowing the usage of the .to_string() method. Prefer implementing the Display trait for a type, rather than ToString.*
+
+*Display is similar to Debug, but Display is for user-facing output, and so cannot be derived.*
 
 ```rust
 // [source](https://doc.rust-lang.org/rust-by-example/hello/print/print_display.html)
