@@ -102,6 +102,27 @@ but it can be set to arbitrary text, and might not even exist. This means this p
 use std::env;
 
 fn main() {
+    echo();
+}
+
+fn echo() {
+    let args: Vec<String> = env::args().collect();
+    println!("{args:?}");
+}
+```
+
+**env::var**  
+Fetches the environment variable key from the current process.
+
+We can access shell variables such as *$HOME* with `var`
+
+**env!**  
+Inspects an environment variable at compile time.
+
+```rust
+use std::env;
+
+fn main() {
     
     for argument in env::args() {
         println!("{argument}");
@@ -245,6 +266,18 @@ fn main() {
 
 ### 1. Write all data to a file at once
 
+**fs::write**  
+*Write a slice as the entire contents of a file.*
+
+*This function will create a file if it does not exist, and will entirely replace its contents if it does.*
+*This is a convenience function for using File::create and write_all with fewer imports.*
+
+
+**as_bytes**  
+*Converts a string slice to a byte slice. To convert the byte slice back into a string slice, use the from_utf8 function.*
+
+#### 1.1 data as &str
+
 ```rust
 use std::fs;
 use std::io::Write;
@@ -256,7 +289,72 @@ fn write_data_to_file(path: &str, data: &str) -> Result<(), Box<dyn std::error::
 
     Ok(())
 }
-// 1.2 data as [u8] (&str if not using as_bytes())
+
+fn main() {
+    let data = "\
+He he he
+
+plenty data
+ 
+here.";
+
+    // 1.1. Write all data to a file at once
+    match write_data_to_file(&"db_1.1.txt", &data) {
+        Ok(_) => println!("Write all data to a file at once"),
+        Err(e) => println!("Opps: {e}"),
+    }
+}
+```
+
+#### 1.2 data as [u8] 
+
+call with  data.as_bytes() if its a &str
+
+```rust
+use std::fs;
+use std::io::Write;
+
+// 1.2 data as [u8] (call with  data.as_bytes() if its a &str)
+fn write_data_to_file_as_bytes(
+    path: &str, 
+    data: &[u8]) -> Result<(), Box<dyn std::error::Error>> 
+{
+    fs::write(&path, &data)?;
+
+    Ok(())
+}
+
+fn main() {
+    let data = "\
+He he he
+
+plenty data
+ 
+here.";
+
+    // 1.2. Write all data to a file at once as *[u8]
+    match write_data_to_file_as_bytes(&"db_1.2.txt", &data.as_bytes()) {
+        Ok(_) => println!("Write all data to a file at once as *[u8]"),
+        Err(e) => println!("Opps: {e}"),
+    }
+}
+```
+
+
+#### The code together
+
+```rust
+use std::fs;
+use std::io::Write;
+
+// 1. Write all data to a file at once
+// 1.1 data as &str
+fn write_data_to_file(path: &str, data: &str) -> Result<(), Box<dyn std::error::Error>> {
+    fs::write(&path, &data)?;
+
+    Ok(())
+}
+// 1.2 data as [u8] (call with  data.as_bytes() if its a &str)
 fn write_data_to_file_as_bytes(path: &str, data: &[u8]) -> Result<(), Box<dyn std::error::Error>> {
     fs::write(&path, &data)?;
 
@@ -286,13 +384,22 @@ here.";
 }
 ```
 
-### 2. Write all data to a file at once with fs::File
+### 2. Write all data to a file at once with fs::File & write_all
+
+**fs::File**  
+*An object providing access to an open file on the filesystem.*
+
+*An instance of a File can be read and/or written depending on what options it was opened with. Files also implement Seek to alter the logical cursor that the file contains internally.*
+
+*Files are automatically closed when they go out of scope.*
+
+#### 2.1 write &str all at once 
 
 ```rust
 use std::fs;
 use std::io::Write;
 
-// 2.1 all at once
+// 2.1 write &str all at once
 fn write_data_to_file_with_fs_write_all(
     path: &str,
     data: &str,
@@ -304,7 +411,80 @@ fn write_data_to_file_with_fs_write_all(
     Ok(())
 }
 
-// 2.2 handle bytes
+fn main() {
+    let data = "\
+He he he
+
+plenty data
+ 
+here.";
+
+    // 2. Write all data to a file at once with fs::File
+    // 2.1 write &str all at once 
+    match write_data_to_file_with_fs_write_all(&"db_2.1.txt", &data) {
+        Ok(_) => println!("Write all data as &str to a file at once with fs::File and write_all()"),
+        Err(e) => println!("Opps: {e}"),
+    }
+}
+```
+
+#### 2.2 write bytes all at once 
+
+```rust
+use std::fs;
+use std::io::Write;
+
+// 2.2 write bytes all at once
+fn write_data_to_file_with_fs_with_write(
+    path: &str,
+    data: &[u8],
+) -> Result<(), Box<dyn std::error::Error>> {
+    let mut file: fs::File = fs::File::create(&path)?;
+
+    let remaining = file.write(&data)?;
+    if remaining > 0 {
+        println!("{remaining} bytes not written");
+    }
+
+    Ok(())
+}
+
+fn main() {
+    let data = "\
+He he he
+
+plenty data
+ 
+here.";
+
+    // 2. Write all data to a file at once with fs::File
+    // 2.2 handle bytes
+    match write_data_to_file_with_fs_with_write(&"db_2.2.txt", &data.as_bytes()) {
+        Ok(_) => println!("Write all data as [u8] to a file with fs::File and write()"),
+        Err(e) => println!("Opps: {e}"),
+    }
+}
+```
+
+#### The code together
+
+```rust
+use std::fs;
+use std::io::Write;
+
+// 2.1 write &str all at once
+fn write_data_to_file_with_fs_write_all(
+    path: &str,
+    data: &str,
+) -> Result<(), Box<dyn std::error::Error>> {
+    let mut file: fs::File = fs::File::create(&path)?;
+
+    file.write_all(&data.as_bytes())?;
+
+    Ok(())
+}
+
+// 2.2 write bytes all at once
 fn write_data_to_file_with_fs_with_write(
     path: &str,
     data: &[u8],
@@ -344,14 +524,43 @@ here.";
 ```
 
 
-### 3. Append data to a file
+### 3. fs::OpenOptions builder
+
+**fs::OpenOptions**  
+*Options and flags which can be used to configure how a file is opened.*
+
+*This builder exposes the ability to configure how a File is opened and what operations are permitted on the open file. The File::open and File::create methods are aliases for commonly used options using this builder.*
+
+*Generally speaking, when using OpenOptions, you’ll first call OpenOptions::new, then chain calls to methods to set each option, then call OpenOptions::open, passing the path of the file you’re trying to open. This will give you a io::Result with a File inside that you can further operate on.*
+_ [Rust docs: fs::OpenOptions](https://doc.rust-lang.org/std/fs/struct.OpenOptions.html)  
+
+#### 3.1 Read/Write. Create if file missing.
+
+Opening a file for both reading and writing, as well as creating it if it doesn’t exist
+
+```rust
+use std::fs::OpenOptions;
+
+// 3.1 Read/Write. Create if file missing.
+let file = OpenOptions::new()
+            .read(true)
+            .write(true)
+            .create(true)
+            .open("foo.txt");
+```
+
+#### 3.2 Append data to a file with fs::OpenOptions 
+
+*Note that setting .write(true).append(true) has the same effect as setting only .append(true).*  
+*This function doesn’t create the file if it doesn’t exist. Use the OpenOptions::create method to do so.*
+
+##### 3.2.1 write_all data as &str
 
 ```rust
 use std::fs;
 use std::io::Write;
 
-Append data to a file
-// 3.1 write_all data as &str
+// 3.2.1 write_all data as &str
 fn append_data_to_file_with_write_all(
     path: &str,
     data: &str,
@@ -366,7 +575,85 @@ fn append_data_to_file_with_write_all(
     Ok(())
 }
 
-// 3.2 append data.as_bytes()
+fn main() {
+    let data = "\
+He he he
+
+plenty data
+ 
+here.";
+
+    // 3.2.1 data as &str ([u8] if using as_bytes())
+    match append_data_to_file_with_write_all(&"db_3.txt", &data) {
+        Ok(_) => println!("Append all data as &str to a file at once using write_all()"),
+        Err(e) => println!("Opps: {e}"),
+    }
+}
+```
+
+##### 3.2.2 append data.as_bytes() with write()
+
+```rust
+use std::fs;
+use std::io::Write;
+
+// 3.2.2 append data.as_bytes() with write
+fn append_data_to_file_with_write(
+    path: &str,
+    data: &[u8],
+) -> Result<(), Box<dyn std::error::Error>> {
+    let mut file: fs::File = fs::OpenOptions::new()
+        .create(true)
+        .append(true)
+        .open(&path)?;
+
+    let remaining = file.write(&data)?;
+    if remaining > 0 {
+        println!("{remaining} bytes not written");
+    }
+
+    Ok(())
+}
+
+fn main() {
+    let data = "\
+He he he
+
+plenty data
+ 
+here.";
+
+    // 3.2.2 data as [u8] (&str if not using as_bytes())
+    match append_data_to_file_with_write(&"db_3.txt", &data.as_bytes()) {
+        Ok(_) => println!("Append all data as [u8] to a file using write()"),
+        Err(e) => println!("Opps: {e}"),
+    }
+}
+```
+
+##### The Code together
+
+```rust
+use std::fs;
+use std::io::Write;
+
+Append data to a file
+// 3.2.1 write_all data as &str
+fn append_data_to_file_with_write_all(
+    path: &str,
+    data: &str,
+) -> Result<(), Box<dyn std::error::Error>> {
+    let mut file: fs::File = fs::OpenOptions::new()
+        .create(true)
+        .append(true)
+        .open(&path)?;
+
+    file.write_all(&data.as_bytes())?;
+
+    Ok(())
+}
+
+// 3.2.2 append data.as_bytes()
 fn append_data_to_file_with_write(
     path: &str,
     data: &[u8],
@@ -393,13 +680,13 @@ plenty data
 here.";
 
 
-    // 3.1 data as &str ([u8] if using as_bytes())
+    // 3.2.1 data as &str ([u8] if using as_bytes())
     match append_data_to_file_with_write_all(&"db_3.txt", &data) {
         Ok(_) => println!("Append all data as &str to a file at once using write_all()"),
         Err(e) => println!("Opps: {e}"),
     }
 
-    // 3.2 data as [u8] (&str if not using as_bytes())
+    // 3.2.2 data as [u8] (&str if not using as_bytes())
     match append_data_to_file_with_write(&"db_3.txt", &data.as_bytes()) {
         Ok(_) => println!("Append all data as [u8] to a file using write()"),
         Err(e) => println!("Opps: {e}"),
@@ -409,13 +696,25 @@ here.";
 
 ### 4. Write and Append data to a file with BufWriter
 
+**std::io::BufWriter**  
+*Wraps a writer and buffers its output.*
+
+*It can be excessively inefficient to work directly with something that implements Write.*
+*BufWriter<W> can improve the speed of programs that make __small and repeated__ write calls to the same file or network socket.*
+
+*It does not help when writing very large amounts at once, or writing just one or a few times. It also provides no advantage when writing to a destination that is in memory, like a `Vec<u8>`.*
+
+*It is critical to call flush before BufWriter<W> is dropped. Though dropping will attempt to flush the contents of the buffer, any errors that happen in the process of dropping will be ignored. Calling flush ensures that the buffer is empty and thus dropping will not even attempt file operations.*
+
+#### 4.1 append data as &str with BufWriter and write_all
+
 ```rust
 use std::fs;
 use std::io::{Write, BufWriter};
 
-// 4.1 append data as &str with write_all
+// 4.1 append data as &str with BufWriter and write_all
 #[allow(non_snake_case)] 
-fn append_data_to_file_with_BufWriter_with_write_all(
+fn append_data_to_file_with_BufWriter_and_write_all(
     path: &str,
     data: &str,
 ) -> Result<(), Box<dyn std::error::Error>> {
@@ -426,7 +725,80 @@ fn append_data_to_file_with_BufWriter_with_write_all(
 
     let mut file: BufWriter<fs::File>  = BufWriter::new(file);
 
-    file.write_all(&data.as_bytes())?;
+    file.write_all(&data.as_bytes())?; // because fn write_all(&mut self, buf: &[u8]) -> Result<()>
+
+    file.flush()?; // <--- make sure Os really writes it
+ 
+    Ok(())
+}
+
+fn main() {
+
+    // 4.1 append data as &str with write_all 
+    match append_data_to_file_with_BufWriter_and_write_all(&"db_4.txt", &data) {
+        Ok(_) => println!("Append all data as &str to a file at once with BufWriter and write_all()"),
+        Err(e) => println!("Opps: {e}"),
+    }
+}
+```
+#### 4.2 append data.as_bytes() with BufWriter and write
+
+```rust
+use std::fs;
+use std::io::{Write, BufWriter};
+
+// 4.2 append data.as_bytes() with BufWriter & write
+#[allow(non_snake_case)] 
+fn append_data_to_file_with_BufWriter_and_write(
+    path: &str,
+    data: &[u8],
+) -> Result<(), Box<dyn std::error::Error>> {
+    let file: fs::File = fs::OpenOptions::new()
+        .create(true)
+        .append(true)
+        .open(&path)?;
+
+    let mut file: BufWriter<fs::File>  = BufWriter::new(file);
+
+    let remaining = file.write(&data)?;
+    if remaining > 0 {
+        println!("{remaining} bytes not written");
+    }
+
+    file.flush()?; // <--- make sure Os really writes it
+ 
+    Ok(())
+}
+
+fn main() {
+
+    // 4.2 append data.as_bytes() with BufWriter and write
+    match append_data_to_file_with_BufWriter_and_write(&"db_4.txt", &data.as_bytes()) {
+        Ok(_) => println!("Append all data as &str to a file at once with BufWriter and write()"),
+        Err(e) => println!("Opps: {e}"),
+    }
+}
+```
+#### Code all together
+
+```rust
+use std::fs;
+use std::io::{Write, BufWriter};
+
+// 4.1 append data as &str with BufWriter and write_all
+#[allow(non_snake_case)] 
+fn append_data_to_file_with_BufWriter_and_write_all(
+    path: &str,
+    data: &str,
+) -> Result<(), Box<dyn std::error::Error>> {
+    let file: fs::File = fs::OpenOptions::new()
+        .create(true)
+        .append(true)
+        .open(&path)?;
+
+    let mut file: BufWriter<fs::File>  = BufWriter::new(file);
+
+    file.write_all(&data.as_bytes())?; // because fn write_all(&mut self, buf: &[u8]) -> Result<()>
 
     file.flush()?; // <--- make sure Os really writes it
  
@@ -435,7 +807,7 @@ fn append_data_to_file_with_BufWriter_with_write_all(
 
 // 4.2 append data.as_bytes() with write
 #[allow(non_snake_case)] 
-fn append_data_to_file_with_BufWriter_with_write(
+fn append_data_to_file_with_BufWriter_and_write(
     path: &str,
     data: &[u8],
 ) -> Result<(), Box<dyn std::error::Error>> {
@@ -459,13 +831,13 @@ fn append_data_to_file_with_BufWriter_with_write(
 fn main() {
 
     // 4.1 append data as &str with write_all 
-    match append_data_to_file_with_BufWriter_with_write_all(&"db_4.txt", &data) {
+    match append_data_to_file_with_BufWriter_and_write_all(&"db_4.txt", &data) {
         Ok(_) => println!("Append all data as &str to a file at once with BufWriter and write_all()"),
         Err(e) => println!("Opps: {e}"),
     }
 
     // 4.2 append data.as_bytes() with BufWriter and write
-    match append_data_to_file_with_BufWriter_with_write(&"db_4.txt", &data.as_bytes()) {
+    match append_data_to_file_with_BufWriter_and_write(&"db_4.txt", &data.as_bytes()) {
         Ok(_) => println!("Append all data as &str to a file at once with BufWriter and write()"),
         Err(e) => println!("Opps: {e}"),
     }
