@@ -1400,7 +1400,12 @@ fn main() {
 
 ## Removing a File in Rust
 
-To remove or delete a file in Rust, we can use the remove_file() method from the std::fs module.
+**remove_file()**  
+Removes a file from the filesystem.
+To remove or delete a file in Rust, we can use the  method from the std::fs module.
+
+Note that there is no guarantee that the file is immediately deleted (e.g., depending on platform, other open file descriptors may prevent immediate removal).
+
 
 ```rust
 use std::fs;
