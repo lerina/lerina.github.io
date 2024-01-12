@@ -1509,6 +1509,8 @@ _ [serde.rs doc](https://serde.rs/derive.html)
 curl "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current=temperature_2m,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m"
 ```
 
+The reqwest crate provides a convenient, higher-level HTTP Client.
+
 ```rust
 use reqwest::{Client, Error};
 
