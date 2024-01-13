@@ -442,11 +442,37 @@ Corrigé de l'exercice 2
 5. Monina
 
 
+## Lesona fahenina amby roapolo
+
+[lésna fa-(i)énn a-(m)b rôpoul]
+
+### Mitohy ny resadresaka
+
+mitou-i n résadésak
+
+1. Efa manambady î ve ny zandrinao faralahy?
+éfa mana-(m)bad vé n za-(n)d'naou farala
+
+2. Tsy mbola manambady izy fa efa miasa.
+tsi (m)boula mana-(m)badiz fa éfa miasa
+
+3. Ny zandriko faravavy koa efa miasa.
+ni za-(n)dkou faravav kouéfa miasa
+
+4. Mpiasa birao ve izy?
+piasa braou vé iz
+
+5. Tsia, mpanao asa tanana izy.
+tsi panaou asa tana-niz
 
 
+La conversation continue (Continuer la conversation)
 
-
-
+1. Est-ce que ton plus jeune frère (le cadet-de-toi dernier-mâle) est déjà marié?
+2. Il  n'est pas encore marié, mais il travaille déjà.
+3. Ma plus jeune sœur (Le cadet-de-moi dernier-femelle) aussi travaille déjà.
+4. Est-ce qu'elle est employée de bureau (Travailleur bureau)?
+5. Non, elle est artisane (faiseur travail main).
 
 
 
