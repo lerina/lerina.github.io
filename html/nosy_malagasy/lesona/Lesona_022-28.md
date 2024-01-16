@@ -474,15 +474,67 @@ La conversation continue (Continuer la conversation)
 4. Est-ce qu'elle est employée de bureau (Travailleur bureau)?
 5. Non, elle est artisane (faiseur travail main).
 
+Notes:
+
+1. `manambady`, être marié, verbe actif formé à partir du
+préfixe `m-`, est composé du verbe `manana`, avoir, posséder, et
+du nom complément `vady`, époux/épouse: `m-`+ `anana`+ `vady`
+-> `manana vady`, avoir épouse -> `manambady`, être marié.
+Lorsque ce verbe est suivi d'un complément d'objet, il est
+traduit par *être marié à*. Remarquez l'emplacement de la voyelle
+finale a de `manana` et les alternances de consonnes: 
+`manan(a)` + `vady` -> `manambady`: n/m et v/b.
+
+2. Comme `lahimatoa`, rencontré en 24ème leçon, phrase 4, le terme
+`faralahy` ("dernier-mâle"), dernier des garçons, précise le sexe
+et le rang occupé par le `zandry`, cadet, dont il est question;
+`fara`, dernier+ `lahy`, mâle —> `zandrinao faralahy` = "ton cadet
+[le dernier des garçons]". 
+Il en est de même pour `zandriko faravavy`, de la phrase 3, 
+qui signifie ma plus jeune soeur.
 
 
+### Fanazarana 1 — Adikao
+
+1. Tsy mbola miasa ny zandriko faralahy. 
+2. Efa manambady ny zandriko faravavy. 
+3. Tsy mpiasa birao ny zandriko. 
+4. Manambady mpanao asa tanana ianao. 
+5. Tsy manambady aho.
+
+Corrige de l'exercice 1
+
+1. Mon plus jeune frère ne travaille pas encore. 
+2. Ma plus jeune soeur est déjà mariée. 
+3. Mon petit frère / Ma petite sceur (mon cadet) n'est pas employé(e) de bureau. 
+4. Tu es/ Vous êtes marié(e) à un(e) artisan(e). 
+5. Je ne suis pas marié.
+
+### Fanazarana 2 — Fenoy ny banga
+
+1. Ma plus jeune sœur est mariée à un employé de bureau.
+......... mpiasa birao ny zandriko faravavy.
+
+2. Est-ce qu'il est artisan?
+Mpanao ... ...... ve izy?
+
+3. lle est mariée à mon plus jeune frère.
+Manambady ny ........ ....... izy.
+
+4. Ma plus jeune sceur travaille.
+Miasa ny ........ ........ .
+
+5. Elle est employée de bureau.
+Mpiasa ..... izy.
 
 
+## Lesona fahafito amby roapolo
 
+(liésna fa-fit a-(m)ti rôpoul)
 
+### Ny mpandrafitra
 
-
-
+ni pa-(n)d'aft'a
 
 
 
