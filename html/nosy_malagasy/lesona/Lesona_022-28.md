@@ -536,5 +536,28 @@ Mpiasa ..... izy.
 
 ni pa-(n)d'aft'a
 
+1. Ah! mpanao asa tanana ny vadinao?
+a panaou asa tanana n vadnaou
+
+2. Eny, mpandrafitra izy.
+(i)éni pa-(n) d'aft'iz
+
+3. Raha izany te hampanao fanaka azy aho.
+raizani té a-(m)panaou fanak azi a
+
+4. Fanaka toa inona?
+fanaka tou inn
+
+5. Mihevitra hampamboatra farafara sy lalimoara aho.
+miévt' a-(m) pa-(m) bôt'a farafara s lalmouar a
+
+
+Le menuisier
+
+1. Ah! votre époux est artisan?
+2. Oui, il est menuisier.
+3. Si [c'est] cela, je voudrais lui faire faire des meubles (désirer futur fairefaire meubles lui je).
+4. Quel genre de meubles (meubles comme quoi)?
+5. Je pense faire fabriquer [un] lit et [une] armoire (Penser futur-faire-fabriquer lit et armoire je).
 
 
