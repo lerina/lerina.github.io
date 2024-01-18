@@ -560,4 +560,40 @@ Le menuisier
 4. Quel genre de meubles (meubles comme quoi)?
 5. Je pense faire fabriquer [un] lit et [une] armoire (Penser futur-faire-fabriquer lit et armoire je).
 
+Note:
+
+1. `mpandrafitra`, menuisier / charpentier, est un nom dérivé du
+verbe à la forme active `mandrafitra`, fabriquer des meubles.
+Vous avez déjà rencontré cette construction. On remplace le `m`
+du préfixe verbal `man-` par `mp-`, celui qui, et on obtient le nom:
+`man-`+ `rafitra`, menuiserie -> `mandrafitra` -> `mpandrafitra`, menuisier.
+
+2. `hampanao` (litt. "futur-faire-faire") est le futur du verbe
+causatif `mampanao`, faire faire, qui n'est autre que le verbe à
+la forme active `manao`, faire, où l'élément `-amp-`, faire (faire
+quelque chose), est inséré après la consonne `m`, marque de la
+forme active : `m-`+ `-amp-`+ `an-`+ `tao` -> `mampanao`. Notez
+l'effacement de la consonne initiale `t` du radical `tao` au contact
+de `man-`.
+
+3. `azy`, lui, à iui, à elle, est la forme du pronom personnel sujet `izy`,
+il / elle, quand il joue le rôle de complément.
+
+4. `mihevitra`, penser, est un verbe à la forme active, composé du
+préfixe verbal `mi-` et du radical `hevitra`, pensée / avis / idée.
+
+5. `hampamboatra` (litt. 'futur-faire-construire/faire/fabriquer"),
+est le futur du verbe causatif `mampamboatra` issu du verbe
+à la forme active `mamboatra`, construire, faire, fabriquer,
+et de `amp-`, faire (faire quelque chose): 
+`m-` + `amp-` + `an-` + `voatra`, fait, construit -> `mampamboatra`, 
+faire construire / faire / fabriquer.  
+La consonne `n` du préfixe `man-` devient `m` selon la
+règle des alternances de consonnes, et le `v` de `voatra` devient
+`b`. 
+Le verbe causatif `mampanao`, en phrase 3, est synonyme de `mampamboatra`.
+
+6. `lalimoara`, armoire, est un m ot d ' e mprunt au f r ançais.
+Remarquez que l'article a été intégré dans le mot naturalisé.
+
 
