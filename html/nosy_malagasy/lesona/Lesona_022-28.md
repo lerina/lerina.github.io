@@ -597,3 +597,35 @@ Le verbe causatif `mampanao`, en phrase 3, est synonyme de `mampamboatra`.
 Remarquez que l'article a été intégré dans le mot naturalisé.
 
 
+### Fanazarana 1 — Adikao
+
+1. Hampanao fanakany vadinao aho. 
+2. Mpandrafitra ny vadiko. 
+3. Te hampanao lalimoara aho.
+4. Hampamboatra farafara koa aho. 
+5. Mihevitra hampamboatra fanaka izy.
+
+Corrigé de l'exercice 1
+
+1. Je ferai faire des meubles à votre mari. 
+2. Mon mari est menuisier. 
+3. Je voudrais faire faire une armoire. 
+4. Je ferai fabriquer aussi un lit. 
+5. Il/Elle pense faire fabriquer des meubles.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
