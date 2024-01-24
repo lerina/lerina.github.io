@@ -613,11 +613,35 @@ Corrigé de l'exercice 1
 4. Je ferai fabriquer aussi un lit. 
 5. Il/Elle pense faire fabriquer des meubles.
 
+### Fanazarana 2 — Fenoy ny banga
+
+1. Ma femme fait faire des meubles.
+Mampanao ...... ny vadiko
+
+2. El le fait faire une armoire.
+Mampanao ......... iray izy.
+
+3. Est-ce que votre mari fait des meubles ?
+Mamboatra fanaka ve ny .......?
+
+4. Son mari est menuisier.
+............ ny vadiny.
+
+5. Je pense qu'il est artisan.
+......... aho fa mpanao asa tanana izy.
 
 
+Corrigé de l'exercice 2
+1. fanaka 
+2. lalimoara
+3. vadinao
+4. Mpandrafitra
+5. Mihevitra
 
 
+## Lesona fahavalo amby roapolo
 
+[lésna fa-va/ou a-(m)b rôpoul]
 
 
 
