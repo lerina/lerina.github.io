@@ -643,9 +643,50 @@ Corrigé de l'exercice 2
 
 [lésna fa-va/ou a-(m)b rôpoul]
 
+### Famerenan-desona — Révision
 
+1. Le complément du nom : complément indéfini
 
+Si le complément est indéfini, c'est-à-dire qu'il n'est pas précédé de
+l'article ny, il y a deux cas à envisager.
 
+* Le nom est accentué sur l'avant-dernière syllabe
+- le complément commence par une consonne :
+On ajoute au nom la préposition `n-` et on applique la règle des alternances de consonnes:
+`mpiasam-panjakana`, fonctionnaire = `mpiasa` + `n-`+ `fanjakana` 
+-> mpiasan-fanjakana -> `mpiasam-panjakana` (alternances n/m et f/p).
+- le complément commence par une voyelle :
+On ajoute au nom la préposition -n' :
+`angadin'omby`, charrue = `angady` + `-n'`+ `omby` -> `angadin'omby`.
+
+* Le nom se termine par -na et il est accentué sur l'avant-avant-dernière syllabe:
+- le complément commence par une consonne dentale comme s:
+La voyelle finale a du nom disparaît et est remplacée par un trait d'union; 
+la consonne initiale du complément suit la règle des alternances de consonnes:
+`seranan-tsambo`, port = `seranana`+ `sambo` -> seranan-sambo -> `seranan-tsambo` (alternance s/ts).
+- le complément commence par une consonne labiale comme `f` et `v`:
+La voyelle a de la syllabe finale `-na` du nom disparaît et est remplacée par un trait d'union; 
+le `n` devient `m`, la consonne initiale `f` du complément devient `p` 
+et `v` devient `b`, suivant la règle des alternances de consonnes:
+`seranam-piaramanidina`, aéroport = `seranana` + `fiaramanidina` -> seranan-fiaramanidina -> `seranam-piaramanidina` (alternances n/m et f/p).  
+Les autres labiales p et b ne subissent aucune modification.
+
+2. Les verbes transitifs et intransitifs
+
+• Le préfixe du verbe actif mi- indique que le verbe est intransitif,
+c'est-à-dire qu'il ne demande pas de complément d'objet direct. 
+Il se fixe directement sur le radical:
+`miasa izy`, il/elle travaille ; `miasa` = `mi-`+ `asa`
+`mizara ny asa`, les tâches sont partagées; `mizara` `mi-` + `zara`, partage, part.
+• Le préfixe du verbe actif `man-` indique que le verbe est
+transitif, c'est-à-dire qu'il demande un complément d'objet direct.
+Rappelons que la préfixation de `man-` entraîne une modification
+de la consonne initiale du radical, ce qui n'est pas le cas quand le
+radical commence pat une voyelle:
+`manomana ny tanimbary ny lehilahy`, les hommes préparent la rizière; 
+`manomana` = `man-`+ `omana`  
+`mandrafitra ny fanaka izy`, il fabrique les meubles; 
+`mandrafitra` = `man-`+ `rafitra` - alternance r/dr.
 
 
 
