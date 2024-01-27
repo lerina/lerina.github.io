@@ -690,7 +690,30 @@ radical commence pat une voyelle:
 
 
 
+3. Les verbes causatifs ("faire faire")
 
+Les verbes causatifs sont dérivés des verbes à la forme active en
+y ajoutant l'infixe `-amp-` ("faire-faire-quelque-chose"). Lorsque
+la consonne initiale du radical est une labiale comme `v`, le préfixe
+complexe `mampan-` devient `mampam-` selon la loi des alternances
+de consonnes. Dans d'autres cas, il y a amalgame entre le `n` du
+préfixe `mampan-` et la consonne initiale du radical qui s'efface:
+`mampamboatra fanaka izy`, il f a it f a briquer des meubles;
+`mampamboatra` = `m-` + `-amp-` + `an-` + `voatra` — alternances `n/m` et `v/b`  
+`mampanao fanaka izy`, il fait faire des meubles; 
+`mampanao` = `m-` + `-amp-` + `an-` + `tao` (le `t` du radical `tao` s'efface)
+`mampanao fanaka ny vadinao aho`, je fais faire des meubles à votre mari.  
 
-
+Remarquez que dans ce dernier exemple, l'article
+`ny` qui détermine
+le complément (`ny vadinao`) ne comporte pas du tout la notion
+de "à" (complément indirect). Dans une phrase malgache à deux
+compléments, comme c'est le cas ici — `fanaka` et `ny vadlnao` —, en
+général, le premier complément (`fanaka`) n'est pas défini, mais le
+deuxième (`ny vadinao`) est défini. Le premier complément est alors
+un complément d'objet direct, tandis que le deuxième est un complément 
+d'attribution (qui se traduit, en général, par un complément
+d'objet indirect en français). Contrairement au français, cette attribution 
+n'est pas introduite par une préposition en malgache, mais par la place 
+du complément dans la phrase.
 
