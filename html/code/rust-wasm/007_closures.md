@@ -19,8 +19,7 @@ _ [wasm-bindgen Guide](https://rustwasm.github.io/wasm-bindgen/examples/closures
 cargo new closures --lib
 cd closures
 mkdir -p www/js www/html
-cargo add wasm-bindgen
-cargo add js-sys
+cargo add wasm-bindgen js-sys
 ```
 
 edit Cargo.toml to add `crate-type`
