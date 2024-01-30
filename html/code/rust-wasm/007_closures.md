@@ -19,7 +19,7 @@ _ [wasm-bindgen Guide](https://rustwasm.github.io/wasm-bindgen/examples/closures
 cargo new closures --lib
 cd closures
 mkdir -p www/js www/html
-cargo add wasm-bindgen js-sys
+cargo add wasm-bindgen js-sys web-sys
 ```
 
 edit Cargo.toml to add `crate-type`
@@ -27,6 +27,26 @@ edit Cargo.toml to add `crate-type`
 ```toml
 [lib]
 crate-type = ["cdylib",]
+```
+### web-sys as a dependecy
+
+In Cargo.toml change the web-sys entry 
+
+```toml
+web-sys = "0.3.65"
+```
+to
+
+```toml
+[dependencies.web-sys]
+version = "0.3.65"
+features = [
+  'CssStyleDeclaration',
+  'Document',
+  'Element',
+  'HtmlElement',
+  'Window',
+]
 ```
 
 
@@ -207,19 +227,6 @@ fn setup_clicker(document: &Document) {
 }
 ```
 
-### Cargo.toml dependecies
-
-```toml
-[dependencies.web-sys]
-version = "0.3.65"
-features = [
-  'CssStyleDeclaration',
-  'Document',
-  'Element',
-  'HtmlElement',
-  'Window',
-]
-```
 
 ## build and serve
 
