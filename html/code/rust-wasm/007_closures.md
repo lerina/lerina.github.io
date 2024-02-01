@@ -10,6 +10,140 @@
 _ [wasm-bindgen Guide](https://rustwasm.github.io/wasm-bindgen/examples/closures.html){target="_blank"}
 
 
+### Simple example using the gloo crate
+
+We start with our own example using a helper crate `gloo`, before diving into the harder official example
+
+```toml
+...
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+gloo = "0.11.0"
+js-sys = "0.3.67"
+wasm-bindgen = "0.2.90"
+
+[dependencies.web-sys]
+version = "0.3.67"
+features = [
+  'Document',
+  'Element',
+  'HtmlElement',
+  'HtmlParagraphElement',
+  'HtmlSelectElement',
+  'HtmlOptionsCollection',
+  'Node',
+  'Window',
+  'console',
+]
+```
+
+```rust
+// src/lib.rs
+use gloo::events::EventListener;
+use wasm_bindgen::prelude::*;
+use wasm_bindgen::JsCast;
+
+#[wasm_bindgen(start)]
+pub fn start() {
+    select_country_on_click();
+}
+
+pub fn select_country_on_click() {
+    let window = web_sys::window().expect("global window does not exists");
+    let document = window.document().expect("expecting a document on window");
+    let body = document
+        .body()
+        .expect("document expect to have have a body");
+
+    let paragraph1= document
+        .get_element_by_id("message")
+        .unwrap()
+        .dyn_into::<web_sys::HtmlParagraphElement>()
+        .unwrap();
+    let paragraph1_hello = paragraph1.clone();
+
+    let select_country = document.get_element_by_id("countries")
+        .unwrap()
+        .dyn_into::<web_sys::HtmlSelectElement>()
+        .unwrap();    
+    let select_country_hello = select_country.clone();
+    let mut index = 0;
+    let on_click = EventListener::new(&select_country, "click", move |_event| {
+        web_sys::console::log_2(&"Hello World Gloo :%s".into(), &"Select country".into());
+        
+        index = select_country_hello.selected_index();
+        paragraph_hello.set_text_content(Some(&index.to_string()));
+    });
+    
+    on_click.forget();
+ 
+    body.append_child(&paragraph).unwrap();
+}
+
+```
+
+```javascript
+import init from "../pkg/closures.js"
+
+async function run() {
+    const wasm = await init();
+}
+
+run();
+```
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
+    <title>Closures: nobundle</title>
+    <style>
+        body {
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+    </style>
+  </head>
+  <body>
+<select id="countries" name="countries">
+  <option value="KE">Kenya</option>
+  <option value="MG">Madagascar</option>
+  <option value="UY">Uruguay</option>
+  <option value="UZ">Uzbekistan</option>
+  <option value="VU">Vanuatu</option>
+  <option value="ZM">Zambia</option>
+  <option value="ZW">Zimbabwe</option>
+</select>
+
+      <p id="message"></p>
+    <script type="module" src="../js/index.js"></script>
+  </body>
+</html>
+```
+
+### build and serve
+
+```sh
+wasm-pack build --target web --no-typescript --out-dir www/pkg
+
+http www
+```
+
+open `index.html`
+
+```sh
+firefox http://localhost:8000/html/
+```
+
+---
+
+And now the official example: 
+
 [web-sys: Closures example](https://github.com/rustwasm/wasm-bindgen/tree/main/examples/closures){target="_blank"}  
 
 
