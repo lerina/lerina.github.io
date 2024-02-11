@@ -291,9 +291,9 @@ class="sourceCode rust"><code class="sourceCode rust"><span id="cb5-1"><a href="
 <span id="cb5-112"><a href="#cb5-112" aria-hidden="true" tabindex="-1"></a>    body<span class="op">.</span>append_child(<span class="op">&amp;</span>val)<span class="op">.</span>unwrap()<span class="op">;</span></span>
 <span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a>    <span class="co">//</span></span>
-<span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> select_country <span class="op">=</span> document<span class="op">.</span>get_element_by_id(<span class="st">&quot;country_list&quot;</span>)</span>
-<span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>unwrap()</span>
-<span id="cb5-117"><a href="#cb5-117" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="pp">dyn_into::</span><span class="op">&lt;</span><span class="pp">web_sys::</span>HtmlSelectElement<span class="op">&gt;</span>()</span>
+<span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> select_country <span class="op">=</span> document<span class="op">.</span>get_element_by_id(<span class="st">&quot;country_list&quot;</span>)  <span class="co">// -&gt; Option&lt;Element&gt; </span></span>
+<span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>unwrap()                                                    <span class="co">// We need to cast Element</span></span>
+<span id="cb5-117"><a href="#cb5-117" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="pp">dyn_into::</span><span class="op">&lt;</span><span class="pp">web_sys::</span>HtmlSelectElement<span class="op">&gt;</span>()                    <span class="co">// into HtmlSelectElement</span></span>
 <span id="cb5-118"><a href="#cb5-118" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>unwrap()<span class="op">;</span>    </span>
 <span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> select_country_hello <span class="op">=</span> select_country<span class="op">.</span>clone()<span class="op">;</span></span>
 <span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> index<span class="op">:</span> <span class="dt">usize</span> <span class="op">=</span><span class="dv">0</span><span class="op">;</span></span>
@@ -307,56 +307,59 @@ class="sourceCode rust"><code class="sourceCode rust"><span id="cb5-1"><a href="
 <span id="cb5-128"><a href="#cb5-128" aria-hidden="true" tabindex="-1"></a>        <span class="co">// get selected country lat lon data</span></span>
 <span id="cb5-129"><a href="#cb5-129" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> target_info <span class="op">=</span> <span class="op">&amp;</span>country_list[index]<span class="op">;</span></span>
 <span id="cb5-130"><a href="#cb5-130" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> target_capital <span class="op">=</span> target_info<span class="op">.</span>capital<span class="op">.</span>clone()<span class="op">;</span>        </span>
-<span id="cb5-131"><a href="#cb5-131" aria-hidden="true" tabindex="-1"></a>        <span class="co">// get city data</span></span>
-<span id="cb5-132"><a href="#cb5-132" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> city_data <span class="op">=</span> get_temp(target_info<span class="op">.</span>lat<span class="op">,</span> target_info<span class="op">.</span>lon)<span class="op">;</span><span class="co">//-18.879190, 47.507904).await?;</span></span>
-<span id="cb5-133"><a href="#cb5-133" aria-hidden="true" tabindex="-1"></a>        spawn_local(<span class="kw">async</span> <span class="kw">move</span> <span class="op">{</span></span>
-<span id="cb5-134"><a href="#cb5-134" aria-hidden="true" tabindex="-1"></a>            <span class="kw">let</span> target <span class="op">=</span> city_data<span class="op">.</span><span class="kw">await</span><span class="op">.</span>unwrap()<span class="op">;</span></span>
-<span id="cb5-135"><a href="#cb5-135" aria-hidden="true" tabindex="-1"></a>            <span class="co">//display result</span></span>
-<span id="cb5-136"><a href="#cb5-136" aria-hidden="true" tabindex="-1"></a>            val<span class="op">.</span>set_inner_html(<span class="op">&amp;</span><span class="pp">format!</span>(<span class="st">&quot;{} </span><span class="sc">\n</span><span class="st">temp:{}{}&quot;</span><span class="op">,</span> </span>
-<span id="cb5-137"><a href="#cb5-137" aria-hidden="true" tabindex="-1"></a>                            target_capital<span class="op">.</span>as_str()<span class="op">,</span></span>
-<span id="cb5-138"><a href="#cb5-138" aria-hidden="true" tabindex="-1"></a>                            target<span class="op">.</span>current<span class="op">.</span>temperature_2m<span class="op">,</span>          </span>
-<span id="cb5-139"><a href="#cb5-139" aria-hidden="true" tabindex="-1"></a>                            target<span class="op">.</span>current_units<span class="op">.</span>temperature_2m))<span class="op">;</span></span>
-<span id="cb5-140"><a href="#cb5-140" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span>)<span class="op">;</span><span class="co">//^-- spawn</span></span>
-<span id="cb5-141"><a href="#cb5-141" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span>)<span class="op">;</span> <span class="co">//^-- on_click</span></span>
-<span id="cb5-142"><a href="#cb5-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-143"><a href="#cb5-143" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb5-144"><a href="#cb5-144" aria-hidden="true" tabindex="-1"></a>    on_click<span class="op">.</span>forget()<span class="op">;</span></span>
+<span id="cb5-131"><a href="#cb5-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-132"><a href="#cb5-132" aria-hidden="true" tabindex="-1"></a>        <span class="co">// get city data</span></span>
+<span id="cb5-133"><a href="#cb5-133" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> city_data <span class="op">=</span> get_temp(target_info<span class="op">.</span>lat<span class="op">,</span> target_info<span class="op">.</span>lon)<span class="op">;</span><span class="co">//-18.879190, 47.507904).await?;</span></span>
+<span id="cb5-134"><a href="#cb5-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-135"><a href="#cb5-135" aria-hidden="true" tabindex="-1"></a>        spawn_local(<span class="kw">async</span> <span class="kw">move</span> <span class="op">{</span></span>
+<span id="cb5-136"><a href="#cb5-136" aria-hidden="true" tabindex="-1"></a>            <span class="kw">let</span> target <span class="op">=</span> city_data<span class="op">.</span><span class="kw">await</span><span class="op">.</span>unwrap()<span class="op">;</span></span>
+<span id="cb5-137"><a href="#cb5-137" aria-hidden="true" tabindex="-1"></a>            <span class="co">//display result</span></span>
+<span id="cb5-138"><a href="#cb5-138" aria-hidden="true" tabindex="-1"></a>            val<span class="op">.</span>set_inner_html(<span class="op">&amp;</span><span class="pp">format!</span>(<span class="st">&quot;{} </span><span class="sc">\n</span><span class="st">temp:{}{}&quot;</span><span class="op">,</span> </span>
+<span id="cb5-139"><a href="#cb5-139" aria-hidden="true" tabindex="-1"></a>                            target_capital<span class="op">.</span>as_str()<span class="op">,</span></span>
+<span id="cb5-140"><a href="#cb5-140" aria-hidden="true" tabindex="-1"></a>                            target<span class="op">.</span>current<span class="op">.</span>temperature_2m<span class="op">,</span>          </span>
+<span id="cb5-141"><a href="#cb5-141" aria-hidden="true" tabindex="-1"></a>                            target<span class="op">.</span>current_units<span class="op">.</span>temperature_2m))<span class="op">;</span></span>
+<span id="cb5-142"><a href="#cb5-142" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span>)<span class="op">;</span><span class="co">//^-- spawn</span></span>
+<span id="cb5-143"><a href="#cb5-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-144"><a href="#cb5-144" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span>)<span class="op">;</span> <span class="co">//^-- on_click</span></span>
 <span id="cb5-145"><a href="#cb5-145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-146"><a href="#cb5-146" aria-hidden="true" tabindex="-1"></a>    <span class="cn">Ok</span>(())</span>
-<span id="cb5-147"><a href="#cb5-147" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb5-146"><a href="#cb5-146" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-147"><a href="#cb5-147" aria-hidden="true" tabindex="-1"></a>    on_click<span class="op">.</span>forget()<span class="op">;</span></span>
 <span id="cb5-148"><a href="#cb5-148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-149"><a href="#cb5-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-150"><a href="#cb5-150" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> mkcity_list(document<span class="op">:</span> <span class="op">&amp;</span>Document) <span class="op">-&gt;</span> Element <span class="op">{</span></span>
-<span id="cb5-151"><a href="#cb5-151" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> select_box <span class="op">=</span> document<span class="op">.</span>create_element(<span class="st">&quot;select&quot;</span>)<span class="op">.</span>unwrap()<span class="op">;</span></span>
-<span id="cb5-152"><a href="#cb5-152" aria-hidden="true" tabindex="-1"></a>    select_box<span class="op">.</span>set_id(<span class="st">&quot;country_list&quot;</span>)<span class="op">;</span></span>
-<span id="cb5-153"><a href="#cb5-153" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> _ <span class="op">=</span> document<span class="op">.</span>body()<span class="op">.</span>unwrap()<span class="op">.</span>append_child(<span class="op">&amp;</span>select_box)<span class="op">;</span></span>
-<span id="cb5-154"><a href="#cb5-154" aria-hidden="true" tabindex="-1"></a>    <span class="co">//</span></span>
-<span id="cb5-155"><a href="#cb5-155" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> country <span class="kw">in</span> [</span>
-<span id="cb5-156"><a href="#cb5-156" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;Madagascar&quot;</span><span class="op">,</span></span>
-<span id="cb5-157"><a href="#cb5-157" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;Nepal&quot;</span><span class="op">,</span></span>
-<span id="cb5-158"><a href="#cb5-158" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;Oman&quot;</span><span class="op">,</span></span>
-<span id="cb5-159"><a href="#cb5-159" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;Peru&quot;</span><span class="op">,</span></span>
-<span id="cb5-160"><a href="#cb5-160" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;Quatar&quot;</span><span class="op">,</span></span>
-<span id="cb5-161"><a href="#cb5-161" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;Rwanda&quot;</span><span class="op">,</span></span>
-<span id="cb5-162"><a href="#cb5-162" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;Singapore&quot;</span><span class="op">,</span></span>
-<span id="cb5-163"><a href="#cb5-163" aria-hidden="true" tabindex="-1"></a>    ] <span class="op">{</span></span>
-<span id="cb5-164"><a href="#cb5-164" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> option <span class="op">=</span> document<span class="op">.</span>create_element(<span class="st">&quot;option&quot;</span>)<span class="op">.</span>unwrap()<span class="op">;</span></span>
-<span id="cb5-165"><a href="#cb5-165" aria-hidden="true" tabindex="-1"></a>        option<span class="op">.</span>set_text_content(<span class="cn">Some</span>(country))<span class="op">;</span></span>
-<span id="cb5-166"><a href="#cb5-166" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> _ <span class="op">=</span> select_box<span class="op">.</span>append_child(<span class="op">&amp;</span>option)<span class="op">;</span></span>
-<span id="cb5-167"><a href="#cb5-167" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb5-168"><a href="#cb5-168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-169"><a href="#cb5-169" aria-hidden="true" tabindex="-1"></a>    select_box</span>
-<span id="cb5-170"><a href="#cb5-170" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb5-149"><a href="#cb5-149" aria-hidden="true" tabindex="-1"></a>    <span class="cn">Ok</span>(())</span>
+<span id="cb5-150"><a href="#cb5-150" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb5-151"><a href="#cb5-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-152"><a href="#cb5-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-153"><a href="#cb5-153" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> mkcity_list(document<span class="op">:</span> <span class="op">&amp;</span>Document) <span class="op">-&gt;</span> Element <span class="op">{</span></span>
+<span id="cb5-154"><a href="#cb5-154" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> select_box <span class="op">=</span> document<span class="op">.</span>create_element(<span class="st">&quot;select&quot;</span>)<span class="op">.</span>unwrap()<span class="op">;</span></span>
+<span id="cb5-155"><a href="#cb5-155" aria-hidden="true" tabindex="-1"></a>    select_box<span class="op">.</span>set_id(<span class="st">&quot;country_list&quot;</span>)<span class="op">;</span></span>
+<span id="cb5-156"><a href="#cb5-156" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> _ <span class="op">=</span> document<span class="op">.</span>body()<span class="op">.</span>unwrap()<span class="op">.</span>append_child(<span class="op">&amp;</span>select_box)<span class="op">;</span></span>
+<span id="cb5-157"><a href="#cb5-157" aria-hidden="true" tabindex="-1"></a>    <span class="co">//</span></span>
+<span id="cb5-158"><a href="#cb5-158" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> country <span class="kw">in</span> [</span>
+<span id="cb5-159"><a href="#cb5-159" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;Madagascar&quot;</span><span class="op">,</span></span>
+<span id="cb5-160"><a href="#cb5-160" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;Nepal&quot;</span><span class="op">,</span></span>
+<span id="cb5-161"><a href="#cb5-161" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;Oman&quot;</span><span class="op">,</span></span>
+<span id="cb5-162"><a href="#cb5-162" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;Peru&quot;</span><span class="op">,</span></span>
+<span id="cb5-163"><a href="#cb5-163" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;Quatar&quot;</span><span class="op">,</span></span>
+<span id="cb5-164"><a href="#cb5-164" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;Rwanda&quot;</span><span class="op">,</span></span>
+<span id="cb5-165"><a href="#cb5-165" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;Singapore&quot;</span><span class="op">,</span></span>
+<span id="cb5-166"><a href="#cb5-166" aria-hidden="true" tabindex="-1"></a>    ] <span class="op">{</span></span>
+<span id="cb5-167"><a href="#cb5-167" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> option <span class="op">=</span> document<span class="op">.</span>create_element(<span class="st">&quot;option&quot;</span>)<span class="op">.</span>unwrap()<span class="op">;</span></span>
+<span id="cb5-168"><a href="#cb5-168" aria-hidden="true" tabindex="-1"></a>        option<span class="op">.</span>set_text_content(<span class="cn">Some</span>(country))<span class="op">;</span></span>
+<span id="cb5-169"><a href="#cb5-169" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> _ <span class="op">=</span> select_box<span class="op">.</span>append_child(<span class="op">&amp;</span>option)<span class="op">;</span></span>
+<span id="cb5-170"><a href="#cb5-170" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
 <span id="cb5-171"><a href="#cb5-171" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-172"><a href="#cb5-172" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-173"><a href="#cb5-173" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-174"><a href="#cb5-174" aria-hidden="true" tabindex="-1"></a><span class="kw">async</span> <span class="kw">fn</span> get_temp(lat<span class="op">:</span> <span class="dt">f32</span><span class="op">,</span> lon<span class="op">:</span> <span class="dt">f32</span>) <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>OpenMeteo<span class="op">,</span> <span class="bu">Error</span><span class="op">&gt;</span> <span class="op">{</span> <span class="co">// 47.507905</span></span>
-<span id="cb5-175"><a href="#cb5-175" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> url <span class="op">=</span> <span class="pp">format!</span>(<span class="st">&quot;https://api.open-meteo.com/v1/forecast?latitude={lat}&amp;longitude={lon}&amp;current=temperature_2m,wind_speed_10m&quot;</span>)<span class="op">;</span> <span class="co">//latitude=-18.879190&amp;longitude=47.507904</span></span>
+<span id="cb5-172"><a href="#cb5-172" aria-hidden="true" tabindex="-1"></a>    select_box</span>
+<span id="cb5-173"><a href="#cb5-173" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb5-174"><a href="#cb5-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-175"><a href="#cb5-175" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-176"><a href="#cb5-176" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-177"><a href="#cb5-177" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> selection <span class="op">=</span>  <span class="pp">reqwest::</span>get(url)<span class="op">.</span><span class="kw">await</span><span class="op">?.</span><span class="pp">json::</span><span class="op">&lt;</span>OpenMeteo<span class="op">&gt;</span>()<span class="op">.</span><span class="kw">await</span><span class="op">?;</span></span>
-<span id="cb5-178"><a href="#cb5-178" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-179"><a href="#cb5-179" aria-hidden="true" tabindex="-1"></a>    <span class="cn">Ok</span>(selection)</span>
-<span id="cb5-180"><a href="#cb5-180" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<span id="cb5-177"><a href="#cb5-177" aria-hidden="true" tabindex="-1"></a><span class="kw">async</span> <span class="kw">fn</span> get_temp(lat<span class="op">:</span> <span class="dt">f32</span><span class="op">,</span> lon<span class="op">:</span> <span class="dt">f32</span>) <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>OpenMeteo<span class="op">,</span> <span class="bu">Error</span><span class="op">&gt;</span> <span class="op">{</span> <span class="co">// 47.507905</span></span>
+<span id="cb5-178"><a href="#cb5-178" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> url <span class="op">=</span> <span class="pp">format!</span>(<span class="st">&quot;https://api.open-meteo.com/v1/forecast?latitude={lat}&amp;longitude={lon}&amp;current=temperature_2m,wind_speed_10m&quot;</span>)<span class="op">;</span> <span class="co">//latitude=-18.879190&amp;longitude=47.507904</span></span>
+<span id="cb5-179"><a href="#cb5-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-180"><a href="#cb5-180" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> selection <span class="op">=</span>  <span class="pp">reqwest::</span>get(url)<span class="op">.</span><span class="kw">await</span><span class="op">?.</span><span class="pp">json::</span><span class="op">&lt;</span>OpenMeteo<span class="op">&gt;</span>()<span class="op">.</span><span class="kw">await</span><span class="op">?;</span></span>
+<span id="cb5-181"><a href="#cb5-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-182"><a href="#cb5-182" aria-hidden="true" tabindex="-1"></a>    <span class="cn">Ok</span>(selection)</span>
+<span id="cb5-183"><a href="#cb5-183" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <h2 id="build-and-serve">build and serve</h2>
 <div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">wasm-pack</span> build <span class="at">--target</span> web <span class="at">--no-typescript</span> <span class="at">--out-dir</span> www/pkg</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
