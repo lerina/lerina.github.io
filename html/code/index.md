@@ -28,7 +28,7 @@ by Keith Peters
 
 ### Games for the browser
 
-- [Invaders](./demo/index.html)
+- [Invaders](./demo/invaders/index.html)
  
 ### Developer's Notes and Tech Tips
 
