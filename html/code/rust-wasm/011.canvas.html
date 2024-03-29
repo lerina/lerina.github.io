@@ -15,7 +15,6 @@
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
     div.sourceCode { margin: 1em 0; }
     pre.sourceCode { margin: 0; }
@@ -75,140 +74,123 @@
     code span.va { color: #19177c; } /* Variable */
     code span.vs { color: #4070a0; } /* VerbatimString */
     code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
   <link rel="stylesheet" href="https://lerina.github.io/css/styles_min.css" />
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
 </head>
 <body>
 <nav id="TOC" role="doc-toc">
 <ul>
-<li><a href="#web-sys-canvas-hello-world"
-id="toc-web-sys-canvas-hello-world">web-sys: canvas hello world</a></li>
-<li><a href="#everything-happens-in-src"
-id="toc-everything-happens-in-src">Everything happens in src</a></li>
-<li><a href="#build-and-serve" id="toc-build-and-serve">build and
-serve</a></li>
-<li><a href="#whats-next" id="toc-whats-next">What’s next?</a></li>
+<li><a href="#web-sys-canvas-hello-world">web-sys: canvas hello world</a></li>
+<li><a href="#everything-happens-in-src">Everything happens in src</a></li>
+<li><a href="#build-and-serve">build and serve</a></li>
+<li><a href="#whats-next">What’s next?</a></li>
 </ul>
 </nav>
 <div class="navbar">
 <a class="openbtn" onclick="openNav()">☰</a>
 </div>
 <main>
-<p><a href="./010.weather_report.html"><code>&lt;--</code> web-sys:
-web-sys: Weather report</a></p>
+<p><a href="./010.weather_report.html"><code>&lt;--</code> web-sys: web-sys: Weather report</a></p>
 <h2 id="web-sys-canvas-hello-world">web-sys: canvas hello world</h2>
-<p><em>Drawing a smiley face with the 2D canvas API. This is a port of
-part of this MDN tutorial to web-sys.</em> _ <a
-href="https://rustwasm.github.io/wasm-bindgen/examples/2d-canvas.html"
-target="_blank">wasm-bindgen Guide</a></p>
-<p><a
-href="https://github.com/rustwasm/wasm-bindgen/tree/master/examples/canvas">web-sys:
-canvas hello world</a></p>
+<p><em>Drawing a smiley face with the 2D canvas API. This is a port of part of this MDN tutorial to web-sys.</em> _ <a href="https://rustwasm.github.io/wasm-bindgen/examples/2d-canvas.html" target="_blank">wasm-bindgen Guide</a></p>
+<p><a href="https://github.com/rustwasm/wasm-bindgen/tree/master/examples/canvas">web-sys: canvas hello world</a></p>
 <h3 id="setup-the-project">setup the project</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> new canvas <span class="at">--lib</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> canvas</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> www/js www/html</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> add wasm-bindgen js-sys</span></code></pre></div>
-<p>edit Cargo.toml to add <code>crate-type</code> &amp;
-<code>web-sys</code> features</p>
-<div class="sourceCode" id="cb2"><pre
-class="sourceCode toml"><code class="sourceCode toml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[</span><span class="dt">lib</span><span class="kw">]</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dt">crate-type</span> <span class="op">=</span> <span class="op">[</span><span class="st">&quot;cdylib&quot;</span><span class="op">,]</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="er">...</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">[</span><span class="dt">dependencies</span><span class="kw">.</span><span class="dt">web-sys</span><span class="kw">]</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">&quot;0.3.66&quot;</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="dt">features</span> <span class="op">=</span> <span class="op">[</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;</span><span class="vs">CanvasRenderingContext2d</span><span class="st">&#39;</span><span class="op">,</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;</span><span class="vs">Document</span><span class="st">&#39;</span><span class="op">,</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;</span><span class="vs">Element</span><span class="st">&#39;</span><span class="op">,</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;</span><span class="vs">HtmlCanvasElement</span><span class="st">&#39;</span><span class="op">,</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;</span><span class="vs">Window</span><span class="st">&#39;</span><span class="op">,</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="op">]</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="ex">cargo</span> new canvas --lib</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="bu">cd</span> canvas</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="fu">mkdir</span> -p www/js www/html</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="ex">cargo</span> add wasm-bindgen js-sys</span></code></pre></div>
+<p>edit Cargo.toml to add <code>crate-type</code> &amp; <code>web-sys</code> features</p>
+<pre class="toml"><code>[lib]
+crate-type = [&quot;cdylib&quot;,]
+
+...
+
+
+[dependencies.web-sys]
+version = &quot;0.3.66&quot;
+features = [
+  &#39;CanvasRenderingContext2d&#39;,
+  &#39;Document&#39;,
+  &#39;Element&#39;,
+  &#39;HtmlCanvasElement&#39;,
+  &#39;Window&#39;,
+]
+</code></pre>
 <p>in <code>www/html/index.html</code> we have</p>
-<div class="sourceCode" id="cb3"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!doctype </span>html<span class="dt">&gt;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;html&gt;</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;head&gt;</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;meta</span> <span class="er">content</span><span class="ot">=</span><span class="st">&quot;text/html;charset=utf-8&quot;</span> <span class="er">http-equiv</span><span class="ot">=</span><span class="st">&quot;Content-Type&quot;</span><span class="kw">/&gt;</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;title&gt;</span>canvas hello: nobundle<span class="kw">&lt;/title&gt;</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/head&gt;</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;body&gt;</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;canvas</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;canvas&quot;</span> <span class="er">height</span><span class="ot">=</span><span class="st">&quot;150&quot;</span> <span class="er">width</span><span class="ot">=</span><span class="st">&quot;150&quot;</span><span class="kw">&gt;&lt;/canvas&gt;</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;module&quot;</span> <span class="er">src</span><span class="ot">=</span><span class="st">&quot;../js/index.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/body&gt;</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="dt">&lt;!doctype </span>html<span class="dt">&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="kw">&lt;html&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>  <span class="kw">&lt;head&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>    <span class="kw">&lt;meta</span><span class="ot"> content=</span><span class="st">&quot;text/html;charset=utf-8&quot;</span><span class="ot"> http-equiv=</span><span class="st">&quot;Content-Type&quot;</span><span class="kw">/&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>    <span class="kw">&lt;title&gt;</span>canvas hello: nobundle<span class="kw">&lt;/title&gt;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>  <span class="kw">&lt;/head&gt;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>  <span class="kw">&lt;body&gt;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>        <span class="kw">&lt;canvas</span><span class="ot"> id=</span><span class="st">&quot;canvas&quot;</span><span class="ot"> height=</span><span class="st">&quot;150&quot;</span><span class="ot"> width=</span><span class="st">&quot;150&quot;</span><span class="kw">&gt;&lt;/canvas&gt;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a>        <span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;module&quot;</span><span class="ot"> src=</span><span class="st">&quot;../js/index.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a>  <span class="kw">&lt;/body&gt;</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
 <p>and in <code>www/js/index.js</code></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> init <span class="im">from</span> <span class="st">&quot;../pkg/canvas.js&quot;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">run</span>() {</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> wasm <span class="op">=</span> <span class="cf">await</span> <span class="fu">init</span>()<span class="op">;</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">run</span>()<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="im">import</span> init <span class="im">from</span> <span class="st">&quot;../pkg/canvas.js&quot;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">run</span>() {</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a>    <span class="kw">const</span> wasm <span class="op">=</span> <span class="cf">await</span> <span class="fu">init</span>()<span class="op">;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>}</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a><span class="fu">run</span>()<span class="op">;</span></span></code></pre></div>
 <h2 id="everything-happens-in-src">Everything happens in src</h2>
-<div class="sourceCode" id="cb5"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::</span><span class="dt">f64</span><span class="op">;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">wasm_bindgen::prelude::</span><span class="op">*;</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>wasm_bindgen<span class="at">(</span>start<span class="at">)]</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> start() <span class="op">{</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> document <span class="op">=</span> <span class="pp">web_sys::</span>window()<span class="op">.</span>unwrap()<span class="op">.</span>document()<span class="op">.</span>unwrap()<span class="op">;</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> canvas <span class="op">=</span> document<span class="op">.</span>get_element_by_id(<span class="st">&quot;canvas&quot;</span>)<span class="op">.</span>unwrap()<span class="op">;</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> canvas<span class="op">:</span> <span class="pp">web_sys::</span>HtmlCanvasElement <span class="op">=</span> canvas</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="pp">dyn_into::</span><span class="op">&lt;</span><span class="pp">web_sys::</span>HtmlCanvasElement<span class="op">&gt;</span>()</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>map_err(<span class="op">|</span>_<span class="op">|</span> ())</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>unwrap()<span class="op">;</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> context <span class="op">=</span> canvas</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>get_context(<span class="st">&quot;2d&quot;</span>)</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>unwrap()</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>unwrap()</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="pp">dyn_into::</span><span class="op">&lt;</span><span class="pp">web_sys::</span>CanvasRenderingContext2d<span class="op">&gt;</span>()</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>unwrap()<span class="op">;</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    context<span class="op">.</span>begin_path()<span class="op">;</span></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Draw the outer circle.</span></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    context</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>arc(<span class="dv">75.0</span><span class="op">,</span> <span class="dv">75.0</span><span class="op">,</span> <span class="dv">50.0</span><span class="op">,</span> <span class="dv">0.0</span><span class="op">,</span> <span class="dt">f64</span><span class="pp">::consts::</span>PI <span class="op">*</span> <span class="dv">2.0</span>)</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>unwrap()<span class="op">;</span></span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Draw the mouth.</span></span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    context<span class="op">.</span>move_to(<span class="dv">110.0</span><span class="op">,</span> <span class="dv">75.0</span>)<span class="op">;</span></span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    context<span class="op">.</span>arc(<span class="dv">75.0</span><span class="op">,</span> <span class="dv">75.0</span><span class="op">,</span> <span class="dv">35.0</span><span class="op">,</span> <span class="dv">0.0</span><span class="op">,</span> <span class="dt">f64</span><span class="pp">::consts::</span>PI)<span class="op">.</span>unwrap()<span class="op">;</span></span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Draw the left eye.</span></span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>    context<span class="op">.</span>move_to(<span class="dv">65.0</span><span class="op">,</span> <span class="dv">65.0</span>)<span class="op">;</span></span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    context</span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>arc(<span class="dv">60.0</span><span class="op">,</span> <span class="dv">65.0</span><span class="op">,</span> <span class="dv">5.0</span><span class="op">,</span> <span class="dv">0.0</span><span class="op">,</span> <span class="dt">f64</span><span class="pp">::consts::</span>PI <span class="op">*</span> <span class="dv">2.0</span>)</span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>unwrap()<span class="op">;</span></span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Draw the right eye.</span></span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>    context<span class="op">.</span>move_to(<span class="dv">95.0</span><span class="op">,</span> <span class="dv">65.0</span>)<span class="op">;</span></span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>    context</span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>arc(<span class="dv">90.0</span><span class="op">,</span> <span class="dv">65.0</span><span class="op">,</span> <span class="dv">5.0</span><span class="op">,</span> <span class="dv">0.0</span><span class="op">,</span> <span class="dt">f64</span><span class="pp">::consts::</span>PI <span class="op">*</span> <span class="dv">2.0</span>)</span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>unwrap()<span class="op">;</span></span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>    context<span class="op">.</span>stroke()<span class="op">;</span></span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="kw">use</span> <span class="pp">std::</span><span class="dt">f64</span><span class="op">;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="kw">use</span> <span class="pp">wasm_bindgen::prelude::</span><span class="op">*;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a><span class="at">#[</span>wasm_bindgen<span class="at">(</span>start<span class="at">)]</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a><span class="kw">fn</span> start() <span class="op">{</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a>    <span class="kw">let</span> document <span class="op">=</span> <span class="pp">web_sys::</span>window()<span class="op">.</span>unwrap()<span class="op">.</span>document()<span class="op">.</span>unwrap()<span class="op">;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a>    <span class="kw">let</span> canvas <span class="op">=</span> document<span class="op">.</span>get_element_by_id(<span class="st">&quot;canvas&quot;</span>)<span class="op">.</span>unwrap()<span class="op">;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a>    <span class="kw">let</span> canvas<span class="op">:</span> <span class="pp">web_sys::</span>HtmlCanvasElement <span class="op">=</span> canvas</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a>        <span class="op">.</span><span class="pp">dyn_into::</span><span class="op">&lt;</span><span class="pp">web_sys::</span>HtmlCanvasElement<span class="op">&gt;</span>()</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a>        <span class="op">.</span>map_err(<span class="op">|</span>_<span class="op">|</span> ())</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true"></a>        <span class="op">.</span>unwrap()<span class="op">;</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true"></a>    <span class="kw">let</span> context <span class="op">=</span> canvas</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true"></a>        <span class="op">.</span>get_context(<span class="st">&quot;2d&quot;</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true"></a>        <span class="op">.</span>unwrap()</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true"></a>        <span class="op">.</span>unwrap()</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true"></a>        <span class="op">.</span><span class="pp">dyn_into::</span><span class="op">&lt;</span><span class="pp">web_sys::</span>CanvasRenderingContext2d<span class="op">&gt;</span>()</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true"></a>        <span class="op">.</span>unwrap()<span class="op">;</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true"></a>    context<span class="op">.</span>begin_path()<span class="op">;</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true"></a></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true"></a>    <span class="co">// Draw the outer circle.</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true"></a>    context</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true"></a>        <span class="op">.</span>arc(<span class="dv">75.0</span><span class="op">,</span> <span class="dv">75.0</span><span class="op">,</span> <span class="dv">50.0</span><span class="op">,</span> <span class="dv">0.0</span><span class="op">,</span> <span class="dt">f64</span><span class="pp">::consts::</span>PI <span class="op">*</span> <span class="dv">2.0</span>)</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true"></a>        <span class="op">.</span>unwrap()<span class="op">;</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true"></a></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true"></a>    <span class="co">// Draw the mouth.</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true"></a>    context<span class="op">.</span>move_to(<span class="dv">110.0</span><span class="op">,</span> <span class="dv">75.0</span>)<span class="op">;</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true"></a>    context<span class="op">.</span>arc(<span class="dv">75.0</span><span class="op">,</span> <span class="dv">75.0</span><span class="op">,</span> <span class="dv">35.0</span><span class="op">,</span> <span class="dv">0.0</span><span class="op">,</span> <span class="dt">f64</span><span class="pp">::consts::</span>PI)<span class="op">.</span>unwrap()<span class="op">;</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true"></a></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true"></a>    <span class="co">// Draw the left eye.</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true"></a>    context<span class="op">.</span>move_to(<span class="dv">65.0</span><span class="op">,</span> <span class="dv">65.0</span>)<span class="op">;</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true"></a>    context</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true"></a>        <span class="op">.</span>arc(<span class="dv">60.0</span><span class="op">,</span> <span class="dv">65.0</span><span class="op">,</span> <span class="dv">5.0</span><span class="op">,</span> <span class="dv">0.0</span><span class="op">,</span> <span class="dt">f64</span><span class="pp">::consts::</span>PI <span class="op">*</span> <span class="dv">2.0</span>)</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true"></a>        <span class="op">.</span>unwrap()<span class="op">;</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true"></a></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true"></a>    <span class="co">// Draw the right eye.</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true"></a>    context<span class="op">.</span>move_to(<span class="dv">95.0</span><span class="op">,</span> <span class="dv">65.0</span>)<span class="op">;</span></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true"></a>    context</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true"></a>        <span class="op">.</span>arc(<span class="dv">90.0</span><span class="op">,</span> <span class="dv">65.0</span><span class="op">,</span> <span class="dv">5.0</span><span class="op">,</span> <span class="dv">0.0</span><span class="op">,</span> <span class="dt">f64</span><span class="pp">::consts::</span>PI <span class="op">*</span> <span class="dv">2.0</span>)</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true"></a>        <span class="op">.</span>unwrap()<span class="op">;</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true"></a></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true"></a>    context<span class="op">.</span>stroke()<span class="op">;</span></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true"></a><span class="op">}</span></span></code></pre></div>
 <h2 id="build-and-serve">build and serve</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">wasm-pack</span> build <span class="at">--target</span> web <span class="at">--no-typescript</span> <span class="at">--out-dir</span> www/pkg</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">http</span> www</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="ex">wasm-pack</span> build --target web --no-typescript --out-dir www/pkg</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a><span class="ex">http</span> www</span></code></pre></div>
 <p>open <code>index.html</code></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">firefox</span> http://localhost:8000/html/</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="ex">firefox</span> http://localhost:8000/html/</span></code></pre></div>
 <hr />
 <h2 id="whats-next">What’s next?</h2>
-<p>Next example: <a href="./012.julia_set.html">web-sys: canvas Julia
-set <code>--&gt;</code></a></p>
+<p>Next example: <a href="./012.julia_set.html">web-sys: canvas Julia set <code>--&gt;</code></a></p>
 </main>
 <script src="https://lerina.github.io/js/toc.js"></script>
 <script>

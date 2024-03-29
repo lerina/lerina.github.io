@@ -15,7 +15,6 @@
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
     div.sourceCode { margin: 1em 0; }
     pre.sourceCode { margin: 0; }
@@ -75,434 +74,374 @@
     code span.va { color: #19177c; } /* Variable */
     code span.vs { color: #4070a0; } /* VerbatimString */
     code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
   <link rel="stylesheet" href="https://lerina.github.io/css/styles_min.css" />
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
 </head>
 <body>
 <nav id="TOC" role="doc-toc">
 <ul>
-<li><a href="#wasm-audio-worklet" id="toc-wasm-audio-worklet">Wasm audio
-worklet</a></li>
-<li><a href="#build-and-serve" id="toc-build-and-serve">build and
-serve</a></li>
-<li><a href="#whats-next" id="toc-whats-next">What’s next?</a></li>
+<li><a href="#wasm-audio-worklet">Wasm audio worklet</a></li>
+<li><a href="#build-and-serve">build and serve</a></li>
+<li><a href="#whats-next">What’s next?</a></li>
 </ul>
 </nav>
 <div class="navbar">
 <a class="openbtn" onclick="openNav()">☰</a>
 </div>
-<p>Previous example: <a
-href="./019.wasm-in-web-worker.html"><code>&lt;--</code> web-sys: Wasm
-in Web Worker</a></p>
+<p>Previous example: <a href="./019.wasm-in-web-worker.html"><code>&lt;--</code> web-sys: Wasm in Web Worker</a></p>
 <main>
 <h2 id="wasm-audio-worklet">Wasm audio worklet</h2>
-<p><em>This is an example of using threads inside specific worklets with
-WebAssembly, Rust, and wasm-bindgen, culminating in an oscillator demo.
-This demo should complement the parallel-raytrace example by
-demonstrating an alternative approach using ES modules with on-the-fly
-module creation.</em><br />
-_ <a
-href="https://rustwasm.github.io/wasm-bindgen/examples/wasm-audio-worklet.html"
-target="_blank">wasm-bindgen Guide</a></p>
-<p><a
-href="https://github.com/rustwasm/wasm-bindgen/tree/master/examples/wasm-audio-worklet"
-target="_blank">Parallel Raytracing</a></p>
+<p><em>This is an example of using threads inside specific worklets with WebAssembly, Rust, and wasm-bindgen, culminating in an oscillator demo. This demo should complement the parallel-raytrace example by demonstrating an alternative approach using ES modules with on-the-fly module creation.</em><br />
+_ <a href="https://rustwasm.github.io/wasm-bindgen/examples/wasm-audio-worklet.html" target="_blank">wasm-bindgen Guide</a></p>
+<p><a href="https://github.com/rustwasm/wasm-bindgen/tree/master/examples/wasm-audio-worklet" target="_blank">Parallel Raytracing</a></p>
 <h3 id="building-the-demo">Building the demo</h3>
-<p><em>One of the major gotchas with threaded WebAssembly is that Rust
-does not ship a precompiled target (e.g. standard library) which has
-threading support enabled. This means that you’ll need to recompile the
-standard library with the appropriate rustc flags, namely -C
-target-feature=+atomics,+bulk-memory,+mutable-globals. Note that this
-requires a nightly Rust toolchain.</em><br />
-_ <a
-href="https://rustwasm.github.io/wasm-bindgen/examples/raytrace-parallel.html"
-target="_blank">see more detailed instructions of the parallel-raytrace
-example</a></p>
+<p><em>One of the major gotchas with threaded WebAssembly is that Rust does not ship a precompiled target (e.g. standard library) which has threading support enabled. This means that you’ll need to recompile the standard library with the appropriate rustc flags, namely -C target-feature=+atomics,+bulk-memory,+mutable-globals. Note that this requires a nightly Rust toolchain.</em><br />
+_ <a href="https://rustwasm.github.io/wasm-bindgen/examples/raytrace-parallel.html" target="_blank">see more detailed instructions of the parallel-raytrace example</a></p>
 <h4 id="rust-toolchain.toml">rust-toolchain.toml</h4>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode toml"><code class="sourceCode toml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[</span><span class="dt">toolchain</span><span class="kw">]</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">channel</span> <span class="op">=</span> <span class="st">&quot;nightly&quot;</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dt">components</span> <span class="op">=</span> <span class="op">[</span><span class="st">&quot;rust-src&quot;</span><span class="op">]</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="dt">targets</span> <span class="op">=</span> <span class="op">[</span><span class="st">&quot;wasm32-unknown-unknown&quot;</span><span class="op">]</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="dt">profile</span> <span class="op">=</span> <span class="st">&quot;minimal&quot;</span></span></code></pre></div>
+<pre class="toml"><code>[toolchain]
+channel = &quot;nightly&quot;
+components = [&quot;rust-src&quot;]
+targets = [&quot;wasm32-unknown-unknown&quot;]
+profile = &quot;minimal&quot;</code></pre>
 <h4 id="caveats">Caveats</h4>
-<p><em>This example shares most of its caveats with the
-parallel-raytrace example. However, it tries to encapsulate worklet
-creation in a Rust module, so the application developer does not need to
-maintain custom JS code.</em><br />
-_ <a
-href="https://rustwasm.github.io/wasm-bindgen/examples/wasm-audio-worklet.html"
-target="_blank">wasm-bindgen Guide</a></p>
+<p><em>This example shares most of its caveats with the parallel-raytrace example. However, it tries to encapsulate worklet creation in a Rust module, so the application developer does not need to maintain custom JS code.</em><br />
+_ <a href="https://rustwasm.github.io/wasm-bindgen/examples/wasm-audio-worklet.html" target="_blank">wasm-bindgen Guide</a></p>
 <h4 id="browser-requirements">Browser Requirements</h4>
-<p><em>This demo should work in the latest Chrome and Safari versions at
-this time. Firefox does not support imports in worklet modules, which
-are difficult to avoid in this example, as importScripts is unavailable
-in worklets. Note that this example requires HTTP headers to be set like
-in parallel-raytrace.</em> _ <a
-href="https://rustwasm.github.io/wasm-bindgen/examples/wasm-audio-worklet.html"
-target="_blank">wasm-bindgen Guide</a></p>
+<p><em>This demo should work in the latest Chrome and Safari versions at this time. Firefox does not support imports in worklet modules, which are difficult to avoid in this example, as importScripts is unavailable in worklets. Note that this example requires HTTP headers to be set like in parallel-raytrace.</em> _ <a href="https://rustwasm.github.io/wasm-bindgen/examples/wasm-audio-worklet.html" target="_blank">wasm-bindgen Guide</a></p>
 <h3 id="setup-the-project">setup the project</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> new wasm-audio-worklet <span class="at">--lib</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> wasm-audio-worklet</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> www/js www/html</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="ex">cargo</span> new wasm-audio-worklet --lib</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="bu">cd</span> wasm-audio-worklet</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="fu">mkdir</span> -p www/js www/html</span></code></pre></div>
 <ul>
 <li>Edit Cargo.toml</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre
-class="sourceCode toml"><code class="sourceCode toml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[</span><span class="dt">lib</span><span class="kw">]</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dt">crate-type</span> <span class="op">=</span> <span class="op">[</span><span class="st">&quot;cdylib&quot;</span><span class="op">]</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">[</span><span class="dt">dependencies</span><span class="kw">]</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="dt">console_log</span> <span class="op">=</span> <span class="st">&quot;0.2.0&quot;</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="dt">js-sys</span> <span class="op">=</span> <span class="st">&quot;0.3.66&quot;</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="dt">wasm-bindgen</span> <span class="op">=</span> <span class="st">&quot;0.2.89&quot;</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="dt">wasm-bindgen-futures</span> <span class="op">=</span> <span class="st">&quot;0.4.39&quot;</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="kw">[</span><span class="dt">dependencies</span><span class="kw">.</span><span class="dt">web-sys</span><span class="kw">]</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">&quot;0.3.66&quot;</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="dt">features</span> <span class="op">=</span> <span class="op">[</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;AudioContext&quot;</span><span class="op">,</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;AudioDestinationNode&quot;</span><span class="op">,</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;AudioWorklet&quot;</span><span class="op">,</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;AudioWorkletNode&quot;</span><span class="op">,</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;AudioWorkletNodeOptions&quot;</span><span class="op">,</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Blob&quot;</span><span class="op">,</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;BlobPropertyBag&quot;</span><span class="op">,</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Document&quot;</span><span class="op">,</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Event&quot;</span><span class="op">,</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;HtmlInputElement&quot;</span><span class="op">,</span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;HtmlLabelElement&quot;</span><span class="op">,</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Url&quot;</span><span class="op">,</span></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Window&quot;</span><span class="op">,</span></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="op">]</span></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace command line  </span></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="co"># cargo build --target wasm32-unknown-unknown -Z build-std=panic_abort,std</span></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="co"># and </span></span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="co"># export RUSTFLAGS=&#39;-C target-feature=+atomics,+bulk-memory,+mutable-globals&#39;</span></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="co"># with:</span></span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="kw">[</span><span class="dt">unstable</span><span class="kw">]</span></span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="dt">build-std</span> <span class="op">=</span> <span class="op">[</span><span class="st">&#39;</span><span class="vs">std</span><span class="st">&#39;</span><span class="op">,</span> <span class="st">&#39;</span><span class="vs">panic_abort</span><span class="st">&#39;</span><span class="op">]</span></span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="kw">[</span><span class="dt">build</span><span class="kw">]</span></span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="dt">target</span> <span class="op">=</span> <span class="st">&quot;wasm32-unknown-unknown&quot;</span></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="dt">rustflags</span> <span class="op">=</span> <span class="st">&#39;</span><span class="vs">-Ctarget-feature=+atomics,+bulk-memory,+mutable-globals</span><span class="st">&#39;</span></span></code></pre></div>
+<pre class="toml"><code>[lib]
+crate-type = [&quot;cdylib&quot;]
+
+[dependencies]
+console_log = &quot;0.2.0&quot;
+js-sys = &quot;0.3.66&quot;
+wasm-bindgen = &quot;0.2.89&quot;
+wasm-bindgen-futures = &quot;0.4.39&quot;
+
+[dependencies.web-sys]
+version = &quot;0.3.66&quot;
+features = [
+  &quot;AudioContext&quot;,
+  &quot;AudioDestinationNode&quot;,
+  &quot;AudioWorklet&quot;,
+  &quot;AudioWorkletNode&quot;,
+  &quot;AudioWorkletNodeOptions&quot;,
+  &quot;Blob&quot;,
+  &quot;BlobPropertyBag&quot;,
+  &quot;Document&quot;,
+  &quot;Event&quot;,
+  &quot;HtmlInputElement&quot;,
+  &quot;HtmlLabelElement&quot;,
+  &quot;Url&quot;,
+  &quot;Window&quot;,
+]
+
+
+# Replace command line  
+# cargo build --target wasm32-unknown-unknown -Z build-std=panic_abort,std
+# and 
+# export RUSTFLAGS=&#39;-C target-feature=+atomics,+bulk-memory,+mutable-globals&#39;
+# with:
+[unstable]
+build-std = [&#39;std&#39;, &#39;panic_abort&#39;]
+
+[build]
+target = &quot;wasm32-unknown-unknown&quot;
+rustflags = &#39;-Ctarget-feature=+atomics,+bulk-memory,+mutable-globals&#39;</code></pre>
 <h3 id="the-code">The code</h3>
 <ul>
 <li>index.html</li>
 </ul>
-<div class="sourceCode" id="cb4"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;html&gt;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;head&gt;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;title&gt;</span>Wasm audio worklet<span class="kw">&lt;/title&gt;</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/head&gt;</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;body&gt;</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;module&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>            <span class="im">import</span> init<span class="op">,</span> {web_main} <span class="im">from</span> <span class="st">&quot;../pkg/wasm_audio_worklet.js&quot;</span><span class="op">;</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>            <span class="kw">async</span> <span class="kw">function</span> <span class="fu">run</span>() {</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>                <span class="cf">await</span> <span class="fu">init</span>()<span class="op">;</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>                <span class="fu">web_main</span>()<span class="op">;</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>            }</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>            <span class="fu">run</span>()<span class="op">;</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;/script&gt;</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/body&gt;</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="kw">&lt;html&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>    <span class="kw">&lt;head&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a>        <span class="kw">&lt;title&gt;</span>Wasm audio worklet<span class="kw">&lt;/title&gt;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>    <span class="kw">&lt;/head&gt;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a>    <span class="kw">&lt;body&gt;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a>        <span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;module&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a>            <span class="im">import</span> init<span class="op">,</span> {web_main} <span class="im">from</span> <span class="st">&quot;../pkg/wasm_audio_worklet.js&quot;</span><span class="op">;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a>            <span class="kw">async</span> <span class="kw">function</span> <span class="fu">run</span>() {</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a>                <span class="cf">await</span> <span class="fu">init</span>()<span class="op">;</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a>                <span class="fu">web_main</span>()<span class="op">;</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a>            }</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a>            <span class="fu">run</span>()<span class="op">;</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a>        <span class="kw">&lt;/script&gt;</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true"></a>    <span class="kw">&lt;/body&gt;</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
 <ul>
 <li>index.js</li>
 </ul>
-<p>No index.js for this example we have it directly in the html
-file.</p>
+<p>No index.js for this example we have it directly in the html file.</p>
 <ul>
 <li>worklet.js</li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">registerProcessor</span>(<span class="st">&quot;WasmProcessor&quot;</span><span class="op">,</span> <span class="kw">class</span> WasmProcessor <span class="kw">extends</span> AudioWorkletProcessor {</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">constructor</span>(options) {</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="kw">super</span>()<span class="op">;</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> [module<span class="op">,</span> memory<span class="op">,</span> handle] <span class="op">=</span> options<span class="op">.</span><span class="at">processorOptions</span><span class="op">;</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        bindgen<span class="op">.</span><span class="fu">initSync</span>(module<span class="op">,</span> memory)<span class="op">;</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        <span class="kw">this</span><span class="op">.</span><span class="at">processor</span> <span class="op">=</span> bindgen<span class="op">.</span><span class="at">WasmAudioProcessor</span><span class="op">.</span><span class="fu">unpack</span>(handle)<span class="op">;</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">process</span>(inputs<span class="op">,</span> outputs) {</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="kw">this</span><span class="op">.</span><span class="at">processor</span><span class="op">.</span><span class="fu">process</span>(outputs[<span class="dv">0</span>][<span class="dv">0</span>])<span class="op">;</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="fu">registerProcessor</span>(<span class="st">&quot;WasmProcessor&quot;</span><span class="op">,</span> <span class="kw">class</span> WasmProcessor <span class="kw">extends</span> AudioWorkletProcessor {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a>    <span class="fu">constructor</span>(options) {</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a>        <span class="kw">super</span>()<span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a>        <span class="kw">let</span> [module<span class="op">,</span> memory<span class="op">,</span> handle] <span class="op">=</span> options<span class="op">.</span><span class="at">processorOptions</span><span class="op">;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a>        bindgen<span class="op">.</span><span class="fu">initSync</span>(module<span class="op">,</span> memory)<span class="op">;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a>        <span class="kw">this</span><span class="op">.</span><span class="at">processor</span> <span class="op">=</span> bindgen<span class="op">.</span><span class="at">WasmAudioProcessor</span><span class="op">.</span><span class="fu">unpack</span>(handle)<span class="op">;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a>    }</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a>    <span class="bu">process</span>(inputs<span class="op">,</span> outputs) {</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a>        <span class="cf">return</span> <span class="kw">this</span><span class="op">.</span><span class="at">processor</span><span class="op">.</span><span class="fu">process</span>(outputs[<span class="dv">0</span>][<span class="dv">0</span>])<span class="op">;</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a>    }</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true"></a>})<span class="op">;</span></span></code></pre></div>
 <ul>
 <li><p>Rust side</p></li>
 <li><p>lib.rs</p></li>
 </ul>
-<div class="sourceCode" id="cb6"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">// src/lib.rs</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">mod</span> dependent_module<span class="op">;</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">mod</span> gui<span class="op">;</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="kw">mod</span> oscillator<span class="op">;</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="kw">mod</span> wasm_audio<span class="op">;</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">gui::</span>create_gui<span class="op">;</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">oscillator::</span><span class="op">{</span>Oscillator<span class="op">,</span> Params<span class="op">};</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">wasm_audio::</span>wasm_audio<span class="op">;</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">wasm_bindgen::prelude::</span><span class="op">*;</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>wasm_bindgen<span class="at">]</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> web_main() <span class="op">{</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">// On the application level, audio worklet internals are abstracted by wasm_audio:</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> params<span class="op">:</span> <span class="op">&amp;</span><span class="ot">&#39;static</span> Params <span class="op">=</span> <span class="dt">Box</span><span class="pp">::</span>leak(<span class="dt">Box</span><span class="pp">::</span><span class="kw">default</span>())<span class="op">;</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> osc <span class="op">=</span> <span class="pp">Oscillator::</span>new(params)<span class="op">;</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> ctx <span class="op">=</span> wasm_audio(<span class="dt">Box</span><span class="pp">::</span>new(<span class="kw">move</span> <span class="op">|</span>buf<span class="op">|</span> osc<span class="op">.</span>process(buf)))</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="kw">await</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>unwrap()<span class="op">;</span></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    create_gui(params<span class="op">,</span> ctx)<span class="op">;</span></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="co">// src/lib.rs</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="kw">mod</span> dependent_module<span class="op">;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a><span class="kw">mod</span> gui<span class="op">;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a><span class="kw">mod</span> oscillator<span class="op">;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a><span class="kw">mod</span> wasm_audio<span class="op">;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a><span class="kw">use</span> <span class="pp">gui::</span>create_gui<span class="op">;</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true"></a><span class="kw">use</span> <span class="pp">oscillator::</span><span class="op">{</span>Oscillator<span class="op">,</span> Params<span class="op">};</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true"></a><span class="kw">use</span> <span class="pp">wasm_audio::</span>wasm_audio<span class="op">;</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true"></a><span class="kw">use</span> <span class="pp">wasm_bindgen::prelude::</span><span class="op">*;</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true"></a><span class="at">#[</span>wasm_bindgen<span class="at">]</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true"></a><span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> web_main() <span class="op">{</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true"></a>    <span class="co">// On the application level, audio worklet internals are abstracted by wasm_audio:</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true"></a>    <span class="kw">let</span> params<span class="op">:</span> <span class="op">&amp;</span><span class="ot">&#39;static</span> Params <span class="op">=</span> <span class="dt">Box</span><span class="pp">::</span>leak(<span class="dt">Box</span><span class="pp">::</span><span class="kw">default</span>())<span class="op">;</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true"></a>    <span class="kw">let</span> <span class="kw">mut</span> osc <span class="op">=</span> <span class="pp">Oscillator::</span>new(params)<span class="op">;</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true"></a>    <span class="kw">let</span> ctx <span class="op">=</span> wasm_audio(<span class="dt">Box</span><span class="pp">::</span>new(<span class="kw">move</span> <span class="op">|</span>buf<span class="op">|</span> osc<span class="op">.</span>process(buf)))</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true"></a>        <span class="op">.</span><span class="kw">await</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true"></a>        <span class="op">.</span>unwrap()<span class="op">;</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true"></a>    create_gui(params<span class="op">,</span> ctx)<span class="op">;</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true"></a><span class="op">}</span></span></code></pre></div>
 <ul>
 <li>dependent_module</li>
 </ul>
-<div class="sourceCode" id="cb7"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">js_sys::</span><span class="op">{</span>Array<span class="op">,</span> JsString<span class="op">};</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">wasm_bindgen::prelude::</span><span class="op">*;</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">web_sys::</span><span class="op">{</span>Blob<span class="op">,</span> BlobPropertyBag<span class="op">,</span> Url<span class="op">};</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">// This is a not-so-clean approach to get the current bindgen ES module URL</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">// in Rust. This will fail at run time on bindgen targets not using ES modules.</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>wasm_bindgen<span class="at">]</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="kw">extern</span> <span class="st">&quot;C&quot;</span> <span class="op">{</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">#[</span>wasm_bindgen<span class="at">]</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">type</span> ImportMeta<span class="op">;</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">#[</span>wasm_bindgen<span class="at">(</span>method<span class="op">,</span> getter<span class="at">)]</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> url(this<span class="op">:</span> <span class="op">&amp;</span>ImportMeta) <span class="op">-&gt;</span> JsString<span class="op">;</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">#[</span>wasm_bindgen<span class="at">(</span>js_namespace <span class="op">=</span> import<span class="op">,</span> js_name <span class="op">=</span> meta<span class="at">)]</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">static</span> IMPORT_META<span class="op">:</span> ImportMeta<span class="op">;</span></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">fn</span> on_the_fly(code<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>) <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span><span class="dt">String</span><span class="op">,</span> JsValue<span class="op">&gt;</span> <span class="op">{</span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Generate the import of the bindgen ES module, assuming `--target web`.</span></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> header <span class="op">=</span> <span class="pp">format!</span>(</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;import init, * as bindgen from &#39;{}&#39;;</span><span class="sc">\n\n</span><span class="st">&quot;</span><span class="op">,</span></span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>        IMPORT_META<span class="op">.</span>url()<span class="op">,</span></span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    )<span class="op">;</span></span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    <span class="pp">Url::</span>create_object_url_with_blob(<span class="op">&amp;</span><span class="pp">Blob::</span>new_with_str_sequence_and_options(</span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>        <span class="op">&amp;</span><span class="pp">Array::</span>of2(<span class="op">&amp;</span><span class="pp">JsValue::</span>from(header<span class="op">.</span>as_str())<span class="op">,</span> <span class="op">&amp;</span><span class="pp">JsValue::</span>from(code))<span class="op">,</span></span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>        <span class="pp">BlobPropertyBag::</span>new()<span class="op">.</span>type_(<span class="st">&quot;text/javascript&quot;</span>)<span class="op">,</span></span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    )<span class="op">?</span>)</span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="co">// dependent_module! takes a local file name to a JS module as input and</span></span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="co">// returns a URL to a slightly modified module in run time. This modified module</span></span>
-<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a><span class="co">// has an additional import statement in the header that imports the current</span></span>
-<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="co">// bindgen JS module under the `bindgen` alias, and the separate init function.</span></span>
-<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="co">// How this URL is produced does not matter for the macro user. on_the_fly</span></span>
-<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a><span class="co">// creates a blob URL in run time. A better, more sophisticated solution</span></span>
-<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a><span class="co">// would add wasm_bindgen support to put such a module in pkg/ during build time</span></span>
-<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a><span class="co">// and return a URL to this file instead (described in #3019).</span></span>
-<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>macro_export<span class="at">]</span></span>
-<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a><span class="pp">macro_rules!</span> dependent_module <span class="op">{</span></span>
-<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>    (<span class="op">$</span>file_name<span class="op">:</span>expr) <span class="op">=&gt;</span> <span class="op">{</span></span>
-<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>        <span class="op">$</span><span class="pp">crate::dependent_module::</span>on_the_fly(<span class="pp">include_str!</span>(<span class="op">$</span>file_name))</span>
-<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>    <span class="op">};</span></span>
-<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="kw">use</span> <span class="pp">js_sys::</span><span class="op">{</span>Array<span class="op">,</span> JsString<span class="op">};</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a><span class="kw">use</span> <span class="pp">wasm_bindgen::prelude::</span><span class="op">*;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a><span class="kw">use</span> <span class="pp">web_sys::</span><span class="op">{</span>Blob<span class="op">,</span> BlobPropertyBag<span class="op">,</span> Url<span class="op">};</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a><span class="co">// This is a not-so-clean approach to get the current bindgen ES module URL</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a><span class="co">// in Rust. This will fail at run time on bindgen targets not using ES modules.</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true"></a><span class="at">#[</span>wasm_bindgen<span class="at">]</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true"></a><span class="kw">extern</span> <span class="st">&quot;C&quot;</span> <span class="op">{</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true"></a>    <span class="at">#[</span>wasm_bindgen<span class="at">]</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true"></a>    <span class="kw">type</span> ImportMeta<span class="op">;</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true"></a>    <span class="at">#[</span>wasm_bindgen<span class="at">(</span>method<span class="op">,</span> getter<span class="at">)]</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true"></a>    <span class="kw">fn</span> url(this<span class="op">:</span> <span class="op">&amp;</span>ImportMeta) <span class="op">-&gt;</span> JsString<span class="op">;</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true"></a>    <span class="at">#[</span>wasm_bindgen<span class="at">(</span>js_namespace <span class="op">=</span> import<span class="op">,</span> js_name <span class="op">=</span> meta<span class="at">)]</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true"></a>    <span class="kw">static</span> IMPORT_META<span class="op">:</span> ImportMeta<span class="op">;</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true"></a><span class="op">}</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true"></a><span class="kw">pub</span> <span class="kw">fn</span> on_the_fly(code<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>) <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span><span class="dt">String</span><span class="op">,</span> JsValue<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true"></a>    <span class="co">// Generate the import of the bindgen ES module, assuming `--target web`.</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true"></a>    <span class="kw">let</span> header <span class="op">=</span> <span class="pp">format!</span>(</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true"></a>        <span class="st">&quot;import init, * as bindgen from &#39;{}&#39;;</span><span class="sc">\n\n</span><span class="st">&quot;</span><span class="op">,</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true"></a>        IMPORT_META<span class="op">.</span>url()<span class="op">,</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true"></a>    )<span class="op">;</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true"></a></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true"></a>    <span class="pp">Url::</span>create_object_url_with_blob(<span class="op">&amp;</span><span class="pp">Blob::</span>new_with_str_sequence_and_options(</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true"></a>        <span class="op">&amp;</span><span class="pp">Array::</span>of2(<span class="op">&amp;</span><span class="pp">JsValue::</span>from(header<span class="op">.</span>as_str())<span class="op">,</span> <span class="op">&amp;</span><span class="pp">JsValue::</span>from(code))<span class="op">,</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true"></a>        <span class="pp">BlobPropertyBag::</span>new()<span class="op">.</span>type_(<span class="st">&quot;text/javascript&quot;</span>)<span class="op">,</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true"></a>    )<span class="op">?</span>)</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true"></a><span class="op">}</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true"></a></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true"></a><span class="co">// dependent_module! takes a local file name to a JS module as input and</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true"></a><span class="co">// returns a URL to a slightly modified module in run time. This modified module</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true"></a><span class="co">// has an additional import statement in the header that imports the current</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true"></a><span class="co">// bindgen JS module under the `bindgen` alias, and the separate init function.</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true"></a><span class="co">// How this URL is produced does not matter for the macro user. on_the_fly</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true"></a><span class="co">// creates a blob URL in run time. A better, more sophisticated solution</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true"></a><span class="co">// would add wasm_bindgen support to put such a module in pkg/ during build time</span></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true"></a><span class="co">// and return a URL to this file instead (described in #3019).</span></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true"></a><span class="at">#[</span>macro_export<span class="at">]</span></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true"></a><span class="pp">macro_rules!</span> dependent_module <span class="op">{</span></span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true"></a>    (<span class="op">$</span>file_name<span class="op">:</span>expr) <span class="op">=&gt;</span> <span class="op">{</span></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true"></a>        <span class="op">$</span><span class="pp">crate::dependent_module::</span>on_the_fly(<span class="pp">include_str!</span>(<span class="op">$</span>file_name))</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true"></a>    <span class="op">};</span></span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true"></a><span class="op">}</span></span></code></pre></div>
 <ul>
 <li>gui</li>
 </ul>
-<div class="sourceCode" id="cb8"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="kw">crate</span><span class="pp">::oscillator::</span>Params<span class="op">;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">wasm_bindgen::</span><span class="op">{</span><span class="pp">closure::</span>Closure<span class="op">,</span> JsCast<span class="op">,</span> JsValue<span class="op">};</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">web_sys::</span><span class="op">{</span>AudioContext<span class="op">,</span> HtmlInputElement<span class="op">,</span> HtmlLabelElement<span class="op">};</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">fn</span> create_gui(params<span class="op">:</span> <span class="op">&amp;</span><span class="ot">&#39;static</span> Params<span class="op">,</span> ctx<span class="op">:</span> AudioContext) <span class="op">{</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> window <span class="op">=</span> <span class="pp">web_sys::</span>window()<span class="op">.</span>unwrap()<span class="op">;</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> document <span class="op">=</span> window<span class="op">.</span>document()<span class="op">.</span>unwrap()<span class="op">;</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> body <span class="op">=</span> document<span class="op">.</span>body()<span class="op">.</span>unwrap()<span class="op">;</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> volume <span class="op">=</span> add_slider(<span class="op">&amp;</span>document<span class="op">,</span> <span class="op">&amp;</span>body<span class="op">,</span> <span class="st">&quot;Volume:&quot;</span>)<span class="op">.</span>unwrap()<span class="op">;</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> frequency <span class="op">=</span> add_slider(<span class="op">&amp;</span>document<span class="op">,</span> <span class="op">&amp;</span>body<span class="op">,</span> <span class="st">&quot;Frequency:&quot;</span>)<span class="op">.</span>unwrap()<span class="op">;</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    volume<span class="op">.</span>set_value(<span class="st">&quot;0&quot;</span>)<span class="op">;</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    frequency<span class="op">.</span>set_min(<span class="st">&quot;20&quot;</span>)<span class="op">;</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    frequency<span class="op">.</span>set_value(<span class="st">&quot;60&quot;</span>)<span class="op">;</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> listener <span class="op">=</span> <span class="pp">Closure::</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="bu">FnMut</span>(_)<span class="op">&gt;</span><span class="pp">::</span>new(<span class="kw">move</span> <span class="op">|</span>_<span class="op">:</span> <span class="pp">web_sys::</span>Event<span class="op">|</span> <span class="op">{</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>        params<span class="op">.</span>set_frequency(frequency<span class="op">.</span>value()<span class="op">.</span>parse()<span class="op">.</span>unwrap())<span class="op">;</span></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>        params<span class="op">.</span>set_volume(volume<span class="op">.</span>value()<span class="op">.</span>parse()<span class="op">.</span>unwrap())<span class="op">;</span></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>        drop(ctx<span class="op">.</span>resume()<span class="op">.</span>unwrap())<span class="op">;</span></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span>)</span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span>into_js_value()<span class="op">;</span></span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    body<span class="op">.</span>add_event_listener_with_callback(<span class="st">&quot;input&quot;</span><span class="op">,</span> listener<span class="op">.</span>as_ref()<span class="op">.</span>unchecked_ref())</span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>unwrap()<span class="op">;</span></span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> add_slider(</span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>    document<span class="op">:</span> <span class="op">&amp;</span><span class="pp">web_sys::</span>Document<span class="op">,</span></span>
-<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>    body<span class="op">:</span> <span class="op">&amp;</span><span class="pp">web_sys::</span>HtmlElement<span class="op">,</span></span>
-<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>    name<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span><span class="op">,</span></span>
-<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>HtmlInputElement<span class="op">,</span> JsValue<span class="op">&gt;</span> <span class="op">{</span></span>
-<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> input<span class="op">:</span> HtmlInputElement <span class="op">=</span> document<span class="op">.</span>create_element(<span class="st">&quot;input&quot;</span>)<span class="op">?.</span>unchecked_into()<span class="op">;</span></span>
-<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> label<span class="op">:</span> HtmlLabelElement <span class="op">=</span> document<span class="op">.</span>create_element(<span class="st">&quot;label&quot;</span>)<span class="op">?.</span>unchecked_into()<span class="op">;</span></span>
-<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>    input<span class="op">.</span>set_type(<span class="st">&quot;range&quot;</span>)<span class="op">;</span></span>
-<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>    label<span class="op">.</span>set_text_content(<span class="cn">Some</span>(name))<span class="op">;</span></span>
-<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>    label<span class="op">.</span>append_child(<span class="op">&amp;</span>input)<span class="op">?;</span></span>
-<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>    body<span class="op">.</span>append_child(<span class="op">&amp;</span>label)<span class="op">?;</span></span>
-<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>    <span class="cn">Ok</span>(input)</span>
-<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="kw">use</span> <span class="kw">crate</span><span class="pp">::oscillator::</span>Params<span class="op">;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a><span class="kw">use</span> <span class="pp">wasm_bindgen::</span><span class="op">{</span><span class="pp">closure::</span>Closure<span class="op">,</span> JsCast<span class="op">,</span> JsValue<span class="op">};</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a><span class="kw">use</span> <span class="pp">web_sys::</span><span class="op">{</span>AudioContext<span class="op">,</span> HtmlInputElement<span class="op">,</span> HtmlLabelElement<span class="op">};</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a><span class="kw">pub</span> <span class="kw">fn</span> create_gui(params<span class="op">:</span> <span class="op">&amp;</span><span class="ot">&#39;static</span> Params<span class="op">,</span> ctx<span class="op">:</span> AudioContext) <span class="op">{</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true"></a>    <span class="kw">let</span> window <span class="op">=</span> <span class="pp">web_sys::</span>window()<span class="op">.</span>unwrap()<span class="op">;</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true"></a>    <span class="kw">let</span> document <span class="op">=</span> window<span class="op">.</span>document()<span class="op">.</span>unwrap()<span class="op">;</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true"></a>    <span class="kw">let</span> body <span class="op">=</span> document<span class="op">.</span>body()<span class="op">.</span>unwrap()<span class="op">;</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true"></a>    <span class="kw">let</span> volume <span class="op">=</span> add_slider(<span class="op">&amp;</span>document<span class="op">,</span> <span class="op">&amp;</span>body<span class="op">,</span> <span class="st">&quot;Volume:&quot;</span>)<span class="op">.</span>unwrap()<span class="op">;</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true"></a>    <span class="kw">let</span> frequency <span class="op">=</span> add_slider(<span class="op">&amp;</span>document<span class="op">,</span> <span class="op">&amp;</span>body<span class="op">,</span> <span class="st">&quot;Frequency:&quot;</span>)<span class="op">.</span>unwrap()<span class="op">;</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true"></a>    volume<span class="op">.</span>set_value(<span class="st">&quot;0&quot;</span>)<span class="op">;</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true"></a>    frequency<span class="op">.</span>set_min(<span class="st">&quot;20&quot;</span>)<span class="op">;</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true"></a>    frequency<span class="op">.</span>set_value(<span class="st">&quot;60&quot;</span>)<span class="op">;</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true"></a>    <span class="kw">let</span> listener <span class="op">=</span> <span class="pp">Closure::</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="bu">FnMut</span>(_)<span class="op">&gt;</span><span class="pp">::</span>new(<span class="kw">move</span> <span class="op">|</span>_<span class="op">:</span> <span class="pp">web_sys::</span>Event<span class="op">|</span> <span class="op">{</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true"></a>        params<span class="op">.</span>set_frequency(frequency<span class="op">.</span>value()<span class="op">.</span>parse()<span class="op">.</span>unwrap())<span class="op">;</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true"></a>        params<span class="op">.</span>set_volume(volume<span class="op">.</span>value()<span class="op">.</span>parse()<span class="op">.</span>unwrap())<span class="op">;</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true"></a>        drop(ctx<span class="op">.</span>resume()<span class="op">.</span>unwrap())<span class="op">;</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true"></a>    <span class="op">}</span>)</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true"></a>    <span class="op">.</span>into_js_value()<span class="op">;</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true"></a></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true"></a>    body<span class="op">.</span>add_event_listener_with_callback(<span class="st">&quot;input&quot;</span><span class="op">,</span> listener<span class="op">.</span>as_ref()<span class="op">.</span>unchecked_ref())</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true"></a>        <span class="op">.</span>unwrap()<span class="op">;</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true"></a><span class="op">}</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true"></a></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true"></a><span class="kw">fn</span> add_slider(</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true"></a>    document<span class="op">:</span> <span class="op">&amp;</span><span class="pp">web_sys::</span>Document<span class="op">,</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true"></a>    body<span class="op">:</span> <span class="op">&amp;</span><span class="pp">web_sys::</span>HtmlElement<span class="op">,</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true"></a>    name<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span><span class="op">,</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true"></a>) <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>HtmlInputElement<span class="op">,</span> JsValue<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true"></a>    <span class="kw">let</span> input<span class="op">:</span> HtmlInputElement <span class="op">=</span> document<span class="op">.</span>create_element(<span class="st">&quot;input&quot;</span>)<span class="op">?.</span>unchecked_into()<span class="op">;</span></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true"></a>    <span class="kw">let</span> label<span class="op">:</span> HtmlLabelElement <span class="op">=</span> document<span class="op">.</span>create_element(<span class="st">&quot;label&quot;</span>)<span class="op">?.</span>unchecked_into()<span class="op">;</span></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true"></a>    input<span class="op">.</span>set_type(<span class="st">&quot;range&quot;</span>)<span class="op">;</span></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true"></a>    label<span class="op">.</span>set_text_content(<span class="cn">Some</span>(name))<span class="op">;</span></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true"></a>    label<span class="op">.</span>append_child(<span class="op">&amp;</span>input)<span class="op">?;</span></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true"></a>    body<span class="op">.</span>append_child(<span class="op">&amp;</span>label)<span class="op">?;</span></span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true"></a>    <span class="cn">Ok</span>(input)</span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true"></a><span class="op">}</span></span></code></pre></div>
 <ul>
 <li>oscillator</li>
 </ul>
-<div class="sourceCode" id="cb9"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Wasm audio processors can be implemented in Rust without knowing</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">// about audio worklets.</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::sync::atomic::</span><span class="op">{</span>AtomicU8<span class="op">,</span> Ordering<span class="op">};</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">// Let&#39;s implement a simple sine oscillator with variable frequency and volume.</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">struct</span> Oscillator <span class="op">{</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    params<span class="op">:</span> <span class="op">&amp;</span><span class="ot">&#39;static</span> Params<span class="op">,</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    accumulator<span class="op">:</span> <span class="dt">u32</span><span class="op">,</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> Oscillator <span class="op">{</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">pub</span> <span class="kw">fn</span> new(params<span class="op">:</span> <span class="op">&amp;</span><span class="ot">&#39;static</span> Params) <span class="op">-&gt;</span> <span class="dt">Self</span> <span class="op">{</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>        <span class="dt">Self</span> <span class="op">{</span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>            params<span class="op">,</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>            accumulator<span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> Oscillator <span class="op">{</span></span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    <span class="kw">pub</span> <span class="kw">fn</span> process(<span class="op">&amp;</span><span class="kw">mut</span> <span class="kw">self</span><span class="op">,</span> output<span class="op">:</span> <span class="op">&amp;</span><span class="kw">mut</span> [<span class="dt">f32</span>]) <span class="op">-&gt;</span> <span class="dt">bool</span> <span class="op">{</span></span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>        <span class="co">// This method is called in the audio process thread.</span></span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>        <span class="co">// All imports are set, so host functionality available in worklets</span></span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>        <span class="co">// (for example, logging) can be used:</span></span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>        <span class="co">// `web_sys::console::log_1(&amp;JsValue::from(output.len()));`</span></span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Note that currently TextEncoder and TextDecoder are stubs, so passing</span></span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>        <span class="co">// strings may not work in this thread.</span></span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> a <span class="kw">in</span> output <span class="op">{</span></span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>            <span class="kw">let</span> frequency <span class="op">=</span> <span class="kw">self</span><span class="op">.</span>params<span class="op">.</span>frequency<span class="op">.</span>load(<span class="pp">Ordering::</span>Relaxed)<span class="op">;</span></span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>            <span class="kw">let</span> volume <span class="op">=</span> <span class="kw">self</span><span class="op">.</span>params<span class="op">.</span>volume<span class="op">.</span>load(<span class="pp">Ordering::</span>Relaxed)<span class="op">;</span></span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>            <span class="kw">self</span><span class="op">.</span>accumulator <span class="op">+=</span> <span class="dt">u32</span><span class="pp">::</span>from(frequency)<span class="op">;</span></span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>            <span class="op">*</span>a <span class="op">=</span> (<span class="kw">self</span><span class="op">.</span>accumulator <span class="kw">as</span> <span class="dt">f32</span> <span class="op">/</span> <span class="dv">512</span><span class="op">.</span>)<span class="op">.</span>sin() <span class="op">*</span> (volume <span class="kw">as</span> <span class="dt">f32</span> <span class="op">/</span> <span class="dv">100</span><span class="op">.</span>)<span class="op">;</span></span>
-<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>        <span class="cn">true</span></span>
-<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>derive<span class="at">(</span><span class="bu">Default</span><span class="at">)]</span></span>
-<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">struct</span> Params <span class="op">{</span></span>
-<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Use atomics for parameters so they can be set in the main thread and</span></span>
-<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>    <span class="co">// fetched by the audio process thread without further synchronization.</span></span>
-<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>    frequency<span class="op">:</span> AtomicU8<span class="op">,</span></span>
-<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>    volume<span class="op">:</span> AtomicU8<span class="op">,</span></span>
-<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> Params <span class="op">{</span></span>
-<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>    <span class="kw">pub</span> <span class="kw">fn</span> set_frequency(<span class="op">&amp;</span><span class="kw">self</span><span class="op">,</span> frequency<span class="op">:</span> <span class="dt">u8</span>) <span class="op">{</span></span>
-<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>        <span class="kw">self</span><span class="op">.</span>frequency<span class="op">.</span>store(frequency<span class="op">,</span> <span class="pp">Ordering::</span>Relaxed)<span class="op">;</span></span>
-<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>    <span class="kw">pub</span> <span class="kw">fn</span> set_volume(<span class="op">&amp;</span><span class="kw">self</span><span class="op">,</span> volume<span class="op">:</span> <span class="dt">u8</span>) <span class="op">{</span></span>
-<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>        <span class="kw">self</span><span class="op">.</span>volume<span class="op">.</span>store(volume<span class="op">,</span> <span class="pp">Ordering::</span>Relaxed)<span class="op">;</span></span>
-<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="co">// Wasm audio processors can be implemented in Rust without knowing</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a><span class="co">// about audio worklets.</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true"></a><span class="kw">use</span> <span class="pp">std::sync::atomic::</span><span class="op">{</span>AtomicU8<span class="op">,</span> Ordering<span class="op">};</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true"></a><span class="co">// Let&#39;s implement a simple sine oscillator with variable frequency and volume.</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true"></a><span class="kw">pub</span> <span class="kw">struct</span> Oscillator <span class="op">{</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true"></a>    params<span class="op">:</span> <span class="op">&amp;</span><span class="ot">&#39;static</span> Params<span class="op">,</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true"></a>    accumulator<span class="op">:</span> <span class="dt">u32</span><span class="op">,</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true"></a><span class="op">}</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true"></a><span class="kw">impl</span> Oscillator <span class="op">{</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true"></a>    <span class="kw">pub</span> <span class="kw">fn</span> new(params<span class="op">:</span> <span class="op">&amp;</span><span class="ot">&#39;static</span> Params) <span class="op">-&gt;</span> <span class="dt">Self</span> <span class="op">{</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true"></a>        <span class="dt">Self</span> <span class="op">{</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true"></a>            params<span class="op">,</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true"></a>            accumulator<span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true"></a>        <span class="op">}</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true"></a>    <span class="op">}</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true"></a><span class="op">}</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true"></a></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true"></a><span class="kw">impl</span> Oscillator <span class="op">{</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true"></a>    <span class="kw">pub</span> <span class="kw">fn</span> process(<span class="op">&amp;</span><span class="kw">mut</span> <span class="kw">self</span><span class="op">,</span> output<span class="op">:</span> <span class="op">&amp;</span><span class="kw">mut</span> [<span class="dt">f32</span>]) <span class="op">-&gt;</span> <span class="dt">bool</span> <span class="op">{</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true"></a>        <span class="co">// This method is called in the audio process thread.</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true"></a>        <span class="co">// All imports are set, so host functionality available in worklets</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true"></a>        <span class="co">// (for example, logging) can be used:</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true"></a>        <span class="co">// `web_sys::console::log_1(&amp;JsValue::from(output.len()));`</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true"></a>        <span class="co">// Note that currently TextEncoder and TextDecoder are stubs, so passing</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true"></a>        <span class="co">// strings may not work in this thread.</span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true"></a>        <span class="kw">for</span> a <span class="kw">in</span> output <span class="op">{</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true"></a>            <span class="kw">let</span> frequency <span class="op">=</span> <span class="kw">self</span><span class="op">.</span>params<span class="op">.</span>frequency<span class="op">.</span>load(<span class="pp">Ordering::</span>Relaxed)<span class="op">;</span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true"></a>            <span class="kw">let</span> volume <span class="op">=</span> <span class="kw">self</span><span class="op">.</span>params<span class="op">.</span>volume<span class="op">.</span>load(<span class="pp">Ordering::</span>Relaxed)<span class="op">;</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true"></a>            <span class="kw">self</span><span class="op">.</span>accumulator <span class="op">+=</span> <span class="dt">u32</span><span class="pp">::</span>from(frequency)<span class="op">;</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true"></a>            <span class="op">*</span>a <span class="op">=</span> (<span class="kw">self</span><span class="op">.</span>accumulator <span class="kw">as</span> <span class="dt">f32</span> <span class="op">/</span> <span class="dv">512</span><span class="op">.</span>)<span class="op">.</span>sin() <span class="op">*</span> (volume <span class="kw">as</span> <span class="dt">f32</span> <span class="op">/</span> <span class="dv">100</span><span class="op">.</span>)<span class="op">;</span></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true"></a>        <span class="op">}</span></span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true"></a>        <span class="cn">true</span></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true"></a>    <span class="op">}</span></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true"></a><span class="op">}</span></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true"></a></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true"></a><span class="at">#[</span>derive<span class="at">(</span><span class="bu">Default</span><span class="at">)]</span></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true"></a><span class="kw">pub</span> <span class="kw">struct</span> Params <span class="op">{</span></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true"></a>    <span class="co">// Use atomics for parameters so they can be set in the main thread and</span></span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true"></a>    <span class="co">// fetched by the audio process thread without further synchronization.</span></span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true"></a>    frequency<span class="op">:</span> AtomicU8<span class="op">,</span></span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true"></a>    volume<span class="op">:</span> AtomicU8<span class="op">,</span></span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true"></a><span class="op">}</span></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true"></a></span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true"></a><span class="kw">impl</span> Params <span class="op">{</span></span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true"></a>    <span class="kw">pub</span> <span class="kw">fn</span> set_frequency(<span class="op">&amp;</span><span class="kw">self</span><span class="op">,</span> frequency<span class="op">:</span> <span class="dt">u8</span>) <span class="op">{</span></span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true"></a>        <span class="kw">self</span><span class="op">.</span>frequency<span class="op">.</span>store(frequency<span class="op">,</span> <span class="pp">Ordering::</span>Relaxed)<span class="op">;</span></span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true"></a>    <span class="op">}</span></span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true"></a>    <span class="kw">pub</span> <span class="kw">fn</span> set_volume(<span class="op">&amp;</span><span class="kw">self</span><span class="op">,</span> volume<span class="op">:</span> <span class="dt">u8</span>) <span class="op">{</span></span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true"></a>        <span class="kw">self</span><span class="op">.</span>volume<span class="op">.</span>store(volume<span class="op">,</span> <span class="pp">Ordering::</span>Relaxed)<span class="op">;</span></span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true"></a>    <span class="op">}</span></span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true"></a><span class="op">}</span></span></code></pre></div>
 <ul>
 <li>wasm_audio</li>
 </ul>
-<div class="sourceCode" id="cb10"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="kw">crate</span><span class="pp">::</span>dependent_module<span class="op">;</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">wasm_bindgen::prelude::</span><span class="op">*;</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">wasm_bindgen::</span>JsValue<span class="op">;</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">wasm_bindgen_futures::</span>JsFuture<span class="op">;</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">web_sys::</span><span class="op">{</span>AudioContext<span class="op">,</span> AudioWorkletNode<span class="op">,</span> AudioWorkletNodeOptions<span class="op">};</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>wasm_bindgen<span class="at">]</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">struct</span> WasmAudioProcessor(<span class="dt">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="bu">FnMut</span>(<span class="op">&amp;</span><span class="kw">mut</span> [<span class="dt">f32</span>]) <span class="op">-&gt;</span> <span class="dt">bool</span><span class="op">&gt;</span>)<span class="op">;</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>wasm_bindgen<span class="at">]</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> WasmAudioProcessor <span class="op">{</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">pub</span> <span class="kw">fn</span> process(<span class="op">&amp;</span><span class="kw">mut</span> <span class="kw">self</span><span class="op">,</span> buf<span class="op">:</span> <span class="op">&amp;</span><span class="kw">mut</span> [<span class="dt">f32</span>]) <span class="op">-&gt;</span> <span class="dt">bool</span> <span class="op">{</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>        <span class="kw">self</span><span class="op">.</span><span class="dv">0</span>(buf)</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">pub</span> <span class="kw">fn</span> pack(<span class="kw">self</span>) <span class="op">-&gt;</span> <span class="dt">usize</span> <span class="op">{</span></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>        <span class="dt">Box</span><span class="pp">::</span>into_raw(<span class="dt">Box</span><span class="pp">::</span>new(<span class="kw">self</span>)) <span class="kw">as</span> <span class="dt">usize</span></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> unpack(val<span class="op">:</span> <span class="dt">usize</span>) <span class="op">-&gt;</span> <span class="dt">Self</span> <span class="op">{</span></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>        <span class="op">*</span><span class="dt">Box</span><span class="pp">::</span>from_raw(val <span class="kw">as</span> <span class="op">*</span><span class="kw">mut</span> _)</span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="co">// Use wasm_audio if you have a single wasm audio processor in your application</span></span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="co">// whose samples should be played directly. Ideally, call wasm_audio based on</span></span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="co">// user interaction. Otherwise, resume the context on user interaction, so</span></span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="co">// playback starts reliably on all browsers.</span></span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> wasm_audio(</span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>    process<span class="op">:</span> <span class="dt">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="bu">FnMut</span>(<span class="op">&amp;</span><span class="kw">mut</span> [<span class="dt">f32</span>]) <span class="op">-&gt;</span> <span class="dt">bool</span><span class="op">&gt;,</span></span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>AudioContext<span class="op">,</span> JsValue<span class="op">&gt;</span> <span class="op">{</span></span>
-<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> ctx <span class="op">=</span> <span class="pp">AudioContext::</span>new()<span class="op">?;</span></span>
-<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>    prepare_wasm_audio(<span class="op">&amp;</span>ctx)<span class="op">.</span><span class="kw">await</span><span class="op">?;</span></span>
-<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> node <span class="op">=</span> wasm_audio_node(<span class="op">&amp;</span>ctx<span class="op">,</span> process)<span class="op">?;</span></span>
-<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>    node<span class="op">.</span>connect_with_audio_node(<span class="op">&amp;</span>ctx<span class="op">.</span>destination())<span class="op">?;</span></span>
-<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>    <span class="cn">Ok</span>(ctx)</span>
-<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a><span class="co">// wasm_audio_node creates an AudioWorkletNode running a wasm audio processor.</span></span>
-<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a><span class="co">// Remember to call prepare_wasm_audio once on your context before calling</span></span>
-<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a><span class="co">// this function.</span></span>
-<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">fn</span> wasm_audio_node(</span>
-<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>    ctx<span class="op">:</span> <span class="op">&amp;</span>AudioContext<span class="op">,</span></span>
-<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>    process<span class="op">:</span> <span class="dt">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="bu">FnMut</span>(<span class="op">&amp;</span><span class="kw">mut</span> [<span class="dt">f32</span>]) <span class="op">-&gt;</span> <span class="dt">bool</span><span class="op">&gt;,</span></span>
-<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>AudioWorkletNode<span class="op">,</span> JsValue<span class="op">&gt;</span> <span class="op">{</span></span>
-<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>    <span class="pp">AudioWorkletNode::</span>new_with_options(</span>
-<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>        ctx<span class="op">,</span></span>
-<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;WasmProcessor&quot;</span><span class="op">,</span></span>
-<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>        <span class="pp">AudioWorkletNodeOptions::</span>new()<span class="op">.</span>processor_options(<span class="cn">Some</span>(<span class="op">&amp;</span><span class="pp">js_sys::Array::</span>of3(</span>
-<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a>            <span class="op">&amp;</span><span class="pp">wasm_bindgen::</span>module()<span class="op">,</span></span>
-<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a>            <span class="op">&amp;</span><span class="pp">wasm_bindgen::</span>memory()<span class="op">,</span></span>
-<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a>            <span class="op">&amp;</span>WasmAudioProcessor(process)<span class="op">.</span>pack()<span class="op">.</span>into()<span class="op">,</span></span>
-<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a>        )))<span class="op">,</span></span>
-<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> prepare_wasm_audio(ctx<span class="op">:</span> <span class="op">&amp;</span>AudioContext) <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>()<span class="op">,</span> JsValue<span class="op">&gt;</span> <span class="op">{</span></span>
-<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> mod_url <span class="op">=</span> <span class="pp">dependent_module!</span>(<span class="st">&quot;worklet.js&quot;</span>)<span class="op">?;</span></span>
-<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a>    <span class="pp">JsFuture::</span>from(ctx<span class="op">.</span>audio_worklet()<span class="op">?.</span>add_module(<span class="op">&amp;</span>mod_url)<span class="op">?</span>)<span class="op">.</span><span class="kw">await</span><span class="op">?;</span></span>
-<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a>    <span class="cn">Ok</span>(())</span>
-<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="kw">use</span> <span class="kw">crate</span><span class="pp">::</span>dependent_module<span class="op">;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a><span class="kw">use</span> <span class="pp">wasm_bindgen::prelude::</span><span class="op">*;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a><span class="kw">use</span> <span class="pp">wasm_bindgen::</span>JsValue<span class="op">;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true"></a><span class="kw">use</span> <span class="pp">wasm_bindgen_futures::</span>JsFuture<span class="op">;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true"></a><span class="kw">use</span> <span class="pp">web_sys::</span><span class="op">{</span>AudioContext<span class="op">,</span> AudioWorkletNode<span class="op">,</span> AudioWorkletNodeOptions<span class="op">};</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true"></a><span class="at">#[</span>wasm_bindgen<span class="at">]</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true"></a><span class="kw">pub</span> <span class="kw">struct</span> WasmAudioProcessor(<span class="dt">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="bu">FnMut</span>(<span class="op">&amp;</span><span class="kw">mut</span> [<span class="dt">f32</span>]) <span class="op">-&gt;</span> <span class="dt">bool</span><span class="op">&gt;</span>)<span class="op">;</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true"></a><span class="at">#[</span>wasm_bindgen<span class="at">]</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true"></a><span class="kw">impl</span> WasmAudioProcessor <span class="op">{</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true"></a>    <span class="kw">pub</span> <span class="kw">fn</span> process(<span class="op">&amp;</span><span class="kw">mut</span> <span class="kw">self</span><span class="op">,</span> buf<span class="op">:</span> <span class="op">&amp;</span><span class="kw">mut</span> [<span class="dt">f32</span>]) <span class="op">-&gt;</span> <span class="dt">bool</span> <span class="op">{</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true"></a>        <span class="kw">self</span><span class="op">.</span><span class="dv">0</span>(buf)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true"></a>    <span class="op">}</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true"></a>    <span class="kw">pub</span> <span class="kw">fn</span> pack(<span class="kw">self</span>) <span class="op">-&gt;</span> <span class="dt">usize</span> <span class="op">{</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true"></a>        <span class="dt">Box</span><span class="pp">::</span>into_raw(<span class="dt">Box</span><span class="pp">::</span>new(<span class="kw">self</span>)) <span class="kw">as</span> <span class="dt">usize</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true"></a>    <span class="op">}</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true"></a>    <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> unpack(val<span class="op">:</span> <span class="dt">usize</span>) <span class="op">-&gt;</span> <span class="dt">Self</span> <span class="op">{</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true"></a>        <span class="op">*</span><span class="dt">Box</span><span class="pp">::</span>from_raw(val <span class="kw">as</span> <span class="op">*</span><span class="kw">mut</span> _)</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true"></a>    <span class="op">}</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true"></a><span class="op">}</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true"></a></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true"></a><span class="co">// Use wasm_audio if you have a single wasm audio processor in your application</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true"></a><span class="co">// whose samples should be played directly. Ideally, call wasm_audio based on</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true"></a><span class="co">// user interaction. Otherwise, resume the context on user interaction, so</span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true"></a><span class="co">// playback starts reliably on all browsers.</span></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true"></a><span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> wasm_audio(</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true"></a>    process<span class="op">:</span> <span class="dt">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="bu">FnMut</span>(<span class="op">&amp;</span><span class="kw">mut</span> [<span class="dt">f32</span>]) <span class="op">-&gt;</span> <span class="dt">bool</span><span class="op">&gt;,</span></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true"></a>) <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>AudioContext<span class="op">,</span> JsValue<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true"></a>    <span class="kw">let</span> ctx <span class="op">=</span> <span class="pp">AudioContext::</span>new()<span class="op">?;</span></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true"></a>    prepare_wasm_audio(<span class="op">&amp;</span>ctx)<span class="op">.</span><span class="kw">await</span><span class="op">?;</span></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true"></a>    <span class="kw">let</span> node <span class="op">=</span> wasm_audio_node(<span class="op">&amp;</span>ctx<span class="op">,</span> process)<span class="op">?;</span></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true"></a>    node<span class="op">.</span>connect_with_audio_node(<span class="op">&amp;</span>ctx<span class="op">.</span>destination())<span class="op">?;</span></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true"></a>    <span class="cn">Ok</span>(ctx)</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true"></a><span class="op">}</span></span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true"></a></span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true"></a><span class="co">// wasm_audio_node creates an AudioWorkletNode running a wasm audio processor.</span></span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true"></a><span class="co">// Remember to call prepare_wasm_audio once on your context before calling</span></span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true"></a><span class="co">// this function.</span></span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true"></a><span class="kw">pub</span> <span class="kw">fn</span> wasm_audio_node(</span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true"></a>    ctx<span class="op">:</span> <span class="op">&amp;</span>AudioContext<span class="op">,</span></span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true"></a>    process<span class="op">:</span> <span class="dt">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="bu">FnMut</span>(<span class="op">&amp;</span><span class="kw">mut</span> [<span class="dt">f32</span>]) <span class="op">-&gt;</span> <span class="dt">bool</span><span class="op">&gt;,</span></span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true"></a>) <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>AudioWorkletNode<span class="op">,</span> JsValue<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true"></a>    <span class="pp">AudioWorkletNode::</span>new_with_options(</span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true"></a>        ctx<span class="op">,</span></span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true"></a>        <span class="st">&quot;WasmProcessor&quot;</span><span class="op">,</span></span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true"></a>        <span class="pp">AudioWorkletNodeOptions::</span>new()<span class="op">.</span>processor_options(<span class="cn">Some</span>(<span class="op">&amp;</span><span class="pp">js_sys::Array::</span>of3(</span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true"></a>            <span class="op">&amp;</span><span class="pp">wasm_bindgen::</span>module()<span class="op">,</span></span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true"></a>            <span class="op">&amp;</span><span class="pp">wasm_bindgen::</span>memory()<span class="op">,</span></span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true"></a>            <span class="op">&amp;</span>WasmAudioProcessor(process)<span class="op">.</span>pack()<span class="op">.</span>into()<span class="op">,</span></span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true"></a>        )))<span class="op">,</span></span>
+<span id="cb10-52"><a href="#cb10-52" aria-hidden="true"></a>    )</span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true"></a><span class="op">}</span></span>
+<span id="cb10-54"><a href="#cb10-54" aria-hidden="true"></a></span>
+<span id="cb10-55"><a href="#cb10-55" aria-hidden="true"></a><span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> prepare_wasm_audio(ctx<span class="op">:</span> <span class="op">&amp;</span>AudioContext) <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>()<span class="op">,</span> JsValue<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb10-56"><a href="#cb10-56" aria-hidden="true"></a>    <span class="kw">let</span> mod_url <span class="op">=</span> <span class="pp">dependent_module!</span>(<span class="st">&quot;worklet.js&quot;</span>)<span class="op">?;</span></span>
+<span id="cb10-57"><a href="#cb10-57" aria-hidden="true"></a>    <span class="pp">JsFuture::</span>from(ctx<span class="op">.</span>audio_worklet()<span class="op">?.</span>add_module(<span class="op">&amp;</span>mod_url)<span class="op">?</span>)<span class="op">.</span><span class="kw">await</span><span class="op">?;</span></span>
+<span id="cb10-58"><a href="#cb10-58" aria-hidden="true"></a>    <span class="cn">Ok</span>(())</span>
+<span id="cb10-59"><a href="#cb10-59" aria-hidden="true"></a><span class="op">}</span></span></code></pre></div>
 <h3 id="running-the-demo">Running the demo</h3>
-<p>“<em>Currently it’s required to use the –target no-modules or –target
-web flag with wasm-bindgen to run threaded code. This is because the
-WebAssembly file imports memory instead of exporting it, so we need to
-hook initialization of the wasm module at this time to provide the
-appropriate memory object. This demo uses –target no-modules, because
-Firefox does not support modules in workers.</em></p>
-<p><em>With –target no-modules you’ll be able to use importScripts
-inside of each web worker to import the shim JS generated by
-wasm-bindgen as well as calling the wasm_bindgen initialization function
-with the shared memory instance from the main thread. The expected usage
-is that WebAssembly on the main thread will post its memory object to
-all other threads to get instantiated with.</em>”<br />
-_ <a
-href="https://rustwasm.github.io/wasm-bindgen/examples/raytrace-parallel.html"
-target="_blank">wasm-bindgen Guide</a></p>
+<p>"<em>Currently it’s required to use the –target no-modules or –target web flag with wasm-bindgen to run threaded code. This is because the WebAssembly file imports memory instead of exporting it, so we need to hook initialization of the wasm module at this time to provide the appropriate memory object. This demo uses –target no-modules, because Firefox does not support modules in workers.</em></p>
+<p><em>With –target no-modules you’ll be able to use importScripts inside of each web worker to import the shim JS generated by wasm-bindgen as well as calling the wasm_bindgen initialization function with the shared memory instance from the main thread. The expected usage is that WebAssembly on the main thread will post its memory object to all other threads to get instantiated with.</em>"<br />
+_ <a href="https://rustwasm.github.io/wasm-bindgen/examples/raytrace-parallel.html" target="_blank">wasm-bindgen Guide</a></p>
 <h2 id="build-and-serve">build and serve</h2>
 <blockquote>
-<p>This example requires to <em>not</em> create ES modules, therefore we
-pass the flag <code>--target no-modules</code></p>
+<p>This example requires to <em>not</em> create ES modules, therefore we pass the flag <code>--target no-modules</code></p>
 </blockquote>
-<div class="sourceCode" id="cb11"><pre
-class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">wasm-pack</span> build <span class="at">--target</span> no-modules <span class="at">--no-typescript</span> <span class="at">--out-dir</span> www/pkg</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ex">http</span> www</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a><span class="ex">wasm-pack</span> build --target no-modules --no-typescript --out-dir www/pkg</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true"></a><span class="ex">http</span> www</span></code></pre></div>
 <p>open <code>index.html</code></p>
-<div class="sourceCode" id="cb12"><pre
-class="sourceCode sh"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">firefox</span> http://localhost:8000/html/</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a><span class="ex">firefox</span> http://localhost:8000/html/</span></code></pre></div>
 <hr />
 <h2 id="whats-next">What’s next?</h2>
-<p>Next example: <a href="./022.todomvc.html">TODO MVC using wasm-bingen
-and web-sys <code>--&gt;</code></a></p>
+<p>Next example: <a href="./022.todomvc.html">TODO MVC using wasm-bingen and web-sys <code>--&gt;</code></a></p>
 </main>
 <script src="https://lerina.github.io/js/toc.js"></script>
 <script>

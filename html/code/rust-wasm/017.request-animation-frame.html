@@ -15,7 +15,6 @@
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
     div.sourceCode { margin: 1em 0; }
     pre.sourceCode { margin: 0; }
@@ -75,175 +74,155 @@
     code span.va { color: #19177c; } /* Variable */
     code span.vs { color: #4070a0; } /* VerbatimString */
     code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
   <link rel="stylesheet" href="https://lerina.github.io/css/styles_min.css" />
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
 </head>
 <body>
 <nav id="TOC" role="doc-toc">
 <ul>
-<li><a href="#web-sys-a-requestanimationframe-loop"
-id="toc-web-sys-a-requestanimationframe-loop">web-sys: A
-requestAnimationFrame Loop</a></li>
-<li><a href="#build-and-serve" id="toc-build-and-serve">build and
-serve</a></li>
-<li><a href="#whats-next" id="toc-whats-next">What’s next?</a></li>
+<li><a href="#web-sys-a-requestanimationframe-loop">web-sys: A requestAnimationFrame Loop</a></li>
+<li><a href="#build-and-serve">build and serve</a></li>
+<li><a href="#whats-next">What’s next?</a></li>
 </ul>
 </nav>
 <div class="navbar">
 <a class="openbtn" onclick="openNav()">☰</a>
 </div>
-<p><a href="./016.webrtc_datachannel.html"><code>&lt;--</code>
-WebGl</a></p>
+<p><a href="./016.webrtc_datachannel.html"><code>&lt;--</code> WebGl</a></p>
 <main>
-<h2 id="web-sys-a-requestanimationframe-loop">web-sys: A
-requestAnimationFrame Loop</h2>
-<p><em>This example connects to an echo server on
-wss://echo.websocket.org, sends a ping message, and receives the
-response.</em><br />
-_ <a
-href="https://rustwasm.github.io/wasm-bindgen/examples/request-animation-frame.html"
-target="_blank">wasm-bindgen Guide</a></p>
-<p><a
-href="https://github.com/rustwasm/wasm-bindgen/tree/master/examples/request-animation-frame"
-target="_blank">web-sys: request-animation-frame</a></p>
+<h2 id="web-sys-a-requestanimationframe-loop">web-sys: A requestAnimationFrame Loop</h2>
+<p><em>This example connects to an echo server on wss://echo.websocket.org, sends a ping message, and receives the response.</em><br />
+_ <a href="https://rustwasm.github.io/wasm-bindgen/examples/request-animation-frame.html" target="_blank">wasm-bindgen Guide</a></p>
+<p><a href="https://github.com/rustwasm/wasm-bindgen/tree/master/examples/request-animation-frame" target="_blank">web-sys: request-animation-frame</a></p>
 <h3 id="setup-the-project">setup the project</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> new request-animation-frame <span class="at">--lib</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> request-animation-frame</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> www/js www/html</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> add wasm-bindgen</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="ex">cargo</span> new request-animation-frame --lib</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="bu">cd</span> request-animation-frame</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="fu">mkdir</span> -p www/js www/html</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="ex">cargo</span> add wasm-bindgen</span></code></pre></div>
 <ul>
 <li>Edit Cargo.toml</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre
-class="sourceCode toml"><code class="sourceCode toml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[</span><span class="dt">lib</span><span class="kw">]</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dt">crate-type</span> <span class="op">=</span> <span class="op">[</span><span class="st">&quot;cdylib&quot;</span><span class="op">]</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">[</span><span class="dt">dependencies</span><span class="kw">]</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="dt">wasm-bindgen</span> <span class="op">=</span> <span class="st">&quot;0.2.89&quot;</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">[</span><span class="dt">dependencies</span><span class="kw">.</span><span class="dt">web-sys</span><span class="kw">]</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">&quot;0.3.66&quot;</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="dt">features</span> <span class="op">=</span> <span class="op">[</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;</span><span class="vs">Document</span><span class="st">&#39;</span><span class="op">,</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;</span><span class="vs">Element</span><span class="st">&#39;</span><span class="op">,</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;</span><span class="vs">HtmlElement</span><span class="st">&#39;</span><span class="op">,</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;</span><span class="vs">Node</span><span class="st">&#39;</span><span class="op">,</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;</span><span class="vs">Window</span><span class="st">&#39;</span><span class="op">,</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="op">]</span></span></code></pre></div>
+<pre class="toml"><code>[lib]
+crate-type = [&quot;cdylib&quot;]
+
+[dependencies]
+wasm-bindgen = &quot;0.2.89&quot;
+
+[dependencies.web-sys]
+version = &quot;0.3.66&quot;
+features = [
+  &#39;Document&#39;,
+  &#39;Element&#39;,
+  &#39;HtmlElement&#39;,
+  &#39;Node&#39;,
+  &#39;Window&#39;,
+]</code></pre>
 <h3 id="the-code">The code</h3>
 <ul>
 <li>index.html</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!doctype </span>html<span class="dt">&gt;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;html&gt;</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;head&gt;</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;meta</span> <span class="er">content</span><span class="ot">=</span><span class="st">&quot;text/html;charset=utf-8&quot;</span> <span class="er">http-equiv</span><span class="ot">=</span><span class="st">&quot;Content-Type&quot;</span><span class="kw">/&gt;</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;title&gt;</span>request-animation-frame: nobundle<span class="kw">&lt;/title&gt;</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/head&gt;</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;body&gt;</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;p&gt;</span>A greeting from rust looks like...<span class="kw">&lt;/p&gt;</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;module&quot;</span> <span class="er">src</span><span class="ot">=</span><span class="st">&quot;../js/index.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/body&gt;</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="dt">&lt;!doctype </span>html<span class="dt">&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="kw">&lt;html&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>  <span class="kw">&lt;head&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>    <span class="kw">&lt;meta</span><span class="ot"> content=</span><span class="st">&quot;text/html;charset=utf-8&quot;</span><span class="ot"> http-equiv=</span><span class="st">&quot;Content-Type&quot;</span><span class="kw">/&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>    <span class="kw">&lt;title&gt;</span>request-animation-frame: nobundle<span class="kw">&lt;/title&gt;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>  <span class="kw">&lt;/head&gt;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>  <span class="kw">&lt;body&gt;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>    <span class="kw">&lt;p&gt;</span>A greeting from rust looks like...<span class="kw">&lt;/p&gt;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a>    <span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;module&quot;</span><span class="ot"> src=</span><span class="st">&quot;../js/index.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a>  <span class="kw">&lt;/body&gt;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
 <ul>
 <li>index.js</li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> init <span class="im">from</span> <span class="st">&#39;../pkg/request_animation_frame.js&#39;</span><span class="op">;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">run</span>() {</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> wasm <span class="op">=</span> <span class="cf">await</span> <span class="fu">init</span>()<span class="op">.</span><span class="fu">catch</span>(<span class="bu">console</span><span class="op">.</span><span class="fu">error</span>)<span class="op">;</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">run</span>()<span class="op">;</span></span></code></pre></div>
-<p>Note: <code>request-animation-frame</code> becomes
-<code>request_animation_frame</code></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="im">import</span> init <span class="im">from</span> <span class="st">&#39;../pkg/request_animation_frame.js&#39;</span><span class="op">;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">run</span>() {</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a>    <span class="kw">const</span> wasm <span class="op">=</span> <span class="cf">await</span> <span class="fu">init</span>()<span class="op">.</span><span class="fu">catch</span>(<span class="bu">console</span><span class="op">.</span><span class="fu">error</span>)<span class="op">;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a>}</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a><span class="fu">run</span>()<span class="op">;</span></span></code></pre></div>
+<p>Note: <code>request-animation-frame</code> becomes <code>request_animation_frame</code></p>
 <ul>
 <li>Rust side</li>
 </ul>
-<div class="sourceCode" id="cb5"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">// src/lib.rs</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::cell::</span>RefCell<span class="op">;</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::rc::</span>Rc<span class="op">;</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">wasm_bindgen::prelude::</span><span class="op">*;</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> window() <span class="op">-&gt;</span> <span class="pp">web_sys::</span>Window <span class="op">{</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="pp">web_sys::</span>window()<span class="op">.</span>expect(<span class="st">&quot;no global `window` exists&quot;</span>)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> request_animation_frame(f<span class="op">:</span> <span class="op">&amp;</span>Closure<span class="op">&lt;</span><span class="kw">dyn</span> <span class="bu">FnMut</span>()<span class="op">&gt;</span>) <span class="op">{</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    window()</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>request_animation_frame(f<span class="op">.</span>as_ref()<span class="op">.</span>unchecked_ref())</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>expect(<span class="st">&quot;should register `requestAnimationFrame` OK&quot;</span>)<span class="op">;</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> document() <span class="op">-&gt;</span> <span class="pp">web_sys::</span>Document <span class="op">{</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    window()</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>document()</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>expect(<span class="st">&quot;should have a document on window&quot;</span>)</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> body() <span class="op">-&gt;</span> <span class="pp">web_sys::</span>HtmlElement <span class="op">{</span></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    document()<span class="op">.</span>body()<span class="op">.</span>expect(<span class="st">&quot;document should have a body&quot;</span>)</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="co">// This function is automatically invoked after the wasm module is instantiated.</span></span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>wasm_bindgen<span class="at">(</span>start<span class="at">)]</span></span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> run() <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>()<span class="op">,</span> JsValue<span class="op">&gt;</span> <span class="op">{</span></span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Here we want to call `requestAnimationFrame` in a loop, but only a fixed</span></span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    <span class="co">// number of times. After it&#39;s done we want all our resources cleaned up. To</span></span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    <span class="co">// achieve this we&#39;re using an `Rc`. The `Rc` will eventually store the</span></span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>    <span class="co">// closure we want to execute on each frame, but to start out it contains</span></span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    <span class="co">// `None`.</span></span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>    <span class="co">//</span></span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>    <span class="co">// After the `Rc` is made we&#39;ll actually create the closure, and the closure</span></span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>    <span class="co">// will reference one of the `Rc` instances. The other `Rc` reference is</span></span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>    <span class="co">// used to store the closure, request the first frame, and then is dropped</span></span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>    <span class="co">// by this function.</span></span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>    <span class="co">//</span></span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Inside the closure we&#39;ve got a persistent `Rc` reference, which we use</span></span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>    <span class="co">// for all future iterations of the loop</span></span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> f <span class="op">=</span> <span class="pp">Rc::</span>new(<span class="pp">RefCell::</span>new(<span class="cn">None</span>))<span class="op">;</span></span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> g <span class="op">=</span> f<span class="op">.</span>clone()<span class="op">;</span></span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>    <span class="op">*</span>g<span class="op">.</span>borrow_mut() <span class="op">=</span> <span class="cn">Some</span>(<span class="pp">Closure::</span>new(<span class="kw">move</span> <span class="op">||</span> <span class="op">{</span></span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> i <span class="op">&gt;</span> <span class="dv">300</span> <span class="op">{</span></span>
-<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>            body()<span class="op">.</span>set_text_content(<span class="cn">Some</span>(<span class="st">&quot;All done!&quot;</span>))<span class="op">;</span></span>
-<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>            <span class="co">// Drop our handle to this closure so that it will get cleaned</span></span>
-<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>            <span class="co">// up once we return.</span></span>
-<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>            <span class="kw">let</span> _ <span class="op">=</span> f<span class="op">.</span>borrow_mut()<span class="op">.</span>take()<span class="op">;</span></span>
-<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span><span class="op">;</span></span>
-<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Set the body&#39;s text content to how many times this</span></span>
-<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>        <span class="co">// requestAnimationFrame callback has fired.</span></span>
-<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>        i <span class="op">+=</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> text <span class="op">=</span> <span class="pp">format!</span>(<span class="st">&quot;requestAnimationFrame has been called {} times.&quot;</span><span class="op">,</span> i)<span class="op">;</span></span>
-<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>        body()<span class="op">.</span>set_text_content(<span class="cn">Some</span>(<span class="op">&amp;</span>text))<span class="op">;</span></span>
-<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Schedule ourself for another requestAnimationFrame callback.</span></span>
-<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>        request_animation_frame(f<span class="op">.</span>borrow()<span class="op">.</span>as_ref()<span class="op">.</span>unwrap())<span class="op">;</span></span>
-<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span>))<span class="op">;</span></span>
-<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>    request_animation_frame(g<span class="op">.</span>borrow()<span class="op">.</span>as_ref()<span class="op">.</span>unwrap())<span class="op">;</span></span>
-<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>    <span class="cn">Ok</span>(())</span>
-<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="co">// src/lib.rs</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="kw">use</span> <span class="pp">std::cell::</span>RefCell<span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="kw">use</span> <span class="pp">std::rc::</span>Rc<span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a><span class="kw">use</span> <span class="pp">wasm_bindgen::prelude::</span><span class="op">*;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a><span class="kw">fn</span> window() <span class="op">-&gt;</span> <span class="pp">web_sys::</span>Window <span class="op">{</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a>    <span class="pp">web_sys::</span>window()<span class="op">.</span>expect(<span class="st">&quot;no global `window` exists&quot;</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a><span class="op">}</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a><span class="kw">fn</span> request_animation_frame(f<span class="op">:</span> <span class="op">&amp;</span>Closure<span class="op">&lt;</span><span class="kw">dyn</span> <span class="bu">FnMut</span>()<span class="op">&gt;</span>) <span class="op">{</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true"></a>    window()</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true"></a>        <span class="op">.</span>request_animation_frame(f<span class="op">.</span>as_ref()<span class="op">.</span>unchecked_ref())</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true"></a>        <span class="op">.</span>expect(<span class="st">&quot;should register `requestAnimationFrame` OK&quot;</span>)<span class="op">;</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true"></a><span class="op">}</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true"></a><span class="kw">fn</span> document() <span class="op">-&gt;</span> <span class="pp">web_sys::</span>Document <span class="op">{</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true"></a>    window()</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true"></a>        <span class="op">.</span>document()</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true"></a>        <span class="op">.</span>expect(<span class="st">&quot;should have a document on window&quot;</span>)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true"></a><span class="op">}</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true"></a></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true"></a><span class="kw">fn</span> body() <span class="op">-&gt;</span> <span class="pp">web_sys::</span>HtmlElement <span class="op">{</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true"></a>    document()<span class="op">.</span>body()<span class="op">.</span>expect(<span class="st">&quot;document should have a body&quot;</span>)</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true"></a><span class="op">}</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true"></a></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true"></a><span class="co">// This function is automatically invoked after the wasm module is instantiated.</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true"></a><span class="at">#[</span>wasm_bindgen<span class="at">(</span>start<span class="at">)]</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true"></a><span class="kw">fn</span> run() <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>()<span class="op">,</span> JsValue<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true"></a>    <span class="co">// Here we want to call `requestAnimationFrame` in a loop, but only a fixed</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true"></a>    <span class="co">// number of times. After it&#39;s done we want all our resources cleaned up. To</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true"></a>    <span class="co">// achieve this we&#39;re using an `Rc`. The `Rc` will eventually store the</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true"></a>    <span class="co">// closure we want to execute on each frame, but to start out it contains</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true"></a>    <span class="co">// `None`.</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true"></a>    <span class="co">//</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true"></a>    <span class="co">// After the `Rc` is made we&#39;ll actually create the closure, and the closure</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true"></a>    <span class="co">// will reference one of the `Rc` instances. The other `Rc` reference is</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true"></a>    <span class="co">// used to store the closure, request the first frame, and then is dropped</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true"></a>    <span class="co">// by this function.</span></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true"></a>    <span class="co">//</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true"></a>    <span class="co">// Inside the closure we&#39;ve got a persistent `Rc` reference, which we use</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true"></a>    <span class="co">// for all future iterations of the loop</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true"></a>    <span class="kw">let</span> f <span class="op">=</span> <span class="pp">Rc::</span>new(<span class="pp">RefCell::</span>new(<span class="cn">None</span>))<span class="op">;</span></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true"></a>    <span class="kw">let</span> g <span class="op">=</span> f<span class="op">.</span>clone()<span class="op">;</span></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true"></a></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true"></a>    <span class="kw">let</span> <span class="kw">mut</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true"></a>    <span class="op">*</span>g<span class="op">.</span>borrow_mut() <span class="op">=</span> <span class="cn">Some</span>(<span class="pp">Closure::</span>new(<span class="kw">move</span> <span class="op">||</span> <span class="op">{</span></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true"></a>        <span class="kw">if</span> i <span class="op">&gt;</span> <span class="dv">300</span> <span class="op">{</span></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true"></a>            body()<span class="op">.</span>set_text_content(<span class="cn">Some</span>(<span class="st">&quot;All done!&quot;</span>))<span class="op">;</span></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true"></a></span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true"></a>            <span class="co">// Drop our handle to this closure so that it will get cleaned</span></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true"></a>            <span class="co">// up once we return.</span></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true"></a>            <span class="kw">let</span> _ <span class="op">=</span> f<span class="op">.</span>borrow_mut()<span class="op">.</span>take()<span class="op">;</span></span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true"></a>            <span class="kw">return</span><span class="op">;</span></span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true"></a>        <span class="op">}</span></span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true"></a></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true"></a>        <span class="co">// Set the body&#39;s text content to how many times this</span></span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true"></a>        <span class="co">// requestAnimationFrame callback has fired.</span></span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true"></a>        i <span class="op">+=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true"></a>        <span class="kw">let</span> text <span class="op">=</span> <span class="pp">format!</span>(<span class="st">&quot;requestAnimationFrame has been called {} times.&quot;</span><span class="op">,</span> i)<span class="op">;</span></span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true"></a>        body()<span class="op">.</span>set_text_content(<span class="cn">Some</span>(<span class="op">&amp;</span>text))<span class="op">;</span></span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true"></a></span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true"></a>        <span class="co">// Schedule ourself for another requestAnimationFrame callback.</span></span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true"></a>        request_animation_frame(f<span class="op">.</span>borrow()<span class="op">.</span>as_ref()<span class="op">.</span>unwrap())<span class="op">;</span></span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true"></a>    <span class="op">}</span>))<span class="op">;</span></span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true"></a></span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true"></a>    request_animation_frame(g<span class="op">.</span>borrow()<span class="op">.</span>as_ref()<span class="op">.</span>unwrap())<span class="op">;</span></span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true"></a>    <span class="cn">Ok</span>(())</span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true"></a><span class="op">}</span></span></code></pre></div>
 <h2 id="build-and-serve">build and serve</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">wasm-pack</span> build <span class="at">--target</span> web <span class="at">--no-typescript</span> <span class="at">--out-dir</span> www/pkg</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">http</span> www</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="ex">wasm-pack</span> build --target web --no-typescript --out-dir www/pkg</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a><span class="ex">http</span> www</span></code></pre></div>
 <p>open <code>index.html</code></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">firefox</span> http://localhost:8000/html/</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="ex">firefox</span> http://localhost:8000/html/</span></code></pre></div>
 <hr />
 <h2 id="whats-next">What’s next?</h2>
-<p>Next example: <a href="./018.paint.html">A Simple Paint Program
-<code>--&gt;</code></a></p>
+<p>Next example: <a href="./018.paint.html">A Simple Paint Program <code>--&gt;</code></a></p>
 </main>
 <script src="https://lerina.github.io/js/toc.js"></script>
 <script>

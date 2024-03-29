@@ -15,7 +15,6 @@
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
     div.sourceCode { margin: 1em 0; }
     pre.sourceCode { margin: 0; }
@@ -75,151 +74,133 @@
     code span.va { color: #19177c; } /* Variable */
     code span.vs { color: #4070a0; } /* VerbatimString */
     code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
   <link rel="stylesheet" href="https://lerina.github.io/css/styles_min.css" />
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
 </head>
 <body>
 <nav id="TOC" role="doc-toc">
 <ul>
-<li><a href="#web-sys-the-fetch-api"
-id="toc-web-sys-the-fetch-api">web-sys: The fetch API</a></li>
-<li><a href="#rustwasm-side" id="toc-rustwasm-side">Rust/wasm
-side</a></li>
-<li><a href="#build-and-serve" id="toc-build-and-serve">build and
-serve</a></li>
-<li><a href="#whats-next" id="toc-whats-next">What’s next?</a></li>
+<li><a href="#web-sys-the-fetch-api">web-sys: The fetch API</a></li>
+<li><a href="#rustwasm-side">Rust/wasm side</a></li>
+<li><a href="#build-and-serve">build and serve</a></li>
+<li><a href="#whats-next">What’s next?</a></li>
 </ul>
 </nav>
 <div class="navbar">
 <a class="openbtn" onclick="openNav()">☰</a>
 </div>
 <main>
-<p><a href="./008_performance.html"><code>&lt;--</code> web-sys:
-performance.now</a></p>
+<p><a href="./008_performance.html"><code>&lt;--</code> web-sys: performance.now</a></p>
 <h2 id="web-sys-the-fetch-api">web-sys: The fetch API</h2>
-<p><em>This example uses the fetch API to make an HTTP request to the
-GitHub API and then parses the resulting JSON.</em> _ <a
-href="https://rustwasm.github.io/wasm-bindgen/examples/fetch.html"
-target="_blank">wasm-bindgen Guide</a></p>
-<p><a
-href="https://github.com/rustwasm/wasm-bindgen/tree/master/examples/fetch"
-target="_blank">web-sys: The fetch API</a></p>
+<p><em>This example uses the fetch API to make an HTTP request to the GitHub API and then parses the resulting JSON.</em> _ <a href="https://rustwasm.github.io/wasm-bindgen/examples/fetch.html" target="_blank">wasm-bindgen Guide</a></p>
+<p><a href="https://github.com/rustwasm/wasm-bindgen/tree/master/examples/fetch" target="_blank">web-sys: The fetch API</a></p>
 <h3 id="setup-the-project">setup the project</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> new fetch <span class="at">--lib</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> fetch</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> www/js www/html</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> add wasm-bindgen js-sys wasm-bindgen-futures</span></code></pre></div>
-<p>edit Cargo.toml to add <code>crate-type</code> &amp;
-<code>web-sys</code> features</p>
-<div class="sourceCode" id="cb2"><pre
-class="sourceCode toml"><code class="sourceCode toml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[</span><span class="dt">lib</span><span class="kw">]</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dt">crate-type</span> <span class="op">=</span> <span class="op">[</span><span class="st">&quot;cdylib&quot;</span><span class="op">,]</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="er">...</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">[</span><span class="dt">dependencies</span><span class="kw">.</span><span class="dt">web-sys</span><span class="kw">]</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">&quot;0.3.66&quot;</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="dt">features</span> <span class="op">=</span> <span class="op">[</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;</span><span class="vs">Headers</span><span class="st">&#39;</span><span class="op">,</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;</span><span class="vs">Request</span><span class="st">&#39;</span><span class="op">,</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;</span><span class="vs">RequestInit</span><span class="st">&#39;</span><span class="op">,</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;</span><span class="vs">RequestMode</span><span class="st">&#39;</span><span class="op">,</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;</span><span class="vs">Response</span><span class="st">&#39;</span><span class="op">,</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;</span><span class="vs">Window</span><span class="st">&#39;</span><span class="op">,</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="op">]</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="ex">cargo</span> new fetch --lib</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="bu">cd</span> fetch</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="fu">mkdir</span> -p www/js www/html</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="ex">cargo</span> add wasm-bindgen js-sys wasm-bindgen-futures</span></code></pre></div>
+<p>edit Cargo.toml to add <code>crate-type</code> &amp; <code>web-sys</code> features</p>
+<pre class="toml"><code>[lib]
+crate-type = [&quot;cdylib&quot;,]
+
+...
+
+
+[dependencies.web-sys]
+version = &quot;0.3.66&quot;
+features = [
+  &#39;Headers&#39;,
+  &#39;Request&#39;,
+  &#39;RequestInit&#39;,
+  &#39;RequestMode&#39;,
+  &#39;Response&#39;,
+  &#39;Window&#39;,
+]</code></pre>
 <p>in <code>www/html/index.html</code> we have</p>
-<div class="sourceCode" id="cb3"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!doctype </span>html<span class="dt">&gt;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;html&gt;</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;head&gt;</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;meta</span> <span class="er">content</span><span class="ot">=</span><span class="st">&quot;text/html;charset=utf-8&quot;</span> <span class="er">http-equiv</span><span class="ot">=</span><span class="st">&quot;Content-Type&quot;</span><span class="kw">/&gt;</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;title&gt;</span>fetch: nobundle<span class="kw">&lt;/title&gt;</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/head&gt;</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;body&gt;</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;p&gt;</span>The developer console should have log messages in it<span class="kw">&lt;/p&gt;</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;module&quot;</span> <span class="er">src</span><span class="ot">=</span><span class="st">&quot;../js/index.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/body&gt;</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="dt">&lt;!doctype </span>html<span class="dt">&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="kw">&lt;html&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>  <span class="kw">&lt;head&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>    <span class="kw">&lt;meta</span><span class="ot"> content=</span><span class="st">&quot;text/html;charset=utf-8&quot;</span><span class="ot"> http-equiv=</span><span class="st">&quot;Content-Type&quot;</span><span class="kw">/&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>    <span class="kw">&lt;title&gt;</span>fetch: nobundle<span class="kw">&lt;/title&gt;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>  <span class="kw">&lt;/head&gt;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>  <span class="kw">&lt;body&gt;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>    <span class="kw">&lt;p&gt;</span>The developer console should have log messages in it<span class="kw">&lt;/p&gt;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a>    <span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;module&quot;</span><span class="ot"> src=</span><span class="st">&quot;../js/index.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a>  <span class="kw">&lt;/body&gt;</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
 <p>and in <code>www/js/index.js</code></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> init<span class="op">,</span> {run <span class="im">as</span> rs_run} <span class="im">from</span> <span class="st">&quot;../pkg/fetch.js&quot;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">run</span>() {</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> wasm <span class="op">=</span> <span class="cf">await</span> <span class="fu">init</span>()<span class="op">;</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> data <span class="op">=</span> <span class="cf">await</span> <span class="fu">rs_run</span>(<span class="st">&quot;rustwasm/wasm-bindgen&quot;</span>)<span class="op">;</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(data)<span class="op">;</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&quot;The latest commit to the wasm-bindgen %s branch is:&quot;</span><span class="op">,</span> data<span class="op">.</span><span class="at">name</span>)<span class="op">;</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&quot;%s, authored by %s &lt;%s&gt;&quot;</span><span class="op">,</span> data<span class="op">.</span><span class="at">commit</span><span class="op">.</span><span class="at">sha</span><span class="op">,</span> data<span class="op">.</span><span class="at">commit</span><span class="op">.</span><span class="at">commit</span><span class="op">.</span><span class="at">author</span><span class="op">.</span><span class="at">name</span><span class="op">,</span> data<span class="op">.</span><span class="at">commit</span><span class="op">.</span><span class="at">commit</span><span class="op">.</span><span class="at">author</span><span class="op">.</span><span class="at">email</span>)<span class="op">;</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fu">run</span>()<span class="op">;</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">/*</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">const rust = import(&#39;./pkg&#39;);</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co">rust</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co">  .then(m =&gt; {</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co">      return m.run(&quot;rustwasm/wasm-bindgen&quot;).then((data) =&gt; {</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co">          console.log(data);</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="co">          console.log(&quot;The latest commit to the wasm-bindgen %s branch is:&quot;, data.name);</span></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co">          console.log(&quot;%s, authored by %s &lt;%s&gt;&quot;, data.commit.sha, data.commit.commit.author.name, data.commit.commit.author.email);</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co">      })</span></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="co">  })</span></span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="co">  .catch(console.error);</span></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="co">*/</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="im">import</span> init<span class="op">,</span> {run <span class="im">as</span> rs_run} <span class="im">from</span> <span class="st">&quot;../pkg/fetch.js&quot;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">run</span>() {</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>    <span class="kw">const</span> wasm <span class="op">=</span> <span class="cf">await</span> <span class="fu">init</span>()<span class="op">;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a>    <span class="kw">const</span> data <span class="op">=</span> <span class="cf">await</span> <span class="fu">rs_run</span>(<span class="st">&quot;rustwasm/wasm-bindgen&quot;</span>)<span class="op">;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a>    <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(data)<span class="op">;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a>    <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&quot;The latest commit to the wasm-bindgen %s branch is:&quot;</span><span class="op">,</span> data<span class="op">.</span><span class="at">name</span>)<span class="op">;</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a>    <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&quot;%s, authored by %s &lt;%s&gt;&quot;</span><span class="op">,</span> data<span class="op">.</span><span class="at">commit</span><span class="op">.</span><span class="at">sha</span><span class="op">,</span> data<span class="op">.</span><span class="at">commit</span><span class="op">.</span><span class="at">commit</span><span class="op">.</span><span class="at">author</span><span class="op">.</span><span class="at">name</span><span class="op">,</span> data<span class="op">.</span><span class="at">commit</span><span class="op">.</span><span class="at">commit</span><span class="op">.</span><span class="at">author</span><span class="op">.</span><span class="at">email</span>)<span class="op">;</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a>}</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a><span class="fu">run</span>()<span class="op">;</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true"></a><span class="co">/*</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true"></a><span class="co">const rust = import(&#39;./pkg&#39;);</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true"></a><span class="co">rust</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true"></a><span class="co">  .then(m =&gt; {</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true"></a><span class="co">      return m.run(&quot;rustwasm/wasm-bindgen&quot;).then((data) =&gt; {</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true"></a><span class="co">          console.log(data);</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true"></a></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true"></a><span class="co">          console.log(&quot;The latest commit to the wasm-bindgen %s branch is:&quot;, data.name);</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true"></a><span class="co">          console.log(&quot;%s, authored by %s &lt;%s&gt;&quot;, data.commit.sha, data.commit.commit.author.name, data.commit.commit.author.email);</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true"></a><span class="co">      })</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true"></a><span class="co">  })</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true"></a><span class="co">  .catch(console.error);</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true"></a><span class="co">*/</span></span></code></pre></div>
 <h2 id="rustwasm-side">Rust/wasm side</h2>
-<div class="sourceCode" id="cb5"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">// src/lib.rs</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">wasm_bindgen::prelude::</span><span class="op">*;</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">wasm_bindgen_futures::</span>JsFuture<span class="op">;</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">web_sys::</span><span class="op">{</span>Request<span class="op">,</span> RequestInit<span class="op">,</span> RequestMode<span class="op">,</span> Response<span class="op">};</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>wasm_bindgen<span class="at">]</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> run(repo<span class="op">:</span> <span class="dt">String</span>) <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>JsValue<span class="op">,</span> JsValue<span class="op">&gt;</span> <span class="op">{</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> opts <span class="op">=</span> <span class="pp">RequestInit::</span>new()<span class="op">;</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    opts<span class="op">.</span>method(<span class="st">&quot;GET&quot;</span>)<span class="op">;</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    opts<span class="op">.</span>mode(<span class="pp">RequestMode::</span>Cors)<span class="op">;</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> url <span class="op">=</span> <span class="pp">format!</span>(<span class="st">&quot;https://api.github.com/repos/{}/branches/master&quot;</span><span class="op">,</span> repo)<span class="op">;</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> request <span class="op">=</span> <span class="pp">Request::</span>new_with_str_and_init(<span class="op">&amp;</span>url<span class="op">,</span> <span class="op">&amp;</span>opts)<span class="op">?;</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    request</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>headers()</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>set(<span class="st">&quot;Accept&quot;</span><span class="op">,</span> <span class="st">&quot;application/vnd.github.v3+json&quot;</span>)<span class="op">?;</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> window <span class="op">=</span> <span class="pp">web_sys::</span>window()<span class="op">.</span>unwrap()<span class="op">;</span></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> resp_value <span class="op">=</span> <span class="pp">JsFuture::</span>from(window<span class="op">.</span>fetch_with_request(<span class="op">&amp;</span>request))<span class="op">.</span><span class="kw">await</span><span class="op">?;</span></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="co">// `resp_value` is a `Response` object.</span></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    <span class="pp">assert!</span>(resp_value<span class="op">.</span><span class="pp">is_instance_of::</span><span class="op">&lt;</span>Response<span class="op">&gt;</span>())<span class="op">;</span></span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> resp<span class="op">:</span> Response <span class="op">=</span> resp_value<span class="op">.</span>dyn_into()<span class="op">.</span>unwrap()<span class="op">;</span></span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Convert this other `Promise` into a rust `Future`.</span></span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> json <span class="op">=</span> <span class="pp">JsFuture::</span>from(resp<span class="op">.</span>json()<span class="op">?</span>)<span class="op">.</span><span class="kw">await</span><span class="op">?;</span></span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Send the JSON response back to JS.</span></span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    <span class="cn">Ok</span>(json)</span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="co">// src/lib.rs</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="kw">use</span> <span class="pp">wasm_bindgen::prelude::</span><span class="op">*;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="kw">use</span> <span class="pp">wasm_bindgen_futures::</span>JsFuture<span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a><span class="kw">use</span> <span class="pp">web_sys::</span><span class="op">{</span>Request<span class="op">,</span> RequestInit<span class="op">,</span> RequestMode<span class="op">,</span> Response<span class="op">};</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a><span class="at">#[</span>wasm_bindgen<span class="at">]</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a><span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> run(repo<span class="op">:</span> <span class="dt">String</span>) <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>JsValue<span class="op">,</span> JsValue<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a>    <span class="kw">let</span> <span class="kw">mut</span> opts <span class="op">=</span> <span class="pp">RequestInit::</span>new()<span class="op">;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a>    opts<span class="op">.</span>method(<span class="st">&quot;GET&quot;</span>)<span class="op">;</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a>    opts<span class="op">.</span>mode(<span class="pp">RequestMode::</span>Cors)<span class="op">;</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true"></a>    <span class="kw">let</span> url <span class="op">=</span> <span class="pp">format!</span>(<span class="st">&quot;https://api.github.com/repos/{}/branches/master&quot;</span><span class="op">,</span> repo)<span class="op">;</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true"></a>    <span class="kw">let</span> request <span class="op">=</span> <span class="pp">Request::</span>new_with_str_and_init(<span class="op">&amp;</span>url<span class="op">,</span> <span class="op">&amp;</span>opts)<span class="op">?;</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true"></a>    request</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true"></a>        <span class="op">.</span>headers()</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true"></a>        <span class="op">.</span>set(<span class="st">&quot;Accept&quot;</span><span class="op">,</span> <span class="st">&quot;application/vnd.github.v3+json&quot;</span>)<span class="op">?;</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true"></a>    <span class="kw">let</span> window <span class="op">=</span> <span class="pp">web_sys::</span>window()<span class="op">.</span>unwrap()<span class="op">;</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true"></a>    <span class="kw">let</span> resp_value <span class="op">=</span> <span class="pp">JsFuture::</span>from(window<span class="op">.</span>fetch_with_request(<span class="op">&amp;</span>request))<span class="op">.</span><span class="kw">await</span><span class="op">?;</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true"></a></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true"></a>    <span class="co">// `resp_value` is a `Response` object.</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true"></a>    <span class="pp">assert!</span>(resp_value<span class="op">.</span><span class="pp">is_instance_of::</span><span class="op">&lt;</span>Response<span class="op">&gt;</span>())<span class="op">;</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true"></a>    <span class="kw">let</span> resp<span class="op">:</span> Response <span class="op">=</span> resp_value<span class="op">.</span>dyn_into()<span class="op">.</span>unwrap()<span class="op">;</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true"></a></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true"></a>    <span class="co">// Convert this other `Promise` into a rust `Future`.</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true"></a>    <span class="kw">let</span> json <span class="op">=</span> <span class="pp">JsFuture::</span>from(resp<span class="op">.</span>json()<span class="op">?</span>)<span class="op">.</span><span class="kw">await</span><span class="op">?;</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true"></a></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true"></a>    <span class="co">// Send the JSON response back to JS.</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true"></a>    <span class="cn">Ok</span>(json)</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true"></a><span class="op">}</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true"></a></span></code></pre></div>
 <h2 id="build-and-serve">build and serve</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">wasm-pack</span> build <span class="at">--target</span> web <span class="at">--no-typescript</span> <span class="at">--out-dir</span> www/pkg</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">http</span> www</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="ex">wasm-pack</span> build --target web --no-typescript --out-dir www/pkg</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a><span class="ex">http</span> www</span></code></pre></div>
 <p>open <code>index.html</code></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">firefox</span> http://localhost:8000/html/</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="ex">firefox</span> http://localhost:8000/html/</span></code></pre></div>
 <hr />
 <h2 id="whats-next">What’s next?</h2>
-<p>Next example: <a href="./010.weather_report.html">web-sys: Weather
-report <code>--&gt;</code></a></p>
+<p>Next example: <a href="./010.weather_report.html">web-sys: Weather report <code>--&gt;</code></a></p>
 </main>
 <script src="https://lerina.github.io/js/toc.js"></script>
 <script>

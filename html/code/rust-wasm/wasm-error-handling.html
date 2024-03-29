@@ -15,7 +15,6 @@
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
     div.sourceCode { margin: 1em 0; }
     pre.sourceCode { margin: 0; }
@@ -75,50 +74,34 @@
     code span.va { color: #19177c; } /* Variable */
     code span.vs { color: #4070a0; } /* VerbatimString */
     code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
   <link rel="stylesheet" href="https://lerina.github.io/css/styles_min.css" />
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
 </head>
 <body>
 <nav id="TOC" role="doc-toc">
 <ul>
-<li><a href="#underrated-gems-of-rust-webassembly-errors-async-io"
-id="toc-underrated-gems-of-rust-webassembly-errors-async-io">Underrated
-gems of Rust &amp; WebAssembly: Errors, Async, I/O</a>
+<li><a href="#underrated-gems-of-rust-webassembly-errors-async-io">Underrated gems of Rust &amp; WebAssembly: Errors, Async, I/O</a>
 <ul>
-<li><a href="#fantastic-tool-wasm_bindgen"
-id="toc-fantastic-tool-wasm_bindgen">Fantastic tool:
-<code>wasm_bindgen</code></a></li>
-<li><a href="#error-panic" id="toc-error-panic">Error &amp;
-panic</a></li>
+<li><a href="#fantastic-tool-wasm_bindgen">Fantastic tool: <code>wasm_bindgen</code></a></li>
+<li><a href="#error-panic">Error &amp; panic</a></li>
 </ul></li>
 </ul>
 </nav>
-<h1 id="underrated-gems-of-rust-webassembly-errors-async-io">Underrated
-gems of Rust &amp; WebAssembly: Errors, Async, I/O</h1>
+<h1 id="underrated-gems-of-rust-webassembly-errors-async-io">Underrated gems of Rust &amp; WebAssembly: Errors, Async, I/O</h1>
 <p>SOURCE:</p>
 <p>Nov 15, 2023<br />
-<a href="https://www.youtube.com/watch?v=KPxCsk9lX10">youtube:
-Underrated gems of Rust &amp; WebAssembly: Errors, Async, I/O - Alberto
-Schiabel - EuroRust 2023</a><br />
+<a href="https://www.youtube.com/watch?v=KPxCsk9lX10">youtube: Underrated gems of Rust &amp; WebAssembly: Errors, Async, I/O - Alberto Schiabel - EuroRust 2023</a><br />
 <a href="https://jkomyno-eurorust-2023.vercel.app/1">slides</a><br />
-<a href="https://github.com/jkomyno/eurorust-2023">github: Underrated
-gems of Rust &amp; WebAssembly: Errors · Async · I/O</a></p>
-<h2 id="fantastic-tool-wasm_bindgen">Fantastic tool:
-<code>wasm_bindgen</code></h2>
+<a href="https://github.com/jkomyno/eurorust-2023">github: Underrated gems of Rust &amp; WebAssembly: Errors · Async · I/O</a></p>
+<h2 id="fantastic-tool-wasm_bindgen">Fantastic tool: <code>wasm_bindgen</code></h2>
 <ol start="0" type="1">
 <li>Create the project</li>
 </ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> new schiabel_talk <span class="at">--lib</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> schiabel_talk</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="ex">cargo</span> new schiabel_talk --lib</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="bu">cd</span> schiabel_talk</span></code></pre></div>
 <p>Install the tools</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> install wasm-bindgen-cli</span></code></pre></div>
-<p>wasm-pack another popular tool will manage the version synchronicity
-between wasm-bindgen-cli and wasm-bindgen but we are doing things the
-hard way here so we need to ge the latest version</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="ex">cargo</span> install wasm-bindgen-cli</span></code></pre></div>
+<p>wasm-pack another popular tool will manage the version synchronicity between wasm-bindgen-cli and wasm-bindgen but we are doing things the hard way here so we need to ge the latest version</p>
 <article id="text__asides">
 <header>
 <h3>
@@ -130,54 +113,47 @@ Specify the crate type
 What is <code>cdylib</code>?
 </h4>
 <p>
-with <code>--crate-type=dylib</code> at the command line , or
-<code>#![crate_type = "dylib"]</code> in the Rust file
-(<code>lib.rs</code>) -<br />
-A dynamic Rust library will be produced. The resulting dynamic library
-can be used as a dependency for other libraries and/or executables. This
-output type will create <code>*.so</code> files on Linux,
-<code>*.dylib</code> files on macOS, and <code>*.dll</code> files on
-Windows.
+with <code>--crate-type=dylib</code> at the command line , or <code>#![crate_type = "dylib"]</code> in the Rust file (<code>lib.rs</code>) -<br />
+A dynamic Rust library will be produced. The resulting dynamic library can be used as a dependency for other libraries and/or executables. This output type will create <code>*.so</code> files on Linux, <code>*.dylib</code> files on macOS, and <code>*.dll</code> files on Windows.
 </p>
 </aside>
 <p>
 <ol start="0" type="1">
 <li>Add the wasm-bindgen crate</li>
 </ol>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> add wasm-bindgen</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="ex">cargo</span> add wasm-bindgen</span></code></pre></div>
 <ol type="1">
 <li>Specify the type of the crate in <code>Cargo.toml</code></li>
 </ol>
-<div class="sourceCode" id="cb4"><pre
-class="sourceCode toml"><code class="sourceCode toml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="er">...</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">[</span><span class="dt">lib</span><span class="kw">]</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="dt">crate-type</span> <span class="op">=</span> <span class="op">[</span><span class="st">&quot;cdylib&quot;</span><span class="op">]</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="kw">[</span><span class="dt">dependencies</span><span class="kw">]</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="dt">wasm_bindgen</span> <span class="op">=</span> <span class="st">&quot;0.2.88&quot;</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="er">...</span></span></code></pre></div>
+<pre class="toml"><code>...
+
+[lib]
+crate-type = [&quot;cdylib&quot;]
+
+[dependencies]
+wasm_bindgen = &quot;0.2.88&quot;
+...</code></pre>
 <p>build it</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> build <span class="at">--release</span> <span class="at">--target</span> wasm32-unknown-unknown </span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="ex">cargo</span> build --release --target wasm32-unknown-unknown </span></code></pre></div>
 <p>result:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">target/wasm32-unknown-unknown/release/</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> build</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> deps</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> examples</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> incremental</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> schiabel_talk.d</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ex">└──</span> schiabel_talk.wasm</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="ex">target/wasm32-unknown-unknown/release/</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a>├── <span class="ex">build</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a>├── <span class="ex">deps</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a>├── <span class="ex">examples</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a>├── <span class="ex">incremental</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a>├── <span class="ex">schiabel_talk.d</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a>└── <span class="ex">schiabel_talk.wasm</span></span></code></pre></div>
 <p>Apply wasm-bindgen to get the glue code and helper functions</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">wasm-bindgen</span> <span class="at">--target</span> web <span class="at">--out-dir</span> ./src/wasm/ <span class="dt">\</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>target/wasm32-unknown-unknown/release/schiabel_talk.wasm                               </span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="ex">wasm-bindgen</span> --target web --out-dir ./src/wasm/ <span class="kw">\</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a><span class="ex">target/wasm32-unknown-unknown/release/schiabel_talk.wasm</span>                               </span></code></pre></div>
 <p>result:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">src/</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> lib.rs</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="ex">└──</span> wasm</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">├──</span> schiabel_talk_bg.wasm</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="ex">├──</span> schiabel_talk_bg.wasm.d.ts</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="ex">├──</span> schiabel_talk.d.ts</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="ex">└──</span> schiabel_talk.js</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="ex">src/</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a>├── <span class="ex">lib.rs</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a>└── <span class="ex">wasm</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a>    ├── <span class="ex">schiabel_talk_bg.wasm</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a>    ├── <span class="ex">schiabel_talk_bg.wasm.d.ts</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true"></a>    ├── <span class="ex">schiabel_talk.d.ts</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true"></a>    └── <span class="ex">schiabel_talk.js</span></span></code></pre></div>
 </p>
 <footer>
 <p>
@@ -186,163 +162,136 @@ class="sourceCode toml"><code class="sourceCode toml"><span id="cb4-1"><a href="
 </footer>
 </article>
 <ol start="2" type="1">
-<li>Mark the public function of your Rust library that yo want to expose
-to the javaScript runtime, via the <code>#[wasm_bindgen]</code>
-macro.</li>
+<li>Mark the public function of your Rust library that yo want to expose to the javaScript runtime, via the <code>#[wasm_bindgen]</code> macro.</li>
 </ol>
-<div class="sourceCode" id="cb9"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">wasm_bindgen::prelude::</span>wasm_bindgen<span class="op">;</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>wasm_bindgen<span class="at">]</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">fn</span> rust_fn(arg<span class="op">:</span> <span class="dt">i32</span>) <span class="op">-&gt;</span> <span class="dt">String</span> <span class="op">{</span> <span class="op">...</span> <span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="kw">use</span> <span class="pp">wasm_bindgen::prelude::</span>wasm_bindgen<span class="op">;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a><span class="at">#[</span>wasm_bindgen<span class="at">]</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true"></a><span class="kw">pub</span> <span class="kw">fn</span> rust_fn(arg<span class="op">:</span> <span class="dt">i32</span>) <span class="op">-&gt;</span> <span class="dt">String</span> <span class="op">{</span> <span class="op">...</span> <span class="op">}</span></span></code></pre></div>
 <h2 id="error-panic">Error &amp; panic</h2>
 <p>“Pure” Rust vs Rust/Wasm</p>
 <h3 id="resultt-e-in-rust">Result&lt;T, E&gt; in Rust</h3>
 <ul>
-<li>Rust denotes fallible computations with functions returning
-<code>Result&lt;T, E&gt;</code></li>
+<li>Rust denotes fallible computations with functions returning <code>Result&lt;T, E&gt;</code></li>
 <li>These functions can be safely retried later</li>
 </ul>
-<h3 id="failues-in-rust-vs-javascript">Failues in Rust vs
-JavaScript</h3>
-<h4
-id="rust-uses-pattern-matching-or-the-operator-to-deal-with-failure">Rust
-uses pattern matching or the <code>?</code> operator to deal with
-failure</h4>
-<div class="sourceCode" id="cb10"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> devide(a<span class="op">:</span> <span class="dt">i32</span><span class="op">,</span> b<span class="op">:</span> <span class="dt">i32</span>) <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span><span class="dt">i32</span><span class="op">,</span> <span class="op">&amp;</span><span class="ot">&#39;static</span> <span class="dt">str</span><span class="op">&gt;</span> <span class="op">{</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> b <span class="op">==</span> <span class="dv">0</span> <span class="op">{</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="cn">Err</span>(<span class="st">&quot;division by zero&quot;</span>)<span class="op">;</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="cn">Ok</span>(a <span class="op">/</span> b)</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="cf">match</span> divide(<span class="dv">10</span><span class="op">,</span> <span class="dv">2</span>) <span class="op">{</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="cn">Ok</span>(value) <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">&quot;Success: {value}&quot;</span>)<span class="op">,</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="cn">Err</span>(err) <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">&quot;Failure: {err}&quot;</span>)<span class="op">,</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> do() <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span><span class="dt">i32</span><span class="op">,</span> <span class="op">&amp;</span><span class="ot">&#39;static</span> <span class="dt">str</span><span class="op">&gt;</span> <span class="op">{</span></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> value <span class="op">=</span> divide(<span class="dv">10</span><span class="op">,</span> <span class="dv">2</span>)<span class="op">;</span></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>  <span class="cn">Ok</span>(value)</span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<h4 id="but-javascript-adopts-a-try-catch-approach">But JavaScript
-adopts a <code>try / catch</code> approach</h4>
-<div class="sourceCode" id="cb11"><pre
-class="sourceCode ts"><code class="sourceCode typescript"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">divide</span>(a<span class="op">:</span> <span class="dt">number</span><span class="op">,</span> b<span class="op">:</span> <span class="dt">number</span>)<span class="op">:</span> <span class="dt">number</span> {</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (b <span class="op">==</span> <span class="dv">0</span>) {</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">throw</span> <span class="kw">new</span> <span class="bu">Error</span>(<span class="st">&#39;division by zero&#39;</span>)<span class="op">;</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  } </span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> a <span class="op">/</span> b<span class="op">;</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span> {</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> result <span class="op">=</span> <span class="fu">divide</span>(<span class="dv">10</span><span class="op">,</span> <span class="dv">2</span>)<span class="op">;</span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&#39;Success: ${result}&#39;</span>)</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>} <span class="cf">catch</span> (error) {</span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> e <span class="op">=</span> error <span class="im">as</span> <span class="bu">Error</span><span class="op">;</span></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&#39;Failure: ${e.message}&#39;</span>)<span class="op">;</span></span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h3 id="failues-in-rust-vs-javascript">Failues in Rust vs JavaScript</h3>
+<h4 id="rust-uses-pattern-matching-or-the-operator-to-deal-with-failure">Rust uses pattern matching or the <code>?</code> operator to deal with failure</h4>
+<div class="sourceCode" id="cb10"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="kw">fn</span> devide(a<span class="op">:</span> <span class="dt">i32</span><span class="op">,</span> b<span class="op">:</span> <span class="dt">i32</span>) <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span><span class="dt">i32</span><span class="op">,</span> <span class="op">&amp;</span><span class="ot">&#39;static</span> <span class="dt">str</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a>  <span class="kw">if</span> b <span class="op">==</span> <span class="dv">0</span> <span class="op">{</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a>    <span class="kw">return</span> <span class="cn">Err</span>(<span class="st">&quot;division by zero&quot;</span>)<span class="op">;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true"></a>  <span class="op">}</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true"></a>  <span class="cn">Ok</span>(a <span class="op">/</span> b)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true"></a><span class="op">}</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true"></a><span class="kw">match</span> divide(<span class="dv">10</span><span class="op">,</span> <span class="dv">2</span>) <span class="op">{</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true"></a>  <span class="cn">Ok</span>(value) <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">&quot;Success: {value}&quot;</span>)<span class="op">,</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true"></a>  <span class="cn">Err</span>(err) <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">&quot;Failure: {err}&quot;</span>)<span class="op">,</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true"></a><span class="op">}</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true"></a></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true"></a><span class="kw">fn</span> do() <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span><span class="dt">i32</span><span class="op">,</span> <span class="op">&amp;</span><span class="ot">&#39;static</span> <span class="dt">str</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true"></a>  <span class="kw">let</span> value <span class="op">=</span> divide(<span class="dv">10</span><span class="op">,</span> <span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true"></a></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true"></a>  <span class="cn">Ok</span>(value)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true"></a><span class="op">}</span></span></code></pre></div>
+<h4 id="but-javascript-adopts-a-try-catch-approach">But JavaScript adopts a <code>try / catch</code> approach</h4>
+<div class="sourceCode" id="cb11"><pre class="sourceCode ts"><code class="sourceCode typescript"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a><span class="kw">function</span> <span class="fu">divide</span>(a<span class="op">:</span> <span class="dt">number</span><span class="op">,</span> b<span class="op">:</span> <span class="dt">number</span>)<span class="op">:</span> <span class="dt">number</span> {</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a>  <span class="fu">if</span> (b <span class="op">==</span> <span class="dv">0</span>) {</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true"></a>    throw <span class="kw">new</span> <span class="fu">Error</span>(<span class="st">&#39;division by zero&#39;</span>)<span class="op">;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true"></a>  } </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true"></a>  return a <span class="op">/</span> b<span class="op">;</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true"></a>}</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true"></a>try {</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true"></a>  const result <span class="op">=</span> <span class="fu">divide</span>(<span class="dv">10</span><span class="op">,</span> <span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true"></a>  <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&#39;Success: ${result}&#39;</span>)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true"></a>} <span class="fu">catch</span> (error) {</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true"></a>  const e <span class="op">=</span> error <span class="im">as</span> Error<span class="op">;</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true"></a>  <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&#39;Failure: ${e.message}&#39;</span>)<span class="op">;</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true"></a>}</span></code></pre></div>
 <ul>
 <li>Errors should be instances of the Error class</li>
 </ul>
-<h4
-id="resultt-e-in-rustwasm---javascript"><code>Result&lt;T, E&gt;</code>
-in Rust/Wasm -&gt; JavaScript</h4>
+<h4 id="resultt-e-in-rustwasm---javascript"><code>Result&lt;T, E&gt;</code> in Rust/Wasm -&gt; JavaScript</h4>
 <ul>
-<li>Err(E) isn’t necessarily translated into an Error instance in
-JavaScript</li>
+<li>Err(E) isn’t necessarily translated into an Error instance in JavaScript</li>
 </ul>
-<div class="sourceCode" id="cb12"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">wasm_bindgen::</span><span class="op">{</span><span class="pp">prelude::</span>wasm_bindgen<span class="op">,};</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">serde::</span><span class="op">{</span>Deserialize<span class="op">,</span> Serialize<span class="op">};</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>derive<span class="at">(</span>Serialize<span class="op">,</span> Deserialize<span class="op">,</span> <span class="op">...</span><span class="at">)]</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">struct</span> Event <span class="op">{</span> <span class="op">...</span> <span class="op">}</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>wasm_bindgen<span class="at">(</span>js_name <span class="op">=</span> <span class="st">&quot;parseWithStringError&quot;</span><span class="at">)]</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">fn</span> parse_with_string_error(event<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>) <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>Event<span class="op">,</span> <span class="dt">String</span><span class="op">&gt;</span> <span class="op">{</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="pp">serde_json::</span>from_str(event)<span class="op">.</span>map_err(<span class="op">|</span>e<span class="op">|</span> e<span class="op">.</span>to_string())</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a><span class="kw">use</span> <span class="pp">wasm_bindgen::</span><span class="op">{</span><span class="pp">prelude::</span>wasm_bindgen<span class="op">,};</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a><span class="kw">use</span> <span class="pp">serde::</span><span class="op">{</span>Deserialize<span class="op">,</span> Serialize<span class="op">};</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true"></a><span class="at">#[</span>derive<span class="at">(</span>Serialize<span class="op">,</span> Deserialize<span class="op">,</span> <span class="op">...</span><span class="at">)]</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true"></a><span class="kw">pub</span> <span class="kw">struct</span> Event <span class="op">{</span> <span class="op">...</span> <span class="op">}</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true"></a><span class="at">#[</span>wasm_bindgen<span class="at">(</span>js_name <span class="op">=</span> <span class="st">&quot;parseWithStringError&quot;</span><span class="at">)]</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true"></a><span class="kw">pub</span> <span class="kw">fn</span> parse_with_string_error(event<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>) <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>Event<span class="op">,</span> <span class="dt">String</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true"></a>  <span class="pp">serde_json::</span>from_str(event)<span class="op">.</span>map_err(<span class="op">|</span>e<span class="op">|</span> e<span class="op">.</span>to_string())</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true"></a><span class="op">}</span></span></code></pre></div>
 <ul>
 <li>Result&lt;_, String&gt; results in a string being thrown</li>
 </ul>
-<div class="sourceCode" id="cb13"><pre
-class="sourceCode ts"><code class="sourceCode typescript"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> <span class="op">*</span> <span class="im">as</span> wasm <span class="im">from</span> <span class="st">&#39;../src/wasm/demo_errors.js&#39;</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">test</span>(<span class="st">&#39;throws a `string`&#39;</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">try</span> {</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    wasm<span class="op">.</span><span class="fu">parseErrorWithStringError</span>(<span class="st">&#39;{ &quot;event&quot;: &quot;EuroRust&quot; }&#39;</span>)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">catch</span> (error) {</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> e <span class="op">=</span> error <span class="im">as</span> <span class="dt">string</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">assert</span>(<span class="kw">typeof</span> e <span class="op">===</span> <span class="st">&#39;string&#39;</span>)<span class="op">;</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">expect</span>(e)<span class="op">.</span><span class="fu">toMatchInlineSnapshot</span>(<span class="st">&#39;&quot;missing field ...&quot;&#39;</span>)</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode ts"><code class="sourceCode typescript"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a><span class="im">import</span> <span class="op">*</span> <span class="im">as</span> wasm from <span class="st">&#39;../src/wasm/demo_errors.js&#39;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true"></a><span class="fu">test</span>(<span class="st">&#39;throws a `string`&#39;</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true"></a>  try {</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true"></a>    wasm<span class="op">.</span><span class="fu">parseErrorWithStringError</span>(<span class="st">&#39;{ &quot;event&quot;: &quot;EuroRust&quot; }&#39;</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true"></a>  } <span class="fu">catch</span> (error) {</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true"></a>    const e <span class="op">=</span> error <span class="im">as</span> <span class="dt">string</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true"></a>    <span class="fu">assert</span>(typeof e <span class="op">===</span> <span class="st">&#39;string&#39;</span>)<span class="op">;</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true"></a>    <span class="fu">expect</span>(e)<span class="op">.</span><span class="fu">toMatchInlineSnapshot</span>(<span class="st">&#39;&quot;missing field ...&quot;&#39;</span>)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true"></a>  }</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true"></a>})</span></code></pre></div>
 <ul>
-<li><code>Result&lt;_, JsError&gt;</code> results in an Error instance
-being thrown</li>
+<li><code>Result&lt;_, JsError&gt;</code> results in an Error instance being thrown</li>
 </ul>
-<div class="sourceCode" id="cb14"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">wasm_bindgen::</span><span class="op">{</span><span class="pp">prelude::</span>wasm_bindgen<span class="op">,</span> JsError<span class="op">};</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">serde::</span><span class="op">{</span>Deserialize<span class="op">,</span> Serialize<span class="op">};</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>derive<span class="at">(</span>Serialize<span class="op">,</span> Deserialize<span class="op">,</span> <span class="op">...</span><span class="at">)]</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">struct</span> Event <span class="op">{</span> <span class="op">...</span> <span class="op">}</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>wasm_bindgen<span class="at">(</span>js_name <span class="op">=</span> <span class="st">&quot;parseWithError&quot;</span><span class="at">)]</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">fn</span> parse_with_error(event<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>) <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>Event<span class="op">,</span> JsError<span class="op">&gt;</span> <span class="op">{</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="pp">serde_json::</span>from_str(event)<span class="op">.</span>map_err(<span class="op">|</span>e<span class="op">|</span> <span class="pp">JsError::</span>from(e))</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a><span class="kw">use</span> <span class="pp">wasm_bindgen::</span><span class="op">{</span><span class="pp">prelude::</span>wasm_bindgen<span class="op">,</span> JsError<span class="op">};</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true"></a><span class="kw">use</span> <span class="pp">serde::</span><span class="op">{</span>Deserialize<span class="op">,</span> Serialize<span class="op">};</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true"></a><span class="at">#[</span>derive<span class="at">(</span>Serialize<span class="op">,</span> Deserialize<span class="op">,</span> <span class="op">...</span><span class="at">)]</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true"></a><span class="kw">pub</span> <span class="kw">struct</span> Event <span class="op">{</span> <span class="op">...</span> <span class="op">}</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true"></a><span class="at">#[</span>wasm_bindgen<span class="at">(</span>js_name <span class="op">=</span> <span class="st">&quot;parseWithError&quot;</span><span class="at">)]</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true"></a><span class="kw">pub</span> <span class="kw">fn</span> parse_with_error(event<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>) <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>Event<span class="op">,</span> JsError<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true"></a>  <span class="pp">serde_json::</span>from_str(event)<span class="op">.</span>map_err(<span class="op">|</span>e<span class="op">|</span> <span class="pp">JsError::</span>from(e))</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true"></a><span class="op">}</span></span></code></pre></div>
 <ul>
-<li><code>Result&lt;_, JsError&gt;</code> results in an Error instance
-being thrown</li>
+<li><code>Result&lt;_, JsError&gt;</code> results in an Error instance being thrown</li>
 </ul>
-<div class="sourceCode" id="cb15"><pre
-class="sourceCode ts"><code class="sourceCode typescript"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> <span class="op">*</span> <span class="im">as</span> wasm <span class="im">from</span> <span class="st">&#39;../src/wasm/demo_errors.js&#39;</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">test</span>(<span class="st">&#39;thrown an `Error`&#39;</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">try</span> {</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    wasm<span class="op">.</span><span class="fu">parseWithError</span>(<span class="st">&#39;{ &quot;event&quot;: &quot;EuroRust&quot; }&#39;</span>)</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">catch</span> (error) {</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> e <span class="op">=</span> error <span class="im">as</span> <span class="bu">Error</span><span class="op">;</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">assert</span>(e <span class="kw">instanceof</span> <span class="bu">Error</span>)<span class="op">;</span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">expect</span>(e<span class="op">.</span><span class="at">name</span>)<span class="op">.</span><span class="fu">toEqual</span>(<span class="st">&#39;Error&#39;</span>)<span class="op">;</span></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">expect</span>(e<span class="op">.</span><span class="at">message</span>)<span class="op">.</span><span class="fu">toMatchInlineSnapshot</span>(<span class="st">&#39;&quot;missing field ... &quot;&#39;</span>)</span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode ts"><code class="sourceCode typescript"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true"></a><span class="im">import</span> <span class="op">*</span> <span class="im">as</span> wasm from <span class="st">&#39;../src/wasm/demo_errors.js&#39;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true"></a><span class="fu">test</span>(<span class="st">&#39;thrown an `Error`&#39;</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true"></a>  try {</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true"></a>    wasm<span class="op">.</span><span class="fu">parseWithError</span>(<span class="st">&#39;{ &quot;event&quot;: &quot;EuroRust&quot; }&#39;</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true"></a>  } <span class="fu">catch</span> (error) {</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true"></a>    const e <span class="op">=</span> error <span class="im">as</span> Error<span class="op">;</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true"></a>    <span class="fu">assert</span>(e instanceof Error)<span class="op">;</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true"></a>    <span class="fu">expect</span>(e<span class="op">.</span><span class="at">name</span>)<span class="op">.</span><span class="fu">toEqual</span>(<span class="st">&#39;Error&#39;</span>)<span class="op">;</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true"></a>    <span class="fu">expect</span>(e<span class="op">.</span><span class="at">message</span>)<span class="op">.</span><span class="fu">toMatchInlineSnapshot</span>(<span class="st">&#39;&quot;missing field ... &quot;&#39;</span>)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true"></a>  }</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true"></a>})</span></code></pre></div>
 <ul>
-<li><code>Result&lt;_, dyn Error + Display&gt;</code> also works
-fine</li>
+<li><code>Result&lt;_, dyn Error + Display&gt;</code> also works fine</li>
 </ul>
-<div class="sourceCode" id="cb16"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> CustomError(<span class="kw">pub</span> <span class="pp">serde_json::error::</span><span class="bu">Error</span>)<span class="op">;</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> <span class="pp">std::error::</span><span class="bu">Error</span> <span class="cf">for</span> CustomError <span class="op">{}</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> <span class="pp">std::fmt::</span><span class="bu">Display</span> <span class="cf">for</span> CustomError <span class="op">{</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">fn</span> fmt(<span class="op">&amp;</span><span class="kw">self</span><span class="op">,</span> f<span class="op">:</span> <span class="op">&amp;</span><span class="kw">mut</span> <span class="pp">std::fmt::</span>Formater) <span class="op">-&gt;</span> <span class="pp">std::fmt::</span><span class="dt">Result</span> <span class="op">{</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="pp">write!</span>(f<span class="op">,</span> <span class="st">&quot;[CustomError] &quot;</span>)<span class="op">?;</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">self</span><span class="op">.</span><span class="dv">0</span><span class="op">.</span>fmt(f)</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true"></a><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> CustomError(<span class="kw">pub</span> <span class="pp">serde_json::error::</span><span class="bu">Error</span>)<span class="op">;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true"></a><span class="kw">impl</span> <span class="pp">std::error::</span><span class="bu">Error</span> <span class="kw">for</span> CustomError <span class="op">{}</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true"></a><span class="kw">impl</span> <span class="pp">std::fmt::</span><span class="bu">Display</span> <span class="kw">for</span> CustomError <span class="op">{</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true"></a>  <span class="kw">fn</span> fmt(<span class="op">&amp;</span><span class="kw">self</span><span class="op">,</span> f<span class="op">:</span> <span class="op">&amp;</span><span class="kw">mut</span> <span class="pp">std::fmt::</span>Formater) <span class="op">-&gt;</span> <span class="pp">std::fmt::</span><span class="dt">Result</span> <span class="op">{</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true"></a>    <span class="pp">write!</span>(f<span class="op">,</span> <span class="st">&quot;[CustomError] &quot;</span>)<span class="op">?;</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true"></a>    </span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true"></a>    <span class="kw">self</span><span class="op">.</span><span class="dv">0</span><span class="op">.</span>fmt(f)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true"></a>  <span class="op">}</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true"></a><span class="op">}</span></span></code></pre></div>
 <ul>
-<li><code>wasm_bindgen</code> implements From<E> for JsError where
-<code>E: std::error::Error</code></li>
+<li><code>wasm_bindgen</code> implements From<E> for JsError where <code>E: std::error::Error</code></li>
 </ul>
 <hr />
 <p>See also:<br />
-[2023 - workshop
-src](https://github.com/jkomyno/workshop-rust-wasm<br />
-<a href="https://github.com/jkomyno/eurorust-2022">2022 - No free lunch:
-Limits of Wasm as a bridge from Rust to JS</a> <a
-href="https://www.youtube.com/watch?v=IBzNKh5WGW4">youtube: No free
-lunch: Limits of Wasm as a bridge from Rust to JS</a></p>
+[2023 - workshop src](https://github.com/jkomyno/workshop-rust-wasm<br />
+<a href="https://github.com/jkomyno/eurorust-2022">2022 - No free lunch: Limits of Wasm as a bridge from Rust to JS</a> <a href="https://www.youtube.com/watch?v=IBzNKh5WGW4">youtube: No free lunch: Limits of Wasm as a bridge from Rust to JS</a></p>
 </body>
 </html>

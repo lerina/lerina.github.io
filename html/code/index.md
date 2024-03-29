@@ -28,6 +28,8 @@ by Keith Peters
 
 ### Games for the browser
 
+- [Invaders](./demo/index.html)
+ 
 ### Developer's Notes and Tech Tips
 
 - Rust [Input / Output](./dev_notes/input_output.html)

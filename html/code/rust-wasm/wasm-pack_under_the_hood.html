@@ -15,7 +15,6 @@
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
     div.sourceCode { margin: 1em 0; }
     pre.sourceCode { margin: 0; }
@@ -75,12 +74,8 @@
     code span.va { color: #19177c; } /* Variable */
     code span.vs { color: #4070a0; } /* VerbatimString */
     code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
   <link rel="stylesheet" href="https://lerina.github.io/css/styles_min.css" />
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
 </head>
 <body>
 <div class="navbar">
@@ -90,49 +85,36 @@
 <p>For Debug is <code>--keep-debug</code>:</p>
 <p><code>wasm-pack build --target web --keep-debug --no-typescript --out-dir www</code></p>
 <hr />
-<p>Of interest to us, this is what wasm-pack does <a
-href="https://github.com/rustwasm/wasm-pack/blob/master/src/command/build.rs#L264">under
-the hood</a>.</p>
-<p><a
-href="https://www.reddit.com/r/rust/comments/kd22u5/wasmpack_dissectionhow_to_work_with_wasmbindgen/">source:
-chinoto_vokro</a></p>
+<p>Of interest to us, this is what wasm-pack does <a href="https://github.com/rustwasm/wasm-pack/blob/master/src/command/build.rs#L264">under the hood</a>.</p>
+<p><a href="https://www.reddit.com/r/rust/comments/kd22u5/wasmpack_dissectionhow_to_work_with_wasmbindgen/">source: chinoto_vokro</a></p>
 <ul>
 <li>step_build_wasm</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> build <span class="at">--lib</span> <span class="at">--release</span> <span class="at">--target</span> wasm32-unknown-unknown</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="ex">cargo</span> build --lib --release --target wasm32-unknown-unknown</span></code></pre></div>
 <ul>
 <li>step_install_wasm_bindgen</li>
 </ul>
-<p>“step_install_wasm_bindgen is what <strong>justifies wasm-pack’s
-existence</strong> because whatever version of wasm-bindgen your crate
-depends on requires that you use a corresponding version of
-wasm-bindgen-cli to generate the bindings correctly. It will either use
-an existing install, download a precompiled version, or run cargo
-install –force wasm-bindgen-cli –version ${version} –root ${tmp_dir}” _
-chinoto_vokro</p>
+<p>“step_install_wasm_bindgen is what <strong>justifies wasm-pack’s existence</strong> because whatever version of wasm-bindgen your crate depends on requires that you use a corresponding version of wasm-bindgen-cli to generate the bindings correctly. It will either use an existing install, download a precompiled version, or run cargo install –force wasm-bindgen-cli –version ${version} –root ${tmp_dir}” _ chinoto_vokro</p>
 <pre><code>    whatever version of wasm-bindgen your crate depends on 
     requires that you use a corresponding version of wasm-bindgen-cli 
     to generate the bindings correctly.</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> install <span class="at">--force</span> wasm-bindgen-cli <span class="at">--version</span> <span class="va">${version}</span> <span class="at">--root</span> <span class="va">${tmp_dir}</span> </span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="ex">cargo</span> install --force wasm-bindgen-cli --version <span class="va">${version}</span> --root <span class="va">${tmp_dir}</span> </span></code></pre></div>
 <ul>
 <li>step_run_wasm_bindgen</li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="va">${wasm</span><span class="op">-</span>bindgen-cli_path<span class="va">}</span> target/wasm32-unknown-unknown/release/<span class="va">${crate_name}</span>.wasm <span class="at">--out-dir</span> <span class="va">${crate_root}</span>/pkg <span class="at">--typescript</span> <span class="at">--target</span> bundler</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="va">${wasm-</span>bindgen-cli_path<span class="va">}</span> <span class="ex">target/wasm32-unknown-unknown/release/</span><span class="va">${crate_name}</span><span class="ex">.wasm</span> --out-dir <span class="va">${crate_root}</span>/pkg --typescript --target bundler</span></code></pre></div>
 <ul>
 <li>step_run_wasm_opt</li>
 </ul>
-<p>fetch a pre-built version of binaryen’s wasm-opt, then for each file
-in <code>${crate_root}/pkg</code> that ends with <code>wasm</code></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">{run</span> wasm-opt <span class="at">-o</span> wasm-opt.wasm <span class="va">${file}</span> <span class="kw">&amp;&amp;</span> <span class="fu">mv</span> wasm-opt.wasm <span class="va">${file}</span>}</span></code></pre></div>
-<p>Use wasm-pack it does a good and necessary job at catering to the
-various development platforms for instance here:</p>
-<div class="sourceCode" id="cb6"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="pp">Tool::</span>WasmOpt <span class="op">=&gt;</span> <span class="op">{</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>            <span class="kw">let</span> binaries<span class="op">:</span> <span class="op">&amp;</span>[<span class="op">&amp;</span><span class="dt">str</span>] <span class="op">=</span> <span class="cf">match</span> <span class="pp">Os::</span>get()<span class="op">?</span> <span class="op">{</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                <span class="pp">Os::</span>MacOS <span class="op">=&gt;</span> <span class="op">&amp;</span>[<span class="st">&quot;bin/wasm-opt&quot;</span><span class="op">,</span> <span class="st">&quot;lib/libbinaryen.dylib&quot;</span>]<span class="op">,</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                <span class="pp">Os::</span>Linux <span class="op">=&gt;</span> <span class="op">&amp;</span>[<span class="st">&quot;bin/wasm-opt&quot;</span>]<span class="op">,</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                <span class="pp">Os::</span>Windows <span class="op">=&gt;</span> <span class="op">&amp;</span>[<span class="st">&quot;bin/wasm-opt.exe&quot;</span>]<span class="op">,</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>            <span class="op">};</span></span></code></pre></div>
+<p>fetch a pre-built version of binaryen’s wasm-opt, then for each file in <code>${crate_root}/pkg</code> that ends with <code>wasm</code></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a>{<span class="ex">run</span> wasm-opt -o wasm-opt.wasm <span class="va">${file}</span> <span class="kw">&amp;&amp;</span> <span class="fu">mv</span> wasm-opt.wasm <span class="va">${file}</span>}</span></code></pre></div>
+<p>Use wasm-pack it does a good and necessary job at catering to the various development platforms for instance here:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="pp">Tool::</span>WasmOpt <span class="op">=&gt;</span> <span class="op">{</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a>            <span class="kw">let</span> binaries<span class="op">:</span> <span class="op">&amp;</span>[<span class="op">&amp;</span><span class="dt">str</span>] <span class="op">=</span> <span class="kw">match</span> <span class="pp">Os::</span>get()<span class="op">?</span> <span class="op">{</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a>                <span class="pp">Os::</span>MacOS <span class="op">=&gt;</span> <span class="op">&amp;</span>[<span class="st">&quot;bin/wasm-opt&quot;</span><span class="op">,</span> <span class="st">&quot;lib/libbinaryen.dylib&quot;</span>]<span class="op">,</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a>                <span class="pp">Os::</span>Linux <span class="op">=&gt;</span> <span class="op">&amp;</span>[<span class="st">&quot;bin/wasm-opt&quot;</span>]<span class="op">,</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a>                <span class="pp">Os::</span>Windows <span class="op">=&gt;</span> <span class="op">&amp;</span>[<span class="st">&quot;bin/wasm-opt.exe&quot;</span>]<span class="op">,</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a>            <span class="op">};</span></span></code></pre></div>
 </main>
 <script src="https://lerina.github.io/js/toc.js"></script>
 <script>

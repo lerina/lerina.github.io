@@ -15,7 +15,6 @@
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
     div.sourceCode { margin: 1em 0; }
     pre.sourceCode { margin: 0; }
@@ -75,51 +74,35 @@
     code span.va { color: #19177c; } /* Variable */
     code span.vs { color: #4070a0; } /* VerbatimString */
     code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
   <link rel="stylesheet" href="https://lerina.github.io/css/styles_min.css" />
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
 </head>
 <body>
 <nav id="TOC" role="doc-toc">
 <ul>
-<li><a href="#js-sys-webassembly-in-webassembly"
-id="toc-js-sys-webassembly-in-webassembly">js-sys: WebAssembly in
-WebAssembly</a></li>
-<li><a href="#build-and-serve" id="toc-build-and-serve">build and
-serve</a></li>
-<li><a href="#whats-next" id="toc-whats-next">What’s next?</a></li>
+<li><a href="#js-sys-webassembly-in-webassembly">js-sys: WebAssembly in WebAssembly</a></li>
+<li><a href="#build-and-serve">build and serve</a></li>
+<li><a href="#whats-next">What’s next?</a></li>
 </ul>
 </nav>
 <div class="navbar">
 <a class="openbtn" onclick="openNav()">☰</a>
 </div>
 <main>
-<p><a href="./004_working_with_the_char_type.html"><code>&lt;--</code>
-Working with the char type</a></p>
+<p><a href="./004_working_with_the_char_type.html"><code>&lt;--</code> Working with the char type</a></p>
 <hr />
-<h2 id="js-sys-webassembly-in-webassembly">js-sys: WebAssembly in
-WebAssembly</h2>
-<p><em>Using the js-sys crate we can instantiate WebAssembly modules
-from inside WebAssembly modules!</em><br />
-_ <a
-href="https://rustwasm.github.io/wasm-bindgen/examples/wasm-in-wasm.html"
-target="_blank">wasm-bindgen Guide</a></p>
-<p><a
-href="https://github.com/rustwasm/wasm-bindgen/tree/master/examples/wasm-in-wasm"
-target="_blank">wasm-bindgen example</a></p>
+<h2 id="js-sys-webassembly-in-webassembly">js-sys: WebAssembly in WebAssembly</h2>
+<p><em>Using the js-sys crate we can instantiate WebAssembly modules from inside WebAssembly modules!</em><br />
+_ <a href="https://rustwasm.github.io/wasm-bindgen/examples/wasm-in-wasm.html" target="_blank">wasm-bindgen Guide</a></p>
+<p><a href="https://github.com/rustwasm/wasm-bindgen/tree/master/examples/wasm-in-wasm" target="_blank">wasm-bindgen example</a></p>
 <h3 id="setup-the-project">setup the project</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> new wasm-in-wasm <span class="at">--lib</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> wasm-in-wasm</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> add wasm-bindgen</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="ex">cargo</span> new wasm-in-wasm --lib</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="bu">cd</span> wasm-in-wasm</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="ex">cargo</span> add wasm-bindgen</span></code></pre></div>
 <p>edit Cargo.toml to add <code>crate-type</code></p>
-<div class="sourceCode" id="cb2"><pre
-class="sourceCode toml"><code class="sourceCode toml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[</span><span class="dt">lib</span><span class="kw">]</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dt">crate-type</span> <span class="op">=</span> <span class="op">[</span><span class="st">&quot;cdylib&quot;</span><span class="op">,]</span></span></code></pre></div>
-<h4 id="make-the-wasm-file-to-be-used-by-wasm-in-wasm-later">make the
-wasm file to be used by wasm-in-wasm later</h4>
+<pre class="toml"><code>[lib]
+crate-type = [&quot;cdylib&quot;,]</code></pre>
+<h4 id="make-the-wasm-file-to-be-used-by-wasm-in-wasm-later">make the wasm file to be used by wasm-in-wasm later</h4>
 <p>The code for <code>add.wasm</code></p>
 <pre><code>use wasm_biindgen::prelude::wasm_bindgen;
 
@@ -128,131 +111,119 @@ pub fn add(a: usize, b: usize) -&gt; usize {
     a + b
 }</code></pre>
 <p>Temporarly rename the crate <code>add</code></p>
-<div class="sourceCode" id="cb4"><pre
-class="sourceCode toml"><code class="sourceCode toml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[</span><span class="dt">package</span><span class="kw">]</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">&quot;add&quot;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#name = &quot;wasm-in-wasm&quot;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="er">...</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">[</span><span class="dt">lib</span><span class="kw">]</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="dt">crate-type</span> <span class="op">=</span> <span class="op">[</span><span class="st">&quot;cdylib&quot;</span><span class="op">,]</span></span></code></pre></div>
+<pre class="toml"><code>[package]
+name = &quot;add&quot;
+#name = &quot;wasm-in-wasm&quot;
+...
+[lib]
+crate-type = [&quot;cdylib&quot;,]</code></pre>
 <p>Build the wasm file</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">wasm-pack</span> build <span class="at">--release</span> <span class="at">--target</span> web <span class="at">--out-dir</span> www/pkg</span></code></pre></div>
-<p>move and rename the <code>www/pkg/add_bg.wasm</code> to
-<code>src/add.wasm</code></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="ex">wasm-pack</span> build --release --target web --out-dir www/pkg</span></code></pre></div>
+<p>move and rename the <code>www/pkg/add_bg.wasm</code> to <code>src/add.wasm</code></p>
 <p>and clean the project for our real code</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> target/wasm32-unknown-unknown/release/add_bg.wasm ./src/add.wasm</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> clean</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;rm -fr www/pkg&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="fu">mv</span> target/wasm32-unknown-unknown/release/add_bg.wasm ./src/add.wasm</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="ex">cargo</span> clean</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a><span class="st">&#39;rm -fr www/pkg&#39;</span></span></code></pre></div>
 <h3 id="the-real-code">The real code</h3>
-<p>Now that we have the wasm file to be used in `lib.rs we can revert to
-real name in Cargo.toml</p>
-<div class="sourceCode" id="cb7"><pre
-class="sourceCode toml"><code class="sourceCode toml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[</span><span class="dt">package</span><span class="kw">]</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">&quot;wasm-in-wasm&quot;</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="er">...</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">[</span><span class="dt">lib</span><span class="kw">]</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="dt">crate-type</span> <span class="op">=</span> <span class="op">[</span><span class="st">&quot;cdylib,&quot;</span><span class="op">]</span></span></code></pre></div>
+<p>Now that we have the wasm file to be used in `lib.rs we can revert to real name in Cargo.toml</p>
+<pre class="toml"><code>[package]
+name = &quot;wasm-in-wasm&quot;
+...
+[lib]
+crate-type = [&quot;cdylib,&quot;]</code></pre>
 <p>in <code>www/html/index.html</code> we have</p>
-<div class="sourceCode" id="cb8"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;html&gt;</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;head&gt;</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;meta</span> <span class="er">content</span><span class="ot">=</span><span class="st">&quot;text/html;charset=utf-8&quot;</span> <span class="er">http-equiv</span><span class="ot">=</span><span class="st">&quot;Content-Type&quot;</span><span class="kw">/&gt;</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;title&gt;</span>Using wasm in Rust<span class="kw">&lt;/title&gt;</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/head&gt;</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;body&gt;</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;p&gt;</span>Everything happens in rust/wasm <span class="kw">&lt;br</span><span class="er">/</span> <span class="kw">&gt;</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    The developer console should have messages in it<span class="kw">&lt;/p&gt;</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;module&quot;</span> <span class="er">src</span><span class="ot">=</span><span class="st">&quot;../js/index.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/body&gt;</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a><span class="kw">&lt;html&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a>  <span class="kw">&lt;head&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a>    <span class="kw">&lt;meta</span><span class="ot"> content=</span><span class="st">&quot;text/html;charset=utf-8&quot;</span><span class="ot"> http-equiv=</span><span class="st">&quot;Content-Type&quot;</span><span class="kw">/&gt;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a>    <span class="kw">&lt;title&gt;</span>Using wasm in Rust<span class="kw">&lt;/title&gt;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true"></a>  <span class="kw">&lt;/head&gt;</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true"></a>  <span class="kw">&lt;body&gt;</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true"></a>    <span class="kw">&lt;p&gt;</span>Everything happens in rust/wasm <span class="kw">&lt;br</span><span class="er">/</span> <span class="kw">&gt;</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true"></a>    The developer console should have messages in it<span class="kw">&lt;/p&gt;</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true"></a>    <span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;module&quot;</span><span class="ot"> src=</span><span class="st">&quot;../js/index.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true"></a>  <span class="kw">&lt;/body&gt;</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
 <p>and in <code>www/js/index.js</code></p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> init <span class="im">from</span> <span class="st">&quot;../pkg/wasm_in_wasm.js&quot;</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">init</span>()<span class="op">;</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">/* </span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">    //async is handled directly in lib.rs</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">    async function run() {</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">        const wasm = await init();</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">    }</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">    run();</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">*/</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="im">import</span> init <span class="im">from</span> <span class="st">&quot;../pkg/wasm_in_wasm.js&quot;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a><span class="fu">init</span>()<span class="op">;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true"></a><span class="co">/* </span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true"></a><span class="co">    //async is handled directly in lib.rs</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true"></a><span class="co">    async function run() {</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true"></a><span class="co">        const wasm = await init();</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true"></a><span class="co">    }</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true"></a><span class="co">    run();</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true"></a><span class="co">*/</span></span></code></pre></div>
 <p>Note:</p>
-<p>The build outputs the file as <code>wasm_in_wasm.js</code> not
-<code>wasm-in-wasm.js</code> we’ve seen that before (ie: the crate
-<code>wasm-bindgen</code> is used as <code>wasm_bindgen</code>)</p>
+<p>The build outputs the file as <code>wasm_in_wasm.js</code> not <code>wasm-in-wasm.js</code> we’ve seen that before (ie: the crate <code>wasm-bindgen</code> is used as <code>wasm_bindgen</code>)</p>
 <h3 id="everything-happens-in-src">Everything happens in src</h3>
-<div class="sourceCode" id="cb10"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">// src/lib.rs</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">js_sys::</span><span class="op">{</span>Function<span class="op">,</span> Object<span class="op">,</span> Reflect<span class="op">,</span> WebAssembly<span class="op">};</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">wasm_bindgen::prelude::</span><span class="op">*;</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">wasm_bindgen_futures::</span><span class="op">{</span>spawn_local<span class="op">,</span> JsFuture<span class="op">};</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">// lifted from the `console_log` example</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>wasm_bindgen<span class="at">]</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="kw">extern</span> <span class="st">&quot;C&quot;</span> <span class="op">{</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">#[</span>wasm_bindgen<span class="at">(</span>js_namespace <span class="op">=</span> console<span class="at">)]</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> log(a<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>)<span class="op">;</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="pp">macro_rules!</span> console_log <span class="op">{</span></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    (<span class="op">$</span>(<span class="op">$</span>t<span class="op">:</span>tt)<span class="op">*</span>) <span class="op">=&gt;</span> (log(<span class="op">&amp;</span><span class="pp">format_args!</span>(<span class="op">$</span>(<span class="op">$</span>t)<span class="op">*</span>)<span class="op">.</span>to_string()))</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> WASM<span class="op">:</span> <span class="op">&amp;</span>[<span class="dt">u8</span>] <span class="op">=</span> <span class="pp">include_bytes!</span>(<span class="st">&quot;add.wasm&quot;</span>)<span class="op">;</span> <span class="co">// path relative to lib.rs</span></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="kw">async</span> <span class="kw">fn</span> run_async() <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>()<span class="op">,</span> JsValue<span class="op">&gt;</span> <span class="op">{</span></span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    <span class="pp">console_log!</span>(<span class="st">&quot;instantiating a new wasm module directly&quot;</span>)<span class="op">;</span></span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> a <span class="op">=</span> <span class="pp">JsFuture::</span>from(<span class="pp">WebAssembly::</span>instantiate_buffer(WASM<span class="op">,</span> <span class="op">&amp;</span><span class="pp">Object::</span>new()))<span class="op">.</span><span class="kw">await</span><span class="op">?;</span></span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> b<span class="op">:</span> <span class="pp">WebAssembly::</span>Instance <span class="op">=</span> <span class="pp">Reflect::</span>get(<span class="op">&amp;</span>a<span class="op">,</span> <span class="op">&amp;</span><span class="st">&quot;instance&quot;</span><span class="op">.</span>into())<span class="op">?.</span>dyn_into()<span class="op">?;</span></span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> c <span class="op">=</span> b<span class="op">.</span>exports()<span class="op">;</span></span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> add <span class="op">=</span> <span class="pp">Reflect::</span>get(c<span class="op">.</span>as_ref()<span class="op">,</span> <span class="op">&amp;</span><span class="st">&quot;add&quot;</span><span class="op">.</span>into())<span class="op">?</span></span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="pp">dyn_into::</span><span class="op">&lt;</span>Function<span class="op">&gt;</span>()</span>
-<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>expect(<span class="st">&quot;add export wasn&#39;t a function&quot;</span>)<span class="op">;</span></span>
-<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> three <span class="op">=</span> add<span class="op">.</span>call2(<span class="op">&amp;</span><span class="pp">JsValue::</span>undefined()<span class="op">,</span> <span class="op">&amp;</span><span class="dv">1</span><span class="op">.</span>into()<span class="op">,</span> <span class="op">&amp;</span><span class="dv">2</span><span class="op">.</span>into())<span class="op">?;</span></span>
-<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>    <span class="pp">console_log!</span>(<span class="st">&quot;1 + 2 = {:?}&quot;</span><span class="op">,</span> three)<span class="op">;</span></span>
-<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> mem <span class="op">=</span> <span class="pp">Reflect::</span>get(c<span class="op">.</span>as_ref()<span class="op">,</span> <span class="op">&amp;</span><span class="st">&quot;memory&quot;</span><span class="op">.</span>into())<span class="op">?</span></span>
-<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="pp">dyn_into::</span><span class="op">&lt;</span><span class="pp">WebAssembly::</span>Memory<span class="op">&gt;</span>()</span>
-<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>expect(<span class="st">&quot;memory export wasn&#39;t a `WebAssembly.Memory`&quot;</span>)<span class="op">;</span></span>
-<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>    <span class="pp">console_log!</span>(<span class="st">&quot;created module has {} pages of memory&quot;</span><span class="op">,</span> mem<span class="op">.</span>grow(<span class="dv">0</span>))<span class="op">;</span></span>
-<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>    <span class="pp">console_log!</span>(<span class="st">&quot;giving the module 4 more pages of memory&quot;</span>)<span class="op">;</span></span>
-<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>    mem<span class="op">.</span>grow(<span class="dv">4</span>)<span class="op">;</span></span>
-<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>    <span class="pp">console_log!</span>(<span class="st">&quot;now the module has {} pages of memory&quot;</span><span class="op">,</span> mem<span class="op">.</span>grow(<span class="dv">0</span>))<span class="op">;</span></span>
-<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>    <span class="cn">Ok</span>(())</span>
-<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>wasm_bindgen<span class="at">(</span>start<span class="at">)]</span></span>
-<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> run() <span class="op">{</span></span>
-<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>    spawn_local(<span class="kw">async</span> <span class="op">{</span></span>
-<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a>        run_async()<span class="op">.</span><span class="kw">await</span><span class="op">.</span>unwrap_throw()<span class="op">;</span></span>
-<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span>)<span class="op">;</span></span>
-<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="co">// src/lib.rs</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a><span class="kw">use</span> <span class="pp">js_sys::</span><span class="op">{</span>Function<span class="op">,</span> Object<span class="op">,</span> Reflect<span class="op">,</span> WebAssembly<span class="op">};</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true"></a><span class="kw">use</span> <span class="pp">wasm_bindgen::prelude::</span><span class="op">*;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true"></a><span class="kw">use</span> <span class="pp">wasm_bindgen_futures::</span><span class="op">{</span>spawn_local<span class="op">,</span> JsFuture<span class="op">};</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true"></a><span class="co">// lifted from the `console_log` example</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true"></a><span class="at">#[</span>wasm_bindgen<span class="at">]</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true"></a><span class="kw">extern</span> <span class="st">&quot;C&quot;</span> <span class="op">{</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true"></a>    <span class="at">#[</span>wasm_bindgen<span class="at">(</span>js_namespace <span class="op">=</span> console<span class="at">)]</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true"></a>    <span class="kw">fn</span> log(a<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>)<span class="op">;</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true"></a><span class="op">}</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true"></a></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true"></a><span class="pp">macro_rules!</span> console_log <span class="op">{</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true"></a>    (<span class="op">$</span>(<span class="op">$</span>t<span class="op">:</span>tt)<span class="op">*</span>) <span class="op">=&gt;</span> (log(<span class="op">&amp;</span><span class="pp">format_args!</span>(<span class="op">$</span>(<span class="op">$</span>t)<span class="op">*</span>)<span class="op">.</span>to_string()))</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true"></a><span class="op">}</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true"></a></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true"></a><span class="kw">const</span> WASM<span class="op">:</span> <span class="op">&amp;</span>[<span class="dt">u8</span>] <span class="op">=</span> <span class="pp">include_bytes!</span>(<span class="st">&quot;add.wasm&quot;</span>)<span class="op">;</span> <span class="co">// path relative to lib.rs</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true"></a></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true"></a><span class="kw">async</span> <span class="kw">fn</span> run_async() <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>()<span class="op">,</span> JsValue<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true"></a>    <span class="pp">console_log!</span>(<span class="st">&quot;instantiating a new wasm module directly&quot;</span>)<span class="op">;</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true"></a></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true"></a>    <span class="kw">let</span> a <span class="op">=</span> <span class="pp">JsFuture::</span>from(<span class="pp">WebAssembly::</span>instantiate_buffer(WASM<span class="op">,</span> <span class="op">&amp;</span><span class="pp">Object::</span>new()))<span class="op">.</span><span class="kw">await</span><span class="op">?;</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true"></a>    <span class="kw">let</span> b<span class="op">:</span> <span class="pp">WebAssembly::</span>Instance <span class="op">=</span> <span class="pp">Reflect::</span>get(<span class="op">&amp;</span>a<span class="op">,</span> <span class="op">&amp;</span><span class="st">&quot;instance&quot;</span><span class="op">.</span>into())<span class="op">?.</span>dyn_into()<span class="op">?;</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true"></a></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true"></a>    <span class="kw">let</span> c <span class="op">=</span> b<span class="op">.</span>exports()<span class="op">;</span></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true"></a></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true"></a>    <span class="kw">let</span> add <span class="op">=</span> <span class="pp">Reflect::</span>get(c<span class="op">.</span>as_ref()<span class="op">,</span> <span class="op">&amp;</span><span class="st">&quot;add&quot;</span><span class="op">.</span>into())<span class="op">?</span></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true"></a>        <span class="op">.</span><span class="pp">dyn_into::</span><span class="op">&lt;</span>Function<span class="op">&gt;</span>()</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true"></a>        <span class="op">.</span>expect(<span class="st">&quot;add export wasn&#39;t a function&quot;</span>)<span class="op">;</span></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true"></a></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true"></a>    <span class="kw">let</span> three <span class="op">=</span> add<span class="op">.</span>call2(<span class="op">&amp;</span><span class="pp">JsValue::</span>undefined()<span class="op">,</span> <span class="op">&amp;</span><span class="dv">1</span><span class="op">.</span>into()<span class="op">,</span> <span class="op">&amp;</span><span class="dv">2</span><span class="op">.</span>into())<span class="op">?;</span></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true"></a>    <span class="pp">console_log!</span>(<span class="st">&quot;1 + 2 = {:?}&quot;</span><span class="op">,</span> three)<span class="op">;</span></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true"></a>    <span class="kw">let</span> mem <span class="op">=</span> <span class="pp">Reflect::</span>get(c<span class="op">.</span>as_ref()<span class="op">,</span> <span class="op">&amp;</span><span class="st">&quot;memory&quot;</span><span class="op">.</span>into())<span class="op">?</span></span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true"></a>        <span class="op">.</span><span class="pp">dyn_into::</span><span class="op">&lt;</span><span class="pp">WebAssembly::</span>Memory<span class="op">&gt;</span>()</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true"></a>        <span class="op">.</span>expect(<span class="st">&quot;memory export wasn&#39;t a `WebAssembly.Memory`&quot;</span>)<span class="op">;</span></span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true"></a>    <span class="pp">console_log!</span>(<span class="st">&quot;created module has {} pages of memory&quot;</span><span class="op">,</span> mem<span class="op">.</span>grow(<span class="dv">0</span>))<span class="op">;</span></span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true"></a>    <span class="pp">console_log!</span>(<span class="st">&quot;giving the module 4 more pages of memory&quot;</span>)<span class="op">;</span></span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true"></a>    mem<span class="op">.</span>grow(<span class="dv">4</span>)<span class="op">;</span></span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true"></a>    <span class="pp">console_log!</span>(<span class="st">&quot;now the module has {} pages of memory&quot;</span><span class="op">,</span> mem<span class="op">.</span>grow(<span class="dv">0</span>))<span class="op">;</span></span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true"></a></span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true"></a>    <span class="cn">Ok</span>(())</span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true"></a><span class="op">}</span></span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true"></a></span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true"></a><span class="at">#[</span>wasm_bindgen<span class="at">(</span>start<span class="at">)]</span></span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true"></a><span class="kw">fn</span> run() <span class="op">{</span></span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true"></a>    spawn_local(<span class="kw">async</span> <span class="op">{</span></span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true"></a>        run_async()<span class="op">.</span><span class="kw">await</span><span class="op">.</span>unwrap_throw()<span class="op">;</span></span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true"></a>    <span class="op">}</span>)<span class="op">;</span></span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true"></a><span class="op">}</span></span></code></pre></div>
 <p>Note:</p>
 <p>We need to add the two new crates brought into scope</p>
-<div class="sourceCode" id="cb11"><pre
-class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> add js-sys</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> add wasm-bindgen-futures</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a><span class="ex">cargo</span> add js-sys</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a><span class="ex">cargo</span> add wasm-bindgen-futures</span></code></pre></div>
 <h2 id="build-and-serve">build and serve</h2>
-<div class="sourceCode" id="cb12"><pre
-class="sourceCode sh"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">wasm-pack</span> build <span class="at">--target</span> web <span class="at">--no-typescript</span> <span class="at">--out-dir</span> www/pkg</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">http</span> www</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a><span class="ex">wasm-pack</span> build --target web --no-typescript --out-dir www/pkg</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true"></a><span class="ex">http</span> www</span></code></pre></div>
 <p>open <code>index.html</code></p>
-<div class="sourceCode" id="cb13"><pre
-class="sourceCode sh"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">firefox</span> http://localhost:8000/html/</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a><span class="ex">firefox</span> http://localhost:8000/html/</span></code></pre></div>
 <hr />
 <h2 id="whats-next">What’s next?</h2>
-<p>Next example: <a href="./006_DOM.html">web-sys: DOM hello world
-<code>--&gt;</code></a></p>
+<p>Next example: <a href="./006_DOM.html">web-sys: DOM hello world <code>--&gt;</code></a></p>
 </main>
 <script src="https://lerina.github.io/js/toc.js"></script>
 <script>
