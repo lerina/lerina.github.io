@@ -208,11 +208,11 @@ function makeMutClosure(arg0, arg1, dtor, f) {
     return real;
 }
 function __wbg_adapter_18(arg0, arg1) {
-    wasm._dyn_core__ops__function__FnMut_____Output___R_as_wasm_bindgen__closure__WasmClosure___describe__invoke__h9a38883d54683963(arg0, arg1);
+    wasm._dyn_core__ops__function__FnMut_____Output___R_as_wasm_bindgen__closure__WasmClosure___describe__invoke__hbb405977dea15d6e(arg0, arg1);
 }
 
 function __wbg_adapter_21(arg0, arg1, arg2) {
-    wasm._dyn_core__ops__function__FnMut__A____Output___R_as_wasm_bindgen__closure__WasmClosure___describe__invoke__hb201e5e2d06cfba6(arg0, arg1, addHeapObject(arg2));
+    wasm._dyn_core__ops__function__FnMut__A____Output___R_as_wasm_bindgen__closure__WasmClosure___describe__invoke__h7fbfe9d52c165edc(arg0, arg1, addHeapObject(arg2));
 }
 
 /**
@@ -458,11 +458,11 @@ function __wbg_get_imports() {
     imports.wbg.__wbindgen_rethrow = function(arg0) {
         throw takeObject(arg0);
     };
-    imports.wbg.__wbindgen_closure_wrapper82 = function(arg0, arg1, arg2) {
+    imports.wbg.__wbindgen_closure_wrapper83 = function(arg0, arg1, arg2) {
         const ret = makeMutClosure(arg0, arg1, 19, __wbg_adapter_18);
         return addHeapObject(ret);
     };
-    imports.wbg.__wbindgen_closure_wrapper84 = function(arg0, arg1, arg2) {
+    imports.wbg.__wbindgen_closure_wrapper85 = function(arg0, arg1, arg2) {
         const ret = makeMutClosure(arg0, arg1, 19, __wbg_adapter_21);
         return addHeapObject(ret);
     };
@@ -504,7 +504,7 @@ async function __wbg_init(input) {
     if (wasm !== undefined) return wasm;
 
     if (typeof input === 'undefined') {
-        input = new URL('wasm_shoot_bg.wasm', import.meta.url);
+        input = new URL('wasm_shooting_game_bg.wasm', import.meta.url);
     }
     const imports = __wbg_get_imports();
 
