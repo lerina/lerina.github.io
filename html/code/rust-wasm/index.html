@@ -80,15 +80,19 @@
 <body>
 <nav id="TOC" role="doc-toc">
 <ul>
+<li><a href="#learn-rustwasm-without-npm-and-webpack">Learn Rust/Wasm without NPM and webpack</a>
+<ul>
 <li><a href="#motivation">Motivation</a></li>
 <li><a href="#no-bundle-wasm-by-example">no-bundle Wasm by example</a></li>
 <li><a href="#list">Example list</a></li>
+</ul></li>
 </ul>
 </nav>
 <div class="navbar">
 <a class="openbtn" onclick="openNav()">☰</a>
 </div>
 <main>
+<h1 id="learn-rustwasm-without-npm-and-webpack">Learn Rust/Wasm without NPM and webpack</h1>
 <blockquote>
 <p>These pages are dedicated to Understanding and developing in Rust/wasm without bloat or bundles.</p>
 </blockquote>
@@ -98,14 +102,12 @@
 <li>The best youtube resource to learn Rust is <a href="https://www.youtube.com/c/LetsGetRusty/playlists" target="_blank">LetsGetRusty</a></li>
 </ul>
 <h2 id="motivation">Motivation</h2>
-<p>I drank the Cool-aid and fell for the Rust evangelism.<br />
-I love the language. It make programming fun again.</p>
-<p>When webassembly started to be a thing, Rust kept popping up as the Language of choice:</p>
+<p>The Rust programming language is a great contender, if you want to:</p>
 <ul>
 <li>to build webassembly/JavaScript apps for the web or</li>
 <li>target some specific module that need speeding, memory safety, or both.</li>
 </ul>
-<p>Most Rust-wasm tutorials, however, lean heavily on “NPM and webpack”, just to get a “hello world”.</p>
+<p>However, most Rust-wasm tutorials, lean heavily on “NPM and webpack”, just to get a “hello world”.</p>
 <p>More on that <a href="./motivation.html" target="_blank">here</a></p>
 <blockquote>
 <p>The following pages brings under one location all those bits and pieces you want to know in order to understand and build wasm stuff with Rust.</p>
@@ -122,26 +124,25 @@ I love the language. It make programming fun again.</p>
 <p>In the following pages we’ll dive into understanding how to transform most webpack, NPM loaded Rust/wasm tutorial into lean no-bloat rust-wasm with no-bundle.</p>
 <p>We’ll use and get familliar with the following tools and crates:</p>
 <ul>
-<li><a href="https://rustwasm.github.io/wasm-pack/installer/" target="_blank">wasm-pack</a>, <a href="https://rustwasm.github.io/docs/wasm-pack/introduction.html" target="_blank">docs</a><br />
+<li><a href="https://rustwasm.github.io/wasm-pack/installer/" target="_blank">wasm-pack</a>, ( <a href="https://rustwasm.github.io/docs/wasm-pack/introduction.html" target="_blank">docs</a>)<br />
 </li>
-<li><a href="https://github.com/rustwasm/wasm-bindgen" target="_blank">wasm-bindgen</a>, <a href="https://rustwasm.github.io/docs/wasm-bindgen/" target="_blank">docs</a><br />
+<li><a href="https://github.com/rustwasm/wasm-bindgen" target="_blank">wasm-bindgen</a>, (<a href="https://rustwasm.github.io/docs/wasm-bindgen/" target="_blank">docs</a>)<br />
 </li>
-<li><a href="https://lib.rs/crates/js-sys" target="_blank">js-sys</a> &amp; <a href="https://lib.rs/crates/web-sys" target="_blank">web-sys</a><br />
-<a href="https://rustwasm.github.io/wasm-bindgen/examples/wasm-in-wasm.html" target="_blank">js-sys example</a>, <a href="https://rustwasm.github.io/wasm-bindgen/examples/dom.html" target="_blank">web-sys examples</a></li>
+<li><a href="https://lib.rs/crates/js-sys" target="_blank">js-sys</a> &amp; <a href="https://lib.rs/crates/web-sys" target="_blank">web-sys</a> (<a href="https://rustwasm.github.io/wasm-bindgen/examples/wasm-in-wasm.html" target="_blank">js-sys example</a>, <a href="https://rustwasm.github.io/wasm-bindgen/examples/dom.html" target="_blank">web-sys examples</a> )</li>
 </ul>
 <!-- 
 [trunkrs.dev](https://trunkrs.dev/){target="_blank"}  
 -->
 <h3 id="let-the-tutorial-begin">Let the tutorial begin!</h3>
 <p>Wasm without npm and bundlers is actually quite simple. Unfortunately it’s not easy to find <strong>complete examples</strong> on the web.</p>
-<p>We’ll convert each example from wasm-bindgen to a no-bundle version.</p>
+<p>We’ll convert each examples from the <a href="https://rustwasm.github.io/docs/wasm-bindgen/" target="_blank">wasm-bindgen guide</a> to a no-bundle version. For each example or demo:</p>
 <ul>
-<li>In Part I, we’ll get a example running.</li>
-<li>Then in Part II, we’ll study the code</li>
+<li>Part I, will help you get the example running.</li>
+<li>Part II, will expose or highlight aspects of the code related to wasm-bindgen, wasm-pack or Rust.</li>
 </ul>
-<p>But before that let’s prepare our workspace, and setup our tools.</p>
 <p>It is assumed that you have Rust on your machine and cargo ready for use. (If not get the installer <a href="https://rustup.rs/" target="_blank">here: rustup.rs</a>).</p>
 <h4 id="get-wasm-pack-and-something-to-serve-our-website-locally">0. Get wasm-pack and something to serve our website locally</h4>
+<p>Let’s prepare our workspace, and setup our tools.</p>
 <h5 id="install-wasm-pack">0.1 Install wasm-pack</h5>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="ex">cargo</span> install wasm-pack</span></code></pre></div>
 <p>wasm-pack helps you build rust-generated WebAssembly packages Its a useful convenience that is widely used by the Rust community.</p>
@@ -151,11 +152,11 @@ I love the language. It make programming fun again.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="ex">cargo</span> install https</span></code></pre></div>
 <p>Note:</p>
 <p><a href="https://trunkrs.dev/" target="_blank">trunkrs.dev</a> is getting traction in the Rust community but its a much more ambitious tool and beyond our needs here.</p>
-<h3 id="converting-examples">Converting examples</h3>
+<h3 id="formula-for-converting-examples">Formula for Converting examples</h3>
 <h4 id="seven-steps-to-hello-world">Seven steps to hello world</h4>
 <ol type="1">
 <li>Set up your file structure</li>
-<li>Edit Cargo.toml: Set the crate-type and add wasm-bindgen as a dependency.</li>
+<li>Edit Cargo.toml: Set the <em>crate-type</em> and add wasm-bindgen as a dependency.</li>
 <li>Get the lib.rs code for hello_world</li>
 <li>Specify type module in index.html</li>
 <li>import with file extension included and Wrap the code in async/await index.js</li>

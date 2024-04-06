@@ -1,6 +1,7 @@
 <div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
 
-[`<--` list of examples ](./index.html#list)
+<div class="prevnext"><span class="button left">[<-- list of examples ](./index.html#list) </span>
+<span class="button right">[console.log -->](./002_console_log.html) </span></div>
 
 <main>
 
@@ -361,7 +362,10 @@ run();
 
 --- 
 
-Next example: [console.log `-->`](./002_console_log.html)
+
+
+<div class="prevnext"><span class="button left">[<-- list of examples ](./index.html#list) </span>
+<span class="button right">[console.log -->](./002_console_log.html) </span></div>
 
 </main>
 

@@ -849,3 +849,8 @@ transition: transform 0.5s ease-in-out;
 transform: scale(1);
 }
 
+/*-- links anchors in spans in a div */
+.prevnext .left { float:left;}
+.prevnext .right { float:right;}
+.prevnext a { color: white; text-decoration: none;}
+.prevnext a:visited {color: white;}
