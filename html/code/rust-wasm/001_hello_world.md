@@ -132,8 +132,7 @@ run();
 wasm-pack build --target web --no-typescript --out-dir www/pkg
 ```
 
-
-- ` --target web` to specify nobundle
+- ` --target web` to specify nobundle and generate Es6 glue code
 - `--no-typescript` we are not using TypeScript for these examples
 - `--out-dir www/pkg` by default `pkg` is the same level as `src` directory.
 Its cleaner to have all our web stuff in `www`.
@@ -190,7 +189,7 @@ Open `index.html` in a browser by pointing at [http://127.0.0.1:8080/html/]
 .
 ├── Cargo.toml
 ├── src
-│   └── lib.rs
+│   └── lib.rs
 └── www
     ├── html
     └── js
@@ -206,6 +205,8 @@ mkdir -p www/html www/js
 
 </pre>
 </div>
+
+
 
 ---
 

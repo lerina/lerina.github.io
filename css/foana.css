@@ -863,6 +863,7 @@ transform: scale(1);
 */
 
 /*--------------------------*/
+
 .alt-pre {
   position: relative;
   overflow: hidden;
@@ -870,7 +871,7 @@ transform: scale(1);
   color: #18181a;
   display: inline-block;
   font-size: clamp(0.875rem, -0.5563rem + 4.5802vw, 2.375rem); 
-  /* top | horizontal | bottom */
+         /* top | horizontal        | bottom */
   padding: 18px calc(0.75em + 1vmin) 17px;
   text-decoration: none;
   cursor: pointer;
@@ -898,7 +899,7 @@ transform: scale(1);
   transition: all 500ms cubic-bezier(0.48, 0, 0.12, 1);
   z-index: 100;
   opacity: 0;
-  top: 77%; /*50*/
+  top: 30%; /*50*/
   left: 50%;
   transform: translateY(225%) translateX(-50%);
   /*height: 14px;
@@ -906,7 +907,7 @@ transform: scale(1);
 */
   /* top | horizontal | bottom */
   /*padding: 18px calc(0.75em + 1vmin) 17px;*/
-  padding:0.2em 0.2em 0.3em;
+  padding:0.1em 0.3em 0.1em;
 }
 
 .alt-pre:after {
@@ -929,7 +930,7 @@ transform: scale(1);
 }
 
 .alt-pre:hover pre:last-child {
-  transform: translateX(-50%) translateY(-90%);  /* x,y ctrl here*/
+  transform: translateX(-50%) translateY(-50%);  /* x,y ctrl here*/
   opacity: 1;
   transition: all 900ms cubic-bezier(0.48, 0, 0.12, 1);
 }

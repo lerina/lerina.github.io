@@ -75,7 +75,7 @@
     code span.vs { color: #4070a0; } /* VerbatimString */
     code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="https://lerina.github.io/css/styles_min.css" />
+  <link rel="stylesheet" href="http://localhost:8000/css/styles_min.css" />
 </head>
 <body>
 <nav id="TOC" role="doc-toc">
@@ -172,7 +172,7 @@ wasm-bindgen = &quot;0.2.88&quot;</code></pre>
 <h5 id="build-with-wasm-pack">6. build with wasm-pack</h5>
 <div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="ex">wasm-pack</span> build --target web --no-typescript --out-dir www/pkg</span></code></pre></div>
 <ul>
-<li><code>--target web</code> to specify nobundle</li>
+<li><code>--target web</code> to specify nobundle and generate Es6 glue code</li>
 <li><code>--no-typescript</code> we are not using TypeScript for these examples</li>
 <li><code>--out-dir www/pkg</code> by default <code>pkg</code> is the same level as <code>src</code> directory. Its cleaner to have all our web stuff in <code>www</code>.</li>
 </ul>
@@ -208,7 +208,7 @@ To get this clean file structure
 .
 ├── Cargo.toml
 ├── src
-│   └── lib.rs
+│   └── lib.rs
 └── www
     ├── html
     └── js
