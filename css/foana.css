@@ -890,7 +890,7 @@ transform: scale(1);
 
 .alt-pre pre:last-child {
   /*color: white;*/
-  color: var(--text-light);
+  color: rgba(15, 255, 80, 0.9); /*var(--text-light);*/
   display: block;
   position: absolute;
   bottom: 0;
