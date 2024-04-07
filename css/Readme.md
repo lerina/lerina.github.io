@@ -2,6 +2,30 @@ minify with [accss](https://github.com/gandalfSievers/accss):
 `accss foana.css -o styles_min.css`
 
 
+Chrome yes. Firefox no. Scraped for consistant look.
+/* Light theme */
+@media (prefers-color-scheme: light) {
+  :root,
+  ::backdrop {
+    color-scheme: light;
+  --bg: #cccaca; /*#fff;*/
+  --accent-bg: #f5f7ff;
+  --text: #212121;
+  --text-light: #585858;
+  --border: #898EA4;
+  --accent: #0d47a1;
+  --code: #d81b60;
+  --preformatted: #444;
+  --marked: #ffdd33;
+  --disabled: #efefef;
+  }
+  /* Add a bit of transparency so light media isn't so glaring in dark mode */
+  img,
+  video {
+    opacity: 0.8;
+  }
+}
+
 ---
 .alt-span {
   position: relative;

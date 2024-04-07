@@ -184,7 +184,7 @@ Open `index.html` in a browser by pointing at [http://127.0.0.1:8080/html/]
 ![enjoy!](./pix/hello_world.png)
 
 
-### Q&A
+## Q&A
 
 <div class="alt-pre">generate this clean file structure
 <pre >
@@ -430,6 +430,7 @@ run();
 --- 
 
 
+<span class="button">[Example list](./index.html#list)</span>
 
 <div class="prevnext"><span class="button left">[<-- list of examples ](./index.html#list) </span>
 <span class="button right">[console.log -->](./002_console_log.html) </span></div>

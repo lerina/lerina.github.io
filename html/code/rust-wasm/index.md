@@ -164,6 +164,9 @@ humm.
 
 --- 
 
+
+<span class="button">[Example list](./index.html#list)</span>
+
 <div class="prevnext"><div class="button left">[<-- index](../index.html) </div>
 <div class="button right">[wasm Hello world -->](./001_hello_world.html) </div></div>
 

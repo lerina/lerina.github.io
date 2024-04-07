@@ -83,7 +83,11 @@
 <li><a href="#hello-world">Hello, World!</a>
 <ul>
 <li><a href="#converting-examples-in-7-steps">Converting Examples in 7 steps</a></li>
-<li><a href="#using-wasm-bindgen-to-communicate-between-rust-and-javascript">Using wasm-bindgen to communicate between Rust and JavaScript</a></li>
+<li><a href="#qa">Q&amp;A</a></li>
+<li><a href="#using-wasm-bindgen-to-communicate-between-rust-and-javascript">Using wasm-bindgen to communicate between Rust and JavaScript</a>
+<ul>
+<li><a href="#the-lib.rs-file">The lib.rs file</a></li>
+</ul></li>
 <li><a href="#index.html-and-index.js-files">index.html and index.js files</a></li>
 </ul></li>
 </ul>
@@ -205,7 +209,7 @@ wasm-bindgen = &quot;0.2.88&quot;</code></pre>
 <figure>
 <img src="./pix/hello_world.png" alt="" /><figcaption>enjoy!</figcaption>
 </figure>
-<h3 id="qa">Q&amp;A</h3>
+<h2 id="qa">Q&amp;A</h2>
 <div class="alt-pre">
 generate this clean file structure
 <pre >
@@ -341,25 +345,29 @@ The default is to use the package name
 name = &quot;hello_world&quot;
 ...</code></pre>
 <p>and produces its JavaScript glue code with the same name.</p>
-<h4 id="init">init</h4>
+<h4 id="the-import-line">The import line</h4>
+<h5 id="init">init()</h5>
 <p>There is an initialization function <code>init</code> which will “boot” the module and make it ready to use.</p>
 <p>We must import this provided default <code>init</code> function.</p>
-<p><code>import init, ... from "../pkg/hello_world.js";</code></p>
-<p>The init() function will load the <code>.wasm</code> binary that is in <code>www/pkg</code></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true"></a><span class="im">import</span> init<span class="op">,</span> <span class="op">...</span> <span class="im">from</span> <span class="st">&quot;../pkg/hello_world.js&quot;</span><span class="op">;</span></span></code></pre></div>
+<p>The <code>init()</code> function will load the <code>.wasm</code> binary that is in <code>www/pkg</code></p>
+<h5 id="the-exported-rust-function">The exported Rust function</h5>
 <p>Next we import the <code>greet</code> function, which we made public in our Rust code and accessible in our JavaScript with <code>#[wasm_bindgen]</code></p>
-<p><code>import init, {greet} from "../pkg/hello_world.js";</code></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true"></a><span class="im">import</span> init<span class="op">,</span> {greet} <span class="im">from</span> <span class="st">&quot;../pkg/hello_world.js&quot;</span><span class="op">;</span></span></code></pre></div>
+<h5 id="running-our-code">Running our code</h5>
 <p>Finally, we need to wrap the code in an <code>async/await</code> function. Using async/await, <code>greet</code> will not be called until <code>init()</code> finishes loading the Wasm that <code>greet("World")</code> needs to run.</p>
 <p>Here again is the full listing:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true"></a><span class="im">import</span> init<span class="op">,</span> { greet } <span class="im">from</span> <span class="st">&quot;../pkg/hello_world.js&quot;</span><span class="op">;</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">run</span>() {</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true"></a>    <span class="kw">const</span> wasm <span class="op">=</span> <span class="cf">await</span> <span class="fu">init</span>()<span class="op">;</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true"></a></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true"></a>    <span class="fu">greet</span>(<span class="st">&#39;World&#39;</span>)<span class="op">;</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true"></a>}</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true"></a></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true"></a><span class="fu">run</span>()<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true"></a><span class="im">import</span> init<span class="op">,</span> { greet } <span class="im">from</span> <span class="st">&quot;../pkg/hello_world.js&quot;</span><span class="op">;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">run</span>() {</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true"></a>    <span class="kw">const</span> wasm <span class="op">=</span> <span class="cf">await</span> <span class="fu">init</span>()<span class="op">;</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true"></a>    <span class="fu">greet</span>(<span class="st">&#39;World&#39;</span>)<span class="op">;</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true"></a>}</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true"></a><span class="fu">run</span>()<span class="op">;</span></span></code></pre></div>
 <hr />
+<p><span class="button"><a href="./index.html#list">Example list</a></span></p>
 <div class="prevnext">
 <span class="button left"><a href="./index.html#list">&lt;– list of examples</a> </span> <span class="button right"><a href="./002_console_log.html">console.log –&gt;</a> </span>
 </div>

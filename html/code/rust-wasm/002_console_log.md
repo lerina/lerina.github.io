@@ -5,14 +5,18 @@
 
 <main>
 
-## console.log
+# console.log
 
 *This example shows off how to use console.log in a variety of ways, all the way from bare-bones usage to a println!-like macro with web_sys.*  
 _ [wasm-bindgen Guide](https://rustwasm.github.io/wasm-bindgen/examples/console-log.html){target="_blank"}
 
 [wasm-bindgen example](https://github.com/rustwasm/wasm-bindgen/tree/master/examples/console_log){target="_blank"}
 
-1. Make the file structure
+> PART I. Make it run
+
+## Converting Examples in 7 steps
+
+#### 1. Set up your file structure
 
 ```
 cargo new console_log --lib
@@ -20,7 +24,7 @@ cd console_log
 mkdir -p www/html www/js
 ```
 
-2. Edit Cargo.toml, add crate-type and wasm-bindgen dependency
+#### 2. Edit Cargo.toml, add crate-type and wasm-bindgen dependency
 
 ```toml
 [package]
@@ -38,7 +42,9 @@ wasm-bindgen = "0.2.88"
 
 ```
 
-3. cut and paste the console-log example [src/lib.rs](https://rustwasm.github.io/wasm-bindgen/examples/console-log.html){target="_blank"}
+#### 3. get the code 
+
+Cut and paste the console-log example [src/lib.rs](https://rustwasm.github.io/wasm-bindgen/examples/console-log.html){target="_blank"}
 
 
 ```rust
@@ -125,7 +131,7 @@ wasm-bindgen = "0.2.88"
 web-sys = { version = "0.3.65", features = ['console'] }`
 ```
 
-4. create the index file at `www/html/index.html`:
+#### 4. create the index file at `www/html/index.html`:
 
 ```html
 <!DOCTYPE html>
@@ -143,7 +149,7 @@ web-sys = { version = "0.3.65", features = ['console'] }`
 
 ```
 
-5. The js file 
+#### 5. The js file 
 
 We could have written the file like this
 
@@ -186,13 +192,13 @@ run();
 
 ```
 
-6. build it
+#### 6. build it
 
 ```sh
 wasm-pack build --target web --no-typescript --out-dir www/pkg
 ```
 
-7. serve it
+#### 7. serve it
 
 ```sh
 http www
@@ -208,6 +214,36 @@ and `ctrl-shift + I` to see the output in the browsers console log
 
 ![Console log](./pix/console_log.png)
 
+
+## Q&A
+
+<div class="alt-pre">generate this clean file structure
+<pre >
+.
+├── Cargo.toml
+├── src
+│   └── lib.rs
+└── www
+    ├── html
+    └── js
+</pre>
+<pre>
+cargo new hello_world --lib
+
+cd hello_world
+
+mkdir -p www/html www/js
+</pre>
+</div>
+
+---
+
+> PART II. Understand the Code
+
+## Understand the Code
+
+
+
 ## What's next?
 
 There is nothing specific for nobundle in the [Small wasm files](https://rustwasm.github.io/wasm-bindgen/examples/add.html){target="_blank"} example so we'll pass it.
@@ -220,9 +256,10 @@ Now the [Without a Bundler](https://rustwasm.github.io/wasm-bindgen/examples/wit
 Nothing specific to nobundle, we pass.
 
 
+<span class="button">[Example list](./index.html#list)</span>
 
-<div class="prevnext"><span class="button left">[<-- hello_world](./001_hello_world.html) </span>
-<span class="button">[Example list](./index.html#list)</span><span class="button right">[Importing non-browser JS -->](./003_importing_non-browser_JS.html) </span></div>
+<div class="prevnext"><div class="button left">[<-- hello_world](./001_hello_world.html) </div>
+<div class="button right">[Importing non-browser JS -->](./003_importing_non-browser_JS.html) </div></div>
 
 </main>
 
