@@ -906,6 +906,7 @@ transform: scale(1);
 */
   /* top | horizontal | bottom */
   /*padding: 18px calc(0.75em + 1vmin) 17px;*/
+  padding:0.2em 0.2em 0.3em;
 }
 
 .alt-pre:after {
