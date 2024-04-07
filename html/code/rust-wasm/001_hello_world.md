@@ -5,7 +5,7 @@
 
 <main>
 
-## Hello, World!
+# Hello, World!
 
 *This is the "Hello, world!" example of #[wasm_bindgen] showing how to set up a project, export a function to JS, call it from JS, and then call the alert function in Rust.*  
 _ [wasm-bindgen Guide](https://rustwasm.github.io/wasm-bindgen/examples/hello-world.html){target="_blank"}, 
@@ -14,7 +14,9 @@ _ [wasm-bindgen Guide](https://rustwasm.github.io/wasm-bindgen/examples/hello-wo
 
 > PART I. Make it run
 
-##### 1. Set up your file structure
+## Converting Examples in 7 steps
+
+#### 1. Set up your file structure
 
 ```sh
 cargo new hello_world --lib
@@ -35,7 +37,7 @@ You should have this file structure
 ```
 
 
-##### 2. Edit Cargo.toml: Set the crate-type and add wasm-bindgen as a dependency.
+#### 2. Edit Cargo.toml: Set the crate-type and add wasm-bindgen as a dependency.
 
 In Cargo.toml, put `crate-type = ["cdylib"]` after `edition` entry.
 And add wasm-bindgen as a dependency.
@@ -61,7 +63,7 @@ Note:
 when we build with wasm-pack the first time, 
 so we are all good to go.
 
-##### 3. Get the lib.rs code for hello_world
+#### 3. Get the lib.rs code for hello_world
 
 We'll cut and paste and modify the examples. 
 The point is to get used to convert code meant to be deployed 
@@ -82,7 +84,7 @@ pub fn greet(name: &str) {
 }
 ```
 
-##### 4. Specify type module in index.html
+#### 4. Specify type module in index.html
 
 Here is the first difference.
 
@@ -107,7 +109,7 @@ Our index file at `www/html/index.html` look like this:
 
 Note the `type="module"` 
 
-##### 5. import with file extension included and Wrap the code in async/await index.js
+#### 5. import with file extension included and Wrap the code in async/await index.js
 
 Second difference.
 
@@ -126,7 +128,7 @@ run();
 ```
 
 
-##### 6. build with wasm-pack
+#### 6. build with wasm-pack
 
 ```sh
 wasm-pack build --target web --no-typescript --out-dir www/pkg
@@ -134,7 +136,7 @@ wasm-pack build --target web --no-typescript --out-dir www/pkg
 
 - ` --target web` to specify nobundle and generate Es6 glue code
 - `--no-typescript` we are not using TypeScript for these examples
-- `--out-dir www/pkg` by default `pkg` is the same level as `src` directory.
+- `--out-dir www/pkg` by default `pkg` is at the same level as the `src` directory.
 Its cleaner to have all our web stuff in `www`.
 
 wasm-pack through wasm-bindgen-cli will generate the following in our `pkg` directory.
@@ -150,7 +152,7 @@ wasm-pack through wasm-bindgen-cli will generate the following in our `pkg` dire
 The output of `--target web` is included as an ES module.
 Thats why we endup with an ES6 flavor of JavaScript.
 
-##### 7. Run the web server and open your browser
+#### 7. Run the web server and open your browser
 
 You can use any file server, or follow along with `http` which we installed after wasm-pack.
 
@@ -182,9 +184,9 @@ Open `index.html` in a browser by pointing at [http://127.0.0.1:8080/html/]
 ![enjoy!](./pix/hello_world.png)
 
 
-#### Q&A
+### Q&A
 
-<div class="alt-pre">To get this clean file structure
+<div class="alt-pre">generate this clean file structure
 <pre >
 .
 ├── Cargo.toml
@@ -196,17 +198,28 @@ Open `index.html` in a browser by pointing at [http://127.0.0.1:8080/html/]
 </pre>
 <pre>
 cargo new hello_world --lib
-cd hello_world
-mkdir -p www/html www/js
 
-cargo new hello_world --lib
 cd hello_world
-mkdir -p www/html www/js
 
+mkdir -p www/html www/js
 </pre>
 </div>
 
 
+
+<div class="alt-pre">In `wasm-pack build` what are these options for?
+<pre >
+--target web 
+--no-typescript 
+--out-dir www/pkg
+</pre>
+<pre>
+- ` --target web` generate Es6 glue code
+- `--no-typescript` We're not using Ts
+- `--out-dir www/pkg` by default `pkg` is 
+at the same level as the `src` directory
+</pre>
+</div>
 
 ---
 
@@ -225,7 +238,8 @@ For more details have a look at
 `wasm-pack` uses `wasm-bindgen`, to provide a bridge between the types of JavaScript and Rust. 
 It allows JavaScript to call a Rust API with a string, or a Rust function to catch a JavaScript exception.
 
-"The src/lib.rs file is the root of the Rust crate that we are compiling to WebAssembly. It uses wasm-bindgen to interface with JavaScript. 
+"The src/lib.rs file is the root of the Rust crate that we are compiling to WebAssembly. 
+It uses wasm-bindgen to interface with JavaScript. 
 
 In this example, it imports the window.alert JavaScript function, 
 and exports the greet Rust function, which alerts a greeting message."
@@ -279,7 +293,7 @@ pub fn greet(name: &str) {
 ...
 ```
  
-It's the opposite of extern.
+It's the opposite of extern. We are exposing `greet` to Javascript so it can be used in "*.js" files.
 
 This function is named greet, and takes one argument, a string (written &str), name. 
 It then calls the alert function we asked for in the extern block above.
@@ -330,19 +344,32 @@ greet('World');
 ```
 -->
 
-To specify that we are not using NPM and a bundler, 
-we used `wasm-pack --target web --no-typescript --out-dir www` to compile our code.
+As you recall, to specify that we are not using NPM and a bundler, 
+we used `wasm-pack --target web to compile our code, 
+Without NPM in mind. The build will produce ES6 code.
+
+`--out-dir www/pkg` is used to have wasm-pack output its glue code in `www/pkg`
+because its nice to have all non Rust related  files in  a specific place such as `www`.  
+
 We are not using typescript for our examples so `--no-typescript` will
 prevent the production of `*.ts` files in `pkg`.
 
-Without NPM, the build will produce ES6 code in `www/pkg`. 
-Hence we used `ES module` import syntax.
-Not how unlike the official documentation we must 
-as a result specify the filename with its extension `.js` in our `import` statement:
+
+We must used `ES module` import syntax, since we are working with Es6 code.
+Hence importing modules in our javascript files must come with its extension `.js` in our `import` statement:
 
 `import ... from "../pkg/hello_world.js";`
 
 Where did this `hello_world` from?  
+<aside>
+You can change this name when building:
+
+```sh
+wasm-pack build --out-name <OUT_NAME> ...
+```
+The default is to use the package name 
+</aside>
+
 `wasm-pack` gets the name from our crate name as specified in Cargo.toml
 
 ```toml
@@ -353,21 +380,35 @@ name = "hello_world"
 
 and produces its JavaScript glue code with the same name.
 
+
+
+#### The import line
+
+##### init()
+
 There is an initialization function `init` which
 will "boot" the module and make it ready to use.
 
 We must import this provided default `init` function. 
 
-`import init, ... from "../pkg/hello_world.js";`
+```js
+import init, ... from "../pkg/hello_world.js";
+```
 
-The init() function will load the  `.wasm` binary that is in `www/pkg`
+The `init()` function will load the  `.wasm` binary that is in `www/pkg`
+
+##### The exported Rust function
 
 Next we import the `greet` function, which we made public in our Rust code 
 and accessible in our JavaScript with `#[wasm_bindgen]`
 
-`import init, {greet} from "../pkg/hello_world.js";`
 
- 
+```js
+import init, {greet} from "../pkg/hello_world.js";
+```
+
+##### Running our code
+
 Finally, we need to wrap the code in an `async/await` function.
 Using async/await, `greet` will not be called until `init()` finishes loading the Wasm 
 that `greet("World")` needs to run.
@@ -386,7 +427,6 @@ async function run() {
 
 run();
 ```
-
 --- 
 
 

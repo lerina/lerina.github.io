@@ -80,9 +80,12 @@
 <body>
 <nav id="TOC" role="doc-toc">
 <ul>
-<li><a href="#hello-world">Hello, World!</a></li>
+<li><a href="#hello-world">Hello, World!</a>
+<ul>
+<li><a href="#converting-examples-in-7-steps">Converting Examples in 7 steps</a></li>
 <li><a href="#using-wasm-bindgen-to-communicate-between-rust-and-javascript">Using wasm-bindgen to communicate between Rust and JavaScript</a></li>
 <li><a href="#index.html-and-index.js-files">index.html and index.js files</a></li>
+</ul></li>
 </ul>
 </nav>
 <div class="navbar">
@@ -92,13 +95,14 @@
 <span class="button left"><a href="./index.html#list">&lt;– list of examples</a> </span> <span class="button right"><a href="./002_console_log.html">console.log –&gt;</a> </span>
 </div>
 <main>
-<h2 id="hello-world">Hello, World!</h2>
+<h1 id="hello-world">Hello, World!</h1>
 <p><em>This is the “Hello, world!” example of #[wasm_bindgen] showing how to set up a project, export a function to JS, call it from JS, and then call the alert function in Rust.</em><br />
 _ <a href="https://rustwasm.github.io/wasm-bindgen/examples/hello-world.html" target="_blank">wasm-bindgen Guide</a>, <a href="https://rustwasm.github.io/wasm-bindgen/examples/hello-world.html" target="_blank">wasm-bindgen example</a></p>
 <blockquote>
 <p>PART I. Make it run</p>
 </blockquote>
-<h5 id="set-up-your-file-structure">1. Set up your file structure</h5>
+<h2 id="converting-examples-in-7-steps">Converting Examples in 7 steps</h2>
+<h4 id="set-up-your-file-structure">1. Set up your file structure</h4>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="ex">cargo</span> new hello_world --lib</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="bu">cd</span> hello_world</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="fu">mkdir</span> -p www/html www/js</span></code></pre></div>
@@ -110,7 +114,7 @@ _ <a href="https://rustwasm.github.io/wasm-bindgen/examples/hello-world.html" ta
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>└── <span class="ex">www</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>    ├── <span class="ex">html</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>    └── <span class="ex">js</span></span></code></pre></div>
-<h5 id="edit-cargo.toml-set-the-crate-type-and-add-wasm-bindgen-as-a-dependency.">2. Edit Cargo.toml: Set the crate-type and add wasm-bindgen as a dependency.</h5>
+<h4 id="edit-cargo.toml-set-the-crate-type-and-add-wasm-bindgen-as-a-dependency.">2. Edit Cargo.toml: Set the crate-type and add wasm-bindgen as a dependency.</h4>
 <p>In Cargo.toml, put <code>crate-type = ["cdylib"]</code> after <code>edition</code> entry. And add wasm-bindgen as a dependency.</p>
 <pre class="toml"><code>[package]
 name = &quot;hello_world&quot;
@@ -126,7 +130,7 @@ crate-type = [&quot;cdylib&quot;]
 wasm-bindgen = &quot;0.2.88&quot;</code></pre>
 <p>Note:</p>
 <p><code>wasm-bindgen-cli</code> will be installed when we build with wasm-pack the first time, so we are all good to go.</p>
-<h5 id="get-the-lib.rs-code-for-hello_world">3. Get the lib.rs code for hello_world</h5>
+<h4 id="get-the-lib.rs-code-for-hello_world">3. Get the lib.rs code for hello_world</h4>
 <p>We’ll cut and paste and modify the examples. The point is to get used to convert code meant to be deployed with NPM-Webpack ecosystem into a play vanilla no-bundle Rust wasm code.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="co">// src/lib.rs</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="kw">use</span> <span class="pp">wasm_bindgen::prelude::</span><span class="op">*;</span></span>
@@ -140,7 +144,7 @@ wasm-bindgen = &quot;0.2.88&quot;</code></pre>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a><span class="kw">pub</span> <span class="kw">fn</span> greet(name<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>) <span class="op">{</span></span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a>    alert(<span class="op">&amp;</span><span class="pp">format!</span>(<span class="st">&quot;Hello, {}!&quot;</span><span class="op">,</span> name))<span class="op">;</span></span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a><span class="op">}</span></span></code></pre></div>
-<h5 id="specify-type-module-in-index.html">4. Specify type module in index.html</h5>
+<h4 id="specify-type-module-in-index.html">4. Specify type module in index.html</h4>
 <p>Here is the first difference.</p>
 <p>Our index file at <code>www/html/index.html</code> look like this:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span></span>
@@ -157,7 +161,7 @@ wasm-bindgen = &quot;0.2.88&quot;</code></pre>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true"></a><span class="kw">&lt;/body&gt;</span></span>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
 <p>Note the <code>type="module"</code></p>
-<h5 id="import-with-file-extension-included-and-wrap-the-code-in-asyncawait-index.js">5. import with file extension included and Wrap the code in async/await index.js</h5>
+<h4 id="import-with-file-extension-included-and-wrap-the-code-in-asyncawait-index.js">5. import with file extension included and Wrap the code in async/await index.js</h4>
 <p>Second difference.</p>
 <p>Our full index.js is modified to look like this:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="im">import</span> init<span class="op">,</span> { greet } <span class="im">from</span> <span class="st">&quot;../pkg/hello_world.js&quot;</span><span class="op">;</span></span>
@@ -169,12 +173,12 @@ wasm-bindgen = &quot;0.2.88&quot;</code></pre>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a>}</span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true"></a></span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true"></a><span class="fu">run</span>()<span class="op">;</span></span></code></pre></div>
-<h5 id="build-with-wasm-pack">6. build with wasm-pack</h5>
+<h4 id="build-with-wasm-pack">6. build with wasm-pack</h4>
 <div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="ex">wasm-pack</span> build --target web --no-typescript --out-dir www/pkg</span></code></pre></div>
 <ul>
 <li><code>--target web</code> to specify nobundle and generate Es6 glue code</li>
 <li><code>--no-typescript</code> we are not using TypeScript for these examples</li>
-<li><code>--out-dir www/pkg</code> by default <code>pkg</code> is the same level as <code>src</code> directory. Its cleaner to have all our web stuff in <code>www</code>.</li>
+<li><code>--out-dir www/pkg</code> by default <code>pkg</code> is at the same level as the <code>src</code> directory. Its cleaner to have all our web stuff in <code>www</code>.</li>
 </ul>
 <p>wasm-pack through wasm-bindgen-cli will generate the following in our <code>pkg</code> directory.</p>
 <pre><code>└── pkg
@@ -182,7 +186,7 @@ wasm-bindgen = &quot;0.2.88&quot;</code></pre>
     ├── hello_world.js        # JavaScript module to import (ESM)
     └── package.json</code></pre>
 <p>The output of <code>--target web</code> is included as an ES module. Thats why we endup with an ES6 flavor of JavaScript.</p>
-<h5 id="run-the-web-server-and-open-your-browser">7. Run the web server and open your browser</h5>
+<h4 id="run-the-web-server-and-open-your-browser">7. Run the web server and open your browser</h4>
 <p>You can use any file server, or follow along with <code>http</code> which we installed after wasm-pack.</p>
 <p>You can host locally the <code>www</code> directory with <code>http www</code>. It defaults at http://127.0.0.1:8000</p>
 <p>You can pass the address and port number like this:</p>
@@ -201,9 +205,9 @@ wasm-bindgen = &quot;0.2.88&quot;</code></pre>
 <figure>
 <img src="./pix/hello_world.png" alt="" /><figcaption>enjoy!</figcaption>
 </figure>
-<h4 id="qa">Q&amp;A</h4>
+<h3 id="qa">Q&amp;A</h3>
 <div class="alt-pre">
-To get this clean file structure
+generate this clean file structure
 <pre >
 .
 ├── Cargo.toml
@@ -215,13 +219,24 @@ To get this clean file structure
 </pre>
 <pre>
 cargo new hello_world --lib
-cd hello_world
-mkdir -p www/html www/js
 
-cargo new hello_world --lib
 cd hello_world
-mkdir -p www/html www/js
 
+mkdir -p www/html www/js
+</pre>
+</div>
+<div class="alt-pre">
+In <code>wasm-pack build</code> what are these options for?
+<pre >
+--target web 
+--no-typescript 
+--out-dir www/pkg
+</pre>
+<pre>
+- ` --target web` generate Es6 glue code
+- `--no-typescript` We're not using Ts
+- `--out-dir www/pkg` by default `pkg` is 
+at the same level as the `src` directory
 </pre>
 </div>
 <hr />
@@ -272,7 +287,7 @@ In a nutshell, the #[wasm_bindgen] macro generates executable functions that des
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a><span class="at">#[</span>wasm_bindgen<span class="at">]</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true"></a><span class="kw">pub</span> <span class="kw">fn</span> greet(name<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>) <span class="op">{</span></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true"></a><span class="op">...</span></span></code></pre></div>
-<p>It’s the opposite of extern.</p>
+<p>It’s the opposite of extern. We are exposing <code>greet</code> to Javascript so it can be used in "*.js" files.</p>
 <p>This function is named greet, and takes one argument, a string (written &amp;str), name. It then calls the alert function we asked for in the extern block above.</p>
 <p>We use the <code>format!</code> macro to concatenate two string-literal and convert in to a String slices <code>&amp;</code></p>
 <p>So the <code>alert</code> in <code>greet</code> calls the <code>alert</code> in the <code>extern</code> block, which is glued to <code>window.alert</code> in the browser runtime.</p>
@@ -309,15 +324,24 @@ import { greet } from './pkg';
 greet('World');
 ```
 -->
-<p>To specify that we are not using NPM and a bundler, we used <code>wasm-pack --target web --no-typescript --out-dir www</code> to compile our code. We are not using typescript for our examples so <code>--no-typescript</code> will prevent the production of <code>*.ts</code> files in <code>pkg</code>.</p>
-<p>Without NPM, the build will produce ES6 code in <code>www/pkg</code>. Hence we used <code>ES module</code> import syntax. Not how unlike the official documentation we must as a result specify the filename with its extension <code>.js</code> in our <code>import</code> statement:</p>
+<p>As you recall, to specify that we are not using NPM and a bundler, we used `wasm-pack –target web to compile our code, Without NPM in mind. The build will produce ES6 code.</p>
+<p><code>--out-dir www/pkg</code> is used to have wasm-pack output its glue code in <code>www/pkg</code> because its nice to have all non Rust related files in a specific place such as <code>www</code>.</p>
+<p>We are not using typescript for our examples so <code>--no-typescript</code> will prevent the production of <code>*.ts</code> files in <code>pkg</code>.</p>
+<p>We must used <code>ES module</code> import syntax, since we are working with Es6 code. Hence importing modules in our javascript files must come with its extension <code>.js</code> in our <code>import</code> statement:</p>
 <p><code>import ... from "../pkg/hello_world.js";</code></p>
-<p>Where did this <code>hello_world</code> from?<br />
-<code>wasm-pack</code> gets the name from our crate name as specified in Cargo.toml</p>
+Where did this <code>hello_world</code> from?<br />
+
+<aside>
+<p>You can change this name when building:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a><span class="ex">wasm-pack</span> build --out-name <span class="op">&lt;</span>OUT_NAME<span class="op">&gt;</span> ...</span></code></pre></div>
+The default is to use the package name
+</aside>
+<p><code>wasm-pack</code> gets the name from our crate name as specified in Cargo.toml</p>
 <pre class="toml"><code>[package]
 name = &quot;hello_world&quot;
 ...</code></pre>
 <p>and produces its JavaScript glue code with the same name.</p>
+<h4 id="init">init</h4>
 <p>There is an initialization function <code>init</code> which will “boot” the module and make it ready to use.</p>
 <p>We must import this provided default <code>init</code> function.</p>
 <p><code>import init, ... from "../pkg/hello_world.js";</code></p>
@@ -326,15 +350,15 @@ name = &quot;hello_world&quot;
 <p><code>import init, {greet} from "../pkg/hello_world.js";</code></p>
 <p>Finally, we need to wrap the code in an <code>async/await</code> function. Using async/await, <code>greet</code> will not be called until <code>init()</code> finishes loading the Wasm that <code>greet("World")</code> needs to run.</p>
 <p>Here again is the full listing:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a><span class="im">import</span> init<span class="op">,</span> { greet } <span class="im">from</span> <span class="st">&quot;../pkg/hello_world.js&quot;</span><span class="op">;</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">run</span>() {</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true"></a>    <span class="kw">const</span> wasm <span class="op">=</span> <span class="cf">await</span> <span class="fu">init</span>()<span class="op">;</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true"></a></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true"></a>    <span class="fu">greet</span>(<span class="st">&#39;World&#39;</span>)<span class="op">;</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true"></a>}</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true"></a></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true"></a><span class="fu">run</span>()<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true"></a><span class="im">import</span> init<span class="op">,</span> { greet } <span class="im">from</span> <span class="st">&quot;../pkg/hello_world.js&quot;</span><span class="op">;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">run</span>() {</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true"></a>    <span class="kw">const</span> wasm <span class="op">=</span> <span class="cf">await</span> <span class="fu">init</span>()<span class="op">;</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true"></a>    <span class="fu">greet</span>(<span class="st">&#39;World&#39;</span>)<span class="op">;</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true"></a>}</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true"></a><span class="fu">run</span>()<span class="op">;</span></span></code></pre></div>
 <hr />
 <div class="prevnext">
 <span class="button left"><a href="./index.html#list">&lt;– list of examples</a> </span> <span class="button right"><a href="./002_console_log.html">console.log –&gt;</a> </span>
