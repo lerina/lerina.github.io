@@ -5,11 +5,12 @@
 
 <main>
 
+## Hello, World!
+
 *This is the "Hello, world!" example of #[wasm_bindgen] showing how to set up a project, export a function to JS, call it from JS, and then call the alert function in Rust.*  
-_ [wasm-bindgen Guide](https://rustwasm.github.io/wasm-bindgen/examples/hello-world.html){target="_blank"}
-
+_ [wasm-bindgen Guide](https://rustwasm.github.io/wasm-bindgen/examples/hello-world.html){target="_blank"}, 
 [wasm-bindgen example](https://rustwasm.github.io/wasm-bindgen/examples/hello-world.html){target="_blank"}
-
+ 
 
 > PART I. Make it run
 
@@ -180,6 +181,33 @@ www
 Open `index.html` in a browser by pointing at [http://127.0.0.1:8080/html/]
 
 ![enjoy!](./pix/hello_world.png)
+
+
+#### Q&A
+
+<div class="alt-div"><div class="text">AAAAA</div><div>BBBBB</div><div>
+
+<div class="alt-div"><div class="text">
+To get this clean file structure
+```sh
+.
+├── Cargo.toml
+├── src
+│   └── lib.rs
+└── www
+    ├── html
+    └── js
+```
+we do this
+</div><div>
+```sh
+cargo new hello_world --lib
+cd hello_world
+mkdir -p www/html www/js
+```
+</div>
+</div>
+
 
 ---
 

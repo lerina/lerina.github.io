@@ -1,3 +1,6 @@
+<meta name="description" content="Learn Rust/Wasm without NPM and webpack.">
+<div class="prevnext"><div class="button left">[<-- index](../index.html) </div>
+<div class="button right">[wasm Hello world -->](./001_hello_world.html) </div></div>
 <div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
 <main>
 # Learn Rust/Wasm without NPM and webpack
@@ -33,37 +36,30 @@ source: [Hello wasm-pack!](https://hacks.mozilla.org/2018/04/hello-wasm-pack/){t
 
 ## no-bundle Wasm by example
 
-### The tools
+### Objectives
 
 Webassembly is still a moving target and some tools and convenient crates make the experience more appealing.
 
-In the following pages we'll dive into understanding how to transform most webpack, NPM loaded Rust/wasm tutorial into lean no-bloat rust-wasm with no-bundle.
-
-We'll use and get familliar with the following tools and crates: 
-
-- [wasm-pack](https://rustwasm.github.io/wasm-pack/installer/){target="_blank"}, (
+- Learn how to transform most Rust/wasm tutorials into lean no-bloat rust-wasm with no-bundle.
+- Get familliar with the following tools and crates: 
+  * [wasm-pack](https://rustwasm.github.io/wasm-pack/installer/){target="_blank"}, (
 [docs](https://rustwasm.github.io/docs/wasm-pack/introduction.html){target="_blank"})  
-- [wasm-bindgen](https://github.com/rustwasm/wasm-bindgen){target="_blank"}, 
+  * [wasm-bindgen](https://github.com/rustwasm/wasm-bindgen){target="_blank"}, 
 ([docs](https://rustwasm.github.io/docs/wasm-bindgen/){target="_blank"})  
-- [js-sys](https://lib.rs/crates/js-sys){target="_blank"} & [web-sys](https://lib.rs/crates/web-sys){target="_blank"} ([js-sys example](https://rustwasm.github.io/wasm-bindgen/examples/wasm-in-wasm.html){target="_blank"}, 
+  * [js-sys](https://lib.rs/crates/js-sys){target="_blank"} & [web-sys](https://lib.rs/crates/web-sys){target="_blank"} ([js-sys example](https://rustwasm.github.io/wasm-bindgen/examples/wasm-in-wasm.html){target="_blank"}, 
 [web-sys examples](https://rustwasm.github.io/wasm-bindgen/examples/dom.html){target="_blank"} )
 
 <!-- 
 [trunkrs.dev](https://trunkrs.dev/){target="_blank"}  
 -->
 
-
 ### Let the tutorial begin!
-
-Wasm without npm and bundlers is actually quite simple. Unfortunately it's 
-not easy to find **complete examples** on the web.
 
 We'll convert each examples from the [wasm-bindgen guide](https://rustwasm.github.io/docs/wasm-bindgen/){target="_blank"} to a no-bundle version.
 For each example or demo:
 
 - Part I, will help you get the example running.
 - Part II, will expose or highlight aspects of the code related to wasm-bindgen, wasm-pack or Rust.
-
 
 It is assumed that you have Rust on your machine and cargo ready for use.
 (If not get the installer [here: rustup.rs](https://rustup.rs/){target="_blank"}).
@@ -168,7 +164,8 @@ humm.
 
 --- 
 
-Move on to the first example: [wasm Hello world](./001_hello_world.html)
+<div class="prevnext"><div class="button left">[<-- index](../index.html) </div>
+<div class="button right">[wasm Hello world -->](./001_hello_world.html) </div></div>
 
 </main>
 

@@ -87,9 +87,15 @@
 <div class="navbar">
 <a class="openbtn" onclick="openNav()">☰</a>
 </div>
+<div class="prevnext">
+<div class="button left">
+<a href="./001_hello_world.html">&lt;– hello_world</a>
+</div>
+<div class="button right">
+<a href="./003_importing_non-browser_JS.html">Importing non-browser JS –&gt;</a>
+</div>
+</div>
 <main>
-<p><a href="./index.html#list">Example list</a></p>
-<p>Previous example <a href="./001_hello_world.html"><code>&lt;--</code> hello_world</a></p>
 <h2 id="console.log">console.log</h2>
 <p><em>This example shows off how to use console.log in a variety of ways, all the way from bare-bones usage to a println!-like macro with web_sys.</em><br />
 _ <a href="https://rustwasm.github.io/wasm-bindgen/examples/console-log.html" target="_blank">wasm-bindgen Guide</a></p>
@@ -258,7 +264,9 @@ web-sys = { version = &quot;0.3.65&quot;, features = [&#39;console&#39;] }`</cod
 <p>Now the <a href="https://rustwasm.github.io/wasm-bindgen/examples/without-a-bundler.html" target="_blank">Without a Bundler</a> section makes sense.</p>
 <p><a href="https://rustwasm.github.io/wasm-bindgen/examples/synchronous-instantiation.html" target="_blank">Synchronous Instantiation</a> We’ll stick with the default method, asynchronously initializing a module gets all our examples running.</p>
 <p><a href="https://rustwasm.github.io/wasm-bindgen/examples/wasm2js.html" target="_blank">Converting WebAssembly to JS</a>. Nothing specific to nobundle, we pass.</p>
-<p>Next example: <a href="./003_importing_non-browser_JS.html">Importing non-browser JS <code>--&gt;</code></a></p>
+<div class="prevnext">
+<span class="button left"><a href="./001_hello_world.html">&lt;– hello_world</a> </span> <span class="button"><a href="./index.html#list">Example list</a></span><span class="button right"><a href="./003_importing_non-browser_JS.html">Importing non-browser JS –&gt;</a> </span>
+</div>
 </main>
 <script src="https://lerina.github.io/js/toc.js"></script>
 <script>

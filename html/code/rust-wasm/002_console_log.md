@@ -1,8 +1,9 @@
 <div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
-<main>
-[Example list](./index.html#list)
 
-Previous example [`<--` hello_world](./001_hello_world.html)
+<div class="prevnext"><div class="button left">[<-- hello_world](./001_hello_world.html) </div>
+<div class="button right">[Importing non-browser JS -->](./003_importing_non-browser_JS.html) </div></div>
+
+<main>
 
 ## console.log
 
@@ -219,7 +220,9 @@ Now the [Without a Bundler](https://rustwasm.github.io/wasm-bindgen/examples/wit
 Nothing specific to nobundle, we pass.
 
 
-Next example: [Importing non-browser JS `-->`](./003_importing_non-browser_JS.html)
+
+<div class="prevnext"><span class="button left">[<-- hello_world](./001_hello_world.html) </span>
+<span class="button">[Example list](./index.html#list)</span><span class="button right">[Importing non-browser JS -->](./003_importing_non-browser_JS.html) </span></div>
 
 </main>
 

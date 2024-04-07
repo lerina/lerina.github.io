@@ -5,7 +5,7 @@
 
 ## Rust, Wasm and more 
 
-- [Rust and webassembly](./rust_wasm/index.html)
+- [Rust and webassembly](./rust-wasm/index.html)
 
 - Rust and Python
 

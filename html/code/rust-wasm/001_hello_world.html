@@ -80,6 +80,7 @@
 <body>
 <nav id="TOC" role="doc-toc">
 <ul>
+<li><a href="#hello-world">Hello, World!</a></li>
 <li><a href="#using-wasm-bindgen-to-communicate-between-rust-and-javascript">Using wasm-bindgen to communicate between Rust and JavaScript</a></li>
 <li><a href="#index.html-and-index.js-files">index.html and index.js files</a></li>
 </ul>
@@ -91,9 +92,9 @@
 <span class="button left"><a href="./index.html#list">&lt;– list of examples</a> </span> <span class="button right"><a href="./002_console_log.html">console.log –&gt;</a> </span>
 </div>
 <main>
+<h2 id="hello-world">Hello, World!</h2>
 <p><em>This is the “Hello, world!” example of #[wasm_bindgen] showing how to set up a project, export a function to JS, call it from JS, and then call the alert function in Rust.</em><br />
-_ <a href="https://rustwasm.github.io/wasm-bindgen/examples/hello-world.html" target="_blank">wasm-bindgen Guide</a></p>
-<p><a href="https://rustwasm.github.io/wasm-bindgen/examples/hello-world.html" target="_blank">wasm-bindgen example</a></p>
+_ <a href="https://rustwasm.github.io/wasm-bindgen/examples/hello-world.html" target="_blank">wasm-bindgen Guide</a>, <a href="https://rustwasm.github.io/wasm-bindgen/examples/hello-world.html" target="_blank">wasm-bindgen example</a></p>
 <blockquote>
 <p>PART I. Make it run</p>
 </blockquote>
@@ -200,6 +201,34 @@ wasm-bindgen = &quot;0.2.88&quot;</code></pre>
 <figure>
 <img src="./pix/hello_world.png" alt="" /><figcaption>enjoy!</figcaption>
 </figure>
+<h4 id="qa">Q&amp;A</h4>
+<div class="alt-div">
+<div class="text">
+AAAAA
+</div>
+<div>
+BBBBB
+</div>
+<div>
+
+<div class="alt-div">
+<div class="text">
+<p>To get this clean file structure</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a><span class="ex">.</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a>├── <span class="ex">Cargo.toml</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true"></a>├── <span class="ex">src</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true"></a>│   └── <span class="ex">lib.rs</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true"></a>└── <span class="ex">www</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true"></a>    ├── <span class="ex">html</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true"></a>    └── <span class="ex">js</span></span></code></pre></div>
+<p>we do this</p>
+</div>
+<div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a><span class="ex">cargo</span> new hello_world --lib</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a><span class="bu">cd</span> hello_world</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true"></a><span class="fu">mkdir</span> -p www/html www/js</span></code></pre></div>
+</div>
+</div>
 <hr />
 <blockquote>
 <p>PART II. Understand the Code</p>
@@ -227,27 +256,27 @@ For more details have a look at
 In a nutshell, the #[wasm_bindgen] macro generates executable functions that describe the necessary bindings in Javascript inside some_binary.wasm. These functions are then executed by the wasm-bindgen CLI program to generate the Javascript bindings and a stripped WebAssembly module, i.e., some_binary_bg.wasm.
 -->
 <p>Whenever you want to call JavaScript functions, you can add them to this file in this manner, and wasm-bindgen takes care of setting everything up for you.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a><span class="co">// src/lib.rs</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a><span class="co">// To crate to communicate between Rust and JavaScript</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true"></a><span class="kw">use</span> <span class="pp">wasm_bindgen::prelude::</span><span class="op">*;</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true"></a></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true"></a></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true"></a><span class="co">// Calling external functions in JavaScript from Rust</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true"></a><span class="at">#[</span>wasm_bindgen<span class="at">]</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true"></a><span class="kw">extern</span> <span class="st">&quot;C&quot;</span> <span class="op">{</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true"></a>    <span class="kw">fn</span> alert(s<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>)<span class="op">;</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true"></a><span class="op">}</span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true"></a></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true"></a><span class="co">// Producing Rust functions that JavaScript can call </span></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true"></a><span class="at">#[</span>wasm_bindgen<span class="at">]</span></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true"></a><span class="kw">pub</span> <span class="kw">fn</span> greet(name<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>) <span class="op">{</span></span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true"></a>    alert(<span class="op">&amp;</span><span class="pp">format!</span>(<span class="st">&quot;Hello, {}!&quot;</span><span class="op">,</span> name))<span class="op">;</span> <span class="co">//call alert function we asked for in the extern block above</span></span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a><span class="co">// src/lib.rs</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true"></a><span class="co">// To crate to communicate between Rust and JavaScript</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true"></a><span class="kw">use</span> <span class="pp">wasm_bindgen::prelude::</span><span class="op">*;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true"></a><span class="co">// Calling external functions in JavaScript from Rust</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true"></a><span class="at">#[</span>wasm_bindgen<span class="at">]</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true"></a><span class="kw">extern</span> <span class="st">&quot;C&quot;</span> <span class="op">{</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true"></a>    <span class="kw">fn</span> alert(s<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>)<span class="op">;</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true"></a><span class="op">}</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true"></a><span class="co">// Producing Rust functions that JavaScript can call </span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true"></a><span class="at">#[</span>wasm_bindgen<span class="at">]</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true"></a><span class="kw">pub</span> <span class="kw">fn</span> greet(name<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>) <span class="op">{</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true"></a>    alert(<span class="op">&amp;</span><span class="pp">format!</span>(<span class="st">&quot;Hello, {}!&quot;</span><span class="op">,</span> name))<span class="op">;</span> <span class="co">//call alert function we asked for in the extern block above</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true"></a><span class="op">}</span></span></code></pre></div>
 <p>To expose public Rust function to the browsers’ runtime and allow calls from JavaScript, use the <code>#[wasm_bindgen]</code> attribute by placing it over the <code>pub fn</code> block.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a><span class="co">// Producing Rust functions that JavaScript can call </span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a><span class="at">#[</span>wasm_bindgen<span class="at">]</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true"></a><span class="kw">pub</span> <span class="kw">fn</span> greet(name<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>) <span class="op">{</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true"></a><span class="op">...</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a><span class="co">// Producing Rust functions that JavaScript can call </span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true"></a><span class="at">#[</span>wasm_bindgen<span class="at">]</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true"></a><span class="kw">pub</span> <span class="kw">fn</span> greet(name<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>) <span class="op">{</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true"></a><span class="op">...</span></span></code></pre></div>
 <p>It’s the opposite of extern.</p>
 <p>This function is named greet, and takes one argument, a string (written &amp;str), name. It then calls the alert function we asked for in the extern block above.</p>
 <p>We use the <code>format!</code> macro to concatenate two string-literal and convert in to a String slices <code>&amp;</code></p>
@@ -302,15 +331,15 @@ name = &quot;hello_world&quot;
 <p><code>import init, {greet} from "../pkg/hello_world.js";</code></p>
 <p>Finally, we need to wrap the code in an <code>async/await</code> function. Using async/await, <code>greet</code> will not be called until <code>init()</code> finishes loading the Wasm that <code>greet("World")</code> needs to run.</p>
 <p>Here again is the full listing:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a><span class="im">import</span> init<span class="op">,</span> { greet } <span class="im">from</span> <span class="st">&quot;../pkg/hello_world.js&quot;</span><span class="op">;</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">run</span>() {</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true"></a>    <span class="kw">const</span> wasm <span class="op">=</span> <span class="cf">await</span> <span class="fu">init</span>()<span class="op">;</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true"></a></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true"></a>    <span class="fu">greet</span>(<span class="st">&#39;World&#39;</span>)<span class="op">;</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true"></a>}</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true"></a></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true"></a><span class="fu">run</span>()<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true"></a><span class="im">import</span> init<span class="op">,</span> { greet } <span class="im">from</span> <span class="st">&quot;../pkg/hello_world.js&quot;</span><span class="op">;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">run</span>() {</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true"></a>    <span class="kw">const</span> wasm <span class="op">=</span> <span class="cf">await</span> <span class="fu">init</span>()<span class="op">;</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true"></a>    <span class="fu">greet</span>(<span class="st">&#39;World&#39;</span>)<span class="op">;</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true"></a>}</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true"></a><span class="fu">run</span>()<span class="op">;</span></span></code></pre></div>
 <hr />
 <div class="prevnext">
 <span class="button left"><a href="./index.html#list">&lt;– list of examples</a> </span> <span class="button right"><a href="./002_console_log.html">console.log –&gt;</a> </span>
