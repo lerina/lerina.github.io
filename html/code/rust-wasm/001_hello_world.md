@@ -196,9 +196,11 @@ Open `index.html` in a browser by pointing at [http://127.0.0.1:8080/html/]
     └── js
 </pre>
 <pre>
+
 cargo new hello_world --lib
 cd hello_world
 mkdir -p www/html www/js
+
 </pre>
 </div>
 
