@@ -80,29 +80,39 @@
 <body>
 <nav id="TOC" role="doc-toc">
 <ul>
-<li><a href="#importing-non-browser-js.">Importing non-browser JS.</a></li>
-<li><a href="#build-and-serve">build and serve</a></li>
+<li><a href="#importing-non-browser-js">Importing non-browser JS</a>
+<ul>
+<li><a href="#converting-examples-in-7-steps">Converting Examples in 7 steps</a></li>
+<li><a href="#understand-the-code">Understand the Code</a></li>
 <li><a href="#whats-next">What’s next?</a></li>
+</ul></li>
 </ul>
 </nav>
 <div class="navbar">
 <a class="openbtn" onclick="openNav()">☰</a>
 </div>
+<div class="prevnext">
+<div class="button left">
+<a href="./002_console_log.html">&lt;– console.log</a>
+</div>
+<div class="button right">
+<a href="./004_working_with_the_char_type.html">Working with the char type –&gt;</a>
+</div>
+</div>
 <main>
-<p><a href="./002_console_log.html"><code>&lt;--</code> console.log</a></p>
-<h2 id="importing-non-browser-js.">Importing non-browser JS.</h2>
+<h1 id="importing-non-browser-js">Importing non-browser JS</h1>
 <p><em>The <code>#[wasm_bindgen]</code> attribute can be used on <code>extern "C" { .. }</code> blocks to import functionality from JS. This is how the <code>js-sys</code> and the <code>web-sys</code> crates are built, but you can also use it in your own crate!</em><br />
 _ <a href="https://rustwasm.github.io/wasm-bindgen/examples/import-js.html" target="_blank">wasm-bindgen Guide</a></p>
 <p><a href="https://github.com/rustwasm/wasm-bindgen/tree/master/examples/import_js" target="_blank">wasm-bindgen example</a></p>
-<ol type="1">
-<li>Make the file structure</li>
-</ol>
+<blockquote>
+<p>PART I. Make it run</p>
+</blockquote>
+<h2 id="converting-examples-in-7-steps">Converting Examples in 7 steps</h2>
+<h4 id="make-the-file-structure">1. Make the file structure</h4>
 <pre><code>cargo new import_js --lib
 cd import_js
 mkdir -p www/html www/js</code></pre>
-<ol start="2" type="1">
-<li>Edit Cargo.toml, add crate-type and wasm-bindgen dependency</li>
-</ol>
+<h4 id="edit-cargo.toml-add-crate-type-and-wasm-bindgen-dependency">2. Edit Cargo.toml, add crate-type and wasm-bindgen dependency</h4>
 <pre class="toml"><code>[package]
 name = &quot;import_js&quot;
 version = &quot;0.1.0&quot;
@@ -111,14 +121,12 @@ edition = &quot;2021&quot;
 [lib]
 crate-type = [&quot;cdylib&quot;]
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 wasm-bindgen = &quot;0.2.88&quot;
 </code></pre>
-<ol start="3" type="1">
-<li><em>Cut and paste</em> the import-js example from github <a href="https://github.com/rustwasm/wasm-bindgen/blob/main/examples/import_js/crate/src/lib.rs">src/lib.rs</a></li>
-</ol>
+<h4 id="get-the-code">3. Get the code</h4>
+<p><em>Cut and paste</em> the import-js example from github <a href="https://github.com/rustwasm/wasm-bindgen/blob/main/examples/import_js/crate/src/lib.rs">src/lib.rs</a></p>
 <p>or the rust code in</p>
 <p><a href="https://rustwasm.github.io/wasm-bindgen/examples/import-js.html">wasm-bindgen: import-js</a></p>
 <p>Note:</p>
@@ -126,10 +134,8 @@ wasm-bindgen = &quot;0.2.88&quot;
 as we made the commitment not to mix Rust and web code.
 Our version will have `defined-in-js.js` in the `js` directory
 with our `index.js` file. </code></pre>
-<div class="sourceCode" id="cb4"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="at">#[</span>wasm_bindgen<span class="at">(</span>module <span class="op">=</span> <span class="st">&quot;/www/js/defined-in-js.js&quot;</span><span class="at">)]</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="op">...</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="at">#[</span>wasm_bindgen<span class="at">(</span>module <span class="op">=</span> <span class="st">&quot;/www/js/defined-in-js.js&quot;</span><span class="at">)]</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="op">...</span></span></code></pre></div>
 <p>So the full code is :</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="co">// src/lib.rs</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a></span>
@@ -169,9 +175,7 @@ with our `index.js` file. </code></pre>
 <span id="cb5-36"><a href="#cb5-36" aria-hidden="true"></a>    x<span class="op">.</span>set_number(<span class="dv">10</span>)<span class="op">;</span></span>
 <span id="cb5-37"><a href="#cb5-37" aria-hidden="true"></a>    log(<span class="op">&amp;</span>x<span class="op">.</span>render())<span class="op">;</span></span>
 <span id="cb5-38"><a href="#cb5-38" aria-hidden="true"></a><span class="op">}</span></span></code></pre></div>
-<ol start="4" type="1">
-<li>create the index file at <code>www/html/index.html</code>:</li>
-</ol>
+<h4 id="create-the-index-file-at-wwwhtmlindex.html">4. create the index file at <code>www/html/index.html</code>:</h4>
 <div class="sourceCode" id="cb6"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="kw">&lt;html&gt;</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a><span class="kw">&lt;head&gt;</span></span>
@@ -184,9 +188,7 @@ with our `index.js` file. </code></pre>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true"></a>  <span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;module&quot;</span><span class="ot"> src=</span><span class="st">&quot;../js/index.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></span>
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true"></a><span class="kw">&lt;/body&gt;</span></span>
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
-<ol start="5" type="1">
-<li>The first js file is <code>index.js</code></li>
-</ol>
+<h4 id="the-first-js-file-is-index.js">5. The first js file is <code>index.js</code></h4>
 <div class="sourceCode" id="cb7"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="co">// www/js/index.js</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a><span class="im">import</span> init <span class="im">from</span> <span class="st">&quot;../pkg/import_js.js&quot;</span><span class="op">;</span></span>
@@ -220,19 +222,88 @@ with our `index.js` file. </code></pre>
 <span id="cb8-21"><a href="#cb8-21" aria-hidden="true"></a>        <span class="cf">return</span> <span class="vs">`My number is: </span><span class="sc">${</span><span class="kw">this</span><span class="op">.</span><span class="at">number</span><span class="sc">}</span><span class="vs">`</span><span class="op">;</span></span>
 <span id="cb8-22"><a href="#cb8-22" aria-hidden="true"></a>    }</span>
 <span id="cb8-23"><a href="#cb8-23" aria-hidden="true"></a>}</span></code></pre></div>
-<h2 id="build-and-serve">build and serve</h2>
-<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="ex">wasm-pack</span> build --target web --no-typescript --out-dir www/pkg</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a><span class="ex">http</span> www</span></code></pre></div>
+<h4 id="build-it">6. build it</h4>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="ex">wasm-pack</span> build --target web --no-typescript --out-dir www/pkg</span></code></pre></div>
+<h4 id="serve-it">7. serve it</h4>
+<div class="sourceCode" id="cb10"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="ex">http</span> www</span></code></pre></div>
 <p>open <code>index.html</code></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="ex">firefox</span> http://localhost:8000/html/</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a><span class="ex">firefox</span> http://localhost:8000/html/</span></code></pre></div>
 <p>Open the browser at http://127.0.0.1:8000/html/<br />
 and <code>ctrl-shift + I</code> to see the output in the browsers console log</p>
 <figure>
 <img src="./pix/import_js.png" alt="" /><figcaption>importing non-browser Js</figcaption>
 </figure>
+<hr />
+<blockquote>
+<p>PART II. Understand the Code</p>
+</blockquote>
+<h2 id="understand-the-code">Understand the Code</h2>
+<div class="sourceCode" id="cb12"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a><span class="co">// our webserver&#39;s  root is www</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a><span class="at">#[</span>wasm_bindgen<span class="at">(</span>module <span class="op">=</span> <span class="st">&quot;/www/js/defined-in-js.js&quot;</span><span class="at">)]</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true"></a><span class="kw">extern</span> <span class="st">&quot;C&quot;</span> <span class="op">{</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true"></a>    <span class="kw">fn</span> name() <span class="op">-&gt;</span> <span class="dt">String</span><span class="op">;</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true"></a>    <span class="kw">type</span> MyClass<span class="op">;</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true"></a>    <span class="at">#[</span>wasm_bindgen<span class="at">(</span>constructor<span class="at">)]</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true"></a>    <span class="kw">fn</span> new() <span class="op">-&gt;</span> MyClass<span class="op">;</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true"></a>    <span class="at">#[</span>wasm_bindgen<span class="at">(</span>method<span class="op">,</span> getter<span class="at">)]</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true"></a>    <span class="kw">fn</span> number(this<span class="op">:</span> <span class="op">&amp;</span>MyClass) <span class="op">-&gt;</span> <span class="dt">u32</span><span class="op">;</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true"></a>    <span class="at">#[</span>wasm_bindgen<span class="at">(</span>method<span class="op">,</span> setter<span class="at">)]</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true"></a>    <span class="kw">fn</span> set_number(this<span class="op">:</span> <span class="op">&amp;</span>MyClass<span class="op">,</span> number<span class="op">:</span> <span class="dt">u32</span>) <span class="op">-&gt;</span> MyClass<span class="op">;</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true"></a>    <span class="at">#[</span>wasm_bindgen<span class="at">(</span>method<span class="at">)]</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true"></a>    <span class="kw">fn</span> render(this<span class="op">:</span> <span class="op">&amp;</span>MyClass) <span class="op">-&gt;</span> <span class="dt">String</span><span class="op">;</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true"></a><span class="op">}</span></span></code></pre></div>
+<p>We made the commitment not to mix Rust and web code.<br />
+As such, <code>defined-in-js.js</code> is in the <code>js</code> directory with our <code>index.js</code>file.</p>
+<p>The original code looks for this file next to the Cargo.toml file at the root directory with</p>
+<pre><code>#[wasm_bindgen(module = &quot;/defined-in-js.js&quot;)]</code></pre>
+<p>We point it to <code>www/js/</code> like this</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a><span class="at">#[</span>wasm_bindgen<span class="at">(</span>module <span class="op">=</span> <span class="st">&quot;/www/js/defined-in-js.js&quot;</span><span class="at">)]</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true"></a><span class="kw">extern</span> <span class="st">&quot;C&quot;</span> <span class="op">{</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true"></a>   <span class="op">...</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true"></a><span class="op">}</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true"></a><span class="op">...</span></span></code></pre></div>
+<ul>
+<li><p><code>module = "..."</code><br />
+<a href="https://rustwasm.github.io/wasm-bindgen/reference/attributes/on-js-imports/module.html" target="_blank">wasm-bindgen docs: attributes</a></p></li>
+<li><p>“<em>The #[wasm_bindgen] attribute can be used on extern "C" { .. } blocks to import functionality from JS.</em>”<br />
+<a href="https://rustwasm.github.io/wasm-bindgen/examples/import-js.html" target="_blank">wasm-bindgen docs: Importing non-browser JS</a></p></li>
+<li><p><a href="https://rustwasm.github.io/wasm-bindgen/reference/attributes/on-rust-exports/constructor.html" target="_blank">wasm-bindgen docs: constructor</a></p></li>
+<li><p><a href="https://rustwasm.github.io/wasm-bindgen/reference/attributes/on-js-imports/method.html" target="_blank">wasm-bindgen docs: method</a></p></li>
+<li><p><a href="https://rustwasm.github.io/wasm-bindgen/reference/attributes/on-js-imports/getter-and-setter.html" target="_blank">wasm-bindgen docs: getter-and-setter</a></p></li>
+</ul>
+<div class="sourceCode" id="cb15"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true"></a><span class="co">// lifted from the `console_log` example</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true"></a><span class="at">#[</span>wasm_bindgen<span class="at">]</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true"></a><span class="kw">extern</span> <span class="st">&quot;C&quot;</span> <span class="op">{</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true"></a>    <span class="at">#[</span>wasm_bindgen<span class="at">(</span>js_namespace <span class="op">=</span> console<span class="at">)]</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true"></a>    <span class="kw">fn</span> log(s<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>)<span class="op">;</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true"></a><span class="op">}</span></span></code></pre></div>
+<p>Here we are making use of Javascript’s console.log() method.</p>
+<p><a href="https://rustwasm.github.io/wasm-bindgen/reference/attributes/on-js-imports/js_namespace.html" target="_blank">wasm-bindgen docs: js_namespace</a></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true"></a><span class="at">#[</span>wasm_bindgen<span class="at">(</span>start<span class="at">)]</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true"></a><span class="kw">fn</span> run() <span class="op">{</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true"></a>    log(<span class="op">&amp;</span><span class="pp">format!</span>(<span class="st">&quot;Hello from {}!&quot;</span><span class="op">,</span> name()))<span class="op">;</span> <span class="co">// should output &quot;Hello from Rust!&quot;</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true"></a>    <span class="kw">let</span> x <span class="op">=</span> <span class="pp">MyClass::</span>new()<span class="op">;</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true"></a>    <span class="pp">assert_eq!</span>(x<span class="op">.</span>number()<span class="op">,</span> <span class="dv">42</span>)<span class="op">;</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true"></a>    x<span class="op">.</span>set_number(<span class="dv">10</span>)<span class="op">;</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true"></a>    log(<span class="op">&amp;</span>x<span class="op">.</span>render())<span class="op">;</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true"></a><span class="op">}</span></span></code></pre></div>
+<ul>
+<li>The start function here should be started up automatically when the wasm module is loaded.<br />
+<a href="https://rustwasm.github.io/wasm-bindgen/reference/attributes/on-rust-exports/start.html" target="_blank">wasm-bindgen docs: start</a></li>
+</ul>
 <h2 id="whats-next">What’s next?</h2>
-<p>Next example: <a href="./004_working_with_the_char_type.html">Working with the char type <code>--&gt;</code></a></p>
+<div class="prevnext">
+<div class="button left">
+<a href="./002_console_log.html">&lt;– console.log</a>
+</div>
+<div class="button right">
+<a href="./004_working_with_the_char_type.html">Working with the char type –&gt;</a>
+</div>
+</div>
 </main>
 <script src="https://lerina.github.io/js/toc.js"></script>
 <script>

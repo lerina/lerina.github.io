@@ -18,7 +18,7 @@ _ [wasm-bindgen Guide](https://rustwasm.github.io/wasm-bindgen/examples/console-
 
 #### 1. Set up your file structure
 
-```
+```sh
 cargo new console_log --lib
 cd console_log
 mkdir -p www/html www/js
@@ -35,7 +35,6 @@ edition = "2021"
 [lib]
 crate-type = ["cdylib"]
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 wasm-bindgen = "0.2.88"

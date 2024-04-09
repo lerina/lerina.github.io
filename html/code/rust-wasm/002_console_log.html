@@ -110,9 +110,9 @@ _ <a href="https://rustwasm.github.io/wasm-bindgen/examples/console-log.html" ta
 </blockquote>
 <h2 id="converting-examples-in-7-steps">Converting Examples in 7 steps</h2>
 <h4 id="set-up-your-file-structure">1. Set up your file structure</h4>
-<pre><code>cargo new console_log --lib
-cd console_log
-mkdir -p www/html www/js</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="ex">cargo</span> new console_log --lib</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="bu">cd</span> console_log</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="fu">mkdir</span> -p www/html www/js</span></code></pre></div>
 <h4 id="edit-cargo.toml-add-crate-type-and-wasm-bindgen-dependency">2. Edit Cargo.toml, add crate-type and wasm-bindgen dependency</h4>
 <pre class="toml"><code>[package]
 name = &quot;console_log&quot;
@@ -122,7 +122,6 @@ edition = &quot;2021&quot;
 [lib]
 crate-type = [&quot;cdylib&quot;]
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 wasm-bindgen = &quot;0.2.88&quot;
