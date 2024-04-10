@@ -216,8 +216,8 @@ and `ctrl-shift + I` to see the output in the browsers console log
 
 ## Q&A
 
-<div class="alt-pre">How would you generate this clean <br/> file structure
-⮱ <pre >
+<div class="alt-pre">How would you generate this clean <br/> file structure?
+&#x2BB1;<pre >
 .
 ├── Cargo.toml
 ├── src
