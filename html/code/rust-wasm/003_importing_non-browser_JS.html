@@ -109,9 +109,9 @@ _ <a href="https://rustwasm.github.io/wasm-bindgen/examples/import-js.html" targ
 </blockquote>
 <h2 id="converting-examples-in-7-steps">Converting Examples in 7 steps</h2>
 <h4 id="make-the-file-structure">1. Make the file structure</h4>
-<pre><code>cargo new import_js --lib
-cd import_js
-mkdir -p www/html www/js</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="ex">cargo</span> new import_js --lib</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="bu">cd</span> import_js</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="fu">mkdir</span> -p www/html www/js</span></code></pre></div>
 <h4 id="edit-cargo.toml-add-crate-type-and-wasm-bindgen-dependency">2. Edit Cargo.toml, add crate-type and wasm-bindgen dependency</h4>
 <pre class="toml"><code>[package]
 name = &quot;import_js&quot;

@@ -18,7 +18,7 @@ _ [wasm-bindgen Guide](https://rustwasm.github.io/wasm-bindgen/examples/import-j
 
 #### 1. Make the file structure
 
-```
+```sh
 cargo new import_js --lib
 cd import_js
 mkdir -p www/html www/js

@@ -1,12 +1,19 @@
 <div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
+
 <main>
-[`<--` Importing non-browser JS ](./003_importing_non-browser_JS.html)
 
----
+<div class="prevnext"><div class="button left">[<-- Importing non-browser JS ](./003_importing_non-browser_JS.html)</div>
+<div class="button right">[js-sys: WebAssembly in WebAssembly -->](./005_wasm-in-wasm.html)</div></div>
 
-## Working with the char type
+# Working with the char type
 
 *The #[wasm_bindgen] macro will convert the rust char type to a single code-point js string, and this example shows how to work with this.*
+
+<aside>
+Codepoint  
+    An unique number for each Unicode character. It is rappresented by a collection of 1-6 uint8 elements for UTF-8, 1-2 uint16 elements for UTF-16, 1 uint32 element for UCS4, 1 uint8 element for ASCII, or something else.
+[MDN web doc](https://devdoc.net/web/developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays/StringView.html#glossary_codepoint)
+</aside>
 
 *Opening this example should display a single counter with a random character for it's key and 0 for its count. You can click the + button to increase a counter's count. By clicking on the "add counter" button you should see a new counter added to the list with a different random character for it's key.*
 
@@ -16,15 +23,20 @@ _ [wasm-bindgen Guide](https://rustwasm.github.io/wasm-bindgen/examples/char.htm
 
 [wasm-bindgen example](https://github.com/rustwasm/wasm-bindgen/tree/master/examples/char){target="_blank"}
 
-1. Make the file structure
 
-```
+> PART I. Make it run
+
+## Converting Examples in 7 steps
+
+#### 1. Make the file structure
+
+```sh
 cargo new char --lib
 cd char
 mkdir -p www/html www/js
 ```
 
-2. Edit Cargo.toml, add crate-type and wasm-bindgen dependency
+#### 2. Edit Cargo.toml, add crate-type and wasm-bindgen dependency
 
 ```toml
 [package]
@@ -42,7 +54,9 @@ crate-type = ["cdylib"]
 wasm-bindgen = "0.2.88"
 ```
 
-3. cut and paste the import-js example from github [src/lib.rs](https://github.com/rustwasm/wasm-bindgen/blob/main/examples/char/src/lib.rs)
+#### 3. Get the code
+
+*Cut and paste* the import-js example from github [src/lib.rs](https://github.com/rustwasm/wasm-bindgen/blob/main/examples/char/src/lib.rs)
 
 or the rust code in 
 
@@ -121,7 +135,7 @@ pub struct Counter {
     count: i32,
 }
 ```
-4. create the index file at `www/html/index.html`:
+#### 4. create the index file at `www/html/index.html`:
 
 ```html
 <!DOCTYPE html>
@@ -186,9 +200,9 @@ body {
 }
 ```
 
-5. js files
+#### 5. js files
 
-5.1 Get `char-list.js`
+##### 5.1 Get `char-list.js`
 
 *Cut & paste*  [char-list](https://github.com/rustwasm/wasm-bindgen/blob/main/examples/char/chars-list.js){target="_blank"} and save as `char-list.js` in `www/js`
 
@@ -282,11 +296,11 @@ export let chars = [
 
 ```
 
-5.2 `index.js`: Some modification required
+##### 5.2 `index.js`: Some modification required
 
 Cut and paste [the code](https://raw.githubusercontent.com/rustwasm/wasm-bindgen/main/examples/char/index.js){target="_blank"}  to index.js.
 
-5.2.1 imports
+##### 5.5.2.1 imports
 
 This  
 ```
@@ -436,11 +450,15 @@ function newField(key, value) {
 ```
 
 
-## build and serve
+#### 6. build it
 
 ```sh
 wasm-pack build --target web --no-typescript --out-dir www/pkg
+```
 
+#### 7. serve it
+
+```sh
 http www
 ```
 
@@ -450,10 +468,55 @@ open `index.html`
 firefox http://localhost:8000/html/
 ```
 
+![working with the char type](./pix/Counter.png)
+
+---
+
+> PART II. Understand the Code
+
+## Understand the Code
+
+
+
+```rust
+// src/lib.rs
+
+#[wasm_bindgen]
+pub struct Counter {
+    key: char,
+    count: i32,
+}
+
+#[wasm_bindgen]
+impl Counter {
+    pub fn new(key: char, count: i32) -> Counter {
+        log(&format!("Counter::new({}, {})", key, count));
+        Counter { key, count }
+    }
+
+...
+
+```
+
+`#[wasm_bindgen]` makes it possible to use a public Counter & public new() from Javascript 
+
+```js
+// www/js/index.js
+
+function addCounter() {
+    let ctr = Counter.new(randomChar(), 0);
+    counters.push(ctr);
+    update();
+    console.log("in addCounter");
+}
+```
+
+
+
 ## What's next?
 
-Next example: [js-sys: WebAssembly in WebAssembly `-->`](./005_wasm-in-wasm.html)
-
+<div class="prevnext"><div class="button left">[<-- Importing non-browser JS ](./003_importing_non-browser_JS.html)</div>
+<div class="button right">[js-sys: WebAssembly in WebAssembly -->](./005_wasm-in-wasm.html)</div></div>
   
 </main>
 
