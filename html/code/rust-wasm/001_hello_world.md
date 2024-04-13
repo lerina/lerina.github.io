@@ -186,8 +186,8 @@ Open `index.html` in a browser by pointing at [http://127.0.0.1:8080/html/]
 
 ## Q&A
 
-<div class="alt-pre">generate this clean file structure
-<pre >
+<div class="alt-pre">How would you generate this clean <br/> file structure?
+&#x2BB1; <pre >
 .
 ├── Cargo.toml
 ├── src

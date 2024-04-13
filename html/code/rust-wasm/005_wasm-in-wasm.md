@@ -1,17 +1,23 @@
 <div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
+
+<div class="prevnext"><div class="button left">[<-- Working with the char type](./004_working_with_the_char_type.html)</div>
+<div class="button right">[web-sys: DOM hello world -->](./006_DOM.html)</div></div>
+
 <main>
-[`<--` Working with the char type](./004_working_with_the_char_type.html)
 
----
-
-## js-sys: WebAssembly in WebAssembly
+# js-sys: WebAssembly in WebAssembly
 
 *Using the js-sys crate we can instantiate WebAssembly modules from inside WebAssembly modules!*  
 _ [wasm-bindgen Guide](https://rustwasm.github.io/wasm-bindgen/examples/wasm-in-wasm.html){target="_blank"}
 
 [wasm-bindgen example](https://github.com/rustwasm/wasm-bindgen/tree/master/examples/wasm-in-wasm){target="_blank"}
 
-### setup the project
+> PART I. Make it run
+
+## Converting wasm in wasm example
+
+#### 1. file structure & crate type
+
 
 ```sh
 cargo new wasm-in-wasm --lib
@@ -26,11 +32,14 @@ edit Cargo.toml to add `crate-type`
 crate-type = ["cdylib",]
 ```
 
-#### make the wasm file to be used by wasm-in-wasm later
+#### 2. make the wasm file to be used by wasm-in-wasm later
 
-The code for `add.wasm`
+We want to use webassembly in our rust code. 
+First we shall generate a wasm file called `add.wasm`
 
 ```
+// temporary src/lib.rs to generate our add.wasm file
+
 use wasm_biindgen::prelude::wasm_bindgen;
 
 #[wasm_bindgen]
@@ -39,25 +48,15 @@ pub fn add(a: usize, b: usize) -> usize {
 }
 ```
 
-Temporarly rename the crate `add`
+Build the wasm file with the out-name set to `add`
 
-
-```toml
-[package]
-name = "add"
-#name = "wasm-in-wasm"
-...
-[lib]
-crate-type = ["cdylib",]
-```
-
-Build the wasm file
 ```sh
-wasm-pack build --release --target web --out-dir www/pkg
+wasm-pack build --release --target web --out-name add --out-dir www/pkg
 ```
 
-move and rename the `www/pkg/add_bg.wasm` to `src/add.wasm` 
- 
+Since this wasm file is on the "server side", move it and rename from
+ `www/pkg/add_bg.wasm` to `src/add.wasm` 
+
 and clean the project for our real code
 
 ```sh
@@ -66,20 +65,9 @@ cargo clean
 'rm -fr www/pkg'
 ```
 
-### The real code
+#### 3. Html and Js files
 
-Now that we have the wasm file to be used in `lib.rs
-we can revert to real name in Cargo.toml
-
-```toml
-[package]
-name = "wasm-in-wasm"
-...
-[lib]
-crate-type = ["cdylib,"]
-```
-
-in `www/html/index.html` we have
+In `www/html/index.html` we have
 
 ```html
 <!DOCTYPE html>
@@ -119,7 +107,7 @@ Note:
 The build outputs the file as `wasm_in_wasm.js` not `wasm-in-wasm.js`
 we've seen that before (ie: the crate `wasm-bindgen` is used as `wasm_bindgen`)
 
-### Everything happens in src
+#### 4. Everything happens in src
 
 
 ```rust
@@ -184,7 +172,7 @@ cargo add js-sys
 cargo add wasm-bindgen-futures
 ```
 
-## build and serve
+#### 5. build and serve
 
 ```sh
 wasm-pack build --target web --no-typescript --out-dir www/pkg
@@ -198,11 +186,38 @@ open `index.html`
 firefox http://localhost:8000/html/
 ```
 
+![wasm in wasm](./pix/wasm_in_wasm.png)
+
+---
+
+> PART II. Understand the Code
+
+## Understand the Code
+
+So the add.wasm would typically be used in a js file
+since we made it available 
+
+```rust
+se wasm_biindgen::prelude::wasm_bindgen;
+
+#[wasm_bindgen]
+pub fn add(a: usize, b: usize) -> usize {
+    a + b
+}
+```
+
+But this time we are going to use it directly in our Rust code.
+
+
+
 ---
 
 ## What's next?
 
-Next example: [web-sys: DOM hello world `-->`](./006_DOM.html)
+
+<div class="prevnext"><div class="button left">[<-- Working with the char type](./004_working_with_the_char_type.html)</div>
+<div class="button right">[web-sys: DOM hello world -->](./006_DOM.html)</div></div>
+
 
 </main>
 <script src="https://lerina.github.io/js/toc.js"></script>

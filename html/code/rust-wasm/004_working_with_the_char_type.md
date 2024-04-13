@@ -476,7 +476,7 @@ firefox http://localhost:8000/html/
 
 ## Understand the Code
 
-
+- #[wasm_bindgen]
 
 ```rust
 // src/lib.rs
@@ -503,6 +503,10 @@ impl Counter {
 ```js
 // www/js/index.js
 
+import init, { Counter }  from "../pkg/char.js";
+
+// ...
+
 function addCounter() {
     let ctr = Counter.new(randomChar(), 0);
     counters.push(ctr);
@@ -511,6 +515,34 @@ function addCounter() {
 }
 ```
 
+- async function
+
+*The async function declaration creates a binding of a new async function to a given name. The await keyword is permitted within the function body, enabling asynchronous, promise-based behavior to be written in a cleaner style and avoiding the need to explicitly configure promise chains.* _ [MDN: async function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function){target="_blank"}
+
+- await
+
+*Async functions can contain zero or more await expressions. Await expressions make promise-returning functions behave as though they're synchronous by suspending execution until the returned promise is fulfilled or rejected. The resolved value of the promise is treated as the return value of the await expression.* [MDN: async function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function#description){target="_blank"}
+
+```js
+async function run() {
+    const wasm = await init();
+           
+    addCounter();
+    let b = document.getElementById('add-counter');
+    alert("b");
+    if (!b) throw new Error('Unable to find #add-counter');
+    b.addEventListener('click', ev => addCounter());
+    
+
+}//^-- async run
+
+run();
+
+```
+
+- init()
+
+Notice that there is no #[wasm_bindgen(start)] in our lib.rs file.
 
 
 ## What's next?
