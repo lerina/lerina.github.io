@@ -542,7 +542,37 @@ run();
 
 - init()
 
-Notice that there is no #[wasm_bindgen(start)] in our lib.rs file.
+[wasm-bindgen:  Support init function without parameters #1559](https://github.com/rustwasm/wasm-bindgen/issues/1559)
+
+This issue opened by *ibaryshnikov* lead to our current `await init()`
+
+*When used without a bundler, there is a need to call init with a .wasm file name:*
+
+```js
+await init('../pkg/my_project_bg.wasm');
+
+//
+
+await init('../pkg/another_project_bg.wasm');
+
+```
+
+*Proposed Solution*
+
+*Make it possible to use*
+
+```js
+await init();
+```
+
+*which will default to path with generated .wasm file*
+
+
+*@ibaryshnikov mentioned this issue Jun 7, 2019*   
+*added default module path inside init function when target is web #1579* 
+
+*alexcrichton closed this as completed in #1579 on Jun 10, 2019*
+
 
 
 ## What's next?

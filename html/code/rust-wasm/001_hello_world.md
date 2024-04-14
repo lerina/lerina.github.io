@@ -187,7 +187,8 @@ Open `index.html` in a browser by pointing at [http://127.0.0.1:8080/html/]
 ## Q&A
 
 <div class="alt-pre">How would you generate this clean <br/> file structure?
-&#x2BB1; <pre >
+<svg width="20px" height="30px" fill="#986a44" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 344.339 344.339" xml:space="preserve" transform="rotate(270)" stroke="#986a44"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <g> <g> <path d="M149.535,323.088L0,173.554h94.299C106.192,41.217,220.448,21.251,288.212,21.251c32.12,0,55.166,4.378,56.127,4.549 l-1.279,13.382c-56.511,0-97.049,14.745-120.485,43.829c-26.518,32.903-23.636,75.735-21.647,90.537h98.137L149.535,323.088z"></path> </g> </g> </g> </g> </g></svg>
+<pre >
 .
 ├── Cargo.toml
 ├── src
@@ -207,7 +208,8 @@ mkdir -p www/html www/js
 
 
 
-<div class="alt-pre">In `wasm-pack build` what are these options for?
+<div class="alt-pre">In `wasm-pack build` What are these options for?
+<svg width="20px" height="30px" fill="#986a44" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 344.339 344.339" xml:space="preserve" transform="rotate(270)" stroke="#986a44"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <g> <g> <path d="M149.535,323.088L0,173.554h94.299C106.192,41.217,220.448,21.251,288.212,21.251c32.12,0,55.166,4.378,56.127,4.549 l-1.279,13.382c-56.511,0-97.049,14.745-120.485,43.829c-26.518,32.903-23.636,75.735-21.647,90.537h98.137L149.535,323.088z"></path> </g> </g> </g> </g> </g></svg>
 <pre >
 --target web 
 --no-typescript 

@@ -536,7 +536,21 @@ let mod;</code></pre>
 <ul>
 <li>init()</li>
 </ul>
-<p>Notice that there is no #[wasm_bindgen(start)] in our lib.rs file.</p>
+<p><a href="https://github.com/rustwasm/wasm-bindgen/issues/1559">wasm-bindgen: Support init function without parameters #1559</a></p>
+<p>This issue opened by <em>ibaryshnikov</em> lead to our current <code>await init()</code></p>
+<p><em>When used without a bundler, there is a need to call init with a .wasm file name:</em></p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true"></a><span class="cf">await</span> <span class="fu">init</span>(<span class="st">&#39;../pkg/my_project_bg.wasm&#39;</span>)<span class="op">;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true"></a><span class="co">//</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true"></a><span class="cf">await</span> <span class="fu">init</span>(<span class="st">&#39;../pkg/another_project_bg.wasm&#39;</span>)<span class="op">;</span></span></code></pre></div>
+<p><em>Proposed Solution</em></p>
+<p><em>Make it possible to use</em></p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true"></a><span class="cf">await</span> <span class="fu">init</span>()<span class="op">;</span></span></code></pre></div>
+<p><em>which will default to path with generated .wasm file</em></p>
+<p><em><span class="citation" data-cites="ibaryshnikov">@ibaryshnikov</span> mentioned this issue Jun 7, 2019</em><br />
+<em>added default module path inside init function when target is web #1579</em></p>
+<p><em>alexcrichton closed this as completed in #1579 on Jun 10, 2019</em></p>
 <h2 id="whats-next">What’s next?</h2>
 <div class="prevnext">
 <div class="button left">

@@ -40,7 +40,7 @@ First we shall generate a wasm file called `add.wasm`
 ```
 // temporary src/lib.rs to generate our add.wasm file
 
-use wasm_biindgen::prelude::wasm_bindgen;
+use wasm_bindgen::prelude::wasm_bindgen;
 
 #[wasm_bindgen]
 pub fn add(a: usize, b: usize) -> usize {
@@ -104,11 +104,19 @@ init();
 
 Note: 
 
-The build outputs the file as `wasm_in_wasm.js` not `wasm-in-wasm.js`
+The build outputs the file is `wasm_in_wasm.js` not `wasm-in-wasm.js`  
 we've seen that before (ie: the crate `wasm-bindgen` is used as `wasm_bindgen`)
 
 #### 4. Everything happens in src
 
+First, we need to add the two new crates `js-sys` and `wasm-bindgen-futures`
+
+```sh
+cargo add js-sys
+cargo add wasm-bindgen-futures
+```
+
+we bring them into scope in `lib.rs` 
 
 ```rust
 // src/lib.rs
@@ -163,14 +171,6 @@ fn run() {
 }
 ```
 
-Note:
-
-We need to add the two new crates brought into scope 
-
-```sh
-cargo add js-sys
-cargo add wasm-bindgen-futures
-```
 
 #### 5. build and serve
 
@@ -194,11 +194,23 @@ firefox http://localhost:8000/html/
 
 ## Understand the Code
 
-So the add.wasm would typically be used in a js file
-since we made it available 
+```rust
+use js_sys::{Function, Object, Reflect, WebAssembly};
+```
+
+[Struct js_sys::Function](https://docs.rs/js-sys/latest/js_sys/struct.Function.html){target="_blank"}  
+
+[Struct js_sys::Object](https://docs.rs/js-sys/latest/js_sys/struct.Object.html){target="_blank"}  
+
+[Module js_sys::Reflect](https://docs.rs/js-sys/latest/js_sys/Reflect/index.html){target="_blank"}  
+
+[Module js_sys::WebAssembly](https://docs.rs/js-sys/latest/js_sys/WebAssembly/index.html){target="_blank"}  
+
+
+<br/>
 
 ```rust
-se wasm_biindgen::prelude::wasm_bindgen;
+use wasm_bindgen::prelude::wasm_bindgen;
 
 #[wasm_bindgen]
 pub fn add(a: usize, b: usize) -> usize {
@@ -206,9 +218,22 @@ pub fn add(a: usize, b: usize) -> usize {
 }
 ```
 
+The add.wasm would typically be used in a js file
+since we made it available `#[wasm_bindgen]`.  
+
 But this time we are going to use it directly in our Rust code.
 
+```rust
+const WASM: &[u8] = include_bytes!("add.wasm"); // path relative to lib.rs
+```
 
+Remember add.wasm is a binary. 
+
+```
+WebAssembly::instantiate_buffer(WASM, &Object::new())
+```
+
+<svg width="20px" height="30px" fill="#986a44" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 344.339 344.339" xml:space="preserve" transform="rotate(270)" stroke="#986a44"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <g> <g> <path d="M149.535,323.088L0,173.554h94.299C106.192,41.217,220.448,21.251,288.212,21.251c32.12,0,55.166,4.378,56.127,4.549 l-1.279,13.382c-56.511,0-97.049,14.745-120.485,43.829c-26.518,32.903-23.636,75.735-21.647,90.537h98.137L149.535,323.088z"></path> </g> </g> </g> </g> </g></svg>
 
 ---
 
