@@ -152,6 +152,7 @@ async fn run_async() -> Result<(), JsValue> {
 
     let three = add.call2(&JsValue::undefined(), &1.into(), &2.into())?;
     console_log!("1 + 2 = {:?}", three);
+
     let mem = Reflect::get(c.as_ref(), &"memory".into())?
         .dyn_into::<WebAssembly::Memory>()
         .expect("memory export wasn't a `WebAssembly.Memory`");
@@ -232,6 +233,77 @@ Remember add.wasm is a binary.
 ```
 WebAssembly::instantiate_buffer(WASM, &Object::new())
 ```
+
+- JsFuture & WebAssembly::instantiate_buffer
+
+```rust
+    let a = JsFuture::from(WebAssembly::instantiate_buffer(WASM, &Object::new())).await?;
+```
+
+[wikipedia: Futures_and_promises](https://en.wikipedia.org/wiki/Futures_and_promises){target="_blank"}
+
+
+
+- WebAssembly::Instance & Reflect
+```rust
+    let b: WebAssembly::Instance = Reflect::get(&a, &"instance".into())?.dyn_into()?;
+```
+
+- WebAssembly::Instance & .exports()
+
+```rust
+    let c = b.exports();
+
+```
+- dyn_into::<>
+
+```rust
+    let add = Reflect::get(c.as_ref(), &"add".into())?
+        .dyn_into::<Function>()
+        .expect("add export wasn't a function");
+
+```
+
+- Struct js_sys::Function & call2()
+
+```rust
+    let three = add.call2(&JsValue::undefined(), &1.into(), &2.into())?;
+```
+
+- js-sys WebAssembly::Memory & .grow()
+
+```rust
+    let mem = Reflect::get(c.as_ref(), &"memory".into())?
+        .dyn_into::<WebAssembly::Memory>()
+        .expect("memory export wasn't a `WebAssembly.Memory`");
+```
+
+grow memory 
+
+```rust
+    console_log!("created module has {} pages of memory", mem.grow(0));
+    console_log!("giving the module 4 more pages of memory");
+
+    mem.grow(4);
+
+    console_log!("now the module has {} pages of memory", mem.grow(0));
+```
+
+- spanw_local
+
+
+
+```rust
+#[wasm_bindgen(start)]
+fn run() {
+    spawn_local(async {
+        run_async().await.unwrap_throw();
+    });
+}
+```
+---
+
+## Q&A
 
 <svg width="20px" height="30px" fill="#986a44" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 344.339 344.339" xml:space="preserve" transform="rotate(270)" stroke="#986a44"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <g> <g> <path d="M149.535,323.088L0,173.554h94.299C106.192,41.217,220.448,21.251,288.212,21.251c32.12,0,55.166,4.378,56.127,4.549 l-1.279,13.382c-56.511,0-97.049,14.745-120.485,43.829c-26.518,32.903-23.636,75.735-21.647,90.537h98.137L149.535,323.088z"></path> </g> </g> </g> </g> </g></svg>
 
