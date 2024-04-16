@@ -20,6 +20,7 @@ prestataires pour assurer la mission de création et mise en ligne d’une plate
 pour Mayotte.
 
 Le projet de plate-forme web dédiée à l’Attractivité de Mayotte vise les objectifs suivants :
+
 - diffuser des images et des messages montrant les bons côtés et les potentiels de l’île ;
 - montrer et partager les expériences de vie des résidents ;
 - donner envie aux touristes extérieurs de venir en séjour sur Mayotte ;
@@ -69,8 +70,8 @@ contractualisée) au plus tard aux environs du 29 novembre 2024 (mise en ligne e
 #### Formation du personnel :
 
 Le titulaire assurera la formation du personnel chargé d'utiliser les prestations (2 personnes). Une
-offre de formation des agents administrateurs est attendue et sera détaillée dans le mémoire
-technique.
+offre de formation des agents administrateurs est attendue et sera détaillée dans le mémoire technique.
+  
 Un support pédagogique en français (papier ou dématérialisé) sera remis aux participants lors des
 formations. La formation sera comprise dans le prix proposé par le candidat.
 
@@ -109,6 +110,7 @@ objectifs recherchés.
 
 Aussi, le prestataire, en plus de pouvoir répondre à l’ensemble des mentions présentes dans le
 CCTP, devra être capable de 
+
 - proposer des solutions alternatives, 
 - des compléments sur différents points (solutions techniques modernes, zoning, etc.).
 
@@ -123,6 +125,7 @@ titulaire.
 3.4 - Formation
 
 Le prestataire formera les services de l’AaDTM à 
+
 - l’utilisation du Content Management System (CMS) et 
 - à l’outil statistique du site. 
 
@@ -147,7 +150,7 @@ Cette prestation devrait inclure au minimum :
 • Mise à jour de l’ensemble des éléments installés sur le serveur (système d’exploitation, bibliothèque, etc) ;
 • Sauvegardes, restaurations, exportation de l’ensemble des données en format xlsx, odc ou SQL pour le système.
 
-3.6 - Livrable technique
+3.6 Livrable technique
 
 Le prestataire choisi devra fournir les documents d’architecture suivants :
 
@@ -214,6 +217,7 @@ cession précis engageant l’ensemble des graphistes ayant travaillés sur le p
 ### Noyau (l'admin du site)
 
 Les administrateurs de la plate-forme devront pouvoir :
+
 • Ajouter, modifier ou supprimer des pages, rubriques, sous-rubriques... ;
 • Ajouter, modifier ou supprimer des éléments composant le zoning (header, footer, menu
 principal et secondaire, etc) ;
@@ -225,11 +229,12 @@ principal et secondaire, etc) ;
 ### Médias
 
 Le MS devra permettre de mettre en ligne :
+
 • Des vidéos, soit directement sur le site, soit via un hébergeur (type Youtube) ;
 • Des sons, soit directement sur le site, soit via un hébergeur ;
 • Des photos qui pourront :
-- Être redimensionnées automatiquement ;
-- Faire l’objet de quelques retouches simples (recadrage).
+    - Être redimensionnées automatiquement ;
+    - Faire l’objet de quelques retouches simples (recadrage).
 
 ### Mobilité
 
