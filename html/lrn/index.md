@@ -52,7 +52,15 @@ This is Reflective equilibrium applied to software development.
 
 [read more](./code/workflow.html)  
 
+## Resume (CV)
 
+2024:
+
+- [html resume](./cv2024.html){target="_blank"}
+- [pdf resume](./cv2024.pdf)
+
+- [html Cv en français](./cv2024_fr.html){target="_blank"}
+- [pdf Cv en français](./cv2024_fr.pdf)
 
 </main>
 <footer>

@@ -855,7 +855,8 @@ transform: scale(1);
 .prevnext a:visited {color: white;}
 
 /*-- QA flashcards CSS */
-/*
+/*USAGE:
+
 <div class="alt-span">
     <span>Run the mouse over here</span><span>This is the Alternate text</span>
 </div>

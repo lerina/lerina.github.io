@@ -1,4 +1,4 @@
-/* MVP.css v1.15 - https://github.com/andybrewer/mvp */
+/* adapted from: MVP.css v1.15 - https://github.com/andybrewer/mvp */
 @font-face {font-family: 'Inconsolata_local';src: url(https://lerina.github.io/fonts/Inconsolata-Regular.ttf);}
 :root {
     --active-brightness: 0.85;
@@ -16,7 +16,8 @@
     --color-text-secondary: #999;
     --color-scrollbar: #cacae8;
     /*--font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;*/
-    --font-family: Ubuntu,Inconsolata_local;
+    --font-family: Ubuntu, Roboto, sans-serif;
+    --font-family-code: Inconsolata_local;
     --hover-brightness: 1.2;
     --justify-important: center;
     --justify-normal: left;
@@ -75,7 +76,7 @@ header,
 main {
     margin: 0 auto;
     max-width: var(--width-content);
-    padding: 3rem 1rem;
+    padding: 2rem 1rem 1rem 1rem;
     width:70%;
 }
 
@@ -152,7 +153,7 @@ section header {
 }
 
 #TOC:before {
-  content: url("https://lerina.github.io/img/tangena_lerina_seeds120.png");
+  content: url("https://lerina.github.io/logo_lerina_96x96.png");
 }
 
 /* Nav */
@@ -221,6 +222,7 @@ samp {
     display: inline-block;
     margin: 0 0.1rem;
     padding: 0 0.5rem;
+    font-family: var(--font-family-code);
 }
 
 details {
@@ -270,6 +272,11 @@ pre samp {
     padding: 0.5rem 2rem;
     white-space: pre-wrap;
 }
+
+.sourceCode { overflow:auto; max-width: var(--width-content);}
+pre > code.sourceCode > span > a:first-child::before { color:#3c3c3c; text-decoration: none;  }
+pre.numberSource code > span  { padding: 0 2.0em; }
+pre.numberSource {  margin-left:0em;}
 
 small {
     color: var(--color-text-secondary);
@@ -550,6 +557,13 @@ blockquote footer {
 
 /*--------------------------*/
 
+/*-- QA flashcards CSS */
+/*USAGE:
+
+<div class="alt-span">
+    <span>Run the mouse over here</span><span>This is the Alternate text</span>
+</div>
+*/
 .alt-pre {
   position: relative;
   overflow: hidden;
@@ -651,5 +665,30 @@ aside {
   }
 }
 
+aside:after {clear: both;}
 
+.pix-before-aside {margin:0.75rem 0;float: left; width:50%; padding-right:0.75rem;}
 
+/*
+
++ I'm visible: show hidden on hover 
+: Hide me.
+: Hide me too.
+
+*/
+dl {
+	padding: 0px;
+	margin: 0px;
+}
+
+dd {
+  	font-size: small;
+}
+
+dl dd:last-of-type {
+	display: none;
+}
+
+dl:hover dd:last-of-type {
+	display: block;
+}
