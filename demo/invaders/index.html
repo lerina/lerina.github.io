@@ -1,29 +1,51 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Rust wasm input example</title>
-    <style>
-    h1 {margin: 0px; margin-bottom: 10px; font-size: 2.9em; font-family: "Helvetica"}
-    canvas {box-shadow: black 20px 10px 50px}
-    body {display: flex; align-items: center; flex-direction: column; padding: 0px; margin: 0px; height: 100vh;}
-    </style>
-  </head>
-  <body>
-  <h1> Invaders</h1>
-  <div id="Level">Level:<span id="level"></span></div>
-  <div id="scoring">Score:<span id="score"></span></div>
-  <canvas id="canvas" style="outline: none" tabindex="0" height="600" width="600">
-    Your browser does not support the Canvas.
-  </canvas>
-    <script type="module">
-    import init from "./pkg/wasm_shooting_game.js";
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>index index</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://lerina.github.io/css/styles_min.css" />
+</head>
+<body>
+<title>
+Rust wasm input example
+</title>
+<style>
+h1 {margin: 0px; margin-bottom: 10px; font-size: 2.9em; font-family: "Helvetica"}
+canvas {box-shadow: black 20px 10px 50px}
+body {display: flex; align-items: center; flex-direction: column; padding: 0px; margin: 0px; height: 100vh;}
+</style>
+<main>
+<h1>
+Invaders
+</h1>
+<div id="Level">
+Level:<span id="level"></span>
+</div>
+<div id="scoring">
+Score:<span id="score"></span>
+</div>
+<canvas id="canvas" style="outline: none" tabindex="0" height="600" width="600">
+Your browser does not support the Canvas.
+</canvas>
+</main>
+<script type="module">
+import init from "./pkg/wasm_shooting_game.js";
 
-      async function run() {
-        await init();
-      }
+  async function run() {
+    await init();
+  }
 
-      run();
-    </script>
-  </body>
+  run();
+</script>
+</body>
 </html>
