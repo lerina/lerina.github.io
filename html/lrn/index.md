@@ -1,3 +1,4 @@
+<link rel="me" href="https://hachyderm.io/@lerina">
 
 <div class="bg_lerina"></div><div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
 <main>
@@ -61,6 +62,18 @@ This is Reflective equilibrium applied to software development.
 
 - [html Cv en français](./cv2024_fr.html){target="_blank"}
 - [pdf Cv en français](./cv2024_fr.pdf)
+
+## Dev's portfolio
+
+* Live Projects 
+* System Design Documents 
+* Architectural/System Design Diagrams 
+* UX/UI (in case of frontend) 
+* Papers 
+* Books 
+* Blog articles  
+* Videos 
+* Podcast 
 
 </main>
 <footer>
