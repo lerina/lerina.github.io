@@ -193,7 +193,7 @@ nav ul li ul {
     padding: .5rem 1rem;
     position: absolute;
     top: 1.7rem;
-    white-space: nowrap;
+    /*white-space: nowrap;*/
     width: auto;
     z-index: 1;
 }
