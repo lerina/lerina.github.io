@@ -126,6 +126,7 @@ section aside:hover {
     background-repeat: no-repeat;
     position: relative;
     background-size: cover;
+    color:#fff;
 }
 
 .author { display: none;}
