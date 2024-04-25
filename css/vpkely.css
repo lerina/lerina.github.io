@@ -1,21 +1,21 @@
-/* adapted from: MVP.css v1.15 - https://github.com/andybrewer/mvp */
+/* MVP.css v1.15 - https://github.com/andybrewer/mvp */
 @font-face {font-family: 'Inconsolata_local';src: url(https://lerina.github.io/fonts/Inconsolata-Regular.ttf);}
 :root {
     --active-brightness: 0.85;
     --border-radius: 5px;
+    --border-console-radius: 10px;
     --box-shadow: 2px 2px 10px;
     --color-accent: #118bee15;
-    --color-bg: #f2f0ee;  /*#fff;*/
-    --color-bg-secondary: #e9e9e9;
-    --color-link: #49545f; /*#5f5449;*/
-    --color-secondary: #920de9;
+    --color-bg: #f2f0ee;
+    --color-bg-secondary: #c3c3c3;  /*#e9e9e9;*/
+    --color-link: #49545f;
+    --color-secondary: #e9920d; /*#920de9;*/
     --color-secondary-accent: #920de90b;
     --color-shadow: #f4f4f4;
     --color-table: #118bee;
-    --color-text: #2d343a; /*#000;*/
+    --color-text: #000;
     --color-text-secondary: #999;
     --color-scrollbar: #cacae8;
-    /*--font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;*/
     --font-family: Ubuntu, Roboto, sans-serif;
     --font-family-code: Inconsolata_local;
     --hover-brightness: 1.2;
@@ -70,14 +70,12 @@ body {
     padding: 0;
 }
 
-#TOC,
 footer,
-/*header,*/
+header,
 main {
     margin: 0 auto;
     max-width: var(--width-content);
-    padding: 2rem 1rem 1rem 1rem;
-    width:70%;
+    padding: 3rem 1rem;
 }
 
 hr {
@@ -120,6 +118,7 @@ section aside:hover {
     display: none;
 }
 
+/*---------------------*/
 #title-block-header {
     background-image: url("https://lerina.github.io/img/binary_banner.png");
     background-position: center;
@@ -128,33 +127,29 @@ section aside:hover {
     background-size: cover;
     color:#fff;
     width: 100%;
-    padding: 2rem 0 1rem 0;
+    max-width: 100%;
+    /*padding: 2rem 0 1rem 0;*/
 }
 
 .author { display: none;}
+.subtitle { 
+    /*background-color: rgba(31,31,31,0.9);*/
+    font-weight:bold; 
+}
 .inline_block {display: inline-block; color:#22272c;}
 
-/* put yaml in your md
+.sourceCode { overflow:auto; max-width: var(--width-content);}
 
----
-title: Level-Up!
-subtitle: A Rust/Wasm code-retreat
-author:
-- lerina j-y Razafy
-toc-depth: 2
-keywords: [Rust, Wasm]
----
-*/
+/*pre > .sourceCode {padding-right:1em;} ---------*/
 
 /* Headers */
-#TOC,
 article header,
 div header,
 main header {
     padding-top: 0;
 }
 
-#TOC,
+
 header {
     text-align: var(--justify-important);
 }
@@ -167,20 +162,13 @@ header a strong {
     margin-right: 0.5rem;
 }
 
-#TOC nav img,
 header nav img {
     margin: 1rem 0;
 }
 
-section #TOC,
 section header {
     padding-top: 0;
     width: 100%;
-}
-
-#TOC:before {
-  padding-top: 0.5rem;
-  content: url("https://lerina.github.io/logo_lerina_96x96.png");
 }
 
 /* Nav */
@@ -190,11 +178,12 @@ nav {
     font-weight: bold;
     justify-content: space-between;
     margin-bottom: 7rem;
+    align-content: center;
 }
 
 nav ul {
     list-style: none;
-    padding: 0;
+    /*padding: 0;*/
 }
 
 nav ul li {
@@ -220,7 +209,7 @@ nav ul li ul {
     padding: .5rem 1rem;
     position: absolute;
     top: 1.7rem;
-    /*white-space: nowrap;*/
+    white-space: nowrap;
     width: auto;
     z-index: 1;
 }
@@ -240,6 +229,12 @@ nav ul li ul li a {
     display: block;
 }
 
+#TOC:after {
+  padding-top: 0.5rem;
+  content: url("https://lerina.github.io/logo_lerina_96x96.png");
+  margin-right:20px;
+}
+
 /* Typography */
 code,
 samp {
@@ -249,7 +244,6 @@ samp {
     display: inline-block;
     margin: 0 0.1rem;
     padding: 0 0.5rem;
-    font-family: var(--font-family-code);
 }
 
 details {
@@ -290,6 +284,7 @@ pre {
     margin: 1rem 0;
     max-width: var(--width-card-wide);
     padding: 1rem 0;
+    overflow-x: auto;
 }
 
 pre code,
@@ -299,11 +294,6 @@ pre samp {
     padding: 0.5rem 2rem;
     white-space: pre-wrap;
 }
-
-.sourceCode { overflow:auto; max-width: var(--width-content);}
-pre > code.sourceCode > span > a:first-child::before { color:#3c3c3c; text-decoration: none;  }
-pre.numberSource code > span  { padding: 0 2.0em; }
-pre.numberSource {  margin-left:0em;}
 
 small {
     color: var(--color-text-secondary);
@@ -326,12 +316,11 @@ a {
     color: var(--color-link);
     display: inline-block;
     font-weight: bold;
-    text-decoration: none;
+    text-decoration: underline;
 }
 
 a:hover {
     filter: brightness(var(--hover-brightness));
-      text-decoration: underline;
 }
 
 a:active {
@@ -582,61 +571,61 @@ blockquote footer {
     border-radius: 10px;
 }
 
+
 /*--------------------------*/
 
 /*-- QA flashcards CSS */
 /*USAGE:
 
-<div class="alt-span">
-    <span>Run the mouse over here</span><span>This is the Alternate text</span>
+<div class="alt-pre">
+    <pre>Run the mouse 
+         over here
+    </pre>
+    <pre>This is 
+         the Alternate text
+    </pre>
 </div>
 */
 .alt-pre {
   position: relative;
   overflow: hidden;
   border: 1px solid #18181a;
-  color: #18181a;
+  border-radius: var(--border-console-radius);
+  
   display: inline-block;
   font-size: clamp(0.775rem, -0.5563rem + 3.5802vw, 1.375rem);  
-         /* top | horizontal        | bottom */
+         /*color: #18181a; top | horizontal        | bottom */
   padding: 18px calc(0.75em + 1vmin) 17px;
   text-decoration: none;
   cursor: pointer;
-  /*background: #fff;*/
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  background-color: var(--bg);
+  background-color: rgb(40, 40, 43); /* black matte*/
   opacity: 0.8;
 }
 
-.alt-pre pre{ padding:0;}
+alt-pre pre{ padding:0; }
 
 .alt-pre pre:first-child {
   position: relative;
   transition: color 600ms cubic-bezier(0.48, 0, 0.12, 1);
   z-index: 10;
+
 }
 
 .alt-pre pre:last-child {
   /*color: white;*/
   color: rgba(15, 255, 80, 0.9); /*Neon Green        var(--text-light);*/
-  background-color: rgb(26, 29, 31); /* Slate ish      var(--bg);*/
   display: block;
   position: absolute;
   /*bottom: 0;*/
   transition: all 500ms cubic-bezier(0.48, 0, 0.12, 1);
   z-index: 100;
   opacity: 0;
-  top: 30%; /*50*/
-  left: 50%;
-  transform: translateY(225%) translateX(-50%);
-  /*height: 14px;
-  line-height: 13px;
-*/
-  /* top | horizontal | bottom */
-  /*padding: 18px calc(0.75em + 1vmin) 17px;*/
-  padding:0.1em 0.3em 0.1em;
+  top: 1em; /* 30%; 50*/
+  left: 35%;
+  transform: translateY(215%) translateX(-50%);
 }
 
 .alt-pre:after {
@@ -646,11 +635,12 @@ blockquote footer {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgb(40, 40, 43); /*black matte*/
+  background-color: rgb(40, 40, 43); /* black matte*/
   transform-origin: bottom center;
   transition: transform 600ms cubic-bezier(0.48, 0, 0.12, 1);
   transform: skewY(9.3deg) scaleY(0);
   z-index: 50;
+  padding: 18px calc(0.75em + 1vmin) 17px;
 }
 
 .alt-pre:hover:after {
@@ -659,9 +649,24 @@ blockquote footer {
 }
 
 .alt-pre:hover pre:last-child {
-  transform: translateX(-50%) translateY(-50%);  /* x,y ctrl here*/
+  transform: translateX(-40%) translateY(-15%);  /* x,y ctrl here*/
   opacity: 1;
   transition: all 900ms cubic-bezier(0.48, 0, 0.12, 1);
+}
+
+.alt-pre pre > code { 
+    color: #39ff14; 
+    background-color: rgb(40, 40, 43); /* black matte*/
+    /*
+    white-space: pre-wrap;
+    white-space: break-spaces;
+    */
+
+    white-space: pre;
+}
+
+.alt-pre:hover pre:last-child  > code{
+    width:100%;
 }
 /*------------------------------ */
 /* Consolidate box styling */
