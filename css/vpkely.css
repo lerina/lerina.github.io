@@ -127,6 +127,7 @@ section aside:hover {
     position: relative;
     background-size: cover;
     color:#fff;
+    width: 100%;
 }
 
 .author { display: none;}
