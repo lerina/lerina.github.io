@@ -72,7 +72,7 @@ body {
 
 #TOC,
 footer,
-header,
+/*header,*/
 main {
     margin: 0 auto;
     max-width: var(--width-content);
@@ -178,6 +178,7 @@ section header {
 }
 
 #TOC:before {
+  padding-top: 0.5rem;
   content: url("https://lerina.github.io/logo_lerina_96x96.png");
 }
 
