@@ -120,6 +120,12 @@ section aside:hover {
     display: none;
 }
 
+.author { display: none;}
+
+/*
+
+*/
+
 /* Headers */
 #TOC,
 article header,
