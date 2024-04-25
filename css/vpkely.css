@@ -120,10 +120,26 @@ section aside:hover {
     display: none;
 }
 
+#title-block-header {
+    background-image: url("https://lerina.github.io/img/secureCodeDevelopment.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    background-size: cover;
+}
+
 .author { display: none;}
 
-/*
+/* put yaml in your md
 
+---
+title: Level-Up!
+subtitle: A Rust/Wasm code-retreat
+author:
+- lerina j-y Razafy
+toc-depth: 2
+keywords: [Rust, Wasm]
+---
 */
 
 /* Headers */
