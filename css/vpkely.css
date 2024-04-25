@@ -18,7 +18,7 @@
     --color-scrollbar: #cacae8;
     --font-family: Ubuntu, Roboto, sans-serif;
     --font-family-code: Inconsolata_local;
-    --hover-brightness: 1.2;
+    --hover-brightness: 1.3;
     --justify-important: center;
     --justify-normal: left;
     --line-height: 1.5;
@@ -75,7 +75,7 @@ header,
 main {
     margin: 0 auto;
     max-width: var(--width-content);
-    padding: 3rem 1rem;
+    padding: 2rem 1rem 2rem 1rem;
 }
 
 hr {
@@ -118,6 +118,8 @@ section aside:hover {
     display: none;
 }
 
+.collapse {visibility: collapse;}
+
 /*---------------------*/
 #title-block-header {
     background-image: url("https://lerina.github.io/img/binary_banner.png");
@@ -128,7 +130,7 @@ section aside:hover {
     color:#fff;
     width: 100%;
     max-width: 100%;
-    /*padding: 2rem 0 1rem 0;*/
+    padding: 3rem 0 2rem 0;
 }
 
 .author { display: none;}
@@ -176,14 +178,14 @@ nav {
     align-items: center;
     display: flex;
     font-weight: bold;
-    justify-content: space-between;
-    margin-bottom: 7rem;
+    /*justify-content: space-between; pushes logo <- and nav -> of page*/
+    margin-bottom: 3rem;
     align-content: center;
 }
 
 nav ul {
     list-style: none;
-    /*padding: 0;*/
+    padding-left: 1rem; /*gap between logo and nav */
 }
 
 nav ul li {
@@ -222,6 +224,7 @@ nav ul li ul::before {
     right: 0;
     top: -0.5rem;
     height: 0.5rem;
+    /*margin-left: -3px;*/
 }
 
 nav ul li ul li,
@@ -229,10 +232,11 @@ nav ul li ul li a {
     display: block;
 }
 
-#TOC:after {
+
+#TOC:before {
   padding-top: 0.5rem;
   content: url("https://lerina.github.io/logo_lerina_96x96.png");
-  margin-right:20px;
+  margin-left: 3rem; /*gap between page left border and logo */
 }
 
 /* Typography */
@@ -318,6 +322,9 @@ a {
     font-weight: bold;
     text-decoration: underline;
 }
+
+
+#TOC a { text-decoration: none; }
 
 a:hover {
     filter: brightness(var(--hover-brightness));
@@ -724,3 +731,4 @@ dl dd:last-of-type {
 dl:hover dd:last-of-type {
 	display: block;
 }
+
