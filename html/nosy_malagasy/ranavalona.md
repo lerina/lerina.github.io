@@ -1,3 +1,13 @@
+---
+title: Ranavalona in history
+---
+
+<main>
+
+##
+
+## 19th century European expansionists
+ 
 1828 - 1861 H.M. Queen Rabodonandrianampoinimerina Ranavalona I [Ranavalomanjaka I], Queen of Madagascar. 
 b. at Rovan' Ambatomanoina, Fokontany of Masombahiny, ca. 1778, as Ramavo, eldest daughter of Prince Andriantsalamanjaka [Andrianavalontsalama], 
 of Ambatomanoina, by his wife, Princess Rabodonandriantompo, daughter of Andriandamboranto (see Imerina 7). 
@@ -12,3 +22,5 @@ She forbade Christian practices and was hostile to European influence. m. (first
 
     1) H.R.H. Crown Prince (Printsy) RakotsehenondRadama or RakotondRadama, who succeeded as H.M. King Radama II, King of Madagascar (s/o Rainijohary) - see below.
 [source](http://www.royalark.net/Madagascar/madagascar1.htm)
+
+</main>
