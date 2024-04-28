@@ -1,10 +1,24 @@
+---
+title: "BIZNAME: Services"
+---
+
 <div class="bg"></div>
 <main>
-<div class="greetings"><p class="drop  fancySerif">Tonga soa. Welcome</p></div>
-
+<div class="greetings">
+<p class="drop  fancySerif">Tonga soa. Welcome Friend<br> _bizname_
+leads the way to bring secure and fast app development in the Indian Ocean Neighbourhood.
+</p>
+</div>
+ 
 <section id="featured_projects">
 
-## Featured projects
+<p>The following are selected tutorial we developed to bridge the gap between the beginner that has finished the official Rust book and shift into *Rustaceans* status with intermediate skills.
+
+We select our collaborators from a pool of experienced developers and designers that have 
+successfully attended our Rust Programming workshops.
+</p>
+
+## Featured tutorials
 <style>
 #the_cure {background-image: url('img/20140711_BB.png'); background-size: cover;}
 #the_cure:hover {background-image: url('img/Rust_and_friends.png');color:rgba(183, 65, 14, 0.0);}
@@ -45,32 +59,32 @@ style="background-image: url('img/rain.jpg')"><a href="./html/lrn/beloha/index.h
 </div><!--^-- image-mosaic -->
 </section> <!-- ^-- featured_projects -->
 
-
-<div class="greetings"><p class="drop  fancySerif">Tonga soa. Welcome Friend, please select a Razafy family member or go straight to <a  href="#featured_projects">Featured Projects</a>.</p></div>
+<hr>
+<div class="greetings"><p class="drop  fancySerif">Our Services</p></div>
 
 <section class="hero">
 <article>
-<a href="./html/lrn/index.html"><img src="./img/garden.png" alt="Lerina"></a>
+<a href="#"><img src="./img/design_develop.png" alt="Design & develop"></a>
 <div class="text">
-<h3>Lerina</h3>
-<p>Secure Code Practitioner.</p>
+<h3>Design & develop</h3>
+<p>Secure Web Agency</p>
 <a href="./html/lrn/index.html" class="btn">more...</a>
 </div>
 </article>
 <article>
-<a href="./html/rnd/index.html"><img src="./img/rnd.png" alt="Rindra"></a>
+<a href="#"><img src="./img/workshop.png" alt="code workshop"></a>
 <div class="text">
-<h3>Rindra</h3>
-<p>Pure Math Scholar.</p>
-<a href="./html/rnd/index.html" class="btn">more...</a>
+<h3>Code Workshop</h3>
+<p>Dates for the Next sessions</p>
+<a href="#" class="btn">more...</a>
 </div>
 </article>
 <article>
-<a href="./html/nrn/index.html"><img src="./img/nrn.png" alt="Nirina"></a>
+<a href="#"><img src="./img/rent_a_venue.png" alt="Venue for Rent"></a>
 <div class="text">
-<h3>Nirina</h3>
-<p>Sun Wukong: Listen to the mp3.</p>
-<a href="./html/nrn/index.html" class="btn">more...</a>
+<h3>Rent our Venue</h3>
+<p>for your talk or coaching</p>
+<a href="#" class="btn">more...</a>
 </div>
 </article>
 </section> <!-- ^--- hero -->

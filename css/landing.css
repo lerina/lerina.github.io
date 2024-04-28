@@ -1124,3 +1124,5 @@ background-repeat: no-repeat;
  pre.numberSource code > span > a:first-child::before { padding: 0;}
 }
 
+.title-block-header,
+.title {visibility: collapse; margin-top:-2em;}
