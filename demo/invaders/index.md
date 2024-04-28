@@ -8,7 +8,11 @@ keywords: [Rust, Wasm, Webassembly]
 ---
 
 <style>canvas {box-shadow: black 20px 10px 50px}</style>
-
+<style>
+h1 {margin: 0px; margin-bottom: 10px; font-size: 2.9em; font-family: "Helvetica"}
+canvas {box-shadow: black 20px 10px 50px}
+body {display: flex; align-items: center; flex-direction: column; padding: 0px; margin: 0px; height: 100vh;}
+</style>
 <main>
 
 <h1> Invaders</h1>
