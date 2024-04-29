@@ -1,11 +1,15 @@
 ---
-title: "BIZNAME: Services"
+title: "module: Services"
+header-includes:
+        <meta name="keywords" content="Rust,Wasm,Workshop,Talk" />
+        <meta name="description" content="Rust Workshop Series" />
+        <meta property="og:image" content="./img/writing.jpg" />
 ---
 
 <div class="bg"></div>
 <main>
 <div class="greetings">
-<p class="drop  fancySerif">Tonga soa. Welcome Friend<br> _bizname_
+<p class="drop  fancySerif">Tonga soa. Welcome Friend<br> _module_ part of _l5l Web Agency_
 leads the way to bring secure and fast app development in the Indian Ocean Neighbourhood.
 </p>
 </div>
@@ -60,7 +64,7 @@ style="background-image: url('img/rain.jpg')"><a href="./html/lrn/beloha/index.h
 </section> <!-- ^-- featured_projects -->
 
 <hr>
-<div class="greetings"><p class="drop  fancySerif">Our Services</p></div>
+<div class="greetings"><p class="drop fancySerif">Our Services</p></div>
 
 <section class="hero">
 <article>
@@ -72,7 +76,7 @@ style="background-image: url('img/rain.jpg')"><a href="./html/lrn/beloha/index.h
 </div>
 </article>
 <article>
-<a href="#"><img src="./img/workshop.png" alt="code workshop"></a>
+<a href="./html/workshop/index.html"><img src="./img/workshop.png" alt="code workshop"></a>
 <div class="text">
 <h3>Code Workshop</h3>
 <p>Dates for the Next sessions</p>

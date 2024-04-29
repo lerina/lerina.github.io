@@ -944,8 +944,10 @@ color: #5f79ff;
 */
 .drop:first-child::first-letter {
   color:#a26953;
-  float: left;
+  /*float: left;
   margin: 0 8px 0 4px;
+  */
+  margin: 0 8px 0 0;
   font-size: 3rem;
   font-weight: bold;
   line-height: 1;
