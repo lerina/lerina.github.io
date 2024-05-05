@@ -1,5 +1,5 @@
 ---
-title: "module: Services"
+title: "OPTIMAL: Services"
 header-includes:
         <meta name="keywords" content="Rust,Wasm,Workshop,Talk" />
         <meta name="description" content="Rust Workshop Series" />
@@ -9,7 +9,7 @@ header-includes:
 <div class="bg"></div>
 <main>
 <div class="greetings">
-<p class="drop  fancySerif">Tonga soa. Welcome Friend<br> _module_ part of _l5l Web Agency_
+<p class="drop  fancySerif">Tonga soa. Welcome Friend<br> `OPTIMAL` part of `IMPACT Web Agency`
 leads the way to bring secure and fast app development in the Indian Ocean Neighbourhood.
 </p>
 </div>
