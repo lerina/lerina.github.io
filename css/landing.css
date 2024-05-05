@@ -56,6 +56,7 @@ main h2 {padding-top:2em;}
 
 .hide {display:none;}
 .green_waterloo {color:#272822;} /* favicon bg */
+.small_fancySerif {font-size:60%;background-color:#cccaca;}
 
 /* The navigation bar */
 .navbar {
@@ -294,13 +295,17 @@ transform: scale(1);
 }
 
 /*---*/
+#mosaic-img {
+  height: 500px;
+}
+
 .mosaic-hover-menu {
   position: relative;
   overflow: hidden;
   margin: 0;
   width: 100%;
   height: 100%;
-  background: #000;
+  background: #815c5c; /*#000;*/
   text-align: center;
   box-sizing: border-box;
 }
@@ -310,22 +315,25 @@ transform: scale(1);
 }
 
 .mosaic-hover-menu img {
-  position: relative;
+  position: elative;
   max-width: 100%;
   height: 100%;
-  top: 0;
-  right: 0;
+  left: -20px
   opacity: 1;
   transition: 0.3s ease-in-out;
+  background: #815c5c;
 }
 
 .mosaic-hover-menu div {
   position: absolute;
   top: 0;
-  left: -145px;
+  /*left: -145px;
   width: 145px;
   height: 100%;
-  padding: 8px 4px;
+  */
+  left: -670px;
+  width: 670px;
+  padding: 8px 1px;
   background: #000;
   transition: 0.3s ease-in-out;
   display: flex;
@@ -338,7 +346,7 @@ transform: scale(1);
   line-height: 2;
   color: #fff;
   text-decoration: none;
-  opacity: 0.8;
+  opacity: 1; /*0.8;*/
   padding: 5px 15px;
   position: relative;
   transition: 0.3s ease-in-out;
@@ -351,9 +359,12 @@ a:hover {
   text-decoration: none;
 }
 .mosaic-hover-menu:hover img {
-  opacity: 0.5;
-  right: -120px;
+  opacity: 1;
+  margin-top: -2.3rem;
+  margin-left: -2rem;
+  /*right: -120px;*/
 }
+
 
 .mosaic-hover-menu:hover div {
   left: 0;

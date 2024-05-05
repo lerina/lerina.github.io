@@ -1,15 +1,15 @@
 ---
 title: "OPTIMAL: Services"
 header-includes:
-        <meta name="keywords" content="Rust,Wasm,Workshop,Talk" />
-        <meta name="description" content="Rust Workshop Series" />
+        <meta name="keywords" content="Rust,Wasm,Workshop,Talk, OPTIMAL, IMPACT" />
+        <meta name="description" content="Rust Programming Workshop and Wasm Development" />
         <meta property="og:image" content="./img/writing.jpg" />
 ---
 
 <div class="bg"></div>
 <main>
 <div class="greetings">
-<p class="drop  fancySerif">Tonga soa. Welcome Friend<br> `OPTIMAL` part of `IMPACT Web Agency`
+<p class="drop  fancySerif">Tonga soa. Welcome Friend<br> `OPTIMAL`{.small_fancySerif} part of `IMPACT Web Agency`{.small_fancySerif}
 leads the way to bring secure and fast app development in the Indian Ocean Neighbourhood.
 </p>
 </div>
@@ -25,22 +25,16 @@ successfully attended our Rust Programming workshops.
 ## Featured tutorials
 <style>
 #the_cure {background-image: url('img/20140711_BB.png'); background-size: cover;}
-#the_cure:hover {background-image: url('img/Rust_and_friends.png');color:rgba(183, 65, 14, 0.0);}
+#the_cure:hover {color:rgba(183, 65, 14, 0.0);}
 </style>
 <div class="image-mosaic">
 <div class="card card-tall card-wide">
-<div class="mosaic-hover-menu"  id="the_cure" ><p>A cure <br/>for insecure <br/>code</p><div style="font-size: 1rem;">
+<div class="mosaic-hover-menu"  id="the_cure" >
+<p>There is a cure <br/>for insecure <br/>code</p>
+<div style="font-size: 1rem;">
 <a href="./html/code/index.html">
-Rust and Friends<br/>
-Safety first<br/>
-Blazingly fast
-Modern tools
+<img id="mosaic-img" src="./img/secure_Rust.png">
 </a>
-<!--
-<a href="./html/code/secure_coding/index.html#memory_safe">Safety first</a>
-<a href="./html/code/secure_coding/index.html#blasingly_fast">Blazingly fast</a>
-<a href="./html/code/secure_coding/index.html#modern_tools">Modern tools</a>
--->
 </div>
 </div><!--^-- mosaic-hover-menu -->
 </div>
