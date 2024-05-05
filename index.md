@@ -8,6 +8,7 @@ header-includes:
 
 <div class="bg"></div>
 <main>
+<header style="padding:1em 1em;">
 <div class="greetings">
 <p class="drop  fancySerif">Tonga soa. Welcome Friend<br> `OPTIMAL`{.small_fancySerif} part of `IMPACT Web Agency`{.small_fancySerif}
 leads the way to bring secure and fast app development in the Indian Ocean Neighbourhood.
@@ -21,6 +22,7 @@ leads the way to bring secure and fast app development in the Indian Ocean Neigh
 We select our collaborators from a pool of experienced developers and designers that have 
 successfully attended our Rust Programming workshops.
 </p>
+</header>
 
 ## Featured tutorials
 <style>
