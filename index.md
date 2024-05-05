@@ -92,8 +92,10 @@ style="background-image: url('img/rain.jpg')"><a href="./html/lrn/beloha/index.h
 
 <footer>
 <div id="avatar"></div> 
-<p>Lerina RAZAFY  
+<p><a href="https://razafy-info.github.io">
+Lerina RAZAFY  
 Secure Code Practician 
+</a>
 </p>
 <!-- >
   <ul>
