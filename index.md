@@ -34,16 +34,18 @@ successfully attended our Rust Programming workshops.
 <div class="mosaic-hover-menu"  id="the_cure" >
 <p>There is a cure <br/>for insecure <br/>code</p>
 <div style="font-size: 1rem;">
-<a href="./html/code/index.html">
+<a href="https://optimaldev.github.io/index.html">
 <img id="mosaic-img" src="./img/secure_Rust.png">
 </a>
 </div>
 </div><!--^-- mosaic-hover-menu -->
 </div>
 <div class="card card-tall"
-style="background-image: url('img/writing.jpg')"><a href="./html/code/rust-wasm/index.html"><p>Learn <br/>Rust-Wasm<br/>& Webassembly</p></a></div>
-<div class="card"
-style="background-image: url('img/secureCodeDevelopment.jpg')"><a href="./html/code/coding_math/index.html"><p>Coding Math</p></a></div>
+style="background-image: url('img/writing.jpg')">
+<a href="https://nobundle.github.io/index.html"><p>Learn <br/>Rust-Wasm<br/>& Webassembly</p></a></div>
+<div class="card" 
+style="background-image: url('img/secureCodeDevelopment.jpg')">
+<a href="./html/code/coding_math/index.html"><p>Coding Math</p></a></div>
 <!--
 <div class="card"
 style="background-image: url('img/coding_math.jpg')"><a href="./html/lrn/text/index.html"><p>Dev Notes</p></a></div>
