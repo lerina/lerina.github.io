@@ -1062,7 +1062,7 @@ footer p {
 /* greetings */
 .greetings {
 display: grid;
-  grid-template-columns: 75% 20%;
+  grid-template-columns: 98% 2%;
   grid-template-rows: 1fr;
   column-gap: 5px;
 }

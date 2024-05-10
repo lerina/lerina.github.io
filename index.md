@@ -10,21 +10,58 @@ header-includes:
 <main>
 <header style="padding:1em 1em;">
 <div class="greetings">
-<p class="drop  fancySerif">Tonga soa. Welcome Friend<br> `OPTIMAL`{.small_fancySerif} part of `IMPACT Web Agency`{.small_fancySerif}
+<p class="drop  fancySerif">Tonga soa.<br> Welcome Friend. &nbsp;&nbsp; `OPTIMAL`{.small_fancySerif} part of `IMPACT Web Agency`{.small_fancySerif}
 leads the way to bring secure and fast app development in the Indian Ocean Neighbourhood.
 </p>
 </div>
+</header>
+<br>
+
+<div class="card card-wide"
+style="background-image: url('./img/optimal_trek.png'); background-size: cover; height:420px"><sup>leading the way to lean and secure code</sup></div>
+
+<br>
+<div class="greetings"><p class="drop fancySerif">Our Services</p></div>
+
+<section class="hero">
+<article>
+<a href="#"><img src="./img/design_develop.png" alt="Design & develop"></a>
+<div class="text">
+<h3>Design & develop</h3>
+<p>Secure Web Agency</p>
+<a href="./html/lrn/index.html" class="btn">more...</a>
+</div>
+</article>
+<article>
+<a href="./html/workshop/index.html"><img src="./img/workshop.png" alt="code workshop"></a>
+<div class="text">
+<h3>Code Workshop</h3>
+<p>Dates for the Next sessions</p>
+<a href="#" class="btn">more...</a>
+</div>
+</article>
+<article>
+<a href="#"><img src="./img/rent_a_venue.png" alt="Venue for Rent"></a>
+<div class="text">
+<h3>Rent our Venue</h3>
+<p>for your talk or coaching</p>
+<a href="#" class="btn">more...</a>
+</div>
+</article>
+</section> <!-- ^--- hero -->
  
 <section id="featured_projects">
 
-<p>The following are selected tutorial we developed to bridge the gap between the beginner that has finished the official Rust book and shift into *Rustaceans* status with intermediate skills.
+## Featured tutorials
 
+<div style="padding: 1em 2em;">
+<p>The following are selected tutorial we developed for experienced but beginner rust programmers,
+to bridge the skill gap between finishing the official Rust book and shift into *Rustaceans* skills.
+</p><p>
 We select our collaborators from a pool of experienced developers and designers that have 
 successfully attended our Rust Programming workshops.
 </p>
-</header>
-
-## Featured tutorials
+</div>
 <style>
 #the_cure {background-image: url('img/20140711_BB.png'); background-size: cover;}
 #the_cure:hover {color:rgba(183, 65, 14, 0.0);}
@@ -61,35 +98,6 @@ style="background-image: url('img/rain.jpg')"><a href="./html/lrn/beloha/index.h
 </div><!--^-- image-mosaic -->
 </section> <!-- ^-- featured_projects -->
 
-<hr>
-<div class="greetings"><p class="drop fancySerif">Our Services</p></div>
-
-<section class="hero">
-<article>
-<a href="#"><img src="./img/design_develop.png" alt="Design & develop"></a>
-<div class="text">
-<h3>Design & develop</h3>
-<p>Secure Web Agency</p>
-<a href="./html/lrn/index.html" class="btn">more...</a>
-</div>
-</article>
-<article>
-<a href="./html/workshop/index.html"><img src="./img/workshop.png" alt="code workshop"></a>
-<div class="text">
-<h3>Code Workshop</h3>
-<p>Dates for the Next sessions</p>
-<a href="#" class="btn">more...</a>
-</div>
-</article>
-<article>
-<a href="#"><img src="./img/rent_a_venue.png" alt="Venue for Rent"></a>
-<div class="text">
-<h3>Rent our Venue</h3>
-<p>for your talk or coaching</p>
-<a href="#" class="btn">more...</a>
-</div>
-</article>
-</section> <!-- ^--- hero -->
 
 
 <footer>
