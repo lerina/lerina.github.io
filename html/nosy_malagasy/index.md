@@ -3,13 +3,15 @@
 
 <main>
 
+- [Ranavalomanjaka](./Ranavalomanjaka/en_1835.02.26.html)
+
 ## Culture
 
 ### Way of the Ancestors
 
 ### Fanorona
 
-[more ...](./fanorona.html)
+- [more ...](./fanorona.html)
 
 ### Sakafo
 
