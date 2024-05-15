@@ -6,7 +6,7 @@ author:
 toc-depth: 3
 keywords: [Rust, Wasm, Webassembly]
 ---
-<style>:root{--color-bg: linear-gradient(45deg, rgba(255,228,113, 0.9),rgba(228,105,41,0.7));}</style>
+<style>:root{--color-bg: linear-gradient(45deg, #72A0C1,#B0C4DE);}</style>
 
 <header>
         <h1>Page Heading with <i>Italics</i> and <u>Underline</u> not in the TOC</h1>

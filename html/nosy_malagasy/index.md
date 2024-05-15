@@ -1,21 +1,32 @@
+---
+title: Nosy Malagasy
+---
 
-<div class="bg_nm"></div><div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
+<style>
+:root{--color-bg: linear-gradient(45deg, #faf9f3, #faf6f3);}
+header {
+    background-color: linear-gradient(45deg, #0a29f3, #4f4145);
+    padding: 0.5rem 1rem 0.5rem 1rem;
+}
+</style>
 
+<header>
+        <h1>Nosy Malagasy</h1>
+        <p>(Madagascar)</p>
+        <h3>barycentre of Mahasagar (Indian Ocean)</h3>
+</header>
 <main>
+# <a href="../../index.html">⇦ home</a>{.collapse}
 
-- [Ranavalomanjaka](./Ranavalomanjaka/en_1835.02.26.html)
+# Culture
 
-## Culture
-
-### Way of the Ancestors
-
-### Fanorona
+## Fanorona
 
 - [more ...](./fanorona.html)
 
-### Sakafo
+## Sakafo
 
-### Learn Malagasy
+## Learn Malagasy
 
 #### Course
 
@@ -25,6 +36,13 @@
 
 #### [Malagasy Grammar](./grammar.html)
 
+# Blueprint for a way of life
+
+## Ranavalomanjaka (Queen Ranavalona)
+
+- [Ranavalomanjaka](./Ranavalomanjaka/en_1835.02.26.html)
+
+## Way of the Ancestors
 
 <!-- 
 Origin
@@ -39,23 +57,3 @@ Indians and Chinese in the 20th century
 -->
 </main>
 
-<script src="https://lerina.github.io/js/toc.js"></script>
-<script>
-let anchor= document.createElement('a');
-anchor.href="javascript:closeNav()"; //void(0)"; //anchor[0].onclick = closeNav();
-anchor.className = "closebtn";  
-anchor.innerHTML="&times;";
-document.getElementById("TOC").prepend(anchor);
-
-
-let navCrumbs= document.createElement('div');
-navCrumbs.className = "hover-nav";
-navCrumbs.innerHTML = `
-<div class="hover-nav">
-<ul>
-<li><a href="../../index.html">⇦ home</a></li>
-<li><a href="./index.html">Nosy Malagasy</a></li>
-</ul>
-</div>`;
-document.getElementById("TOC").prepend(navCrumbs); 
-</script>
