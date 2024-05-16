@@ -51,7 +51,7 @@ style="background-image: url('./img/optimal_trek.png'); background-size: cover; 
 </section> <!-- ^--- hero -->
 
 <section id="demo">
-### Demo Page
+<div class="greetings"><p class="drop fancySerif">Demo pages</p></div>
 
 [Rust - Frontend & Backend](./demo/index.html)
 
@@ -59,7 +59,7 @@ style="background-image: url('./img/optimal_trek.png'); background-size: cover; 
 
 <section id="featured_projects">
 
-## Featured tutorials
+<div class="greetings"><p class="drop fancySerif">Featured tutorials</p></div>
 
 <div style="padding: 1em 2em;">
 <p>The following are selected tutorial we developed for experienced but beginner rust programmers,

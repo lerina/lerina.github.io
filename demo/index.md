@@ -70,14 +70,15 @@ This simplifies the cooperation between the developers and the designers freeing
 <p>
 ![](./img/css-animations.jpg)
 </p>
-<p>Client side Animations</p>
+<p>Client side animations can enhance the emotional experience of the users. It adds personality to web interfaces and enhances interaction.</p>
 </aside>
 <aside>
 <h3 style="padding-left:1em; border: 2px solid var(--color-bg-secondary); border-radius: 4px;">SVG </h3>
 <p>
 ![](./img/svg.png)
 </p>
-<p>Powerful Animations</p>
+<p>SVG <small>(Scalable Vector Graphics)</small> has support for interactivity and powerful animation. 
+Its ideal for web illustrations because it tends to have smaller file sizes than other formats.</p>
 </aside>
 </section>
 
