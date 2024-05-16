@@ -32,14 +32,15 @@
     --width-content: 1080px;
 }
 
+/* <html color-mode="user"> if browser is in darkmode this will kick in*/
 @media (prefers-color-scheme: dark) {
     :root[color-mode="user"] {
         --color-accent: #0097fc4f;
         --color-bg: #333;
         --color-bg-secondary: #555;
         --color-link: #0097fc;
-        --color-secondary: #e20de9;
-        --color-secondary-accent: #e20de94f;
+        --color-secondary: #a5b9e9; /*#e20de9;*/
+        --color-secondary-accent: #417aad4f; /*#e20de94f;*/
         --color-shadow: #bbbbbb20;
         --color-table: #0097fc;
         --color-text: #f7f7f7;

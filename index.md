@@ -49,7 +49,14 @@ style="background-image: url('./img/optimal_trek.png'); background-size: cover; 
 </div>
 </article>
 </section> <!-- ^--- hero -->
- 
+
+<section id="demo">
+### Demo Page
+
+[Rust - Frontend & Backend](./demo/index.html)
+
+</section>
+
 <section id="featured_projects">
 
 ## Featured tutorials

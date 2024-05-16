@@ -16,6 +16,17 @@ header {
         <h3>barycentre of Mahasagar (Indian Ocean)</h3>
 </header>
 <main>
+
+> Ny ranomasina no valapariako 
+>  
+| only the sea is the limit of my kingdom (lit. “the sea is the limit of my rice-field”)
+| King Andrianampoinimerina
+
+> "<i>Ny arivo lahy tsy maty indray andro" 
+
+| (Thousand men will not die in one day)
+
+
 # <a href="../../index.html">⇦ home</a>{.collapse}
 
 # Culture

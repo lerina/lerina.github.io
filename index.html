@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html xmlns="http://www.w3.org/1999/xhtml" color-mode="user" lang="" xml:lang="">
 <head>
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
@@ -8,14 +8,23 @@
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
   <link rel="stylesheet" href="https://lerina.github.io/css/landing_min.css" />
-  <meta name="keywords" content="Rust,Wasm,Workshop,Talk, OPTIMAL, IMPACT" />
-  <meta name="description" content="Rust Programming Workshop and Wasm Development" />
+  <meta name="keywords" content="Rust,Wasm,Workshop,Talk, OPTIMAL, IMPACT" /><br />
+  <meta name="description" content="Rust Programming Workshop and Wasm Development" /><br />
   <meta property="og:image" content="./img/writing.jpg" />
 </head>
 <body>
@@ -24,7 +33,8 @@
 </header>
 <nav id="TOC" role="doc-toc">
 <ul>
-<li><a href="#featured-tutorials">Featured tutorials</a></li>
+<li><a href="#featured-tutorials" id="toc-featured-tutorials">Featured
+tutorials</a></li>
 </ul>
 </nav>
 <div class="bg">
@@ -34,12 +44,16 @@
 <header style="padding:1em 1em;">
 <div class="greetings">
 <p class="drop  fancySerif">
-Tonga soa.<br> Welcome Friend.    <code class="small_fancySerif">OPTIMAL</code> part of <code class="small_fancySerif">IMPACT Web Agency</code> leads the way to bring secure and fast app development in the Indian Ocean Neighbourhood.
+Tonga soa.<br> Welcome Friend.    <code
+class="small_fancySerif">OPTIMAL</code> part of <code
+class="small_fancySerif">IMPACT Web Agency</code> leads the way to bring
+secure and fast app development in the Indian Ocean Neighbourhood.
 </p>
 </div>
 </header>
 <p><br></p>
-<div class="card card-wide" style="background-image: url(&#39;./img/optimal_trek.png&#39;); background-size: cover; height:420px">
+<div class="card card-wide"
+style="background-image: url(&#39;./img/optimal_trek.png&#39;); background-size: cover; height:420px">
 <sup>leading the way to lean and secure code</sup>
 </div>
 <br>
@@ -87,14 +101,22 @@ for your talk or coaching
 </article>
 </section>
 <p><!-- ^--- hero --></p>
+<section id="demo">
+<h3 id="demo-page">Demo Page</h3>
+<p><a href="./demo/index.html">Rust - Frontend &amp; Backend</a></p>
+</section>
 <section id="featured_projects">
 <h2 id="featured-tutorials">Featured tutorials</h2>
 <div style="padding: 1em 2em;">
 <p>
-The following are selected tutorial we developed for experienced but beginner rust programmers, to bridge the skill gap between finishing the official Rust book and shift into <em>Rustaceans</em> skills.
+The following are selected tutorial we developed for experienced but
+beginner rust programmers, to bridge the skill gap between finishing the
+official Rust book and shift into <em>Rustaceans</em> skills.
 </p>
 <p>
-We select our collaborators from a pool of experienced developers and designers that have successfully attended our Rust Programming workshops.
+We select our collaborators from a pool of experienced developers and
+designers that have successfully attended our Rust Programming
+workshops.
 </p>
 </div>
 <style>
@@ -108,19 +130,22 @@ We select our collaborators from a pool of experienced developers and designers 
 There is a cure <br/>for insecure <br/>code
 </p>
 <div style="font-size: 1rem;">
-<p><a href="https://optimaldev.github.io/index.html"> <img id="mosaic-img" src="./img/secure_Rust.png"> </a></p>
+<p><a href="https://optimaldev.github.io/index.html">
+<img id="mosaic-img" src="./img/secure_Rust.png"> </a></p>
 </div>
 </div>
 <!--^-- mosaic-hover-menu -->
 </div>
-<div class="card card-tall" style="background-image: url(&#39;img/writing.jpg&#39;)">
+<div class="card card-tall"
+style="background-image: url(&#39;img/writing.jpg&#39;)">
 <a href="https://nobundle.github.io/index.html">
 <p>
 Learn <br/>Rust-Wasm<br/>&amp; Webassembly
 </p>
 </a>
 </div>
-<div class="card" style="background-image: url(&#39;img/secureCodeDevelopment.jpg&#39;)">
+<div class="card"
+style="background-image: url(&#39;img/secureCodeDevelopment.jpg&#39;)">
 <a href="./html/code/coding_math/index.html">
 <p>
 Coding Math
@@ -133,7 +158,8 @@ style="background-image: url('img/coding_math.jpg')"><a href="./html/lrn/text/in
 <div class="card"
 style="background-image: url('img/rustbridge-paris.jpg')"><a href="./html/code/game_dev/index.html"><p>Game Dev</p></a></div>
 -->
-<div class="card card-wide" style="background-image: url(&#39;img/theView3.jpg&#39;); text-align: center;">
+<div class="card card-wide"
+style="background-image: url(&#39;img/theView3.jpg&#39;); text-align: center;">
 <a href="./html/nosy_malagasy/index.html">
 <p>
 Harmonious Progress<br><sup>in Nosy Malagasy</sup>

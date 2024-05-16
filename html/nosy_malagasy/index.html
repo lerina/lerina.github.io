@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html xmlns="http://www.w3.org/1999/xhtml" color-mode="user" lang="" xml:lang="">
 <head>
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
@@ -8,12 +8,21 @@
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
-  <link rel="stylesheet" href="https://lerina.github.io/css/vpkely.css" />
+  <link rel="stylesheet" href="https://razafy-info.github.io/css/vpkely.css" />
 </head>
 <body>
 <header id="title-block-header">
@@ -21,17 +30,23 @@
 </header>
 <nav id="TOC" role="doc-toc">
 <ul>
-<li><a href="#home"><a href="../../index.html">⇦ home</a></a></li>
-<li><a href="#culture">Culture</a>
+<li><a href="#home" id="toc-home"><a href="../../index.html">⇦
+home</a></a></li>
+<li><a href="#culture" id="toc-culture">Culture</a>
 <ul>
-<li><a href="#fanorona">Fanorona</a></li>
-<li><a href="#sakafo">Sakafo</a></li>
-<li><a href="#learn-malagasy">Learn Malagasy</a></li>
+<li><a href="#fanorona" id="toc-fanorona">Fanorona</a></li>
+<li><a href="#sakafo" id="toc-sakafo">Sakafo</a></li>
+<li><a href="#learn-malagasy" id="toc-learn-malagasy">Learn
+Malagasy</a></li>
 </ul></li>
-<li><a href="#blueprint-for-a-way-of-life">Blueprint for a way of life</a>
+<li><a href="#blueprint-for-a-way-of-life"
+id="toc-blueprint-for-a-way-of-life">Blueprint for a way of life</a>
 <ul>
-<li><a href="#ranavalomanjaka-queen-ranavalona">Ranavalomanjaka (Queen Ranavalona)</a></li>
-<li><a href="#way-of-the-ancestors">Way of the Ancestors</a></li>
+<li><a href="#ranavalomanjaka-queen-ranavalona"
+id="toc-ranavalomanjaka-queen-ranavalona">Ranavalomanjaka (Queen
+Ranavalona)</a></li>
+<li><a href="#way-of-the-ancestors" id="toc-way-of-the-ancestors">Way of
+the Ancestors</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -54,7 +69,18 @@ barycentre of Mahasagar (Indian Ocean)
 </h3>
 </header>
 <main>
-<h1 class="collapse" id="home"><a href="../../index.html">⇦ home</a></h1>
+<blockquote>
+<p>Ny ranomasina no valapariako</p>
+<div class="line-block">only the sea is the limit of my kingdom (lit.
+“the sea is the limit of my rice-field”)<br />
+King Andrianampoinimerina</div>
+</blockquote>
+<blockquote>
+<p>“<i>Ny arivo lahy tsy maty indray andro”</p>
+</blockquote>
+<div class="line-block">(Thousand men will not die in one day)</div>
+<h1 class="collapse" id="home"><a href="../../index.html">⇦
+home</a></h1>
 <h1 id="culture">Culture</h1>
 <h2 id="fanorona">Fanorona</h2>
 <ul>
@@ -68,11 +94,14 @@ barycentre of Mahasagar (Indian Ocean)
 <li><a href="./lesona/Lesona_008-014.html">Lesona_008-014</a></li>
 <li><a href="./lesona/Lesona_015-021.html">Lesona_015-021</a></li>
 </ul>
-<h4 id="malagasy-grammar"><a href="./grammar.html">Malagasy Grammar</a></h4>
+<h4 id="malagasy-grammar"><a href="./grammar.html">Malagasy
+Grammar</a></h4>
 <h1 id="blueprint-for-a-way-of-life">Blueprint for a way of life</h1>
-<h2 id="ranavalomanjaka-queen-ranavalona">Ranavalomanjaka (Queen Ranavalona)</h2>
+<h2 id="ranavalomanjaka-queen-ranavalona">Ranavalomanjaka (Queen
+Ranavalona)</h2>
 <ul>
-<li><a href="./Ranavalomanjaka/en_1835.02.26.html">Ranavalomanjaka</a></li>
+<li><a
+href="./Ranavalomanjaka/en_1835.02.26.html">Ranavalomanjaka</a></li>
 </ul>
 <h2 id="way-of-the-ancestors">Way of the Ancestors</h2>
 <!-- 
