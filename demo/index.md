@@ -38,7 +38,7 @@ nav {margin-bottom:-3em; }
 </aside>
 <aside>
 <h3 style="padding-left:1em; border: 2px solid var(--color-bg-secondary); border-radius: 4px;">Dioxus</h3>
-<p>
+<p style="background-color: var(--color-text);">
 ![](./img/multiplatform-dark.svg)
 </p>
 <p><br/>Dioxus is a Rust library for building apps that run on desktop, web, mobile, and more.</p>
@@ -58,16 +58,25 @@ This simplifies the cooperation between the developers and the designers freeing
 <span data-x-text="hello"></span>
 </div>
 <aside>
-<h3>Rapid Prototype</h3>
+<h3 style="padding-left:1em; border: 2px solid var(--color-bg-secondary); border-radius: 4px;">Rapid Prototype</h3>
+<p>
+![](./img/alpinejs-logo.png)
+</p>
 <p>Interactive front-end interfaces, using Alpine.js. For server rendered, static or pre-rendered sites.</p>
 <p><small>Test your Ideas</small></p>
 </aside>
 <aside>
-<h3>CSS Animations</h3> <!-- https://coolcssanimation.com/ -->
+<h3 style="padding-left:1em; border: 2px solid var(--color-bg-secondary); border-radius: 4px;">CSS Animations</h3> <!-- https://coolcssanimation.com/ -->
+<p>
+![](./img/css-animations.jpg)
+</p>
 <p>Client side Animations</p>
 </aside>
 <aside>
-<h3>SVG </h3>
+<h3 style="padding-left:1em; border: 2px solid var(--color-bg-secondary); border-radius: 4px;">SVG </h3>
+<p>
+![](./img/svg.png)
+</p>
 <p>Powerful Animations</p>
 </aside>
 </section>
