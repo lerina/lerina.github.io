@@ -87,17 +87,25 @@ This simplifies the cooperation between the developers and the designers freeing
 <p>Section Subheading</p>
 </header>
 <aside>
-<h3>Docker</h3>
-<p>Card content*</p>
-<p><small>*with small content</small></p>
+<h3 style="padding-left:1em; border: 2px solid var(--color-bg-secondary); border-radius: 4px;">Docker</h3>
+<p>
+![](./img/docker.jpg)
+</p>
+<p>Docker can package an application and its dependencies in a virtual container that can run on any Linux, Windows, or macOS computer.</p>
 </aside>
 <aside>
-<h3>Shuttle</h3>
-<p>Card content <sup>with notification</sup></p>
+<h3 style="padding-left:1em; border: 2px solid var(--color-bg-secondary); border-radius: 4px;">Shuttle</h3>
+<p>
+![](./img/rust-shuttle.jpg)
+</p>
+<p>Shuttle is a Rust-native cloud development platform that lets you deploy your app while also taking care of all of your infrastructure.</p>
 </aside>
 <aside>
-<h3>Database</h3>
-<p>Card content</p>
+<h3 style="padding-left:1em; border: 2px solid var(--color-bg-secondary); border-radius: 4px;">Database</h3>
+<p>
+![](./img/sqlx.jpg)
+</p>
+<p>The Rust SQL Toolkit is an async, pure Rust SQL crate featuring compile-time checked queries with supports for PostgreSQL, MySQL, and SQLite.</p>
 </aside>
 </section>
 
