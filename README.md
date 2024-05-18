@@ -9,6 +9,11 @@
 
 ## REM:
 
+header-includes:
+ <meta name="keywords" content="Rust,Wasm,Workshop,Talk, OPTIMAL, IMPACT" />
+ <meta name="description" content="Rust Programming Workshop and Wasm Development" />
+ <meta property="og:image" content="./img/writing.jpg" />
+
 ### Pandoc
 
 { attribute1="value1" attribute2="value2"}
@@ -18,8 +23,9 @@ ex:
 
 ### Github markdown
 This is not working any more
-
 [Hello, world!]{:target="_blank" rel="noopener"}
+
+also: rel="noopener" not needed as of 2022
 
 ### Favicon 
 

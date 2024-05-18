@@ -8,6 +8,7 @@ keywords: [Rust, Wasm, Webassembly]
 <style>
 :root{--color-bg: linear-gradient(45deg, #fafafa,#f3f3f3);}
 nav {margin-bottom:-3em; }
+section {min-height: 100vh;}
 </style>
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.10/dist/cdn.min.js"></script>
 

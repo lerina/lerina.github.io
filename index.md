@@ -1,11 +1,9 @@
 ---
-title: "OPTIMAL: Services"
-header-includes:
-        <meta name="keywords" content="Rust,Wasm,Workshop,Talk, OPTIMAL, IMPACT" />
-        <meta name="description" content="Rust Programming Workshop and Wasm Development" />
-        <meta property="og:image" content="./img/writing.jpg" />
+header-includes: |
+    <meta property="og:image" content="./img/writing.jpg" />
+    <meta name="description" content="Secure Code Practician: Rust programming with webassembly" />
+title: "Razafy: Services"
 ---
-
 <div class="bg"></div>
 <main>
 <header style="padding:1em 1em;">
@@ -16,10 +14,8 @@ leads the way to bring secure and fast app development in the Indian Ocean Neigh
 </div>
 </header>
 <br>
-
 <div class="card card-wide"
 style="background-image: url('./img/optimal_trek.png'); background-size: cover; height:420px"><sup>leading the way to lean and secure code</sup></div>
-
 <br>
 <div class="greetings"><p class="drop fancySerif">Our Services</p></div>
 
