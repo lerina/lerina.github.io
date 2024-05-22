@@ -33,7 +33,7 @@ header {
 
 ## Fanorona
 
-- [more ...](./fanorona.html)
+- [How to play Fanorona](./fanorona/fanorona.html)
 
 ## Sakafo
 
@@ -47,6 +47,8 @@ header {
 
 #### [Malagasy Grammar](./grammar.html)
 
+---
+
 # Blueprint for a way of life
 
 ## Ranavalomanjaka (Queen Ranavalona)
@@ -54,6 +56,9 @@ header {
 - [Ranavalomanjaka](./Ranavalomanjaka/en_1835.02.26.html)
 
 ## Way of the Ancestors
+
+- [Ny Antoka: The Pledge](./woa/woa.html)
+- [Poems](./woa/poems.html)
 
 <!-- 
 Origin
